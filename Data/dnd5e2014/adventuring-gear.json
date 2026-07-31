@@ -1,0 +1,1750 @@
+[
+  {
+    "id": "dnd5e2014.adventuring-gear.abacus",
+    "name": "Abacus",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.acid-vial",
+    "name": "Acid (vial)",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.alchemists-fire-flask",
+    "name": "Alchemist's fire (flask)",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.antitoxin-vial",
+    "name": "Antitoxin (vial)",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.arcane-focus-crystal",
+    "name": "Crystal",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.arcane-focus-orb",
+    "name": "Orb",
+    "cost": {
+      "copperPieces": 2000
+    },
+    "listedWeight": {
+      "pounds": 3,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.arcane-focus-rod",
+    "name": "Rod",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.arcane-focus-staff",
+    "name": "Staff",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.arcane-focus-wand",
+    "name": "Wand",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.backpack",
+    "name": "Backpack",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.ball-bearings-bag-1000",
+    "name": "Ball bearings (bag of 1,000)",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.barrel",
+    "name": "Barrel",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 70,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.basket",
+    "name": "Basket",
+    "cost": {
+      "copperPieces": 40
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.bedroll",
+    "name": "Bedroll",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 7,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.bell",
+    "name": "Bell",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.blanket",
+    "name": "Blanket",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": {
+      "pounds": 3,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.block-and-tackle",
+    "name": "Block and tackle",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.book",
+    "name": "Book",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.bottle-glass",
+    "name": "Bottle, glass",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.bucket",
+    "name": "Bucket",
+    "cost": {
+      "copperPieces": 5
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.caltrops-bag-20",
+    "name": "Caltrops (bag of 20)",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.candle",
+    "name": "Candle",
+    "cost": {
+      "copperPieces": 1
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.case-crossbow-bolt",
+    "name": "Case, crossbow bolt",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.case-map-or-scroll",
+    "name": "Case, map or scroll",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.chain-10-feet",
+    "name": "Chain (10 feet)",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 10,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.chalk-1-piece",
+    "name": "Chalk (1 piece)",
+    "cost": {
+      "copperPieces": 1
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.chest",
+    "name": "Chest",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 25,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.climbers-kit",
+    "name": "Climber's kit",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "listedWeight": {
+      "pounds": 12,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.clothes-common",
+    "name": "Clothes, common",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": {
+      "pounds": 3,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.clothes-costume",
+    "name": "Clothes, costume",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.clothes-fine",
+    "name": "Clothes, fine",
+    "cost": {
+      "copperPieces": 1500
+    },
+    "listedWeight": {
+      "pounds": 6,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.clothes-travelers",
+    "name": "Clothes, traveler's",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.component-pouch",
+    "name": "Component pouch",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.crowbar",
+    "name": "Crowbar",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.druidic-focus-sprig-of-mistletoe",
+    "name": "Sprig of mistletoe",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.druidic-focus-totem",
+    "name": "Totem",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.druidic-focus-wooden-staff",
+    "name": "Wooden staff",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.druidic-focus-yew-wand",
+    "name": "Yew wand",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.fishing-tackle",
+    "name": "Fishing tackle",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.flask-or-tankard",
+    "name": "Flask or tankard",
+    "cost": {
+      "copperPieces": 2
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.grappling-hook",
+    "name": "Grappling hook",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.hammer",
+    "name": "Hammer",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 3,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.hammer-sledge",
+    "name": "Hammer, sledge",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 10,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.healers-kit",
+    "name": "Healer's kit",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 3,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.holy-symbol-amulet",
+    "name": "Amulet",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.holy-symbol-emblem",
+    "name": "Emblem",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.holy-symbol-reliquary",
+    "name": "Reliquary",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.holy-water-flask",
+    "name": "Holy water (flask)",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.hourglass",
+    "name": "Hourglass",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.hunting-trap",
+    "name": "Hunting trap",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 25,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.ink-1-ounce-bottle",
+    "name": "Ink (1 ounce bottle)",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.ink-pen",
+    "name": "Ink pen",
+    "cost": {
+      "copperPieces": 2
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.jug-or-pitcher",
+    "name": "Jug or pitcher",
+    "cost": {
+      "copperPieces": 2
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.ladder-10-foot",
+    "name": "Ladder (10-foot)",
+    "cost": {
+      "copperPieces": 10
+    },
+    "listedWeight": {
+      "pounds": 25,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.lamp",
+    "name": "Lamp",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.lantern-bullseye",
+    "name": "Lantern, bullseye",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.lantern-hooded",
+    "name": "Lantern, hooded",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.lock",
+    "name": "Lock",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.magnifying-glass",
+    "name": "Magnifying glass",
+    "cost": {
+      "copperPieces": 10000
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.manacles",
+    "name": "Manacles",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 6,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.mess-kit",
+    "name": "Mess kit",
+    "cost": {
+      "copperPieces": 20
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.mirror-steel",
+    "name": "Mirror, steel",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 0.5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.oil-flask",
+    "name": "Oil (flask)",
+    "cost": {
+      "copperPieces": 10
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.paper-one-sheet",
+    "name": "Paper (one sheet)",
+    "cost": {
+      "copperPieces": 20
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.parchment-one-sheet",
+    "name": "Parchment (one sheet)",
+    "cost": {
+      "copperPieces": 10
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.perfume-vial",
+    "name": "Perfume (vial)",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.pick-miners",
+    "name": "Pick, miner's",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 10,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.piton",
+    "name": "Piton",
+    "cost": {
+      "copperPieces": 5
+    },
+    "listedWeight": {
+      "pounds": 0.25,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.poison-basic-vial",
+    "name": "Poison, basic (vial)",
+    "cost": {
+      "copperPieces": 10000
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.pole-10-foot",
+    "name": "Pole (10-foot)",
+    "cost": {
+      "copperPieces": 5
+    },
+    "listedWeight": {
+      "pounds": 7,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.pot-iron",
+    "name": "Pot, iron",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 10,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.potion-of-healing",
+    "name": "Potion of healing",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "listedWeight": {
+      "pounds": 0.5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.pouch",
+    "name": "Pouch",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.quiver",
+    "name": "Quiver",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.ram-portable",
+    "name": "Ram, portable",
+    "cost": {
+      "copperPieces": 400
+    },
+    "listedWeight": {
+      "pounds": 35,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.rations-1-day",
+    "name": "Rations (1 day)",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": {
+      "pounds": 2,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.robes",
+    "name": "Robes",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 4,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.rope-hempen-50-feet",
+    "name": "Rope, hempen (50 feet)",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 10,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.rope-silk-50-feet",
+    "name": "Rope, silk (50 feet)",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.sack",
+    "name": "Sack",
+    "cost": {
+      "copperPieces": 1
+    },
+    "listedWeight": {
+      "pounds": 0.5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.scale-merchants",
+    "name": "Scale, merchant's",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 3,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.sealing-wax",
+    "name": "Sealing wax",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.shovel",
+    "name": "Shovel",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.signal-whistle",
+    "name": "Signal whistle",
+    "cost": {
+      "copperPieces": 5
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.signet-ring",
+    "name": "Signet ring",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.soap",
+    "name": "Soap",
+    "cost": {
+      "copperPieces": 2
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.spellbook",
+    "name": "Spellbook",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "listedWeight": {
+      "pounds": 3,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.spikes-iron-10",
+    "name": "Spikes, iron (10)",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.spyglass",
+    "name": "Spyglass",
+    "cost": {
+      "copperPieces": 100000
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.tent-two-person",
+    "name": "Tent, two-person",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 20,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.tinderbox",
+    "name": "Tinderbox",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.torch",
+    "name": "Torch",
+    "cost": {
+      "copperPieces": 1
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.vial",
+    "name": "Vial",
+    "cost": {
+      "copperPieces": 100
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.waterskin",
+    "name": "Waterskin",
+    "cost": {
+      "copperPieces": 20
+    },
+    "listedWeight": {
+      "pounds": 5,
+      "qualifier": "full"
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear.whetstone",
+    "name": "Whetstone",
+    "cost": {
+      "copperPieces": 1
+    },
+    "listedWeight": {
+      "pounds": 1,
+      "qualifier": null
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  }
+]

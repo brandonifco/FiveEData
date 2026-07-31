@@ -25,6 +25,9 @@
       Include="../../Data/dnd5e2014/shields.json"
       LogicalName="FiveEData.Data.dnd5e2014.shields.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/adventuring-gear.json"
+      LogicalName="FiveEData.Data.dnd5e2014.adventuring-gear.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/rules.json"
       LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
   </ItemGroup>

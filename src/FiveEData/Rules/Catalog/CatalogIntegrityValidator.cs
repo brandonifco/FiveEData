@@ -1,6 +1,7 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
+using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Weapons;
@@ -90,6 +91,24 @@ internal static class CatalogIntegrityValidator
                 definition.Sources,
                 sourceIds,
                 errors);
+        }
+
+        foreach (AdventuringGearDefinition definition in definitions.AdventuringGear)
+        {
+            ValidateSources(
+                $"Adventuring gear '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"Adventuring gear '{definition.Id}' references missing rule '{specialRuleId}'.");
+                }
+            }
         }
 
         if (definitions.ArmorUsage is not null)

@@ -4,6 +4,8 @@ using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
+using FiveEData.Rules.Equipment.AdventuringGear;
+using FiveEData.Rules.Equipment.AdventuringGear.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
 using FiveEData.Rules.Equipment.Shields;
@@ -32,6 +34,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string ShieldsResource =
         "FiveEData.Data.dnd5e2014.shields.json";
+
+    private const string AdventuringGearResource =
+        "FiveEData.Data.dnd5e2014.adventuring-gear.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -62,6 +67,10 @@ internal static class Dnd5e2014RulesetLoader
             ShieldDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(ShieldsResource));
 
+        IReadOnlyList<AdventuringGearDefinition> adventuringGear =
+            AdventuringGearDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(AdventuringGearResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -73,6 +82,7 @@ internal static class Dnd5e2014RulesetLoader
             rules: rules,
             armor: armor,
             shields: shields,
+            adventuringGear: adventuringGear,
             armorUsage: armorUsage);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -82,6 +92,7 @@ internal static class Dnd5e2014RulesetLoader
             new AmmunitionCatalog(ammunition),
             new ArmorCatalog(armor),
             new ShieldCatalog(shields),
+            new AdventuringGearCatalog(adventuringGear),
             armorUsage,
             new SourceDocumentCatalog(sources),
             new RuleCatalog(rules));

@@ -6,6 +6,8 @@ using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
+using FiveEData.Rules.Equipment.AdventuringGear;
+using FiveEData.Rules.Equipment.AdventuringGear.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
 using FiveEData.Rules.Equipment.Shields;
@@ -47,6 +49,14 @@ public sealed class CatalogIntegrityTests
             ShieldDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "shields.json"));
 
+        IReadOnlyList<AdventuringGearDefinition> adventuringGear =
+            AdventuringGearDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "adventuring-gear.json"));
+
         ArmorUsageRules armorUsage =
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
@@ -60,6 +70,7 @@ public sealed class CatalogIntegrityTests
                     rules: rules,
                     armor: armor,
                     shields: shields,
+                    adventuringGear: adventuringGear,
                     armorUsage: armorUsage)));
     }
 
@@ -203,6 +214,74 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void AdventuringGearMissingSourceReference_IsRejected()
+    {
+        AdventuringGearDefinition definition = new(
+            new AdventuringGearId(
+                "dnd5e2014.adventuring-gear.test"),
+            "Test gear",
+            new Money(100),
+            listedWeight: null,
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId("dnd5e2014.source.missing"),
+                    page: 150)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(adventuringGear: [definition]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing source document",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void AdventuringGearMissingSpecialRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        AdventuringGearDefinition definition = new(
+            new AdventuringGearId(
+                "dnd5e2014.adventuring-gear.test"),
+            "Test gear",
+            new Money(100),
+            listedWeight: null,
+            specialRuleIds:
+            [
+                new RuleId("dnd5e2014.adventuring-gear-rule.missing")
+            ],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 150)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    adventuringGear: [definition]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains("missing rule", StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -266,6 +345,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<RuleDefinition>? rules = null,
         IReadOnlyList<ArmorDefinition>? armor = null,
         IReadOnlyList<ShieldDefinition>? shields = null,
+        IReadOnlyList<AdventuringGearDefinition>? adventuringGear = null,
         ArmorUsageRules? armorUsage = null)
     {
         return new RulesetDefinitionSet(
@@ -275,6 +355,7 @@ public sealed class CatalogIntegrityTests
             rules: rules ?? [],
             armor: armor ?? [],
             shields: shields ?? [],
+            adventuringGear: adventuringGear ?? [],
             armorUsage: armorUsage);
     }
 

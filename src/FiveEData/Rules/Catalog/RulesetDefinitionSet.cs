@@ -1,6 +1,7 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
+using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Weapons;
@@ -16,6 +17,7 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<RuleDefinition> rules,
         IReadOnlyList<ArmorDefinition> armor,
         IReadOnlyList<ShieldDefinition> shields,
+        IReadOnlyList<AdventuringGearDefinition> adventuringGear,
         ArmorUsageRules? armorUsage = null)
     {
         ArgumentNullException.ThrowIfNull(weapons);
@@ -24,6 +26,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(rules);
         ArgumentNullException.ThrowIfNull(armor);
         ArgumentNullException.ThrowIfNull(shields);
+        ArgumentNullException.ThrowIfNull(adventuringGear);
 
         Weapons = weapons;
         SourceDocuments = sourceDocuments;
@@ -31,6 +34,7 @@ internal sealed class RulesetDefinitionSet
         Rules = rules;
         Armor = armor;
         Shields = shields;
+        AdventuringGear = adventuringGear;
         ArmorUsage = armorUsage;
     }
 
@@ -40,5 +44,6 @@ internal sealed class RulesetDefinitionSet
     public IReadOnlyList<RuleDefinition> Rules { get; }
     public IReadOnlyList<ArmorDefinition> Armor { get; }
     public IReadOnlyList<ShieldDefinition> Shields { get; }
+    public IReadOnlyList<AdventuringGearDefinition> AdventuringGear { get; }
     public ArmorUsageRules? ArmorUsage { get; }
 }
