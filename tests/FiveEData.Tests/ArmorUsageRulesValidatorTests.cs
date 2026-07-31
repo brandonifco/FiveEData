@@ -29,8 +29,7 @@ public sealed class ArmorUsageRulesValidatorTests
     public void Validator_RejectsDefaultChangeTiming()
     {
         ArmorUsageRules rules = CreateRules(
-            lightArmorChangeTiming:
-                new EquipmentChangeTiming(default, default));
+            lightArmorChangeTiming: default(EquipmentChangeTiming));
 
         Assert.Throws<InvalidOperationException>(
             () => ArmorUsageRulesValidator.EnsureValid(rules));
