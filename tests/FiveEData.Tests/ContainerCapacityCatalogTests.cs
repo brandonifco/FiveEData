@@ -41,6 +41,27 @@ public sealed class ContainerCapacityCatalogTests
     }
 
     [Fact]
+    public void Constructor_RejectsDefaultVolumeState()
+    {
+        ContainerCapacityDefinition invalid = new(
+            new AdventuringGearId("dnd5e2014.adventuring-gear.invalid"),
+            solidVolume: default(ContainerVolume),
+            liquidVolume: null,
+            gearWeightCapacity: null,
+            allowsExteriorItemAttachment: false,
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 153,
+                    section: "Container Capacity")
+            ]);
+
+        Assert.Throws<InvalidOperationException>(
+            () => new ContainerCapacityCatalog([invalid]));
+    }
+
+    [Fact]
     public void GetAndTryGet_HaveExplicitMissingSemantics()
     {
         var id = new AdventuringGearId("dnd5e2014.adventuring-gear.backpack");
