@@ -34,6 +34,25 @@ public sealed class ToolFamilyCatalogTests
                 ]));
     }
 
+    [Fact]
+    public void Catalog_RejectsDefaultIdAtTrustBoundary()
+    {
+        ToolFamilyDefinition definition = new(
+            default,
+            "Invalid",
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 154)
+            ]);
+
+        Assert.Throws<InvalidOperationException>(
+            () => new ToolFamilyCatalog([definition]));
+    }
+
     private static ToolFamilyDefinition Create(string id, string name)
     {
         return new ToolFamilyDefinition(

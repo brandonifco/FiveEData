@@ -382,6 +382,83 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void ToolMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        ToolDefinition tool = new(
+            new ToolId("dnd5e2014.tool.test"),
+            "Test tool",
+            new Money(100),
+            weight: null,
+            familyId: null,
+            specialRuleIds:
+            [
+                new RuleId("dnd5e2014.tool-rule.missing")
+            ],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 154)
+            ]);
+
+        IReadOnlyList<string> errors = CatalogIntegrityValidator.Validate(
+            CreateDefinitionSet(sourceDocuments: sources, tools: [tool]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "references missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ToolFamilyMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        ToolFamilyDefinition family = new(
+            new ToolFamilyId("dnd5e2014.tool-family.test"),
+            "Test family",
+            specialRuleIds:
+            [
+                new RuleId("dnd5e2014.tool-rule.missing")
+            ],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 154)
+            ]);
+
+        IReadOnlyList<string> errors = CatalogIntegrityValidator.Validate(
+            CreateDefinitionSet(
+                sourceDocuments: sources,
+                toolFamilies: [family]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "references missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ToolAndToolFamilyMissingSources_AreRejected()
     {
         ToolDefinition tool = CreateTool(
