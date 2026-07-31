@@ -172,6 +172,24 @@ public sealed class SerializationBoundaryHardeningTests
     }
 
     [Fact]
+    public void AmmunitionJson_NullArrayElement_IsRejectedAsDataError()
+    {
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(
+            () => AmmunitionDefinitionLoader.LoadFromJson("[null]"));
+
+        Assert.Contains("index 0", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void SourceDocumentJson_NullArrayElement_IsRejectedAsDataError()
+    {
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(
+            () => SourceDocumentLoader.LoadFromJson("[null]"));
+
+        Assert.Contains("index 0", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void SourceDocumentJson_MissingTitle_IsRejected()
     {
         const string json = """

@@ -273,6 +273,15 @@ public sealed class WeaponDefinitionLoaderTests
     }
 
     [Fact]
+    public void LoadFromJson_NullArrayElement_IsRejectedAsDataError()
+    {
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(
+            () => WeaponDefinitionLoader.LoadFromJson("[null]"));
+
+        Assert.Contains("index 0", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void LoadFromJson_RejectsNumericEnumValues()
     {
         const string json = """

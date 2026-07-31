@@ -24,17 +24,24 @@ internal static class SourceDocumentLoader
 
         for (int index = 0; index < data.Length; index++)
         {
+            SourceDocumentData? itemData = data[index];
+            if (itemData is null)
+            {
+                throw new InvalidDataException(
+                    $"Invalid source document at index {index}.");
+            }
+
             SourceDocument document;
 
             try
             {
-                document = Map(data[index]);
+                document = Map(itemData);
             }
             catch (ArgumentException exception)
             {
-                string identity = string.IsNullOrWhiteSpace(data[index].Id)
+                string identity = string.IsNullOrWhiteSpace(itemData.Id)
                     ? $"index {index}"
-                    : $"'{data[index].Id}'";
+                    : $"'{itemData.Id}'";
 
                 throw new InvalidDataException(
                     $"Invalid source document at {identity}.",

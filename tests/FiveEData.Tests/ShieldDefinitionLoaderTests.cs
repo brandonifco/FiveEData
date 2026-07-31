@@ -65,6 +65,15 @@ public sealed class ShieldDefinitionLoaderTests
     }
 
     [Fact]
+    public void NullArrayElement_IsRejectedAsDataError()
+    {
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(
+            () => ShieldDefinitionLoader.LoadFromJson("[null]"));
+
+        Assert.Contains("index 0", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void DuplicateIds_AreRejected()
     {
         string item = ValidShieldJson[2..^2];

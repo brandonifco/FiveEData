@@ -27,19 +27,26 @@ internal static class AmmunitionDefinitionLoader
 
         for (int index = 0; index < data.Length; index++)
         {
+            AmmunitionDefinitionData? itemData = data[index];
+            if (itemData is null)
+            {
+                throw new InvalidDataException(
+                    $"Invalid ammunition definition at index {index}.");
+            }
+
             AmmunitionDefinition definition;
 
             try
             {
-                definition = Map(data[index]);
+                definition = Map(itemData);
                 AmmunitionDefinitionValidator.EnsureValid(definition);
             }
             catch (Exception exception)
                 when (exception is ArgumentException or InvalidOperationException)
             {
-                string identity = string.IsNullOrWhiteSpace(data[index].Id)
+                string identity = string.IsNullOrWhiteSpace(itemData.Id)
                     ? $"index {index}"
-                    : $"'{data[index].Id}'";
+                    : $"'{itemData.Id}'";
 
                 throw new InvalidDataException(
                     $"Invalid ammunition definition at {identity}.",

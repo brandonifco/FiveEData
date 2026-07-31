@@ -17,19 +17,26 @@ internal static class RuleDefinitionLoader
 
         for (int index = 0; index < data.Length; index++)
         {
+            RuleDefinitionData? itemData = data[index];
+            if (itemData is null)
+            {
+                throw new InvalidDataException(
+                    $"Invalid rule definition at index {index}.");
+            }
+
             RuleDefinition rule;
 
             try
             {
-                rule = Map(data[index]);
+                rule = Map(itemData);
                 RuleDefinitionValidator.EnsureValid(rule);
             }
             catch (Exception exception)
                 when (exception is ArgumentException or InvalidOperationException)
             {
-                string identity = string.IsNullOrWhiteSpace(data[index].Id)
+                string identity = string.IsNullOrWhiteSpace(itemData.Id)
                     ? $"index {index}"
-                    : $"'{data[index].Id}'";
+                    : $"'{itemData.Id}'";
 
                 throw new InvalidDataException(
                     $"Invalid rule definition at {identity}.",
