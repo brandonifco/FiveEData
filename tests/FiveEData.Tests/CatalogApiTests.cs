@@ -17,7 +17,7 @@ public sealed class CatalogApiTests
         Assert.Equal(4, ruleset.Ammunition.Count);
         Assert.Equal(95, ruleset.AdventuringGear.Count);
         Assert.Equal(1, ruleset.Sources.Count);
-        Assert.Equal(7, ruleset.Rules.Count);
+        Assert.Equal(49, ruleset.Rules.Count);
 
         WeaponDefinition longsword =
             ruleset.Weapons.Get(

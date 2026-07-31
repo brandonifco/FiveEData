@@ -28,7 +28,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.acid"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -47,7 +49,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.alchemists-fire"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -63,7 +67,9 @@
       "copperPieces": 5000
     },
     "listedWeight": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.antitoxin"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -82,7 +88,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.arcane-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -101,7 +109,9 @@
       "pounds": 3,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.arcane-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -120,7 +130,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.arcane-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -139,7 +151,9 @@
       "pounds": 4,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.arcane-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -158,7 +172,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.arcane-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -196,7 +212,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.ball-bearings"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -307,7 +325,9 @@
       "pounds": 5,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.block-and-tackle"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -326,7 +346,9 @@
       "pounds": 5,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.book"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -383,7 +405,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.caltrops"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -399,7 +423,9 @@
       "copperPieces": 1
     },
     "listedWeight": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.candle"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -418,7 +444,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.case-crossbow-bolt"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -437,7 +465,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.case-map-or-scroll"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -456,7 +486,9 @@
       "pounds": 10,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.chain"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -510,7 +542,9 @@
       "pounds": 12,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.climbers-kit"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -605,7 +639,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.component-pouch"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -624,7 +660,9 @@
       "pounds": 5,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.crowbar"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -640,7 +678,9 @@
       "copperPieces": 100
     },
     "listedWeight": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.druidic-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -656,7 +696,9 @@
       "copperPieces": 100
     },
     "listedWeight": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.druidic-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -675,7 +717,9 @@
       "pounds": 4,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.druidic-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -694,7 +738,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.druidic-focus"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -713,7 +759,9 @@
       "pounds": 4,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.fishing-tackle"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -808,7 +856,9 @@
       "pounds": 3,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.healers-kit"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -827,7 +877,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.holy-symbol"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -843,7 +895,9 @@
       "copperPieces": 500
     },
     "listedWeight": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.holy-symbol"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -862,7 +916,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.holy-symbol"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -881,7 +937,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.holy-water"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -919,7 +977,9 @@
       "pounds": 25,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.hunting-trap"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1008,7 +1068,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.lamp"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1027,7 +1089,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.lantern-bullseye"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1046,7 +1110,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.lantern-hooded"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1065,7 +1131,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.lock"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1081,7 +1149,9 @@
       "copperPieces": 10000
     },
     "listedWeight": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.magnifying-glass"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1100,7 +1170,9 @@
       "pounds": 6,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.manacles"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1119,7 +1191,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.mess-kit"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1157,7 +1231,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.oil"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1259,7 +1335,9 @@
       "copperPieces": 10000
     },
     "listedWeight": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.poison-basic"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1316,7 +1394,9 @@
       "pounds": 0.5,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.potion-of-healing"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1335,7 +1415,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.pouch"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1354,7 +1436,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.quiver"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1373,7 +1457,9 @@
       "pounds": 35,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.ram-portable"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1392,7 +1478,9 @@
       "pounds": 2,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.rations"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1430,7 +1518,9 @@
       "pounds": 10,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.rope"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1449,7 +1539,9 @@
       "pounds": 5,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.rope"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1487,7 +1579,9 @@
       "pounds": 3,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.scale-merchants"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1589,7 +1683,9 @@
       "pounds": 3,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.spellbook"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1627,7 +1723,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.spyglass"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1646,7 +1744,9 @@
       "pounds": 20,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.tent"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1665,7 +1765,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.tinderbox"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1684,7 +1786,9 @@
       "pounds": 1,
       "qualifier": null
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.adventuring-gear-rule.torch"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

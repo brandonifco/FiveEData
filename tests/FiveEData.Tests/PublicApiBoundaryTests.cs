@@ -57,7 +57,7 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(12, ruleset.Armor.Count);
         Assert.Equal(1, ruleset.Shields.Count);
         Assert.Equal(95, ruleset.AdventuringGear.Count);
-        Assert.Equal(7, ruleset.Rules.Count);
+        Assert.Equal(49, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
 }

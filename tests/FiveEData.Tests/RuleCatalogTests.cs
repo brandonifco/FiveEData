@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(7, ruleset.Rules.Count);
+        Assert.Equal(49, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -49,5 +49,44 @@ public sealed class RuleCatalogTests
                 Assert.NotNull(definition);
             }
         }
+    }
+
+    [Fact]
+    public void EveryAdventuringGearSpecialRuleId_Resolves()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        foreach (var item in ruleset.AdventuringGear.All)
+        {
+            foreach (RuleId ruleId in item.SpecialRuleIds)
+            {
+                Assert.True(
+                    ruleset.Rules.TryGet(
+                        ruleId,
+                        out RuleDefinition? definition));
+                Assert.NotNull(definition);
+            }
+        }
+    }
+
+    [Fact]
+    public void AdventuringGearRules_PreserveFirstPrintingDescriptionProvenance()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        RuleDefinition acid = ruleset.Rules.Get(
+            new RuleId("dnd5e2014.adventuring-gear-rule.acid"));
+        RuleDefinition alchemistsFire = ruleset.Rules.Get(
+            new RuleId("dnd5e2014.adventuring-gear-rule.alchemists-fire"));
+        RuleDefinition torch = ruleset.Rules.Get(
+            new RuleId("dnd5e2014.adventuring-gear-rule.torch"));
+
+        Assert.Equal(148, Assert.Single(acid.Sources).Page);
+        Assert.Equal(
+            new int?[] { 148, 151 },
+            alchemistsFire.Sources
+                .Select(source => source.Page)
+                .ToArray());
+        Assert.Equal(153, Assert.Single(torch.Sources).Page);
     }
 }

@@ -57,7 +57,17 @@ public sealed class AdventuringGearDataFileTests
                     definition.ListedWeight.Qualifier);
             }
 
-            Assert.Empty(definition.SpecialRuleIds);
+            string[] expectedRuleIds = ExpectedSpecialRuleIds.TryGetValue(
+                expected.Id,
+                out string[]? ruleIds)
+                ? ruleIds
+                : [];
+
+            Assert.Equal(
+                expectedRuleIds,
+                definition.SpecialRuleIds
+                    .Select(ruleId => ruleId.Value)
+                    .ToArray());
 
             var source = Assert.Single(definition.Sources);
             Assert.Equal(150, source.Page);
@@ -104,6 +114,63 @@ public sealed class AdventuringGearDataFileTests
         long CopperPieces,
         decimal? Pounds,
         string? Qualifier);
+
+    private static readonly IReadOnlyDictionary<string, string[]> ExpectedSpecialRuleIds =
+        new Dictionary<string, string[]>(StringComparer.Ordinal)
+        {
+            ["dnd5e2014.adventuring-gear.acid-vial"] = ["dnd5e2014.adventuring-gear-rule.acid"],
+            ["dnd5e2014.adventuring-gear.alchemists-fire-flask"] = ["dnd5e2014.adventuring-gear-rule.alchemists-fire"],
+            ["dnd5e2014.adventuring-gear.antitoxin-vial"] = ["dnd5e2014.adventuring-gear-rule.antitoxin"],
+            ["dnd5e2014.adventuring-gear.arcane-focus-crystal"] = ["dnd5e2014.adventuring-gear-rule.arcane-focus"],
+            ["dnd5e2014.adventuring-gear.arcane-focus-orb"] = ["dnd5e2014.adventuring-gear-rule.arcane-focus"],
+            ["dnd5e2014.adventuring-gear.arcane-focus-rod"] = ["dnd5e2014.adventuring-gear-rule.arcane-focus"],
+            ["dnd5e2014.adventuring-gear.arcane-focus-staff"] = ["dnd5e2014.adventuring-gear-rule.arcane-focus"],
+            ["dnd5e2014.adventuring-gear.arcane-focus-wand"] = ["dnd5e2014.adventuring-gear-rule.arcane-focus"],
+            ["dnd5e2014.adventuring-gear.ball-bearings-bag-1000"] = ["dnd5e2014.adventuring-gear-rule.ball-bearings"],
+            ["dnd5e2014.adventuring-gear.block-and-tackle"] = ["dnd5e2014.adventuring-gear-rule.block-and-tackle"],
+            ["dnd5e2014.adventuring-gear.book"] = ["dnd5e2014.adventuring-gear-rule.book"],
+            ["dnd5e2014.adventuring-gear.caltrops-bag-20"] = ["dnd5e2014.adventuring-gear-rule.caltrops"],
+            ["dnd5e2014.adventuring-gear.candle"] = ["dnd5e2014.adventuring-gear-rule.candle"],
+            ["dnd5e2014.adventuring-gear.case-crossbow-bolt"] = ["dnd5e2014.adventuring-gear-rule.case-crossbow-bolt"],
+            ["dnd5e2014.adventuring-gear.case-map-or-scroll"] = ["dnd5e2014.adventuring-gear-rule.case-map-or-scroll"],
+            ["dnd5e2014.adventuring-gear.chain-10-feet"] = ["dnd5e2014.adventuring-gear-rule.chain"],
+            ["dnd5e2014.adventuring-gear.climbers-kit"] = ["dnd5e2014.adventuring-gear-rule.climbers-kit"],
+            ["dnd5e2014.adventuring-gear.component-pouch"] = ["dnd5e2014.adventuring-gear-rule.component-pouch"],
+            ["dnd5e2014.adventuring-gear.crowbar"] = ["dnd5e2014.adventuring-gear-rule.crowbar"],
+            ["dnd5e2014.adventuring-gear.druidic-focus-sprig-of-mistletoe"] = ["dnd5e2014.adventuring-gear-rule.druidic-focus"],
+            ["dnd5e2014.adventuring-gear.druidic-focus-totem"] = ["dnd5e2014.adventuring-gear-rule.druidic-focus"],
+            ["dnd5e2014.adventuring-gear.druidic-focus-wooden-staff"] = ["dnd5e2014.adventuring-gear-rule.druidic-focus"],
+            ["dnd5e2014.adventuring-gear.druidic-focus-yew-wand"] = ["dnd5e2014.adventuring-gear-rule.druidic-focus"],
+            ["dnd5e2014.adventuring-gear.fishing-tackle"] = ["dnd5e2014.adventuring-gear-rule.fishing-tackle"],
+            ["dnd5e2014.adventuring-gear.healers-kit"] = ["dnd5e2014.adventuring-gear-rule.healers-kit"],
+            ["dnd5e2014.adventuring-gear.holy-symbol-amulet"] = ["dnd5e2014.adventuring-gear-rule.holy-symbol"],
+            ["dnd5e2014.adventuring-gear.holy-symbol-emblem"] = ["dnd5e2014.adventuring-gear-rule.holy-symbol"],
+            ["dnd5e2014.adventuring-gear.holy-symbol-reliquary"] = ["dnd5e2014.adventuring-gear-rule.holy-symbol"],
+            ["dnd5e2014.adventuring-gear.holy-water-flask"] = ["dnd5e2014.adventuring-gear-rule.holy-water"],
+            ["dnd5e2014.adventuring-gear.hunting-trap"] = ["dnd5e2014.adventuring-gear-rule.hunting-trap"],
+            ["dnd5e2014.adventuring-gear.lamp"] = ["dnd5e2014.adventuring-gear-rule.lamp"],
+            ["dnd5e2014.adventuring-gear.lantern-bullseye"] = ["dnd5e2014.adventuring-gear-rule.lantern-bullseye"],
+            ["dnd5e2014.adventuring-gear.lantern-hooded"] = ["dnd5e2014.adventuring-gear-rule.lantern-hooded"],
+            ["dnd5e2014.adventuring-gear.lock"] = ["dnd5e2014.adventuring-gear-rule.lock"],
+            ["dnd5e2014.adventuring-gear.magnifying-glass"] = ["dnd5e2014.adventuring-gear-rule.magnifying-glass"],
+            ["dnd5e2014.adventuring-gear.manacles"] = ["dnd5e2014.adventuring-gear-rule.manacles"],
+            ["dnd5e2014.adventuring-gear.mess-kit"] = ["dnd5e2014.adventuring-gear-rule.mess-kit"],
+            ["dnd5e2014.adventuring-gear.oil-flask"] = ["dnd5e2014.adventuring-gear-rule.oil"],
+            ["dnd5e2014.adventuring-gear.poison-basic-vial"] = ["dnd5e2014.adventuring-gear-rule.poison-basic"],
+            ["dnd5e2014.adventuring-gear.potion-of-healing"] = ["dnd5e2014.adventuring-gear-rule.potion-of-healing"],
+            ["dnd5e2014.adventuring-gear.pouch"] = ["dnd5e2014.adventuring-gear-rule.pouch"],
+            ["dnd5e2014.adventuring-gear.quiver"] = ["dnd5e2014.adventuring-gear-rule.quiver"],
+            ["dnd5e2014.adventuring-gear.ram-portable"] = ["dnd5e2014.adventuring-gear-rule.ram-portable"],
+            ["dnd5e2014.adventuring-gear.rations-1-day"] = ["dnd5e2014.adventuring-gear-rule.rations"],
+            ["dnd5e2014.adventuring-gear.rope-hempen-50-feet"] = ["dnd5e2014.adventuring-gear-rule.rope"],
+            ["dnd5e2014.adventuring-gear.rope-silk-50-feet"] = ["dnd5e2014.adventuring-gear-rule.rope"],
+            ["dnd5e2014.adventuring-gear.scale-merchants"] = ["dnd5e2014.adventuring-gear-rule.scale-merchants"],
+            ["dnd5e2014.adventuring-gear.spellbook"] = ["dnd5e2014.adventuring-gear-rule.spellbook"],
+            ["dnd5e2014.adventuring-gear.spyglass"] = ["dnd5e2014.adventuring-gear-rule.spyglass"],
+            ["dnd5e2014.adventuring-gear.tent-two-person"] = ["dnd5e2014.adventuring-gear-rule.tent"],
+            ["dnd5e2014.adventuring-gear.tinderbox"] = ["dnd5e2014.adventuring-gear-rule.tinderbox"],
+            ["dnd5e2014.adventuring-gear.torch"] = ["dnd5e2014.adventuring-gear-rule.torch"]
+        };
 
     private static readonly ExpectedGearRow[] Expected =
     [
