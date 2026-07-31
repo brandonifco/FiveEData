@@ -7,6 +7,7 @@ using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Equipment.Tools;
 
 namespace FiveEData.Tests;
 
@@ -19,6 +20,8 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(AmmunitionDefinition));
         AssertNoPublicConstructors(typeof(AdventuringGearDefinition));
         AssertNoPublicConstructors(typeof(ContainerCapacityDefinition));
+        AssertNoPublicConstructors(typeof(ToolDefinition));
+        AssertNoPublicConstructors(typeof(ToolFamilyDefinition));
         AssertNoPublicConstructors(typeof(ArmorDefinition));
         AssertNoPublicConstructors(typeof(ShieldDefinition));
         AssertNoPublicConstructors(typeof(ArmorUsageRules));
@@ -33,6 +36,8 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(AmmunitionCatalog));
         AssertNoPublicConstructors(typeof(AdventuringGearCatalog));
         AssertNoPublicConstructors(typeof(ContainerCapacityCatalog));
+        AssertNoPublicConstructors(typeof(ToolCatalog));
+        AssertNoPublicConstructors(typeof(ToolFamilyCatalog));
         AssertNoPublicConstructors(typeof(ArmorCatalog));
         AssertNoPublicConstructors(typeof(ShieldCatalog));
         AssertNoPublicConstructors(typeof(RuleCatalog));
@@ -50,6 +55,8 @@ public sealed class DomainApiSemanticsTests
         Assert.Same(first.Ammunition, second.Ammunition);
         Assert.Same(first.AdventuringGear, second.AdventuringGear);
         Assert.Same(first.ContainerCapacities, second.ContainerCapacities);
+        Assert.Same(first.ToolFamilies, second.ToolFamilies);
+        Assert.Same(first.Tools, second.Tools);
         Assert.Same(first.Armor, second.Armor);
         Assert.Same(first.Shields, second.Shields);
         Assert.Same(first.ArmorUsage, second.ArmorUsage);

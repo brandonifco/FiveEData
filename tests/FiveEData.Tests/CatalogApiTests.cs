@@ -4,6 +4,7 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Equipment.Tools;
 
 namespace FiveEData.Tests;
 
@@ -18,6 +19,8 @@ public sealed class CatalogApiTests
         Assert.Equal(4, ruleset.Ammunition.Count);
         Assert.Equal(95, ruleset.AdventuringGear.Count);
         Assert.Equal(13, ruleset.ContainerCapacities.Count);
+        Assert.Equal(3, ruleset.ToolFamilies.Count);
+        Assert.Equal(37, ruleset.Tools.Count);
         Assert.Equal(1, ruleset.Sources.Count);
         Assert.Equal(49, ruleset.Rules.Count);
 
@@ -43,6 +46,14 @@ public sealed class CatalogApiTests
 
         Assert.Equal(30m, backpackCapacity.GearWeightCapacity?.Pounds);
         Assert.True(backpackCapacity.AllowsExteriorItemAttachment);
+
+        ToolDefinition thievesTools = ruleset.Tools.Get(
+            new ToolId("dnd5e2014.tool.thieves-tools"));
+        Assert.Equal("Thieves' tools", thievesTools.Name);
+
+        ToolFamilyDefinition artisanTools = ruleset.ToolFamilies.Get(
+            new ToolFamilyId("dnd5e2014.tool-family.artisans-tools"));
+        Assert.Equal("Artisan's tools", artisanTools.Name);
 
         SourceDocument phb =
             ruleset.Sources.Get(

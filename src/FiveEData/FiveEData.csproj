@@ -31,6 +31,12 @@
       Include="../../Data/dnd5e2014/container-capacities.json"
       LogicalName="FiveEData.Data.dnd5e2014.container-capacities.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/tool-families.json"
+      LogicalName="FiveEData.Data.dnd5e2014.tool-families.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/tools.json"
+      LogicalName="FiveEData.Data.dnd5e2014.tools.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/rules.json"
       LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
   </ItemGroup>

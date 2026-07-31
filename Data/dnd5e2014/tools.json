@@ -1,0 +1,699 @@
+[
+  {
+    "id": "dnd5e2014.tool.alchemists-supplies",
+    "name": "Alchemist's supplies",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 8
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.brewers-supplies",
+    "name": "Brewer's supplies",
+    "cost": {
+      "copperPieces": 2000
+    },
+    "weight": {
+      "pounds": 9
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.calligraphers-supplies",
+    "name": "Calligrapher's supplies",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.carpenters-tools",
+    "name": "Carpenter's tools",
+    "cost": {
+      "copperPieces": 800
+    },
+    "weight": {
+      "pounds": 6
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.cartographers-tools",
+    "name": "Cartographer's tools",
+    "cost": {
+      "copperPieces": 1500
+    },
+    "weight": {
+      "pounds": 6
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.cobblers-tools",
+    "name": "Cobbler's tools",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.cooks-utensils",
+    "name": "Cook's utensils",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 8
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.glassblowers-tools",
+    "name": "Glassblower's tools",
+    "cost": {
+      "copperPieces": 3000
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.jewelers-tools",
+    "name": "Jeweler's tools",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.leatherworkers-tools",
+    "name": "Leatherworker's tools",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.masons-tools",
+    "name": "Mason's tools",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 8
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.painters-supplies",
+    "name": "Painter's supplies",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.potters-tools",
+    "name": "Potter's tools",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.smiths-tools",
+    "name": "Smith's tools",
+    "cost": {
+      "copperPieces": 2000
+    },
+    "weight": {
+      "pounds": 8
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.tinkers-tools",
+    "name": "Tinker's tools",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 10
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.weavers-tools",
+    "name": "Weaver's tools",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.woodcarvers-tools",
+    "name": "Woodcarver's tools",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": "dnd5e2014.tool-family.artisans-tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.disguise-kit",
+    "name": "Disguise kit",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "familyId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.forgery-kit",
+    "name": "Forgery kit",
+    "cost": {
+      "copperPieces": 1500
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "familyId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.dice-set",
+    "name": "Dice set",
+    "cost": {
+      "copperPieces": 10
+    },
+    "weight": null,
+    "familyId": "dnd5e2014.tool-family.gaming-set",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.dragonchess-set",
+    "name": "Dragonchess set",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 0.5
+    },
+    "familyId": "dnd5e2014.tool-family.gaming-set",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.playing-card-set",
+    "name": "Playing card set",
+    "cost": {
+      "copperPieces": 50
+    },
+    "weight": null,
+    "familyId": "dnd5e2014.tool-family.gaming-set",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.three-dragon-ante-set",
+    "name": "Three-Dragon Ante set",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": null,
+    "familyId": "dnd5e2014.tool-family.gaming-set",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.herbalism-kit",
+    "name": "Herbalism kit",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "familyId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.bagpipes",
+    "name": "Bagpipes",
+    "cost": {
+      "copperPieces": 3000
+    },
+    "weight": {
+      "pounds": 6
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.drum",
+    "name": "Drum",
+    "cost": {
+      "copperPieces": 600
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.dulcimer",
+    "name": "Dulcimer",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 10
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.flute",
+    "name": "Flute",
+    "cost": {
+      "copperPieces": 200
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.lute",
+    "name": "Lute",
+    "cost": {
+      "copperPieces": 3500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.lyre",
+    "name": "Lyre",
+    "cost": {
+      "copperPieces": 3000
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.horn",
+    "name": "Horn",
+    "cost": {
+      "copperPieces": 300
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.pan-flute",
+    "name": "Pan flute",
+    "cost": {
+      "copperPieces": 1200
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.shawm",
+    "name": "Shawm",
+    "cost": {
+      "copperPieces": 200
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.viol",
+    "name": "Viol",
+    "cost": {
+      "copperPieces": 3000
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "familyId": "dnd5e2014.tool-family.musical-instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.navigators-tools",
+    "name": "Navigator's tools",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "familyId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.poisoners-kit",
+    "name": "Poisoner's kit",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "familyId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool.thieves-tools",
+    "name": "Thieves' tools",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "familyId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  }
+]

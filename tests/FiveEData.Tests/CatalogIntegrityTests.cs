@@ -13,6 +13,7 @@ using FiveEData.Rules.Equipment.Armor.Serialization;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 
 namespace FiveEData.Tests;
@@ -355,6 +356,57 @@ public sealed class CatalogIntegrityTests
                 StringComparison.Ordinal));
     }
 
+
+    [Fact]
+    public void ToolMissingFamilyReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        ToolDefinition tool = CreateTool(
+            familyId: new ToolFamilyId("dnd5e2014.tool-family.missing"));
+
+        IReadOnlyList<string> errors = CatalogIntegrityValidator.Validate(
+            CreateDefinitionSet(sourceDocuments: sources, tools: [tool]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing tool family",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ToolAndToolFamilyMissingSources_AreRejected()
+    {
+        ToolDefinition tool = CreateTool(
+            sourceDocumentId: "dnd5e2014.source.missing");
+        ToolFamilyDefinition family = new(
+            new ToolFamilyId("dnd5e2014.tool-family.test"),
+            "Test family",
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId("dnd5e2014.source.missing"),
+                    page: 154)
+            ]);
+
+        IReadOnlyList<string> errors = CatalogIntegrityValidator.Validate(
+            CreateDefinitionSet(toolFamilies: [family], tools: [tool]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing source document",
+                StringComparison.Ordinal));
+    }
+
     [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
@@ -421,6 +473,8 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ShieldDefinition>? shields = null,
         IReadOnlyList<AdventuringGearDefinition>? adventuringGear = null,
         IReadOnlyList<ContainerCapacityDefinition>? containerCapacities = null,
+        IReadOnlyList<ToolFamilyDefinition>? toolFamilies = null,
+        IReadOnlyList<ToolDefinition>? tools = null,
         ArmorUsageRules? armorUsage = null)
     {
         return new RulesetDefinitionSet(
@@ -432,7 +486,28 @@ public sealed class CatalogIntegrityTests
             shields: shields ?? [],
             adventuringGear: adventuringGear ?? [],
             containerCapacities: containerCapacities ?? [],
+            toolFamilies: toolFamilies ?? [],
+            tools: tools ?? [],
             armorUsage: armorUsage);
+    }
+
+    private static ToolDefinition CreateTool(
+        ToolFamilyId? familyId = null,
+        string sourceDocumentId = "dnd5e2014.source.phb-first-printing")
+    {
+        return new ToolDefinition(
+            new ToolId("dnd5e2014.tool.test"),
+            "Test tool",
+            new Money(100),
+            weight: null,
+            familyId,
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 154)
+            ]);
     }
 
     private static ContainerCapacityDefinition CreateContainerCapacityDefinition(

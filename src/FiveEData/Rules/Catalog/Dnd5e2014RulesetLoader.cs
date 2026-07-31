@@ -10,6 +10,8 @@ using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Shields.Serialization;
+using FiveEData.Rules.Equipment.Tools;
+using FiveEData.Rules.Equipment.Tools.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 
@@ -40,6 +42,12 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string ContainerCapacitiesResource =
         "FiveEData.Data.dnd5e2014.container-capacities.json";
+
+    private const string ToolFamiliesResource =
+        "FiveEData.Data.dnd5e2014.tool-families.json";
+
+    private const string ToolsResource =
+        "FiveEData.Data.dnd5e2014.tools.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -78,6 +86,14 @@ internal static class Dnd5e2014RulesetLoader
             ContainerCapacityDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(ContainerCapacitiesResource));
 
+        IReadOnlyList<ToolFamilyDefinition> toolFamilies =
+            ToolFamilyDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ToolFamiliesResource));
+
+        IReadOnlyList<ToolDefinition> tools =
+            ToolDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ToolsResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -91,19 +107,23 @@ internal static class Dnd5e2014RulesetLoader
             shields: shields,
             adventuringGear: adventuringGear,
             containerCapacities: containerCapacities,
+            toolFamilies: toolFamilies,
+            tools: tools,
             armorUsage: armorUsage);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
         return new Dnd5e2014Ruleset(
-            new WeaponCatalog(weapons),
-            new AmmunitionCatalog(ammunition),
-            new ArmorCatalog(armor),
-            new ShieldCatalog(shields),
-            new AdventuringGearCatalog(adventuringGear),
-            new ContainerCapacityCatalog(containerCapacities),
-            armorUsage,
-            new SourceDocumentCatalog(sources),
-            new RuleCatalog(rules));
+            weapons: new WeaponCatalog(weapons),
+            ammunition: new AmmunitionCatalog(ammunition),
+            armor: new ArmorCatalog(armor),
+            shields: new ShieldCatalog(shields),
+            adventuringGear: new AdventuringGearCatalog(adventuringGear),
+            containerCapacities: new ContainerCapacityCatalog(containerCapacities),
+            toolFamilies: new ToolFamilyCatalog(toolFamilies),
+            tools: new ToolCatalog(tools),
+            armorUsage: armorUsage,
+            sources: new SourceDocumentCatalog(sources),
+            rules: new RuleCatalog(rules));
     }
 }

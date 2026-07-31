@@ -4,6 +4,7 @@ using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Shields;
+using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Catalog;
@@ -19,6 +20,8 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<ShieldDefinition> shields,
         IReadOnlyList<AdventuringGearDefinition> adventuringGear,
         IReadOnlyList<ContainerCapacityDefinition> containerCapacities,
+        IReadOnlyList<ToolFamilyDefinition> toolFamilies,
+        IReadOnlyList<ToolDefinition> tools,
         ArmorUsageRules? armorUsage = null)
     {
         ArgumentNullException.ThrowIfNull(weapons);
@@ -29,6 +32,8 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(shields);
         ArgumentNullException.ThrowIfNull(adventuringGear);
         ArgumentNullException.ThrowIfNull(containerCapacities);
+        ArgumentNullException.ThrowIfNull(toolFamilies);
+        ArgumentNullException.ThrowIfNull(tools);
 
         Weapons = weapons;
         SourceDocuments = sourceDocuments;
@@ -38,6 +43,8 @@ internal sealed class RulesetDefinitionSet
         Shields = shields;
         AdventuringGear = adventuringGear;
         ContainerCapacities = containerCapacities;
+        ToolFamilies = toolFamilies;
+        Tools = tools;
         ArmorUsage = armorUsage;
     }
 
@@ -49,5 +56,7 @@ internal sealed class RulesetDefinitionSet
     public IReadOnlyList<ShieldDefinition> Shields { get; }
     public IReadOnlyList<AdventuringGearDefinition> AdventuringGear { get; }
     public IReadOnlyList<ContainerCapacityDefinition> ContainerCapacities { get; }
+    public IReadOnlyList<ToolFamilyDefinition> ToolFamilies { get; }
+    public IReadOnlyList<ToolDefinition> Tools { get; }
     public ArmorUsageRules? ArmorUsage { get; }
 }

@@ -4,6 +4,7 @@ using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Shields;
+using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Catalog;
@@ -34,6 +35,11 @@ internal static class CatalogIntegrityValidator
 
         HashSet<AdventuringGearId> adventuringGearIds =
             definitions.AdventuringGear
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        HashSet<ToolFamilyId> toolFamilyIds =
+            definitions.ToolFamilies
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
@@ -128,6 +134,49 @@ internal static class CatalogIntegrityValidator
             {
                 errors.Add(
                     $"Container capacity references missing adventuring gear '{definition.AdventuringGearId}'.");
+            }
+        }
+
+        foreach (ToolFamilyDefinition definition in definitions.ToolFamilies)
+        {
+            ValidateSources(
+                $"Tool family '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"Tool family '{definition.Id}' references missing rule '{specialRuleId}'.");
+                }
+            }
+        }
+
+        foreach (ToolDefinition definition in definitions.Tools)
+        {
+            ValidateSources(
+                $"Tool '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            if (definition.FamilyId is { } familyId &&
+                !toolFamilyIds.Contains(familyId))
+            {
+                errors.Add(
+                    $"Tool '{definition.Id}' references missing tool family '{familyId}'.");
+            }
+
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"Tool '{definition.Id}' references missing rule '{specialRuleId}'.");
+                }
             }
         }
 

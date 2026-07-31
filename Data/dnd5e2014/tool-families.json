@@ -1,0 +1,38 @@
+[
+  {
+    "id": "dnd5e2014.tool-family.artisans-tools",
+    "name": "Artisan's tools",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-family.gaming-set",
+    "name": "Gaming set",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-family.musical-instrument",
+    "name": "Musical instrument",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  }
+]
