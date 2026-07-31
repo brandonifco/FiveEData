@@ -8,6 +8,30 @@ internal static class StrictJson
     private static readonly JsonSerializerOptions SerializerOptions =
         CreateSerializerOptions();
 
+    public static T DeserializeObject<T>(
+        string json,
+        string dataDescription)
+        where T : class
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(json);
+        ArgumentException.ThrowIfNullOrWhiteSpace(dataDescription);
+
+        try
+        {
+            return JsonSerializer.Deserialize<T>(
+                json,
+                SerializerOptions)
+                ?? throw new InvalidDataException(
+                    $"{dataDescription} JSON must contain an object.");
+        }
+        catch (JsonException exception)
+        {
+            throw new InvalidDataException(
+                $"{dataDescription} JSON could not be parsed.",
+                exception);
+        }
+    }
+
     public static T[] DeserializeArray<T>(
         string json,
         string dataDescription)

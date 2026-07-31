@@ -1,5 +1,6 @@
 using System.Threading;
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Equipment.Armor;
 
 namespace FiveEData;
 
@@ -15,6 +16,7 @@ public sealed class Dnd5e2014Ruleset
         AmmunitionCatalog ammunition,
         ArmorCatalog armor,
         ShieldCatalog shields,
+        ArmorUsageRules armorUsage,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -22,6 +24,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(ammunition);
         ArgumentNullException.ThrowIfNull(armor);
         ArgumentNullException.ThrowIfNull(shields);
+        ArgumentNullException.ThrowIfNull(armorUsage);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -29,6 +32,7 @@ public sealed class Dnd5e2014Ruleset
         Ammunition = ammunition;
         Armor = armor;
         Shields = shields;
+        ArmorUsage = armorUsage;
         Sources = sources;
         Rules = rules;
     }
@@ -39,6 +43,7 @@ public sealed class Dnd5e2014Ruleset
     public AmmunitionCatalog Ammunition { get; }
     public ArmorCatalog Armor { get; }
     public ShieldCatalog Shields { get; }
+    public ArmorUsageRules ArmorUsage { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

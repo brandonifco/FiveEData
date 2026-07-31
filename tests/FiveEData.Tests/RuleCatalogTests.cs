@@ -5,11 +5,11 @@ namespace FiveEData.Tests;
 public sealed class RuleCatalogTests
 {
     [Fact]
-    public void EmbeddedRuleCatalog_ResolvesCurrentWeaponSpecialRules()
+    public void EmbeddedRuleCatalog_ResolvesCurrentCanonicalRules()
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(2, ruleset.Rules.Count);
+        Assert.Equal(7, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -19,8 +19,18 @@ public sealed class RuleCatalogTests
             ruleset.Rules.Get(
                 new RuleId("dnd5e2014.weapon-rule.net"));
 
+        RuleDefinition armorProficiency =
+            ruleset.Rules.Get(
+                new RuleId("dnd5e2014.armor-rule.proficiency"));
+
+        RuleDefinition donDoff =
+            ruleset.Rules.Get(
+                new RuleId("dnd5e2014.armor-rule.don-doff"));
+
         Assert.Equal("Lance special weapon rule", lance.Name);
         Assert.Equal("Net special weapon rule", net.Name);
+        Assert.Equal("Armor proficiency consequences", armorProficiency.Name);
+        Assert.Equal("Donning and doffing armor", donDoff.Name);
     }
 
     [Fact]

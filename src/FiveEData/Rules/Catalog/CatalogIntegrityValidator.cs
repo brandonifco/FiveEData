@@ -15,7 +15,8 @@ internal static class CatalogIntegrityValidator
         IReadOnlyList<AmmunitionDefinition> ammunition,
         IReadOnlyList<RuleDefinition> rules,
         IReadOnlyList<ArmorDefinition> armor,
-        IReadOnlyList<ShieldDefinition> shields)
+        IReadOnlyList<ShieldDefinition> shields,
+        ArmorUsageRules? armorUsage = null)
     {
         ArgumentNullException.ThrowIfNull(weapons);
         ArgumentNullException.ThrowIfNull(sourceDocuments);
@@ -96,6 +97,24 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
+        if (armorUsage is not null)
+        {
+            ValidateSources(
+                "Armor usage rules",
+                armorUsage.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId ruleId in armorUsage.ReferencedRuleIds)
+            {
+                if (!ruleIds.Contains(ruleId))
+                {
+                    errors.Add(
+                        $"Armor usage rules reference missing rule '{ruleId}'.");
+                }
+            }
+        }
+
         return errors;
     }
 
@@ -105,8 +124,12 @@ internal static class CatalogIntegrityValidator
         IReadOnlyList<AmmunitionDefinition> ammunition,
         IReadOnlyList<RuleDefinition> rules,
         IReadOnlyList<ArmorDefinition> armor,
-        IReadOnlyList<ShieldDefinition> shields)
+        IReadOnlyList<ShieldDefinition> shields,
+        ArmorUsageRules armorUsage)
     {
+        ArgumentNullException.ThrowIfNull(armorUsage);
+        ArmorUsageRulesValidator.EnsureValid(armorUsage);
+
         IReadOnlyList<string> errors =
             Validate(
                 weapons,
@@ -114,7 +137,8 @@ internal static class CatalogIntegrityValidator
                 ammunition,
                 rules,
                 armor,
-                shields);
+                shields,
+                armorUsage);
 
         if (errors.Count == 0)
         {

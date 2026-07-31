@@ -3,6 +3,7 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Equipment;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
 using FiveEData.Rules.Equipment.Armor;
@@ -46,6 +47,10 @@ public sealed class CatalogIntegrityTests
             ShieldDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "shields.json"));
 
+        ArmorUsageRules armorUsage =
+            ArmorUsageRulesLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
+
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
                 weapons,
@@ -53,7 +58,8 @@ public sealed class CatalogIntegrityTests
                 ammunition,
                 rules,
                 armor,
-                shields));
+                shields,
+                armorUsage));
     }
 
     [Fact]
@@ -214,6 +220,104 @@ public sealed class CatalogIntegrityTests
         Assert.Contains(
             errors,
             error => error.Contains("missing source document", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ArmorUsageMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId("dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        ArmorUsageRules armorUsage = CreateArmorUsageRules();
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                [],
+                sources,
+                [],
+                [],
+                [],
+                [],
+                armorUsage);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Armor usage rules reference missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ArmorUsageMissingSourceReference_IsRejected()
+    {
+        ArmorUsageRules armorUsage = CreateArmorUsageRules(
+            sourceDocumentId: "dnd5e2014.source.missing");
+
+        IReadOnlyList<RuleDefinition> rules =
+            armorUsage.ReferencedRuleIds
+                .Select(id => new RuleDefinition(
+                    id,
+                    "Test rule",
+                    [
+                        new SourceReference(
+                            new SourceDocumentId(
+                                "dnd5e2014.source.phb-first-printing"),
+                            page: 144)
+                    ]))
+                .ToArray();
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                [],
+                [],
+                [],
+                rules,
+                [],
+                [],
+                armorUsage);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Armor usage rules references missing source document",
+                StringComparison.Ordinal));
+    }
+
+    private static ArmorUsageRules CreateArmorUsageRules(
+        string sourceDocumentId = "dnd5e2014.source.phb-first-printing")
+    {
+        var minute = new EquipmentChangeDuration(
+            1,
+            EquipmentChangeTimeUnit.Minute);
+        var action = new EquipmentChangeDuration(
+            1,
+            EquipmentChangeTimeUnit.Action);
+
+        return new ArmorUsageRules(
+            new RuleId("dnd5e2014.armor-rule.proficiency"),
+            new RuleId("dnd5e2014.armor-rule.strength-speed"),
+            new RuleId("dnd5e2014.armor-rule.stealth"),
+            new RuleId("dnd5e2014.armor-rule.shield"),
+            new RuleId("dnd5e2014.armor-rule.don-doff"),
+            new ArmorProficiencyConsequences(true, true, true, true),
+            new Distance(10),
+            shieldHandsRequired: 1,
+            maximumBenefitingShields: 1,
+            requiresFullDonDurationForArmorClassBenefit: true,
+            doffingWithHelpDivisor: 2,
+            new EquipmentChangeTiming(minute, minute),
+            new EquipmentChangeTiming(minute, minute),
+            new EquipmentChangeTiming(minute, minute),
+            new EquipmentChangeTiming(action, action),
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 144)
+            ]);
     }
 
     private static WeaponDefinition CreateWeapon(

@@ -27,6 +27,9 @@ internal static class Dnd5e2014RulesetLoader
     private const string ArmorResource =
         "FiveEData.Data.dnd5e2014.armor.json";
 
+    private const string ArmorUsageResource =
+        "FiveEData.Data.dnd5e2014.armor-usage.json";
+
     private const string ShieldsResource =
         "FiveEData.Data.dnd5e2014.shields.json";
 
@@ -51,6 +54,10 @@ internal static class Dnd5e2014RulesetLoader
             ArmorDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(ArmorResource));
 
+        ArmorUsageRules armorUsage =
+            ArmorUsageRulesLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ArmorUsageResource));
+
         IReadOnlyList<ShieldDefinition> shields =
             ShieldDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(ShieldsResource));
@@ -65,13 +72,15 @@ internal static class Dnd5e2014RulesetLoader
             ammunition,
             rules,
             armor,
-            shields);
+            shields,
+            armorUsage);
 
         return new Dnd5e2014Ruleset(
             new WeaponCatalog(weapons),
             new AmmunitionCatalog(ammunition),
             new ArmorCatalog(armor),
             new ShieldCatalog(shields),
+            armorUsage,
             new SourceDocumentCatalog(sources),
             new RuleCatalog(rules));
     }

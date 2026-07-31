@@ -18,6 +18,7 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(AmmunitionDefinition));
         AssertNoPublicConstructors(typeof(ArmorDefinition));
         AssertNoPublicConstructors(typeof(ShieldDefinition));
+        AssertNoPublicConstructors(typeof(ArmorUsageRules));
         AssertNoPublicConstructors(typeof(RuleDefinition));
         AssertNoPublicConstructors(typeof(SourceDocument));
     }
@@ -44,6 +45,7 @@ public sealed class DomainApiSemanticsTests
         Assert.Same(first.Ammunition, second.Ammunition);
         Assert.Same(first.Armor, second.Armor);
         Assert.Same(first.Shields, second.Shields);
+        Assert.Same(first.ArmorUsage, second.ArmorUsage);
         Assert.Same(first.Rules, second.Rules);
         Assert.Same(first.Sources, second.Sources);
     }

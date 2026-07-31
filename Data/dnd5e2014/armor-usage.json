@@ -1,0 +1,70 @@
+{
+  "armorProficiencyRuleId": "dnd5e2014.armor-rule.proficiency",
+  "strengthSpeedRuleId": "dnd5e2014.armor-rule.strength-speed",
+  "stealthRuleId": "dnd5e2014.armor-rule.stealth",
+  "shieldRuleId": "dnd5e2014.armor-rule.shield",
+  "donDoffRuleId": "dnd5e2014.armor-rule.don-doff",
+  "armorProficiencyConsequences": {
+    "disadvantageOnStrengthOrDexterityAbilityChecks": true,
+    "disadvantageOnStrengthOrDexteritySavingThrows": true,
+    "disadvantageOnStrengthOrDexterityAttackRolls": true,
+    "preventsSpellcasting": true
+  },
+  "insufficientStrengthSpeedReductionFeet": 10,
+  "shieldHandsRequired": 1,
+  "maximumBenefitingShields": 1,
+  "requiresFullDonDurationForArmorClassBenefit": true,
+  "doffingWithHelpDivisor": 2,
+  "lightArmorChangeTiming": {
+    "don": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "doff": {
+      "amount": 1,
+      "unit": "Minute"
+    }
+  },
+  "mediumArmorChangeTiming": {
+    "don": {
+      "amount": 5,
+      "unit": "Minute"
+    },
+    "doff": {
+      "amount": 1,
+      "unit": "Minute"
+    }
+  },
+  "heavyArmorChangeTiming": {
+    "don": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "doff": {
+      "amount": 5,
+      "unit": "Minute"
+    }
+  },
+  "shieldChangeTiming": {
+    "don": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "doff": {
+      "amount": 1,
+      "unit": "Action"
+    }
+  },
+  "sources": [
+    {
+      "documentId": "dnd5e2014.source.phb-first-printing",
+      "page": 144,
+      "section": "Chapter 5: Equipment — Armor and Shields"
+    },
+    {
+      "documentId": "dnd5e2014.source.phb-first-printing",
+      "page": 146,
+      "section": "Chapter 5: Equipment — Getting Into and Out of Armor"
+    }
+  ]
+}
