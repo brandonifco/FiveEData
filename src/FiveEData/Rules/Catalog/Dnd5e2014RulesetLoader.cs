@@ -66,14 +66,16 @@ internal static class Dnd5e2014RulesetLoader
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
 
-        CatalogIntegrityValidator.EnsureValid(
-            weapons,
-            sources,
-            ammunition,
-            rules,
-            armor,
-            shields,
-            armorUsage);
+        var definitions = new RulesetDefinitionSet(
+            weapons: weapons,
+            sourceDocuments: sources,
+            ammunition: ammunition,
+            rules: rules,
+            armor: armor,
+            shields: shields,
+            armorUsage: armorUsage);
+
+        CatalogIntegrityValidator.EnsureValid(definitions);
 
         return new Dnd5e2014Ruleset(
             new WeaponCatalog(weapons),

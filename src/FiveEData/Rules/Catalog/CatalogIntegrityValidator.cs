@@ -10,33 +10,28 @@ namespace FiveEData.Rules.Catalog;
 internal static class CatalogIntegrityValidator
 {
     public static IReadOnlyList<string> Validate(
-        IReadOnlyList<WeaponDefinition> weapons,
-        IReadOnlyList<SourceDocument> sourceDocuments,
-        IReadOnlyList<AmmunitionDefinition> ammunition,
-        IReadOnlyList<RuleDefinition> rules,
-        IReadOnlyList<ArmorDefinition> armor,
-        IReadOnlyList<ShieldDefinition> shields,
-        ArmorUsageRules? armorUsage = null)
+        RulesetDefinitionSet definitions)
     {
-        ArgumentNullException.ThrowIfNull(weapons);
-        ArgumentNullException.ThrowIfNull(sourceDocuments);
-        ArgumentNullException.ThrowIfNull(ammunition);
-        ArgumentNullException.ThrowIfNull(rules);
-        ArgumentNullException.ThrowIfNull(armor);
-        ArgumentNullException.ThrowIfNull(shields);
+        ArgumentNullException.ThrowIfNull(definitions);
 
         var errors = new List<string>();
 
         HashSet<SourceDocumentId> sourceIds =
-            sourceDocuments.Select(source => source.Id).ToHashSet();
+            definitions.SourceDocuments
+                .Select(source => source.Id)
+                .ToHashSet();
 
         HashSet<AmmunitionTypeId> ammunitionIds =
-            ammunition.Select(definition => definition.Id).ToHashSet();
+            definitions.Ammunition
+                .Select(definition => definition.Id)
+                .ToHashSet();
 
         HashSet<RuleId> ruleIds =
-            rules.Select(rule => rule.Id).ToHashSet();
+            definitions.Rules
+                .Select(rule => rule.Id)
+                .ToHashSet();
 
-        foreach (WeaponDefinition weapon in weapons)
+        foreach (WeaponDefinition weapon in definitions.Weapons)
         {
             ValidateSources(
                 $"Weapon '{weapon.Id}'",
@@ -61,7 +56,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (AmmunitionDefinition definition in ammunition)
+        foreach (AmmunitionDefinition definition in definitions.Ammunition)
         {
             ValidateSources(
                 $"Ammunition '{definition.Id}'",
@@ -70,7 +65,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (RuleDefinition rule in rules)
+        foreach (RuleDefinition rule in definitions.Rules)
         {
             ValidateSources(
                 $"Rule '{rule.Id}'",
@@ -79,7 +74,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (ArmorDefinition definition in armor)
+        foreach (ArmorDefinition definition in definitions.Armor)
         {
             ValidateSources(
                 $"Armor '{definition.Id}'",
@@ -88,7 +83,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (ShieldDefinition definition in shields)
+        foreach (ShieldDefinition definition in definitions.Shields)
         {
             ValidateSources(
                 $"Shield '{definition.Id}'",
@@ -97,15 +92,15 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        if (armorUsage is not null)
+        if (definitions.ArmorUsage is not null)
         {
             ValidateSources(
                 "Armor usage rules",
-                armorUsage.Sources,
+                definitions.ArmorUsage.Sources,
                 sourceIds,
                 errors);
 
-            foreach (RuleId ruleId in armorUsage.ReferencedRuleIds)
+            foreach (RuleId ruleId in definitions.ArmorUsage.ReferencedRuleIds)
             {
                 if (!ruleIds.Contains(ruleId))
                 {
@@ -118,27 +113,19 @@ internal static class CatalogIntegrityValidator
         return errors;
     }
 
-    public static void EnsureValid(
-        IReadOnlyList<WeaponDefinition> weapons,
-        IReadOnlyList<SourceDocument> sourceDocuments,
-        IReadOnlyList<AmmunitionDefinition> ammunition,
-        IReadOnlyList<RuleDefinition> rules,
-        IReadOnlyList<ArmorDefinition> armor,
-        IReadOnlyList<ShieldDefinition> shields,
-        ArmorUsageRules armorUsage)
+    public static void EnsureValid(RulesetDefinitionSet definitions)
     {
-        ArgumentNullException.ThrowIfNull(armorUsage);
+        ArgumentNullException.ThrowIfNull(definitions);
+
+        ArmorUsageRules armorUsage =
+            definitions.ArmorUsage ??
+            throw new ArgumentException(
+                "Armor usage rules are required for the official ruleset definition set.",
+                nameof(definitions));
+
         ArmorUsageRulesValidator.EnsureValid(armorUsage);
 
-        IReadOnlyList<string> errors =
-            Validate(
-                weapons,
-                sourceDocuments,
-                ammunition,
-                rules,
-                armor,
-                shields,
-                armorUsage);
+        IReadOnlyList<string> errors = Validate(definitions);
 
         if (errors.Count == 0)
         {

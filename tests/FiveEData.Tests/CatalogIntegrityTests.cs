@@ -53,13 +53,14 @@ public sealed class CatalogIntegrityTests
 
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
-                weapons,
-                sources,
-                ammunition,
-                rules,
-                armor,
-                shields,
-                armorUsage));
+                CreateDefinitionSet(
+                    weapons: weapons,
+                    sourceDocuments: sources,
+                    ammunition: ammunition,
+                    rules: rules,
+                    armor: armor,
+                    shields: shields,
+                    armorUsage: armorUsage)));
     }
 
     [Fact]
@@ -79,12 +80,9 @@ public sealed class CatalogIntegrityTests
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                [weapon],
-                sources,
-                [],
-                [],
-                [],
-                []);
+                CreateDefinitionSet(
+                    weapons: [weapon],
+                    sourceDocuments: sources));
 
         Assert.Contains(
             errors,
@@ -116,12 +114,7 @@ public sealed class CatalogIntegrityTests
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                [weapon],
-                [],
-                [],
-                [],
-                [],
-                []);
+                CreateDefinitionSet(weapons: [weapon]));
 
         Assert.Contains(
             errors,
@@ -147,12 +140,9 @@ public sealed class CatalogIntegrityTests
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                [weapon],
-                sources,
-                [],
-                [],
-                [],
-                []);
+                CreateDefinitionSet(
+                    weapons: [weapon],
+                    sourceDocuments: sources));
 
         Assert.Contains(
             errors,
@@ -180,12 +170,7 @@ public sealed class CatalogIntegrityTests
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                [],
-                [],
-                [],
-                [],
-                [armor],
-                []);
+                CreateDefinitionSet(armor: [armor]));
 
         Assert.Contains(
             errors,
@@ -210,12 +195,7 @@ public sealed class CatalogIntegrityTests
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                [],
-                [],
-                [],
-                [],
-                [],
-                [shield]);
+                CreateDefinitionSet(shields: [shield]));
 
         Assert.Contains(
             errors,
@@ -236,13 +216,9 @@ public sealed class CatalogIntegrityTests
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                [],
-                sources,
-                [],
-                [],
-                [],
-                [],
-                armorUsage);
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    armorUsage: armorUsage));
 
         Assert.Contains(
             errors,
@@ -272,19 +248,34 @@ public sealed class CatalogIntegrityTests
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                [],
-                [],
-                [],
-                rules,
-                [],
-                [],
-                armorUsage);
+                CreateDefinitionSet(
+                    rules: rules,
+                    armorUsage: armorUsage));
 
         Assert.Contains(
             errors,
             error => error.Contains(
                 "Armor usage rules references missing source document",
                 StringComparison.Ordinal));
+    }
+
+    private static RulesetDefinitionSet CreateDefinitionSet(
+        IReadOnlyList<WeaponDefinition>? weapons = null,
+        IReadOnlyList<SourceDocument>? sourceDocuments = null,
+        IReadOnlyList<AmmunitionDefinition>? ammunition = null,
+        IReadOnlyList<RuleDefinition>? rules = null,
+        IReadOnlyList<ArmorDefinition>? armor = null,
+        IReadOnlyList<ShieldDefinition>? shields = null,
+        ArmorUsageRules? armorUsage = null)
+    {
+        return new RulesetDefinitionSet(
+            weapons: weapons ?? [],
+            sourceDocuments: sourceDocuments ?? [],
+            ammunition: ammunition ?? [],
+            rules: rules ?? [],
+            armor: armor ?? [],
+            shields: shields ?? [],
+            armorUsage: armorUsage);
     }
 
     private static ArmorUsageRules CreateArmorUsageRules(
