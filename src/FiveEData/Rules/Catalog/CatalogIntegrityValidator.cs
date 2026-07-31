@@ -1,6 +1,8 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
+using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Catalog;
@@ -11,12 +13,16 @@ internal static class CatalogIntegrityValidator
         IReadOnlyList<WeaponDefinition> weapons,
         IReadOnlyList<SourceDocument> sourceDocuments,
         IReadOnlyList<AmmunitionDefinition> ammunition,
-        IReadOnlyList<RuleDefinition> rules)
+        IReadOnlyList<RuleDefinition> rules,
+        IReadOnlyList<ArmorDefinition> armor,
+        IReadOnlyList<ShieldDefinition> shields)
     {
         ArgumentNullException.ThrowIfNull(weapons);
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(ammunition);
         ArgumentNullException.ThrowIfNull(rules);
+        ArgumentNullException.ThrowIfNull(armor);
+        ArgumentNullException.ThrowIfNull(shields);
 
         var errors = new List<string>();
 
@@ -72,6 +78,24 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
+        foreach (ArmorDefinition definition in armor)
+        {
+            ValidateSources(
+                $"Armor '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (ShieldDefinition definition in shields)
+        {
+            ValidateSources(
+                $"Shield '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+        }
+
         return errors;
     }
 
@@ -79,14 +103,18 @@ internal static class CatalogIntegrityValidator
         IReadOnlyList<WeaponDefinition> weapons,
         IReadOnlyList<SourceDocument> sourceDocuments,
         IReadOnlyList<AmmunitionDefinition> ammunition,
-        IReadOnlyList<RuleDefinition> rules)
+        IReadOnlyList<RuleDefinition> rules,
+        IReadOnlyList<ArmorDefinition> armor,
+        IReadOnlyList<ShieldDefinition> shields)
     {
         IReadOnlyList<string> errors =
             Validate(
                 weapons,
                 sourceDocuments,
                 ammunition,
-                rules);
+                rules,
+                armor,
+                shields);
 
         if (errors.Count == 0)
         {

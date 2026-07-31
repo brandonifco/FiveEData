@@ -13,16 +13,22 @@ public sealed class Dnd5e2014Ruleset
     internal Dnd5e2014Ruleset(
         WeaponCatalog weapons,
         AmmunitionCatalog ammunition,
+        ArmorCatalog armor,
+        ShieldCatalog shields,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
         ArgumentNullException.ThrowIfNull(weapons);
         ArgumentNullException.ThrowIfNull(ammunition);
+        ArgumentNullException.ThrowIfNull(armor);
+        ArgumentNullException.ThrowIfNull(shields);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
         Weapons = weapons;
         Ammunition = ammunition;
+        Armor = armor;
+        Shields = shields;
         Sources = sources;
         Rules = rules;
     }
@@ -31,6 +37,8 @@ public sealed class Dnd5e2014Ruleset
 
     public WeaponCatalog Weapons { get; }
     public AmmunitionCatalog Ammunition { get; }
+    public ArmorCatalog Armor { get; }
+    public ShieldCatalog Shields { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

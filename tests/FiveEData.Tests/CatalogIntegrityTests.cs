@@ -5,6 +5,10 @@ using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
+using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Armor.Serialization;
+using FiveEData.Rules.Equipment.Shields;
+using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 
@@ -34,12 +38,22 @@ public sealed class CatalogIntegrityTests
                 File.ReadAllText(
                     Path.Combine(root, "Data", "dnd5e2014", "rules.json")));
 
+        IReadOnlyList<ArmorDefinition> armor =
+            ArmorDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "armor.json"));
+
+        IReadOnlyList<ShieldDefinition> shields =
+            ShieldDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "shields.json"));
+
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
                 weapons,
                 sources,
                 ammunition,
-                rules));
+                rules,
+                armor,
+                shields));
     }
 
     [Fact]
@@ -61,6 +75,8 @@ public sealed class CatalogIntegrityTests
             CatalogIntegrityValidator.Validate(
                 [weapon],
                 sources,
+                [],
+                [],
                 [],
                 []);
 
@@ -97,6 +113,8 @@ public sealed class CatalogIntegrityTests
                 [weapon],
                 [],
                 [],
+                [],
+                [],
                 []);
 
         Assert.Contains(
@@ -126,11 +144,76 @@ public sealed class CatalogIntegrityTests
                 [weapon],
                 sources,
                 [],
+                [],
+                [],
                 []);
 
         Assert.Contains(
             errors,
             error => error.Contains("missing rule", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ArmorMissingSourceReference_IsRejected()
+    {
+        ArmorDefinition armor = new(
+            new ArmorId("dnd5e2014.armor.test"),
+            "Test armor",
+            ArmorCategory.Light,
+            new Money(1000),
+            new Weight(10m),
+            new ArmorClassFormula(11, includesDexterityModifier: true),
+            minimumStrengthForFullSpeed: null,
+            imposesStealthDisadvantage: false,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId("dnd5e2014.source.missing"),
+                    page: 145)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                [],
+                [],
+                [],
+                [],
+                [armor],
+                []);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains("missing source document", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ShieldMissingSourceReference_IsRejected()
+    {
+        ShieldDefinition shield = new(
+            new ShieldId("dnd5e2014.armor.shield"),
+            "Shield",
+            new Money(1000),
+            new Weight(6m),
+            armorClassBonus: 2,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId("dnd5e2014.source.missing"),
+                    page: 145)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                [],
+                [],
+                [],
+                [],
+                [],
+                [shield]);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains("missing source document", StringComparison.Ordinal));
     }
 
     private static WeaponDefinition CreateWeapon(
@@ -153,7 +236,8 @@ public sealed class CatalogIntegrityTests
             sources:
             [
                 new SourceReference(
-                    new SourceDocumentId("dnd5e2014.source.phb-first-printing"),
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
                     page: 149)
             ]);
     }

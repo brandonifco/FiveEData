@@ -1,0 +1,302 @@
+[
+  {
+    "id": "dnd5e2014.armor.padded",
+    "name": "Padded",
+    "category": "Light",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 8
+    },
+    "armorClass": {
+      "baseArmorClass": 11,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": null
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.leather",
+    "name": "Leather",
+    "category": "Light",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 10
+    },
+    "armorClass": {
+      "baseArmorClass": 11,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": null
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.studded-leather",
+    "name": "Studded leather",
+    "category": "Light",
+    "cost": {
+      "copperPieces": 4500
+    },
+    "weight": {
+      "pounds": 13
+    },
+    "armorClass": {
+      "baseArmorClass": 12,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": null
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.hide",
+    "name": "Hide",
+    "category": "Medium",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 12
+    },
+    "armorClass": {
+      "baseArmorClass": 12,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": 2
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.chain-shirt",
+    "name": "Chain shirt",
+    "category": "Medium",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 20
+    },
+    "armorClass": {
+      "baseArmorClass": 13,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": 2
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.scale-mail",
+    "name": "Scale mail",
+    "category": "Medium",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 45
+    },
+    "armorClass": {
+      "baseArmorClass": 14,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": 2
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.breastplate",
+    "name": "Breastplate",
+    "category": "Medium",
+    "cost": {
+      "copperPieces": 40000
+    },
+    "weight": {
+      "pounds": 20
+    },
+    "armorClass": {
+      "baseArmorClass": 14,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": 2
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.half-plate",
+    "name": "Half plate",
+    "category": "Medium",
+    "cost": {
+      "copperPieces": 75000
+    },
+    "weight": {
+      "pounds": 40
+    },
+    "armorClass": {
+      "baseArmorClass": 15,
+      "includesDexterityModifier": true,
+      "maximumDexterityModifier": 2
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.ring-mail",
+    "name": "Ring mail",
+    "category": "Heavy",
+    "cost": {
+      "copperPieces": 3000
+    },
+    "weight": {
+      "pounds": 40
+    },
+    "armorClass": {
+      "baseArmorClass": 14,
+      "includesDexterityModifier": false,
+      "maximumDexterityModifier": null
+    },
+    "minimumStrengthForFullSpeed": null,
+    "imposesStealthDisadvantage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.chain-mail",
+    "name": "Chain mail",
+    "category": "Heavy",
+    "cost": {
+      "copperPieces": 7500
+    },
+    "weight": {
+      "pounds": 55
+    },
+    "armorClass": {
+      "baseArmorClass": 16,
+      "includesDexterityModifier": false,
+      "maximumDexterityModifier": null
+    },
+    "minimumStrengthForFullSpeed": 13,
+    "imposesStealthDisadvantage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.splint",
+    "name": "Splint",
+    "category": "Heavy",
+    "cost": {
+      "copperPieces": 20000
+    },
+    "weight": {
+      "pounds": 60
+    },
+    "armorClass": {
+      "baseArmorClass": 17,
+      "includesDexterityModifier": false,
+      "maximumDexterityModifier": null
+    },
+    "minimumStrengthForFullSpeed": 15,
+    "imposesStealthDisadvantage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor.plate",
+    "name": "Plate",
+    "category": "Heavy",
+    "cost": {
+      "copperPieces": 150000
+    },
+    "weight": {
+      "pounds": 65
+    },
+    "armorClass": {
+      "baseArmorClass": 18,
+      "includesDexterityModifier": false,
+      "maximumDexterityModifier": null
+    },
+    "minimumStrengthForFullSpeed": 15,
+    "imposesStealthDisadvantage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 145,
+        "section": "Chapter 5: Equipment — Armor and Shields"
+      }
+    ]
+  }
+]

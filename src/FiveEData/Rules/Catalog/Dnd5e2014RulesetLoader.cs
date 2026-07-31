@@ -4,6 +4,10 @@ using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
+using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Armor.Serialization;
+using FiveEData.Rules.Equipment.Shields;
+using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 
@@ -19,6 +23,12 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string WeaponsResource =
         "FiveEData.Data.dnd5e2014.weapons.json";
+
+    private const string ArmorResource =
+        "FiveEData.Data.dnd5e2014.armor.json";
+
+    private const string ShieldsResource =
+        "FiveEData.Data.dnd5e2014.shields.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -37,6 +47,14 @@ internal static class Dnd5e2014RulesetLoader
             WeaponDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(WeaponsResource));
 
+        IReadOnlyList<ArmorDefinition> armor =
+            ArmorDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ArmorResource));
+
+        IReadOnlyList<ShieldDefinition> shields =
+            ShieldDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ShieldsResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -45,11 +63,15 @@ internal static class Dnd5e2014RulesetLoader
             weapons,
             sources,
             ammunition,
-            rules);
+            rules,
+            armor,
+            shields);
 
         return new Dnd5e2014Ruleset(
             new WeaponCatalog(weapons),
             new AmmunitionCatalog(ammunition),
+            new ArmorCatalog(armor),
+            new ShieldCatalog(shields),
             new SourceDocumentCatalog(sources),
             new RuleCatalog(rules));
     }
