@@ -9,7 +9,9 @@
       "pounds": 8
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -28,7 +30,9 @@
       "pounds": 9
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -47,7 +51,9 @@
       "pounds": 5
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -66,7 +72,9 @@
       "pounds": 6
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -85,7 +93,9 @@
       "pounds": 6
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -104,7 +114,9 @@
       "pounds": 5
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -123,7 +135,9 @@
       "pounds": 8
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -142,7 +156,9 @@
       "pounds": 5
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -161,7 +177,9 @@
       "pounds": 2
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -180,7 +198,9 @@
       "pounds": 5
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -199,7 +219,9 @@
       "pounds": 8
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -218,7 +240,9 @@
       "pounds": 5
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -237,7 +261,9 @@
       "pounds": 3
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -256,7 +282,9 @@
       "pounds": 8
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -275,7 +303,9 @@
       "pounds": 10
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -294,7 +324,9 @@
       "pounds": 5
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -313,7 +345,9 @@
       "pounds": 5
     },
     "familyId": "dnd5e2014.tool-family.artisans-tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -332,7 +366,10 @@
       "pounds": 3
     },
     "familyId": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency",
+      "dnd5e2014.tool-rule.disguise-kit"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -351,7 +388,10 @@
       "pounds": 5
     },
     "familyId": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency",
+      "dnd5e2014.tool-rule.forgery-kit"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -368,7 +408,9 @@
     },
     "weight": null,
     "familyId": "dnd5e2014.tool-family.gaming-set",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -387,7 +429,9 @@
       "pounds": 0.5
     },
     "familyId": "dnd5e2014.tool-family.gaming-set",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -404,7 +448,9 @@
     },
     "weight": null,
     "familyId": "dnd5e2014.tool-family.gaming-set",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -421,7 +467,9 @@
     },
     "weight": null,
     "familyId": "dnd5e2014.tool-family.gaming-set",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -440,7 +488,10 @@
       "pounds": 3
     },
     "familyId": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency",
+      "dnd5e2014.tool-rule.herbalism-kit"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -459,7 +510,9 @@
       "pounds": 6
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -478,7 +531,9 @@
       "pounds": 3
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -497,7 +552,9 @@
       "pounds": 10
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -516,7 +573,9 @@
       "pounds": 1
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -535,7 +594,9 @@
       "pounds": 2
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -554,7 +615,9 @@
       "pounds": 2
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -573,7 +636,9 @@
       "pounds": 2
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -592,7 +657,9 @@
       "pounds": 2
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -611,7 +678,9 @@
       "pounds": 1
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -630,7 +699,9 @@
       "pounds": 1
     },
     "familyId": "dnd5e2014.tool-family.musical-instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -649,7 +720,10 @@
       "pounds": 2
     },
     "familyId": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency",
+      "dnd5e2014.tool-rule.navigators-tools"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -668,7 +742,10 @@
       "pounds": 2
     },
     "familyId": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency",
+      "dnd5e2014.tool-rule.poisoners-kit"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -687,7 +764,10 @@
       "pounds": 1
     },
     "familyId": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.proficiency",
+      "dnd5e2014.tool-rule.thieves-tools"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

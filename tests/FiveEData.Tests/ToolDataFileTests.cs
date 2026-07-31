@@ -33,11 +33,43 @@ public sealed class ToolDataFileTests
             Assert.Equal(expected.CopperPieces, definition.Cost.CopperPieces);
             Assert.Equal(expected.Pounds, definition.Weight?.Pounds);
             Assert.Equal(expected.FamilyId, definition.FamilyId?.Value);
-            Assert.Empty(definition.SpecialRuleIds);
 
             var source = Assert.Single(definition.Sources);
             Assert.Equal(154, source.Page);
             Assert.Equal("Chapter 5: Equipment — Tools", source.Section);
+        }
+    }
+
+    [Fact]
+    public void CanonicalFile_AssociatesToolUseAndStandaloneDescriptionRules()
+    {
+        IReadOnlyList<ToolDefinition> definitions = LoadCanonical();
+
+        var standaloneRules = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["dnd5e2014.tool.disguise-kit"] = "dnd5e2014.tool-rule.disguise-kit",
+            ["dnd5e2014.tool.forgery-kit"] = "dnd5e2014.tool-rule.forgery-kit",
+            ["dnd5e2014.tool.herbalism-kit"] = "dnd5e2014.tool-rule.herbalism-kit",
+            ["dnd5e2014.tool.navigators-tools"] = "dnd5e2014.tool-rule.navigators-tools",
+            ["dnd5e2014.tool.poisoners-kit"] = "dnd5e2014.tool-rule.poisoners-kit",
+            ["dnd5e2014.tool.thieves-tools"] = "dnd5e2014.tool-rule.thieves-tools"
+        };
+
+        foreach (ToolDefinition definition in definitions)
+        {
+            Assert.Equal(
+                "dnd5e2014.tool-rule.proficiency",
+                definition.SpecialRuleIds[0].Value);
+
+            if (standaloneRules.TryGetValue(definition.Id.Value, out string? specificRuleId))
+            {
+                Assert.Equal(2, definition.SpecialRuleIds.Count);
+                Assert.Equal(specificRuleId, definition.SpecialRuleIds[1].Value);
+            }
+            else
+            {
+                Assert.Single(definition.SpecialRuleIds);
+            }
         }
     }
 

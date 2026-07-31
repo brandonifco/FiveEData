@@ -64,7 +64,7 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(13, ruleset.ContainerCapacities.Count);
         Assert.Equal(3, ruleset.ToolFamilies.Count);
         Assert.Equal(37, ruleset.Tools.Count);
-        Assert.Equal(49, ruleset.Rules.Count);
+        Assert.Equal(59, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
 }

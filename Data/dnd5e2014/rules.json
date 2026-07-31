@@ -547,5 +547,115 @@
         "section": "Chapter 5: Equipment — Adventuring Gear — Torch"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.proficiency",
+    "name": "Tool use and proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.artisans-tools",
+    "name": "Artisan's tools proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Artisan's Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.disguise-kit",
+    "name": "Disguise kit use",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Disguise Kit"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.forgery-kit",
+    "name": "Forgery kit use",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Forgery Kit"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.gaming-set",
+    "name": "Gaming set proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Gaming Set"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.herbalism-kit",
+    "name": "Herbalism kit use",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Herbalism Kit"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.musical-instrument",
+    "name": "Musical instrument proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Musical Instrument"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.navigators-tools",
+    "name": "Navigator's tools use",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Navigator's Tools"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.poisoners-kit",
+    "name": "Poisoner's kit use",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Poisoner's Kit"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.tool-rule.thieves-tools",
+    "name": "Thieves' tools use",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 154,
+        "section": "Chapter 5: Equipment — Tools — Thieves' Tools"
+      }
+    ]
   }
 ]

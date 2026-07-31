@@ -1,3 +1,4 @@
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Tools.Serialization;
 
@@ -22,8 +23,24 @@ public sealed class ToolFamilyDataFileTests
                 .Select(definition => definition.Id.Value)
                 .OrderBy(value => value, StringComparer.Ordinal)
                 .ToArray());
+    }
 
-        Assert.All(definitions, definition => Assert.Empty(definition.SpecialRuleIds));
+    [Fact]
+    public void CanonicalFile_AssociatesFamilyDescriptionRules()
+    {
+        IReadOnlyDictionary<string, string> expected =
+            new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["dnd5e2014.tool-family.artisans-tools"] = "dnd5e2014.tool-rule.artisans-tools",
+                ["dnd5e2014.tool-family.gaming-set"] = "dnd5e2014.tool-rule.gaming-set",
+                ["dnd5e2014.tool-family.musical-instrument"] = "dnd5e2014.tool-rule.musical-instrument"
+            };
+
+        foreach (ToolFamilyDefinition definition in LoadCanonical())
+        {
+            RuleId ruleId = Assert.Single(definition.SpecialRuleIds);
+            Assert.Equal(expected[definition.Id.Value], ruleId.Value);
+        }
     }
 
     [Fact]

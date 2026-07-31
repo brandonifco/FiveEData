@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(49, ruleset.Rules.Count);
+        Assert.Equal(59, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -88,5 +88,64 @@ public sealed class RuleCatalogTests
                 .Select(source => source.Page)
                 .ToArray());
         Assert.Equal(153, Assert.Single(torch.Sources).Page);
+    }
+
+    [Fact]
+    public void EveryToolAndToolFamilySpecialRuleId_Resolves()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        foreach (var tool in ruleset.Tools.All)
+        {
+            foreach (RuleId ruleId in tool.SpecialRuleIds)
+            {
+                Assert.True(
+                    ruleset.Rules.TryGet(
+                        ruleId,
+                        out RuleDefinition? definition));
+                Assert.NotNull(definition);
+            }
+        }
+
+        foreach (var family in ruleset.ToolFamilies.All)
+        {
+            foreach (RuleId ruleId in family.SpecialRuleIds)
+            {
+                Assert.True(
+                    ruleset.Rules.TryGet(
+                        ruleId,
+                        out RuleDefinition? definition));
+                Assert.NotNull(definition);
+            }
+        }
+    }
+
+    [Fact]
+    public void ToolRules_PreserveFirstPrintingDescriptionProvenance()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        string[] ruleIds =
+        [
+            "dnd5e2014.tool-rule.proficiency",
+            "dnd5e2014.tool-rule.artisans-tools",
+            "dnd5e2014.tool-rule.disguise-kit",
+            "dnd5e2014.tool-rule.forgery-kit",
+            "dnd5e2014.tool-rule.gaming-set",
+            "dnd5e2014.tool-rule.herbalism-kit",
+            "dnd5e2014.tool-rule.musical-instrument",
+            "dnd5e2014.tool-rule.navigators-tools",
+            "dnd5e2014.tool-rule.poisoners-kit",
+            "dnd5e2014.tool-rule.thieves-tools"
+        ];
+
+        foreach (string value in ruleIds)
+        {
+            RuleDefinition definition =
+                ruleset.Rules.Get(new RuleId(value));
+            var source = Assert.Single(definition.Sources);
+            Assert.Equal(154, source.Page);
+            Assert.StartsWith("Chapter 5: Equipment — Tools", source.Section);
+        }
     }
 }

@@ -2,7 +2,9 @@
   {
     "id": "dnd5e2014.tool-family.artisans-tools",
     "name": "Artisan's tools",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.artisans-tools"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -14,7 +16,9 @@
   {
     "id": "dnd5e2014.tool-family.gaming-set",
     "name": "Gaming set",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.gaming-set"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -26,7 +30,9 @@
   {
     "id": "dnd5e2014.tool-family.musical-instrument",
     "name": "Musical instrument",
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.tool-rule.musical-instrument"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
