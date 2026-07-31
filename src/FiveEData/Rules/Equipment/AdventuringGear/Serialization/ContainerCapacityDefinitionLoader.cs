@@ -30,19 +30,26 @@ internal static class ContainerCapacityDefinitionLoader
 
         for (int index = 0; index < data.Length; index++)
         {
+            ContainerCapacityDefinitionData? itemData = data[index];
+            if (itemData is null)
+            {
+                throw new InvalidDataException(
+                    $"Invalid container-capacity definition at index {index}.");
+            }
+
             ContainerCapacityDefinition definition;
 
             try
             {
-                definition = Map(data[index]);
+                definition = Map(itemData);
                 ContainerCapacityDefinitionValidator.EnsureValid(definition);
             }
             catch (Exception exception)
                 when (exception is ArgumentException or InvalidOperationException)
             {
-                string identity = string.IsNullOrWhiteSpace(data[index].AdventuringGearId)
+                string identity = string.IsNullOrWhiteSpace(itemData.AdventuringGearId)
                     ? $"index {index}"
-                    : $"'{data[index].AdventuringGearId}'";
+                    : $"'{itemData.AdventuringGearId}'";
 
                 throw new InvalidDataException(
                     $"Invalid container-capacity definition at {identity}.",

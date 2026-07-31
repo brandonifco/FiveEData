@@ -56,6 +56,15 @@ public sealed class ContainerCapacityDefinitionLoaderTests
     }
 
     [Fact]
+    public void NullArrayElement_IsRejectedAsDataError()
+    {
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(
+            () => ContainerCapacityDefinitionLoader.LoadFromJson("[null]"));
+
+        Assert.Contains("index 0", exception.Message);
+    }
+
+    [Fact]
     public void InvalidVolumeUnit_IsRejected()
     {
         string json = ValidJson.Replace(

@@ -30,19 +30,26 @@ internal static class AdventuringGearDefinitionLoader
 
         for (int index = 0; index < data.Length; index++)
         {
+            AdventuringGearDefinitionData? itemData = data[index];
+            if (itemData is null)
+            {
+                throw new InvalidDataException(
+                    $"Invalid adventuring gear definition at index {index}.");
+            }
+
             AdventuringGearDefinition definition;
 
             try
             {
-                definition = Map(data[index]);
+                definition = Map(itemData);
                 AdventuringGearDefinitionValidator.EnsureValid(definition);
             }
             catch (Exception exception)
                 when (exception is ArgumentException or InvalidOperationException)
             {
-                string identity = string.IsNullOrWhiteSpace(data[index].Id)
+                string identity = string.IsNullOrWhiteSpace(itemData.Id)
                     ? $"index {index}"
-                    : $"'{data[index].Id}'";
+                    : $"'{itemData.Id}'";
 
                 throw new InvalidDataException(
                     $"Invalid adventuring gear definition at {identity}.",

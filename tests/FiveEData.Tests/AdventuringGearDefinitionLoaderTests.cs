@@ -74,6 +74,15 @@ public sealed class AdventuringGearDefinitionLoaderTests
     }
 
     [Fact]
+    public void NullArrayElement_IsRejectedAsDataError()
+    {
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(
+            () => AdventuringGearDefinitionLoader.LoadFromJson("[null]"));
+
+        Assert.Contains("index 0", exception.Message);
+    }
+
+    [Fact]
     public void DuplicateIds_AreRejected()
     {
         string item = ValidJson[2..^2];
