@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>FiveEData</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/sources.json"
+      LogicalName="FiveEData.Data.dnd5e2014.sources.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/ammunition.json"
+      LogicalName="FiveEData.Data.dnd5e2014.ammunition.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/weapons.json"
+      LogicalName="FiveEData.Data.dnd5e2014.weapons.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
+  </ItemGroup>
+
+</Project>

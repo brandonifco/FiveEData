@@ -1,0 +1,25 @@
+# .NET build output
+bin/
+obj/
+
+# Test output
+TestResults/
+
+# IDE / editor state
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Temporary / backup files
+*.tmp
+*.bak
+*.orig
+*.rej

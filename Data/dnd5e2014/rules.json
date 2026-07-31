@@ -1,0 +1,24 @@
+[
+  {
+    "id": "dnd5e2014.weapon-rule.lance",
+    "name": "Lance special weapon rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 148,
+        "section": "Chapter 5: Equipment — Special Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon-rule.net",
+    "name": "Net special weapon rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 148,
+        "section": "Chapter 5: Equipment — Special Weapons"
+      }
+    ]
+  }
+]

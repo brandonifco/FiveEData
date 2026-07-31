@@ -1,0 +1,74 @@
+[
+  {
+    "id": "dnd5e2014.ammunition.arrow",
+    "name": "Arrows",
+    "bundleQuantity": 20,
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ammunition.blowgun-needle",
+    "name": "Blowgun needles",
+    "bundleQuantity": 50,
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ammunition.crossbow-bolt",
+    "name": "Crossbow bolts",
+    "bundleQuantity": 20,
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 0.5
+    },
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ammunition.sling-bullet",
+    "name": "Sling bullets",
+    "bundleQuantity": 20,
+    "cost": {
+      "copperPieces": 4
+    },
+    "weight": {
+      "pounds": 0.5
+    },
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 150,
+        "section": "Chapter 5: Equipment — Adventuring Gear"
+      }
+    ]
+  }
+]

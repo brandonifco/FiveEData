@@ -1,0 +1,1374 @@
+[
+  {
+    "id": "dnd5e2014.weapon.club",
+    "name": "Club",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 10
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 4
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [
+      "Light"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.dagger",
+    "name": "Dagger",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 200
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 4
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Finesse",
+      "Light",
+      "Thrown"
+    ],
+    "range": {
+      "normalFeet": 20,
+      "longFeet": 60
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.greatclub",
+    "name": "Greatclub",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 20
+    },
+    "weight": {
+      "pounds": 10
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [
+      "TwoHanded"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.handaxe",
+    "name": "Handaxe",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Light",
+      "Thrown"
+    ],
+    "range": {
+      "normalFeet": 20,
+      "longFeet": 60
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.javelin",
+    "name": "Javelin",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 50
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Thrown"
+    ],
+    "range": {
+      "normalFeet": 30,
+      "longFeet": 120
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.light-hammer",
+    "name": "Light hammer",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 200
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 4
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [
+      "Light",
+      "Thrown"
+    ],
+    "range": {
+      "normalFeet": 20,
+      "longFeet": 60
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.mace",
+    "name": "Mace",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 4
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.quarterstaff",
+    "name": "Quarterstaff",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 20
+    },
+    "weight": {
+      "pounds": 4
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [
+      "Versatile"
+    ],
+    "range": null,
+    "versatileDamage": {
+      "count": 1,
+      "sides": 8
+    },
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.sickle",
+    "name": "Sickle",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 4
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Light"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.spear",
+    "name": "Spear",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Thrown",
+      "Versatile"
+    ],
+    "range": {
+      "normalFeet": 20,
+      "longFeet": 60
+    },
+    "versatileDamage": {
+      "count": 1,
+      "sides": 8
+    },
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.unarmed-strike",
+    "name": "Unarmed strike",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Melee",
+    "cost": null,
+    "weight": null,
+    "damage": {
+      "dice": null,
+      "fixedAmount": 1,
+      "type": "Bludgeoning"
+    },
+    "properties": [],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.light-crossbow",
+    "name": "Crossbow, light",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 5
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Ammunition",
+      "Loading",
+      "TwoHanded"
+    ],
+    "range": {
+      "normalFeet": 80,
+      "longFeet": 320
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": "dnd5e2014.ammunition.crossbow-bolt",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.dart",
+    "name": "Dart",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 5
+    },
+    "weight": {
+      "pounds": 0.25
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 4
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Finesse",
+      "Thrown"
+    ],
+    "range": {
+      "normalFeet": 20,
+      "longFeet": 60
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.shortbow",
+    "name": "Shortbow",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Ammunition",
+      "TwoHanded"
+    ],
+    "range": {
+      "normalFeet": 80,
+      "longFeet": 320
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": "dnd5e2014.ammunition.arrow",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.sling",
+    "name": "Sling",
+    "proficiencyCategory": "Simple",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 10
+    },
+    "weight": null,
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 4
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [
+      "Ammunition"
+    ],
+    "range": {
+      "normalFeet": 30,
+      "longFeet": 120
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": "dnd5e2014.ammunition.sling-bullet",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.battleaxe",
+    "name": "Battleaxe",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 4
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Versatile"
+    ],
+    "range": null,
+    "versatileDamage": {
+      "count": 1,
+      "sides": 10
+    },
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.flail",
+    "name": "Flail",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.glaive",
+    "name": "Glaive",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 2000
+    },
+    "weight": {
+      "pounds": 6
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 10
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Heavy",
+      "Reach",
+      "TwoHanded"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.greataxe",
+    "name": "Greataxe",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 3000
+    },
+    "weight": {
+      "pounds": 7
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 12
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Heavy",
+      "TwoHanded"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.greatsword",
+    "name": "Greatsword",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 6
+    },
+    "damage": {
+      "dice": {
+        "count": 2,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Heavy",
+      "TwoHanded"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.halberd",
+    "name": "Halberd",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 2000
+    },
+    "weight": {
+      "pounds": 6
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 10
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Heavy",
+      "Reach",
+      "TwoHanded"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.lance",
+    "name": "Lance",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 6
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 12
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Reach",
+      "Special"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [
+      "dnd5e2014.weapon-rule.lance"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 148,
+        "section": "Chapter 5: Equipment — Special Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.longsword",
+    "name": "Longsword",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1500
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Versatile"
+    ],
+    "range": null,
+    "versatileDamage": {
+      "count": 1,
+      "sides": 10
+    },
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.maul",
+    "name": "Maul",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 10
+    },
+    "damage": {
+      "dice": {
+        "count": 2,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [
+      "Heavy",
+      "TwoHanded"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.morningstar",
+    "name": "Morningstar",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1500
+    },
+    "weight": {
+      "pounds": 4
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.pike",
+    "name": "Pike",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 18
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 10
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Heavy",
+      "Reach",
+      "TwoHanded"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.rapier",
+    "name": "Rapier",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Finesse"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.scimitar",
+    "name": "Scimitar",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Finesse",
+      "Light"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.shortsword",
+    "name": "Shortsword",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Finesse",
+      "Light"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.trident",
+    "name": "Trident",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 4
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Thrown",
+      "Versatile"
+    ],
+    "range": {
+      "normalFeet": 20,
+      "longFeet": 60
+    },
+    "versatileDamage": {
+      "count": 1,
+      "sides": 8
+    },
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.war-pick",
+    "name": "War pick",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.warhammer",
+    "name": "Warhammer",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 1500
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Bludgeoning"
+    },
+    "properties": [
+      "Versatile"
+    ],
+    "range": null,
+    "versatileDamage": {
+      "count": 1,
+      "sides": 10
+    },
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.whip",
+    "name": "Whip",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Melee",
+    "cost": {
+      "copperPieces": 200
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 4
+      },
+      "fixedAmount": 0,
+      "type": "Slashing"
+    },
+    "properties": [
+      "Finesse",
+      "Reach"
+    ],
+    "range": null,
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.blowgun",
+    "name": "Blowgun",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "weight": {
+      "pounds": 1
+    },
+    "damage": {
+      "dice": null,
+      "fixedAmount": 1,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Ammunition",
+      "Loading"
+    ],
+    "range": {
+      "normalFeet": 25,
+      "longFeet": 100
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": "dnd5e2014.ammunition.blowgun-needle",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.hand-crossbow",
+    "name": "Crossbow, hand",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 7500
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 6
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Ammunition",
+      "Light",
+      "Loading"
+    ],
+    "range": {
+      "normalFeet": 30,
+      "longFeet": 120
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": "dnd5e2014.ammunition.crossbow-bolt",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.heavy-crossbow",
+    "name": "Crossbow, heavy",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 18
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 10
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Ammunition",
+      "Heavy",
+      "Loading",
+      "TwoHanded"
+    ],
+    "range": {
+      "normalFeet": 100,
+      "longFeet": 400
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": "dnd5e2014.ammunition.crossbow-bolt",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.longbow",
+    "name": "Longbow",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "weight": {
+      "pounds": 2
+    },
+    "damage": {
+      "dice": {
+        "count": 1,
+        "sides": 8
+      },
+      "fixedAmount": 0,
+      "type": "Piercing"
+    },
+    "properties": [
+      "Ammunition",
+      "Heavy",
+      "TwoHanded"
+    ],
+    "range": {
+      "normalFeet": 150,
+      "longFeet": 600
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": "dnd5e2014.ammunition.arrow",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.weapon.net",
+    "name": "Net",
+    "proficiencyCategory": "Martial",
+    "usageCategory": "Ranged",
+    "cost": {
+      "copperPieces": 100
+    },
+    "weight": {
+      "pounds": 3
+    },
+    "damage": null,
+    "properties": [
+      "Special",
+      "Thrown"
+    ],
+    "range": {
+      "normalFeet": 5,
+      "longFeet": 15
+    },
+    "versatileDamage": null,
+    "ammunitionTypeId": null,
+    "specialRuleIds": [
+      "dnd5e2014.weapon-rule.net"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 149,
+        "section": "Chapter 5: Equipment — Weapons"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 148,
+        "section": "Chapter 5: Equipment — Special Weapons"
+      }
+    ]
+  }
+]
