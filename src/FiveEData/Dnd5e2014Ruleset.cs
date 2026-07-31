@@ -17,6 +17,7 @@ public sealed class Dnd5e2014Ruleset
         ArmorCatalog armor,
         ShieldCatalog shields,
         AdventuringGearCatalog adventuringGear,
+        ContainerCapacityCatalog containerCapacities,
         ArmorUsageRules armorUsage,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
@@ -26,6 +27,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(armor);
         ArgumentNullException.ThrowIfNull(shields);
         ArgumentNullException.ThrowIfNull(adventuringGear);
+        ArgumentNullException.ThrowIfNull(containerCapacities);
         ArgumentNullException.ThrowIfNull(armorUsage);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
@@ -35,6 +37,7 @@ public sealed class Dnd5e2014Ruleset
         Armor = armor;
         Shields = shields;
         AdventuringGear = adventuringGear;
+        ContainerCapacities = containerCapacities;
         ArmorUsage = armorUsage;
         Sources = sources;
         Rules = rules;
@@ -47,6 +50,7 @@ public sealed class Dnd5e2014Ruleset
     public ArmorCatalog Armor { get; }
     public ShieldCatalog Shields { get; }
     public AdventuringGearCatalog AdventuringGear { get; }
+    public ContainerCapacityCatalog ContainerCapacities { get; }
     public ArmorUsageRules ArmorUsage { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }

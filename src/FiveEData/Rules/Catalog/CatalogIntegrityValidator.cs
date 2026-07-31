@@ -32,6 +32,11 @@ internal static class CatalogIntegrityValidator
                 .Select(rule => rule.Id)
                 .ToHashSet();
 
+        HashSet<AdventuringGearId> adventuringGearIds =
+            definitions.AdventuringGear
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         foreach (WeaponDefinition weapon in definitions.Weapons)
         {
             ValidateSources(
@@ -111,6 +116,21 @@ internal static class CatalogIntegrityValidator
             }
         }
 
+        foreach (ContainerCapacityDefinition definition in definitions.ContainerCapacities)
+        {
+            ValidateSources(
+                $"Container capacity for adventuring gear '{definition.AdventuringGearId}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            if (!adventuringGearIds.Contains(definition.AdventuringGearId))
+            {
+                errors.Add(
+                    $"Container capacity references missing adventuring gear '{definition.AdventuringGearId}'.");
+            }
+        }
+
         if (definitions.ArmorUsage is not null)
         {
             ValidateSources(
@@ -135,6 +155,11 @@ internal static class CatalogIntegrityValidator
     public static void EnsureValid(RulesetDefinitionSet definitions)
     {
         ArgumentNullException.ThrowIfNull(definitions);
+
+        foreach (ContainerCapacityDefinition definition in definitions.ContainerCapacities)
+        {
+            ContainerCapacityDefinitionValidator.EnsureValid(definition);
+        }
 
         ArmorUsageRules armorUsage =
             definitions.ArmorUsage ??

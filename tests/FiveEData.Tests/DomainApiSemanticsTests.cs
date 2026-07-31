@@ -18,6 +18,7 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(WeaponDefinition));
         AssertNoPublicConstructors(typeof(AmmunitionDefinition));
         AssertNoPublicConstructors(typeof(AdventuringGearDefinition));
+        AssertNoPublicConstructors(typeof(ContainerCapacityDefinition));
         AssertNoPublicConstructors(typeof(ArmorDefinition));
         AssertNoPublicConstructors(typeof(ShieldDefinition));
         AssertNoPublicConstructors(typeof(ArmorUsageRules));
@@ -31,6 +32,7 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(WeaponCatalog));
         AssertNoPublicConstructors(typeof(AmmunitionCatalog));
         AssertNoPublicConstructors(typeof(AdventuringGearCatalog));
+        AssertNoPublicConstructors(typeof(ContainerCapacityCatalog));
         AssertNoPublicConstructors(typeof(ArmorCatalog));
         AssertNoPublicConstructors(typeof(ShieldCatalog));
         AssertNoPublicConstructors(typeof(RuleCatalog));
@@ -47,6 +49,7 @@ public sealed class DomainApiSemanticsTests
         Assert.Same(first.Weapons, second.Weapons);
         Assert.Same(first.Ammunition, second.Ammunition);
         Assert.Same(first.AdventuringGear, second.AdventuringGear);
+        Assert.Same(first.ContainerCapacities, second.ContainerCapacities);
         Assert.Same(first.Armor, second.Armor);
         Assert.Same(first.Shields, second.Shields);
         Assert.Same(first.ArmorUsage, second.ArmorUsage);

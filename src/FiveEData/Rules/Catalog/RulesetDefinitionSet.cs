@@ -18,6 +18,7 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<ArmorDefinition> armor,
         IReadOnlyList<ShieldDefinition> shields,
         IReadOnlyList<AdventuringGearDefinition> adventuringGear,
+        IReadOnlyList<ContainerCapacityDefinition> containerCapacities,
         ArmorUsageRules? armorUsage = null)
     {
         ArgumentNullException.ThrowIfNull(weapons);
@@ -27,6 +28,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(armor);
         ArgumentNullException.ThrowIfNull(shields);
         ArgumentNullException.ThrowIfNull(adventuringGear);
+        ArgumentNullException.ThrowIfNull(containerCapacities);
 
         Weapons = weapons;
         SourceDocuments = sourceDocuments;
@@ -35,6 +37,7 @@ internal sealed class RulesetDefinitionSet
         Armor = armor;
         Shields = shields;
         AdventuringGear = adventuringGear;
+        ContainerCapacities = containerCapacities;
         ArmorUsage = armorUsage;
     }
 
@@ -45,5 +48,6 @@ internal sealed class RulesetDefinitionSet
     public IReadOnlyList<ArmorDefinition> Armor { get; }
     public IReadOnlyList<ShieldDefinition> Shields { get; }
     public IReadOnlyList<AdventuringGearDefinition> AdventuringGear { get; }
+    public IReadOnlyList<ContainerCapacityDefinition> ContainerCapacities { get; }
     public ArmorUsageRules? ArmorUsage { get; }
 }

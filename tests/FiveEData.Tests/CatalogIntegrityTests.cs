@@ -57,6 +57,14 @@ public sealed class CatalogIntegrityTests
                     "dnd5e2014",
                     "adventuring-gear.json"));
 
+        IReadOnlyList<ContainerCapacityDefinition> containerCapacities =
+            ContainerCapacityDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "container-capacities.json"));
+
         ArmorUsageRules armorUsage =
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
@@ -71,6 +79,7 @@ public sealed class CatalogIntegrityTests
                     armor: armor,
                     shields: shields,
                     adventuringGear: adventuringGear,
+                    containerCapacities: containerCapacities,
                     armorUsage: armorUsage)));
     }
 
@@ -282,6 +291,71 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void ContainerCapacityMissingGearReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        ContainerCapacityDefinition capacity =
+            CreateContainerCapacityDefinition(
+                "dnd5e2014.adventuring-gear.missing",
+                "dnd5e2014.source.phb-first-printing");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    containerCapacities: [capacity]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing adventuring gear",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ContainerCapacityMissingSourceReference_IsRejected()
+    {
+        AdventuringGearDefinition gear = new(
+            new AdventuringGearId(
+                "dnd5e2014.adventuring-gear.backpack"),
+            "Backpack",
+            new Money(200),
+            listedWeight: null,
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 150)
+            ]);
+
+        ContainerCapacityDefinition capacity =
+            CreateContainerCapacityDefinition(
+                gear.Id.Value,
+                "dnd5e2014.source.missing");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    adventuringGear: [gear],
+                    containerCapacities: [capacity]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing source document",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -346,6 +420,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ArmorDefinition>? armor = null,
         IReadOnlyList<ShieldDefinition>? shields = null,
         IReadOnlyList<AdventuringGearDefinition>? adventuringGear = null,
+        IReadOnlyList<ContainerCapacityDefinition>? containerCapacities = null,
         ArmorUsageRules? armorUsage = null)
     {
         return new RulesetDefinitionSet(
@@ -356,7 +431,26 @@ public sealed class CatalogIntegrityTests
             armor: armor ?? [],
             shields: shields ?? [],
             adventuringGear: adventuringGear ?? [],
+            containerCapacities: containerCapacities ?? [],
             armorUsage: armorUsage);
+    }
+
+    private static ContainerCapacityDefinition CreateContainerCapacityDefinition(
+        string gearId,
+        string sourceDocumentId)
+    {
+        return new ContainerCapacityDefinition(
+            new AdventuringGearId(gearId),
+            new ContainerVolume(1m, ContainerVolumeUnit.CubicFoot),
+            liquidVolume: null,
+            new Weight(30m),
+            allowsExteriorItemAttachment: false,
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 153,
+                    section: "Container Capacity")
+            ]);
     }
 
     private static ArmorUsageRules CreateArmorUsageRules(

@@ -18,6 +18,7 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(WeaponDefinitionLoader).IsPublic);
         Assert.False(typeof(AmmunitionDefinitionLoader).IsPublic);
         Assert.False(typeof(AdventuringGearDefinitionLoader).IsPublic);
+        Assert.False(typeof(ContainerCapacityDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorUsageRulesLoader).IsPublic);
         Assert.False(typeof(ShieldDefinitionLoader).IsPublic);
@@ -57,6 +58,7 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(12, ruleset.Armor.Count);
         Assert.Equal(1, ruleset.Shields.Count);
         Assert.Equal(95, ruleset.AdventuringGear.Count);
+        Assert.Equal(13, ruleset.ContainerCapacities.Count);
         Assert.Equal(49, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }

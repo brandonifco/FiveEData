@@ -1,0 +1,184 @@
+[
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.backpack",
+    "solidVolume": { "amount": 1, "unit": "CubicFoot" },
+    "liquidVolume": null,
+    "gearWeightCapacityPounds": 30,
+    "allowsExteriorItemAttachment": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.barrel",
+    "solidVolume": { "amount": 4, "unit": "CubicFoot" },
+    "liquidVolume": { "amount": 40, "unit": "Gallon" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.basket",
+    "solidVolume": { "amount": 2, "unit": "CubicFoot" },
+    "liquidVolume": null,
+    "gearWeightCapacityPounds": 40,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.bottle-glass",
+    "solidVolume": null,
+    "liquidVolume": { "amount": 1.5, "unit": "Pint" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.bucket",
+    "solidVolume": { "amount": 0.5, "unit": "CubicFoot" },
+    "liquidVolume": { "amount": 3, "unit": "Gallon" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.chest",
+    "solidVolume": { "amount": 12, "unit": "CubicFoot" },
+    "liquidVolume": null,
+    "gearWeightCapacityPounds": 300,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.flask-or-tankard",
+    "solidVolume": null,
+    "liquidVolume": { "amount": 1, "unit": "Pint" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.jug-or-pitcher",
+    "solidVolume": null,
+    "liquidVolume": { "amount": 1, "unit": "Gallon" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.pot-iron",
+    "solidVolume": null,
+    "liquidVolume": { "amount": 1, "unit": "Gallon" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.pouch",
+    "solidVolume": { "amount": 0.2, "unit": "CubicFoot" },
+    "liquidVolume": null,
+    "gearWeightCapacityPounds": 6,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.sack",
+    "solidVolume": { "amount": 1, "unit": "CubicFoot" },
+    "liquidVolume": null,
+    "gearWeightCapacityPounds": 30,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.vial",
+    "solidVolume": null,
+    "liquidVolume": { "amount": 4, "unit": "FluidOunce" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  },
+  {
+    "adventuringGearId": "dnd5e2014.adventuring-gear.waterskin",
+    "solidVolume": null,
+    "liquidVolume": { "amount": 4, "unit": "Pint" },
+    "gearWeightCapacityPounds": null,
+    "allowsExteriorItemAttachment": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Container Capacity"
+      }
+    ]
+  }
+]

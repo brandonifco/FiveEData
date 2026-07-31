@@ -2,6 +2,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
+using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Tests;
@@ -16,6 +17,7 @@ public sealed class CatalogApiTests
         Assert.Equal(38, ruleset.Weapons.Count);
         Assert.Equal(4, ruleset.Ammunition.Count);
         Assert.Equal(95, ruleset.AdventuringGear.Count);
+        Assert.Equal(13, ruleset.ContainerCapacities.Count);
         Assert.Equal(1, ruleset.Sources.Count);
         Assert.Equal(49, ruleset.Rules.Count);
 
@@ -33,6 +35,14 @@ public sealed class CatalogApiTests
                 new AmmunitionTypeId("dnd5e2014.ammunition.arrow"));
 
         Assert.Equal("Arrows", arrows.Name);
+
+        ContainerCapacityDefinition backpackCapacity =
+            ruleset.ContainerCapacities.Get(
+                new AdventuringGearId(
+                    "dnd5e2014.adventuring-gear.backpack"));
+
+        Assert.Equal(30m, backpackCapacity.GearWeightCapacity?.Pounds);
+        Assert.True(backpackCapacity.AllowsExteriorItemAttachment);
 
         SourceDocument phb =
             ruleset.Sources.Get(

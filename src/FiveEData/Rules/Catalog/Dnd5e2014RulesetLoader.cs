@@ -38,6 +38,9 @@ internal static class Dnd5e2014RulesetLoader
     private const string AdventuringGearResource =
         "FiveEData.Data.dnd5e2014.adventuring-gear.json";
 
+    private const string ContainerCapacitiesResource =
+        "FiveEData.Data.dnd5e2014.container-capacities.json";
+
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
 
@@ -71,6 +74,10 @@ internal static class Dnd5e2014RulesetLoader
             AdventuringGearDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(AdventuringGearResource));
 
+        IReadOnlyList<ContainerCapacityDefinition> containerCapacities =
+            ContainerCapacityDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ContainerCapacitiesResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -83,6 +90,7 @@ internal static class Dnd5e2014RulesetLoader
             armor: armor,
             shields: shields,
             adventuringGear: adventuringGear,
+            containerCapacities: containerCapacities,
             armorUsage: armorUsage);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -93,6 +101,7 @@ internal static class Dnd5e2014RulesetLoader
             new ArmorCatalog(armor),
             new ShieldCatalog(shields),
             new AdventuringGearCatalog(adventuringGear),
+            new ContainerCapacityCatalog(containerCapacities),
             armorUsage,
             new SourceDocumentCatalog(sources),
             new RuleCatalog(rules));
