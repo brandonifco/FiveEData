@@ -36,6 +36,28 @@ public sealed class ShieldDefinitionValidatorTests
         Assert.Contains(errors, error => error.Contains("source", StringComparison.Ordinal));
     }
 
+    [Fact]
+    public void DefaultShieldId_IsRejected()
+    {
+        ShieldDefinition shield = new(
+            default,
+            "Invalid",
+            new Money(1000),
+            new Weight(6m),
+            armorClassBonus: 2,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 145)
+            ]);
+
+        Assert.Contains(
+            ShieldDefinitionValidator.Validate(shield),
+            error => error.Contains("ID", StringComparison.Ordinal));
+    }
+
     private static ShieldDefinition CreateShield(
         Money cost,
         Weight weight,

@@ -160,6 +160,75 @@ public sealed class ArmorAndShieldCatalogTests
     }
 
     [Fact]
+    public void ArmorCatalog_RejectsDefinitionWithDefaultId()
+    {
+        ArmorDefinition invalid = new(
+            default,
+            "Invalid",
+            ArmorCategory.Light,
+            new Money(1000),
+            new Weight(10m),
+            new ArmorClassFormula(11, includesDexterityModifier: true),
+            minimumStrengthForFullSpeed: null,
+            imposesStealthDisadvantage: false,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 145)
+            ]);
+
+        Assert.Throws<InvalidOperationException>(
+            () => new ArmorCatalog([invalid]));
+    }
+
+    [Fact]
+    public void ArmorCatalog_RejectsDefinitionWithDefaultArmorClassFormula()
+    {
+        ArmorDefinition invalid = new(
+            new ArmorId("dnd5e2014.armor.invalid-default-ac"),
+            "Invalid",
+            ArmorCategory.Heavy,
+            new Money(1000),
+            new Weight(10m),
+            default,
+            minimumStrengthForFullSpeed: 15,
+            imposesStealthDisadvantage: false,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 145)
+            ]);
+
+        Assert.Throws<InvalidOperationException>(
+            () => new ArmorCatalog([invalid]));
+    }
+
+    [Fact]
+    public void ShieldCatalog_RejectsDefinitionWithDefaultId()
+    {
+        ShieldDefinition invalid = new(
+            default,
+            "Invalid",
+            new Money(1000),
+            new Weight(6m),
+            armorClassBonus: 2,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 145)
+            ]);
+
+        Assert.Throws<InvalidOperationException>(
+            () => new ShieldCatalog([invalid]));
+    }
+
+    [Fact]
     public void Catalogs_RejectDuplicateIds()
     {
         ArmorDefinition firstArmor =

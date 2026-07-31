@@ -8,6 +8,11 @@ internal static class ShieldDefinitionValidator
 
         var errors = new List<string>();
 
+        if (string.IsNullOrWhiteSpace(shield.Id.Value))
+        {
+            errors.Add("Shield ID must not be empty.");
+        }
+
         if (string.IsNullOrWhiteSpace(shield.Name))
         {
             errors.Add("Shield name must not be empty.");

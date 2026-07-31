@@ -114,6 +114,56 @@ public sealed class ArmorDefinitionValidatorTests
         Assert.Contains(errors, error => error.Contains("source", StringComparison.Ordinal));
     }
 
+    [Fact]
+    public void DefaultArmorId_IsRejected()
+    {
+        ArmorDefinition armor = new(
+            default,
+            "Invalid",
+            ArmorCategory.Heavy,
+            new Money(1000),
+            new Weight(10m),
+            new ArmorClassFormula(16, includesDexterityModifier: false),
+            minimumStrengthForFullSpeed: 15,
+            imposesStealthDisadvantage: false,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 145)
+            ]);
+
+        Assert.Contains(
+            ArmorDefinitionValidator.Validate(armor),
+            error => error.Contains("ID", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void DefaultArmorClassFormula_IsRejected()
+    {
+        ArmorDefinition armor = new(
+            new ArmorId("dnd5e2014.armor.invalid"),
+            "Invalid",
+            ArmorCategory.Heavy,
+            new Money(1000),
+            new Weight(10m),
+            default,
+            minimumStrengthForFullSpeed: 15,
+            imposesStealthDisadvantage: false,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 145)
+            ]);
+
+        Assert.Contains(
+            ArmorDefinitionValidator.Validate(armor),
+            error => error.Contains("Base Armor Class", StringComparison.Ordinal));
+    }
+
     private static ArmorDefinition CreateArmor(
         ArmorCategory category,
         bool includesDexterityModifier,

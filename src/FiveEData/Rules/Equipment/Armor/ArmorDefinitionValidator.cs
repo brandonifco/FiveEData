@@ -8,6 +8,11 @@ internal static class ArmorDefinitionValidator
 
         var errors = new List<string>();
 
+        if (string.IsNullOrWhiteSpace(armor.Id.Value))
+        {
+            errors.Add("Armor ID must not be empty.");
+        }
+
         if (string.IsNullOrWhiteSpace(armor.Name))
         {
             errors.Add("Armor name must not be empty.");
@@ -27,6 +32,11 @@ internal static class ArmorDefinitionValidator
         {
             errors.Add(
                 "Minimum Strength for full speed must be greater than zero when specified.");
+        }
+
+        if (armor.ArmorClass.BaseArmorClass <= 0)
+        {
+            errors.Add("Base Armor Class must be greater than zero.");
         }
 
         switch (armor.Category)
