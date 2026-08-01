@@ -1,27 +1,28 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
-using FiveEData.Rules.Expenses.Lifestyles;
+using FiveEData.Rules.Expenses.FoodAndLodging;
 
 namespace FiveEData.Tests;
 
-public sealed class LifestyleCatalogIntegrityTests
+public sealed class FoodDrinkCatalogIntegrityTests
 {
     [Fact]
-    public void ValidLifestyleReferences_HaveNoErrors()
+    public void ValidFoodDrinkReferences_HaveNoErrors()
     {
         var sourceId = new SourceDocumentId(
             "dnd5e2014.source.phb-first-printing");
         var ruleId = new RuleId(
-            "dnd5e2014.lifestyle-rule.test");
+            "dnd5e2014.expense-rule." +
+            "food-drink-lodging-included-in-lifestyle");
 
-        LifestyleDefinition lifestyle =
-            CreateLifestyle(sourceId, ruleId);
+        FoodDrinkDefinition definition =
+            CreateDefinition(sourceId, ruleId);
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    lifestyle,
+                    definition,
                     sources:
                     [
                         new SourceDocument(
@@ -32,11 +33,11 @@ public sealed class LifestyleCatalogIntegrityTests
                     [
                         new RuleDefinition(
                             ruleId,
-                            "Test lifestyle rule",
+                            "Test expense rule",
                             [
                                 new SourceReference(
                                     sourceId,
-                                    page: 157)
+                                    page: 158)
                             ])
                     ]));
 
@@ -44,23 +45,23 @@ public sealed class LifestyleCatalogIntegrityTests
     }
 
     [Fact]
-    public void MissingLifestyleSourceReference_IsRejected()
+    public void MissingFoodDrinkSourceReference_IsRejected()
     {
-        LifestyleDefinition lifestyle =
-            CreateLifestyle(
+        FoodDrinkDefinition definition =
+            CreateDefinition(
                 new SourceDocumentId(
                     "dnd5e2014.source.missing"),
                 ruleId: null);
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
-                CreateDefinitionSet(lifestyle));
+                CreateDefinitionSet(definition));
 
         Assert.Contains(
             errors,
             error =>
                 error.Contains(
-                    "Lifestyle",
+                    "Food and drink",
                     StringComparison.Ordinal) &&
                 error.Contains(
                     "missing source document",
@@ -68,21 +69,21 @@ public sealed class LifestyleCatalogIntegrityTests
     }
 
     [Fact]
-    public void MissingLifestyleRuleReference_IsRejected()
+    public void MissingFoodDrinkRuleReference_IsRejected()
     {
         var sourceId = new SourceDocumentId(
             "dnd5e2014.source.phb-first-printing");
 
-        LifestyleDefinition lifestyle =
-            CreateLifestyle(
+        FoodDrinkDefinition definition =
+            CreateDefinition(
                 sourceId,
                 new RuleId(
-                    "dnd5e2014.lifestyle-rule.missing"));
+                    "dnd5e2014.expense-rule.missing"));
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    lifestyle,
+                    definition,
                     sources:
                     [
                         new SourceDocument(
@@ -94,34 +95,33 @@ public sealed class LifestyleCatalogIntegrityTests
             errors,
             error =>
                 error.Contains(
-                    "Lifestyle",
+                    "Food and drink",
                     StringComparison.Ordinal) &&
                 error.Contains(
                     "references missing rule",
                     StringComparison.Ordinal));
     }
 
-    private static LifestyleDefinition CreateLifestyle(
+    private static FoodDrinkDefinition CreateDefinition(
         SourceDocumentId sourceId,
         RuleId? ruleId)
     {
-        return new LifestyleDefinition(
-            new LifestyleId(
-                "dnd5e2014.lifestyle.test"),
-            "Test lifestyle",
-            new ListedCost(
-                new Money(100),
-                ListedCostKind.Exact),
+        return new FoodDrinkDefinition(
+            new FoodDrinkId(
+                "dnd5e2014.food-drink.test"),
+            "Test food",
+            new Money(10),
+            FoodDrinkPricingUnit.Loaf,
             ruleId is null ? [] : [ruleId.Value],
             [
                 new SourceReference(
                     sourceId,
-                    page: 157)
+                    page: 158)
             ]);
     }
 
     private static RulesetDefinitionSet CreateDefinitionSet(
-        LifestyleDefinition lifestyle,
+        FoodDrinkDefinition definition,
         IReadOnlyList<SourceDocument>? sources = null,
         IReadOnlyList<RuleDefinition>? rules = null)
     {
@@ -140,8 +140,8 @@ public sealed class LifestyleCatalogIntegrityTests
             tradeGoods: []);
 
         var expenses = new ExpenseDefinitionSet(
-            lifestyles: [lifestyle],
-            foodAndDrink: [],
+            lifestyles: [],
+            foodAndDrink: [definition],
             hospitalityCosts: []);
 
         return new RulesetDefinitionSet(

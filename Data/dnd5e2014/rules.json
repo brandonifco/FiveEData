@@ -871,5 +871,49 @@
         "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Aristocratic"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle",
+    "name": "Food, drink, and lodging costs are included in lifestyle expenses",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.self-sufficiency",
+    "name": "Self-sufficiency can replace coin-paid lifestyle expenses",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Self-Sufficiency"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.profession-poor-lifestyle-equivalent",
+    "name": "Practicing a profession supports a poor lifestyle equivalent",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Self-Sufficiency"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.survival-comfortable-lifestyle-equivalent",
+    "name": "Survival proficiency supports a comfortable lifestyle equivalent",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Self-Sufficiency"
+      }
+    ]
   }
 ]

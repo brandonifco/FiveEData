@@ -1,0 +1,116 @@
+[
+  {
+    "lifestyleId": "dnd5e2014.lifestyle.squalid",
+    "innStayCostPerDay": {
+      "copperPieces": 7
+    },
+    "mealsCostPerDay": {
+      "copperPieces": 3
+    },
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "lifestyleId": "dnd5e2014.lifestyle.poor",
+    "innStayCostPerDay": {
+      "copperPieces": 10
+    },
+    "mealsCostPerDay": {
+      "copperPieces": 6
+    },
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "lifestyleId": "dnd5e2014.lifestyle.modest",
+    "innStayCostPerDay": {
+      "copperPieces": 50
+    },
+    "mealsCostPerDay": {
+      "copperPieces": 30
+    },
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "lifestyleId": "dnd5e2014.lifestyle.comfortable",
+    "innStayCostPerDay": {
+      "copperPieces": 80
+    },
+    "mealsCostPerDay": {
+      "copperPieces": 50
+    },
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "lifestyleId": "dnd5e2014.lifestyle.wealthy",
+    "innStayCostPerDay": {
+      "copperPieces": 200
+    },
+    "mealsCostPerDay": {
+      "copperPieces": 80
+    },
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "lifestyleId": "dnd5e2014.lifestyle.aristocratic",
+    "innStayCostPerDay": {
+      "copperPieces": 400
+    },
+    "mealsCostPerDay": {
+      "copperPieces": 200
+    },
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  }
+]

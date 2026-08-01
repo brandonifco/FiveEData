@@ -1,0 +1,146 @@
+[
+  {
+    "id": "dnd5e2014.food-drink.ale-gallon",
+    "name": "Ale",
+    "cost": {
+      "copperPieces": 20
+    },
+    "pricingUnit": "Gallon",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.food-drink.ale-mug",
+    "name": "Ale",
+    "cost": {
+      "copperPieces": 4
+    },
+    "pricingUnit": "Mug",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.food-drink.banquet",
+    "name": "Banquet",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "pricingUnit": "Person",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.food-drink.bread",
+    "name": "Bread",
+    "cost": {
+      "copperPieces": 2
+    },
+    "pricingUnit": "Loaf",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.food-drink.cheese",
+    "name": "Cheese",
+    "cost": {
+      "copperPieces": 10
+    },
+    "pricingUnit": "Hunk",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.food-drink.meat",
+    "name": "Meat",
+    "cost": {
+      "copperPieces": 30
+    },
+    "pricingUnit": "Chunk",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.food-drink.wine-common",
+    "name": "Wine, common",
+    "cost": {
+      "copperPieces": 20
+    },
+    "pricingUnit": "Pitcher",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.food-drink.wine-fine",
+    "name": "Wine, fine",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "pricingUnit": "Bottle",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  }
+]

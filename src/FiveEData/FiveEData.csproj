@@ -55,6 +55,12 @@
       Include="../../Data/dnd5e2014/lifestyles.json"
       LogicalName="FiveEData.Data.dnd5e2014.lifestyles.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/food-drink.json"
+      LogicalName="FiveEData.Data.dnd5e2014.food-drink.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/lifestyle-hospitality-costs.json"
+      LogicalName="FiveEData.Data.dnd5e2014.lifestyle-hospitality-costs.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/rules.json"
       LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
   </ItemGroup>

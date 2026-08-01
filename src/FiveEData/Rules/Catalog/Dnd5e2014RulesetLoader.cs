@@ -25,6 +25,8 @@ using FiveEData.Rules.Equipment.Tools.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 using FiveEData.Rules.Expenses;
+using FiveEData.Rules.Expenses.FoodAndLodging;
+using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
 using FiveEData.Rules.Expenses.Lifestyles;
 using FiveEData.Rules.Expenses.Lifestyles.Serialization;
 
@@ -79,6 +81,12 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string LifestylesResource =
         "FiveEData.Data.dnd5e2014.lifestyles.json";
+
+    private const string FoodDrinkResource =
+        "FiveEData.Data.dnd5e2014.food-drink.json";
+
+    private const string HospitalityCostsResource =
+        "FiveEData.Data.dnd5e2014.lifestyle-hospitality-costs.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -149,6 +157,16 @@ internal static class Dnd5e2014RulesetLoader
             LifestyleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(LifestylesResource));
 
+        IReadOnlyList<FoodDrinkDefinition> foodAndDrink =
+            FoodDrinkDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(FoodDrinkResource));
+
+        IReadOnlyList<LifestyleHospitalityCostDefinition>
+            hospitalityCosts =
+                LifestyleHospitalityCostDefinitionLoader.LoadFromJson(
+                    EmbeddedDataReader.ReadRequiredText(
+                        HospitalityCostsResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -170,7 +188,9 @@ internal static class Dnd5e2014RulesetLoader
             armorUsage: armorUsage);
 
         var expenses = new ExpenseDefinitionSet(
-            lifestyles: lifestyles);
+            lifestyles: lifestyles,
+            foodAndDrink: foodAndDrink,
+            hospitalityCosts: hospitalityCosts);
 
         var definitions = new RulesetDefinitionSet(
             sourceDocuments: sources,
@@ -196,7 +216,11 @@ internal static class Dnd5e2014RulesetLoader
             tradeGoods: new TradeGoodCatalog(tradeGoods),
             armorUsage: armorUsage,
             expenses: new ExpenseCatalogs(
-                new LifestyleCatalog(lifestyles)),
+                lifestyles: new LifestyleCatalog(lifestyles),
+                foodAndDrink: new FoodDrinkCatalog(foodAndDrink),
+                hospitalityCosts:
+                    new LifestyleHospitalityCostCatalog(
+                        hospitalityCosts)),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

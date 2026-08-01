@@ -1231,7 +1231,9 @@ public sealed class CatalogIntegrityTests
             armorUsage: armorUsage);
 
         var expenses = new ExpenseDefinitionSet(
-            lifestyles: []);
+            lifestyles: [],
+            foodAndDrink: [],
+            hospitalityCosts: []);
 
         return new RulesetDefinitionSet(
             sourceDocuments: sourceDocuments ?? [],

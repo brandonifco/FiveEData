@@ -4,7 +4,7 @@ using FiveEData.Rules.Common.Serialization;
 
 namespace FiveEData.Tests;
 
-public sealed class LifestyleRuleDataFileTests
+public sealed class ExpenseRuleDataFileTests
 {
     [Fact]
     public void CanonicalFile_ContainsExpectedRuleCount()
@@ -18,7 +18,7 @@ public sealed class LifestyleRuleDataFileTests
     }
 
     [Fact]
-    public void CanonicalFile_ContainsExactLifestyleRules()
+    public void CanonicalFile_ContainsExactPhase10CExpenseRules()
     {
         IReadOnlyDictionary<RuleId, RuleDefinition> actual =
             LoadCanonical().ToDictionary(rule => rule.Id);
@@ -43,20 +43,16 @@ public sealed class LifestyleRuleDataFileTests
     }
 
     [Fact]
-    public void CanonicalFile_ContainsExactlyElevenPhase10BLifestyleRules()
+    public void CanonicalFile_ContainsExactlyFourPhase10CExpenseRules()
     {
-        IReadOnlyList<RuleDefinition> rules = LoadCanonical();
+        HashSet<string> expectedIds =
+            Expected.Select(rule => rule.Id).ToHashSet(
+                StringComparer.Ordinal);
 
         Assert.Equal(
-            11,
-            rules.Count(
-                rule =>
-                    rule.Id.Value.StartsWith(
-                        "dnd5e2014.expense-rule.lifestyle-",
-                        StringComparison.Ordinal) ||
-                    rule.Id.Value.StartsWith(
-                        "dnd5e2014.lifestyle-rule.",
-                        StringComparison.Ordinal)));
+            4,
+            LoadCanonical().Count(
+                rule => expectedIds.Contains(rule.Id.Value)));
     }
 
     private static IReadOnlyList<RuleDefinition> LoadCanonical()
@@ -99,52 +95,39 @@ public sealed class LifestyleRuleDataFileTests
         int Page,
         string Section);
 
-    private const string LifestyleSection =
-        "Chapter 5: Equipment — Expenses — Lifestyle Expenses";
+    private const string FoodDrinkSection =
+        "Chapter 5: Equipment — Expenses — " +
+        "Food, Drink, and Lodging";
+
+    private const string SelfSufficiencySection =
+        "Chapter 5: Equipment — Expenses — Self-Sufficiency";
 
     private static readonly ExpectedRule[] Expected =
     [
         new(
-            "dnd5e2014.expense-rule.lifestyle-expense-coverage",
-            "Lifestyle expenses cover accommodations, food, drink, " +
-            "necessities, and equipment maintenance",
-            157,
-            LifestyleSection),
+            "dnd5e2014.expense-rule." +
+            "food-drink-lodging-included-in-lifestyle",
+            "Food, drink, and lodging costs are included in " +
+            "lifestyle expenses",
+            158,
+            FoodDrinkSection),
+        new(
+            "dnd5e2014.expense-rule.self-sufficiency",
+            "Self-sufficiency can replace coin-paid lifestyle expenses",
+            159,
+            SelfSufficiencySection),
         new(
             "dnd5e2014.expense-rule." +
-            "lifestyle-selection-and-daily-pricing",
-            "Choose and pay for a lifestyle using its listed daily price",
-            157,
-            LifestyleSection),
+            "profession-poor-lifestyle-equivalent",
+            "Practicing a profession supports a poor lifestyle equivalent",
+            159,
+            SelfSufficiencySection),
         new(
             "dnd5e2014.expense-rule." +
-            "lifestyle-thirty-day-calculation",
-            "Thirty-day lifestyle cost is thirty times the daily price",
-            157,
-            LifestyleSection),
-        new(
-            "dnd5e2014.expense-rule.lifestyle-consequences",
-            "Lifestyle choice can have social consequences",
-            157,
-            LifestyleSection),
-        CreateLifestyleRule("wretched", "Wretched", 157),
-        CreateLifestyleRule("squalid", "Squalid", 157),
-        CreateLifestyleRule("poor", "Poor", 157),
-        CreateLifestyleRule("modest", "Modest", 157),
-        CreateLifestyleRule("comfortable", "Comfortable", 158),
-        CreateLifestyleRule("wealthy", "Wealthy", 158),
-        CreateLifestyleRule("aristocratic", "Aristocratic", 158)
+            "survival-comfortable-lifestyle-equivalent",
+            "Survival proficiency supports a comfortable " +
+            "lifestyle equivalent",
+            159,
+            SelfSufficiencySection)
     ];
-
-    private static ExpectedRule CreateLifestyleRule(
-        string idSuffix,
-        string name,
-        int page)
-    {
-        return new ExpectedRule(
-            $"dnd5e2014.lifestyle-rule.{idSuffix}-conditions",
-            $"{name} lifestyle conditions",
-            page,
-            $"{LifestyleSection} — {name}");
-    }
 }

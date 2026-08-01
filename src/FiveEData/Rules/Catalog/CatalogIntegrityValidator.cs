@@ -11,6 +11,8 @@ using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Expenses;
+using FiveEData.Rules.Expenses.FoodAndLodging;
 using FiveEData.Rules.Expenses.Lifestyles;
 
 namespace FiveEData.Rules.Catalog;
@@ -27,6 +29,11 @@ internal static class CatalogIntegrityValidator
         new("dnd5e2014.mount-support.saddle-military");
     private static readonly RuleId TradeGoodsFullValueAndCurrencyRuleId =
         new("dnd5e2014.trade-good-rule.full-value-and-currency");
+    private static readonly RuleId
+        FoodDrinkLodgingIncludedInLifestyleRuleId =
+            new(
+                "dnd5e2014.expense-rule." +
+                "food-drink-lodging-included-in-lifestyle");
 
     public static IReadOnlyList<string> Validate(
         RulesetDefinitionSet definitions)
@@ -38,6 +45,11 @@ internal static class CatalogIntegrityValidator
         HashSet<SourceDocumentId> sourceIds =
             definitions.SourceDocuments
                 .Select(source => source.Id)
+                .ToHashSet();
+
+        HashSet<LifestyleId> lifestyleIds =
+            definitions.Expenses.Lifestyles
+                .Select(definition => definition.Id)
                 .ToHashSet();
 
         HashSet<AmmunitionTypeId> ammunitionIds =
@@ -299,6 +311,69 @@ internal static class CatalogIntegrityValidator
             }
         }
 
+        foreach (FoodDrinkDefinition definition in definitions.Expenses.FoodAndDrink)
+        {
+            ValidateSources(
+                $"Food and drink '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"Food and drink '{definition.Id}' references " +
+                        $"missing rule '{specialRuleId}'.");
+                }
+            }
+
+            ValidateExactRuleAssociations(
+                $"Food and drink '{definition.Id}'",
+                definition.SpecialRuleIds,
+                [FoodDrinkLodgingIncludedInLifestyleRuleId],
+                errors);
+        }
+
+        foreach (
+            LifestyleHospitalityCostDefinition definition
+            in definitions.Expenses.HospitalityCosts)
+        {
+            string identity =
+                $"Hospitality cost for lifestyle " +
+                $"'{definition.LifestyleId}'";
+
+            ValidateSources(
+                identity,
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            if (!lifestyleIds.Contains(definition.LifestyleId))
+            {
+                errors.Add(
+                    $"{identity} references missing lifestyle " +
+                    $"'{definition.LifestyleId}'.");
+            }
+
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"{identity} references missing rule " +
+                        $"'{specialRuleId}'.");
+                }
+            }
+
+            ValidateExactRuleAssociations(
+                identity,
+                definition.SpecialRuleIds,
+                [FoodDrinkLodgingIncludedInLifestyleRuleId],
+                errors);
+        }
+
         if (definitions.Equipment.MountVehicleRules is not null)
         {
             ValidateSources(
@@ -469,6 +544,25 @@ internal static class CatalogIntegrityValidator
         string owner,
         IReadOnlyList<RuleId> actualRuleIds,
         IReadOnlyList<RuleId> expectedRuleIds,
+        ICollection<string> errors)
+    {
+        RuleId[] managedRuleIds = actualRuleIds
+            .Concat(expectedRuleIds)
+            .Distinct()
+            .ToArray();
+
+        ValidateExactRuleAssociations(
+            owner,
+            actualRuleIds,
+            expectedRuleIds,
+            managedRuleIds,
+            errors);
+    }
+
+    private static void ValidateExactRuleAssociations(
+        string owner,
+        IReadOnlyList<RuleId> actualRuleIds,
+        IReadOnlyList<RuleId> expectedRuleIds,
         IReadOnlyList<RuleId> managedRuleIds,
         ICollection<string> errors)
     {
@@ -516,7 +610,13 @@ internal static class CatalogIntegrityValidator
 
         MountVehicleRulesValidator.EnsureValid(mountVehicleRules);
 
-        IReadOnlyList<string> errors = Validate(definitions);
+        var errors = new List<string>();
+
+        errors.AddRange(Validate(definitions));
+        errors.AddRange(
+            OfficialExpenseSemanticValidator.Validate(
+                definitions.Expenses.FoodAndDrink,
+                definitions.Expenses.HospitalityCosts));
 
         if (errors.Count == 0)
         {
