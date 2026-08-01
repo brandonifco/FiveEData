@@ -750,5 +750,126 @@
         "section": "Chapter 5: Equipment — Trade Goods"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-expense-coverage",
+    "name": "Lifestyle expenses cover accommodations, food, drink, necessities, and equipment maintenance",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-selection-and-daily-pricing",
+    "name": "Choose and pay for a lifestyle using its listed daily price",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-thirty-day-calculation",
+    "name": "Thirty-day lifestyle cost is thirty times the daily price",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-consequences",
+    "name": "Lifestyle choice can have social consequences",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle-rule.wretched-conditions",
+    "name": "Wretched lifestyle conditions",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Wretched"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle-rule.squalid-conditions",
+    "name": "Squalid lifestyle conditions",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Squalid"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle-rule.poor-conditions",
+    "name": "Poor lifestyle conditions",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Poor"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle-rule.modest-conditions",
+    "name": "Modest lifestyle conditions",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Modest"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle-rule.comfortable-conditions",
+    "name": "Comfortable lifestyle conditions",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Comfortable"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle-rule.wealthy-conditions",
+    "name": "Wealthy lifestyle conditions",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Wealthy"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle-rule.aristocratic-conditions",
+    "name": "Aristocratic lifestyle conditions",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses — Aristocratic"
+      }
+    ]
   }
 ]

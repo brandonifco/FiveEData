@@ -1214,11 +1214,9 @@ public sealed class CatalogIntegrityTests
         MountVehicleRules? mountVehicleRules = null,
         ArmorUsageRules? armorUsage = null)
     {
-        return new RulesetDefinitionSet(
+        var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
-            sourceDocuments: sourceDocuments ?? [],
             ammunition: ammunition ?? [],
-            rules: rules ?? [],
             armor: armor ?? [],
             shields: shields ?? [],
             adventuringGear: adventuringGear ?? [],
@@ -1231,6 +1229,15 @@ public sealed class CatalogIntegrityTests
             tradeGoods: tradeGoods ?? [],
             mountVehicleRules: mountVehicleRules,
             armorUsage: armorUsage);
+
+        var expenses = new ExpenseDefinitionSet(
+            lifestyles: []);
+
+        return new RulesetDefinitionSet(
+            sourceDocuments: sourceDocuments ?? [],
+            rules: rules ?? [],
+            equipment: equipment,
+            expenses: expenses);
     }
 
     private static ToolDefinition CreateTool(

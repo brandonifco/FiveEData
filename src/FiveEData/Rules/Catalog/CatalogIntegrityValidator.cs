@@ -11,6 +11,7 @@ using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Expenses.Lifestyles;
 
 namespace FiveEData.Rules.Catalog;
 
@@ -40,7 +41,7 @@ internal static class CatalogIntegrityValidator
                 .ToHashSet();
 
         HashSet<AmmunitionTypeId> ammunitionIds =
-            definitions.Ammunition
+            definitions.Equipment.Ammunition
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
@@ -50,21 +51,21 @@ internal static class CatalogIntegrityValidator
                 .ToHashSet();
 
         HashSet<AdventuringGearId> adventuringGearIds =
-            definitions.AdventuringGear
+            definitions.Equipment.AdventuringGear
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
         HashSet<ToolFamilyId> toolFamilyIds =
-            definitions.ToolFamilies
+            definitions.Equipment.ToolFamilies
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
         HashSet<VehicleId> vehicleIds =
-            definitions.Vehicles
+            definitions.Equipment.Vehicles
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
-        foreach (WeaponDefinition weapon in definitions.Weapons)
+        foreach (WeaponDefinition weapon in definitions.Equipment.Weapons)
         {
             ValidateSources(
                 $"Weapon '{weapon.Id}'",
@@ -89,7 +90,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (AmmunitionDefinition definition in definitions.Ammunition)
+        foreach (AmmunitionDefinition definition in definitions.Equipment.Ammunition)
         {
             ValidateSources(
                 $"Ammunition '{definition.Id}'",
@@ -107,7 +108,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (ArmorDefinition definition in definitions.Armor)
+        foreach (ArmorDefinition definition in definitions.Equipment.Armor)
         {
             ValidateSources(
                 $"Armor '{definition.Id}'",
@@ -116,7 +117,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (ShieldDefinition definition in definitions.Shields)
+        foreach (ShieldDefinition definition in definitions.Equipment.Shields)
         {
             ValidateSources(
                 $"Shield '{definition.Id}'",
@@ -125,7 +126,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (AdventuringGearDefinition definition in definitions.AdventuringGear)
+        foreach (AdventuringGearDefinition definition in definitions.Equipment.AdventuringGear)
         {
             ValidateSources(
                 $"Adventuring gear '{definition.Id}'",
@@ -143,7 +144,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (ContainerCapacityDefinition definition in definitions.ContainerCapacities)
+        foreach (ContainerCapacityDefinition definition in definitions.Equipment.ContainerCapacities)
         {
             ValidateSources(
                 $"Container capacity for adventuring gear '{definition.AdventuringGearId}'",
@@ -158,7 +159,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (ToolFamilyDefinition definition in definitions.ToolFamilies)
+        foreach (ToolFamilyDefinition definition in definitions.Equipment.ToolFamilies)
         {
             ValidateSources(
                 $"Tool family '{definition.Id}'",
@@ -176,7 +177,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (ToolDefinition definition in definitions.Tools)
+        foreach (ToolDefinition definition in definitions.Equipment.Tools)
         {
             ValidateSources(
                 $"Tool '{definition.Id}'",
@@ -201,7 +202,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (MountDefinition definition in definitions.Mounts)
+        foreach (MountDefinition definition in definitions.Equipment.Mounts)
         {
             ValidateSources(
                 $"Mount '{definition.Id}'",
@@ -219,7 +220,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (VehicleDefinition definition in definitions.Vehicles)
+        foreach (VehicleDefinition definition in definitions.Equipment.Vehicles)
         {
             ValidateSources(
                 $"Vehicle '{definition.Id}'",
@@ -237,7 +238,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (MountSupportDefinition definition in definitions.MountSupport)
+        foreach (MountSupportDefinition definition in definitions.Equipment.MountSupport)
         {
             ValidateSources(
                 $"Mount support '{definition.Id}'",
@@ -255,7 +256,7 @@ internal static class CatalogIntegrityValidator
             }
         }
 
-        foreach (TradeGoodDefinition definition in definitions.TradeGoods)
+        foreach (TradeGoodDefinition definition in definitions.Equipment.TradeGoods)
         {
             ValidateSources(
                 $"Trade good '{definition.Id}'",
@@ -280,15 +281,33 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        if (definitions.MountVehicleRules is not null)
+        foreach (LifestyleDefinition definition in definitions.Expenses.Lifestyles)
         {
             ValidateSources(
-                "Mount and vehicle rules",
-                definitions.MountVehicleRules.Sources,
+                $"Lifestyle '{definition.Id}'",
+                definition.Sources,
                 sourceIds,
                 errors);
 
-            foreach (RuleId ruleId in definitions.MountVehicleRules.ReferencedRuleIds)
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"Lifestyle '{definition.Id}' references missing rule '{specialRuleId}'.");
+                }
+            }
+        }
+
+        if (definitions.Equipment.MountVehicleRules is not null)
+        {
+            ValidateSources(
+                "Mount and vehicle rules",
+                definitions.Equipment.MountVehicleRules.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId ruleId in definitions.Equipment.MountVehicleRules.ReferencedRuleIds)
             {
                 if (!ruleIds.Contains(ruleId))
                 {
@@ -298,27 +317,28 @@ internal static class CatalogIntegrityValidator
             }
 
             if (!vehicleIds.Contains(
-                    definitions.MountVehicleRules.RowboatVehicleId))
+                    definitions.Equipment.MountVehicleRules.RowboatVehicleId))
             {
                 errors.Add(
-                    $"Mount and vehicle rules reference missing rowboat vehicle '{definitions.MountVehicleRules.RowboatVehicleId}'.");
+                    "Mount and vehicle rules reference missing rowboat " +
+                    $"vehicle '{definitions.Equipment.MountVehicleRules.RowboatVehicleId}'.");
             }
 
             ValidateMountVehicleSemanticAssociations(
                 definitions,
-                definitions.MountVehicleRules,
+                definitions.Equipment.MountVehicleRules,
                 errors);
         }
 
-        if (definitions.ArmorUsage is not null)
+        if (definitions.Equipment.ArmorUsage is not null)
         {
             ValidateSources(
                 "Armor usage rules",
-                definitions.ArmorUsage.Sources,
+                definitions.Equipment.ArmorUsage.Sources,
                 sourceIds,
                 errors);
 
-            foreach (RuleId ruleId in definitions.ArmorUsage.ReferencedRuleIds)
+            foreach (RuleId ruleId in definitions.Equipment.ArmorUsage.ReferencedRuleIds)
             {
                 if (!ruleIds.Contains(ruleId))
                 {
@@ -336,7 +356,7 @@ internal static class CatalogIntegrityValidator
         MountVehicleRules rules,
         ICollection<string> errors)
     {
-        foreach (MountDefinition definition in definitions.Mounts)
+        foreach (MountDefinition definition in definitions.Equipment.Mounts)
         {
             ValidateExactRuleAssociations(
                 $"Mount '{definition.Id}'",
@@ -349,7 +369,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (VehicleDefinition definition in definitions.Vehicles)
+        foreach (VehicleDefinition definition in definitions.Equipment.Vehicles)
         {
             IReadOnlyList<RuleId> expectedRuleIds =
                 GetExpectedVehicleRuleIds(definition, rules);
@@ -362,7 +382,7 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
-        foreach (MountSupportDefinition definition in definitions.MountSupport)
+        foreach (MountSupportDefinition definition in definitions.Equipment.MountSupport)
         {
             IReadOnlyList<RuleId> expectedRuleIds =
                 GetExpectedMountSupportRuleIds(definition, rules);
@@ -381,7 +401,7 @@ internal static class CatalogIntegrityValidator
                 $"Mount and vehicle rules rowboat vehicle ID must be '{RowboatVehicleId}', but was '{rules.RowboatVehicleId}'.");
         }
 
-        VehicleDefinition? rowboat = definitions.Vehicles.FirstOrDefault(
+        VehicleDefinition? rowboat = definitions.Equipment.Vehicles.FirstOrDefault(
             definition => definition.Id == RowboatVehicleId);
 
         if (rowboat is null)
@@ -475,13 +495,13 @@ internal static class CatalogIntegrityValidator
     {
         ArgumentNullException.ThrowIfNull(definitions);
 
-        foreach (ContainerCapacityDefinition definition in definitions.ContainerCapacities)
+        foreach (ContainerCapacityDefinition definition in definitions.Equipment.ContainerCapacities)
         {
             ContainerCapacityDefinitionValidator.EnsureValid(definition);
         }
 
         ArmorUsageRules armorUsage =
-            definitions.ArmorUsage ??
+            definitions.Equipment.ArmorUsage ??
             throw new ArgumentException(
                 "Armor usage rules are required for the official ruleset definition set.",
                 nameof(definitions));
@@ -489,7 +509,7 @@ internal static class CatalogIntegrityValidator
         ArmorUsageRulesValidator.EnsureValid(armorUsage);
 
         MountVehicleRules mountVehicleRules =
-            definitions.MountVehicleRules ??
+            definitions.Equipment.MountVehicleRules ??
             throw new ArgumentException(
                 "Mount and vehicle rules are required for the official ruleset definition set.",
                 nameof(definitions));

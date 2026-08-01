@@ -1,0 +1,137 @@
+[
+  {
+    "id": "dnd5e2014.lifestyle.wretched",
+    "name": "Wretched",
+    "dailyCost": null,
+    "specialRuleIds": [
+      "dnd5e2014.lifestyle-rule.wretched-conditions"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle.squalid",
+    "name": "Squalid",
+    "dailyCost": {
+      "amount": {
+        "copperPieces": 10
+      },
+      "kind": "Exact"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.lifestyle-rule.squalid-conditions"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle.poor",
+    "name": "Poor",
+    "dailyCost": {
+      "amount": {
+        "copperPieces": 20
+      },
+      "kind": "Exact"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.lifestyle-rule.poor-conditions"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle.modest",
+    "name": "Modest",
+    "dailyCost": {
+      "amount": {
+        "copperPieces": 100
+      },
+      "kind": "Exact"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.lifestyle-rule.modest-conditions"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle.comfortable",
+    "name": "Comfortable",
+    "dailyCost": {
+      "amount": {
+        "copperPieces": 200
+      },
+      "kind": "Exact"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.lifestyle-rule.comfortable-conditions"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle.wealthy",
+    "name": "Wealthy",
+    "dailyCost": {
+      "amount": {
+        "copperPieces": 400
+      },
+      "kind": "Exact"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.lifestyle-rule.wealthy-conditions"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.lifestyle.aristocratic",
+    "name": "Aristocratic",
+    "dailyCost": {
+      "amount": {
+        "copperPieces": 1000
+      },
+      "kind": "Minimum"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.lifestyle-rule.aristocratic-conditions"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  }
+]

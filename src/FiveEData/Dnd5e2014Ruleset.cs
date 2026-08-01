@@ -2,6 +2,7 @@ using System.Threading;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
+using FiveEData.Rules.Expenses;
 
 namespace FiveEData;
 
@@ -27,6 +28,7 @@ public sealed class Dnd5e2014Ruleset
         MountVehicleRules mountVehicleRules,
         TradeGoodCatalog tradeGoods,
         ArmorUsageRules armorUsage,
+        ExpenseCatalogs expenses,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -44,6 +46,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(mountVehicleRules);
         ArgumentNullException.ThrowIfNull(tradeGoods);
         ArgumentNullException.ThrowIfNull(armorUsage);
+        ArgumentNullException.ThrowIfNull(expenses);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -61,6 +64,7 @@ public sealed class Dnd5e2014Ruleset
         MountVehicleRules = mountVehicleRules;
         TradeGoods = tradeGoods;
         ArmorUsage = armorUsage;
+        Expenses = expenses;
         Sources = sources;
         Rules = rules;
     }
@@ -81,6 +85,7 @@ public sealed class Dnd5e2014Ruleset
     public MountVehicleRules MountVehicleRules { get; }
     public TradeGoodCatalog TradeGoods { get; }
     public ArmorUsageRules ArmorUsage { get; }
+    public ExpenseCatalogs Expenses { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

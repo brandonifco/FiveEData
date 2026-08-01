@@ -24,6 +24,9 @@ using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Tools.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
+using FiveEData.Rules.Expenses;
+using FiveEData.Rules.Expenses.Lifestyles;
+using FiveEData.Rules.Expenses.Lifestyles.Serialization;
 
 namespace FiveEData.Rules.Catalog;
 
@@ -73,6 +76,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string TradeGoodsResource =
         "FiveEData.Data.dnd5e2014.trade-goods.json";
+
+    private const string LifestylesResource =
+        "FiveEData.Data.dnd5e2014.lifestyles.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -139,15 +145,17 @@ internal static class Dnd5e2014RulesetLoader
             TradeGoodDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(TradeGoodsResource));
 
+        IReadOnlyList<LifestyleDefinition> lifestyles =
+            LifestyleDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(LifestylesResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
 
-        var definitions = new RulesetDefinitionSet(
+        var equipment = new EquipmentDefinitionSet(
             weapons: weapons,
-            sourceDocuments: sources,
             ammunition: ammunition,
-            rules: rules,
             armor: armor,
             shields: shields,
             adventuringGear: adventuringGear,
@@ -160,6 +168,15 @@ internal static class Dnd5e2014RulesetLoader
             tradeGoods: tradeGoods,
             mountVehicleRules: mountVehicleRules,
             armorUsage: armorUsage);
+
+        var expenses = new ExpenseDefinitionSet(
+            lifestyles: lifestyles);
+
+        var definitions = new RulesetDefinitionSet(
+            sourceDocuments: sources,
+            rules: rules,
+            equipment: equipment,
+            expenses: expenses);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -178,6 +195,8 @@ internal static class Dnd5e2014RulesetLoader
             mountVehicleRules: mountVehicleRules,
             tradeGoods: new TradeGoodCatalog(tradeGoods),
             armorUsage: armorUsage,
+            expenses: new ExpenseCatalogs(
+                new LifestyleCatalog(lifestyles)),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

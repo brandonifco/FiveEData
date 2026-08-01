@@ -52,6 +52,9 @@
       Include="../../Data/dnd5e2014/trade-goods.json"
       LogicalName="FiveEData.Data.dnd5e2014.trade-goods.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/lifestyles.json"
+      LogicalName="FiveEData.Data.dnd5e2014.lifestyles.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/rules.json"
       LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
   </ItemGroup>
