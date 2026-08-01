@@ -5,6 +5,12 @@ namespace FiveEData.Rules.Equipment.MountsAndVehicles;
 
 internal static class MountVehicleRulesValidator
 {
+    private const int OfficialDrawnVehicleCarryingCapacityMultiplier = 5;
+    private const int OfficialBardingCostMultiplier = 4;
+    private const int OfficialBardingWeightMultiplier = 2;
+    private const decimal OfficialTypicalCurrentSpeedMilesPerHour = 3m;
+    private const decimal OfficialRowboatOverlandWeightPounds = 100m;
+
     public static IReadOnlyList<string> Validate(MountVehicleRules rules)
     {
         ArgumentNullException.ThrowIfNull(rules);
@@ -28,10 +34,11 @@ internal static class MountVehicleRulesValidator
             }
         }
 
-        if (rules.DrawnVehicleCarryingCapacityMultiplier <= 0)
+        if (rules.DrawnVehicleCarryingCapacityMultiplier !=
+            OfficialDrawnVehicleCarryingCapacityMultiplier)
         {
             errors.Add(
-                "Drawn-vehicle carrying-capacity multiplier must be greater than zero.");
+                $"Drawn-vehicle carrying-capacity multiplier must be exactly {OfficialDrawnVehicleCarryingCapacityMultiplier} for the official ruleset.");
         }
 
         if (!rules.DrawnVehicleCapacityIncludesVehicleWeight)
@@ -63,16 +70,16 @@ internal static class MountVehicleRulesValidator
                 "Barding must be available for any armor type from the Armor table.");
         }
 
-        if (rules.BardingCostMultiplier <= 0)
+        if (rules.BardingCostMultiplier != OfficialBardingCostMultiplier)
         {
             errors.Add(
-                "Barding cost multiplier must be greater than zero.");
+                $"Barding cost multiplier must be exactly {OfficialBardingCostMultiplier} for the official ruleset.");
         }
 
-        if (rules.BardingWeightMultiplier <= 0)
+        if (rules.BardingWeightMultiplier != OfficialBardingWeightMultiplier)
         {
             errors.Add(
-                "Barding weight multiplier must be greater than zero.");
+                $"Barding weight multiplier must be exactly {OfficialBardingWeightMultiplier} for the official ruleset.");
         }
 
         if (!rules.MilitarySaddleGrantsAdvantageOnChecksToRemainMounted)
@@ -95,10 +102,11 @@ internal static class MountVehicleRulesValidator
                 "Vehicle proficiency must add proficiency bonus to difficult control checks.");
         }
 
-        if (rules.TypicalCurrentSpeed.MilesPerHour <= 0)
+        if (rules.TypicalCurrentSpeed.MilesPerHour !=
+            OfficialTypicalCurrentSpeedMilesPerHour)
         {
             errors.Add(
-                "Typical current speed must be greater than zero.");
+                $"Typical current speed must be exactly {OfficialTypicalCurrentSpeedMilesPerHour} mph for the official ruleset.");
         }
 
         if (!rules.DownstreamCurrentAddsToVehicleSpeed)
@@ -124,10 +132,11 @@ internal static class MountVehicleRulesValidator
             errors.Add("Rowboat vehicle ID must not be empty.");
         }
 
-        if (rules.RowboatOverlandWeight.Pounds <= 0)
+        if (rules.RowboatOverlandWeight.Pounds !=
+            OfficialRowboatOverlandWeightPounds)
         {
             errors.Add(
-                "Rowboat overland weight must be greater than zero.");
+                $"Rowboat overland weight must be exactly {OfficialRowboatOverlandWeightPounds} pounds for the official ruleset.");
         }
 
         if (rules.Sources.Count == 0)

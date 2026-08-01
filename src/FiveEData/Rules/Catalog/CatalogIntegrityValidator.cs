@@ -15,6 +15,15 @@ namespace FiveEData.Rules.Catalog;
 
 internal static class CatalogIntegrityValidator
 {
+    private static readonly VehicleId KeelboatVehicleId =
+        new("dnd5e2014.vehicle.keelboat");
+    private static readonly VehicleId RowboatVehicleId =
+        new("dnd5e2014.vehicle.rowboat");
+    private static readonly MountSupportId ExoticSaddleMountSupportId =
+        new("dnd5e2014.mount-support.saddle-exotic");
+    private static readonly MountSupportId MilitarySaddleMountSupportId =
+        new("dnd5e2014.mount-support.saddle-military");
+
     public static IReadOnlyList<string> Validate(
         RulesetDefinitionSet definitions)
     {
@@ -266,6 +275,11 @@ internal static class CatalogIntegrityValidator
                 errors.Add(
                     $"Mount and vehicle rules reference missing rowboat vehicle '{definitions.MountVehicleRules.RowboatVehicleId}'.");
             }
+
+            ValidateMountVehicleSemanticAssociations(
+                definitions,
+                definitions.MountVehicleRules,
+                errors);
         }
 
         if (definitions.ArmorUsage is not null)
@@ -287,6 +301,146 @@ internal static class CatalogIntegrityValidator
         }
 
         return errors;
+    }
+
+    private static void ValidateMountVehicleSemanticAssociations(
+        RulesetDefinitionSet definitions,
+        MountVehicleRules rules,
+        ICollection<string> errors)
+    {
+        foreach (MountDefinition definition in definitions.Mounts)
+        {
+            ValidateExactRuleAssociations(
+                $"Mount '{definition.Id}'",
+                definition.SpecialRuleIds,
+                [
+                    rules.DrawnVehiclePullingRuleId,
+                    rules.BardingRuleId
+                ],
+                rules.ReferencedRuleIds,
+                errors);
+        }
+
+        foreach (VehicleDefinition definition in definitions.Vehicles)
+        {
+            IReadOnlyList<RuleId> expectedRuleIds =
+                GetExpectedVehicleRuleIds(definition, rules);
+
+            ValidateExactRuleAssociations(
+                $"Vehicle '{definition.Id}'",
+                definition.SpecialRuleIds,
+                expectedRuleIds,
+                rules.ReferencedRuleIds,
+                errors);
+        }
+
+        foreach (MountSupportDefinition definition in definitions.MountSupport)
+        {
+            IReadOnlyList<RuleId> expectedRuleIds =
+                GetExpectedMountSupportRuleIds(definition, rules);
+
+            ValidateExactRuleAssociations(
+                $"Mount support '{definition.Id}'",
+                definition.SpecialRuleIds,
+                expectedRuleIds,
+                rules.ReferencedRuleIds,
+                errors);
+        }
+
+        if (rules.RowboatVehicleId != RowboatVehicleId)
+        {
+            errors.Add(
+                $"Mount and vehicle rules rowboat vehicle ID must be '{RowboatVehicleId}', but was '{rules.RowboatVehicleId}'.");
+        }
+
+        VehicleDefinition? rowboat = definitions.Vehicles.FirstOrDefault(
+            definition => definition.Id == RowboatVehicleId);
+
+        if (rowboat is null)
+        {
+            errors.Add(
+                $"Official rowboat vehicle '{RowboatVehicleId}' is missing.");
+        }
+        else if (rowboat.Kind != VehicleKind.Water)
+        {
+            errors.Add(
+                $"Official rowboat vehicle '{RowboatVehicleId}' must be a water vehicle.");
+        }
+    }
+
+    private static IReadOnlyList<RuleId> GetExpectedVehicleRuleIds(
+        VehicleDefinition definition,
+        MountVehicleRules rules)
+    {
+        if (definition.Kind == VehicleKind.Land)
+        {
+            return
+            [
+                rules.DrawnVehiclePullingRuleId,
+                rules.VehicleProficiencyRuleId
+            ];
+        }
+
+        if (definition.Kind == VehicleKind.Water &&
+            (definition.Id == KeelboatVehicleId ||
+             definition.Id == RowboatVehicleId))
+        {
+            return
+            [
+                rules.VehicleProficiencyRuleId,
+                rules.RowedVesselsRuleId
+            ];
+        }
+
+        if (definition.Kind == VehicleKind.Water)
+        {
+            return [rules.VehicleProficiencyRuleId];
+        }
+
+        return [];
+    }
+
+    private static IReadOnlyList<RuleId> GetExpectedMountSupportRuleIds(
+        MountSupportDefinition definition,
+        MountVehicleRules rules)
+    {
+        if (definition.Id == ExoticSaddleMountSupportId)
+        {
+            return [rules.ExoticSaddleRuleId];
+        }
+
+        if (definition.Id == MilitarySaddleMountSupportId)
+        {
+            return [rules.MilitarySaddleRuleId];
+        }
+
+        return [];
+    }
+
+    private static void ValidateExactRuleAssociations(
+        string owner,
+        IReadOnlyList<RuleId> actualRuleIds,
+        IReadOnlyList<RuleId> expectedRuleIds,
+        IReadOnlyList<RuleId> managedRuleIds,
+        ICollection<string> errors)
+    {
+        HashSet<RuleId> managed = managedRuleIds.ToHashSet();
+        HashSet<RuleId> actual = actualRuleIds
+            .Where(managed.Contains)
+            .ToHashSet();
+        HashSet<RuleId> expected = expectedRuleIds.ToHashSet();
+
+        foreach (RuleId missingRuleId in expected.Except(actual))
+        {
+            errors.Add(
+                $"{owner} is missing required rule association '{missingRuleId}'.");
+        }
+
+        foreach (RuleId forbiddenRuleId in actual.Except(expected))
+        {
+            errors.Add(
+                $"{owner} has forbidden rule association '{forbiddenRuleId}'.");
+        }
     }
 
     public static void EnsureValid(RulesetDefinitionSet definitions)

@@ -66,6 +66,45 @@ public sealed class MountVehicleRulesValidatorTests
     }
 
     [Fact]
+    public void PositiveButNoncanonicalNumericFacts_AreRejected()
+    {
+        Assert.Contains(
+            MountVehicleRulesValidator.Validate(
+                Create(drawnVehicleCarryingCapacityMultiplier: 6)),
+            error => error.Contains(
+                "exactly 5",
+                StringComparison.Ordinal));
+
+        Assert.Contains(
+            MountVehicleRulesValidator.Validate(
+                Create(bardingCostMultiplier: 5)),
+            error => error.Contains(
+                "exactly 4",
+                StringComparison.Ordinal));
+
+        Assert.Contains(
+            MountVehicleRulesValidator.Validate(
+                Create(bardingWeightMultiplier: 3)),
+            error => error.Contains(
+                "exactly 2",
+                StringComparison.Ordinal));
+
+        Assert.Contains(
+            MountVehicleRulesValidator.Validate(
+                Create(typicalCurrentSpeed: new VehicleSpeed(4))),
+            error => error.Contains(
+                "exactly 3",
+                StringComparison.Ordinal));
+
+        Assert.Contains(
+            MountVehicleRulesValidator.Validate(
+                Create(rowboatOverlandWeight: new Weight(101))),
+            error => error.Contains(
+                "exactly 100",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void OtherMountAvailabilityFacts_AreValidated()
     {
         MountVehicleRules rules = Create(

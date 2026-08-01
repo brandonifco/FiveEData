@@ -25,6 +25,36 @@ public sealed class MountVehicleRulesLoaderTests
             rules.VehicleProficiencyKinds);
     }
 
+    [Theory]
+    [InlineData(
+        "\"drawnVehicleCarryingCapacityMultiplier\":5",
+        "\"drawnVehicleCarryingCapacityMultiplier\":6")]
+    [InlineData(
+        "\"bardingCostMultiplier\":4",
+        "\"bardingCostMultiplier\":5")]
+    [InlineData(
+        "\"bardingWeightMultiplier\":2",
+        "\"bardingWeightMultiplier\":3")]
+    [InlineData(
+        "\"typicalCurrentSpeedMilesPerHour\":3",
+        "\"typicalCurrentSpeedMilesPerHour\":4")]
+    [InlineData(
+        "\"rowboatOverlandWeight\":{\"pounds\":100}",
+        "\"rowboatOverlandWeight\":{\"pounds\":101}")]
+    public void PositiveButNoncanonicalNumericFact_IsRejectedAsDataError(
+        string canonicalFragment,
+        string noncanonicalFragment)
+    {
+        string json = ValidJson.Replace(
+            canonicalFragment,
+            noncanonicalFragment,
+            StringComparison.Ordinal);
+
+        Assert.NotEqual(ValidJson, json);
+        Assert.Throws<InvalidDataException>(
+            () => MountVehicleRulesLoader.LoadFromJson(json));
+    }
+
     [Fact]
     public void UnknownProperty_IsRejected()
     {

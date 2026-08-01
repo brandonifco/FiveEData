@@ -782,6 +782,173 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void MountMissingRequiredSemanticAssociation_IsRejected()
+    {
+        MountVehicleRules rules = CreateMountVehicleRules();
+        MountDefinition mount = CreateMount(
+            specialRuleIds: [rules.DrawnVehiclePullingRuleId]);
+
+        IReadOnlyList<string> errors =
+            ValidateMountVehicleSemanticIntegrity(
+                rules,
+                mounts: [mount]);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Mount '{mount.Id}' is missing required rule association '{rules.BardingRuleId}'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void LandVehicleWrongSemanticAssociations_AreRejected()
+    {
+        MountVehicleRules rules = CreateMountVehicleRules();
+        VehicleDefinition carriage = CreateVehicle(
+            id: new VehicleId("dnd5e2014.vehicle.carriage"),
+            specialRuleIds:
+            [
+                rules.VehicleProficiencyRuleId,
+                rules.RowedVesselsRuleId
+            ]);
+
+        IReadOnlyList<string> errors =
+            ValidateMountVehicleSemanticIntegrity(
+                rules,
+                vehicles: [carriage]);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Vehicle '{carriage.Id}' is missing required rule association '{rules.DrawnVehiclePullingRuleId}'",
+                StringComparison.Ordinal));
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Vehicle '{carriage.Id}' has forbidden rule association '{rules.RowedVesselsRuleId}'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void NonRowedWaterVehicleWrongSemanticAssociations_AreRejected()
+    {
+        MountVehicleRules rules = CreateMountVehicleRules();
+        VehicleDefinition galley = CreateVehicle(
+            id: new VehicleId("dnd5e2014.vehicle.galley"),
+            kind: VehicleKind.Water,
+            specialRuleIds: [rules.RowedVesselsRuleId]);
+
+        IReadOnlyList<string> errors =
+            ValidateMountVehicleSemanticIntegrity(
+                rules,
+                vehicles: [galley]);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Vehicle '{galley.Id}' is missing required rule association '{rules.VehicleProficiencyRuleId}'",
+                StringComparison.Ordinal));
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Vehicle '{galley.Id}' has forbidden rule association '{rules.RowedVesselsRuleId}'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void KeelboatAndRowboatMissingRowedAssociation_AreRejected()
+    {
+        MountVehicleRules rules = CreateMountVehicleRules();
+        VehicleDefinition keelboat = CreateVehicle(
+            id: new VehicleId("dnd5e2014.vehicle.keelboat"),
+            kind: VehicleKind.Water,
+            specialRuleIds: [rules.VehicleProficiencyRuleId]);
+        VehicleDefinition rowboat = CreateVehicle(
+            id: new VehicleId("dnd5e2014.vehicle.rowboat"),
+            kind: VehicleKind.Water,
+            specialRuleIds: [rules.VehicleProficiencyRuleId]);
+
+        IReadOnlyList<string> errors =
+            ValidateMountVehicleSemanticIntegrity(
+                rules,
+                vehicles: [keelboat, rowboat]);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Vehicle '{keelboat.Id}' is missing required rule association '{rules.RowedVesselsRuleId}'",
+                StringComparison.Ordinal));
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Vehicle '{rowboat.Id}' is missing required rule association '{rules.RowedVesselsRuleId}'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MilitaryAndExoticSaddleAssociations_AreEnforced()
+    {
+        MountVehicleRules rules = CreateMountVehicleRules();
+        MountSupportDefinition militarySaddle = CreateMountSupport(
+            id: new MountSupportId(
+                "dnd5e2014.mount-support.saddle-military"),
+            specialRuleIds: []);
+        MountSupportDefinition exoticSaddle = CreateMountSupport(
+            id: new MountSupportId(
+                "dnd5e2014.mount-support.saddle-exotic"),
+            specialRuleIds: [rules.MilitarySaddleRuleId]);
+
+        IReadOnlyList<string> errors =
+            ValidateMountVehicleSemanticIntegrity(
+                rules,
+                mountSupport: [militarySaddle, exoticSaddle]);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Mount support '{militarySaddle.Id}' is missing required rule association '{rules.MilitarySaddleRuleId}'",
+                StringComparison.Ordinal));
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Mount support '{exoticSaddle.Id}' is missing required rule association '{rules.ExoticSaddleRuleId}'",
+                StringComparison.Ordinal));
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                $"Mount support '{exoticSaddle.Id}' has forbidden rule association '{rules.MilitarySaddleRuleId}'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void ExistingButWrongRowboatIdentity_IsRejected()
+    {
+        VehicleId galleyId = new("dnd5e2014.vehicle.galley");
+        MountVehicleRules rules = CreateMountVehicleRules(
+            rowboatVehicleId: galleyId);
+        VehicleDefinition galley = CreateVehicle(
+            id: galleyId,
+            kind: VehicleKind.Water,
+            specialRuleIds: [rules.VehicleProficiencyRuleId]);
+
+        IReadOnlyList<string> errors =
+            ValidateMountVehicleSemanticIntegrity(
+                rules,
+                vehicles: [galley]);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "rowboat vehicle ID must be 'dnd5e2014.vehicle.rowboat'",
+                StringComparison.Ordinal));
+        Assert.DoesNotContain(
+            errors,
+            error => error.Contains(
+                "missing rowboat vehicle",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -836,6 +1003,61 @@ public sealed class CatalogIntegrityTests
             error => error.Contains(
                 "Armor usage rules references missing source document",
                 StringComparison.Ordinal));
+    }
+
+    private static IReadOnlyList<string> ValidateMountVehicleSemanticIntegrity(
+        MountVehicleRules rules,
+        IReadOnlyList<MountDefinition>? mounts = null,
+        IReadOnlyList<VehicleDefinition>? vehicles = null,
+        IReadOnlyList<MountSupportDefinition>? mountSupport = null)
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        IReadOnlyList<RuleDefinition> ruleDefinitions =
+            rules.ReferencedRuleIds
+                .Select(id => new RuleDefinition(
+                    id,
+                    "Test rule",
+                    [
+                        new SourceReference(
+                            new SourceDocumentId(
+                                "dnd5e2014.source.phb-first-printing"),
+                            page: 155)
+                    ]))
+                .ToArray();
+
+        var vehicleDefinitions = new List<VehicleDefinition>(vehicles ?? []);
+        var canonicalRowboatId =
+            new VehicleId("dnd5e2014.vehicle.rowboat");
+
+        if (!vehicleDefinitions.Any(
+                definition => definition.Id == canonicalRowboatId))
+        {
+            vehicleDefinitions.Add(
+                CreateVehicle(
+                    id: canonicalRowboatId,
+                    kind: VehicleKind.Water,
+                    specialRuleIds:
+                    [
+                        rules.VehicleProficiencyRuleId,
+                        rules.RowedVesselsRuleId
+                    ]));
+        }
+
+        return CatalogIntegrityValidator.Validate(
+            CreateDefinitionSet(
+                sourceDocuments: sources,
+                rules: ruleDefinitions,
+                mounts: mounts,
+                vehicles: vehicleDefinitions,
+                mountSupport: mountSupport,
+                mountVehicleRules: rules));
     }
 
     private static RulesetDefinitionSet CreateDefinitionSet(
@@ -894,15 +1116,17 @@ public sealed class CatalogIntegrityTests
 
     private static MountDefinition CreateMount(
         string sourceDocumentId =
-            "dnd5e2014.source.phb-first-printing")
+            "dnd5e2014.source.phb-first-printing",
+        MountId? id = null,
+        IEnumerable<RuleId>? specialRuleIds = null)
     {
         return new MountDefinition(
-            new MountId("dnd5e2014.mount.test"),
+            id ?? new MountId("dnd5e2014.mount.test"),
             "Test mount",
             new Money(100),
             new Distance(40),
             new Weight(100),
-            specialRuleIds: [],
+            specialRuleIds ?? [],
             sources:
             [
                 new SourceReference(
@@ -913,16 +1137,21 @@ public sealed class CatalogIntegrityTests
 
     private static VehicleDefinition CreateVehicle(
         string sourceDocumentId =
-            "dnd5e2014.source.phb-first-printing")
+            "dnd5e2014.source.phb-first-printing",
+        VehicleId? id = null,
+        VehicleKind kind = VehicleKind.Land,
+        IEnumerable<RuleId>? specialRuleIds = null)
     {
         return new VehicleDefinition(
-            new VehicleId("dnd5e2014.vehicle.test"),
+            id ?? new VehicleId("dnd5e2014.vehicle.test"),
             "Test vehicle",
-            VehicleKind.Land,
+            kind,
             new Money(100),
-            listedWeight: new Weight(100),
-            listedSpeed: null,
-            specialRuleIds: [],
+            listedWeight:
+                kind == VehicleKind.Land ? new Weight(100) : null,
+            listedSpeed:
+                kind == VehicleKind.Water ? new VehicleSpeed(1) : null,
+            specialRuleIds ?? [],
             sources:
             [
                 new SourceReference(
@@ -933,14 +1162,16 @@ public sealed class CatalogIntegrityTests
 
     private static MountSupportDefinition CreateMountSupport(
         string sourceDocumentId =
-            "dnd5e2014.source.phb-first-printing")
+            "dnd5e2014.source.phb-first-printing",
+        MountSupportId? id = null,
+        IEnumerable<RuleId>? specialRuleIds = null)
     {
         return new MountSupportDefinition(
-            new MountSupportId("dnd5e2014.mount-support.test"),
+            id ?? new MountSupportId("dnd5e2014.mount-support.test"),
             "Test mount support",
             new Money(100),
             listedWeight: new Weight(1),
-            specialRuleIds: [],
+            specialRuleIds ?? [],
             sources:
             [
                 new SourceReference(
