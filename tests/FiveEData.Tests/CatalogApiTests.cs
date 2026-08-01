@@ -3,6 +3,7 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
+using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Tools;
 
@@ -21,6 +22,7 @@ public sealed class CatalogApiTests
         Assert.Equal(13, ruleset.ContainerCapacities.Count);
         Assert.Equal(3, ruleset.ToolFamilies.Count);
         Assert.Equal(37, ruleset.Tools.Count);
+        Assert.Equal(8, ruleset.Mounts.Count);
         Assert.Equal(1, ruleset.Sources.Count);
         Assert.Equal(59, ruleset.Rules.Count);
 
@@ -54,6 +56,12 @@ public sealed class CatalogApiTests
         ToolFamilyDefinition artisanTools = ruleset.ToolFamilies.Get(
             new ToolFamilyId("dnd5e2014.tool-family.artisans-tools"));
         Assert.Equal("Artisan's tools", artisanTools.Name);
+
+        MountDefinition warhorse = ruleset.Mounts.Get(
+            new MountId("dnd5e2014.mount.warhorse"));
+        Assert.Equal("Warhorse", warhorse.Name);
+        Assert.Equal(60, warhorse.Speed.Feet);
+        Assert.Equal(540m, warhorse.BaseCarryingCapacity.Pounds);
 
         SourceDocument phb =
             ruleset.Sources.Get(

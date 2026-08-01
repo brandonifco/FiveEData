@@ -10,6 +10,8 @@ using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.AdventuringGear.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
+using FiveEData.Rules.Equipment.Mounts;
+using FiveEData.Rules.Equipment.Mounts.Serialization;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
@@ -66,6 +68,10 @@ public sealed class CatalogIntegrityTests
                     "dnd5e2014",
                     "container-capacities.json"));
 
+        IReadOnlyList<MountDefinition> mounts =
+            MountDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "mounts.json"));
+
         ArmorUsageRules armorUsage =
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
@@ -81,6 +87,7 @@ public sealed class CatalogIntegrityTests
                     shields: shields,
                     adventuringGear: adventuringGear,
                     containerCapacities: containerCapacities,
+                    mounts: mounts,
                     armorUsage: armorUsage)));
     }
 
@@ -485,6 +492,65 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void MountMissingSourceReference_IsRejected()
+    {
+        MountDefinition mount = CreateMount(
+            sourceDocumentId: "dnd5e2014.source.missing");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(mounts: [mount]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing source document",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MountMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        MountDefinition mount = new(
+            new MountId("dnd5e2014.mount.test"),
+            "Test mount",
+            new Money(100),
+            new Distance(40),
+            new Weight(100),
+            specialRuleIds:
+            [
+                new RuleId("dnd5e2014.mount-rule.missing")
+            ],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 155)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    mounts: [mount]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "references missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -552,6 +618,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ContainerCapacityDefinition>? containerCapacities = null,
         IReadOnlyList<ToolFamilyDefinition>? toolFamilies = null,
         IReadOnlyList<ToolDefinition>? tools = null,
+        IReadOnlyList<MountDefinition>? mounts = null,
         ArmorUsageRules? armorUsage = null)
     {
         return new RulesetDefinitionSet(
@@ -565,6 +632,7 @@ public sealed class CatalogIntegrityTests
             containerCapacities: containerCapacities ?? [],
             toolFamilies: toolFamilies ?? [],
             tools: tools ?? [],
+            mounts: mounts ?? [],
             armorUsage: armorUsage);
     }
 
@@ -584,6 +652,25 @@ public sealed class CatalogIntegrityTests
                 new SourceReference(
                     new SourceDocumentId(sourceDocumentId),
                     page: 154)
+            ]);
+    }
+
+    private static MountDefinition CreateMount(
+        string sourceDocumentId =
+            "dnd5e2014.source.phb-first-printing")
+    {
+        return new MountDefinition(
+            new MountId("dnd5e2014.mount.test"),
+            "Test mount",
+            new Money(100),
+            new Distance(40),
+            new Weight(100),
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 155)
             ]);
     }
 

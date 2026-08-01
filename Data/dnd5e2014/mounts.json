@@ -1,0 +1,154 @@
+[
+  {
+    "id": "dnd5e2014.mount.camel",
+    "name": "Camel",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "speedFeet": 50,
+    "baseCarryingCapacity": {
+      "pounds": 480
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount.donkey-or-mule",
+    "name": "Donkey or mule",
+    "cost": {
+      "copperPieces": 800
+    },
+    "speedFeet": 40,
+    "baseCarryingCapacity": {
+      "pounds": 420
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount.elephant",
+    "name": "Elephant",
+    "cost": {
+      "copperPieces": 20000
+    },
+    "speedFeet": 40,
+    "baseCarryingCapacity": {
+      "pounds": 1320
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount.horse-draft",
+    "name": "Horse, draft",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "speedFeet": 40,
+    "baseCarryingCapacity": {
+      "pounds": 540
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount.horse-riding",
+    "name": "Horse, riding",
+    "cost": {
+      "copperPieces": 7500
+    },
+    "speedFeet": 60,
+    "baseCarryingCapacity": {
+      "pounds": 480
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount.mastiff",
+    "name": "Mastiff",
+    "cost": {
+      "copperPieces": 2500
+    },
+    "speedFeet": 40,
+    "baseCarryingCapacity": {
+      "pounds": 195
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount.pony",
+    "name": "Pony",
+    "cost": {
+      "copperPieces": 3000
+    },
+    "speedFeet": 40,
+    "baseCarryingCapacity": {
+      "pounds": 225
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount.warhorse",
+    "name": "Warhorse",
+    "cost": {
+      "copperPieces": 40000
+    },
+    "speedFeet": 60,
+    "baseCarryingCapacity": {
+      "pounds": 540
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  }
+]

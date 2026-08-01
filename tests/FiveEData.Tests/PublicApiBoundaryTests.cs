@@ -5,6 +5,7 @@ using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
 using FiveEData.Rules.Equipment.AdventuringGear.Serialization;
 using FiveEData.Rules.Equipment.Armor.Serialization;
+using FiveEData.Rules.Equipment.Mounts.Serialization;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 using FiveEData.Rules.Equipment.Tools.Serialization;
@@ -22,6 +23,7 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(ContainerCapacityDefinitionLoader).IsPublic);
         Assert.False(typeof(ToolDefinitionLoader).IsPublic);
         Assert.False(typeof(ToolFamilyDefinitionLoader).IsPublic);
+        Assert.False(typeof(MountDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorUsageRulesLoader).IsPublic);
         Assert.False(typeof(ShieldDefinitionLoader).IsPublic);
@@ -64,6 +66,7 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(13, ruleset.ContainerCapacities.Count);
         Assert.Equal(3, ruleset.ToolFamilies.Count);
         Assert.Equal(37, ruleset.Tools.Count);
+        Assert.Equal(8, ruleset.Mounts.Count);
         Assert.Equal(59, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
