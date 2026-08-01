@@ -1,0 +1,485 @@
+[
+  {
+    "id": "dnd5e2014.trade-good.wheat",
+    "name": "Wheat",
+    "marketValue": {
+      "copperPieces": 1
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.flour",
+    "name": "Flour",
+    "marketValue": {
+      "copperPieces": 2
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.chicken",
+    "name": "Chicken",
+    "marketValue": {
+      "copperPieces": 2
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Each"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.salt",
+    "name": "Salt",
+    "marketValue": {
+      "copperPieces": 5
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.iron",
+    "name": "Iron",
+    "marketValue": {
+      "copperPieces": 10
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.canvas",
+    "name": "Canvas",
+    "marketValue": {
+      "copperPieces": 10
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "SquareYard"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.copper",
+    "name": "Copper",
+    "marketValue": {
+      "copperPieces": 50
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.cotton-cloth",
+    "name": "Cotton cloth",
+    "marketValue": {
+      "copperPieces": 50
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "SquareYard"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.ginger",
+    "name": "Ginger",
+    "marketValue": {
+      "copperPieces": 100
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.goat",
+    "name": "Goat",
+    "marketValue": {
+      "copperPieces": 100
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Each"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.cinnamon",
+    "name": "Cinnamon",
+    "marketValue": {
+      "copperPieces": 200
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.pepper",
+    "name": "Pepper",
+    "marketValue": {
+      "copperPieces": 200
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.sheep",
+    "name": "Sheep",
+    "marketValue": {
+      "copperPieces": 200
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Each"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.cloves",
+    "name": "Cloves",
+    "marketValue": {
+      "copperPieces": 300
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.pig",
+    "name": "Pig",
+    "marketValue": {
+      "copperPieces": 300
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Each"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.silver",
+    "name": "Silver",
+    "marketValue": {
+      "copperPieces": 500
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.linen",
+    "name": "Linen",
+    "marketValue": {
+      "copperPieces": 500
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "SquareYard"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.silk",
+    "name": "Silk",
+    "marketValue": {
+      "copperPieces": 1000
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "SquareYard"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.cow",
+    "name": "Cow",
+    "marketValue": {
+      "copperPieces": 1000
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Each"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.saffron",
+    "name": "Saffron",
+    "marketValue": {
+      "copperPieces": 1500
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.ox",
+    "name": "Ox",
+    "marketValue": {
+      "copperPieces": 1500
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Each"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.gold",
+    "name": "Gold",
+    "marketValue": {
+      "copperPieces": 5000
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.trade-good.platinum",
+    "name": "Platinum",
+    "marketValue": {
+      "copperPieces": 50000
+    },
+    "pricingBasis": {
+      "quantity": 1,
+      "unit": "Pound"
+    },
+    "specialRuleIds": [
+      "dnd5e2014.trade-good-rule.full-value-and-currency"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Trade Goods"
+      }
+    ]
+  }
+]

@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(66, ruleset.Rules.Count);
+        Assert.Equal(67, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -200,5 +200,42 @@ public sealed class RuleCatalogTests
                 "Chapter 5: Equipment — Mounts and Vehicles",
                 source.Section);
         }
+    }
+
+    [Fact]
+    public void EveryTradeGoodSpecialRuleId_Resolves()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        foreach (var tradeGood in ruleset.TradeGoods.All)
+        {
+            foreach (RuleId ruleId in tradeGood.SpecialRuleIds)
+            {
+                Assert.True(
+                    ruleset.Rules.TryGet(
+                        ruleId,
+                        out RuleDefinition? definition));
+                Assert.NotNull(definition);
+            }
+        }
+    }
+
+    [Fact]
+    public void TradeGoodRule_PreservesFirstPrintingProvenance()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        RuleDefinition definition = ruleset.Rules.Get(
+            new RuleId(
+                "dnd5e2014.trade-good-rule.full-value-and-currency"));
+
+        Assert.Equal(
+            new int?[] { 144, 157 },
+            definition.Sources.Select(source => source.Page).ToArray());
+        Assert.All(
+            definition.Sources,
+            source => Assert.StartsWith(
+                "Chapter 5: Equipment",
+                source.Section));
     }
 }

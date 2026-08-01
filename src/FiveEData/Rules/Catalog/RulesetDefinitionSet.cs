@@ -6,6 +6,7 @@ using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
+using FiveEData.Rules.Equipment.TradeGoods;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Tools;
@@ -29,6 +30,7 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<MountDefinition> mounts,
         IReadOnlyList<VehicleDefinition> vehicles,
         IReadOnlyList<MountSupportDefinition> mountSupport,
+        IReadOnlyList<TradeGoodDefinition> tradeGoods,
         MountVehicleRules? mountVehicleRules = null,
         ArmorUsageRules? armorUsage = null)
     {
@@ -45,6 +47,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(mounts);
         ArgumentNullException.ThrowIfNull(vehicles);
         ArgumentNullException.ThrowIfNull(mountSupport);
+        ArgumentNullException.ThrowIfNull(tradeGoods);
 
         Weapons = weapons;
         SourceDocuments = sourceDocuments;
@@ -59,6 +62,7 @@ internal sealed class RulesetDefinitionSet
         Mounts = mounts;
         Vehicles = vehicles;
         MountSupport = mountSupport;
+        TradeGoods = tradeGoods;
         MountVehicleRules = mountVehicleRules;
         ArmorUsage = armorUsage;
     }
@@ -76,6 +80,7 @@ internal sealed class RulesetDefinitionSet
     public IReadOnlyList<MountDefinition> Mounts { get; }
     public IReadOnlyList<VehicleDefinition> Vehicles { get; }
     public IReadOnlyList<MountSupportDefinition> MountSupport { get; }
+    public IReadOnlyList<TradeGoodDefinition> TradeGoods { get; }
     public MountVehicleRules? MountVehicleRules { get; }
     public ArmorUsageRules? ArmorUsage { get; }
 }

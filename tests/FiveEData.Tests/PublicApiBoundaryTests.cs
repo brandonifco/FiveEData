@@ -8,6 +8,7 @@ using FiveEData.Rules.Equipment.Armor.Serialization;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
 using FiveEData.Rules.Equipment.MountSupport.Serialization;
 using FiveEData.Rules.Equipment.MountsAndVehicles.Serialization;
+using FiveEData.Rules.Equipment.TradeGoods.Serialization;
 using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
@@ -29,6 +30,7 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(MountDefinitionLoader).IsPublic);
         Assert.False(typeof(MountSupportDefinitionLoader).IsPublic);
         Assert.False(typeof(MountVehicleRulesLoader).IsPublic);
+        Assert.False(typeof(TradeGoodDefinitionLoader).IsPublic);
         Assert.False(typeof(VehicleDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorUsageRulesLoader).IsPublic);
@@ -75,7 +77,8 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(8, ruleset.Mounts.Count);
         Assert.Equal(11, ruleset.Vehicles.Count);
         Assert.Equal(8, ruleset.MountSupport.Count);
-        Assert.Equal(66, ruleset.Rules.Count);
+        Assert.Equal(23, ruleset.TradeGoods.Count);
+        Assert.Equal(67, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
 }

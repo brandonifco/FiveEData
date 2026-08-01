@@ -16,6 +16,8 @@ using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.MountSupport.Serialization;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
 using FiveEData.Rules.Equipment.MountsAndVehicles.Serialization;
+using FiveEData.Rules.Equipment.TradeGoods;
+using FiveEData.Rules.Equipment.TradeGoods.Serialization;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields;
@@ -98,6 +100,14 @@ public sealed class CatalogIntegrityTests
                     "dnd5e2014",
                     "mount-vehicle-rules.json"));
 
+        IReadOnlyList<TradeGoodDefinition> tradeGoods =
+            TradeGoodDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "trade-goods.json"));
+
         ArmorUsageRules armorUsage =
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
@@ -116,6 +126,7 @@ public sealed class CatalogIntegrityTests
                     mounts: mounts,
                     vehicles: vehicles,
                     mountSupport: mountSupport,
+                    tradeGoods: tradeGoods,
                     mountVehicleRules: mountVehicleRules,
                     armorUsage: armorUsage)));
     }
@@ -949,6 +960,131 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void TradeGoodMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        TradeGoodDefinition tradeGood = CreateTradeGood(
+            specialRuleIds:
+            [
+                new RuleId(
+                    "dnd5e2014.trade-good-rule.full-value-and-currency")
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    tradeGoods: [tradeGood]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "references missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void TradeGoodMissingRequiredAssociation_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        RuleDefinition rule = new(
+            new RuleId(
+                "dnd5e2014.trade-good-rule.full-value-and-currency"),
+            "Trade-good rule",
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 144)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    rules: [rule],
+                    tradeGoods:
+                    [
+                        CreateTradeGood(specialRuleIds: [])
+                    ]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing required rule association",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void TradeGoodExistingButWrongAssociation_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        RuleDefinition requiredRule = new(
+            new RuleId(
+                "dnd5e2014.trade-good-rule.full-value-and-currency"),
+            "Trade-good rule",
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 144)
+            ]);
+
+        RuleDefinition wrongRule = new(
+            new RuleId("dnd5e2014.rule.existing-but-wrong"),
+            "Existing but wrong",
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 157)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    rules: [requiredRule, wrongRule],
+                    tradeGoods:
+                    [
+                        CreateTradeGood(
+                            specialRuleIds: [wrongRule.Id])
+                    ]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing required rule association",
+                StringComparison.Ordinal));
+        Assert.DoesNotContain(
+            errors,
+            error => error.Contains(
+                "references missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -1074,6 +1210,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<MountDefinition>? mounts = null,
         IReadOnlyList<VehicleDefinition>? vehicles = null,
         IReadOnlyList<MountSupportDefinition>? mountSupport = null,
+        IReadOnlyList<TradeGoodDefinition>? tradeGoods = null,
         MountVehicleRules? mountVehicleRules = null,
         ArmorUsageRules? armorUsage = null)
     {
@@ -1091,6 +1228,7 @@ public sealed class CatalogIntegrityTests
             mounts: mounts ?? [],
             vehicles: vehicles ?? [],
             mountSupport: mountSupport ?? [],
+            tradeGoods: tradeGoods ?? [],
             mountVehicleRules: mountVehicleRules,
             armorUsage: armorUsage);
     }
@@ -1171,6 +1309,25 @@ public sealed class CatalogIntegrityTests
             "Test mount support",
             new Money(100),
             listedWeight: new Weight(1),
+            specialRuleIds ?? [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 157)
+            ]);
+    }
+
+    private static TradeGoodDefinition CreateTradeGood(
+        string sourceDocumentId =
+            "dnd5e2014.source.phb-first-printing",
+        IEnumerable<RuleId>? specialRuleIds = null)
+    {
+        return new TradeGoodDefinition(
+            new TradeGoodId("dnd5e2014.trade-good.test"),
+            "Test trade good",
+            new Money(100),
+            new TradeGoodPricingBasis(1, TradeGoodUnit.Pound),
             specialRuleIds ?? [],
             sources:
             [

@@ -25,6 +25,7 @@ public sealed class Dnd5e2014Ruleset
         VehicleCatalog vehicles,
         MountSupportCatalog mountSupport,
         MountVehicleRules mountVehicleRules,
+        TradeGoodCatalog tradeGoods,
         ArmorUsageRules armorUsage,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
@@ -41,6 +42,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(vehicles);
         ArgumentNullException.ThrowIfNull(mountSupport);
         ArgumentNullException.ThrowIfNull(mountVehicleRules);
+        ArgumentNullException.ThrowIfNull(tradeGoods);
         ArgumentNullException.ThrowIfNull(armorUsage);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
@@ -57,6 +59,7 @@ public sealed class Dnd5e2014Ruleset
         Vehicles = vehicles;
         MountSupport = mountSupport;
         MountVehicleRules = mountVehicleRules;
+        TradeGoods = tradeGoods;
         ArmorUsage = armorUsage;
         Sources = sources;
         Rules = rules;
@@ -76,6 +79,7 @@ public sealed class Dnd5e2014Ruleset
     public VehicleCatalog Vehicles { get; }
     public MountSupportCatalog MountSupport { get; }
     public MountVehicleRules MountVehicleRules { get; }
+    public TradeGoodCatalog TradeGoods { get; }
     public ArmorUsageRules ArmorUsage { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }

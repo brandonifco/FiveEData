@@ -6,6 +6,7 @@ using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
+using FiveEData.Rules.Equipment.TradeGoods;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Tools;
@@ -23,6 +24,8 @@ internal static class CatalogIntegrityValidator
         new("dnd5e2014.mount-support.saddle-exotic");
     private static readonly MountSupportId MilitarySaddleMountSupportId =
         new("dnd5e2014.mount-support.saddle-military");
+    private static readonly RuleId TradeGoodsFullValueAndCurrencyRuleId =
+        new("dnd5e2014.trade-good-rule.full-value-and-currency");
 
     public static IReadOnlyList<string> Validate(
         RulesetDefinitionSet definitions)
@@ -250,6 +253,31 @@ internal static class CatalogIntegrityValidator
                         $"Mount support '{definition.Id}' references missing rule '{specialRuleId}'.");
                 }
             }
+        }
+
+        foreach (TradeGoodDefinition definition in definitions.TradeGoods)
+        {
+            ValidateSources(
+                $"Trade good '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"Trade good '{definition.Id}' references missing rule '{specialRuleId}'.");
+                }
+            }
+
+            ValidateExactRuleAssociations(
+                $"Trade good '{definition.Id}'",
+                definition.SpecialRuleIds,
+                [TradeGoodsFullValueAndCurrencyRuleId],
+                [TradeGoodsFullValueAndCurrencyRuleId],
+                errors);
         }
 
         if (definitions.MountVehicleRules is not null)

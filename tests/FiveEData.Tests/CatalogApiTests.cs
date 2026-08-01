@@ -6,6 +6,7 @@ using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
+using FiveEData.Rules.Equipment.TradeGoods;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Tools;
@@ -28,8 +29,9 @@ public sealed class CatalogApiTests
         Assert.Equal(8, ruleset.Mounts.Count);
         Assert.Equal(11, ruleset.Vehicles.Count);
         Assert.Equal(8, ruleset.MountSupport.Count);
+        Assert.Equal(23, ruleset.TradeGoods.Count);
         Assert.Equal(1, ruleset.Sources.Count);
-        Assert.Equal(66, ruleset.Rules.Count);
+        Assert.Equal(67, ruleset.Rules.Count);
 
         WeaponDefinition longsword =
             ruleset.Weapons.Get(
@@ -81,6 +83,14 @@ public sealed class CatalogApiTests
         Assert.Equal("Saddle, military", militarySaddle.Name);
         Assert.Equal(2000, militarySaddle.Cost.CopperPieces);
         Assert.Equal(30m, militarySaddle.ListedWeight?.Pounds);
+
+        TradeGoodDefinition gold = ruleset.TradeGoods.Get(
+            new TradeGoodId("dnd5e2014.trade-good.gold"));
+        Assert.Equal("Gold", gold.Name);
+        Assert.Equal(5000, gold.MarketValue.CopperPieces);
+        Assert.Equal(
+            new TradeGoodPricingBasis(1, TradeGoodUnit.Pound),
+            gold.PricingBasis);
 
         MountVehicleRules mountVehicleRules = ruleset.MountVehicleRules;
         Assert.Equal(

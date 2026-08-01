@@ -734,5 +734,21 @@
         "section": "Chapter 5: Equipment — Mounts and Vehicles — Rowed Vessels"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.trade-good-rule.full-value-and-currency",
+    "name": "Trade goods retain full value and can be used as currency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 144,
+        "section": "Chapter 5: Equipment — Selling Treasure — Trade Goods"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Trade Goods"
+      }
+    ]
   }
 ]
