@@ -657,5 +657,82 @@
         "section": "Chapter 5: Equipment — Tools — Thieves' Tools"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+    "name": "Drawn vehicle pulling capacity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-vehicle-rule.other-mount-availability",
+    "name": "Other mount availability",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-vehicle-rule.barding",
+    "name": "Barding",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles — Barding"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-vehicle-rule.military-saddle",
+    "name": "Military saddle",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles — Saddles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-vehicle-rule.exotic-saddle",
+    "name": "Exotic saddle",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles — Saddles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-vehicle-rule.vehicle-proficiency",
+    "name": "Vehicle proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles — Vehicle Proficiency"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-vehicle-rule.rowed-vessels",
+    "name": "Rowed vessels",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 155,
+        "section": "Chapter 5: Equipment — Mounts and Vehicles — Rowed Vessels"
+      }
+    ]
   }
 ]

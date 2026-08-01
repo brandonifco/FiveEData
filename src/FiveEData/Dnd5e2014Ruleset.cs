@@ -1,6 +1,7 @@
 using System.Threading;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.MountsAndVehicles;
 
 namespace FiveEData;
 
@@ -23,6 +24,7 @@ public sealed class Dnd5e2014Ruleset
         MountCatalog mounts,
         VehicleCatalog vehicles,
         MountSupportCatalog mountSupport,
+        MountVehicleRules mountVehicleRules,
         ArmorUsageRules armorUsage,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
@@ -38,6 +40,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(mounts);
         ArgumentNullException.ThrowIfNull(vehicles);
         ArgumentNullException.ThrowIfNull(mountSupport);
+        ArgumentNullException.ThrowIfNull(mountVehicleRules);
         ArgumentNullException.ThrowIfNull(armorUsage);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
@@ -53,6 +56,7 @@ public sealed class Dnd5e2014Ruleset
         Mounts = mounts;
         Vehicles = vehicles;
         MountSupport = mountSupport;
+        MountVehicleRules = mountVehicleRules;
         ArmorUsage = armorUsage;
         Sources = sources;
         Rules = rules;
@@ -71,6 +75,7 @@ public sealed class Dnd5e2014Ruleset
     public MountCatalog Mounts { get; }
     public VehicleCatalog Vehicles { get; }
     public MountSupportCatalog MountSupport { get; }
+    public MountVehicleRules MountVehicleRules { get; }
     public ArmorUsageRules ArmorUsage { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }

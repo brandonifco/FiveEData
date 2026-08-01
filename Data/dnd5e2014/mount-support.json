@@ -44,7 +44,9 @@
     "listedWeight": {
       "pounds": 40
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.exotic-saddle"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -62,7 +64,9 @@
     "listedWeight": {
       "pounds": 30
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.military-saddle"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

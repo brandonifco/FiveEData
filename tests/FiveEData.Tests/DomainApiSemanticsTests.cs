@@ -7,6 +7,7 @@ using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.MountSupport;
+using FiveEData.Rules.Equipment.MountsAndVehicles;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Weapons;
@@ -27,6 +28,7 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(ToolFamilyDefinition));
         AssertNoPublicConstructors(typeof(MountDefinition));
         AssertNoPublicConstructors(typeof(MountSupportDefinition));
+        AssertNoPublicConstructors(typeof(MountVehicleRules));
         AssertNoPublicConstructors(typeof(VehicleDefinition));
         AssertNoPublicConstructors(typeof(ArmorDefinition));
         AssertNoPublicConstructors(typeof(ShieldDefinition));
@@ -69,6 +71,7 @@ public sealed class DomainApiSemanticsTests
         Assert.Same(first.Mounts, second.Mounts);
         Assert.Same(first.Vehicles, second.Vehicles);
         Assert.Same(first.MountSupport, second.MountSupport);
+        Assert.Same(first.MountVehicleRules, second.MountVehicleRules);
         Assert.Same(first.Armor, second.Armor);
         Assert.Same(first.Shields, second.Shields);
         Assert.Same(first.ArmorUsage, second.ArmorUsage);

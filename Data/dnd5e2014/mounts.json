@@ -9,7 +9,10 @@
     "baseCarryingCapacity": {
       "pounds": 480
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -28,7 +31,10 @@
     "baseCarryingCapacity": {
       "pounds": 420
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -47,7 +53,10 @@
     "baseCarryingCapacity": {
       "pounds": 1320
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -66,7 +75,10 @@
     "baseCarryingCapacity": {
       "pounds": 540
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -85,7 +97,10 @@
     "baseCarryingCapacity": {
       "pounds": 480
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -104,7 +119,10 @@
     "baseCarryingCapacity": {
       "pounds": 195
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -123,7 +141,10 @@
     "baseCarryingCapacity": {
       "pounds": 225
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -142,7 +163,10 @@
     "baseCarryingCapacity": {
       "pounds": 540
     },
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.barding"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

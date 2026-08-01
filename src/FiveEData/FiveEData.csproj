@@ -46,6 +46,9 @@
       Include="../../Data/dnd5e2014/mount-support.json"
       LogicalName="FiveEData.Data.dnd5e2014.mount-support.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/mount-vehicle-rules.json"
+      LogicalName="FiveEData.Data.dnd5e2014.mount-vehicle-rules.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/rules.json"
       LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
   </ItemGroup>

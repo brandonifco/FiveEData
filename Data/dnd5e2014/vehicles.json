@@ -10,7 +10,10 @@
       "pounds": 600
     },
     "listedSpeedMilesPerHour": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -30,7 +33,10 @@
       "pounds": 200
     },
     "listedSpeedMilesPerHour": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -50,7 +56,10 @@
       "pounds": 100
     },
     "listedSpeedMilesPerHour": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -70,7 +79,10 @@
       "pounds": 300
     },
     "listedSpeedMilesPerHour": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -90,7 +102,10 @@
       "pounds": 400
     },
     "listedSpeedMilesPerHour": null,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -108,7 +123,9 @@
     },
     "listedWeight": null,
     "listedSpeedMilesPerHour": 4,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -126,7 +143,10 @@
     },
     "listedWeight": null,
     "listedSpeedMilesPerHour": 1,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency",
+      "dnd5e2014.mount-vehicle-rule.rowed-vessels"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -144,7 +164,9 @@
     },
     "listedWeight": null,
     "listedSpeedMilesPerHour": 3,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -162,7 +184,10 @@
     },
     "listedWeight": null,
     "listedSpeedMilesPerHour": 1.5,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency",
+      "dnd5e2014.mount-vehicle-rule.rowed-vessels"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -180,7 +205,9 @@
     },
     "listedWeight": null,
     "listedSpeedMilesPerHour": 2,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -198,7 +225,9 @@
     },
     "listedWeight": null,
     "listedSpeedMilesPerHour": 2.5,
-    "specialRuleIds": [],
+    "specialRuleIds": [
+      "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

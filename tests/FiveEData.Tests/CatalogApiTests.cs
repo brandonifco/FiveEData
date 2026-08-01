@@ -5,6 +5,7 @@ using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.MountSupport;
+using FiveEData.Rules.Equipment.MountsAndVehicles;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Tools;
@@ -28,7 +29,7 @@ public sealed class CatalogApiTests
         Assert.Equal(11, ruleset.Vehicles.Count);
         Assert.Equal(8, ruleset.MountSupport.Count);
         Assert.Equal(1, ruleset.Sources.Count);
-        Assert.Equal(59, ruleset.Rules.Count);
+        Assert.Equal(66, ruleset.Rules.Count);
 
         WeaponDefinition longsword =
             ruleset.Weapons.Get(
@@ -80,6 +81,16 @@ public sealed class CatalogApiTests
         Assert.Equal("Saddle, military", militarySaddle.Name);
         Assert.Equal(2000, militarySaddle.Cost.CopperPieces);
         Assert.Equal(30m, militarySaddle.ListedWeight?.Pounds);
+
+        MountVehicleRules mountVehicleRules = ruleset.MountVehicleRules;
+        Assert.Equal(
+            5,
+            mountVehicleRules.DrawnVehicleCarryingCapacityMultiplier);
+        Assert.Equal(4, mountVehicleRules.BardingCostMultiplier);
+        Assert.Equal(2, mountVehicleRules.BardingWeightMultiplier);
+        Assert.Equal(
+            100m,
+            mountVehicleRules.RowboatOverlandWeight.Pounds);
 
         SourceDocument phb =
             ruleset.Sources.Get(

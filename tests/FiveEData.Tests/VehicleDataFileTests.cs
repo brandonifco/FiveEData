@@ -1,3 +1,4 @@
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Vehicles.Serialization;
 
@@ -40,7 +41,31 @@ public sealed class VehicleDataFileTests
             Assert.Equal(
                 expected.ListedSpeedMilesPerHour,
                 definition.ListedSpeed?.MilesPerHour);
-            Assert.Empty(definition.SpecialRuleIds);
+            var expectedRuleIds = new List<RuleId>();
+
+            if (definition.Kind == VehicleKind.Land)
+            {
+                expectedRuleIds.Add(
+                    new RuleId(
+                        "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity"));
+            }
+
+            expectedRuleIds.Add(
+                new RuleId(
+                    "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"));
+
+            if (definition.Id.Value is
+                "dnd5e2014.vehicle.keelboat" or
+                "dnd5e2014.vehicle.rowboat")
+            {
+                expectedRuleIds.Add(
+                    new RuleId(
+                        "dnd5e2014.mount-vehicle-rule.rowed-vessels"));
+            }
+
+            Assert.Equal(
+                expectedRuleIds,
+                definition.SpecialRuleIds);
 
             var source = Assert.Single(definition.Sources);
             Assert.Equal(157, source.Page);

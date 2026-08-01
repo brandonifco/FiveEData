@@ -5,6 +5,7 @@ using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.MountSupport;
+using FiveEData.Rules.Equipment.MountsAndVehicles;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Tools;
@@ -43,6 +44,11 @@ internal static class CatalogIntegrityValidator
 
         HashSet<ToolFamilyId> toolFamilyIds =
             definitions.ToolFamilies
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        HashSet<VehicleId> vehicleIds =
+            definitions.Vehicles
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
@@ -237,6 +243,31 @@ internal static class CatalogIntegrityValidator
             }
         }
 
+        if (definitions.MountVehicleRules is not null)
+        {
+            ValidateSources(
+                "Mount and vehicle rules",
+                definitions.MountVehicleRules.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId ruleId in definitions.MountVehicleRules.ReferencedRuleIds)
+            {
+                if (!ruleIds.Contains(ruleId))
+                {
+                    errors.Add(
+                        $"Mount and vehicle rules reference missing rule '{ruleId}'.");
+                }
+            }
+
+            if (!vehicleIds.Contains(
+                    definitions.MountVehicleRules.RowboatVehicleId))
+            {
+                errors.Add(
+                    $"Mount and vehicle rules reference missing rowboat vehicle '{definitions.MountVehicleRules.RowboatVehicleId}'.");
+            }
+        }
+
         if (definitions.ArmorUsage is not null)
         {
             ValidateSources(
@@ -274,6 +305,14 @@ internal static class CatalogIntegrityValidator
                 nameof(definitions));
 
         ArmorUsageRulesValidator.EnsureValid(armorUsage);
+
+        MountVehicleRules mountVehicleRules =
+            definitions.MountVehicleRules ??
+            throw new ArgumentException(
+                "Mount and vehicle rules are required for the official ruleset definition set.",
+                nameof(definitions));
+
+        MountVehicleRulesValidator.EnsureValid(mountVehicleRules);
 
         IReadOnlyList<string> errors = Validate(definitions);
 

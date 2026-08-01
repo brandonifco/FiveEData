@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(59, ruleset.Rules.Count);
+        Assert.Equal(66, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -146,6 +146,59 @@ public sealed class RuleCatalogTests
             var source = Assert.Single(definition.Sources);
             Assert.Equal(154, source.Page);
             Assert.StartsWith("Chapter 5: Equipment — Tools", source.Section);
+        }
+    }
+
+    [Fact]
+    public void EveryMountVehicleAndMountSupportSpecialRuleId_Resolves()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        IEnumerable<RuleId> ids =
+            ruleset.Mounts.All.SelectMany(item => item.SpecialRuleIds)
+                .Concat(
+                    ruleset.Vehicles.All.SelectMany(
+                        item => item.SpecialRuleIds))
+                .Concat(
+                    ruleset.MountSupport.All.SelectMany(
+                        item => item.SpecialRuleIds));
+
+        foreach (RuleId ruleId in ids)
+        {
+            Assert.True(
+                ruleset.Rules.TryGet(
+                    ruleId,
+                    out RuleDefinition? definition));
+            Assert.NotNull(definition);
+        }
+    }
+
+    [Fact]
+    public void MountVehicleRules_PreserveFirstPrintingProvenance()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        string[] ruleIds =
+        [
+            "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+            "dnd5e2014.mount-vehicle-rule.other-mount-availability",
+            "dnd5e2014.mount-vehicle-rule.barding",
+            "dnd5e2014.mount-vehicle-rule.military-saddle",
+            "dnd5e2014.mount-vehicle-rule.exotic-saddle",
+            "dnd5e2014.mount-vehicle-rule.vehicle-proficiency",
+            "dnd5e2014.mount-vehicle-rule.rowed-vessels"
+        ];
+
+        foreach (string value in ruleIds)
+        {
+            RuleDefinition definition =
+                ruleset.Rules.Get(new RuleId(value));
+            var source = Assert.Single(definition.Sources);
+
+            Assert.Equal(155, source.Page);
+            Assert.StartsWith(
+                "Chapter 5: Equipment — Mounts and Vehicles",
+                source.Section);
         }
     }
 }

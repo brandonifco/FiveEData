@@ -1,3 +1,4 @@
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
 
@@ -30,7 +31,15 @@ public sealed class MountDataFileTests
             Assert.Equal(
                 expected.BaseCarryingCapacityPounds,
                 definition.BaseCarryingCapacity.Pounds);
-            Assert.Empty(definition.SpecialRuleIds);
+            Assert.Equal(
+                new[]
+                {
+                    new RuleId(
+                        "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity"),
+                    new RuleId(
+                        "dnd5e2014.mount-vehicle-rule.barding")
+                },
+                definition.SpecialRuleIds);
 
             var source = Assert.Single(definition.Sources);
             Assert.Equal(155, source.Page);

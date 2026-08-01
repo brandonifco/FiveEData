@@ -1,4 +1,5 @@
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.MountSupport.Serialization;
 
@@ -33,7 +34,25 @@ public sealed class MountSupportDataFileTests
             Assert.Equal(
                 expected.ListedWeightPounds,
                 definition.ListedWeight?.Pounds);
-            Assert.Empty(definition.SpecialRuleIds);
+            RuleId[] expectedRuleIds =
+                definition.Id.Value switch
+                {
+                    "dnd5e2014.mount-support.saddle-exotic" =>
+                    [
+                        new RuleId(
+                            "dnd5e2014.mount-vehicle-rule.exotic-saddle")
+                    ],
+                    "dnd5e2014.mount-support.saddle-military" =>
+                    [
+                        new RuleId(
+                            "dnd5e2014.mount-vehicle-rule.military-saddle")
+                    ],
+                    _ => []
+                };
+
+            Assert.Equal(
+                expectedRuleIds,
+                definition.SpecialRuleIds);
 
             SourceReference source = Assert.Single(definition.Sources);
             Assert.Equal(157, source.Page);

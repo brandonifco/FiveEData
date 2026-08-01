@@ -14,6 +14,8 @@ using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
 using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.MountSupport.Serialization;
+using FiveEData.Rules.Equipment.MountsAndVehicles;
+using FiveEData.Rules.Equipment.MountsAndVehicles.Serialization;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields;
@@ -88,6 +90,14 @@ public sealed class CatalogIntegrityTests
                     "dnd5e2014",
                     "mount-support.json"));
 
+        MountVehicleRules mountVehicleRules =
+            MountVehicleRulesLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "mount-vehicle-rules.json"));
+
         ArmorUsageRules armorUsage =
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
@@ -106,6 +116,7 @@ public sealed class CatalogIntegrityTests
                     mounts: mounts,
                     vehicles: vehicles,
                     mountSupport: mountSupport,
+                    mountVehicleRules: mountVehicleRules,
                     armorUsage: armorUsage)));
     }
 
@@ -687,6 +698,90 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void MountVehicleRulesMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        MountVehicleRules mountVehicleRules =
+            CreateMountVehicleRules(
+                drawnVehiclePullingRuleId:
+                    new RuleId(
+                        "dnd5e2014.mount-vehicle-rule.missing"));
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    mountVehicleRules: mountVehicleRules));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Mount and vehicle rules reference missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MountVehicleRulesMissingSourceReference_IsRejected()
+    {
+        MountVehicleRules mountVehicleRules =
+            CreateMountVehicleRules(
+                sourceDocumentId: "dnd5e2014.source.missing");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    mountVehicleRules: mountVehicleRules));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Mount and vehicle rules references missing source document",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MountVehicleRulesMissingRowboatReference_IsRejected()
+    {
+        MountVehicleRules mountVehicleRules =
+            CreateMountVehicleRules(
+                rowboatVehicleId:
+                    new VehicleId(
+                        "dnd5e2014.vehicle.missing"));
+
+        IReadOnlyList<RuleDefinition> rules =
+            mountVehicleRules.ReferencedRuleIds
+                .Select(id => new RuleDefinition(
+                    id,
+                    "Test rule",
+                    [
+                        new SourceReference(
+                            new SourceDocumentId(
+                                "dnd5e2014.source.phb-first-printing"),
+                            page: 155)
+                    ]))
+                .ToArray();
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    rules: rules,
+                    mountVehicleRules: mountVehicleRules));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing rowboat vehicle",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -757,6 +852,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<MountDefinition>? mounts = null,
         IReadOnlyList<VehicleDefinition>? vehicles = null,
         IReadOnlyList<MountSupportDefinition>? mountSupport = null,
+        MountVehicleRules? mountVehicleRules = null,
         ArmorUsageRules? armorUsage = null)
     {
         return new RulesetDefinitionSet(
@@ -773,6 +869,7 @@ public sealed class CatalogIntegrityTests
             mounts: mounts ?? [],
             vehicles: vehicles ?? [],
             mountSupport: mountSupport ?? [],
+            mountVehicleRules: mountVehicleRules,
             armorUsage: armorUsage);
     }
 
@@ -849,6 +946,55 @@ public sealed class CatalogIntegrityTests
                 new SourceReference(
                     new SourceDocumentId(sourceDocumentId),
                     page: 157)
+            ]);
+    }
+
+    private static MountVehicleRules CreateMountVehicleRules(
+        RuleId? drawnVehiclePullingRuleId = null,
+        VehicleId? rowboatVehicleId = null,
+        string sourceDocumentId =
+            "dnd5e2014.source.phb-first-printing")
+    {
+        return new MountVehicleRules(
+            drawnVehiclePullingRuleId ??
+                new RuleId(
+                    "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity"),
+            5,
+            drawnVehicleCapacityIncludesVehicleWeight: true,
+            multipleAnimalsCombineCarryingCapacity: true,
+            new RuleId(
+                "dnd5e2014.mount-vehicle-rule.other-mount-availability"),
+            otherMountsAreRare: true,
+            otherMountsNormallyAvailableForPurchase: false,
+            new RuleId(
+                "dnd5e2014.mount-vehicle-rule.barding"),
+            bardingAvailableForAnyArmorType: true,
+            bardingCostMultiplier: 4,
+            bardingWeightMultiplier: 2,
+            new RuleId(
+                "dnd5e2014.mount-vehicle-rule.military-saddle"),
+            militarySaddleGrantsAdvantageOnChecksToRemainMounted: true,
+            new RuleId(
+                "dnd5e2014.mount-vehicle-rule.exotic-saddle"),
+            exoticSaddleRequiredForAquaticOrFlyingMounts: true,
+            new RuleId(
+                "dnd5e2014.mount-vehicle-rule.vehicle-proficiency"),
+            [VehicleKind.Land, VehicleKind.Water],
+            vehicleProficiencyAddsProficiencyBonusToDifficultControlChecks:
+                true,
+            new RuleId(
+                "dnd5e2014.mount-vehicle-rule.rowed-vessels"),
+            new VehicleSpeed(3),
+            downstreamCurrentAddsToVehicleSpeed: true,
+            rowedVesselsCanBeRowedAgainstSignificantCurrent: false,
+            rowedVesselsCanBePulledUpstreamByDraftAnimals: true,
+            rowboatVehicleId ??
+                new VehicleId("dnd5e2014.vehicle.rowboat"),
+            new Weight(100),
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 155)
             ]);
     }
 

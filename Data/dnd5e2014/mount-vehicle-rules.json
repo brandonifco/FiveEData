@@ -1,0 +1,39 @@
+{
+  "drawnVehiclePullingRuleId": "dnd5e2014.mount-vehicle-rule.drawn-vehicle-pulling-capacity",
+  "drawnVehicleCarryingCapacityMultiplier": 5,
+  "drawnVehicleCapacityIncludesVehicleWeight": true,
+  "multipleAnimalsCombineCarryingCapacity": true,
+  "otherMountAvailabilityRuleId": "dnd5e2014.mount-vehicle-rule.other-mount-availability",
+  "otherMountsAreRare": true,
+  "otherMountsNormallyAvailableForPurchase": false,
+  "bardingRuleId": "dnd5e2014.mount-vehicle-rule.barding",
+  "bardingAvailableForAnyArmorType": true,
+  "bardingCostMultiplier": 4,
+  "bardingWeightMultiplier": 2,
+  "militarySaddleRuleId": "dnd5e2014.mount-vehicle-rule.military-saddle",
+  "militarySaddleGrantsAdvantageOnChecksToRemainMounted": true,
+  "exoticSaddleRuleId": "dnd5e2014.mount-vehicle-rule.exotic-saddle",
+  "exoticSaddleRequiredForAquaticOrFlyingMounts": true,
+  "vehicleProficiencyRuleId": "dnd5e2014.mount-vehicle-rule.vehicle-proficiency",
+  "vehicleProficiencyKinds": [
+    "Land",
+    "Water"
+  ],
+  "vehicleProficiencyAddsProficiencyBonusToDifficultControlChecks": true,
+  "rowedVesselsRuleId": "dnd5e2014.mount-vehicle-rule.rowed-vessels",
+  "typicalCurrentSpeedMilesPerHour": 3,
+  "downstreamCurrentAddsToVehicleSpeed": true,
+  "rowedVesselsCanBeRowedAgainstSignificantCurrent": false,
+  "rowedVesselsCanBePulledUpstreamByDraftAnimals": true,
+  "rowboatVehicleId": "dnd5e2014.vehicle.rowboat",
+  "rowboatOverlandWeight": {
+    "pounds": 100
+  },
+  "sources": [
+    {
+      "documentId": "dnd5e2014.source.phb-first-printing",
+      "page": 155,
+      "section": "Chapter 5: Equipment — Mounts and Vehicles"
+    }
+  ]
+}

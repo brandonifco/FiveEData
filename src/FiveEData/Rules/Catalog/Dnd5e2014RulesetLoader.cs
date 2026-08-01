@@ -14,6 +14,8 @@ using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
 using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.MountSupport.Serialization;
+using FiveEData.Rules.Equipment.MountsAndVehicles;
+using FiveEData.Rules.Equipment.MountsAndVehicles.Serialization;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Tools;
@@ -63,6 +65,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string MountSupportResource =
         "FiveEData.Data.dnd5e2014.mount-support.json";
+
+    private const string MountVehicleRulesResource =
+        "FiveEData.Data.dnd5e2014.mount-vehicle-rules.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -121,6 +126,10 @@ internal static class Dnd5e2014RulesetLoader
             MountSupportDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(MountSupportResource));
 
+        MountVehicleRules mountVehicleRules =
+            MountVehicleRulesLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(MountVehicleRulesResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -139,6 +148,7 @@ internal static class Dnd5e2014RulesetLoader
             mounts: mounts,
             vehicles: vehicles,
             mountSupport: mountSupport,
+            mountVehicleRules: mountVehicleRules,
             armorUsage: armorUsage);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -155,6 +165,7 @@ internal static class Dnd5e2014RulesetLoader
             mounts: new MountCatalog(mounts),
             vehicles: new VehicleCatalog(vehicles),
             mountSupport: new MountSupportCatalog(mountSupport),
+            mountVehicleRules: mountVehicleRules,
             armorUsage: armorUsage,
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
