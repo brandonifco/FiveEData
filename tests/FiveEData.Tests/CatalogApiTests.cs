@@ -4,6 +4,7 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Mounts;
+using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Tools;
 
@@ -23,6 +24,7 @@ public sealed class CatalogApiTests
         Assert.Equal(3, ruleset.ToolFamilies.Count);
         Assert.Equal(37, ruleset.Tools.Count);
         Assert.Equal(8, ruleset.Mounts.Count);
+        Assert.Equal(11, ruleset.Vehicles.Count);
         Assert.Equal(1, ruleset.Sources.Count);
         Assert.Equal(59, ruleset.Rules.Count);
 
@@ -62,6 +64,13 @@ public sealed class CatalogApiTests
         Assert.Equal("Warhorse", warhorse.Name);
         Assert.Equal(60, warhorse.Speed.Feet);
         Assert.Equal(540m, warhorse.BaseCarryingCapacity.Pounds);
+
+        VehicleDefinition rowboat = ruleset.Vehicles.Get(
+            new VehicleId("dnd5e2014.vehicle.rowboat"));
+        Assert.Equal("Rowboat", rowboat.Name);
+        Assert.Equal(VehicleKind.Water, rowboat.Kind);
+        Assert.Equal(1.5m, rowboat.ListedSpeed?.MilesPerHour);
+        Assert.Null(rowboat.ListedWeight);
 
         SourceDocument phb =
             ruleset.Sources.Get(

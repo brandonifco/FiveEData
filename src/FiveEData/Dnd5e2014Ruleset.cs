@@ -21,6 +21,7 @@ public sealed class Dnd5e2014Ruleset
         ToolFamilyCatalog toolFamilies,
         ToolCatalog tools,
         MountCatalog mounts,
+        VehicleCatalog vehicles,
         ArmorUsageRules armorUsage,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
@@ -34,6 +35,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(toolFamilies);
         ArgumentNullException.ThrowIfNull(tools);
         ArgumentNullException.ThrowIfNull(mounts);
+        ArgumentNullException.ThrowIfNull(vehicles);
         ArgumentNullException.ThrowIfNull(armorUsage);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
@@ -47,6 +49,7 @@ public sealed class Dnd5e2014Ruleset
         ToolFamilies = toolFamilies;
         Tools = tools;
         Mounts = mounts;
+        Vehicles = vehicles;
         ArmorUsage = armorUsage;
         Sources = sources;
         Rules = rules;
@@ -63,6 +66,7 @@ public sealed class Dnd5e2014Ruleset
     public ToolFamilyCatalog ToolFamilies { get; }
     public ToolCatalog Tools { get; }
     public MountCatalog Mounts { get; }
+    public VehicleCatalog Vehicles { get; }
     public ArmorUsageRules ArmorUsage { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }

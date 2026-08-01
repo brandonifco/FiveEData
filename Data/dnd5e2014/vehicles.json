@@ -1,0 +1,210 @@
+[
+  {
+    "id": "dnd5e2014.vehicle.carriage",
+    "name": "Carriage",
+    "kind": "Land",
+    "cost": {
+      "copperPieces": 10000
+    },
+    "listedWeight": {
+      "pounds": 600
+    },
+    "listedSpeedMilesPerHour": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.cart",
+    "name": "Cart",
+    "kind": "Land",
+    "cost": {
+      "copperPieces": 1500
+    },
+    "listedWeight": {
+      "pounds": 200
+    },
+    "listedSpeedMilesPerHour": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.chariot",
+    "name": "Chariot",
+    "kind": "Land",
+    "cost": {
+      "copperPieces": 25000
+    },
+    "listedWeight": {
+      "pounds": 100
+    },
+    "listedSpeedMilesPerHour": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.sled",
+    "name": "Sled",
+    "kind": "Land",
+    "cost": {
+      "copperPieces": 2000
+    },
+    "listedWeight": {
+      "pounds": 300
+    },
+    "listedSpeedMilesPerHour": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.wagon",
+    "name": "Wagon",
+    "kind": "Land",
+    "cost": {
+      "copperPieces": 3500
+    },
+    "listedWeight": {
+      "pounds": 400
+    },
+    "listedSpeedMilesPerHour": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.galley",
+    "name": "Galley",
+    "kind": "Water",
+    "cost": {
+      "copperPieces": 3000000
+    },
+    "listedWeight": null,
+    "listedSpeedMilesPerHour": 4,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Waterborne Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.keelboat",
+    "name": "Keelboat",
+    "kind": "Water",
+    "cost": {
+      "copperPieces": 300000
+    },
+    "listedWeight": null,
+    "listedSpeedMilesPerHour": 1,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Waterborne Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.longship",
+    "name": "Longship",
+    "kind": "Water",
+    "cost": {
+      "copperPieces": 1000000
+    },
+    "listedWeight": null,
+    "listedSpeedMilesPerHour": 3,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Waterborne Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.rowboat",
+    "name": "Rowboat",
+    "kind": "Water",
+    "cost": {
+      "copperPieces": 5000
+    },
+    "listedWeight": null,
+    "listedSpeedMilesPerHour": 1.5,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Waterborne Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.sailing-ship",
+    "name": "Sailing ship",
+    "kind": "Water",
+    "cost": {
+      "copperPieces": 1000000
+    },
+    "listedWeight": null,
+    "listedSpeedMilesPerHour": 2,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Waterborne Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.vehicle.warship",
+    "name": "Warship",
+    "kind": "Water",
+    "cost": {
+      "copperPieces": 2500000
+    },
+    "listedWeight": null,
+    "listedSpeedMilesPerHour": 2.5,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Waterborne Vehicles"
+      }
+    ]
+  }
+]

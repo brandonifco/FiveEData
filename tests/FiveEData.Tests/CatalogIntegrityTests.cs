@@ -12,6 +12,8 @@ using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
+using FiveEData.Rules.Equipment.Vehicles;
+using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
@@ -72,6 +74,10 @@ public sealed class CatalogIntegrityTests
             MountDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "mounts.json"));
 
+        IReadOnlyList<VehicleDefinition> vehicles =
+            VehicleDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "vehicles.json"));
+
         ArmorUsageRules armorUsage =
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
@@ -88,6 +94,7 @@ public sealed class CatalogIntegrityTests
                     adventuringGear: adventuringGear,
                     containerCapacities: containerCapacities,
                     mounts: mounts,
+                    vehicles: vehicles,
                     armorUsage: armorUsage)));
     }
 
@@ -551,6 +558,66 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void VehicleMissingSourceReference_IsRejected()
+    {
+        VehicleDefinition vehicle = CreateVehicle(
+            sourceDocumentId: "dnd5e2014.source.missing");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(vehicles: [vehicle]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing source document",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void VehicleMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        VehicleDefinition vehicle = new(
+            new VehicleId("dnd5e2014.vehicle.test"),
+            "Test vehicle",
+            VehicleKind.Land,
+            new Money(100),
+            listedWeight: new Weight(100),
+            listedSpeed: null,
+            specialRuleIds:
+            [
+                new RuleId("dnd5e2014.vehicle-rule.missing")
+            ],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 157)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    vehicles: [vehicle]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "references missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -619,6 +686,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ToolFamilyDefinition>? toolFamilies = null,
         IReadOnlyList<ToolDefinition>? tools = null,
         IReadOnlyList<MountDefinition>? mounts = null,
+        IReadOnlyList<VehicleDefinition>? vehicles = null,
         ArmorUsageRules? armorUsage = null)
     {
         return new RulesetDefinitionSet(
@@ -633,6 +701,7 @@ public sealed class CatalogIntegrityTests
             toolFamilies: toolFamilies ?? [],
             tools: tools ?? [],
             mounts: mounts ?? [],
+            vehicles: vehicles ?? [],
             armorUsage: armorUsage);
     }
 
@@ -671,6 +740,26 @@ public sealed class CatalogIntegrityTests
                 new SourceReference(
                     new SourceDocumentId(sourceDocumentId),
                     page: 155)
+            ]);
+    }
+
+    private static VehicleDefinition CreateVehicle(
+        string sourceDocumentId =
+            "dnd5e2014.source.phb-first-printing")
+    {
+        return new VehicleDefinition(
+            new VehicleId("dnd5e2014.vehicle.test"),
+            "Test vehicle",
+            VehicleKind.Land,
+            new Money(100),
+            listedWeight: new Weight(100),
+            listedSpeed: null,
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 157)
             ]);
     }
 

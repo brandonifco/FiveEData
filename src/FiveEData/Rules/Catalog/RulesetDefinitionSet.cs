@@ -4,6 +4,7 @@ using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Mounts;
+using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons;
@@ -24,6 +25,7 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<ToolFamilyDefinition> toolFamilies,
         IReadOnlyList<ToolDefinition> tools,
         IReadOnlyList<MountDefinition> mounts,
+        IReadOnlyList<VehicleDefinition> vehicles,
         ArmorUsageRules? armorUsage = null)
     {
         ArgumentNullException.ThrowIfNull(weapons);
@@ -37,6 +39,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(toolFamilies);
         ArgumentNullException.ThrowIfNull(tools);
         ArgumentNullException.ThrowIfNull(mounts);
+        ArgumentNullException.ThrowIfNull(vehicles);
 
         Weapons = weapons;
         SourceDocuments = sourceDocuments;
@@ -49,6 +52,7 @@ internal sealed class RulesetDefinitionSet
         ToolFamilies = toolFamilies;
         Tools = tools;
         Mounts = mounts;
+        Vehicles = vehicles;
         ArmorUsage = armorUsage;
     }
 
@@ -63,5 +67,6 @@ internal sealed class RulesetDefinitionSet
     public IReadOnlyList<ToolFamilyDefinition> ToolFamilies { get; }
     public IReadOnlyList<ToolDefinition> Tools { get; }
     public IReadOnlyList<MountDefinition> Mounts { get; }
+    public IReadOnlyList<VehicleDefinition> Vehicles { get; }
     public ArmorUsageRules? ArmorUsage { get; }
 }

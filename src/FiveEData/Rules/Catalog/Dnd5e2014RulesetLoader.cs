@@ -12,6 +12,8 @@ using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
+using FiveEData.Rules.Equipment.Vehicles;
+using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Tools.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
@@ -53,6 +55,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string MountsResource =
         "FiveEData.Data.dnd5e2014.mounts.json";
+
+    private const string VehiclesResource =
+        "FiveEData.Data.dnd5e2014.vehicles.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -103,6 +108,10 @@ internal static class Dnd5e2014RulesetLoader
             MountDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(MountsResource));
 
+        IReadOnlyList<VehicleDefinition> vehicles =
+            VehicleDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(VehiclesResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -119,6 +128,7 @@ internal static class Dnd5e2014RulesetLoader
             toolFamilies: toolFamilies,
             tools: tools,
             mounts: mounts,
+            vehicles: vehicles,
             armorUsage: armorUsage);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -133,6 +143,7 @@ internal static class Dnd5e2014RulesetLoader
             toolFamilies: new ToolFamilyCatalog(toolFamilies),
             tools: new ToolCatalog(tools),
             mounts: new MountCatalog(mounts),
+            vehicles: new VehicleCatalog(vehicles),
             armorUsage: armorUsage,
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
