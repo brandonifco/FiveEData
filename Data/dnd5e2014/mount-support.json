@@ -1,0 +1,144 @@
+[
+  {
+    "id": "dnd5e2014.mount-support.bit-and-bridle",
+    "name": "Bit and bridle",
+    "cost": {
+      "copperPieces": 200
+    },
+    "listedWeight": {
+      "pounds": 1
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-support.feed-per-day",
+    "name": "Feed (per day)",
+    "cost": {
+      "copperPieces": 5
+    },
+    "listedWeight": {
+      "pounds": 10
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-support.saddle-exotic",
+    "name": "Saddle, exotic",
+    "cost": {
+      "copperPieces": 6000
+    },
+    "listedWeight": {
+      "pounds": 40
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-support.saddle-military",
+    "name": "Saddle, military",
+    "cost": {
+      "copperPieces": 2000
+    },
+    "listedWeight": {
+      "pounds": 30
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-support.saddle-pack",
+    "name": "Saddle, pack",
+    "cost": {
+      "copperPieces": 500
+    },
+    "listedWeight": {
+      "pounds": 15
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-support.saddle-riding",
+    "name": "Saddle, riding",
+    "cost": {
+      "copperPieces": 1000
+    },
+    "listedWeight": {
+      "pounds": 25
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-support.saddlebags",
+    "name": "Saddlebags",
+    "cost": {
+      "copperPieces": 400
+    },
+    "listedWeight": {
+      "pounds": 8
+    },
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mount-support.stabling-per-day",
+    "name": "Stabling (per day)",
+    "cost": {
+      "copperPieces": 50
+    },
+    "listedWeight": null,
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Tack, Harness, and Drawn Vehicles"
+      }
+    ]
+  }
+]

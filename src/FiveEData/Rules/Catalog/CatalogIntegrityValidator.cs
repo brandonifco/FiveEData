@@ -4,6 +4,7 @@ using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Mounts;
+using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Tools;
@@ -214,6 +215,24 @@ internal static class CatalogIntegrityValidator
                 {
                     errors.Add(
                         $"Vehicle '{definition.Id}' references missing rule '{specialRuleId}'.");
+                }
+            }
+        }
+
+        foreach (MountSupportDefinition definition in definitions.MountSupport)
+        {
+            ValidateSources(
+                $"Mount support '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+
+            foreach (RuleId specialRuleId in definition.SpecialRuleIds)
+            {
+                if (!ruleIds.Contains(specialRuleId))
+                {
+                    errors.Add(
+                        $"Mount support '{definition.Id}' references missing rule '{specialRuleId}'.");
                 }
             }
         }

@@ -6,6 +6,7 @@ using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Mounts;
+using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Weapons;
@@ -25,6 +26,7 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(ToolDefinition));
         AssertNoPublicConstructors(typeof(ToolFamilyDefinition));
         AssertNoPublicConstructors(typeof(MountDefinition));
+        AssertNoPublicConstructors(typeof(MountSupportDefinition));
         AssertNoPublicConstructors(typeof(VehicleDefinition));
         AssertNoPublicConstructors(typeof(ArmorDefinition));
         AssertNoPublicConstructors(typeof(ShieldDefinition));
@@ -43,6 +45,7 @@ public sealed class DomainApiSemanticsTests
         AssertNoPublicConstructors(typeof(ToolCatalog));
         AssertNoPublicConstructors(typeof(ToolFamilyCatalog));
         AssertNoPublicConstructors(typeof(MountCatalog));
+        AssertNoPublicConstructors(typeof(MountSupportCatalog));
         AssertNoPublicConstructors(typeof(VehicleCatalog));
         AssertNoPublicConstructors(typeof(ArmorCatalog));
         AssertNoPublicConstructors(typeof(ShieldCatalog));
@@ -65,6 +68,7 @@ public sealed class DomainApiSemanticsTests
         Assert.Same(first.Tools, second.Tools);
         Assert.Same(first.Mounts, second.Mounts);
         Assert.Same(first.Vehicles, second.Vehicles);
+        Assert.Same(first.MountSupport, second.MountSupport);
         Assert.Same(first.Armor, second.Armor);
         Assert.Same(first.Shields, second.Shields);
         Assert.Same(first.ArmorUsage, second.ArmorUsage);

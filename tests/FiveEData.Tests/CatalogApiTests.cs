@@ -4,6 +4,7 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Mounts;
+using FiveEData.Rules.Equipment.MountSupport;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Tools;
@@ -25,6 +26,7 @@ public sealed class CatalogApiTests
         Assert.Equal(37, ruleset.Tools.Count);
         Assert.Equal(8, ruleset.Mounts.Count);
         Assert.Equal(11, ruleset.Vehicles.Count);
+        Assert.Equal(8, ruleset.MountSupport.Count);
         Assert.Equal(1, ruleset.Sources.Count);
         Assert.Equal(59, ruleset.Rules.Count);
 
@@ -71,6 +73,13 @@ public sealed class CatalogApiTests
         Assert.Equal(VehicleKind.Water, rowboat.Kind);
         Assert.Equal(1.5m, rowboat.ListedSpeed?.MilesPerHour);
         Assert.Null(rowboat.ListedWeight);
+
+        MountSupportDefinition militarySaddle = ruleset.MountSupport.Get(
+            new MountSupportId(
+                "dnd5e2014.mount-support.saddle-military"));
+        Assert.Equal("Saddle, military", militarySaddle.Name);
+        Assert.Equal(2000, militarySaddle.Cost.CopperPieces);
+        Assert.Equal(30m, militarySaddle.ListedWeight?.Pounds);
 
         SourceDocument phb =
             ruleset.Sources.Get(

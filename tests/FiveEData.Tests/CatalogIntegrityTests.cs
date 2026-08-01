@@ -12,6 +12,8 @@ using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
+using FiveEData.Rules.Equipment.MountSupport;
+using FiveEData.Rules.Equipment.MountSupport.Serialization;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields;
@@ -78,6 +80,14 @@ public sealed class CatalogIntegrityTests
             VehicleDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "vehicles.json"));
 
+        IReadOnlyList<MountSupportDefinition> mountSupport =
+            MountSupportDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "mount-support.json"));
+
         ArmorUsageRules armorUsage =
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
@@ -95,6 +105,7 @@ public sealed class CatalogIntegrityTests
                     containerCapacities: containerCapacities,
                     mounts: mounts,
                     vehicles: vehicles,
+                    mountSupport: mountSupport,
                     armorUsage: armorUsage)));
     }
 
@@ -618,6 +629,64 @@ public sealed class CatalogIntegrityTests
     }
 
     [Fact]
+    public void MountSupportMissingSourceReference_IsRejected()
+    {
+        MountSupportDefinition definition = CreateMountSupport(
+            sourceDocumentId: "dnd5e2014.source.missing");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(mountSupport: [definition]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing source document",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MountSupportMissingRuleReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        MountSupportDefinition definition = new(
+            new MountSupportId("dnd5e2014.mount-support.test"),
+            "Test mount support",
+            new Money(100),
+            listedWeight: new Weight(1),
+            specialRuleIds:
+            [
+                new RuleId("dnd5e2014.mount-support-rule.missing")
+            ],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 157)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    mountSupport: [definition]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "references missing rule",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void ArmorUsageMissingRuleReference_IsRejected()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -687,6 +756,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ToolDefinition>? tools = null,
         IReadOnlyList<MountDefinition>? mounts = null,
         IReadOnlyList<VehicleDefinition>? vehicles = null,
+        IReadOnlyList<MountSupportDefinition>? mountSupport = null,
         ArmorUsageRules? armorUsage = null)
     {
         return new RulesetDefinitionSet(
@@ -702,6 +772,7 @@ public sealed class CatalogIntegrityTests
             tools: tools ?? [],
             mounts: mounts ?? [],
             vehicles: vehicles ?? [],
+            mountSupport: mountSupport ?? [],
             armorUsage: armorUsage);
     }
 
@@ -754,6 +825,24 @@ public sealed class CatalogIntegrityTests
             new Money(100),
             listedWeight: new Weight(100),
             listedSpeed: null,
+            specialRuleIds: [],
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(sourceDocumentId),
+                    page: 157)
+            ]);
+    }
+
+    private static MountSupportDefinition CreateMountSupport(
+        string sourceDocumentId =
+            "dnd5e2014.source.phb-first-printing")
+    {
+        return new MountSupportDefinition(
+            new MountSupportId("dnd5e2014.mount-support.test"),
+            "Test mount support",
+            new Money(100),
+            listedWeight: new Weight(1),
             specialRuleIds: [],
             sources:
             [

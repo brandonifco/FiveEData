@@ -12,6 +12,8 @@ using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
+using FiveEData.Rules.Equipment.MountSupport;
+using FiveEData.Rules.Equipment.MountSupport.Serialization;
 using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Tools;
@@ -58,6 +60,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string VehiclesResource =
         "FiveEData.Data.dnd5e2014.vehicles.json";
+
+    private const string MountSupportResource =
+        "FiveEData.Data.dnd5e2014.mount-support.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -112,6 +117,10 @@ internal static class Dnd5e2014RulesetLoader
             VehicleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(VehiclesResource));
 
+        IReadOnlyList<MountSupportDefinition> mountSupport =
+            MountSupportDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(MountSupportResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -129,6 +138,7 @@ internal static class Dnd5e2014RulesetLoader
             tools: tools,
             mounts: mounts,
             vehicles: vehicles,
+            mountSupport: mountSupport,
             armorUsage: armorUsage);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -144,6 +154,7 @@ internal static class Dnd5e2014RulesetLoader
             tools: new ToolCatalog(tools),
             mounts: new MountCatalog(mounts),
             vehicles: new VehicleCatalog(vehicles),
+            mountSupport: new MountSupportCatalog(mountSupport),
             armorUsage: armorUsage,
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
