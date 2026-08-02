@@ -1,5 +1,7 @@
 using System.Reflection;
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Expenses;
+using FiveEData.Rules.Expenses.Lifestyles;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
@@ -38,6 +40,9 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(FoodDrinkDefinitionLoader).IsPublic);
         Assert.False(typeof(LifestyleHospitalityCostDefinitionLoader).IsPublic);
         Assert.False(typeof(LifestyleDefinitionLoader).IsPublic);
+        Assert.False(typeof(LifestyleRuleAssociationIntegrityValidator).IsPublic);
+        Assert.False(typeof(OfficialLifestyleSemanticValidator).IsPublic);
+        Assert.False(typeof(OfficialExpenseSemanticValidator).IsPublic);
         Assert.False(typeof(MundaneServiceDefinitionLoader).IsPublic);
         Assert.False(typeof(MundaneServiceCatalogIntegrityValidator).IsPublic);
         Assert.False(typeof(OfficialMundaneServiceSemanticValidator).IsPublic);

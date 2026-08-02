@@ -19,6 +19,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         Assert.Empty(
             OfficialExpenseSemanticValidator.Validate(
+                expenses.Lifestyles,
                 expenses.FoodAndDrink,
                 expenses.HospitalityCosts,
                 expenses.MundaneServices));
@@ -42,6 +43,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
                 altered.MundaneServices);
@@ -92,6 +94,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
                 altered.MundaneServices);
@@ -142,6 +145,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
                 altered.MundaneServices);
@@ -188,6 +192,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
                 altered.MundaneServices);
@@ -232,6 +237,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
                 altered.MundaneServices);
@@ -262,6 +268,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
                 altered.MundaneServices);

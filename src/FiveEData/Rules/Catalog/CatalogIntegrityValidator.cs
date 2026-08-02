@@ -312,6 +312,10 @@ internal static class CatalogIntegrityValidator
             }
         }
 
+        errors.AddRange(
+            LifestyleRuleAssociationIntegrityValidator.Validate(
+                definitions.Expenses.Lifestyles));
+
         foreach (FoodDrinkDefinition definition in definitions.Expenses.FoodAndDrink)
         {
             ValidateSources(
@@ -624,6 +628,7 @@ internal static class CatalogIntegrityValidator
         errors.AddRange(Validate(definitions));
         errors.AddRange(
             OfficialExpenseSemanticValidator.Validate(
+                definitions.Expenses.Lifestyles,
                 definitions.Expenses.FoodAndDrink,
                 definitions.Expenses.HospitalityCosts,
                 definitions.Expenses.MundaneServices));

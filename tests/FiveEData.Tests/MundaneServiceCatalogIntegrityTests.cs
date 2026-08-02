@@ -206,6 +206,36 @@ public sealed class MundaneServiceCatalogIntegrityTests
                     StringComparison.Ordinal));
     }
 
+    [Fact]
+    public void NoncanonicalIdentity_RemainsExtensionFriendly()
+    {
+        var extensionRuleId =
+            new RuleId(
+                "example.mundane-service-rule.custom");
+
+        MundaneServiceDefinition service =
+            CreateService(
+                "example.mundane-service.custom",
+                [extensionRuleId]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    [service],
+                    sources:
+                    [
+                        new SourceDocument(
+                            SourceId,
+                            "Player's Handbook")
+                    ],
+                    rules:
+                    [
+                        CreateRule(extensionRuleId)
+                    ]));
+
+        Assert.Empty(errors);
+    }
+
     private static MundaneServiceDefinition CreateService(
         string id,
         IEnumerable<RuleId> ruleIds,

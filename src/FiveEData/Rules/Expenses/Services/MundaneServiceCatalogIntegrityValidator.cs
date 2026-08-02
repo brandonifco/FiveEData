@@ -5,34 +5,61 @@ namespace FiveEData.Rules.Expenses.Services;
 
 internal static class MundaneServiceCatalogIntegrityValidator
 {
-    private static readonly MundaneServiceId SkilledHirelingId =
-        new(
-            "dnd5e2014.mundane-service." +
-            "hireling-skilled");
-
-    private static readonly MundaneServiceId
-        UntrainedHirelingId =
-            new(
-                "dnd5e2014.mundane-service." +
-                "hireling-untrained");
-
-    private static readonly RuleId
-        SkilledHirelingProficiencyRuleId =
-            new(
-                "dnd5e2014.expense-rule." +
-                "skilled-hireling-proficiency-service");
-
-    private static readonly RuleId
-        SkilledHirelingMinimumPayRuleId =
-            new(
-                "dnd5e2014.expense-rule." +
-                "skilled-hireling-pay-minimum");
-
-    private static readonly RuleId
-        UntrainedHirelingMenialWorkRuleId =
-            new(
-                "dnd5e2014.expense-rule." +
-                "untrained-hireling-menial-work");
+    private static readonly IReadOnlyDictionary<
+        MundaneServiceId,
+        IReadOnlyList<RuleId>> ExpectedAssociations =
+            new Dictionary<
+                MundaneServiceId,
+                IReadOnlyList<RuleId>>
+            {
+                [
+                    new MundaneServiceId(
+                        "dnd5e2014.mundane-service." +
+                        "coach-between-towns")
+                ] = [],
+                [
+                    new MundaneServiceId(
+                        "dnd5e2014.mundane-service." +
+                        "coach-within-city")
+                ] = [],
+                [
+                    new MundaneServiceId(
+                        "dnd5e2014.mundane-service." +
+                        "hireling-skilled")
+                ] =
+                [
+                    new RuleId(
+                        "dnd5e2014.expense-rule." +
+                        "skilled-hireling-proficiency-service"),
+                    new RuleId(
+                        "dnd5e2014.expense-rule." +
+                        "skilled-hireling-pay-minimum")
+                ],
+                [
+                    new MundaneServiceId(
+                        "dnd5e2014.mundane-service." +
+                        "hireling-untrained")
+                ] =
+                [
+                    new RuleId(
+                        "dnd5e2014.expense-rule." +
+                        "untrained-hireling-menial-work")
+                ],
+                [
+                    new MundaneServiceId(
+                        "dnd5e2014.mundane-service.messenger")
+                ] = [],
+                [
+                    new MundaneServiceId(
+                        "dnd5e2014.mundane-service." +
+                        "road-or-gate-toll")
+                ] = [],
+                [
+                    new MundaneServiceId(
+                        "dnd5e2014.mundane-service." +
+                        "ship-passage")
+                ] = []
+            };
 
     public static IReadOnlyList<string> Validate(
         IReadOnlyList<MundaneServiceDefinition> definitions,
@@ -70,34 +97,19 @@ internal static class MundaneServiceCatalogIntegrityValidator
                 }
             }
 
-            ValidateExactRuleAssociations(
-                identity,
-                definition.SpecialRuleIds,
-                GetExpectedRuleIds(definition.Id),
-                errors);
+            if (ExpectedAssociations.TryGetValue(
+                    definition.Id,
+                    out IReadOnlyList<RuleId>? expectedRuleIds))
+            {
+                ValidateExactRuleAssociations(
+                    identity,
+                    definition.SpecialRuleIds,
+                    expectedRuleIds,
+                    errors);
+            }
         }
 
         return errors;
-    }
-
-    private static IReadOnlyList<RuleId> GetExpectedRuleIds(
-        MundaneServiceId id)
-    {
-        if (id == SkilledHirelingId)
-        {
-            return
-            [
-                SkilledHirelingProficiencyRuleId,
-                SkilledHirelingMinimumPayRuleId
-            ];
-        }
-
-        if (id == UntrainedHirelingId)
-        {
-            return [UntrainedHirelingMenialWorkRuleId];
-        }
-
-        return [];
     }
 
     private static void ValidateExactRuleAssociations(
@@ -112,14 +124,26 @@ internal static class MundaneServiceCatalogIntegrityValidator
         HashSet<RuleId> expected =
             expectedRuleIds.ToHashSet();
 
-        foreach (RuleId missing in expected.Except(actual))
+        foreach (
+            RuleId missing
+            in expected
+                .Except(actual)
+                .OrderBy(
+                    ruleId => ruleId.Value,
+                    StringComparer.Ordinal))
         {
             errors.Add(
                 $"{owner} is missing required rule " +
                 $"association '{missing}'.");
         }
 
-        foreach (RuleId forbidden in actual.Except(expected))
+        foreach (
+            RuleId forbidden
+            in actual
+                .Except(expected)
+                .OrderBy(
+                    ruleId => ruleId.Value,
+                    StringComparer.Ordinal))
         {
             errors.Add(
                 $"{owner} has forbidden rule association " +

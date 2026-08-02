@@ -19,6 +19,9 @@ public sealed class
             "food-drink-lodging-included-in-lifestyle");
         var lifestyleId = new LifestyleId(
             "dnd5e2014.lifestyle.modest");
+        var lifestyleRuleId = new RuleId(
+            "dnd5e2014.lifestyle-rule." +
+            "modest-conditions");
 
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
@@ -31,7 +34,8 @@ public sealed class
                     [
                         CreateLifestyle(
                             lifestyleId,
-                            sourceId)
+                            sourceId,
+                            lifestyleRuleId)
                     ],
                     sources:
                     [
@@ -48,6 +52,14 @@ public sealed class
                                 new SourceReference(
                                     sourceId,
                                     page: 158)
+                            ]),
+                        new RuleDefinition(
+                            lifestyleRuleId,
+                            "Modest lifestyle conditions",
+                            [
+                                new SourceReference(
+                                    sourceId,
+                                    page: 157)
                             ])
                     ]));
 
@@ -170,7 +182,8 @@ public sealed class
 
     private static LifestyleDefinition CreateLifestyle(
         LifestyleId lifestyleId,
-        SourceDocumentId sourceId)
+        SourceDocumentId sourceId,
+        RuleId? ruleId = null)
     {
         return new LifestyleDefinition(
             lifestyleId,
@@ -178,7 +191,8 @@ public sealed class
             new ListedCost(
                 new Money(100),
                 ListedCostKind.Exact),
-            specialRuleIds: [],
+            specialRuleIds:
+                ruleId is null ? [] : [ruleId.Value],
             sources:
             [
                 new SourceReference(

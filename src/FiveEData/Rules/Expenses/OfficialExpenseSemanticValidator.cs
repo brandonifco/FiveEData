@@ -95,17 +95,23 @@ internal static class OfficialExpenseSemanticValidator
         ];
 
     public static IReadOnlyList<string> Validate(
+        IReadOnlyList<LifestyleDefinition> lifestyles,
         IReadOnlyList<FoodDrinkDefinition> foodAndDrink,
         IReadOnlyList<LifestyleHospitalityCostDefinition>
             hospitalityCosts,
         IReadOnlyList<MundaneServiceDefinition>
             mundaneServices)
     {
+        ArgumentNullException.ThrowIfNull(lifestyles);
         ArgumentNullException.ThrowIfNull(foodAndDrink);
         ArgumentNullException.ThrowIfNull(hospitalityCosts);
         ArgumentNullException.ThrowIfNull(mundaneServices);
 
         var errors = new List<string>();
+
+        errors.AddRange(
+            OfficialLifestyleSemanticValidator.Validate(
+                lifestyles));
 
         ValidateOfficialFoodDrinkSemantics(
             foodAndDrink,
