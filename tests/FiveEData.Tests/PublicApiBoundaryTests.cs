@@ -6,6 +6,7 @@ using FiveEData.Rules.Expenses.Lifestyles;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
 using FiveEData.Rules.Expenses.Lifestyles.Serialization;
 using FiveEData.Rules.Expenses.Services;
@@ -30,6 +31,7 @@ public sealed class PublicApiBoundaryTests
     public void SerializationAndIntegrityPlumbing_AreNotPublicApi()
     {
         Assert.False(typeof(AbilityDefinitionLoader).IsPublic);
+        Assert.False(typeof(SkillDefinitionLoader).IsPublic);
         Assert.False(typeof(WeaponDefinitionLoader).IsPublic);
         Assert.False(typeof(AmmunitionDefinitionLoader).IsPublic);
         Assert.False(typeof(AdventuringGearDefinitionLoader).IsPublic);

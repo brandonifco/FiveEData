@@ -3,6 +3,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
@@ -23,6 +24,7 @@ public sealed class DomainApiSemanticsTests
     public void IdentityBearingDefinitions_HaveNoPublicConstructors()
     {
         AssertNoPublicConstructors(typeof(AbilityDefinition));
+        AssertNoPublicConstructors(typeof(SkillDefinition));
         AssertNoPublicConstructors(typeof(WeaponDefinition));
         AssertNoPublicConstructors(typeof(AmmunitionDefinition));
         AssertNoPublicConstructors(typeof(AdventuringGearDefinition));
@@ -45,6 +47,7 @@ public sealed class DomainApiSemanticsTests
     public void Catalogs_HaveNoPublicConstructors()
     {
         AssertNoPublicConstructors(typeof(AbilityCatalog));
+        AssertNoPublicConstructors(typeof(SkillCatalog));
         AssertNoPublicConstructors(typeof(WeaponCatalog));
         AssertNoPublicConstructors(typeof(AmmunitionCatalog));
         AssertNoPublicConstructors(typeof(AdventuringGearCatalog));

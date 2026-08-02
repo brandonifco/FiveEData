@@ -13,6 +13,9 @@
       Include="../../Data/dnd5e2014/abilities.json"
       LogicalName="FiveEData.Data.dnd5e2014.abilities.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/skills.json"
+      LogicalName="FiveEData.Data.dnd5e2014.skills.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/ammunition.json"
       LogicalName="FiveEData.Data.dnd5e2014.ammunition.json" />
     <EmbeddedResource

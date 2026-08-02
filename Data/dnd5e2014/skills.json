@@ -1,0 +1,218 @@
+[
+  {
+    "id": "dnd5e2014.skill.acrobatics",
+    "name": "Acrobatics",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.dexterity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.animal-handling",
+    "name": "Animal Handling",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.arcana",
+    "name": "Arcana",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.intelligence",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.athletics",
+    "name": "Athletics",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.strength",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.deception",
+    "name": "Deception",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.charisma",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.history",
+    "name": "History",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.intelligence",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.insight",
+    "name": "Insight",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.intimidation",
+    "name": "Intimidation",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.charisma",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.investigation",
+    "name": "Investigation",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.intelligence",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.medicine",
+    "name": "Medicine",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.nature",
+    "name": "Nature",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.intelligence",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.perception",
+    "name": "Perception",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.performance",
+    "name": "Performance",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.charisma",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.persuasion",
+    "name": "Persuasion",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.charisma",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.religion",
+    "name": "Religion",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.intelligence",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.sleight-of-hand",
+    "name": "Sleight of Hand",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.dexterity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.stealth",
+    "name": "Stealth",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.dexterity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.skill.survival",
+    "name": "Survival",
+    "normallyAssociatedAbilityId": "dnd5e2014.ability.wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 174,
+        "section": "Chapter 7: Using Ability Scores — Ability Checks — Skills"
+      }
+    ]
+  }
+]
