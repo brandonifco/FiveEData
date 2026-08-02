@@ -1,6 +1,8 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Mounts;
@@ -34,6 +36,12 @@ public sealed class CatalogApiTests
         Assert.Equal(8, ruleset.Expenses.FoodAndDrink.Count);
         Assert.Equal(6, ruleset.Expenses.HospitalityCosts.Count);
         Assert.Equal(7, ruleset.Expenses.MundaneServices.Count);
+        Assert.Equal(
+            6,
+            ruleset.CreatureVocabulary.Abilities.Count);
+        Assert.Equal(
+            18,
+            ruleset.CreatureVocabulary.Skills.Count);
         Assert.Equal(1, ruleset.Sources.Count);
         Assert.Equal(90, ruleset.Rules.Count);
 
@@ -110,6 +118,23 @@ public sealed class CatalogApiTests
             ruleset.Sources.Get(
                 new SourceDocumentId(
                     "dnd5e2014.source.phb-first-printing"));
+
+        AbilityDefinition strength =
+            ruleset.CreatureVocabulary.Abilities.Get(
+                new AbilityId(
+                    "dnd5e2014.ability.strength"));
+
+        Assert.Equal("Strength", strength.Name);
+
+        SkillDefinition athletics =
+            ruleset.CreatureVocabulary.Skills.Get(
+                new SkillId(
+                    "dnd5e2014.skill.athletics"));
+
+        Assert.Equal("Athletics", athletics.Name);
+        Assert.Equal(
+            strength.Id,
+            athletics.NormallyAssociatedAbilityId);
 
         Assert.Equal("Player's Handbook", phb.Title);
     }

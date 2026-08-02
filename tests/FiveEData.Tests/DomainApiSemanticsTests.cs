@@ -2,6 +2,7 @@ using System.Reflection;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Ammunition;
@@ -48,6 +49,8 @@ public sealed class DomainApiSemanticsTests
     {
         AssertNoPublicConstructors(typeof(AbilityCatalog));
         AssertNoPublicConstructors(typeof(SkillCatalog));
+        AssertNoPublicConstructors(
+            typeof(CreatureVocabularyCatalogs));
         AssertNoPublicConstructors(typeof(WeaponCatalog));
         AssertNoPublicConstructors(typeof(AmmunitionCatalog));
         AssertNoPublicConstructors(typeof(AdventuringGearCatalog));

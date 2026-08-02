@@ -1,4 +1,6 @@
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -440,7 +442,15 @@ public sealed class
                     DataPath("sources.json")),
             rules: LoadCanonicalRules(),
             equipment: equipment,
-            expenses: expenses);
+            expenses: expenses,
+            creatureVocabulary:
+                new CreatureVocabularyDefinitionSet(
+                    abilities:
+                        AbilityDefinitionLoader.LoadFromFile(
+                            DataPath("abilities.json")),
+                    skills:
+                        SkillDefinitionLoader.LoadFromFile(
+                            DataPath("skills.json"))));
     }
 
     private static string DataPath(string fileName)

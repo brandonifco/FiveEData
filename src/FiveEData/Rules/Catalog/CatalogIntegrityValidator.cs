@@ -1,5 +1,6 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
@@ -47,6 +48,11 @@ internal static class CatalogIntegrityValidator
             definitions.SourceDocuments
                 .Select(source => source.Id)
                 .ToHashSet();
+
+        errors.AddRange(
+            CreatureVocabularyCatalogIntegrityValidator.Validate(
+                definitions.CreatureVocabulary,
+                sourceIds));
 
         HashSet<LifestyleId> lifestyleIds =
             definitions.Expenses.Lifestyles
@@ -633,6 +639,10 @@ internal static class CatalogIntegrityValidator
                 definitions.Expenses.FoodAndDrink,
                 definitions.Expenses.HospitalityCosts,
                 definitions.Expenses.MundaneServices));
+
+        errors.AddRange(
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                definitions.CreatureVocabulary));
 
         if (errors.Count == 0)
         {

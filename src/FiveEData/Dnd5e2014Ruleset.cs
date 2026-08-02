@@ -1,5 +1,6 @@
 using System.Threading;
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
 using FiveEData.Rules.Expenses;
@@ -29,6 +30,7 @@ public sealed class Dnd5e2014Ruleset
         TradeGoodCatalog tradeGoods,
         ArmorUsageRules armorUsage,
         ExpenseCatalogs expenses,
+        CreatureVocabularyCatalogs creatureVocabulary,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -47,6 +49,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(tradeGoods);
         ArgumentNullException.ThrowIfNull(armorUsage);
         ArgumentNullException.ThrowIfNull(expenses);
+        ArgumentNullException.ThrowIfNull(creatureVocabulary);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -65,6 +68,7 @@ public sealed class Dnd5e2014Ruleset
         TradeGoods = tradeGoods;
         ArmorUsage = armorUsage;
         Expenses = expenses;
+        CreatureVocabulary = creatureVocabulary;
         Sources = sources;
         Rules = rules;
     }
@@ -86,6 +90,12 @@ public sealed class Dnd5e2014Ruleset
     public TradeGoodCatalog TradeGoods { get; }
     public ArmorUsageRules ArmorUsage { get; }
     public ExpenseCatalogs Expenses { get; }
+
+    public CreatureVocabularyCatalogs CreatureVocabulary
+    {
+        get;
+    }
+
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

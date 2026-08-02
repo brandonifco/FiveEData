@@ -2,6 +2,11 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
 using FiveEData.Rules.Equipment.AdventuringGear;
@@ -38,6 +43,12 @@ internal static class Dnd5e2014RulesetLoader
 {
     private const string SourcesResource =
         "FiveEData.Data.dnd5e2014.sources.json";
+
+    private const string AbilitiesResource =
+        "FiveEData.Data.dnd5e2014.abilities.json";
+
+    private const string SkillsResource =
+        "FiveEData.Data.dnd5e2014.skills.json";
 
     private const string AmmunitionResource =
         "FiveEData.Data.dnd5e2014.ammunition.json";
@@ -101,6 +112,16 @@ internal static class Dnd5e2014RulesetLoader
         IReadOnlyList<SourceDocument> sources =
             SourceDocumentLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(SourcesResource));
+
+        IReadOnlyList<AbilityDefinition> abilities =
+            AbilityDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    AbilitiesResource));
+
+        IReadOnlyList<SkillDefinition> skills =
+            SkillDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    SkillsResource));
 
         IReadOnlyList<AmmunitionDefinition> ammunition =
             AmmunitionDefinitionLoader.LoadFromJson(
@@ -203,11 +224,17 @@ internal static class Dnd5e2014RulesetLoader
             hospitalityCosts: hospitalityCosts,
             mundaneServices: mundaneServices);
 
+        var creatureVocabulary =
+            new CreatureVocabularyDefinitionSet(
+                abilities: abilities,
+                skills: skills);
+
         var definitions = new RulesetDefinitionSet(
             sourceDocuments: sources,
             rules: rules,
             equipment: equipment,
-            expenses: expenses);
+            expenses: expenses,
+            creatureVocabulary: creatureVocabulary);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -235,6 +262,10 @@ internal static class Dnd5e2014RulesetLoader
                 mundaneServices:
                     new MundaneServiceCatalog(
                         mundaneServices)),
+            creatureVocabulary:
+                new CreatureVocabularyCatalogs(
+                    abilities: new AbilityCatalog(abilities),
+                    skills: new SkillCatalog(skills)),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

@@ -1242,7 +1242,11 @@ public sealed class CatalogIntegrityTests
             sourceDocuments: sourceDocuments ?? [],
             rules: rules ?? [],
             equipment: equipment,
-            expenses: expenses);
+            expenses: expenses,
+            creatureVocabulary:
+                new CreatureVocabularyDefinitionSet(
+                    abilities: [],
+                    skills: []));
     }
 
     private static ToolDefinition CreateTool(

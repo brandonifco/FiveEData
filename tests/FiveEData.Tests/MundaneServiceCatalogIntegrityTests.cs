@@ -297,6 +297,10 @@ public sealed class MundaneServiceCatalogIntegrityTests
             sourceDocuments: sources ?? [],
             rules: rules ?? [],
             equipment: equipment,
-            expenses: expenses);
+            expenses: expenses,
+            creatureVocabulary:
+                new CreatureVocabularyDefinitionSet(
+                    abilities: [],
+                    skills: []));
     }
 }

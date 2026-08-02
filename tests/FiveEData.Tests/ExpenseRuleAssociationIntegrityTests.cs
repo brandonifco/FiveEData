@@ -223,6 +223,10 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             ],
             rules: rules ?? [],
             equipment: equipment,
-            expenses: expenses);
+            expenses: expenses,
+            creatureVocabulary:
+                new CreatureVocabularyDefinitionSet(
+                    abilities: [],
+                    skills: []));
     }
 }
