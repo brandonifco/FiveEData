@@ -1,3 +1,5 @@
+using FiveEData.Rules.Common;
+using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Expenses.FoodAndLodging;
 using FiveEData.Rules.Expenses.Lifestyles;
 using FiveEData.Rules.Expenses.Services;
@@ -6,6 +8,18 @@ namespace FiveEData.Rules.Expenses;
 
 internal static class OfficialExpenseSemanticValidator
 {
+    private const string FoodDrinkSection =
+        "Chapter 5: Equipment — Expenses — " +
+        "Food, Drink, and Lodging";
+
+    private static readonly OfficialSourceExpectation
+        FoodDrinkSource =
+            new(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                158,
+                FoodDrinkSection);
+
     private static readonly FoodDrinkExpectation[]
         OfficialFoodDrinkExpectations =
         [
@@ -95,6 +109,7 @@ internal static class OfficialExpenseSemanticValidator
         ];
 
     public static IReadOnlyList<string> Validate(
+        IReadOnlyList<RuleDefinition> rules,
         IReadOnlyList<LifestyleDefinition> lifestyles,
         IReadOnlyList<FoodDrinkDefinition> foodAndDrink,
         IReadOnlyList<LifestyleHospitalityCostDefinition>
@@ -102,12 +117,17 @@ internal static class OfficialExpenseSemanticValidator
         IReadOnlyList<MundaneServiceDefinition>
             mundaneServices)
     {
+        ArgumentNullException.ThrowIfNull(rules);
         ArgumentNullException.ThrowIfNull(lifestyles);
         ArgumentNullException.ThrowIfNull(foodAndDrink);
         ArgumentNullException.ThrowIfNull(hospitalityCosts);
         ArgumentNullException.ThrowIfNull(mundaneServices);
 
         var errors = new List<string>();
+
+        errors.AddRange(
+            OfficialExpenseRuleSemanticValidator.Validate(
+                rules));
 
         errors.AddRange(
             OfficialLifestyleSemanticValidator.Validate(
@@ -204,6 +224,12 @@ internal static class OfficialExpenseSemanticValidator
                     $"'{expectation.PricingUnit}'; found " +
                     $"'{definition.PricingUnit}'.");
             }
+
+            OfficialSourceReferenceSemanticValidator.Validate(
+                $"Official food and drink '{expectation.Id}'",
+                definition.Sources,
+                expectation.Source,
+                errors);
         }
 
         foreach (
@@ -297,6 +323,13 @@ internal static class OfficialExpenseSemanticValidator
                     $"found " +
                     $"{definition.MealsCostPerDay.CopperPieces} cp.");
             }
+
+            OfficialSourceReferenceSemanticValidator.Validate(
+                "Official hospitality cost for lifestyle " +
+                $"'{expectation.LifestyleId}'",
+                definition.Sources,
+                expectation.Source,
+                errors);
         }
 
         foreach (
@@ -317,11 +350,43 @@ internal static class OfficialExpenseSemanticValidator
         FoodDrinkId Id,
         string Name,
         long CopperPieces,
-        FoodDrinkPricingUnit PricingUnit);
+        FoodDrinkPricingUnit PricingUnit,
+        OfficialSourceExpectation Source)
+    {
+        public FoodDrinkExpectation(
+            FoodDrinkId id,
+            string name,
+            long copperPieces,
+            FoodDrinkPricingUnit pricingUnit)
+            : this(
+                id,
+                name,
+                copperPieces,
+                pricingUnit,
+                OfficialExpenseSemanticValidator
+                    .FoodDrinkSource)
+        {
+        }
+    }
 
     private readonly record struct HospitalityCostExpectation(
         LifestyleId LifestyleId,
         long InnStayCopperPieces,
-        long MealsCopperPieces);
+        long MealsCopperPieces,
+        OfficialSourceExpectation Source)
+    {
+        public HospitalityCostExpectation(
+            LifestyleId lifestyleId,
+            long innStayCopperPieces,
+            long mealsCopperPieces)
+            : this(
+                lifestyleId,
+                innStayCopperPieces,
+                mealsCopperPieces,
+                OfficialExpenseSemanticValidator
+                    .FoodDrinkSource)
+        {
+        }
+    }
 
 }

@@ -43,6 +43,13 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(LifestyleRuleAssociationIntegrityValidator).IsPublic);
         Assert.False(typeof(OfficialLifestyleSemanticValidator).IsPublic);
         Assert.False(typeof(OfficialExpenseSemanticValidator).IsPublic);
+        Assert.False(
+            typeof(OfficialExpenseRuleSemanticValidator).IsPublic);
+        Assert.False(
+            typeof(OfficialSourceExpectation).IsPublic);
+        Assert.False(
+            typeof(OfficialSourceReferenceSemanticValidator)
+                .IsPublic);
         Assert.False(typeof(MundaneServiceDefinitionLoader).IsPublic);
         Assert.False(typeof(MundaneServiceCatalogIntegrityValidator).IsPublic);
         Assert.False(typeof(OfficialMundaneServiceSemanticValidator).IsPublic);

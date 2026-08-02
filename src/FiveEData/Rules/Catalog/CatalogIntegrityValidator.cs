@@ -628,6 +628,7 @@ internal static class CatalogIntegrityValidator
         errors.AddRange(Validate(definitions));
         errors.AddRange(
             OfficialExpenseSemanticValidator.Validate(
+                definitions.Rules,
                 definitions.Expenses.Lifestyles,
                 definitions.Expenses.FoodAndDrink,
                 definitions.Expenses.HospitalityCosts,

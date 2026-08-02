@@ -1,9 +1,22 @@
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Expenses;
 
 namespace FiveEData.Rules.Expenses.Services;
 
 internal static class OfficialMundaneServiceSemanticValidator
 {
+    private const string ServicesSection =
+        "Chapter 5: Equipment — Expenses — Services";
+
+    private static readonly OfficialSourceExpectation
+        ServiceSource =
+            new(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                159,
+                ServicesSection);
+
     private static readonly ServiceExpectation[] Expectations =
     [
         new(
@@ -159,6 +172,12 @@ internal static class OfficialMundaneServiceSemanticValidator
                     $"'{expectation.PricingUnit}'; found " +
                     $"'{definition.PricingUnit}'.");
             }
+
+            OfficialSourceReferenceSemanticValidator.Validate(
+                $"Official mundane service '{expectation.Id}'",
+                definition.Sources,
+                expectation.Source,
+                errors);
         }
 
         foreach (
@@ -182,5 +201,24 @@ internal static class OfficialMundaneServiceSemanticValidator
         string Name,
         long CopperPieces,
         ListedCostKind CostKind,
-        ServicePricingUnit PricingUnit);
+        ServicePricingUnit PricingUnit,
+        OfficialSourceExpectation Source)
+    {
+        public ServiceExpectation(
+            MundaneServiceId id,
+            string name,
+            long copperPieces,
+            ListedCostKind costKind,
+            ServicePricingUnit pricingUnit)
+            : this(
+                id,
+                name,
+                copperPieces,
+                costKind,
+                pricingUnit,
+                OfficialMundaneServiceSemanticValidator
+                    .ServiceSource)
+        {
+        }
+    }
 }

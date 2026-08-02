@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Expenses;
 using FiveEData.Rules.Expenses.FoodAndLodging;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
@@ -19,6 +20,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         Assert.Empty(
             OfficialExpenseSemanticValidator.Validate(
+                LoadCanonicalRules(),
                 expenses.Lifestyles,
                 expenses.FoodAndDrink,
                 expenses.HospitalityCosts,
@@ -43,6 +45,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                LoadCanonicalRules(),
                 altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
@@ -94,6 +97,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                LoadCanonicalRules(),
                 altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
@@ -145,6 +149,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                LoadCanonicalRules(),
                 altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
@@ -192,6 +197,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                LoadCanonicalRules(),
                 altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
@@ -237,6 +243,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                LoadCanonicalRules(),
                 altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
@@ -268,6 +275,7 @@ public sealed class OfficialExpenseSemanticIntegrityTests
 
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
+                LoadCanonicalRules(),
                 altered.Lifestyles,
                 altered.FoodAndDrink,
                 altered.HospitalityCosts,
@@ -306,6 +314,19 @@ public sealed class OfficialExpenseSemanticIntegrityTests
             mundaneServices:
                 mundaneServices ??
                 canonical.MundaneServices);
+    }
+
+    private static IReadOnlyList<RuleDefinition>
+        LoadCanonicalRules()
+    {
+        string json = File.ReadAllText(
+            Path.Combine(
+                FindRepositoryRoot(),
+                "Data",
+                "dnd5e2014",
+                "rules.json"));
+
+        return RuleDefinitionLoader.LoadFromJson(json);
     }
 
     private static ExpenseDefinitionSet LoadCanonical()

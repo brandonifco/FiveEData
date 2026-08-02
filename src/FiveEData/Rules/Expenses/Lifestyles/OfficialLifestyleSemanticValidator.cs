@@ -1,17 +1,30 @@
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Expenses;
 
 namespace FiveEData.Rules.Expenses.Lifestyles;
 
 internal static class OfficialLifestyleSemanticValidator
 {
+    private const string LifestyleSection =
+        "Chapter 5: Equipment — Expenses — Lifestyle Expenses";
+
+    private static readonly OfficialSourceExpectation
+        LifestyleSource =
+            new(
+                new SourceDocumentId(
+                    "dnd5e2014.source.phb-first-printing"),
+                157,
+                LifestyleSection);
+
     private static readonly LifestyleExpectation[] Expectations =
     [
         new(
             new LifestyleId(
                 "dnd5e2014.lifestyle.wretched"),
             "Wretched",
-            CopperPieces: null,
-            CostKind: null),
+            copperPieces: null,
+            costKind: null),
         new(
             new LifestyleId(
                 "dnd5e2014.lifestyle.squalid"),
@@ -135,6 +148,12 @@ internal static class OfficialLifestyleSemanticValidator
                 $"'{definition.Name}'.");
         }
 
+        OfficialSourceReferenceSemanticValidator.Validate(
+            $"Official lifestyle '{expectation.Id}'",
+            definition.Sources,
+            expectation.Source,
+            errors);
+
         if (expectation.CopperPieces is null)
         {
             if (definition.DailyCost is not null)
@@ -177,5 +196,22 @@ internal static class OfficialLifestyleSemanticValidator
         LifestyleId Id,
         string Name,
         long? CopperPieces,
-        ListedCostKind? CostKind);
+        ListedCostKind? CostKind,
+        OfficialSourceExpectation Source)
+    {
+        public LifestyleExpectation(
+            LifestyleId id,
+            string name,
+            long? copperPieces,
+            ListedCostKind? costKind)
+            : this(
+                id,
+                name,
+                copperPieces,
+                costKind,
+                OfficialLifestyleSemanticValidator
+                    .LifestyleSource)
+        {
+        }
+    }
 }

@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -18,6 +19,8 @@ internal static class StrictJson
 
         try
         {
+            ValidateNoDuplicateProperties(json);
+
             return JsonSerializer.Deserialize<T>(
                 json,
                 SerializerOptions)
@@ -41,6 +44,8 @@ internal static class StrictJson
 
         try
         {
+            ValidateNoDuplicateProperties(json);
+
             return JsonSerializer.Deserialize<T[]>(
                 json,
                 SerializerOptions)
@@ -52,6 +57,72 @@ internal static class StrictJson
             throw new InvalidDataException(
                 $"{dataDescription} JSON could not be parsed.",
                 exception);
+        }
+    }
+
+    private static void ValidateNoDuplicateProperties(
+        string json)
+    {
+        byte[] utf8 = Encoding.UTF8.GetBytes(json);
+
+        var reader =
+            new Utf8JsonReader(
+                utf8,
+                new JsonReaderOptions
+                {
+                    CommentHandling =
+                        JsonCommentHandling.Disallow,
+                    AllowTrailingCommas = false
+                });
+
+        var propertyScopes =
+            new Stack<HashSet<string>>();
+
+        while (reader.Read())
+        {
+            switch (reader.TokenType)
+            {
+                case JsonTokenType.StartObject:
+                    propertyScopes.Push(
+                        new HashSet<string>(
+                            StringComparer.Ordinal));
+                    break;
+
+                case JsonTokenType.PropertyName:
+                    if (propertyScopes.Count == 0)
+                    {
+                        throw new JsonException(
+                            "JSON property appeared outside " +
+                            "an object.");
+                    }
+
+                    string propertyName =
+                        reader.GetString()
+                        ?? throw new JsonException(
+                            "JSON property name cannot be null.");
+
+                    if (!propertyScopes.Peek().Add(
+                            propertyName))
+                    {
+                        throw new JsonException(
+                            $"Duplicate JSON property " +
+                            $"'{propertyName}' at byte position " +
+                            $"{reader.TokenStartIndex}.");
+                    }
+
+                    break;
+
+                case JsonTokenType.EndObject:
+                    if (propertyScopes.Count == 0)
+                    {
+                        throw new JsonException(
+                            "JSON object scope ended " +
+                            "unexpectedly.");
+                    }
+
+                    propertyScopes.Pop();
+                    break;
+            }
         }
     }
 
