@@ -1,0 +1,68 @@
+[
+  {
+    "id": "dnd5e2014.ability.strength",
+    "name": "Strength",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 173,
+        "section": "Chapter 7: Using Ability Scores — Ability Scores and Modifiers"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ability.dexterity",
+    "name": "Dexterity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 173,
+        "section": "Chapter 7: Using Ability Scores — Ability Scores and Modifiers"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ability.constitution",
+    "name": "Constitution",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 173,
+        "section": "Chapter 7: Using Ability Scores — Ability Scores and Modifiers"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ability.intelligence",
+    "name": "Intelligence",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 173,
+        "section": "Chapter 7: Using Ability Scores — Ability Scores and Modifiers"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ability.wisdom",
+    "name": "Wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 173,
+        "section": "Chapter 7: Using Ability Scores — Ability Scores and Modifiers"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.ability.charisma",
+    "name": "Charisma",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 173,
+        "section": "Chapter 7: Using Ability Scores — Ability Scores and Modifiers"
+      }
+    ]
+  }
+]
