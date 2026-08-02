@@ -88,6 +88,15 @@ public sealed class DomainApiSemanticsTests
         Assert.Same(first.Armor, second.Armor);
         Assert.Same(first.Shields, second.Shields);
         Assert.Same(first.ArmorUsage, second.ArmorUsage);
+        Assert.Same(
+            first.CreatureVocabulary,
+            second.CreatureVocabulary);
+        Assert.Same(
+            first.CreatureVocabulary.Abilities,
+            second.CreatureVocabulary.Abilities);
+        Assert.Same(
+            first.CreatureVocabulary.Skills,
+            second.CreatureVocabulary.Skills);
         Assert.Same(first.Rules, second.Rules);
         Assert.Same(first.Sources, second.Sources);
     }
