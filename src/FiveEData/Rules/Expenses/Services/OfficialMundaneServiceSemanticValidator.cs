@@ -1,6 +1,5 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
-using FiveEData.Rules.Expenses;
 
 namespace FiveEData.Rules.Expenses.Services;
 

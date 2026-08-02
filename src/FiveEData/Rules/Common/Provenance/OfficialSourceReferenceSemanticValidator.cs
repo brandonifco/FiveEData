@@ -1,12 +1,6 @@
 using System.Globalization;
-using FiveEData.Rules.Common.Provenance;
 
-namespace FiveEData.Rules.Expenses;
-
-internal readonly record struct OfficialSourceExpectation(
-    SourceDocumentId DocumentId,
-    int Page,
-    string Section);
+namespace FiveEData.Rules.Common.Provenance;
 
 internal static class OfficialSourceReferenceSemanticValidator
 {
