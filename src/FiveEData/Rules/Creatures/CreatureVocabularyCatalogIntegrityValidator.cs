@@ -1,6 +1,8 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 
 namespace FiveEData.Rules.Creatures;
@@ -56,6 +58,34 @@ internal static class CreatureVocabularyCatalogIntegrityValidator
                     "normally associated ability " +
                     $"'{definition.NormallyAssociatedAbilityId}'.");
             }
+        }
+
+        foreach (
+            LanguageDefinition definition
+            in definitions.Languages
+                .OrderBy(
+                    item => item.Id.Value,
+                    StringComparer.Ordinal))
+        {
+            ValidateSources(
+                $"Language '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            CreatureSizeDefinition definition
+            in definitions.Sizes
+                .OrderBy(
+                    item => item.Id.Value,
+                    StringComparer.Ordinal))
+        {
+            ValidateSources(
+                $"Creature size '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
         }
 
         return errors;

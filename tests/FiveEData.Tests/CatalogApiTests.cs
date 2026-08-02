@@ -2,6 +2,8 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
@@ -42,6 +44,12 @@ public sealed class CatalogApiTests
         Assert.Equal(
             18,
             ruleset.CreatureVocabulary.Skills.Count);
+        Assert.Equal(
+            16,
+            ruleset.CreatureVocabulary.Languages.Count);
+        Assert.Equal(
+            6,
+            ruleset.CreatureVocabulary.Sizes.Count);
         Assert.Equal(1, ruleset.Sources.Count);
         Assert.Equal(90, ruleset.Rules.Count);
 
@@ -135,6 +143,23 @@ public sealed class CatalogApiTests
         Assert.Equal(
             strength.Id,
             athletics.NormallyAssociatedAbilityId);
+
+        LanguageDefinition common =
+            ruleset.CreatureVocabulary.Languages.Get(
+                new LanguageId(
+                    "dnd5e2014.language.common"));
+
+        Assert.Equal("Common", common.Name);
+        Assert.Equal(
+            LanguageCategory.Standard,
+            common.Category);
+
+        CreatureSizeDefinition medium =
+            ruleset.CreatureVocabulary.Sizes.Get(
+                new CreatureSizeId(
+                    "dnd5e2014.creature-size.medium"));
+
+        Assert.Equal("Medium", medium.Name);
 
         Assert.Equal("Player's Handbook", phb.Title);
     }

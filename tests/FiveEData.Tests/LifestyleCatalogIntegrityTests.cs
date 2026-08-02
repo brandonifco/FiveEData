@@ -153,6 +153,8 @@ public sealed class LifestyleCatalogIntegrityTests
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
                     abilities: [],
-                    skills: []));
+                    skills: [],
+                    languages: [],
+                    sizes: []));
     }
 }

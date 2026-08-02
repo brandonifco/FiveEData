@@ -1246,7 +1246,9 @@ public sealed class CatalogIntegrityTests
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
                     abilities: [],
-                    skills: []));
+                    skills: [],
+                    languages: [],
+                    sizes: []));
     }
 
     private static ToolDefinition CreateTool(

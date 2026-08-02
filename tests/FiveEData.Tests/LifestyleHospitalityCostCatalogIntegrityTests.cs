@@ -235,6 +235,8 @@ public sealed class
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
                     abilities: [],
-                    skills: []));
+                    skills: [],
+                    languages: [],
+                    sizes: []));
     }
 }

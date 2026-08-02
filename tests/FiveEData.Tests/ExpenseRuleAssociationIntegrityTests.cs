@@ -227,6 +227,8 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
                     abilities: [],
-                    skills: []));
+                    skills: [],
+                    languages: [],
+                    sizes: []));
     }
 }

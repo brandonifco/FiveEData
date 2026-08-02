@@ -1,6 +1,8 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 
 namespace FiveEData.Tests;
@@ -90,6 +92,56 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
     }
 
     [Fact]
+    public void MissingLanguageSourceReference_IsRejected()
+    {
+        LanguageDefinition language = CreateLanguage(
+            "example.language.trade-speech",
+            "Trade Speech",
+            LanguageCategory.Standard);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    abilities: [],
+                    languages: [language]));
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "Language 'example.language.trade-speech'",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "missing source document",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MissingCreatureSizeSourceReference_IsRejected()
+    {
+        CreatureSizeDefinition size = CreateSize(
+            "example.creature-size.colossal",
+            "Colossal");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    abilities: [],
+                    sizes: [size]));
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "Creature size " +
+                    "'example.creature-size.colossal'",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "missing source document",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void MissingNormallyAssociatedAbility_IsRejected()
     {
         SkillDefinition skill = CreateSkill(
@@ -136,11 +188,22 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             "Fortune Telling",
             ability.Id);
 
+        LanguageDefinition language = CreateLanguage(
+            "example.language.starsong",
+            "Starsong",
+            LanguageCategory.Exotic);
+
+        CreatureSizeDefinition size = CreateSize(
+            "example.creature-size.minuscule",
+            "Minuscule");
+
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
                     abilities: [ability],
                     skills: [skill],
+                    languages: [language],
+                    sizes: [size],
                     sourceDocuments:
                     [
                         new SourceDocument(
@@ -173,6 +236,28 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             [CreateSource()]);
     }
 
+    private static LanguageDefinition CreateLanguage(
+        string id,
+        string name,
+        LanguageCategory category)
+    {
+        return new LanguageDefinition(
+            new LanguageId(id),
+            name,
+            category,
+            [CreateSource()]);
+    }
+
+    private static CreatureSizeDefinition CreateSize(
+        string id,
+        string name)
+    {
+        return new CreatureSizeDefinition(
+            new CreatureSizeId(id),
+            name,
+            [CreateSource()]);
+    }
+
     private static SourceReference CreateSource()
     {
         return new SourceReference(
@@ -183,6 +268,8 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
     private static RulesetDefinitionSet CreateDefinitionSet(
         IReadOnlyList<AbilityDefinition> abilities,
         IReadOnlyList<SkillDefinition>? skills = null,
+        IReadOnlyList<LanguageDefinition>? languages = null,
+        IReadOnlyList<CreatureSizeDefinition>? sizes = null,
         IReadOnlyList<SourceDocument>? sourceDocuments = null)
     {
         var equipment = new EquipmentDefinitionSet(
@@ -208,7 +295,9 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         var creatureVocabulary =
             new CreatureVocabularyDefinitionSet(
                 abilities: abilities,
-                skills: skills ?? []);
+                skills: skills ?? [],
+                languages: languages ?? [],
+                sizes: sizes ?? []);
 
         return new RulesetDefinitionSet(
             sourceDocuments: sourceDocuments ?? [],

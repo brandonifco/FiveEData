@@ -7,6 +7,8 @@ using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
 using FiveEData.Rules.Expenses.Lifestyles.Serialization;
@@ -33,6 +35,9 @@ public sealed class PublicApiBoundaryTests
     {
         Assert.False(typeof(AbilityDefinitionLoader).IsPublic);
         Assert.False(typeof(SkillDefinitionLoader).IsPublic);
+        Assert.False(typeof(LanguageDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(CreatureSizeDefinitionLoader).IsPublic);
         Assert.False(
             typeof(CreatureVocabularyDefinitionSet).IsPublic);
         Assert.False(
@@ -120,6 +125,12 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(8, ruleset.Expenses.FoodAndDrink.Count);
         Assert.Equal(6, ruleset.Expenses.HospitalityCosts.Count);
         Assert.Equal(7, ruleset.Expenses.MundaneServices.Count);
+        Assert.Equal(
+            16,
+            ruleset.CreatureVocabulary.Languages.Count);
+        Assert.Equal(
+            6,
+            ruleset.CreatureVocabulary.Sizes.Count);
         Assert.Equal(90, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }

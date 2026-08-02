@@ -3,6 +3,10 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Creatures.Skills.Serialization;
 
@@ -357,15 +361,351 @@ public sealed class
                     StringComparison.Ordinal));
     }
 
+    [Fact]
+    public void MissingLanguage_IsRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                languages:
+                    canonical.Languages
+                        .Where(
+                            definition =>
+                                definition.Id.Value !=
+                                "dnd5e2014.language.common")
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "must contain exactly 16 definitions; found 15",
+                StringComparison.Ordinal));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "is missing 'dnd5e2014.language.common'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void AlteredLanguageSemantics_AreRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        LanguageDefinition common =
+            canonical.Languages.Single(
+                definition =>
+                    definition.Id.Value ==
+                    "dnd5e2014.language.common");
+
+        var alteredCommon = new LanguageDefinition(
+            common.Id,
+            "Trade Tongue",
+            LanguageCategory.Exotic,
+            common.Sources);
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                languages:
+                    canonical.Languages
+                        .Select(
+                            definition =>
+                                definition.Id == common.Id
+                                    ? alteredCommon
+                                    : definition)
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "must be named 'Common'; found 'Trade Tongue'",
+                StringComparison.Ordinal));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "must have category 'Standard'; found 'Exotic'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void UnexpectedLanguage_IsRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        LanguageDefinition template =
+            canonical.Languages[0];
+
+        var unexpected = new LanguageDefinition(
+            new LanguageId(
+                "dnd5e2014.language.aquan"),
+            "Aquan",
+            LanguageCategory.Exotic,
+            template.Sources);
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                languages:
+                    canonical.Languages
+                        .Append(unexpected)
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "unexpected definition " +
+                "'dnd5e2014.language.aquan'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void AlteredLanguageProvenance_IsRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        LanguageDefinition primordial =
+            canonical.Languages.Single(
+                definition =>
+                    definition.Id.Value ==
+                    "dnd5e2014.language.primordial");
+
+        var alteredPrimordial = new LanguageDefinition(
+            primordial.Id,
+            primordial.Name,
+            primordial.Category,
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 124,
+                    section:
+                        "Chapter 4: Personality and Background — " +
+                        "Languages")
+            ]);
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                languages:
+                    canonical.Languages
+                        .Select(
+                            definition =>
+                                definition.Id == primordial.Id
+                                    ? alteredPrimordial
+                                    : definition)
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "dnd5e2014.language.primordial",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "page 123",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MissingCreatureSize_IsRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                sizes:
+                    canonical.Sizes
+                        .Where(
+                            definition =>
+                                definition.Id.Value !=
+                                "dnd5e2014.creature-size.tiny")
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "must contain exactly 6 definitions; found 5",
+                StringComparison.Ordinal));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "is missing 'dnd5e2014.creature-size.tiny'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void AlteredCreatureSizeName_IsRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        CreatureSizeDefinition medium =
+            canonical.Sizes.Single(
+                definition =>
+                    definition.Id.Value ==
+                    "dnd5e2014.creature-size.medium");
+
+        var alteredMedium = new CreatureSizeDefinition(
+            medium.Id,
+            "Average",
+            medium.Sources);
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                sizes:
+                    canonical.Sizes
+                        .Select(
+                            definition =>
+                                definition.Id == medium.Id
+                                    ? alteredMedium
+                                    : definition)
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "must be named 'Medium'; found 'Average'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void UnexpectedCreatureSize_IsRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        CreatureSizeDefinition template =
+            canonical.Sizes[0];
+
+        var unexpected = new CreatureSizeDefinition(
+            new CreatureSizeId(
+                "dnd5e2014.creature-size.colossal"),
+            "Colossal",
+            template.Sources);
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                sizes:
+                    canonical.Sizes
+                        .Append(unexpected)
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "unexpected definition " +
+                "'dnd5e2014.creature-size.colossal'",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void AlteredCreatureSizeProvenance_IsRejected()
+    {
+        CreatureVocabularyDefinitionSet canonical =
+            LoadCanonical();
+
+        CreatureSizeDefinition gargantuan =
+            canonical.Sizes.Single(
+                definition =>
+                    definition.Id.Value ==
+                    "dnd5e2014.creature-size.gargantuan");
+
+        var alteredGargantuan =
+            new CreatureSizeDefinition(
+                gargantuan.Id,
+                gargantuan.Name,
+                [
+                    new SourceReference(
+                        new SourceDocumentId(
+                            "dnd5e2014.source.phb-first-printing"),
+                        page: 192,
+                        section:
+                            "Chapter 9: Combat — " +
+                            "Movement and Position — Creature Size")
+                ]);
+
+        CreatureVocabularyDefinitionSet altered =
+            CreateVocabulary(
+                canonical,
+                sizes:
+                    canonical.Sizes
+                        .Select(
+                            definition =>
+                                definition.Id == gargantuan.Id
+                                    ? alteredGargantuan
+                                    : definition)
+                        .ToArray());
+
+        IReadOnlyList<string> errors =
+            OfficialCreatureVocabularySemanticValidator.Validate(
+                altered);
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "dnd5e2014.creature-size.gargantuan",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "page 191",
+                    StringComparison.Ordinal));
+    }
+
     private static CreatureVocabularyDefinitionSet
         CreateVocabulary(
             CreatureVocabularyDefinitionSet canonical,
             IReadOnlyList<AbilityDefinition>? abilities = null,
-            IReadOnlyList<SkillDefinition>? skills = null)
+            IReadOnlyList<SkillDefinition>? skills = null,
+            IReadOnlyList<LanguageDefinition>? languages = null,
+            IReadOnlyList<CreatureSizeDefinition>? sizes = null)
     {
         return new CreatureVocabularyDefinitionSet(
             abilities: abilities ?? canonical.Abilities,
-            skills: skills ?? canonical.Skills);
+            skills: skills ?? canonical.Skills,
+            languages: languages ?? canonical.Languages,
+            sizes: sizes ?? canonical.Sizes);
     }
 
     private static CreatureVocabularyDefinitionSet
@@ -377,7 +717,13 @@ public sealed class
                     DataPath("abilities.json")),
             skills:
                 SkillDefinitionLoader.LoadFromFile(
-                    DataPath("skills.json")));
+                    DataPath("skills.json")),
+            languages:
+                LanguageDefinitionLoader.LoadFromFile(
+                    DataPath("languages.json")),
+            sizes:
+                CreatureSizeDefinitionLoader.LoadFromFile(
+                    DataPath("creature-sizes.json")));
     }
 
     private static string DataPath(string fileName)

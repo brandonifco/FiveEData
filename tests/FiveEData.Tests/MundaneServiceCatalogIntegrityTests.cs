@@ -301,6 +301,8 @@ public sealed class MundaneServiceCatalogIntegrityTests
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
                     abilities: [],
-                    skills: []));
+                    skills: [],
+                    languages: [],
+                    sizes: []));
     }
 }

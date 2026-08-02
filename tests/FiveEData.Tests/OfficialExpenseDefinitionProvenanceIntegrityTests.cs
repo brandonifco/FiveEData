@@ -1,5 +1,7 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -450,7 +452,13 @@ public sealed class
                             DataPath("abilities.json")),
                     skills:
                         SkillDefinitionLoader.LoadFromFile(
-                            DataPath("skills.json"))));
+                            DataPath("skills.json")),
+                    languages:
+                        LanguageDefinitionLoader.LoadFromFile(
+                            DataPath("languages.json")),
+                    sizes:
+                        CreatureSizeDefinitionLoader.LoadFromFile(
+                            DataPath("creature-sizes.json"))));
     }
 
     private static string DataPath(string fileName)

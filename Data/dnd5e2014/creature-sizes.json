@@ -1,0 +1,68 @@
+[
+  {
+    "id": "dnd5e2014.creature-size.tiny",
+    "name": "Tiny",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 191,
+        "section": "Chapter 9: Combat — Movement and Position — Creature Size"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.creature-size.small",
+    "name": "Small",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 191,
+        "section": "Chapter 9: Combat — Movement and Position — Creature Size"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.creature-size.medium",
+    "name": "Medium",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 191,
+        "section": "Chapter 9: Combat — Movement and Position — Creature Size"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.creature-size.large",
+    "name": "Large",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 191,
+        "section": "Chapter 9: Combat — Movement and Position — Creature Size"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.creature-size.huge",
+    "name": "Huge",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 191,
+        "section": "Chapter 9: Combat — Movement and Position — Creature Size"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.creature-size.gargantuan",
+    "name": "Gargantuan",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 191,
+        "section": "Chapter 9: Combat — Movement and Position — Creature Size"
+      }
+    ]
+  }
+]

@@ -1,0 +1,194 @@
+[
+  {
+    "id": "dnd5e2014.language.common",
+    "name": "Common",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.dwarvish",
+    "name": "Dwarvish",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.elvish",
+    "name": "Elvish",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.giant",
+    "name": "Giant",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.gnomish",
+    "name": "Gnomish",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.goblin",
+    "name": "Goblin",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.halfling",
+    "name": "Halfling",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.orc",
+    "name": "Orc",
+    "category": "Standard",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.abyssal",
+    "name": "Abyssal",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.celestial",
+    "name": "Celestial",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.draconic",
+    "name": "Draconic",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.deep-speech",
+    "name": "Deep Speech",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.infernal",
+    "name": "Infernal",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.primordial",
+    "name": "Primordial",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.sylvan",
+    "name": "Sylvan",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.language.undercommon",
+    "name": "Undercommon",
+    "category": "Exotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 123,
+        "section": "Chapter 4: Personality and Background — Languages"
+      }
+    ]
+  }
+]

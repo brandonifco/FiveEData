@@ -5,6 +5,10 @@ using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Equipment.Ammunition;
@@ -49,6 +53,12 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string SkillsResource =
         "FiveEData.Data.dnd5e2014.skills.json";
+
+    private const string LanguagesResource =
+        "FiveEData.Data.dnd5e2014.languages.json";
+
+    private const string CreatureSizesResource =
+        "FiveEData.Data.dnd5e2014.creature-sizes.json";
 
     private const string AmmunitionResource =
         "FiveEData.Data.dnd5e2014.ammunition.json";
@@ -122,6 +132,16 @@ internal static class Dnd5e2014RulesetLoader
             SkillDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
                     SkillsResource));
+
+        IReadOnlyList<LanguageDefinition> languages =
+            LanguageDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    LanguagesResource));
+
+        IReadOnlyList<CreatureSizeDefinition> sizes =
+            CreatureSizeDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    CreatureSizesResource));
 
         IReadOnlyList<AmmunitionDefinition> ammunition =
             AmmunitionDefinitionLoader.LoadFromJson(
@@ -227,7 +247,9 @@ internal static class Dnd5e2014RulesetLoader
         var creatureVocabulary =
             new CreatureVocabularyDefinitionSet(
                 abilities: abilities,
-                skills: skills);
+                skills: skills,
+                languages: languages,
+                sizes: sizes);
 
         var definitions = new RulesetDefinitionSet(
             sourceDocuments: sources,
@@ -265,7 +287,9 @@ internal static class Dnd5e2014RulesetLoader
             creatureVocabulary:
                 new CreatureVocabularyCatalogs(
                     abilities: new AbilityCatalog(abilities),
-                    skills: new SkillCatalog(skills)),
+                    skills: new SkillCatalog(skills),
+                    languages: new LanguageCatalog(languages),
+                    sizes: new CreatureSizeCatalog(sizes)),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

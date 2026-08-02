@@ -4,6 +4,8 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
@@ -26,6 +28,9 @@ public sealed class DomainApiSemanticsTests
     {
         AssertNoPublicConstructors(typeof(AbilityDefinition));
         AssertNoPublicConstructors(typeof(SkillDefinition));
+        AssertNoPublicConstructors(typeof(LanguageDefinition));
+        AssertNoPublicConstructors(
+            typeof(CreatureSizeDefinition));
         AssertNoPublicConstructors(typeof(WeaponDefinition));
         AssertNoPublicConstructors(typeof(AmmunitionDefinition));
         AssertNoPublicConstructors(typeof(AdventuringGearDefinition));
@@ -49,6 +54,8 @@ public sealed class DomainApiSemanticsTests
     {
         AssertNoPublicConstructors(typeof(AbilityCatalog));
         AssertNoPublicConstructors(typeof(SkillCatalog));
+        AssertNoPublicConstructors(typeof(LanguageCatalog));
+        AssertNoPublicConstructors(typeof(CreatureSizeCatalog));
         AssertNoPublicConstructors(
             typeof(CreatureVocabularyCatalogs));
         AssertNoPublicConstructors(typeof(WeaponCatalog));
@@ -97,6 +104,12 @@ public sealed class DomainApiSemanticsTests
         Assert.Same(
             first.CreatureVocabulary.Skills,
             second.CreatureVocabulary.Skills);
+        Assert.Same(
+            first.CreatureVocabulary.Languages,
+            second.CreatureVocabulary.Languages);
+        Assert.Same(
+            first.CreatureVocabulary.Sizes,
+            second.CreatureVocabulary.Sizes);
         Assert.Same(first.Rules, second.Rules);
         Assert.Same(first.Sources, second.Sources);
     }
