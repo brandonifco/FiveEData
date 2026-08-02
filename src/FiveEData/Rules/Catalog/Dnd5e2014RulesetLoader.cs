@@ -29,6 +29,8 @@ using FiveEData.Rules.Expenses.FoodAndLodging;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
 using FiveEData.Rules.Expenses.Lifestyles;
 using FiveEData.Rules.Expenses.Lifestyles.Serialization;
+using FiveEData.Rules.Expenses.Services;
+using FiveEData.Rules.Expenses.Services.Serialization;
 
 namespace FiveEData.Rules.Catalog;
 
@@ -87,6 +89,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string HospitalityCostsResource =
         "FiveEData.Data.dnd5e2014.lifestyle-hospitality-costs.json";
+
+    private const string MundaneServicesResource =
+        "FiveEData.Data.dnd5e2014.mundane-services.json";
 
     private const string RulesResource =
         "FiveEData.Data.dnd5e2014.rules.json";
@@ -167,6 +172,11 @@ internal static class Dnd5e2014RulesetLoader
                     EmbeddedDataReader.ReadRequiredText(
                         HospitalityCostsResource));
 
+        IReadOnlyList<MundaneServiceDefinition> mundaneServices =
+            MundaneServiceDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    MundaneServicesResource));
+
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(RulesResource));
@@ -190,7 +200,8 @@ internal static class Dnd5e2014RulesetLoader
         var expenses = new ExpenseDefinitionSet(
             lifestyles: lifestyles,
             foodAndDrink: foodAndDrink,
-            hospitalityCosts: hospitalityCosts);
+            hospitalityCosts: hospitalityCosts,
+            mundaneServices: mundaneServices);
 
         var definitions = new RulesetDefinitionSet(
             sourceDocuments: sources,
@@ -220,7 +231,10 @@ internal static class Dnd5e2014RulesetLoader
                 foodAndDrink: new FoodDrinkCatalog(foodAndDrink),
                 hospitalityCosts:
                     new LifestyleHospitalityCostCatalog(
-                        hospitalityCosts)),
+                        hospitalityCosts),
+                mundaneServices:
+                    new MundaneServiceCatalog(
+                        mundaneServices)),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

@@ -4,6 +4,8 @@ using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
 using FiveEData.Rules.Expenses.Lifestyles.Serialization;
+using FiveEData.Rules.Expenses.Services;
+using FiveEData.Rules.Expenses.Services.Serialization;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
 using FiveEData.Rules.Equipment.AdventuringGear.Serialization;
 using FiveEData.Rules.Equipment.Armor.Serialization;
@@ -36,6 +38,9 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(FoodDrinkDefinitionLoader).IsPublic);
         Assert.False(typeof(LifestyleHospitalityCostDefinitionLoader).IsPublic);
         Assert.False(typeof(LifestyleDefinitionLoader).IsPublic);
+        Assert.False(typeof(MundaneServiceDefinitionLoader).IsPublic);
+        Assert.False(typeof(MundaneServiceCatalogIntegrityValidator).IsPublic);
+        Assert.False(typeof(OfficialMundaneServiceSemanticValidator).IsPublic);
         Assert.False(typeof(VehicleDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorDefinitionLoader).IsPublic);
         Assert.False(typeof(ArmorUsageRulesLoader).IsPublic);
@@ -86,7 +91,8 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(7, ruleset.Expenses.Lifestyles.Count);
         Assert.Equal(8, ruleset.Expenses.FoodAndDrink.Count);
         Assert.Equal(6, ruleset.Expenses.HospitalityCosts.Count);
-        Assert.Equal(82, ruleset.Rules.Count);
+        Assert.Equal(7, ruleset.Expenses.MundaneServices.Count);
+        Assert.Equal(90, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
 }

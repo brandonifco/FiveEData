@@ -210,7 +210,8 @@ public sealed class
         var expenses = new ExpenseDefinitionSet(
             lifestyles: lifestyles ?? [],
             foodAndDrink: [],
-            hospitalityCosts: [hospitality]);
+            hospitalityCosts: [hospitality],
+            mundaneServices: []);
 
         return new RulesetDefinitionSet(
             sourceDocuments: sources ?? [],

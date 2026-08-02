@@ -7,15 +7,18 @@ public sealed class ExpenseCatalogs
     internal ExpenseCatalogs(
         LifestyleCatalog lifestyles,
         FoodDrinkCatalog foodAndDrink,
-        LifestyleHospitalityCostCatalog hospitalityCosts)
+        LifestyleHospitalityCostCatalog hospitalityCosts,
+        MundaneServiceCatalog mundaneServices)
     {
         ArgumentNullException.ThrowIfNull(lifestyles);
         ArgumentNullException.ThrowIfNull(foodAndDrink);
         ArgumentNullException.ThrowIfNull(hospitalityCosts);
+        ArgumentNullException.ThrowIfNull(mundaneServices);
 
         Lifestyles = lifestyles;
         FoodAndDrink = foodAndDrink;
         HospitalityCosts = hospitalityCosts;
+        MundaneServices = mundaneServices;
     }
 
     public LifestyleCatalog Lifestyles { get; }
@@ -25,4 +28,6 @@ public sealed class ExpenseCatalogs
     {
         get;
     }
+
+    public MundaneServiceCatalog MundaneServices { get; }
 }

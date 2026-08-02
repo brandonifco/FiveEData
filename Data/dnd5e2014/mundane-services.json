@@ -1,0 +1,140 @@
+[
+  {
+    "id": "dnd5e2014.mundane-service.coach-between-towns",
+    "name": "Coach cab, between towns",
+    "cost": {
+      "amount": {
+        "copperPieces": 3
+      },
+      "kind": "Exact"
+    },
+    "pricingUnit": "Mile",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mundane-service.coach-within-city",
+    "name": "Coach cab, within a city",
+    "cost": {
+      "amount": {
+        "copperPieces": 1
+      },
+      "kind": "Exact"
+    },
+    "pricingUnit": "Flat",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mundane-service.hireling-skilled",
+    "name": "Hireling, skilled",
+    "cost": {
+      "amount": {
+        "copperPieces": 200
+      },
+      "kind": "Minimum"
+    },
+    "pricingUnit": "Day",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.skilled-hireling-proficiency-service",
+      "dnd5e2014.expense-rule.skilled-hireling-pay-minimum"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mundane-service.hireling-untrained",
+    "name": "Hireling, untrained",
+    "cost": {
+      "amount": {
+        "copperPieces": 20
+      },
+      "kind": "Exact"
+    },
+    "pricingUnit": "Day",
+    "specialRuleIds": [
+      "dnd5e2014.expense-rule.untrained-hireling-menial-work"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mundane-service.messenger",
+    "name": "Messenger",
+    "cost": {
+      "amount": {
+        "copperPieces": 2
+      },
+      "kind": "Exact"
+    },
+    "pricingUnit": "Mile",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mundane-service.road-or-gate-toll",
+    "name": "Road or gate toll",
+    "cost": {
+      "amount": {
+        "copperPieces": 1
+      },
+      "kind": "Exact"
+    },
+    "pricingUnit": "Flat",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.mundane-service.ship-passage",
+    "name": "Ship's passage",
+    "cost": {
+      "amount": {
+        "copperPieces": 10
+      },
+      "kind": "Exact"
+    },
+    "pricingUnit": "Mile",
+    "specialRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  }
+]

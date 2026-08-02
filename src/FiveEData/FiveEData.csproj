@@ -61,6 +61,9 @@
       Include="../../Data/dnd5e2014/lifestyle-hospitality-costs.json"
       LogicalName="FiveEData.Data.dnd5e2014.lifestyle-hospitality-costs.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/mundane-services.json"
+      LogicalName="FiveEData.Data.dnd5e2014.mundane-services.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/rules.json"
       LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
   </ItemGroup>

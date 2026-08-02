@@ -211,7 +211,8 @@ public sealed class ExpenseRuleAssociationIntegrityTests
         var expenses = new ExpenseDefinitionSet(
             lifestyles: [CreateLifestyle()],
             foodAndDrink: foodAndDrink ?? [],
-            hospitalityCosts: hospitalityCosts ?? []);
+            hospitalityCosts: hospitalityCosts ?? [],
+            mundaneServices: []);
 
         return new RulesetDefinitionSet(
             sourceDocuments:

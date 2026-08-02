@@ -917,7 +917,9 @@ public sealed class CatalogIntegrityTests
         Assert.Contains(
             errors,
             error => error.Contains(
-                $"Mount support '{militarySaddle.Id}' is missing required rule association '{rules.MilitarySaddleRuleId}'",
+                $"Mount support '{militarySaddle.Id}' is missing " +
+                "required rule association " +
+                $"'{rules.MilitarySaddleRuleId}'",
                 StringComparison.Ordinal));
         Assert.Contains(
             errors,
@@ -1233,7 +1235,8 @@ public sealed class CatalogIntegrityTests
         var expenses = new ExpenseDefinitionSet(
             lifestyles: [],
             foodAndDrink: [],
-            hospitalityCosts: []);
+            hospitalityCosts: [],
+            mundaneServices: []);
 
         return new RulesetDefinitionSet(
             sourceDocuments: sourceDocuments ?? [],

@@ -14,6 +14,7 @@ using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Expenses;
 using FiveEData.Rules.Expenses.FoodAndLodging;
 using FiveEData.Rules.Expenses.Lifestyles;
+using FiveEData.Rules.Expenses.Services;
 
 namespace FiveEData.Rules.Catalog;
 
@@ -374,6 +375,12 @@ internal static class CatalogIntegrityValidator
                 errors);
         }
 
+        errors.AddRange(
+            MundaneServiceCatalogIntegrityValidator.Validate(
+                definitions.Expenses.MundaneServices,
+                sourceIds,
+                ruleIds));
+
         if (definitions.Equipment.MountVehicleRules is not null)
         {
             ValidateSources(
@@ -473,7 +480,9 @@ internal static class CatalogIntegrityValidator
         if (rules.RowboatVehicleId != RowboatVehicleId)
         {
             errors.Add(
-                $"Mount and vehicle rules rowboat vehicle ID must be '{RowboatVehicleId}', but was '{rules.RowboatVehicleId}'.");
+                "Mount and vehicle rules rowboat vehicle ID must be " +
+                $"'{RowboatVehicleId}', but was " +
+                $"'{rules.RowboatVehicleId}'.");
         }
 
         VehicleDefinition? rowboat = definitions.Equipment.Vehicles.FirstOrDefault(
@@ -616,7 +625,8 @@ internal static class CatalogIntegrityValidator
         errors.AddRange(
             OfficialExpenseSemanticValidator.Validate(
                 definitions.Expenses.FoodAndDrink,
-                definitions.Expenses.HospitalityCosts));
+                definitions.Expenses.HospitalityCosts,
+                definitions.Expenses.MundaneServices));
 
         if (errors.Count == 0)
         {

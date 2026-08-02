@@ -1,5 +1,6 @@
 using FiveEData.Rules.Expenses.FoodAndLodging;
 using FiveEData.Rules.Expenses.Lifestyles;
+using FiveEData.Rules.Expenses.Services;
 
 namespace FiveEData.Rules.Expenses;
 
@@ -96,10 +97,13 @@ internal static class OfficialExpenseSemanticValidator
     public static IReadOnlyList<string> Validate(
         IReadOnlyList<FoodDrinkDefinition> foodAndDrink,
         IReadOnlyList<LifestyleHospitalityCostDefinition>
-            hospitalityCosts)
+            hospitalityCosts,
+        IReadOnlyList<MundaneServiceDefinition>
+            mundaneServices)
     {
         ArgumentNullException.ThrowIfNull(foodAndDrink);
         ArgumentNullException.ThrowIfNull(hospitalityCosts);
+        ArgumentNullException.ThrowIfNull(mundaneServices);
 
         var errors = new List<string>();
 
@@ -110,6 +114,10 @@ internal static class OfficialExpenseSemanticValidator
         ValidateOfficialHospitalitySemantics(
             hospitalityCosts,
             errors);
+
+        errors.AddRange(
+            OfficialMundaneServiceSemanticValidator.Validate(
+                mundaneServices));
 
         return errors;
     }

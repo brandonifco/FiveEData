@@ -915,5 +915,93 @@
         "section": "Chapter 5: Equipment — Expenses — Self-Sufficiency"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.skilled-hireling-proficiency-service",
+    "name": "Skilled hirelings perform services involving a weapon, tool, or skill proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.skilled-hireling-pay-minimum",
+    "name": "Listed skilled-hireling pay is a minimum and experts can require more",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.untrained-hireling-menial-work",
+    "name": "Untrained hirelings perform menial work requiring no particular skill",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-not-ordinary-hirelings",
+    "name": "Spellcasters offering services are not ordinary hirelings",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-no-established-rates",
+    "name": "Spellcasting services have no established pay rates",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-level-affects-access-and-cost",
+    "name": "Higher-level spellcasting services are harder to find and cost more",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-common-low-level-cost",
+    "name": "Common 1st- or 2nd-level spellcasting services may cost 10 to 50 gp plus expensive materials",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-higher-level-travel-or-service",
+    "name": "Higher-level spellcasting services may require travel or an adventuring service",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
   }
 ]

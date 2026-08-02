@@ -11,9 +11,9 @@ public sealed class ExpenseRuleDataFileTests
     {
         IReadOnlyList<RuleDefinition> rules = LoadCanonical();
 
-        Assert.Equal(82, rules.Count);
+        Assert.Equal(90, rules.Count);
         Assert.Equal(
-            82,
+            90,
             rules.Select(rule => rule.Id).Distinct().Count());
     }
 

@@ -5,6 +5,8 @@ using FiveEData.Rules.Expenses.FoodAndLodging;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
 using FiveEData.Rules.Expenses.Lifestyles;
 using FiveEData.Rules.Expenses.Lifestyles.Serialization;
+using FiveEData.Rules.Expenses.Services;
+using FiveEData.Rules.Expenses.Services.Serialization;
 
 namespace FiveEData.Tests;
 
@@ -18,7 +20,8 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         Assert.Empty(
             OfficialExpenseSemanticValidator.Validate(
                 expenses.FoodAndDrink,
-                expenses.HospitalityCosts));
+                expenses.HospitalityCosts,
+                expenses.MundaneServices));
     }
 
     [Fact]
@@ -40,7 +43,8 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
                 altered.FoodAndDrink,
-                altered.HospitalityCosts);
+                altered.HospitalityCosts,
+                altered.MundaneServices);
 
         Assert.Contains(
             errors,
@@ -89,7 +93,8 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
                 altered.FoodAndDrink,
-                altered.HospitalityCosts);
+                altered.HospitalityCosts,
+                altered.MundaneServices);
 
         Assert.Contains(
             errors,
@@ -138,7 +143,8 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
                 altered.FoodAndDrink,
-                altered.HospitalityCosts);
+                altered.HospitalityCosts,
+                altered.MundaneServices);
 
         Assert.Contains(
             errors,
@@ -183,7 +189,8 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
                 altered.FoodAndDrink,
-                altered.HospitalityCosts);
+                altered.HospitalityCosts,
+                altered.MundaneServices);
 
         Assert.Contains(
             errors,
@@ -226,7 +233,8 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
                 altered.FoodAndDrink,
-                altered.HospitalityCosts);
+                altered.HospitalityCosts,
+                altered.MundaneServices);
 
         Assert.Contains(
             errors,
@@ -255,7 +263,8 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         IReadOnlyList<string> errors =
             OfficialExpenseSemanticValidator.Validate(
                 altered.FoodAndDrink,
-                altered.HospitalityCosts);
+                altered.HospitalityCosts,
+                altered.MundaneServices);
 
         Assert.Contains(
             errors,
@@ -276,12 +285,20 @@ public sealed class OfficialExpenseSemanticIntegrityTests
         IReadOnlyList<FoodDrinkDefinition>? foodAndDrink = null,
         IReadOnlyList<
             LifestyleHospitalityCostDefinition>?
-                hospitalityCosts = null)
+                hospitalityCosts = null,
+        IReadOnlyList<MundaneServiceDefinition>?
+            mundaneServices = null)
     {
         return new ExpenseDefinitionSet(
-            canonical.Lifestyles,
-            foodAndDrink ?? canonical.FoodAndDrink,
-            hospitalityCosts ?? canonical.HospitalityCosts);
+            lifestyles: canonical.Lifestyles,
+            foodAndDrink:
+                foodAndDrink ?? canonical.FoodAndDrink,
+            hospitalityCosts:
+                hospitalityCosts ??
+                canonical.HospitalityCosts,
+            mundaneServices:
+                mundaneServices ??
+                canonical.MundaneServices);
     }
 
     private static ExpenseDefinitionSet LoadCanonical()
@@ -315,10 +332,20 @@ public sealed class OfficialExpenseSemanticIntegrityTests
                                 "dnd5e2014",
                                 "lifestyle-hospitality-costs.json"));
 
+        IReadOnlyList<MundaneServiceDefinition>
+            mundaneServices =
+                MundaneServiceDefinitionLoader.LoadFromFile(
+                    Path.Combine(
+                        root,
+                        "Data",
+                        "dnd5e2014",
+                        "mundane-services.json"));
+
         return new ExpenseDefinitionSet(
-            lifestyles,
-            foodAndDrink,
-            hospitalityCosts);
+            lifestyles: lifestyles,
+            foodAndDrink: foodAndDrink,
+            hospitalityCosts: hospitalityCosts,
+            mundaneServices: mundaneServices);
     }
 
     private static string FindRepositoryRoot()

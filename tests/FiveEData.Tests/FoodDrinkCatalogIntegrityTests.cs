@@ -142,7 +142,8 @@ public sealed class FoodDrinkCatalogIntegrityTests
         var expenses = new ExpenseDefinitionSet(
             lifestyles: [],
             foodAndDrink: [definition],
-            hospitalityCosts: []);
+            hospitalityCosts: [],
+            mundaneServices: []);
 
         return new RulesetDefinitionSet(
             sourceDocuments: sources ?? [],
