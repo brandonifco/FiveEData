@@ -133,6 +133,134 @@ public sealed class WeaponDefinitionValidatorTests
     }
 
     [Fact]
+    public void DefaultWeaponId_IsRejected()
+    {
+        WeaponDefinition weapon = CreateWeapon(
+            typedId: default(WeaponId));
+
+        IReadOnlyList<string> errors =
+            WeaponDefinitionValidator.Validate(weapon);
+
+        Assert.Contains(
+            "Weapon ID must not be empty.",
+            errors);
+    }
+
+    [Fact]
+    public void UndefinedProficiencyCategory_IsRejected()
+    {
+        WeaponDefinition weapon = CreateWeapon(
+            proficiencyCategory:
+                (WeaponProficiencyCategory)999);
+
+        IReadOnlyList<string> errors =
+            WeaponDefinitionValidator.Validate(weapon);
+
+        Assert.Contains(
+            "Weapon proficiency category must be defined.",
+            errors);
+    }
+
+    [Fact]
+    public void UndefinedUsageCategory_IsRejected()
+    {
+        WeaponDefinition weapon = CreateWeapon(
+            usageCategory:
+                (WeaponUsageCategory)999);
+
+        IReadOnlyList<string> errors =
+            WeaponDefinitionValidator.Validate(weapon);
+
+        Assert.Contains(
+            "Weapon usage category must be defined.",
+            errors);
+    }
+
+    [Fact]
+    public void UndefinedWeaponProperty_IsRejected()
+    {
+        WeaponDefinition weapon = CreateWeapon(
+            properties: SetOf((WeaponProperty)999));
+
+        IReadOnlyList<string> errors =
+            WeaponDefinitionValidator.Validate(weapon);
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Weapon property value '999' must be defined.",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void DefaultAmmunitionTypeId_WhenPresent_IsRejected()
+    {
+        WeaponDefinition weapon = CreateWeapon(
+            ammunitionTypeId: default(AmmunitionTypeId));
+
+        IReadOnlyList<string> errors =
+            WeaponDefinitionValidator.Validate(weapon);
+
+        Assert.Contains(
+            "Weapon ammunition type ID must not be empty " +
+            "when specified.",
+            errors);
+    }
+
+    [Fact]
+    public void DefaultSpecialRuleId_IsRejected()
+    {
+        WeaponDefinition weapon = CreateWeapon(
+            specialRuleIds: SetOf(default(RuleId)));
+
+        IReadOnlyList<string> errors =
+            WeaponDefinitionValidator.Validate(weapon);
+
+        Assert.Contains(
+            "Weapon special rule ID must not be empty.",
+            errors);
+    }
+
+    [Fact]
+    public void MultipleLocalInvariantErrors_AreReturnedTogether()
+    {
+        WeaponDefinition weapon = CreateWeapon(
+            typedId: default(WeaponId),
+            proficiencyCategory:
+                (WeaponProficiencyCategory)999,
+            usageCategory:
+                (WeaponUsageCategory)999,
+            properties: SetOf((WeaponProperty)999),
+            ammunitionTypeId: default(AmmunitionTypeId),
+            specialRuleIds: SetOf(default(RuleId)));
+
+        IReadOnlyList<string> errors =
+            WeaponDefinitionValidator.Validate(weapon);
+
+        Assert.Contains(
+            "Weapon ID must not be empty.",
+            errors);
+        Assert.Contains(
+            "Weapon proficiency category must be defined.",
+            errors);
+        Assert.Contains(
+            "Weapon usage category must be defined.",
+            errors);
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Weapon property value '999' must be defined.",
+                StringComparison.Ordinal));
+        Assert.Contains(
+            "Weapon ammunition type ID must not be empty " +
+            "when specified.",
+            errors);
+        Assert.Contains(
+            "Weapon special rule ID must not be empty.",
+            errors);
+    }
+
+    [Fact]
     public void ThrownWithoutRange_IsRejected()
     {
         WeaponDefinition weapon = CreateWeapon(
@@ -231,6 +359,7 @@ public sealed class WeaponDefinitionValidatorTests
 
     private static WeaponDefinition CreateWeapon(
         string id = "dnd5e2014.weapon.test",
+        WeaponId? typedId = null,
         string name = "Test Weapon",
         WeaponProficiencyCategory proficiencyCategory =
             WeaponProficiencyCategory.Simple,
@@ -245,7 +374,7 @@ public sealed class WeaponDefinitionValidatorTests
         IReadOnlySet<RuleId>? specialRuleIds = null)
     {
         return new WeaponDefinition(
-            new WeaponId(id),
+            typedId ?? new WeaponId(id),
             name,
             proficiencyCategory,
             usageCategory,

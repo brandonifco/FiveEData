@@ -8,6 +8,11 @@ internal static class AmmunitionDefinitionValidator
 
         var errors = new List<string>();
 
+        if (string.IsNullOrWhiteSpace(ammunition.Id.Value))
+        {
+            errors.Add("Ammunition ID must not be empty.");
+        }
+
         if (string.IsNullOrWhiteSpace(ammunition.Name))
         {
             errors.Add("Ammunition name must not be empty.");

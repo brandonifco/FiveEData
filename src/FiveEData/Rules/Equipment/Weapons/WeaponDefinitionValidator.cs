@@ -1,3 +1,5 @@
+using FiveEData.Rules.Common;
+
 namespace FiveEData.Rules.Equipment.Weapons;
 
 internal static class WeaponDefinitionValidator
@@ -7,6 +9,32 @@ internal static class WeaponDefinitionValidator
         ArgumentNullException.ThrowIfNull(weapon);
 
         var errors = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(weapon.Id.Value))
+        {
+            errors.Add("Weapon ID must not be empty.");
+        }
+
+        if (!Enum.IsDefined(weapon.ProficiencyCategory))
+        {
+            errors.Add(
+                "Weapon proficiency category must be defined.");
+        }
+
+        if (!Enum.IsDefined(weapon.UsageCategory))
+        {
+            errors.Add("Weapon usage category must be defined.");
+        }
+
+        foreach (WeaponProperty property in weapon.Properties)
+        {
+            if (!Enum.IsDefined(property))
+            {
+                errors.Add(
+                    $"Weapon property value '{property}' " +
+                    "must be defined.");
+            }
+        }
 
         if (string.IsNullOrWhiteSpace(weapon.Name))
         {
@@ -49,6 +77,14 @@ internal static class WeaponDefinitionValidator
         {
             errors.Add(
                 "For a D&D 5e 2014 weapon, long range must be greater than normal range.");
+        }
+
+        if (weapon.AmmunitionTypeId is { } ammunitionTypeId &&
+            string.IsNullOrWhiteSpace(ammunitionTypeId.Value))
+        {
+            errors.Add(
+                "Weapon ammunition type ID must not be empty " +
+                "when specified.");
         }
 
         if (hasAmmunition && weapon.AmmunitionTypeId is null)
@@ -100,6 +136,15 @@ internal static class WeaponDefinitionValidator
         {
             errors.Add(
                 "A versatile weapon must define ordinary dice-based weapon damage.");
+        }
+
+        foreach (RuleId ruleId in weapon.SpecialRuleIds)
+        {
+            if (string.IsNullOrWhiteSpace(ruleId.Value))
+            {
+                errors.Add(
+                    "Weapon special rule ID must not be empty.");
+            }
         }
 
         if (hasSpecial && weapon.SpecialRuleIds.Count == 0)
