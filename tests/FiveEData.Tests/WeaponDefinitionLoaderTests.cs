@@ -403,6 +403,61 @@ public sealed class WeaponDefinitionLoaderTests
     }
 
     [Fact]
+    public void LoadFromJson_AcceptsDistinctSpecialRuleIds()
+    {
+        const string json = """
+        [
+          {
+            "id": "dnd5e2014.weapon.distinct-rules",
+            "name": "Distinct Rules",
+            "proficiencyCategory": "Martial",
+            "usageCategory": "Melee",
+            "cost": null,
+            "weight": null,
+            "damage": {
+              "dice": {
+                "count": 1,
+                "sides": 8
+              },
+              "fixedAmount": 0,
+              "type": "Piercing"
+            },
+            "properties": [
+              "Special"
+            ],
+            "range": null,
+            "versatileDamage": null,
+            "ammunitionTypeId": null,
+            "specialRuleIds": [
+              "dnd5e2014.weapon-rule.first",
+              "dnd5e2014.weapon-rule.second"
+            ],
+            "sources": [
+              {
+                "documentId":
+                  "dnd5e2014.source.phb-first-printing",
+                "page": 149,
+                "section":
+                  "Chapter 5: Equipment — Weapons"
+              }
+            ]
+          }
+        ]
+        """;
+
+        WeaponDefinition weapon =
+            Assert.Single(WeaponDefinitionLoader.LoadFromJson(json));
+
+        Assert.Equal(2, weapon.SpecialRuleIds.Count);
+        Assert.Contains(
+            new RuleId("dnd5e2014.weapon-rule.first"),
+            weapon.SpecialRuleIds);
+        Assert.Contains(
+            new RuleId("dnd5e2014.weapon-rule.second"),
+            weapon.SpecialRuleIds);
+    }
+
+    [Fact]
     public void LoadFromJson_NullArrayElement_IsRejectedAsDataError()
     {
         InvalidDataException exception = Assert.Throws<InvalidDataException>(
