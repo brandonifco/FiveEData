@@ -273,6 +273,136 @@ public sealed class WeaponDefinitionLoaderTests
     }
 
     [Fact]
+    public void LoadFromJson_RejectsDuplicateWeaponProperties()
+    {
+        const string json = """
+        [
+          {
+            "id": "dnd5e2014.weapon.duplicate-properties",
+            "name": "Duplicate Properties",
+            "proficiencyCategory": "Simple",
+            "usageCategory": "Melee",
+            "cost": null,
+            "weight": null,
+            "damage": {
+              "dice": {
+                "count": 1,
+                "sides": 4
+              },
+              "fixedAmount": 0,
+              "type": "Piercing"
+            },
+            "properties": [
+              "Thrown",
+              "Thrown"
+            ],
+            "range": {
+              "normalFeet": 20,
+              "longFeet": 60
+            },
+            "versatileDamage": null,
+            "ammunitionTypeId": null,
+            "specialRuleIds": [],
+            "sources": [
+              {
+                "documentId":
+                  "dnd5e2014.source.phb-first-printing",
+                "page": 149,
+                "section":
+                  "Chapter 5: Equipment — Weapons"
+              }
+            ]
+          }
+        ]
+        """;
+
+        InvalidDataException exception =
+            Assert.Throws<InvalidDataException>(
+                () =>
+                    WeaponDefinitionLoader.LoadFromJson(
+                        json));
+
+        Assert.Contains(
+            "dnd5e2014.weapon.duplicate-properties",
+            exception.Message,
+            StringComparison.Ordinal);
+
+        ArgumentException inner =
+            Assert.IsType<ArgumentException>(
+                exception.InnerException);
+
+        Assert.Contains(
+            "Weapon property 'Thrown' is duplicated.",
+            inner.Message,
+            StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void LoadFromJson_RejectsDuplicateSpecialRuleIds()
+    {
+        const string json = """
+        [
+          {
+            "id": "dnd5e2014.weapon.duplicate-rules",
+            "name": "Duplicate Rules",
+            "proficiencyCategory": "Martial",
+            "usageCategory": "Melee",
+            "cost": null,
+            "weight": null,
+            "damage": {
+              "dice": {
+                "count": 1,
+                "sides": 8
+              },
+              "fixedAmount": 0,
+              "type": "Piercing"
+            },
+            "properties": [
+              "Special"
+            ],
+            "range": null,
+            "versatileDamage": null,
+            "ammunitionTypeId": null,
+            "specialRuleIds": [
+              "dnd5e2014.weapon-rule.test",
+              "dnd5e2014.weapon-rule.test"
+            ],
+            "sources": [
+              {
+                "documentId":
+                  "dnd5e2014.source.phb-first-printing",
+                "page": 149,
+                "section":
+                  "Chapter 5: Equipment — Weapons"
+              }
+            ]
+          }
+        ]
+        """;
+
+        InvalidDataException exception =
+            Assert.Throws<InvalidDataException>(
+                () =>
+                    WeaponDefinitionLoader.LoadFromJson(
+                        json));
+
+        Assert.Contains(
+            "dnd5e2014.weapon.duplicate-rules",
+            exception.Message,
+            StringComparison.Ordinal);
+
+        ArgumentException inner =
+            Assert.IsType<ArgumentException>(
+                exception.InnerException);
+
+        Assert.Contains(
+            "Weapon special-rule ID " +
+            "'dnd5e2014.weapon-rule.test' is duplicated.",
+            inner.Message,
+            StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void LoadFromJson_NullArrayElement_IsRejectedAsDataError()
     {
         InvalidDataException exception = Assert.Throws<InvalidDataException>(

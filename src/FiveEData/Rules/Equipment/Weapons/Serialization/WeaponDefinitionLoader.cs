@@ -86,6 +86,8 @@ internal static class WeaponDefinitionLoader
                 "Weapon properties are required.",
                 nameof(data));
 
+        EnsureDistinctProperties(properties);
+
         string[] specialRuleIdValues = data.SpecialRuleIds
             ?? throw new ArgumentException(
                 "Weapon special-rule IDs are required.",
@@ -115,9 +117,8 @@ internal static class WeaponDefinitionLoader
                 ? null
                 : new AmmunitionTypeId(data.AmmunitionTypeId);
 
-        HashSet<RuleId> specialRuleIds = specialRuleIdValues
-            .Select(value => new RuleId(value))
-            .ToHashSet();
+        RuleId[] specialRuleIds =
+            MapDistinctSpecialRuleIds(specialRuleIdValues);
 
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
@@ -141,6 +142,45 @@ internal static class WeaponDefinitionLoader
             ammunitionTypeId,
             specialRuleIds,
             sources);
+    }
+
+    private static void EnsureDistinctProperties(
+        IReadOnlyList<WeaponProperty> properties)
+    {
+        var seen = new HashSet<WeaponProperty>();
+
+        foreach (WeaponProperty property in properties)
+        {
+            if (!seen.Add(property))
+            {
+                throw new ArgumentException(
+                    $"Weapon property '{property}' is duplicated.",
+                    nameof(properties));
+            }
+        }
+    }
+
+    private static RuleId[] MapDistinctSpecialRuleIds(
+        IReadOnlyList<string> values)
+    {
+        var ids = new RuleId[values.Count];
+        var seen = new HashSet<RuleId>();
+
+        for (int index = 0; index < values.Count; index++)
+        {
+            var id = new RuleId(values[index]);
+
+            if (!seen.Add(id))
+            {
+                throw new ArgumentException(
+                    $"Weapon special-rule ID '{id}' is duplicated.",
+                    nameof(values));
+            }
+
+            ids[index] = id;
+        }
+
+        return ids;
     }
 
     private static WeaponDamage MapDamage(WeaponDamageData data)
