@@ -7,6 +7,13 @@ public sealed record SourceReference
         int? page = null,
         string? section = null)
     {
+        if (string.IsNullOrWhiteSpace(documentId.Value))
+        {
+            throw new ArgumentException(
+                "Source document ID must not be empty.",
+                nameof(documentId));
+        }
+
         if (page is <= 0)
         {
             throw new ArgumentOutOfRangeException(

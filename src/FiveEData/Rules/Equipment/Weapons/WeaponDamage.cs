@@ -9,6 +9,14 @@ public sealed record WeaponDamage
         int fixedAmount,
         DamageType type)
     {
+        if (!Enum.IsDefined(type))
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(type),
+                type,
+                "Weapon damage type must be defined.");
+        }
+
         if (fixedAmount < 0)
         {
             throw new ArgumentOutOfRangeException(
