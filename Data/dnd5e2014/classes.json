@@ -115,5 +115,126 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.barbarian",
+    "name": "Barbarian",
+    "hitDieSides": 12,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.strength"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.strength",
+      "dnd5e2014.ability.constitution"
+    ],
+    "armorProficiencyCategories": [
+      "Light",
+      "Medium"
+    ],
+    "proficientWithShields": true,
+    "weaponProficiencyCategories": [
+      "Simple",
+      "Martial"
+    ],
+    "weaponProficiencyIds": [],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.animal-handling",
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.intimidation",
+      "dnd5e2014.skill.nature",
+      "dnd5e2014.skill.perception",
+      "dnd5e2014.skill.survival"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.rage"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.barbarian-unarmored-defense"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.reckless-attack"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.danger-sense"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.primal-path"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.barbarian-extra-attack"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.fast-movement"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.feral-instinct"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.brutal-critical"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.relentless-rage"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.brutal-critical"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.persistent-rage"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.brutal-critical"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.indomitable-might"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.primal-champion"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 47,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]
