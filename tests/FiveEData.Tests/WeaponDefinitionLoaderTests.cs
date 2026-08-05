@@ -1,5 +1,6 @@
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 
@@ -29,7 +30,7 @@ public sealed class WeaponDefinitionLoaderTests
                 "sides": 8
               },
               "fixedAmount": 0,
-              "type": "Slashing"
+              "type": "dnd5e2014.damage-type.slashing"
             },
             "properties": [
               "Versatile"
@@ -71,7 +72,9 @@ public sealed class WeaponDefinitionLoaderTests
         Assert.Equal(
             new DiceExpression(1, 8),
             weapon.Damage?.Dice);
-        Assert.Equal(DamageType.Slashing, weapon.Damage?.Type);
+        Assert.Equal(
+            new DamageTypeId("dnd5e2014.damage-type.slashing"),
+            weapon.Damage?.DamageTypeId);
         Assert.Contains(
             WeaponProperty.Versatile,
             weapon.Properties);
@@ -192,7 +195,7 @@ public sealed class WeaponDefinitionLoaderTests
                 "sides": 8
               },
               "fixedAmount": 0,
-              "type": "Slashing"
+              "type": "dnd5e2014.damage-type.slashing"
             },
             "properties": [
               "Versatile"
@@ -230,7 +233,7 @@ public sealed class WeaponDefinitionLoaderTests
                 "sides": 4
               },
               "fixedAmount": 0,
-              "type": "Bludgeoning"
+              "type": "dnd5e2014.damage-type.bludgeoning"
             },
             "properties": [],
             "specialRuleIds": [],
@@ -253,7 +256,7 @@ public sealed class WeaponDefinitionLoaderTests
                 "sides": 6
               },
               "fixedAmount": 0,
-              "type": "Bludgeoning"
+              "type": "dnd5e2014.damage-type.bludgeoning"
             },
             "properties": [],
             "specialRuleIds": [],
@@ -290,7 +293,7 @@ public sealed class WeaponDefinitionLoaderTests
                 "sides": 4
               },
               "fixedAmount": 0,
-              "type": "Piercing"
+              "type": "dnd5e2014.damage-type.piercing"
             },
             "properties": [
               "Thrown",
@@ -355,7 +358,7 @@ public sealed class WeaponDefinitionLoaderTests
                 "sides": 8
               },
               "fixedAmount": 0,
-              "type": "Piercing"
+              "type": "dnd5e2014.damage-type.piercing"
             },
             "properties": [
               "Special"
@@ -420,7 +423,7 @@ public sealed class WeaponDefinitionLoaderTests
                 "sides": 8
               },
               "fixedAmount": 0,
-              "type": "Piercing"
+              "type": "dnd5e2014.damage-type.piercing"
             },
             "properties": [
               "Special"

@@ -3,6 +3,8 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Creatures.DamageTypes.Serialization;
 using FiveEData.Rules.Equipment;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
@@ -46,6 +48,10 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<WeaponDefinition> weapons =
             WeaponDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "weapons.json"));
+
+        IReadOnlyList<DamageTypeDefinition> damageTypes =
+            DamageTypeDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "damage-types.json"));
 
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
@@ -128,7 +134,8 @@ public sealed class CatalogIntegrityTests
                     mountSupport: mountSupport,
                     tradeGoods: tradeGoods,
                     mountVehicleRules: mountVehicleRules,
-                    armorUsage: armorUsage)));
+                    armorUsage: armorUsage,
+                    damageTypes: damageTypes)));
     }
 
     [Fact]
@@ -1214,7 +1221,8 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<MountSupportDefinition>? mountSupport = null,
         IReadOnlyList<TradeGoodDefinition>? tradeGoods = null,
         MountVehicleRules? mountVehicleRules = null,
-        ArmorUsageRules? armorUsage = null)
+        ArmorUsageRules? armorUsage = null,
+        IReadOnlyList<DamageTypeDefinition>? damageTypes = null)
     {
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
@@ -1250,7 +1258,7 @@ public sealed class CatalogIntegrityTests
                     languages: [],
                     sizes: [],
                     conditions: [],
-                    damageTypes: [],
+                    damageTypes: damageTypes ?? [],
                     senses: [],
                     alignments: []));
     }

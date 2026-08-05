@@ -1,5 +1,6 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -38,7 +39,7 @@ public sealed class DomainImmutabilityTests
             damage: new WeaponDamage(
                 new DiceExpression(1, 4),
                 fixedAmount: 0,
-                DamageType.Piercing),
+                new DamageTypeId("dnd5e2014.damage-type.piercing")),
             properties,
             range: null,
             versatileDamage: null,

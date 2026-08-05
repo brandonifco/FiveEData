@@ -1,6 +1,7 @@
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Tests;
@@ -10,6 +11,13 @@ public sealed class WeaponDefinitionValidatorTests
     private static readonly SourceDocumentId PhbFirstPrinting =
         new("dnd5e2014.source.phb-first-printing");
 
+    private static readonly DamageTypeId Bludgeoning =
+        new("dnd5e2014.damage-type.bludgeoning");
+    private static readonly DamageTypeId Piercing =
+        new("dnd5e2014.damage-type.piercing");
+    private static readonly DamageTypeId Slashing =
+        new("dnd5e2014.damage-type.slashing");
+
     [Fact]
     public void Longsword_IsValid()
     {
@@ -18,7 +26,7 @@ public sealed class WeaponDefinitionValidatorTests
             name: "Longsword",
             proficiencyCategory: WeaponProficiencyCategory.Martial,
             usageCategory: WeaponUsageCategory.Melee,
-            damage: DiceDamage(1, 8, DamageType.Slashing),
+            damage: DiceDamage(1, 8, Slashing),
             properties: SetOf(
                 WeaponProperty.Versatile),
             versatileDamage: new DiceExpression(1, 10));
@@ -34,7 +42,7 @@ public sealed class WeaponDefinitionValidatorTests
             name: "Dagger",
             proficiencyCategory: WeaponProficiencyCategory.Simple,
             usageCategory: WeaponUsageCategory.Melee,
-            damage: DiceDamage(1, 4, DamageType.Piercing),
+            damage: DiceDamage(1, 4, Piercing),
             properties: SetOf(
                 WeaponProperty.Finesse,
                 WeaponProperty.Light,
@@ -54,7 +62,7 @@ public sealed class WeaponDefinitionValidatorTests
             name: "Longbow",
             proficiencyCategory: WeaponProficiencyCategory.Martial,
             usageCategory: WeaponUsageCategory.Ranged,
-            damage: DiceDamage(1, 8, DamageType.Piercing),
+            damage: DiceDamage(1, 8, Piercing),
             properties: SetOf(
                 WeaponProperty.Ammunition,
                 WeaponProperty.Heavy,
@@ -79,7 +87,7 @@ public sealed class WeaponDefinitionValidatorTests
             damage: new WeaponDamage(
                 dice: null,
                 fixedAmount: 1,
-                type: DamageType.Piercing),
+                damageTypeId: Piercing),
             properties: SetOf(
                 WeaponProperty.Ammunition,
                 WeaponProperty.Loading),
@@ -100,7 +108,7 @@ public sealed class WeaponDefinitionValidatorTests
             name: "Lance",
             proficiencyCategory: WeaponProficiencyCategory.Martial,
             usageCategory: WeaponUsageCategory.Melee,
-            damage: DiceDamage(1, 12, DamageType.Piercing),
+            damage: DiceDamage(1, 12, Piercing),
             properties: SetOf(
                 WeaponProperty.Reach,
                 WeaponProperty.Special),
@@ -381,7 +389,7 @@ public sealed class WeaponDefinitionValidatorTests
             cost: null,
             weight: null,
             damage: useDefaultDamage
-                ? damage ?? DiceDamage(1, 4, DamageType.Bludgeoning)
+                ? damage ?? DiceDamage(1, 4, Bludgeoning)
                 : damage,
             properties: properties ?? new HashSet<WeaponProperty>(),
             range,
@@ -400,7 +408,7 @@ public sealed class WeaponDefinitionValidatorTests
     private static WeaponDamage DiceDamage(
         int count,
         int sides,
-        DamageType type)
+        DamageTypeId type)
     {
         return new WeaponDamage(
             new DiceExpression(count, sides),
