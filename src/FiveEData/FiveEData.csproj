@@ -22,6 +22,18 @@
       Include="../../Data/dnd5e2014/creature-sizes.json"
       LogicalName="FiveEData.Data.dnd5e2014.creature-sizes.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/conditions.json"
+      LogicalName="FiveEData.Data.dnd5e2014.conditions.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/damage-types.json"
+      LogicalName="FiveEData.Data.dnd5e2014.damage-types.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/senses.json"
+      LogicalName="FiveEData.Data.dnd5e2014.senses.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/alignments.json"
+      LogicalName="FiveEData.Data.dnd5e2014.alignments.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/ammunition.json"
       LogicalName="FiveEData.Data.dnd5e2014.ammunition.json" />
     <EmbeddedResource

@@ -7,7 +7,11 @@ using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Alignments.Serialization;
+using FiveEData.Rules.Creatures.Conditions.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes.Serialization;
 using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Senses.Serialization;
 using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Expenses.FoodAndLodging.Serialization;
@@ -38,6 +42,10 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(LanguageDefinitionLoader).IsPublic);
         Assert.False(
             typeof(CreatureSizeDefinitionLoader).IsPublic);
+        Assert.False(typeof(ConditionDefinitionLoader).IsPublic);
+        Assert.False(typeof(DamageTypeDefinitionLoader).IsPublic);
+        Assert.False(typeof(SenseDefinitionLoader).IsPublic);
+        Assert.False(typeof(AlignmentDefinitionLoader).IsPublic);
         Assert.False(
             typeof(CreatureVocabularyDefinitionSet).IsPublic);
         Assert.False(
@@ -131,6 +139,18 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(
             6,
             ruleset.CreatureVocabulary.Sizes.Count);
+        Assert.Equal(
+            15,
+            ruleset.CreatureVocabulary.Conditions.Count);
+        Assert.Equal(
+            13,
+            ruleset.CreatureVocabulary.DamageTypes.Count);
+        Assert.Equal(
+            1,
+            ruleset.CreatureVocabulary.Senses.Count);
+        Assert.Equal(
+            9,
+            ruleset.CreatureVocabulary.Alignments.Count);
         Assert.Equal(90, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }

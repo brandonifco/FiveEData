@@ -1,0 +1,145 @@
+[
+  {
+    "id": "dnd5e2014.damage-type.acid",
+    "name": "Acid",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.bludgeoning",
+    "name": "Bludgeoning",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.cold",
+    "name": "Cold",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.fire",
+    "name": "Fire",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.force",
+    "name": "Force",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.lightning",
+    "name": "Lightning",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.necrotic",
+    "name": "Necrotic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.piercing",
+    "name": "Piercing",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.poison",
+    "name": "Poison",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.psychic",
+    "name": "Psychic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.radiant",
+    "name": "Radiant",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.slashing",
+    "name": "Slashing",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.damage-type.thunder",
+    "name": "Thunder",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Damage and Healing — Damage Types"
+      }
+    ]
+  }
+]

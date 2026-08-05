@@ -3,8 +3,16 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Alignments;
+using FiveEData.Rules.Creatures.Alignments.Serialization;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.Conditions.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Creatures.DamageTypes.Serialization;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Senses;
+using FiveEData.Rules.Creatures.Senses.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills;
@@ -699,13 +707,21 @@ public sealed class
             IReadOnlyList<AbilityDefinition>? abilities = null,
             IReadOnlyList<SkillDefinition>? skills = null,
             IReadOnlyList<LanguageDefinition>? languages = null,
-            IReadOnlyList<CreatureSizeDefinition>? sizes = null)
+            IReadOnlyList<CreatureSizeDefinition>? sizes = null,
+            IReadOnlyList<ConditionDefinition>? conditions = null,
+            IReadOnlyList<DamageTypeDefinition>? damageTypes = null,
+            IReadOnlyList<SenseDefinition>? senses = null,
+            IReadOnlyList<AlignmentDefinition>? alignments = null)
     {
         return new CreatureVocabularyDefinitionSet(
             abilities: abilities ?? canonical.Abilities,
             skills: skills ?? canonical.Skills,
             languages: languages ?? canonical.Languages,
-            sizes: sizes ?? canonical.Sizes);
+            sizes: sizes ?? canonical.Sizes,
+            conditions: conditions ?? canonical.Conditions,
+            damageTypes: damageTypes ?? canonical.DamageTypes,
+            senses: senses ?? canonical.Senses,
+            alignments: alignments ?? canonical.Alignments);
     }
 
     private static CreatureVocabularyDefinitionSet
@@ -723,7 +739,19 @@ public sealed class
                     DataPath("languages.json")),
             sizes:
                 CreatureSizeDefinitionLoader.LoadFromFile(
-                    DataPath("creature-sizes.json")));
+                    DataPath("creature-sizes.json")),
+            conditions:
+                ConditionDefinitionLoader.LoadFromFile(
+                    DataPath("conditions.json")),
+            damageTypes:
+                DamageTypeDefinitionLoader.LoadFromFile(
+                    DataPath("damage-types.json")),
+            senses:
+                SenseDefinitionLoader.LoadFromFile(
+                    DataPath("senses.json")),
+            alignments:
+                AlignmentDefinitionLoader.LoadFromFile(
+                    DataPath("alignments.json")));
     }
 
     private static string DataPath(string fileName)

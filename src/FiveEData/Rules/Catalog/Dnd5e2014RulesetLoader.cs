@@ -5,8 +5,16 @@ using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Alignments;
+using FiveEData.Rules.Creatures.Alignments.Serialization;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.Conditions.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Creatures.DamageTypes.Serialization;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Senses;
+using FiveEData.Rules.Creatures.Senses.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills;
@@ -59,6 +67,18 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string CreatureSizesResource =
         "FiveEData.Data.dnd5e2014.creature-sizes.json";
+
+    private const string ConditionsResource =
+        "FiveEData.Data.dnd5e2014.conditions.json";
+
+    private const string DamageTypesResource =
+        "FiveEData.Data.dnd5e2014.damage-types.json";
+
+    private const string SensesResource =
+        "FiveEData.Data.dnd5e2014.senses.json";
+
+    private const string AlignmentsResource =
+        "FiveEData.Data.dnd5e2014.alignments.json";
 
     private const string AmmunitionResource =
         "FiveEData.Data.dnd5e2014.ammunition.json";
@@ -142,6 +162,26 @@ internal static class Dnd5e2014RulesetLoader
             CreatureSizeDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
                     CreatureSizesResource));
+
+        IReadOnlyList<ConditionDefinition> conditions =
+            ConditionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    ConditionsResource));
+
+        IReadOnlyList<DamageTypeDefinition> damageTypes =
+            DamageTypeDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    DamageTypesResource));
+
+        IReadOnlyList<SenseDefinition> senses =
+            SenseDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    SensesResource));
+
+        IReadOnlyList<AlignmentDefinition> alignments =
+            AlignmentDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    AlignmentsResource));
 
         IReadOnlyList<AmmunitionDefinition> ammunition =
             AmmunitionDefinitionLoader.LoadFromJson(
@@ -249,7 +289,11 @@ internal static class Dnd5e2014RulesetLoader
                 abilities: abilities,
                 skills: skills,
                 languages: languages,
-                sizes: sizes);
+                sizes: sizes,
+                conditions: conditions,
+                damageTypes: damageTypes,
+                senses: senses,
+                alignments: alignments);
 
         var definitions = new RulesetDefinitionSet(
             sourceDocuments: sources,
@@ -289,7 +333,11 @@ internal static class Dnd5e2014RulesetLoader
                     abilities: new AbilityCatalog(abilities),
                     skills: new SkillCatalog(skills),
                     languages: new LanguageCatalog(languages),
-                    sizes: new CreatureSizeCatalog(sizes)),
+                    sizes: new CreatureSizeCatalog(sizes),
+                    conditions: new ConditionCatalog(conditions),
+                    damageTypes: new DamageTypeCatalog(damageTypes),
+                    senses: new SenseCatalog(senses),
+                    alignments: new AlignmentCatalog(alignments)),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

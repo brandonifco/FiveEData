@@ -1,0 +1,167 @@
+[
+  {
+    "id": "dnd5e2014.condition.blinded",
+    "name": "Blinded",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.charmed",
+    "name": "Charmed",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.deafened",
+    "name": "Deafened",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.exhaustion",
+    "name": "Exhaustion",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.frightened",
+    "name": "Frightened",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.grappled",
+    "name": "Grappled",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.incapacitated",
+    "name": "Incapacitated",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.invisible",
+    "name": "Invisible",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.paralyzed",
+    "name": "Paralyzed",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.petrified",
+    "name": "Petrified",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.poisoned",
+    "name": "Poisoned",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.prone",
+    "name": "Prone",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.restrained",
+    "name": "Restrained",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.stunned",
+    "name": "Stunned",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.condition.unconscious",
+    "name": "Unconscious",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 290,
+        "section": "Appendix A: Conditions"
+      }
+    ]
+  }
+]
