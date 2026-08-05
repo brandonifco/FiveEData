@@ -241,6 +241,7 @@ public sealed class
                     conditions: [],
                     damageTypes: [],
                     senses: [],
-                    alignments: []));
+                    alignments: []),
+            races: new RaceDefinitionSet(races: [], subraces: []));
     }
 }

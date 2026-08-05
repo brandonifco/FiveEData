@@ -13,6 +13,8 @@ using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.DamageTypes.Serialization;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Races;
+using FiveEData.Rules.Creatures.Races.Serialization;
 using FiveEData.Rules.Creatures.Senses;
 using FiveEData.Rules.Creatures.Senses.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
@@ -79,6 +81,12 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string AlignmentsResource =
         "FiveEData.Data.dnd5e2014.alignments.json";
+
+    private const string RacesResource =
+        "FiveEData.Data.dnd5e2014.races.json";
+
+    private const string SubracesResource =
+        "FiveEData.Data.dnd5e2014.subraces.json";
 
     private const string AmmunitionResource =
         "FiveEData.Data.dnd5e2014.ammunition.json";
@@ -182,6 +190,14 @@ internal static class Dnd5e2014RulesetLoader
             AlignmentDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
                     AlignmentsResource));
+
+        IReadOnlyList<RaceDefinition> races =
+            RaceDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(RacesResource));
+
+        IReadOnlyList<SubraceDefinition> subraces =
+            SubraceDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(SubracesResource));
 
         IReadOnlyList<AmmunitionDefinition> ammunition =
             AmmunitionDefinitionLoader.LoadFromJson(
@@ -295,12 +311,17 @@ internal static class Dnd5e2014RulesetLoader
                 senses: senses,
                 alignments: alignments);
 
+        var raceDefinitionSet = new RaceDefinitionSet(
+            races: races,
+            subraces: subraces);
+
         var definitions = new RulesetDefinitionSet(
             sourceDocuments: sources,
             rules: rules,
             equipment: equipment,
             expenses: expenses,
-            creatureVocabulary: creatureVocabulary);
+            creatureVocabulary: creatureVocabulary,
+            races: raceDefinitionSet);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -338,6 +359,8 @@ internal static class Dnd5e2014RulesetLoader
                     damageTypes: new DamageTypeCatalog(damageTypes),
                     senses: new SenseCatalog(senses),
                     alignments: new AlignmentCatalog(alignments)),
+            races: new RaceCatalog(races),
+            subraces: new SubraceCatalog(subraces),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

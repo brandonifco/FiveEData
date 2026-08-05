@@ -65,6 +65,46 @@ a real table of contents or errata document — don't rely on memory. Getting
 this wrong is exactly what these guardrail tests exist to catch, but it's
 cheaper to get it right the first time.
 
+## Races
+
+`Rules/Creatures/Races/` holds the first non-vocabulary domain that
+cross-references creature vocabulary rather than being part of it — a race
+references `AbilityId`/`CreatureSizeId`/`LanguageId` from
+`Rules/Creatures/*`, so it sits as its own top-level `RaceDefinitionSet` on
+`RulesetDefinitionSet` (alongside `Equipment`/`Expenses`/
+`CreatureVocabulary`), not folded into the vocabulary set itself.
+
+`RaceDefinition` and `SubraceDefinition` are siblings, not nested — a
+subrace carries a `RaceId` back-reference and is validated/cataloged
+independently, the same shape `Tool`/`ToolFamilyId` already established.
+Only what's cleanly reducible to typed fields lives on the definitions
+themselves (size, speed, ability score increases as `AbilityId` + bonus
+pairs, known languages, an `AdditionalLanguageChoiceCount` /
+`ChoosableAbilityScoreIncreaseCount` for "N more of your choice" mechanics
+introduced here for the first time). Named racial traits with real
+narrative substance (Darkvision, Fey Ancestry, Draconic Ancestry, ...) are
+`RuleId` references into the shared `rules.json` catalog
+(`dnd5e2014.race-rule.*`), mirroring the existing `SpecialRuleIds` pattern
+— consistent with this project's standing discipline of never storing
+rules prose, only a citation index. Where the mechanic and the trait name
+are both identical across races (Darkvision is worded identically in all
+six races that have it), one `RuleId` is shared with multiple
+`SourceReference` entries, the same sharing precedent
+`food-drink-lodging-included-in-lifestyle` already set; where the name
+differs even if the mechanic doesn't (Dwarven Resilience vs. Stout
+Resilience are mechanically identical poison resistance but different
+proper-noun trait names), they're kept as separate `RuleId`s.
+
+Citations were verified against the user-supplied PHB PDF directly (Table
+of Contents page numbers, cross-checked against the official WotC PHB
+errata for three of them — Dwarven Combat Training p.20, Drow Magic p.24,
+Infernal Legacy p.43, all landing exactly where the ToC predicted) rather
+than from memory. One real errata catch: the printed Dwarf trait text says
+"throwing hammer," corrected by the official errata to "light hammer" —
+the corrected wording is what's stored. Variant Human is out of scope, the
+same way Feats are — its "bonus feat" trait can't be represented without
+Feats existing.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -100,15 +140,16 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 11: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 12: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
-(lifestyles, food & drink, hospitality, mundane services), and creature
+(lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
-senses, alignments) are complete. Not yet started: races, classes,
-backgrounds, spells, magic items, and combat/adventuring rule prose beyond
-the existing `rules.json` citation index. Feats are out of scope — they
-aren't part of the free 2014 SRD this project's provenance model is built
-around.
+senses, alignments), and races (all 9 PHB races plus all 9 subraces — see
+"Races" above) are complete. Not yet started: classes, backgrounds, spells,
+magic items, and combat/adventuring rule prose beyond the existing
+`rules.json` citation index. Feats (and, by extension, Variant Human) are
+out of scope — they aren't part of the free 2014 SRD this project's
+provenance model is built around.
 
 ## Build
 

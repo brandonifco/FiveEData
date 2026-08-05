@@ -3,8 +3,16 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Abilities.Serialization;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.DamageTypes.Serialization;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Races;
+using FiveEData.Rules.Creatures.Races.Serialization;
+using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Equipment;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
@@ -52,6 +60,26 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<DamageTypeDefinition> damageTypes =
             DamageTypeDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "damage-types.json"));
+
+        IReadOnlyList<AbilityDefinition> abilities =
+            AbilityDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "abilities.json"));
+
+        IReadOnlyList<CreatureSizeDefinition> creatureSizes =
+            CreatureSizeDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "creature-sizes.json"));
+
+        IReadOnlyList<LanguageDefinition> languages =
+            LanguageDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "languages.json"));
+
+        IReadOnlyList<RaceDefinition> races =
+            RaceDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "races.json"));
+
+        IReadOnlyList<SubraceDefinition> subraces =
+            SubraceDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "subraces.json"));
 
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
@@ -135,7 +163,12 @@ public sealed class CatalogIntegrityTests
                     tradeGoods: tradeGoods,
                     mountVehicleRules: mountVehicleRules,
                     armorUsage: armorUsage,
-                    damageTypes: damageTypes)));
+                    damageTypes: damageTypes,
+                    abilities: abilities,
+                    sizes: creatureSizes,
+                    languages: languages,
+                    races: races,
+                    subraces: subraces)));
     }
 
     [Fact]
@@ -1222,7 +1255,12 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<TradeGoodDefinition>? tradeGoods = null,
         MountVehicleRules? mountVehicleRules = null,
         ArmorUsageRules? armorUsage = null,
-        IReadOnlyList<DamageTypeDefinition>? damageTypes = null)
+        IReadOnlyList<DamageTypeDefinition>? damageTypes = null,
+        IReadOnlyList<AbilityDefinition>? abilities = null,
+        IReadOnlyList<CreatureSizeDefinition>? sizes = null,
+        IReadOnlyList<LanguageDefinition>? languages = null,
+        IReadOnlyList<RaceDefinition>? races = null,
+        IReadOnlyList<SubraceDefinition>? subraces = null)
     {
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
@@ -1253,14 +1291,17 @@ public sealed class CatalogIntegrityTests
             expenses: expenses,
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
-                    abilities: [],
+                    abilities: abilities ?? [],
                     skills: [],
-                    languages: [],
-                    sizes: [],
+                    languages: languages ?? [],
+                    sizes: sizes ?? [],
                     conditions: [],
                     damageTypes: damageTypes ?? [],
                     senses: [],
-                    alignments: []));
+                    alignments: []),
+            races: new RaceDefinitionSet(
+                races: races ?? [],
+                subraces: subraces ?? []));
     }
 
     private static ToolDefinition CreateTool(

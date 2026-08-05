@@ -31,6 +31,8 @@ public sealed class Dnd5e2014Ruleset
         ArmorUsageRules armorUsage,
         ExpenseCatalogs expenses,
         CreatureVocabularyCatalogs creatureVocabulary,
+        RaceCatalog races,
+        SubraceCatalog subraces,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -50,6 +52,8 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(armorUsage);
         ArgumentNullException.ThrowIfNull(expenses);
         ArgumentNullException.ThrowIfNull(creatureVocabulary);
+        ArgumentNullException.ThrowIfNull(races);
+        ArgumentNullException.ThrowIfNull(subraces);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -69,6 +73,8 @@ public sealed class Dnd5e2014Ruleset
         ArmorUsage = armorUsage;
         Expenses = expenses;
         CreatureVocabulary = creatureVocabulary;
+        Races = races;
+        Subraces = subraces;
         Sources = sources;
         Rules = rules;
     }
@@ -96,6 +102,8 @@ public sealed class Dnd5e2014Ruleset
         get;
     }
 
+    public RaceCatalog Races { get; }
+    public SubraceCatalog Subraces { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

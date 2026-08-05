@@ -34,6 +34,12 @@
       Include="../../Data/dnd5e2014/alignments.json"
       LogicalName="FiveEData.Data.dnd5e2014.alignments.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/races.json"
+      LogicalName="FiveEData.Data.dnd5e2014.races.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/subraces.json"
+      LogicalName="FiveEData.Data.dnd5e2014.subraces.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/ammunition.json"
       LogicalName="FiveEData.Data.dnd5e2014.ammunition.json" />
     <EmbeddedResource

@@ -159,6 +159,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
                     conditions: [],
                     damageTypes: [],
                     senses: [],
-                    alignments: []));
+                    alignments: []),
+            races: new RaceDefinitionSet(races: [], subraces: []));
     }
 }
