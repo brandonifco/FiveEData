@@ -120,3 +120,44 @@ dotnet test
 `global.json` pins SDK `8.0.129` with `"rollForward": "latestMajor"` so the
 build still works on environments that only have newer major SDKs (9.x,
 10.x) installed — both target frameworks stay `net8.0`.
+
+## Workflow authorization
+
+**Standing authorization.** For a narrowly-scoped, already-decided piece of
+work in this repo — a new domain following the established five-piece
+pattern, a bug fix, a reconciliation of known debt — proceed autonomously
+through the full loop without stopping to ask permission at each step,
+including the push/PR/merge:
+
+1. Confirm `git status` clean and `main` in sync with `origin/main`.
+2. One narrowly-scoped branch per concern.
+3. Implement.
+4. Gate: `dotnet build` (Debug) → `dotnet build -c Release` → `dotnet test`
+   (all three 0 warnings / 0 failures) → `git diff --check`. This repo has
+   no CI configured (no `.github/workflows`), so this local gate is the
+   entire check — there is nothing to watch for green afterward.
+5. Self-review the diff; report gaps honestly rather than glossing over
+   them.
+6. **If the change is worth recording — a new domain, a status change, a
+   resolved architectural note, a corrected citation — update CLAUDE.md in
+   the same commit, not a separate follow-up.** This includes the
+   "Status" section's phase list and, where relevant, a short addition
+   under "Architecture" or "Known architectural note" recording a real
+   design decision (a new cross-domain reference shape, a new sharing
+   precedent for `RuleId`s, a new "choice count" mechanic) so the next
+   session doesn't have to re-derive it from the diff.
+7. `git add` specific paths — never `-A` or `.`.
+8. Commit — one commit, message explains what and why.
+9. Push, open a PR (`gh pr create`), and merge (`gh pr merge --merge
+   --delete-branch`) once the gate in step 4 is green. Do not wait for or
+   invent CI status; there is none.
+10. `git fetch --prune`, confirm `main` synced, move to the next branch.
+
+Still pause and flag rather than pushing through: gate failures, merge
+conflicts, anything that looks destructive/irreversible outside the normal
+branch→PR→merge flow, or content-authoring work where the source citations
+can't be verified (see "Provenance discipline" above) — that's a real
+blocker, not a step to skip. Still stop and ask first for anything that
+isn't a narrowly-scoped, already-decided task — genuine design/product
+decisions, force-pushes, history rewrites, or deleting/closing things
+outside the normal merge flow.
