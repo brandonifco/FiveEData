@@ -150,8 +150,35 @@ internal static class Dnd5e2014RulesetLoader
     private const string MundaneServicesResource =
         "FiveEData.Data.dnd5e2014.mundane-services.json";
 
-    private const string RulesResource =
-        "FiveEData.Data.dnd5e2014.rules.json";
+    private const string WeaponRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.weapon-rule.json";
+
+    private const string ArmorRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.armor-rule.json";
+
+    private const string AdventuringGearRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.adventuring-gear-rule.json";
+
+    private const string ToolRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.tool-rule.json";
+
+    private const string MountVehicleRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.mount-vehicle-rule.json";
+
+    private const string TradeGoodRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.trade-good-rule.json";
+
+    private const string ExpenseRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.expense-rule.json";
+
+    private const string LifestyleRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.lifestyle-rule.json";
+
+    private const string RaceRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.race-rule.json";
+
+    private const string ClassRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.class-rule.json";
 
     public static Dnd5e2014Ruleset Load()
     {
@@ -291,8 +318,21 @@ internal static class Dnd5e2014RulesetLoader
                     MundaneServicesResource));
 
         IReadOnlyList<RuleDefinition> rules =
-            RuleDefinitionLoader.LoadFromJson(
-                EmbeddedDataReader.ReadRequiredText(RulesResource));
+            RuleDefinitionLoader.LoadAndMergeFromJson(
+                [
+                    EmbeddedDataReader.ReadRequiredText(WeaponRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(ArmorRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(
+                        AdventuringGearRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(ToolRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(
+                        MountVehicleRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(TradeGoodRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(ExpenseRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(LifestyleRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(RaceRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(ClassRuleResource)
+                ]);
 
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons,

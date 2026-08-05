@@ -100,8 +100,35 @@
       Include="../../Data/dnd5e2014/mundane-services.json"
       LogicalName="FiveEData.Data.dnd5e2014.mundane-services.json" />
     <EmbeddedResource
-      Include="../../Data/dnd5e2014/rules.json"
-      LogicalName="FiveEData.Data.dnd5e2014.rules.json" />
+      Include="../../Data/dnd5e2014/rules/weapon-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.weapon-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/armor-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.armor-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/adventuring-gear-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.adventuring-gear-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/tool-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.tool-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/mount-vehicle-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.mount-vehicle-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/trade-good-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.trade-good-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/expense-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.expense-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/lifestyle-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.lifestyle-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/race-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.race-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rules/class-rule.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rules.class-rule.json" />
   </ItemGroup>
 
 </Project>

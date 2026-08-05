@@ -406,11 +406,19 @@ public sealed class
     private static IReadOnlyList<RuleDefinition>
         LoadCanonicalRules()
     {
-        string json =
-            File.ReadAllText(
-                DataPath("rules.json"));
-
-        return RuleDefinitionLoader.LoadFromJson(json);
+        return RuleDefinitionLoader.LoadAndMergeFromFiles(
+            [
+                DataPath(Path.Combine("rules", "weapon-rule.json")),
+                DataPath(Path.Combine("rules", "armor-rule.json")),
+                DataPath(Path.Combine("rules", "adventuring-gear-rule.json")),
+                DataPath(Path.Combine("rules", "tool-rule.json")),
+                DataPath(Path.Combine("rules", "mount-vehicle-rule.json")),
+                DataPath(Path.Combine("rules", "trade-good-rule.json")),
+                DataPath(Path.Combine("rules", "expense-rule.json")),
+                DataPath(Path.Combine("rules", "lifestyle-rule.json")),
+                DataPath(Path.Combine("rules", "race-rule.json")),
+                DataPath(Path.Combine("rules", "class-rule.json"))
+            ]);
     }
 
     private static RulesetDefinitionSet CreateDefinitionSet(

@@ -5,6 +5,47 @@ namespace FiveEData.Rules.Common.Serialization;
 
 internal static class RuleDefinitionLoader
 {
+    public static IReadOnlyList<RuleDefinition> LoadFromFile(string path)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+
+        string json = File.ReadAllText(path);
+        return LoadFromJson(json);
+    }
+
+    public static IReadOnlyList<RuleDefinition> LoadAndMergeFromFiles(
+        IEnumerable<string> paths)
+    {
+        ArgumentNullException.ThrowIfNull(paths);
+
+        return LoadAndMergeFromJson(paths.Select(File.ReadAllText));
+    }
+
+    public static IReadOnlyList<RuleDefinition> LoadAndMergeFromJson(
+        IEnumerable<string> jsonDocuments)
+    {
+        ArgumentNullException.ThrowIfNull(jsonDocuments);
+
+        var merged = new List<RuleDefinition>();
+        var ids = new HashSet<RuleId>();
+
+        foreach (string json in jsonDocuments)
+        {
+            foreach (RuleDefinition rule in LoadFromJson(json))
+            {
+                if (!ids.Add(rule.Id))
+                {
+                    throw new InvalidDataException(
+                        $"Duplicate rule ID '{rule.Id}' across rule files.");
+                }
+
+                merged.Add(rule);
+            }
+        }
+
+        return merged;
+    }
+
     public static IReadOnlyList<RuleDefinition> LoadFromJson(string json)
     {
         RuleDefinitionData[] data =

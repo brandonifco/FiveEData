@@ -97,10 +97,7 @@ public sealed class CatalogIntegrityTests
             SubclassDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "subclasses.json"));
 
-        IReadOnlyList<RuleDefinition> rules =
-            RuleDefinitionLoader.LoadFromJson(
-                File.ReadAllText(
-                    Path.Combine(root, "Data", "dnd5e2014", "rules.json")));
+        IReadOnlyList<RuleDefinition> rules = LoadAllRules(root);
 
         IReadOnlyList<ArmorDefinition> armor =
             ArmorDefinitionLoader.LoadFromFile(
@@ -1556,6 +1553,25 @@ public sealed class CatalogIntegrityTests
                     new SourceDocumentId(
                         "dnd5e2014.source.phb-first-printing"),
                     page: 149)
+            ]);
+    }
+
+    private static IReadOnlyList<RuleDefinition> LoadAllRules(string root)
+    {
+        string rulesDirectory = Path.Combine(root, "Data", "dnd5e2014", "rules");
+
+        return RuleDefinitionLoader.LoadAndMergeFromFiles(
+            [
+                Path.Combine(rulesDirectory, "weapon-rule.json"),
+                Path.Combine(rulesDirectory, "armor-rule.json"),
+                Path.Combine(rulesDirectory, "adventuring-gear-rule.json"),
+                Path.Combine(rulesDirectory, "tool-rule.json"),
+                Path.Combine(rulesDirectory, "mount-vehicle-rule.json"),
+                Path.Combine(rulesDirectory, "trade-good-rule.json"),
+                Path.Combine(rulesDirectory, "expense-rule.json"),
+                Path.Combine(rulesDirectory, "lifestyle-rule.json"),
+                Path.Combine(rulesDirectory, "race-rule.json"),
+                Path.Combine(rulesDirectory, "class-rule.json")
             ]);
     }
 
