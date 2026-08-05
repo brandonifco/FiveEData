@@ -1,0 +1,474 @@
+[
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.acid",
+    "name": "Acid adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 148,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Acid"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.alchemists-fire",
+    "name": "Alchemist's fire adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 148,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Alchemist's Fire"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Alchemist's Fire"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.antitoxin",
+    "name": "Antitoxin adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Antitoxin"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.arcane-focus",
+    "name": "Arcane focus adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Arcane Focus"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.ball-bearings",
+    "name": "Ball bearings adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Ball Bearings"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.block-and-tackle",
+    "name": "Block and tackle adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Block and Tackle"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.book",
+    "name": "Book adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Book"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.caltrops",
+    "name": "Caltrops adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Caltrops"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.candle",
+    "name": "Candle adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Candle"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.case-crossbow-bolt",
+    "name": "Crossbow bolt case adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Case, Crossbow Bolt"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.case-map-or-scroll",
+    "name": "Map or scroll case adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Case, Map or Scroll"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.chain",
+    "name": "Chain adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Chain"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.climbers-kit",
+    "name": "Climber's kit adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Climber's Kit"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.component-pouch",
+    "name": "Component pouch adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Component Pouch"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.crowbar",
+    "name": "Crowbar adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Crowbar"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.druidic-focus",
+    "name": "Druidic focus adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Druidic Focus"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.fishing-tackle",
+    "name": "Fishing tackle adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Fishing Tackle"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.healers-kit",
+    "name": "Healer's kit adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Healer's Kit"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.holy-symbol",
+    "name": "Holy symbol adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Holy Symbol"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.holy-water",
+    "name": "Holy water adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 151,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Holy Water"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Holy Water"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.hunting-trap",
+    "name": "Hunting trap adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Hunting Trap"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.lamp",
+    "name": "Lamp adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Lamp"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.lantern-bullseye",
+    "name": "Bullseye lantern adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Lantern, Bullseye"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.lantern-hooded",
+    "name": "Hooded lantern adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Lantern, Hooded"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.lock",
+    "name": "Lock adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Lock"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.magnifying-glass",
+    "name": "Magnifying glass adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Magnifying Glass"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.manacles",
+    "name": "Manacles adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Manacles"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.mess-kit",
+    "name": "Mess kit adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Mess Kit"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.oil",
+    "name": "Oil adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 152,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Oil"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.poison-basic",
+    "name": "Basic poison adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Poison, Basic"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.potion-of-healing",
+    "name": "Potion of healing adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Potion of Healing"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.pouch",
+    "name": "Pouch adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Pouch"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.quiver",
+    "name": "Quiver adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Quiver"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.ram-portable",
+    "name": "Portable ram adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Ram, Portable"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.rations",
+    "name": "Rations adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Rations"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.rope",
+    "name": "Rope adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Rope"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.scale-merchants",
+    "name": "Merchant's scale adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Scale, Merchant's"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.spellbook",
+    "name": "Spellbook adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Spellbook"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.spyglass",
+    "name": "Spyglass adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Spyglass"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.tent",
+    "name": "Tent adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Tent"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.tinderbox",
+    "name": "Tinderbox adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Tinderbox"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.adventuring-gear-rule.torch",
+    "name": "Torch adventuring gear rule",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 153,
+        "section": "Chapter 5: Equipment — Adventuring Gear — Torch"
+      }
+    ]
+  }
+]

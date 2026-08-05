@@ -34,13 +34,43 @@ same five-piece shape:
 Data files live in `Data/dnd5e2014/*.json` and are embedded via explicit
 `<EmbeddedResource>` entries in `FiveEData.csproj` (logical name
 `FiveEData.Data.dnd5e2014.<file>.json`) — add new files to both the data
-directory and the csproj.
+directory and the csproj. `RuleDefinition` content is the one exception to
+"one file per domain": see below.
 
 `Dnd5e2014RulesetLoader.Load()` reads every embedded resource, builds a
 `RulesetDefinitionSet` (all raw definitions), runs
 `CatalogIntegrityValidator.EnsureValid` against it, then constructs the
 public `Dnd5e2014Ruleset` (all catalogs). `Dnd5e2014Ruleset.Instance` is a
 lazy singleton over that pipeline.
+
+### `RuleDefinition` is split by domain, not one file
+
+`RuleId` is referenced *across* every other domain (a weapon's special
+rule, a racial trait, a class feature, ...), so unlike every other domain
+it never had a natural single owner — and by the time Races and Classes
+had each added their own citation-index entries, the single
+`Data/dnd5e2014/rules.json` had grown to 150 entries / 1700+ lines with no
+internal grouping (entries land wherever the PR that added them happened
+to append them). It's now split by `dnd5e2014.<prefix>-rule.*` namespace
+into `Data/dnd5e2014/rules/<prefix>-rule.json` — one file per prefix
+(`weapon-rule`, `armor-rule`, `adventuring-gear-rule`, `tool-rule`,
+`mount-vehicle-rule`, `trade-good-rule`, `expense-rule`, `lifestyle-rule`,
+`race-rule`, `class-rule`), each embedded and loaded independently, then
+merged by `RuleDefinitionLoader.LoadAndMergeFromJson` (production, from
+already-read embedded-resource text) / `LoadAndMergeFromFiles` (tests and
+tooling, given real file paths) into the one `IReadOnlyList<RuleDefinition>`
+every catalog/validator still consumes as a flat list — nothing downstream
+of the merge changed. Each per-file `RuleDefinitionLoader.LoadFromJson`
+call still catches a duplicate ID *within* its own file the way every
+domain loader already does; the merge step adds the one check that's new
+here, a duplicate ID *across* files, since two different prefixed files
+could otherwise both claim the same ID undetected.
+
+If a single prefix's file grows large enough to become its own monolith —
+`class-rule.json` is the likely first candidate, since Fighter alone (1 of
+12 classes) already contributed 23 of its 23 entries — split that one file
+further (e.g. `rules/class-rule/<class-slug>.json`) and fold it into the
+same merge list; the merge step doesn't care how many files it's fed.
 
 ### Provenance discipline
 

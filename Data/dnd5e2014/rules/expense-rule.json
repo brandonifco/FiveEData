@@ -1,0 +1,178 @@
+[
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-expense-coverage",
+    "name": "Lifestyle expenses cover accommodations, food, drink, necessities, and equipment maintenance",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-selection-and-daily-pricing",
+    "name": "Choose and pay for a lifestyle using its listed daily price",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-thirty-day-calculation",
+    "name": "Thirty-day lifestyle cost is thirty times the daily price",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.lifestyle-consequences",
+    "name": "Lifestyle choice can have social consequences",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 157,
+        "section": "Chapter 5: Equipment — Expenses — Lifestyle Expenses"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.food-drink-lodging-included-in-lifestyle",
+    "name": "Food, drink, and lodging costs are included in lifestyle expenses",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 158,
+        "section": "Chapter 5: Equipment — Expenses — Food, Drink, and Lodging"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.self-sufficiency",
+    "name": "Self-sufficiency can replace coin-paid lifestyle expenses",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Self-Sufficiency"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.profession-poor-lifestyle-equivalent",
+    "name": "Practicing a profession supports a poor lifestyle equivalent",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Self-Sufficiency"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.survival-comfortable-lifestyle-equivalent",
+    "name": "Survival proficiency supports a comfortable lifestyle equivalent",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Self-Sufficiency"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.skilled-hireling-proficiency-service",
+    "name": "Skilled hirelings perform services involving a weapon, tool, or skill proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.skilled-hireling-pay-minimum",
+    "name": "Listed skilled-hireling pay is a minimum and experts can require more",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.untrained-hireling-menial-work",
+    "name": "Untrained hirelings perform menial work requiring no particular skill",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-not-ordinary-hirelings",
+    "name": "Spellcasters offering services are not ordinary hirelings",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-no-established-rates",
+    "name": "Spellcasting services have no established pay rates",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-level-affects-access-and-cost",
+    "name": "Higher-level spellcasting services are harder to find and cost more",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-common-low-level-cost",
+    "name": "Common 1st- or 2nd-level spellcasting services may cost 10 to 50 gp plus expensive materials",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.expense-rule.spellcasting-services-higher-level-travel-or-service",
+    "name": "Higher-level spellcasting services may require travel or an adventuring service",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 159,
+        "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
+      }
+    ]
+  }
+]

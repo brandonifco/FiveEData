@@ -57,14 +57,25 @@ public sealed class ExpenseRuleDataFileTests
 
     private static IReadOnlyList<RuleDefinition> LoadCanonical()
     {
-        string json = File.ReadAllText(
-            Path.Combine(
-                FindRepositoryRoot(),
-                "Data",
-                "dnd5e2014",
-                "rules.json"));
+        string rulesDirectory = Path.Combine(
+            FindRepositoryRoot(),
+            "Data",
+            "dnd5e2014",
+            "rules");
 
-        return RuleDefinitionLoader.LoadFromJson(json);
+        return RuleDefinitionLoader.LoadAndMergeFromFiles(
+            [
+                Path.Combine(rulesDirectory, "weapon-rule.json"),
+                Path.Combine(rulesDirectory, "armor-rule.json"),
+                Path.Combine(rulesDirectory, "adventuring-gear-rule.json"),
+                Path.Combine(rulesDirectory, "tool-rule.json"),
+                Path.Combine(rulesDirectory, "mount-vehicle-rule.json"),
+                Path.Combine(rulesDirectory, "trade-good-rule.json"),
+                Path.Combine(rulesDirectory, "expense-rule.json"),
+                Path.Combine(rulesDirectory, "lifestyle-rule.json"),
+                Path.Combine(rulesDirectory, "race-rule.json"),
+                Path.Combine(rulesDirectory, "class-rule.json")
+            ]);
     }
 
     private static string FindRepositoryRoot()
