@@ -25,11 +25,19 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.way-of-the-four-elements"
     ];
 
+    private static readonly string[] ExpectedRogueSubclassIds =
+    [
+        "dnd5e2014.subclass.thief",
+        "dnd5e2014.subclass.assassin",
+        "dnd5e2014.subclass.arcane-trickster"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
         .. ExpectedBarbarianSubclassIds,
-        .. ExpectedMonkSubclassIds
+        .. ExpectedMonkSubclassIds,
+        .. ExpectedRogueSubclassIds
     ];
 
     [Fact]
@@ -37,7 +45,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(8, subclasses.Count);
+        Assert.Equal(11, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -81,6 +89,19 @@ public sealed class SubclassDataFileTests
                 subclass => ExpectedMonkSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(
                 "dnd5e2014.class.monk",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryRogueSubclassReferencesTheRogueClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedRogueSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.rogue",
                 subclass.ClassId.Value));
     }
 
@@ -268,6 +289,85 @@ public sealed class SubclassDataFileTests
             .ToArray();
 
         Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesThiefMechanics()
+    {
+        SubclassDefinition thief = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.thief");
+
+        Assert.Equal("Thief", thief.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.fast-hands",
+                "dnd5e2014.class-rule.second-story-work",
+                "dnd5e2014.class-rule.supreme-sneak",
+                "dnd5e2014.class-rule.use-magic-device",
+                "dnd5e2014.class-rule.thiefs-reflexes"
+            ],
+            thief.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(thief.Sources);
+        Assert.Equal(97, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesThiefDualLevelThreeFeatures()
+    {
+        SubclassDefinition thief = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.thief");
+
+        Assert.Equal(
+            2,
+            thief.LevelFeatures.Count(feature => feature.Level == 3));
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesAssassinMechanics()
+    {
+        SubclassDefinition assassin = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.assassin");
+
+        Assert.Equal("Assassin", assassin.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.assassin-bonus-proficiencies",
+                "dnd5e2014.class-rule.assassinate",
+                "dnd5e2014.class-rule.infiltration-expertise",
+                "dnd5e2014.class-rule.impostor",
+                "dnd5e2014.class-rule.death-strike"
+            ],
+            assassin.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(assassin.Sources);
+        Assert.Equal(97, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesArcaneTricksterSpellcastingFeature()
+    {
+        SubclassDefinition arcaneTrickster = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.arcane-trickster");
+
+        Assert.Equal("Arcane Trickster", arcaneTrickster.Name);
+        Assert.Contains(
+            arcaneTrickster.LevelFeatures,
+            feature =>
+                feature.Level == 3 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.arcane-trickster-spellcasting");
+
+        var source = Assert.Single(arcaneTrickster.Sources);
+        Assert.Equal(97, source.Page);
     }
 
     private static SubclassDefinition GetSubclass(

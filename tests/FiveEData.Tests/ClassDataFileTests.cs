@@ -11,7 +11,8 @@ public sealed class ClassDataFileTests
     [
         "dnd5e2014.class.fighter",
         "dnd5e2014.class.barbarian",
-        "dnd5e2014.class.monk"
+        "dnd5e2014.class.monk",
+        "dnd5e2014.class.rogue"
     ];
 
     [Fact]
@@ -19,7 +20,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(3, classes.Count);
+        Assert.Equal(4, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -320,6 +321,126 @@ public sealed class ClassDataFileTests
             fighter.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.ability-score-improvement");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesRogueMechanics()
+    {
+        ClassDefinition rogue = GetClass(LoadClasses(), "dnd5e2014.class.rogue");
+
+        Assert.Equal("Rogue", rogue.Name);
+        Assert.Equal(1, rogue.HitDie.Count);
+        Assert.Equal(8, rogue.HitDie.Sides);
+        Assert.Equal(
+            ["dnd5e2014.ability.dexterity"],
+            rogue.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(rogue.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.dexterity",
+                "dnd5e2014.ability.intelligence"
+            ],
+            rogue.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(
+            [ArmorCategory.Light],
+            rogue.ArmorProficiencyCategories);
+        Assert.False(rogue.ProficientWithShields);
+        Assert.Equal(
+            [WeaponProficiencyCategory.Simple],
+            rogue.WeaponProficiencyCategories);
+        Assert.Equal(
+            [
+                "dnd5e2014.weapon.hand-crossbow",
+                "dnd5e2014.weapon.longsword",
+                "dnd5e2014.weapon.rapier",
+                "dnd5e2014.weapon.shortsword"
+            ],
+            rogue.WeaponProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(4, rogue.SkillChoiceCount);
+        Assert.Equal(11, rogue.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(rogue.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(95, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesRogueAbilityScoreImprovementAtItsOwnLevels()
+    {
+        ClassDefinition rogue = GetClass(LoadClasses(), "dnd5e2014.class.rogue");
+
+        int[] expectedLevels = [4, 8, 10, 12, 16, 19];
+
+        int[] actualLevels = rogue.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.rogue-ability-score-improvement")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesExpertiseAtInitialAndSecondGrantLevels()
+    {
+        ClassDefinition rogue = GetClass(LoadClasses(), "dnd5e2014.class.rogue");
+
+        int[] expectedLevels = [1, 6];
+
+        int[] actualLevels = rogue.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.expertise")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesRoguishArchetypeChoicePoint()
+    {
+        ClassDefinition rogue = GetClass(LoadClasses(), "dnd5e2014.class.rogue");
+
+        Assert.Contains(
+            rogue.LevelFeatures,
+            feature =>
+                feature.Level == 3 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.roguish-archetype");
+    }
+
+    [Fact]
+    public void CanonicalFile_SharesEvasionRuleIdWithMonkButKeepsItsOwnDistinctAbilityScoreImprovement()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        ClassDefinition monk = GetClass(classes, "dnd5e2014.class.monk");
+        ClassDefinition rogue = GetClass(classes, "dnd5e2014.class.rogue");
+
+        Assert.Contains(
+            monk.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.evasion");
+        Assert.Contains(
+            rogue.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.evasion");
+
+        Assert.DoesNotContain(
+            rogue.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.ability-score-improvement");
+        Assert.DoesNotContain(
+            monk.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.rogue-ability-score-improvement");
     }
 
     private static ClassDefinition GetClass(

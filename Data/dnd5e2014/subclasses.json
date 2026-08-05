@@ -266,5 +266,110 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.thief",
+    "name": "Thief",
+    "classId": "dnd5e2014.class.rogue",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.fast-hands"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.second-story-work"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.supreme-sneak"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.use-magic-device"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.thiefs-reflexes"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.assassin",
+    "name": "Assassin",
+    "classId": "dnd5e2014.class.rogue",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.assassin-bonus-proficiencies"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.assassinate"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.infiltration-expertise"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.impostor"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.death-strike"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.arcane-trickster",
+    "name": "Arcane Trickster",
+    "classId": "dnd5e2014.class.rogue",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.arcane-trickster-spellcasting"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.mage-hand-legerdemain"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.magical-ambush"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.versatile-trickster"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.spell-thief"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

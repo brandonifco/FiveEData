@@ -306,6 +306,52 @@ its own shape stresses parts of the domain Fighter/Barbarian hadn't:
   consumer) actually needs structured tool-choice data — don't add the
   field speculatively ahead of that need.
 
+**Rogue was the fourth class built**, and it supplied the first case of a
+*feature*-level cross-class share, not just a class-level one, plus a
+fresh divergent-ASI outlier to weigh against Fighter's:
+- **`Evasion` is identical, word for word, between Monk and Rogue** —
+  same 7th-level trigger, same "no damage on a success, half on a
+  failure" text, confirmed by reading both side by side rather than
+  assumed from the name. The existing `dnd5e2014.class-rule.evasion`
+  entry (Monk's, page 79) gained a second `SourceReference` (Rogue's,
+  page 96) rather than Rogue getting its own `rogue-evasion` — the same
+  multi-source shared-`RuleId` shape the Ability Score Improvement /
+  Extra Attack migration already established, just discovered a feature
+  at a time instead of resolved once for a whole class. This is the
+  proof the "verify by reading the real text every time" discipline
+  actually pays for itself: `Evasion` looked like an obvious
+  one-off-per-class feature name right up until it wasn't.
+- **Rogue's own "Ability Score Improvement" is a *third*, independently
+  divergent case, not a second confirmation of Fighter's.** Fighter gets
+  it at 4/6/8/12/14/16/19 (extra levels named in its own sentence);
+  Barbarian and Monk share the standard 4/8/12/16/19; Rogue's text names
+  4/8/10/12/16/19 — a *different* extra level (10th, not 6th/14th) from
+  Fighter's own divergence, and different from the shared standard too.
+  `rogue-ability-score-improvement` is its own prefixed `RuleId`, sharing
+  with neither of the other two groups — confirms the standing rule
+  (default to sharing unless the actual text diverges) rather than
+  either "Fighter is the only outlier" or "everyone eventually
+  converges."
+- **The first real content in `WeaponProficiencyIds` used alongside a
+  category, not `WeaponProficiencyCategories` alone or a bare list.**
+  Rogue's "Simple weapons, hand crossbows, longswords, rapiers,
+  shortswords" is `WeaponProficiencyCategories: [Simple]` plus four named
+  IDs — the same category+exception shape Monk's shortsword pioneered,
+  now exercised with more than one named exception at once.
+- **`Expertise` (choose skill/tool proficiencies to double) has no
+  structured field**, the same category of gap as tool-proficiency
+  choice above — folded into a single citation, reused at its own two
+  grant levels (1st, 6th) the same recurring-feature shape
+  `Unarmored Movement` and `disciple-of-the-elements` already
+  established.
+- **Arcane Trickster's own `Spellcasting` stays separately named and
+  prefixed** (`arcane-trickster-spellcasting`), matching Eldritch
+  Knight's precedent exactly rather than being compared for sharing —
+  the two features share a heading word but nothing else (different
+  spellcasting ability, different spell list restriction, a completely
+  different slot progression), so this was never a real candidate for
+  the generic-name default in the first place.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -341,7 +387,7 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 15: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 16: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
@@ -349,23 +395,32 @@ senses, alignments), and races (all 9 PHB races plus all 9 subraces — see
 "Races" above) are complete. Classes is started but far from complete:
 Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight),
 Barbarian (both subclasses — Path of the Berserker, Path of the Totem
-Warrior), and Monk (all 3 subclasses — Way of the Open Hand, Way of
-Shadow, Way of the Four Elements) are built — see "Classes" above,
-including the cross-class `RuleId` sharing question, now resolved with
-real evidence from all three. The other 9 PHB classes (Bard, Cleric,
-Druid, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard) are not yet
-built; when picking one up, re-derive its own RuleId cross-class-sharing
-decisions against the precedent in "Classes" above (default to sharing a
-generic-named mechanic like Ability Score Improvement/Extra Attack unless
-the actual PHB text diverges; prefix on a name collision with a different
-mechanic, like Unarmored Defense) rather than assuming it's settled for
-good — re-verify by reading the real text, the same discipline that got
-the rule right this time. Not yet started: backgrounds, spells, magic
-items, and combat/adventuring rule prose beyond the existing rules
-citation index (`Data/dnd5e2014/rules/`, split per-domain — see
-"Architecture" above). Feats (and, by extension, Variant Human) are out
-of scope — they aren't part of the free 2014 SRD this project's
-provenance model is built around.
+Warrior), Monk (all 3 subclasses — Way of the Open Hand, Way of Shadow,
+Way of the Four Elements), and Rogue (all 3 subclasses — Thief, Assassin,
+Arcane Trickster) are built — see "Classes" above, including the
+cross-class `RuleId` sharing question, resolved with evidence from all
+four (most recently: Evasion turned out shared between Monk and Rogue,
+while Rogue's own Ability Score Improvement is a third, independently
+divergent case from Fighter's). The other 8 PHB classes (Bard, Cleric,
+Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard) are not yet built —
+note that all of them are full or half spellcasters, a shape none of the
+four built so far are (Eldritch Knight's and Arcane Trickster's
+subclass-only spellcasting are the only precedent, both handled as a
+single citation-only feature with no spell-slot-table structure); when
+picking one up, treat a class's core `Spellcasting` feature the same way
+unless real need for structured spell-slot data emerges, and re-derive
+RuleId cross-class-sharing decisions against the precedent in "Classes"
+above (default to sharing a generic-named mechanic like Ability Score
+Improvement/Extra Attack/Evasion unless the actual PHB text diverges;
+prefix on a name collision with a different mechanic, like Unarmored
+Defense) rather than assuming it's settled for good — re-verify by
+reading the real text, the same discipline that's paid off at both the
+class level and the individual-feature level so far. Not yet started:
+backgrounds, spells, magic items, and combat/adventuring rule prose
+beyond the existing rules citation index (`Data/dnd5e2014/rules/`, split
+per-domain — see "Architecture" above). Feats (and, by extension,
+Variant Human) are out of scope — they aren't part of the free 2014 SRD
+this project's provenance model is built around.
 
 ## Build
 
