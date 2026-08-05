@@ -33,6 +33,8 @@ public sealed class Dnd5e2014Ruleset
         CreatureVocabularyCatalogs creatureVocabulary,
         RaceCatalog races,
         SubraceCatalog subraces,
+        ClassCatalog classes,
+        SubclassCatalog subclasses,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -54,6 +56,8 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(creatureVocabulary);
         ArgumentNullException.ThrowIfNull(races);
         ArgumentNullException.ThrowIfNull(subraces);
+        ArgumentNullException.ThrowIfNull(classes);
+        ArgumentNullException.ThrowIfNull(subclasses);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -75,6 +79,8 @@ public sealed class Dnd5e2014Ruleset
         CreatureVocabulary = creatureVocabulary;
         Races = races;
         Subraces = subraces;
+        Classes = classes;
+        Subclasses = subclasses;
         Sources = sources;
         Rules = rules;
     }
@@ -104,6 +110,8 @@ public sealed class Dnd5e2014Ruleset
 
     public RaceCatalog Races { get; }
     public SubraceCatalog Subraces { get; }
+    public ClassCatalog Classes { get; }
+    public SubclassCatalog Subclasses { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

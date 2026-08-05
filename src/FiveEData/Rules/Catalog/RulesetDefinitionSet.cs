@@ -11,7 +11,8 @@ internal sealed class RulesetDefinitionSet
         EquipmentDefinitionSet equipment,
         ExpenseDefinitionSet expenses,
         CreatureVocabularyDefinitionSet creatureVocabulary,
-        RaceDefinitionSet races)
+        RaceDefinitionSet races,
+        ClassDefinitionSet classes)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(rules);
@@ -19,6 +20,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(expenses);
         ArgumentNullException.ThrowIfNull(creatureVocabulary);
         ArgumentNullException.ThrowIfNull(races);
+        ArgumentNullException.ThrowIfNull(classes);
 
         SourceDocuments = sourceDocuments;
         Rules = rules;
@@ -26,6 +28,7 @@ internal sealed class RulesetDefinitionSet
         Expenses = expenses;
         CreatureVocabulary = creatureVocabulary;
         Races = races;
+        Classes = classes;
     }
 
     public IReadOnlyList<SourceDocument> SourceDocuments { get; }
@@ -39,4 +42,5 @@ internal sealed class RulesetDefinitionSet
     }
 
     public RaceDefinitionSet Races { get; }
+    public ClassDefinitionSet Classes { get; }
 }

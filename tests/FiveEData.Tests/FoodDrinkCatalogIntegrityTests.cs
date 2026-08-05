@@ -160,6 +160,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
                     damageTypes: [],
                     senses: [],
                     alignments: []),
-            races: new RaceDefinitionSet(races: [], subraces: []));
+            races: new RaceDefinitionSet(races: [], subraces: []),
+            classes: new ClassDefinitionSet(classes: [], subclasses: []));
     }
 }

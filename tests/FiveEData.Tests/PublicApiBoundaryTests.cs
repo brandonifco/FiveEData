@@ -10,6 +10,8 @@ using FiveEData.Rules.Creatures.Abilities.Serialization;
 using FiveEData.Rules.Creatures.Alignments.Serialization;
 using FiveEData.Rules.Creatures.Conditions.Serialization;
 using FiveEData.Rules.Creatures.DamageTypes.Serialization;
+using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Creatures.Languages.Serialization;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.Serialization;
@@ -97,6 +99,12 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(SubraceDefinitionValidator).IsPublic);
         Assert.False(typeof(RaceCatalogIntegrityValidator).IsPublic);
         Assert.False(typeof(RaceDefinitionSet).IsPublic);
+        Assert.False(typeof(ClassDefinitionLoader).IsPublic);
+        Assert.False(typeof(SubclassDefinitionLoader).IsPublic);
+        Assert.False(typeof(ClassDefinitionValidator).IsPublic);
+        Assert.False(typeof(SubclassDefinitionValidator).IsPublic);
+        Assert.False(typeof(ClassCatalogIntegrityValidator).IsPublic);
+        Assert.False(typeof(ClassDefinitionSet).IsPublic);
     }
 
     [Fact]
@@ -161,7 +169,9 @@ public sealed class PublicApiBoundaryTests
             ruleset.CreatureVocabulary.Alignments.Count);
         Assert.Equal(9, ruleset.Races.Count);
         Assert.Equal(9, ruleset.Subraces.Count);
-        Assert.Equal(127, ruleset.Rules.Count);
+        Assert.Equal(1, ruleset.Classes.Count);
+        Assert.Equal(3, ruleset.Subclasses.Count);
+        Assert.Equal(150, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
 }

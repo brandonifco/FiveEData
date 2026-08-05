@@ -53,8 +53,10 @@ public sealed class CatalogApiTests
             ruleset.CreatureVocabulary.Sizes.Count);
         Assert.Equal(9, ruleset.Races.Count);
         Assert.Equal(9, ruleset.Subraces.Count);
+        Assert.Equal(1, ruleset.Classes.Count);
+        Assert.Equal(3, ruleset.Subclasses.Count);
         Assert.Equal(1, ruleset.Sources.Count);
-        Assert.Equal(127, ruleset.Rules.Count);
+        Assert.Equal(150, ruleset.Rules.Count);
 
         WeaponDefinition longsword =
             ruleset.Weapons.Get(

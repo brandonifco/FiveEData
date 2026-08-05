@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(127, ruleset.Rules.Count);
+        Assert.Equal(150, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -230,6 +230,31 @@ public sealed class RuleCatalogTests
                 .Concat(
                     ruleset.Subraces.All.SelectMany(
                         subrace => subrace.TraitRuleIds));
+
+        foreach (RuleId ruleId in ids)
+        {
+            Assert.True(
+                ruleset.Rules.TryGet(
+                    ruleId,
+                    out RuleDefinition? definition));
+            Assert.NotNull(definition);
+        }
+    }
+
+    [Fact]
+    public void EveryClassAndSubclassLevelFeatureRuleId_Resolves()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        IEnumerable<RuleId> ids =
+            ruleset.Classes.All
+                .SelectMany(
+                    @class => @class.LevelFeatures,
+                    (_, feature) => feature.FeatureRuleId)
+                .Concat(
+                    ruleset.Subclasses.All.SelectMany(
+                        subclass => subclass.LevelFeatures,
+                        (_, feature) => feature.FeatureRuleId));
 
         foreach (RuleId ruleId in ids)
         {

@@ -308,6 +308,7 @@ public sealed class MundaneServiceCatalogIntegrityTests
                     damageTypes: [],
                     senses: [],
                     alignments: []),
-            races: new RaceDefinitionSet(races: [], subraces: []));
+            races: new RaceDefinitionSet(races: [], subraces: []),
+            classes: new ClassDefinitionSet(classes: [], subclasses: []));
     }
 }

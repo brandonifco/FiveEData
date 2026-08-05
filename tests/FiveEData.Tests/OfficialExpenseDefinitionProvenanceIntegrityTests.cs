@@ -475,7 +475,8 @@ public sealed class
                     alignments:
                         AlignmentDefinitionLoader.LoadFromFile(
                             DataPath("alignments.json"))),
-            races: new RaceDefinitionSet(races: [], subraces: []));
+            races: new RaceDefinitionSet(races: [], subraces: []),
+            classes: new ClassDefinitionSet(classes: [], subclasses: []));
     }
 
     private static string DataPath(string fileName)

@@ -1,0 +1,111 @@
+[
+  {
+    "id": "dnd5e2014.subclass.champion",
+    "name": "Champion",
+    "classId": "dnd5e2014.class.fighter",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.improved-critical"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.remarkable-athlete"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.additional-fighting-style"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.superior-critical"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.survivor"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 73,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.battle-master",
+    "name": "Battle Master",
+    "classId": "dnd5e2014.class.fighter",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.combat-superiority"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.student-of-war"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.know-your-enemy"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.improved-combat-superiority"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.relentless"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.eldritch-knight",
+    "name": "Eldritch Knight",
+    "classId": "dnd5e2014.class.fighter",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.eldritch-knight-spellcasting"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.weapon-bond"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.war-magic"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.eldritch-strike"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.arcane-charge"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.improved-war-magic"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 75,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

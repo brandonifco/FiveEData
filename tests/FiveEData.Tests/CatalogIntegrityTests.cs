@@ -1,4 +1,6 @@
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -13,6 +15,8 @@ using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Sizes.Serialization;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Equipment;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
@@ -80,6 +84,18 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<SubraceDefinition> subraces =
             SubraceDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "subraces.json"));
+
+        IReadOnlyList<SkillDefinition> skills =
+            SkillDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "skills.json"));
+
+        IReadOnlyList<ClassDefinition> classes =
+            ClassDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "classes.json"));
+
+        IReadOnlyList<SubclassDefinition> subclasses =
+            SubclassDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "subclasses.json"));
 
         IReadOnlyList<RuleDefinition> rules =
             RuleDefinitionLoader.LoadFromJson(
@@ -167,8 +183,11 @@ public sealed class CatalogIntegrityTests
                     abilities: abilities,
                     sizes: creatureSizes,
                     languages: languages,
+                    skills: skills,
                     races: races,
-                    subraces: subraces)));
+                    subraces: subraces,
+                    classes: classes,
+                    subclasses: subclasses)));
     }
 
     [Fact]
@@ -1259,8 +1278,11 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<AbilityDefinition>? abilities = null,
         IReadOnlyList<CreatureSizeDefinition>? sizes = null,
         IReadOnlyList<LanguageDefinition>? languages = null,
+        IReadOnlyList<SkillDefinition>? skills = null,
         IReadOnlyList<RaceDefinition>? races = null,
-        IReadOnlyList<SubraceDefinition>? subraces = null)
+        IReadOnlyList<SubraceDefinition>? subraces = null,
+        IReadOnlyList<ClassDefinition>? classes = null,
+        IReadOnlyList<SubclassDefinition>? subclasses = null)
     {
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
@@ -1292,7 +1314,7 @@ public sealed class CatalogIntegrityTests
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
                     abilities: abilities ?? [],
-                    skills: [],
+                    skills: skills ?? [],
                     languages: languages ?? [],
                     sizes: sizes ?? [],
                     conditions: [],
@@ -1301,7 +1323,10 @@ public sealed class CatalogIntegrityTests
                     alignments: []),
             races: new RaceDefinitionSet(
                 races: races ?? [],
-                subraces: subraces ?? []));
+                subraces: subraces ?? []),
+            classes: new ClassDefinitionSet(
+                classes: classes ?? [],
+                subclasses: subclasses ?? []));
     }
 
     private static ToolDefinition CreateTool(

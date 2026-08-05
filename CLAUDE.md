@@ -105,6 +105,63 @@ the corrected wording is what's stored. Variant Human is out of scope, the
 same way Feats are — its "bonus feat" trait can't be represented without
 Feats existing.
 
+## Classes
+
+`Rules/Classes/` is a new top-level domain (sibling to `Rules/Equipment`,
+`Rules/Expenses`, `Rules/Creatures`), not folded under `Rules/Creatures/`
+like Races — a class isn't a creature-vocabulary consumer in the same way,
+it's a player-build concept in its own right, so it gets its own namespace.
+
+`ClassDefinition`/`SubclassDefinition` are siblings with a `ClassId`
+back-reference, the same shape Race/Subrace and Tool/ToolFamily already
+established. What's structured vs. what's a `RuleId` citation follows the
+same line Races drew: hit die (`DiceExpression`, reusing the existing
+weapon-damage value type — a hit die is always "1 die of this size"),
+primary/saving-throw abilities, armor/weapon proficiency *categories*
+(reusing the existing `ArmorCategory`/`WeaponProficiencyCategory` enums
+from the Equipment domain rather than inventing new ones), a skill-choice
+count/option-list (the same "N of your choice" shape Half-Elf/Human
+introduced), and a flat `LevelFeatures: (Level, RuleId)` list are all
+structured. Everything else — what a feature actually *does*, including
+genuinely complex mechanics like Battle Master's maneuvers-and-superiority-
+dice or Eldritch Knight's full spell-slot progression table — is a single
+named `RuleId` citation with no sub-structure, exactly like Draconic
+Ancestry's damage table wasn't modeled as data. This was a deliberate,
+verified scope call, not a gap: Eldritch Knight's entire spellcasting
+section (cantrips, spell slots per level, spells known) was read in full
+from the PHB specifically to confirm it reduces cleanly to one citation
+the same way everything else does — it does, and building a spell-slot
+table structure was not needed to represent it faithfully.
+
+A within-class choice point (Fighting Style's 6 named options, a Battle
+Master maneuver list) is *not* modeled as its own structured
+choose-N-of-M shape — it's left inside the single feature `RuleId` that
+names the choice (`Fighting Style`, `Combat Superiority`), matching the
+same restraint already applied to Draconic Ancestry's own sub-table.
+Recurring milestone features (Ability Score Improvement at multiple
+levels, Extra Attack scaling at 5th/11th/20th) reuse the *same* `RuleId`
+at each level in `LevelFeatures` rather than minting a new one per
+occurrence, since it's the same named feature recurring, not a new one.
+
+**Cross-class `RuleId` sharing is deliberately not designed yet.** Races
+could compare all 9 races' text side by side before deciding what to
+share (`Darkvision`) vs. keep separate (`Dwarven Resilience` vs. `Stout
+Resilience`). With only Fighter built so far there's nothing to compare
+against, so every Fighter/subclass `RuleId` in this pass is Fighter-
+specific (`fighter-ability-score-improvement`, `fighter-extra-attack`)
+where the name is generic enough to plausibly collide with a future
+class's own differently-worded version of the same-named feature, and
+left bare (`fighting-style`, `indomitable`) where the name is already
+distinctive. Revisit the sharing question — the same way it was resolved
+for Races — once a second class's full text is in hand to compare against.
+
+Fighter was chosen as the template class specifically because it has no
+exceptions to model: full armor/weapon proficiency by category (unlike
+Druid's nonmetal-only restriction), and all three of its PHB subclasses
+(Champion, Battle Master, Eldritch Knight) were built in this same pass —
+deliberately not just the simplest one — to prove the shape holds across
+the real complexity range a class can contain, not just the easy case.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -140,16 +197,22 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 12: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 13: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
 senses, alignments), and races (all 9 PHB races plus all 9 subraces — see
-"Races" above) are complete. Not yet started: classes, backgrounds, spells,
-magic items, and combat/adventuring rule prose beyond the existing
-`rules.json` citation index. Feats (and, by extension, Variant Human) are
-out of scope — they aren't part of the free 2014 SRD this project's
-provenance model is built around.
+"Races" above) are complete. Classes is started but far from complete:
+only Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight)
+is built, as the validated template for the domain shape — see "Classes"
+above. The other 11 PHB classes (Barbarian, Bard, Cleric, Druid, Monk,
+Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard) are not yet built; when
+picking one up, re-derive its own RuleId cross-class-sharing decisions
+against Fighter's rather than assuming Fighter's slugs are final. Not yet
+started: backgrounds, spells, magic items, and combat/adventuring rule
+prose beyond the existing `rules.json` citation index. Feats (and, by
+extension, Variant Human) are out of scope — they aren't part of the free
+2014 SRD this project's provenance model is built around.
 
 ## Build
 

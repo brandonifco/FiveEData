@@ -1,0 +1,119 @@
+[
+  {
+    "id": "dnd5e2014.class.fighter",
+    "name": "Fighter",
+    "hitDieSides": 10,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.strength",
+      "dnd5e2014.ability.dexterity"
+    ],
+    "requiresAllPrimaryAbilities": false,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.strength",
+      "dnd5e2014.ability.constitution"
+    ],
+    "armorProficiencyCategories": [
+      "Light",
+      "Medium",
+      "Heavy"
+    ],
+    "proficientWithShields": true,
+    "weaponProficiencyCategories": [
+      "Simple",
+      "Martial"
+    ],
+    "weaponProficiencyIds": [],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.acrobatics",
+      "dnd5e2014.skill.animal-handling",
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.history",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.intimidation",
+      "dnd5e2014.skill.perception",
+      "dnd5e2014.skill.survival"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.fighting-style"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.second-wind"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.action-surge"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.martial-archetype"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-ability-score-improvement"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-extra-attack"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-ability-score-improvement"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-ability-score-improvement"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.indomitable"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-extra-attack"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-ability-score-improvement"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.indomitable"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-ability-score-improvement"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-ability-score-improvement"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.action-surge"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.indomitable"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.fighter-extra-attack"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 71,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

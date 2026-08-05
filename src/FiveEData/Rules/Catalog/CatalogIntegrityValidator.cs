@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
@@ -6,6 +7,7 @@ using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
@@ -101,6 +103,25 @@ internal static class CatalogIntegrityValidator
                 abilityIds,
                 sizeIds,
                 languageIds,
+                ruleIds));
+
+        HashSet<SkillId> skillIds =
+            definitions.CreatureVocabulary.Skills
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        HashSet<WeaponId> weaponIds =
+            definitions.Equipment.Weapons
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        errors.AddRange(
+            ClassCatalogIntegrityValidator.Validate(
+                definitions.Classes,
+                sourceIds,
+                abilityIds,
+                skillIds,
+                weaponIds,
                 ruleIds));
 
         HashSet<AdventuringGearId> adventuringGearIds =
