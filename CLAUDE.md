@@ -113,8 +113,9 @@ pairs, known languages, an `AdditionalLanguageChoiceCount` /
 `ChoosableAbilityScoreIncreaseCount` for "N more of your choice" mechanics
 introduced here for the first time). Named racial traits with real
 narrative substance (Darkvision, Fey Ancestry, Draconic Ancestry, ...) are
-`RuleId` references into the shared `rules.json` catalog
-(`dnd5e2014.race-rule.*`), mirroring the existing `SpecialRuleIds` pattern
+`RuleId` references into the shared rules catalog — `race-rule.json`
+specifically, since the split described above — (`dnd5e2014.race-rule.*`),
+mirroring the existing `SpecialRuleIds` pattern
 — consistent with this project's standing discipline of never storing
 rules prose, only a citation index. Where the mechanic and the trait name
 are both identical across races (Darkvision is worded identically in all
@@ -240,9 +241,10 @@ Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard) are not yet built; when
 picking one up, re-derive its own RuleId cross-class-sharing decisions
 against Fighter's rather than assuming Fighter's slugs are final. Not yet
 started: backgrounds, spells, magic items, and combat/adventuring rule
-prose beyond the existing `rules.json` citation index. Feats (and, by
-extension, Variant Human) are out of scope — they aren't part of the free
-2014 SRD this project's provenance model is built around.
+prose beyond the existing rules citation index (`Data/dnd5e2014/rules/`,
+split per-domain — see "Architecture" above). Feats (and, by extension,
+Variant Human) are out of scope — they aren't part of the free 2014 SRD
+this project's provenance model is built around.
 
 ## Build
 
