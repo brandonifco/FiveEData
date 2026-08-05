@@ -107,5 +107,71 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.path-of-the-berserker",
+    "name": "Path of the Berserker",
+    "classId": "dnd5e2014.class.barbarian",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.frenzy"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.mindless-rage"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.intimidating-presence"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.retaliation"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 49,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.path-of-the-totem-warrior",
+    "name": "Path of the Totem Warrior",
+    "classId": "dnd5e2014.class.barbarian",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.spirit-seeker"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.totem-spirit"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.aspect-of-the-beast"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.spirit-walker"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.totemic-attunement"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

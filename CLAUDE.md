@@ -174,17 +174,27 @@ levels, Extra Attack scaling at 5th/11th/20th) reuse the *same* `RuleId`
 at each level in `LevelFeatures` rather than minting a new one per
 occurrence, since it's the same named feature recurring, not a new one.
 
-**Cross-class `RuleId` sharing is deliberately not designed yet.** Races
-could compare all 9 races' text side by side before deciding what to
-share (`Darkvision`) vs. keep separate (`Dwarven Resilience` vs. `Stout
-Resilience`). With only Fighter built so far there's nothing to compare
-against, so every Fighter/subclass `RuleId` in this pass is Fighter-
-specific (`fighter-ability-score-improvement`, `fighter-extra-attack`)
-where the name is generic enough to plausibly collide with a future
-class's own differently-worded version of the same-named feature, and
-left bare (`fighting-style`, `indomitable`) where the name is already
-distinctive. Revisit the sharing question — the same way it was resolved
-for Races — once a second class's full text is in hand to compare against.
+**Cross-class `RuleId` sharing was revisited once a second class's full
+text was in hand, per Barbarian below, and the answer was: don't share
+yet.** Fighter's and Barbarian's "Ability Score Improvement" features
+have the same name but not the same text — Fighter's own sentence names
+extra trigger levels (6th and 14th, on top of the standard 4/8/12/16/19)
+that Barbarian's doesn't, because Fighter genuinely gets more of them.
+Same story for "Extra Attack": Fighter's text scales further at 11th and
+20th level; Barbarian's is a flat one-time grant with no scaling
+sentence at all. Per the same bar Races set (share only on identical
+wording, e.g. `Darkvision`; keep separate the moment the mechanic or its
+text diverges, e.g. `Dwarven Resilience` vs. `Stout Resilience`), both
+stayed class-prefixed (`fighter-ability-score-improvement` /
+`barbarian-ability-score-improvement`, `fighter-extra-attack` /
+`barbarian-extra-attack`). One new case Fighter's own pass didn't
+anticipate: `Unarmored Defense` is a name (not just a mechanic) that
+Barbarian and Monk will share with two different formulas (Dex+Con vs.
+Dex+Wis) — prefixed as `barbarian-unarmored-defense` pre-emptively, since
+the collision is already known to be coming, not just plausible. Revisit
+again once a third class's text is in hand — two data points is enough to
+confirm "don't share by default," not enough to declare the question
+closed.
 
 Fighter was chosen as the template class specifically because it has no
 exceptions to model: full armor/weapon proficiency by category (unlike
@@ -192,6 +202,31 @@ Druid's nonmetal-only restriction), and all three of its PHB subclasses
 (Champion, Battle Master, Eldritch Knight) were built in this same pass —
 deliberately not just the simplest one — to prove the shape holds across
 the real complexity range a class can contain, not just the easy case.
+
+**Barbarian was the second class built**, chosen because its two PHB
+subclasses (Path of the Berserker, Path of the Totem Warrior) exercise a
+shape Fighter's own three didn't: Path of the Totem Warrior grants *two*
+named features at the same chosen-at level (`Spirit Seeker` and `Totem
+Spirit`, both at 3rd) rather than one, which `SubclassDefinition` already
+supported structurally (`LevelFeatures` was never assumed to be
+one-per-level) but had no real content exercising until now. Barbarian's
+own "primary ability" (`PrimaryAbilityIds`/`RequiresAllPrimaryAbilities`)
+is derived from the Chapter 6 multiclassing prerequisite table (p.163),
+the same source Fighter's `[Strength, Dexterity]` / `requiresAll: false`
+came from (Fighter's prereq is "Strength 13 *or* Dexterity 13") — verified
+directly against that table rather than assumed from the class's own
+Quick Build text, since Barbarian's Quick Build suggestion ("Strength,
+followed by Constitution") reads similarly but means something different
+(a stat-priority suggestion, not an either/or prerequisite). Barbarian's
+prereq is a single ability ("Strength 13", no "or"), so
+`RequiresAllPrimaryAbilities: true` with a one-element list — the first
+real use of that flag as `true` since Fighter always had it `false`.
+Recurring milestone features reuse one `RuleId` at each level, same as
+Fighter's `Extra Attack`: `barbarian-ability-score-improvement` (4th,
+8th, 12th, 16th, 19th) and `brutal-critical` (9th, 13th, 17th — the
+"1 die"/"2 dice"/"3 dice" scaling lives in the prose the citation points
+to, not in structured data, matching how Draconic Ancestry's own
+sub-table was left uncaptured).
 
 ## Test conventions
 
@@ -228,23 +263,26 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 13: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 14: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
 senses, alignments), and races (all 9 PHB races plus all 9 subraces — see
 "Races" above) are complete. Classes is started but far from complete:
-only Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight)
-is built, as the validated template for the domain shape — see "Classes"
-above. The other 11 PHB classes (Barbarian, Bard, Cleric, Druid, Monk,
-Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard) are not yet built; when
-picking one up, re-derive its own RuleId cross-class-sharing decisions
-against Fighter's rather than assuming Fighter's slugs are final. Not yet
-started: backgrounds, spells, magic items, and combat/adventuring rule
-prose beyond the existing rules citation index (`Data/dnd5e2014/rules/`,
-split per-domain — see "Architecture" above). Feats (and, by extension,
-Variant Human) are out of scope — they aren't part of the free 2014 SRD
-this project's provenance model is built around.
+Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight) and
+Barbarian (both subclasses — Path of the Berserker, Path of the Totem
+Warrior) are built — see "Classes" above, including the cross-class
+`RuleId` sharing decision made comparing the two. The other 10 PHB classes
+(Bard, Cleric, Druid, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock,
+Wizard) are not yet built; when picking one up, re-derive its own RuleId
+cross-class-sharing decisions against Fighter's and Barbarian's rather
+than assuming their slugs are final — Monk in particular will need to
+resolve the `Unarmored Defense` collision already flagged in "Classes"
+above. Not yet started: backgrounds, spells, magic items, and
+combat/adventuring rule prose beyond the existing rules citation index
+(`Data/dnd5e2014/rules/`, split per-domain — see "Architecture" above).
+Feats (and, by extension, Variant Human) are out of scope — they aren't
+part of the free 2014 SRD this project's provenance model is built around.
 
 ## Build
 
