@@ -16,7 +16,7 @@
         "sides": 4
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [
       "Light"
@@ -50,7 +50,7 @@
         "sides": 4
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Finesse",
@@ -89,7 +89,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [
       "TwoHanded"
@@ -123,7 +123,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Light",
@@ -161,7 +161,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Thrown"
@@ -198,7 +198,7 @@
         "sides": 4
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [
       "Light",
@@ -236,7 +236,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [],
     "range": null,
@@ -268,7 +268,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [
       "Versatile"
@@ -305,7 +305,7 @@
         "sides": 4
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Light"
@@ -339,7 +339,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Thrown",
@@ -373,7 +373,7 @@
     "damage": {
       "dice": null,
       "fixedAmount": 1,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [],
     "range": null,
@@ -405,7 +405,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Ammunition",
@@ -444,7 +444,7 @@
         "sides": 4
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Finesse",
@@ -482,7 +482,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Ammunition",
@@ -518,7 +518,7 @@
         "sides": 4
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [
       "Ammunition"
@@ -555,7 +555,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Versatile"
@@ -592,7 +592,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [],
     "range": null,
@@ -624,7 +624,7 @@
         "sides": 10
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Heavy",
@@ -660,7 +660,7 @@
         "sides": 12
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Heavy",
@@ -695,7 +695,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Heavy",
@@ -730,7 +730,7 @@
         "sides": 10
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Heavy",
@@ -766,7 +766,7 @@
         "sides": 12
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Reach",
@@ -808,7 +808,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Versatile"
@@ -845,7 +845,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [
       "Heavy",
@@ -880,7 +880,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [],
     "range": null,
@@ -912,7 +912,7 @@
         "sides": 10
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Heavy",
@@ -948,7 +948,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Finesse"
@@ -982,7 +982,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Finesse",
@@ -1017,7 +1017,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Finesse",
@@ -1052,7 +1052,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Thrown",
@@ -1093,7 +1093,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [],
     "range": null,
@@ -1125,7 +1125,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Bludgeoning"
+      "type": "dnd5e2014.damage-type.bludgeoning"
     },
     "properties": [
       "Versatile"
@@ -1162,7 +1162,7 @@
         "sides": 4
       },
       "fixedAmount": 0,
-      "type": "Slashing"
+      "type": "dnd5e2014.damage-type.slashing"
     },
     "properties": [
       "Finesse",
@@ -1194,7 +1194,7 @@
     "damage": {
       "dice": null,
       "fixedAmount": 1,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Ammunition",
@@ -1232,7 +1232,7 @@
         "sides": 6
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Ammunition",
@@ -1271,7 +1271,7 @@
         "sides": 10
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Ammunition",
@@ -1311,7 +1311,7 @@
         "sides": 8
       },
       "fixedAmount": 0,
-      "type": "Piercing"
+      "type": "dnd5e2014.damage-type.piercing"
     },
     "properties": [
       "Ammunition",

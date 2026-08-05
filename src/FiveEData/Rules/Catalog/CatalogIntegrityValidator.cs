@@ -1,6 +1,7 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.Armor;
@@ -64,6 +65,11 @@ internal static class CatalogIntegrityValidator
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
+        HashSet<DamageTypeId> damageTypeIds =
+            definitions.CreatureVocabulary.DamageTypes
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         HashSet<RuleId> ruleIds =
             definitions.Rules
                 .Select(rule => rule.Id)
@@ -97,6 +103,13 @@ internal static class CatalogIntegrityValidator
             {
                 errors.Add(
                     $"Weapon '{weapon.Id}' references missing ammunition type '{ammunitionTypeId}'.");
+            }
+
+            if (weapon.Damage is { } damage &&
+                !damageTypeIds.Contains(damage.DamageTypeId))
+            {
+                errors.Add(
+                    $"Weapon '{weapon.Id}' references missing damage type '{damage.DamageTypeId}'.");
             }
 
             foreach (RuleId specialRuleId in weapon.SpecialRuleIds)

@@ -2,6 +2,7 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Ammunition;
 
 namespace FiveEData.Rules.Equipment.Weapons.Serialization;
@@ -189,10 +190,15 @@ internal static class WeaponDefinitionLoader
             ? null
             : MapDice(data.Dice);
 
+        string typeValue = data.Type
+            ?? throw new ArgumentException(
+                "Weapon damage type ID is required.",
+                nameof(data));
+
         return new WeaponDamage(
             dice,
             data.FixedAmount,
-            data.Type);
+            new DamageTypeId(typeValue));
     }
 
     private static DiceExpression MapDice(DiceExpressionData data)

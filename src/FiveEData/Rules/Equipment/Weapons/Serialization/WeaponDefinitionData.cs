@@ -55,7 +55,7 @@ internal sealed class WeaponDamageData
     public int FixedAmount { get; init; }
 
     [JsonRequired]
-    public FiveEData.Rules.Common.DamageType Type { get; init; }
+    public string? Type { get; init; }
 }
 
 internal sealed class WeaponRangeData

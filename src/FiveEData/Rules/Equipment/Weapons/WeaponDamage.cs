@@ -1,4 +1,5 @@
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Creatures.DamageTypes;
 
 namespace FiveEData.Rules.Equipment.Weapons;
 
@@ -7,14 +8,13 @@ public sealed record WeaponDamage
     public WeaponDamage(
         DiceExpression? dice,
         int fixedAmount,
-        DamageType type)
+        DamageTypeId damageTypeId)
     {
-        if (!Enum.IsDefined(type))
+        if (string.IsNullOrWhiteSpace(damageTypeId.Value))
         {
-            throw new ArgumentOutOfRangeException(
-                nameof(type),
-                type,
-                "Weapon damage type must be defined.");
+            throw new ArgumentException(
+                "Weapon damage type ID must not be empty.",
+                nameof(damageTypeId));
         }
 
         if (fixedAmount < 0)
@@ -39,12 +39,12 @@ public sealed record WeaponDamage
 
         Dice = dice;
         FixedAmount = fixedAmount;
-        Type = type;
+        DamageTypeId = damageTypeId;
     }
 
     public DiceExpression? Dice { get; }
 
     public int FixedAmount { get; }
 
-    public DamageType Type { get; }
+    public DamageTypeId DamageTypeId { get; }
 }

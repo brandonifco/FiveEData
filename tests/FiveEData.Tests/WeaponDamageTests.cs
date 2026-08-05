@@ -1,10 +1,18 @@
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Tests;
 
 public sealed class WeaponDamageTests
 {
+    private static readonly DamageTypeId Bludgeoning =
+        new("dnd5e2014.damage-type.bludgeoning");
+    private static readonly DamageTypeId Piercing =
+        new("dnd5e2014.damage-type.piercing");
+    private static readonly DamageTypeId Slashing =
+        new("dnd5e2014.damage-type.slashing");
+
     [Fact]
     public void DiceDamage_WithDefinedType_IsAccepted()
     {
@@ -13,11 +21,11 @@ public sealed class WeaponDamageTests
         var damage = new WeaponDamage(
             dice,
             fixedAmount: 0,
-            DamageType.Slashing);
+            Slashing);
 
         Assert.Equal(dice, damage.Dice);
         Assert.Equal(0, damage.FixedAmount);
-        Assert.Equal(DamageType.Slashing, damage.Type);
+        Assert.Equal(Slashing, damage.DamageTypeId);
     }
 
     [Fact]
@@ -26,24 +34,24 @@ public sealed class WeaponDamageTests
         var damage = new WeaponDamage(
             dice: null,
             fixedAmount: 1,
-            DamageType.Piercing);
+            Piercing);
 
         Assert.Null(damage.Dice);
         Assert.Equal(1, damage.FixedAmount);
-        Assert.Equal(DamageType.Piercing, damage.Type);
+        Assert.Equal(Piercing, damage.DamageTypeId);
     }
 
     [Fact]
-    public void UndefinedDamageType_IsRejected()
+    public void DefaultDamageTypeId_IsRejected()
     {
-        ArgumentOutOfRangeException exception =
-            Assert.Throws<ArgumentOutOfRangeException>(
+        ArgumentException exception =
+            Assert.Throws<ArgumentException>(
                 () => new WeaponDamage(
                     new DiceExpression(1, 8),
                     fixedAmount: 0,
-                    (DamageType)999));
+                    default(DamageTypeId)));
 
-        Assert.Equal("type", exception.ParamName);
+        Assert.Equal("damageTypeId", exception.ParamName);
     }
 
     [Fact]
@@ -53,7 +61,7 @@ public sealed class WeaponDamageTests
             () => new WeaponDamage(
                 dice: null,
                 fixedAmount: 0,
-                DamageType.Bludgeoning));
+                Bludgeoning));
     }
 
     [Fact]
@@ -63,7 +71,7 @@ public sealed class WeaponDamageTests
             () => new WeaponDamage(
                 new DiceExpression(1, 4),
                 fixedAmount: 1,
-                DamageType.Bludgeoning));
+                Bludgeoning));
     }
 
     [Fact]
@@ -74,7 +82,7 @@ public sealed class WeaponDamageTests
                 () => new WeaponDamage(
                     dice: null,
                     fixedAmount: -1,
-                    DamageType.Bludgeoning));
+                    Bludgeoning));
 
         Assert.Equal("fixedAmount", exception.ParamName);
     }

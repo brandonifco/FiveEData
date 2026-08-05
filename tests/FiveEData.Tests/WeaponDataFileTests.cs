@@ -1,5 +1,6 @@
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 
@@ -110,7 +111,9 @@ public sealed class WeaponDataFileTests
         Assert.Null(unarmedStrike.Weight);
         Assert.Null(unarmedStrike.Damage?.Dice);
         Assert.Equal(1, unarmedStrike.Damage?.FixedAmount);
-        Assert.Equal(DamageType.Bludgeoning, unarmedStrike.Damage?.Type);
+        Assert.Equal(
+            new DamageTypeId("dnd5e2014.damage-type.bludgeoning"),
+            unarmedStrike.Damage?.DamageTypeId);
 
         WeaponDefinition blowgun =
             GetWeapon(weapons, "dnd5e2014.weapon.blowgun");
@@ -171,7 +174,9 @@ public sealed class WeaponDataFileTests
         Assert.Equal(5000, greatsword.Cost?.CopperPieces);
         Assert.Equal(6m, greatsword.Weight?.Pounds);
         Assert.Equal(new DiceExpression(2, 6), greatsword.Damage?.Dice);
-        Assert.Equal(DamageType.Slashing, greatsword.Damage?.Type);
+        Assert.Equal(
+            new DamageTypeId("dnd5e2014.damage-type.slashing"),
+            greatsword.Damage?.DamageTypeId);
         Assert.Contains(WeaponProperty.Heavy, greatsword.Properties);
         Assert.Contains(WeaponProperty.TwoHanded, greatsword.Properties);
 

@@ -2,6 +2,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
@@ -258,7 +259,7 @@ public sealed class CatalogApiTests
             damage: new WeaponDamage(
                 new DiceExpression(1, 4),
                 fixedAmount: 0,
-                DamageType.Bludgeoning),
+                new DamageTypeId("dnd5e2014.damage-type.bludgeoning")),
             properties: [],
             range: null,
             versatileDamage: null,

@@ -87,14 +87,15 @@ closest in shape when adding a new one.
 
 ## Known architectural note
 
-`Rules/Common/DamageType.cs` is a legacy bare `enum` (the 13 damage types)
-used mechanically by `WeaponDamage` — it predates the vocabulary-catalog
-pattern and has no citations. `Rules/Creatures/DamageTypes/` (added in
-Phase 11) is the new citation-backed, extension-friendly catalog for the
-same 13 types, added without touching the Weapons domain to avoid an
-unplanned breaking change. Reconciling these (likely: migrate
-`WeaponDamage` to reference `DamageTypeId`) is an open follow-up, not yet
-scheduled.
+Resolved: `Rules/Common/DamageType.cs` (a legacy bare `enum`, no citations,
+predating the vocabulary-catalog pattern) has been deleted.
+`WeaponDamage.DamageTypeId` now references `Rules/Creatures/DamageTypes`
+(the Phase 11 citation-backed catalog) directly, the same cross-domain
+`<Domain>Id`-reference shape `AmmunitionTypeId`/`RuleId` already use on
+`WeaponDefinition` — `CatalogIntegrityValidator` checks it resolves against
+the loaded `DamageTypeCatalog` the same way. `Data/dnd5e2014/weapons.json`'s
+`damage.type` field changed from a bare enum name (`"Bludgeoning"`) to the
+full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 
 ## Status
 
