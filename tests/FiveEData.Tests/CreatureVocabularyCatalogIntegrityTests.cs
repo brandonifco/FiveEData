@@ -481,6 +481,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             equipment: equipment,
             expenses: expenses,
             creatureVocabulary: creatureVocabulary,
-            races: new RaceDefinitionSet(races: [], subraces: []));
+            races: new RaceDefinitionSet(races: [], subraces: []),
+            classes: new ClassDefinitionSet(classes: [], subclasses: []));
     }
 }

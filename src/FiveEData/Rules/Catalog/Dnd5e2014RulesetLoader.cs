@@ -1,3 +1,5 @@
+using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -87,6 +89,12 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string SubracesResource =
         "FiveEData.Data.dnd5e2014.subraces.json";
+
+    private const string ClassesResource =
+        "FiveEData.Data.dnd5e2014.classes.json";
+
+    private const string SubclassesResource =
+        "FiveEData.Data.dnd5e2014.subclasses.json";
 
     private const string AmmunitionResource =
         "FiveEData.Data.dnd5e2014.ammunition.json";
@@ -198,6 +206,14 @@ internal static class Dnd5e2014RulesetLoader
         IReadOnlyList<SubraceDefinition> subraces =
             SubraceDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(SubracesResource));
+
+        IReadOnlyList<ClassDefinition> classes =
+            ClassDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ClassesResource));
+
+        IReadOnlyList<SubclassDefinition> subclasses =
+            SubclassDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(SubclassesResource));
 
         IReadOnlyList<AmmunitionDefinition> ammunition =
             AmmunitionDefinitionLoader.LoadFromJson(
@@ -315,13 +331,18 @@ internal static class Dnd5e2014RulesetLoader
             races: races,
             subraces: subraces);
 
+        var classDefinitionSet = new ClassDefinitionSet(
+            classes: classes,
+            subclasses: subclasses);
+
         var definitions = new RulesetDefinitionSet(
             sourceDocuments: sources,
             rules: rules,
             equipment: equipment,
             expenses: expenses,
             creatureVocabulary: creatureVocabulary,
-            races: raceDefinitionSet);
+            races: raceDefinitionSet,
+            classes: classDefinitionSet);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -361,6 +382,8 @@ internal static class Dnd5e2014RulesetLoader
                     alignments: new AlignmentCatalog(alignments)),
             races: new RaceCatalog(races),
             subraces: new SubraceCatalog(subraces),
+            classes: new ClassCatalog(classes),
+            subclasses: new SubclassCatalog(subclasses),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }
