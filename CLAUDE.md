@@ -162,6 +162,12 @@ dotnet test
 build still works on environments that only have newer major SDKs (9.x,
 10.x) installed — both target frameworks stay `net8.0`.
 
+CI (`.github/workflows/dotnet.yml`) runs the same Debug+Release matrix —
+`dotnet build`/`dotnet test` per configuration — on every push to `main`
+and every pull request against it. No vulnerability scan or separate lint
+gate yet; add one if that becomes a real need, matching however the
+sibling 5eGoldBox project's CI evolved rather than guessing ahead of it.
+
 ## Workflow authorization
 
 **Standing authorization.** For a narrowly-scoped, already-decided piece of
@@ -174,9 +180,7 @@ including the push/PR/merge:
 2. One narrowly-scoped branch per concern.
 3. Implement.
 4. Gate: `dotnet build` (Debug) → `dotnet build -c Release` → `dotnet test`
-   (all three 0 warnings / 0 failures) → `git diff --check`. This repo has
-   no CI configured (no `.github/workflows`), so this local gate is the
-   entire check — there is nothing to watch for green afterward.
+   (all three 0 warnings / 0 failures) → `git diff --check`.
 5. Self-review the diff; report gaps honestly rather than glossing over
    them.
 6. **If the change is worth recording — a new domain, a status change, a
@@ -189,9 +193,8 @@ including the push/PR/merge:
    session doesn't have to re-derive it from the diff.
 7. `git add` specific paths — never `-A` or `.`.
 8. Commit — one commit, message explains what and why.
-9. Push, open a PR (`gh pr create`), and merge (`gh pr merge --merge
-   --delete-branch`) once the gate in step 4 is green. Do not wait for or
-   invent CI status; there is none.
+9. Push, open a PR (`gh pr create`), wait for CI (`gh pr checks --watch`),
+   and merge (`gh pr merge --merge --delete-branch`) once green.
 10. `git fetch --prune`, confirm `main` synced, move to the next branch.
 
 Still pause and flag rather than pushing through: gate failures, merge
