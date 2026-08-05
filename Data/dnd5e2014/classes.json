@@ -170,11 +170,11 @@
       },
       {
         "level": 4,
-        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
       },
       {
         "level": 5,
-        "featureRuleId": "dnd5e2014.class-rule.barbarian-extra-attack"
+        "featureRuleId": "dnd5e2014.class-rule.extra-attack"
       },
       {
         "level": 5,
@@ -186,7 +186,7 @@
       },
       {
         "level": 8,
-        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
       },
       {
         "level": 9,
@@ -198,7 +198,7 @@
       },
       {
         "level": 12,
-        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
       },
       {
         "level": 13,
@@ -210,7 +210,7 @@
       },
       {
         "level": 16,
-        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
       },
       {
         "level": 17,
@@ -222,7 +222,7 @@
       },
       {
         "level": 19,
-        "featureRuleId": "dnd5e2014.class-rule.barbarian-ability-score-improvement"
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
       },
       {
         "level": 20,
@@ -233,6 +233,142 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 47,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class.monk",
+    "name": "Monk",
+    "hitDieSides": 8,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.dexterity",
+      "dnd5e2014.ability.wisdom"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.strength",
+      "dnd5e2014.ability.dexterity"
+    ],
+    "armorProficiencyCategories": [],
+    "proficientWithShields": false,
+    "weaponProficiencyCategories": [
+      "Simple"
+    ],
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.shortsword"
+    ],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.acrobatics",
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.history",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.religion",
+      "dnd5e2014.skill.stealth"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.monk-unarmored-defense"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.martial-arts"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.ki"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.unarmored-movement"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.monastic-tradition"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.deflect-missiles"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.slow-fall"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.extra-attack"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.stunning-strike"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.ki-empowered-strikes"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.evasion"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.stillness-of-mind"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.unarmored-movement"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.purity-of-body"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.tongue-of-the-sun-and-moon"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.diamond-soul"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.timeless-body"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.empty-body"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.perfect-self"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 77,
         "section": "Chapter 3: Classes"
       }
     ]

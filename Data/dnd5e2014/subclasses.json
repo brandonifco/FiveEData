@@ -173,5 +173,98 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.way-of-the-open-hand",
+    "name": "Way of the Open Hand",
+    "classId": "dnd5e2014.class.monk",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.open-hand-technique"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.wholeness-of-body"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.tranquility"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.quivering-palm"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.way-of-shadow",
+    "name": "Way of Shadow",
+    "classId": "dnd5e2014.class.monk",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.shadow-arts"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.shadow-step"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.cloak-of-shadows"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.opportunist"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.way-of-the-four-elements",
+    "name": "Way of the Four Elements",
+    "classId": "dnd5e2014.class.monk",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.disciple-of-the-elements"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.disciple-of-the-elements"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.disciple-of-the-elements"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.disciple-of-the-elements"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

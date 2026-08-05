@@ -18,15 +18,26 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.path-of-the-totem-warrior"
     ];
 
+    private static readonly string[] ExpectedMonkSubclassIds =
+    [
+        "dnd5e2014.subclass.way-of-the-open-hand",
+        "dnd5e2014.subclass.way-of-shadow",
+        "dnd5e2014.subclass.way-of-the-four-elements"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
-        [.. ExpectedFighterSubclassIds, .. ExpectedBarbarianSubclassIds];
+    [
+        .. ExpectedFighterSubclassIds,
+        .. ExpectedBarbarianSubclassIds,
+        .. ExpectedMonkSubclassIds
+    ];
 
     [Fact]
     public void CanonicalFile_ContainsExactSubclassClosure()
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(5, subclasses.Count);
+        Assert.Equal(8, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -57,6 +68,19 @@ public sealed class SubclassDataFileTests
                 subclass => ExpectedBarbarianSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(
                 "dnd5e2014.class.barbarian",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryMonkSubclassReferencesTheMonkClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedMonkSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.monk",
                 subclass.ClassId.Value));
     }
 
@@ -165,6 +189,85 @@ public sealed class SubclassDataFileTests
         Assert.Equal(
             2,
             totemWarrior.LevelFeatures.Count(feature => feature.Level == 3));
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWayOfTheOpenHandMechanics()
+    {
+        SubclassDefinition openHand = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.way-of-the-open-hand");
+
+        Assert.Equal("Way of the Open Hand", openHand.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.open-hand-technique",
+                "dnd5e2014.class-rule.wholeness-of-body",
+                "dnd5e2014.class-rule.tranquility",
+                "dnd5e2014.class-rule.quivering-palm"
+            ],
+            openHand.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(openHand.Sources);
+        Assert.Equal(79, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWayOfShadowMechanics()
+    {
+        SubclassDefinition shadow = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.way-of-shadow");
+
+        Assert.Equal("Way of Shadow", shadow.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.shadow-arts",
+                "dnd5e2014.class-rule.shadow-step",
+                "dnd5e2014.class-rule.cloak-of-shadows",
+                "dnd5e2014.class-rule.opportunist"
+            ],
+            shadow.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(shadow.Sources);
+        Assert.Equal(80, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWayOfTheFourElementsMechanics()
+    {
+        SubclassDefinition fourElements = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.way-of-the-four-elements");
+
+        Assert.Equal("Way of the Four Elements", fourElements.Name);
+
+        var source = Assert.Single(fourElements.Sources);
+        Assert.Equal(80, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_WayOfTheFourElementsReusesDisciplineRuleIdAtEveryTraditionLevel()
+    {
+        SubclassDefinition fourElements = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.way-of-the-four-elements");
+
+        int[] expectedLevels = [3, 6, 11, 17];
+
+        int[] actualLevels = fourElements.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.disciple-of-the-elements")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
     }
 
     private static SubclassDefinition GetSubclass(

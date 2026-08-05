@@ -308,23 +308,33 @@
     ]
   },
   {
-    "id": "dnd5e2014.class-rule.barbarian-ability-score-improvement",
+    "id": "dnd5e2014.class-rule.ability-score-improvement",
     "name": "Ability Score Improvement",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 49,
         "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
       }
     ]
   },
   {
-    "id": "dnd5e2014.class-rule.barbarian-extra-attack",
+    "id": "dnd5e2014.class-rule.extra-attack",
     "name": "Extra Attack",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 49,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
         "section": "Chapter 3: Classes"
       }
     ]
@@ -501,6 +511,292 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.monk-unarmored-defense",
+    "name": "Unarmored Defense",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.martial-arts",
+    "name": "Martial Arts",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.ki",
+    "name": "Ki",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.unarmored-movement",
+    "name": "Unarmored Movement",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.monastic-tradition",
+    "name": "Monastic Tradition",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.deflect-missiles",
+    "name": "Deflect Missiles",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.slow-fall",
+    "name": "Slow Fall",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 78,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.stunning-strike",
+    "name": "Stunning Strike",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.ki-empowered-strikes",
+    "name": "Ki-Empowered Strikes",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.evasion",
+    "name": "Evasion",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.stillness-of-mind",
+    "name": "Stillness of Mind",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.purity-of-body",
+    "name": "Purity of Body",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.tongue-of-the-sun-and-moon",
+    "name": "Tongue of the Sun and Moon",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.diamond-soul",
+    "name": "Diamond Soul",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.timeless-body",
+    "name": "Timeless Body",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.empty-body",
+    "name": "Empty Body",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.perfect-self",
+    "name": "Perfect Self",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.open-hand-technique",
+    "name": "Open Hand Technique",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.wholeness-of-body",
+    "name": "Wholeness of Body",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.tranquility",
+    "name": "Tranquility",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.quivering-palm",
+    "name": "Quivering Palm",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.shadow-arts",
+    "name": "Shadow Arts",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.shadow-step",
+    "name": "Shadow Step",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.cloak-of-shadows",
+    "name": "Cloak of Shadows",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.opportunist",
+    "name": "Opportunist",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.disciple-of-the-elements",
+    "name": "Disciple of the Elements",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 80,
         "section": "Chapter 3: Classes"
       }
     ]
