@@ -174,27 +174,41 @@ levels, Extra Attack scaling at 5th/11th/20th) reuse the *same* `RuleId`
 at each level in `LevelFeatures` rather than minting a new one per
 occurrence, since it's the same named feature recurring, not a new one.
 
-**Cross-class `RuleId` sharing was revisited once a second class's full
-text was in hand, per Barbarian below, and the answer was: don't share
-yet.** Fighter's and Barbarian's "Ability Score Improvement" features
-have the same name but not the same text — Fighter's own sentence names
-extra trigger levels (6th and 14th, on top of the standard 4/8/12/16/19)
-that Barbarian's doesn't, because Fighter genuinely gets more of them.
-Same story for "Extra Attack": Fighter's text scales further at 11th and
-20th level; Barbarian's is a flat one-time grant with no scaling
-sentence at all. Per the same bar Races set (share only on identical
-wording, e.g. `Darkvision`; keep separate the moment the mechanic or its
-text diverges, e.g. `Dwarven Resilience` vs. `Stout Resilience`), both
-stayed class-prefixed (`fighter-ability-score-improvement` /
-`barbarian-ability-score-improvement`, `fighter-extra-attack` /
-`barbarian-extra-attack`). One new case Fighter's own pass didn't
-anticipate: `Unarmored Defense` is a name (not just a mechanic) that
-Barbarian and Monk will share with two different formulas (Dex+Con vs.
-Dex+Wis) — prefixed as `barbarian-unarmored-defense` pre-emptively, since
-the collision is already known to be coming, not just plausible. Revisit
-again once a third class's text is in hand — two data points is enough to
-confirm "don't share by default," not enough to declare the question
-closed.
+**Cross-class `RuleId` sharing was resolved once a third class's full
+text was in hand.** Fighter's own "Ability Score Improvement" and "Extra
+Attack" text is a genuine outlier — its sentences name extra trigger
+levels (ASI at 6th/14th on top of the standard 4/8/12/16/19; Extra Attack
+scaling further at 11th/20th) that no other class's version has, so both
+stayed Fighter-prefixed (`fighter-ability-score-improvement`,
+`fighter-extra-attack`). Barbarian's build (below) initially prefixed its
+own versions too (`barbarian-ability-score-improvement`,
+`barbarian-extra-attack`), reasoning there was nothing yet to compare
+against. Monk's build (further below) supplied that comparison: Monk's
+"Ability Score Improvement" and "Extra Attack" text is word-for-word
+identical to Barbarian's (down to the exact trigger-level list), which is
+exactly the Races bar for sharing (`Darkvision`-style: share only on
+identical wording). Both were retroactively migrated to shared, unprefixed
+`dnd5e2014.class-rule.ability-score-improvement` /
+`dnd5e2014.class-rule.extra-attack`, each now carrying two
+`SourceReference` entries (one per class, same multi-source shape
+`food-drink-lodging-included-in-lifestyle` and `Darkvision` already use),
+and the two now-orphaned Barbarian-prefixed rule entries were deleted
+rather than left dead. `Unarmored Defense` is the converse case: Barbarian
+and Monk share the exact *name* but not the mechanic (Dex+Con vs. Dex+Wis
+AC formula) — correctly predicted and pre-emptively prefixed
+(`barbarian-unarmored-defense`, `monk-unarmored-defense`) before Monk was
+even built, confirming the collision was real. **The standing rule now has
+real evidence behind it, not just a Races-derived guess:** default to a
+shared, unprefixed `RuleId` for a mechanic bearing a generic name (Ability
+Score Improvement, Extra Attack, Unarmored Defense, ...), and only
+prefix/split when a specific class's actual PHB text diverges — verify by
+reading the real text side by side each time a new class is built, the
+same discipline this note itself is the product of. Two data points said
+"don't share by default"; three said the opposite once the actual
+divergent case (Fighter) was properly isolated from the two that
+happened to agree (Barbarian, Monk). Don't treat either count as final —
+re-check both shared IDs and both prefixed-pair precedents again once a
+fourth class's text is in hand.
 
 Fighter was chosen as the template class specifically because it has no
 exceptions to model: full armor/weapon proficiency by category (unlike
@@ -222,11 +236,75 @@ prereq is a single ability ("Strength 13", no "or"), so
 `RequiresAllPrimaryAbilities: true` with a one-element list — the first
 real use of that flag as `true` since Fighter always had it `false`.
 Recurring milestone features reuse one `RuleId` at each level, same as
-Fighter's `Extra Attack`: `barbarian-ability-score-improvement` (4th,
-8th, 12th, 16th, 19th) and `brutal-critical` (9th, 13th, 17th — the
+Fighter's `Extra Attack`: `ability-score-improvement` (4th, 8th, 12th,
+16th, 19th — see the cross-class sharing note above for why this is no
+longer Barbarian-prefixed) and `brutal-critical` (9th, 13th, 17th — the
 "1 die"/"2 dice"/"3 dice" scaling lives in the prose the citation points
 to, not in structured data, matching how Draconic Ancestry's own
 sub-table was left uncaptured).
+
+**Monk was the third class built**, chosen specifically to supply the
+comparison text the cross-class sharing note above needed, and because
+its own shape stresses parts of the domain Fighter/Barbarian hadn't:
+- **The first "and" multiclass prerequisite.** Fighter is "Strength 13
+  *or* Dexterity 13" (`RequiresAllPrimaryAbilities: false`); Barbarian is
+  a single ability, so the flag's value didn't actually matter yet. Monk
+  is "Dexterity 13 *and* Wisdom 13" — the first real exercise of
+  `RequiresAllPrimaryAbilities: true` with more than one ID, confirming
+  the field's two-axis design (which abilities × whether all are
+  required) actually covers the "and" case, not just "or" and "exactly
+  one."
+- **A named weapon exception alongside a category.** Monk's own
+  proficiencies are "Simple weapons, shortswords" — shortsword is
+  normally a *Martial* weapon, so this is `WeaponProficiencyCategories:
+  [Simple]` plus `WeaponProficiencyIds: [shortsword]` together, the first
+  real content in the category+explicit-ID list shape
+  `WeaponProficiencyIds` was declared for but that Fighter/Barbarian
+  (whose weapon proficiencies are categories only) never exercised.
+- **A feature bundling several named sub-techniques with no table row of
+  their own.** `Ki`'s prose grants three named ki techniques (Flurry of
+  Blows, Patient Defense, Step of the Wind) as part of learning Ki
+  itself — none of the three get their own `Features` column entry on
+  the Monk table, so none get their own `RuleId`; they're folded inside
+  `ki`'s own citation, the same restraint already applied to Fighting
+  Style's 6 options.
+- **A feature recurring by page, not just by level list.** `Unarmored
+  Movement` is granted at 2nd level and improves again at 9th under the
+  *same* heading (the 9th-level wall-walking ability is described in the
+  same prose block as the 2nd-level speed bonus, not a new heading) — one
+  `RuleId` reused at levels 2 and 9, the same recurring-feature shape
+  Barbarian's `brutal-critical` already established, just triggered by
+  "same heading covers both" rather than "same named feature growing."
+- **A subclass whose 6th/11th/17th "tradition feature" slots aren't
+  separately named.** Way of the Open Hand and Way of Shadow each grant a
+  *distinctly titled* feature at 3rd/6th/11th/17th (matching Battle
+  Master's own shape: `combat-superiority`/`know-your-enemy`/
+  `improved-combat-superiority`/`relentless`, four different `RuleId`s).
+  Way of the Four Elements doesn't — its whole tradition is one feature,
+  `Disciple of the Elements`, that simply grants one additional elemental
+  discipline choice at each of those levels with no new heading. Modeled
+  as the *same* `RuleId` reused at 3rd/6th/11th/17th (four `LevelFeatures`
+  entries, one `RuleId`), the recurring-feature shape rather than the
+  four-distinct-features shape — a real fork in which of Fighter's two
+  subclass patterns a given subclass follows, decided by reading the
+  prose rather than assumed from the table's generic "Monastic Tradition
+  feature" label. The 18 individual elemental disciplines themselves
+  (Breath of Winter, Fangs of the Fire Snake, ...) are left inside
+  `disciple-of-the-elements`'s own single citation with no
+  sub-structure — the same restraint already applied to Battle Master's
+  maneuver list and Eldritch Knight's spell-slot table, now proven again
+  at a genuinely larger scale (18 named sub-options with individual ki
+  costs, several casting real spells).
+- **A real, deliberate scope gap, not an oversight:** "Tools: Choose one
+  type of artisan's tools or one musical instrument" has no home in
+  `ClassDefinition` — there is no tool-proficiency-choice field, the way
+  there's a `SkillChoiceCount`/`SkillChoiceOptionIds` pair for skills.
+  Left unmodeled, matching the precedent already set (silently) by
+  Fighter's and Barbarian's own starting-equipment blocks, which were
+  never captured either since no field exists for them. Revisit only if
+  a later domain (multiclassing proficiency stacking, a character-builder
+  consumer) actually needs structured tool-choice data — don't add the
+  field speculatively ahead of that need.
 
 ## Test conventions
 
@@ -263,26 +341,31 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 14: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 15: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
 senses, alignments), and races (all 9 PHB races plus all 9 subraces — see
 "Races" above) are complete. Classes is started but far from complete:
-Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight) and
+Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight),
 Barbarian (both subclasses — Path of the Berserker, Path of the Totem
-Warrior) are built — see "Classes" above, including the cross-class
-`RuleId` sharing decision made comparing the two. The other 10 PHB classes
-(Bard, Cleric, Druid, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock,
-Wizard) are not yet built; when picking one up, re-derive its own RuleId
-cross-class-sharing decisions against Fighter's and Barbarian's rather
-than assuming their slugs are final — Monk in particular will need to
-resolve the `Unarmored Defense` collision already flagged in "Classes"
-above. Not yet started: backgrounds, spells, magic items, and
-combat/adventuring rule prose beyond the existing rules citation index
-(`Data/dnd5e2014/rules/`, split per-domain — see "Architecture" above).
-Feats (and, by extension, Variant Human) are out of scope — they aren't
-part of the free 2014 SRD this project's provenance model is built around.
+Warrior), and Monk (all 3 subclasses — Way of the Open Hand, Way of
+Shadow, Way of the Four Elements) are built — see "Classes" above,
+including the cross-class `RuleId` sharing question, now resolved with
+real evidence from all three. The other 9 PHB classes (Bard, Cleric,
+Druid, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard) are not yet
+built; when picking one up, re-derive its own RuleId cross-class-sharing
+decisions against the precedent in "Classes" above (default to sharing a
+generic-named mechanic like Ability Score Improvement/Extra Attack unless
+the actual PHB text diverges; prefix on a name collision with a different
+mechanic, like Unarmored Defense) rather than assuming it's settled for
+good — re-verify by reading the real text, the same discipline that got
+the rule right this time. Not yet started: backgrounds, spells, magic
+items, and combat/adventuring rule prose beyond the existing rules
+citation index (`Data/dnd5e2014/rules/`, split per-domain — see
+"Architecture" above). Feats (and, by extension, Variant Human) are out
+of scope — they aren't part of the free 2014 SRD this project's
+provenance model is built around.
 
 ## Build
 

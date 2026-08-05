@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(173, ruleset.Rules.Count);
+        Assert.Equal(199, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(

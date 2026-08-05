@@ -10,7 +10,8 @@ public sealed class ClassDataFileTests
     private static readonly string[] ExpectedClassIds =
     [
         "dnd5e2014.class.fighter",
-        "dnd5e2014.class.barbarian"
+        "dnd5e2014.class.barbarian",
+        "dnd5e2014.class.monk"
     ];
 
     [Fact]
@@ -18,7 +19,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(2, classes.Count);
+        Assert.Equal(3, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -164,7 +165,7 @@ public sealed class ClassDataFileTests
         int[] actualLevels = barbarian.LevelFeatures
             .Where(
                 feature => feature.FeatureRuleId.Value ==
-                    "dnd5e2014.class-rule.barbarian-ability-score-improvement")
+                    "dnd5e2014.class-rule.ability-score-improvement")
             .Select(feature => feature.Level)
             .OrderBy(level => level)
             .ToArray();
@@ -203,6 +204,122 @@ public sealed class ClassDataFileTests
                 feature.Level == 3 &&
                 feature.FeatureRuleId.Value ==
                     "dnd5e2014.class-rule.primal-path");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesMonkMechanics()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        Assert.Equal("Monk", monk.Name);
+        Assert.Equal(1, monk.HitDie.Count);
+        Assert.Equal(8, monk.HitDie.Sides);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.dexterity",
+                "dnd5e2014.ability.wisdom"
+            ],
+            monk.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(monk.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.strength",
+                "dnd5e2014.ability.dexterity"
+            ],
+            monk.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Empty(monk.ArmorProficiencyCategories);
+        Assert.False(monk.ProficientWithShields);
+        Assert.Equal(
+            [WeaponProficiencyCategory.Simple],
+            monk.WeaponProficiencyCategories);
+        Assert.Equal(
+            ["dnd5e2014.weapon.shortsword"],
+            monk.WeaponProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(2, monk.SkillChoiceCount);
+        Assert.Equal(6, monk.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(monk.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(77, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesMonkAbilityScoreImprovementAtStandardLevels()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        int[] expectedLevels = [4, 8, 12, 16, 19];
+
+        int[] actualLevels = monk.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.ability-score-improvement")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesUnarmoredMovementAtInitialAndImprovementLevels()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        int[] expectedLevels = [2, 9];
+
+        int[] actualLevels = monk.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.unarmored-movement")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesMonasticTraditionChoicePoint()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        Assert.Contains(
+            monk.LevelFeatures,
+            feature =>
+                feature.Level == 3 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.monastic-tradition");
+    }
+
+    [Fact]
+    public void CanonicalFile_SharesAbilityScoreImprovementRuleIdAcrossBarbarianAndMonk()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        ClassDefinition barbarian =
+            GetClass(classes, "dnd5e2014.class.barbarian");
+        ClassDefinition monk = GetClass(classes, "dnd5e2014.class.monk");
+
+        Assert.Contains(
+            barbarian.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.ability-score-improvement");
+        Assert.Contains(
+            monk.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.ability-score-improvement");
+
+        ClassDefinition fighter =
+            GetClass(classes, "dnd5e2014.class.fighter");
+
+        Assert.DoesNotContain(
+            fighter.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.ability-score-improvement");
     }
 
     private static ClassDefinition GetClass(
