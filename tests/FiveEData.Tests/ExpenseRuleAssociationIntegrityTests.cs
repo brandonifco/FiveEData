@@ -233,6 +233,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
                     conditions: [],
                     damageTypes: [],
                     senses: [],
-                    alignments: []));
+                    alignments: []),
+            races: new RaceDefinitionSet(races: [], subraces: []));
     }
 }

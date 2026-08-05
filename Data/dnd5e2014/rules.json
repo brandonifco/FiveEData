@@ -1003,5 +1003,447 @@
         "section": "Chapter 5: Equipment — Expenses — Spellcasting Services"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.darkvision",
+    "name": "Darkvision",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 23,
+        "section": "Chapter 2: Races"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 36,
+        "section": "Chapter 2: Races"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 39,
+        "section": "Chapter 2: Races"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 41,
+        "section": "Chapter 2: Races"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 43,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.fey-ancestry",
+    "name": "Fey Ancestry",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 23,
+        "section": "Chapter 2: Races"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 39,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.elf-weapon-training",
+    "name": "Elf Weapon Training",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 23,
+        "section": "Chapter 2: Races"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.dwarven-resilience",
+    "name": "Dwarven Resilience",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.dwarven-combat-training",
+    "name": "Dwarven Combat Training",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.dwarf-tool-proficiency",
+    "name": "Tool Proficiency",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.stonecunning",
+    "name": "Stonecunning",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.dwarven-toughness",
+    "name": "Dwarven Toughness",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.dwarven-armor-training",
+    "name": "Dwarven Armor Training",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.keen-senses",
+    "name": "Keen Senses",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 23,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.trance",
+    "name": "Trance",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 23,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.high-elf-cantrip",
+    "name": "Cantrip",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.fleet-of-foot",
+    "name": "Fleet of Foot",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.mask-of-the-wild",
+    "name": "Mask of the Wild",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.superior-darkvision",
+    "name": "Superior Darkvision",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.sunlight-sensitivity",
+    "name": "Sunlight Sensitivity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.drow-magic",
+    "name": "Drow Magic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.drow-weapon-training",
+    "name": "Drow Weapon Training",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.lucky",
+    "name": "Lucky",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.brave",
+    "name": "Brave",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.halfling-nimbleness",
+    "name": "Halfling Nimbleness",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.naturally-stealthy",
+    "name": "Naturally Stealthy",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.stout-resilience",
+    "name": "Stout Resilience",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.draconic-ancestry",
+    "name": "Draconic Ancestry",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 34,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.breath-weapon",
+    "name": "Breath Weapon",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 34,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.dragonborn-damage-resistance",
+    "name": "Damage Resistance",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 34,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.gnome-cunning",
+    "name": "Gnome Cunning",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 36,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.natural-illusionist",
+    "name": "Natural Illusionist",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 37,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.speak-with-small-beasts",
+    "name": "Speak with Small Beasts",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 37,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.artificers-lore",
+    "name": "Artificer's Lore",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 37,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.tinker",
+    "name": "Tinker",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 37,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.skill-versatility",
+    "name": "Skill Versatility",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 39,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.menacing",
+    "name": "Menacing",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 41,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.relentless-endurance",
+    "name": "Relentless Endurance",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 41,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.savage-attacks",
+    "name": "Savage Attacks",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 41,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.hellish-resistance",
+    "name": "Hellish Resistance",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 43,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race-rule.infernal-legacy",
+    "name": "Infernal Legacy",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 43,
+        "section": "Chapter 2: Races"
+      }
+    ]
   }
 ]

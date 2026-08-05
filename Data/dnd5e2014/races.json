@@ -1,0 +1,302 @@
+[
+  {
+    "id": "dnd5e2014.race.dwarf",
+    "name": "Dwarf",
+    "size": "dnd5e2014.creature-size.medium",
+    "speedFeet": 25,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.constitution",
+        "bonus": 2
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.dwarvish"
+    ],
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.darkvision",
+      "dnd5e2014.race-rule.dwarven-resilience",
+      "dnd5e2014.race-rule.dwarven-combat-training",
+      "dnd5e2014.race-rule.dwarf-tool-proficiency",
+      "dnd5e2014.race-rule.stonecunning"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.elf",
+    "name": "Elf",
+    "size": "dnd5e2014.creature-size.medium",
+    "speedFeet": 30,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.dexterity",
+        "bonus": 2
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.elvish"
+    ],
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.darkvision",
+      "dnd5e2014.race-rule.keen-senses",
+      "dnd5e2014.race-rule.fey-ancestry",
+      "dnd5e2014.race-rule.trance"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 23,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.halfling",
+    "name": "Halfling",
+    "size": "dnd5e2014.creature-size.small",
+    "speedFeet": 25,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.dexterity",
+        "bonus": 2
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.halfling"
+    ],
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.lucky",
+      "dnd5e2014.race-rule.brave",
+      "dnd5e2014.race-rule.halfling-nimbleness"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.human",
+    "name": "Human",
+    "size": "dnd5e2014.creature-size.medium",
+    "speedFeet": 30,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.strength",
+        "bonus": 1
+      },
+      {
+        "abilityId": "dnd5e2014.ability.dexterity",
+        "bonus": 1
+      },
+      {
+        "abilityId": "dnd5e2014.ability.constitution",
+        "bonus": 1
+      },
+      {
+        "abilityId": "dnd5e2014.ability.intelligence",
+        "bonus": 1
+      },
+      {
+        "abilityId": "dnd5e2014.ability.wisdom",
+        "bonus": 1
+      },
+      {
+        "abilityId": "dnd5e2014.ability.charisma",
+        "bonus": 1
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common"
+    ],
+    "additionalLanguageChoiceCount": 1,
+    "traitRuleIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 31,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.dragonborn",
+    "name": "Dragonborn",
+    "size": "dnd5e2014.creature-size.medium",
+    "speedFeet": 30,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.strength",
+        "bonus": 2
+      },
+      {
+        "abilityId": "dnd5e2014.ability.charisma",
+        "bonus": 1
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.draconic"
+    ],
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.draconic-ancestry",
+      "dnd5e2014.race-rule.breath-weapon",
+      "dnd5e2014.race-rule.dragonborn-damage-resistance"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 34,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.gnome",
+    "name": "Gnome",
+    "size": "dnd5e2014.creature-size.small",
+    "speedFeet": 25,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.intelligence",
+        "bonus": 2
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.gnomish"
+    ],
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.darkvision",
+      "dnd5e2014.race-rule.gnome-cunning"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 36,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.half-elf",
+    "name": "Half-Elf",
+    "size": "dnd5e2014.creature-size.medium",
+    "speedFeet": 30,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.charisma",
+        "bonus": 2
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 2,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.elvish"
+    ],
+    "additionalLanguageChoiceCount": 1,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.darkvision",
+      "dnd5e2014.race-rule.fey-ancestry",
+      "dnd5e2014.race-rule.skill-versatility"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 39,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.half-orc",
+    "name": "Half-Orc",
+    "size": "dnd5e2014.creature-size.medium",
+    "speedFeet": 30,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.strength",
+        "bonus": 2
+      },
+      {
+        "abilityId": "dnd5e2014.ability.constitution",
+        "bonus": 1
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.orc"
+    ],
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.darkvision",
+      "dnd5e2014.race-rule.menacing",
+      "dnd5e2014.race-rule.relentless-endurance",
+      "dnd5e2014.race-rule.savage-attacks"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 41,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.race.tiefling",
+    "name": "Tiefling",
+    "size": "dnd5e2014.creature-size.medium",
+    "speedFeet": 30,
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.intelligence",
+        "bonus": 1
+      },
+      {
+        "abilityId": "dnd5e2014.ability.charisma",
+        "bonus": 2
+      }
+    ],
+    "choosableAbilityScoreIncreaseCount": 0,
+    "languageIds": [
+      "dnd5e2014.language.common",
+      "dnd5e2014.language.infernal"
+    ],
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.darkvision",
+      "dnd5e2014.race-rule.hellish-resistance",
+      "dnd5e2014.race-rule.infernal-legacy"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 43,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  }
+]

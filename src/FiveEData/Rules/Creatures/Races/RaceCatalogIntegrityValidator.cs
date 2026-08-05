@@ -1,0 +1,135 @@
+using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Common;
+using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Sizes;
+
+namespace FiveEData.Rules.Creatures.Races;
+
+internal static class RaceCatalogIntegrityValidator
+{
+    public static IReadOnlyList<string> Validate(
+        RaceDefinitionSet definitions,
+        IReadOnlySet<SourceDocumentId> sourceIds,
+        IReadOnlySet<AbilityId> abilityIds,
+        IReadOnlySet<CreatureSizeId> sizeIds,
+        IReadOnlySet<LanguageId> languageIds,
+        IReadOnlySet<RuleId> ruleIds)
+    {
+        ArgumentNullException.ThrowIfNull(definitions);
+        ArgumentNullException.ThrowIfNull(sourceIds);
+        ArgumentNullException.ThrowIfNull(abilityIds);
+        ArgumentNullException.ThrowIfNull(sizeIds);
+        ArgumentNullException.ThrowIfNull(languageIds);
+        ArgumentNullException.ThrowIfNull(ruleIds);
+
+        var errors = new List<string>();
+
+        HashSet<RaceId> raceIds =
+            definitions.Races
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        foreach (
+            RaceDefinition race
+            in definitions.Races
+                .OrderBy(item => item.Id.Value, StringComparer.Ordinal))
+        {
+            string owner = $"Race '{race.Id}'";
+
+            ValidateSources(owner, race.Sources, sourceIds, errors);
+
+            if (!sizeIds.Contains(race.Size))
+            {
+                errors.Add(
+                    $"{owner} references missing size '{race.Size}'.");
+            }
+
+            foreach (RaceAbilityScoreIncrease increase in race.AbilityScoreIncreases)
+            {
+                if (!abilityIds.Contains(increase.AbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{increase.AbilityId}'.");
+                }
+            }
+
+            foreach (LanguageId languageId in race.LanguageIds)
+            {
+                if (!languageIds.Contains(languageId))
+                {
+                    errors.Add(
+                        $"{owner} references missing language " +
+                        $"'{languageId}'.");
+                }
+            }
+
+            foreach (RuleId traitRuleId in race.TraitRuleIds)
+            {
+                if (!ruleIds.Contains(traitRuleId))
+                {
+                    errors.Add(
+                        $"{owner} references missing trait rule " +
+                        $"'{traitRuleId}'.");
+                }
+            }
+        }
+
+        foreach (
+            SubraceDefinition subrace
+            in definitions.Subraces
+                .OrderBy(item => item.Id.Value, StringComparer.Ordinal))
+        {
+            string owner = $"Subrace '{subrace.Id}'";
+
+            ValidateSources(owner, subrace.Sources, sourceIds, errors);
+
+            if (!raceIds.Contains(subrace.RaceId))
+            {
+                errors.Add(
+                    $"{owner} references missing race '{subrace.RaceId}'.");
+            }
+
+            foreach (RaceAbilityScoreIncrease increase in subrace.AbilityScoreIncreases)
+            {
+                if (!abilityIds.Contains(increase.AbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{increase.AbilityId}'.");
+                }
+            }
+
+            foreach (RuleId traitRuleId in subrace.TraitRuleIds)
+            {
+                if (!ruleIds.Contains(traitRuleId))
+                {
+                    errors.Add(
+                        $"{owner} references missing trait rule " +
+                        $"'{traitRuleId}'.");
+                }
+            }
+        }
+
+        return errors;
+    }
+
+    private static void ValidateSources(
+        string owner,
+        IReadOnlyList<SourceReference> sources,
+        IReadOnlySet<SourceDocumentId> sourceIds,
+        ICollection<string> errors)
+    {
+        foreach (SourceReference source in sources)
+        {
+            if (!sourceIds.Contains(source.DocumentId))
+            {
+                errors.Add(
+                    $"{owner} references missing source document " +
+                    $"'{source.DocumentId}'.");
+            }
+        }
+    }
+}

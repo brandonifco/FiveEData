@@ -1,0 +1,217 @@
+[
+  {
+    "id": "dnd5e2014.subrace.hill-dwarf",
+    "name": "Hill Dwarf",
+    "raceId": "dnd5e2014.race.dwarf",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.wisdom",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.dwarven-toughness"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.mountain-dwarf",
+    "name": "Mountain Dwarf",
+    "raceId": "dnd5e2014.race.dwarf",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.strength",
+        "bonus": 2
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.dwarven-armor-training"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 20,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.high-elf",
+    "name": "High Elf",
+    "raceId": "dnd5e2014.race.elf",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.intelligence",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 1,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.elf-weapon-training",
+      "dnd5e2014.race-rule.high-elf-cantrip"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 23,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.wood-elf",
+    "name": "Wood Elf",
+    "raceId": "dnd5e2014.race.elf",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.wisdom",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": 35,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.elf-weapon-training",
+      "dnd5e2014.race-rule.fleet-of-foot",
+      "dnd5e2014.race-rule.mask-of-the-wild"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.dark-elf",
+    "name": "Dark Elf (Drow)",
+    "raceId": "dnd5e2014.race.elf",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.charisma",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.superior-darkvision",
+      "dnd5e2014.race-rule.sunlight-sensitivity",
+      "dnd5e2014.race-rule.drow-magic",
+      "dnd5e2014.race-rule.drow-weapon-training"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 24,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.lightfoot-halfling",
+    "name": "Lightfoot",
+    "raceId": "dnd5e2014.race.halfling",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.charisma",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.naturally-stealthy"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.stout-halfling",
+    "name": "Stout",
+    "raceId": "dnd5e2014.race.halfling",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.constitution",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.stout-resilience"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 28,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.forest-gnome",
+    "name": "Forest Gnome",
+    "raceId": "dnd5e2014.race.gnome",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.dexterity",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.natural-illusionist",
+      "dnd5e2014.race-rule.speak-with-small-beasts"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 37,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subrace.rock-gnome",
+    "name": "Rock Gnome",
+    "raceId": "dnd5e2014.race.gnome",
+    "abilityScoreIncreases": [
+      {
+        "abilityId": "dnd5e2014.ability.constitution",
+        "bonus": 1
+      }
+    ],
+    "speedFeet": null,
+    "additionalLanguageChoiceCount": 0,
+    "traitRuleIds": [
+      "dnd5e2014.race-rule.artificers-lore",
+      "dnd5e2014.race-rule.tinker"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 37,
+        "section": "Chapter 2: Races"
+      }
+    ]
+  }
+]

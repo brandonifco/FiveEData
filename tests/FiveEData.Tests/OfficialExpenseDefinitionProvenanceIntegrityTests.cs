@@ -474,7 +474,8 @@ public sealed class
                             DataPath("senses.json")),
                     alignments:
                         AlignmentDefinitionLoader.LoadFromFile(
-                            DataPath("alignments.json"))));
+                            DataPath("alignments.json"))),
+            races: new RaceDefinitionSet(races: [], subraces: []));
     }
 
     private static string DataPath(string fileName)

@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(90, ruleset.Rules.Count);
+        Assert.Equal(127, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -217,6 +217,27 @@ public sealed class RuleCatalogTests
                         out RuleDefinition? definition));
                 Assert.NotNull(definition);
             }
+        }
+    }
+
+    [Fact]
+    public void EveryRaceAndSubraceTraitRuleId_Resolves()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        IEnumerable<RuleId> ids =
+            ruleset.Races.All.SelectMany(race => race.TraitRuleIds)
+                .Concat(
+                    ruleset.Subraces.All.SelectMany(
+                        subrace => subrace.TraitRuleIds));
+
+        foreach (RuleId ruleId in ids)
+        {
+            Assert.True(
+                ruleset.Rules.TryGet(
+                    ruleId,
+                    out RuleDefinition? definition));
+            Assert.NotNull(definition);
         }
     }
 
