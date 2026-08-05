@@ -352,6 +352,71 @@ fresh divergent-ASI outlier to weigh against Fighter's:
   different slot progression), so this was never a real candidate for
   the generic-name default in the first place.
 
+**Bard was the fifth class built, and the first full spellcaster**,
+supplying the first real exercise of the "core `Spellcasting` feature is
+a single citation" call this project made ahead of time (see "Status"
+below): Bard's own Spellcasting section — Cantrips, the full Bard table,
+Spell Slots, Spells Known, Spellcasting Ability, Ritual Casting,
+Spellcasting Focus — reduces to one `dnd5e2014.class-rule.bard-spellcasting`
+citation with no spell-slot-table structure, prefixed the same way
+`eldritch-knight-spellcasting`/`arcane-trickster-spellcasting` already
+are rather than compared against them for sharing (a full class's own
+core spellcasting and a subclass's borrowed spellcasting share a heading
+word and nothing else).
+- **`Ability Score Improvement` is a third confirmation of the shared,
+  unprefixed `RuleId`** — Bard's text ("When you reach 4th level, and
+  again at 8th, 12th, 16th, and 19th level...") is word-for-word
+  identical to Barbarian's and Monk's, verified by direct comparison
+  rather than assumed from the standard levels matching. The existing
+  `dnd5e2014.class-rule.ability-score-improvement` entry gained a third
+  `SourceReference` rather than a `bard-ability-score-improvement`.
+- **`Expertise` is a genuine mechanic-name collision with Rogue's,
+  not a share** — Bard's version ("choose two skill proficiencies... at
+  3rd level... two more at 10th") and Rogue's ("choose two skill
+  proficiencies, or one skill proficiency and thieves' tools... at 1st
+  level... two more at 6th") differ in both eligible-proficiency scope
+  and grant levels when read side by side. Same shape as `Unarmored
+  Defense`: Rogue's previously-unprefixed `dnd5e2014.class-rule.expertise`
+  was retroactively renamed to `rogue-expertise` and Bard's own
+  `bard-expertise` added alongside it, rather than leaving a name
+  collision where only one of the two mechanics happened to hold the
+  generic ID.
+- **College of Valor's own `Extra Attack` stays separate from the shared
+  `dnd5e2014.class-rule.extra-attack`** — its lead-in ("Starting at 6th
+  level...") differs from the shared entry's ("Beginning at 5th
+  level..."), and unlike the trigger-level-only differences that don't
+  block sharing (the level itself already lives in `LevelFeatures`, not
+  the `RuleId`), this is a difference in the sentence the citation
+  itself points to. Prefixed `college-of-valor-extra-attack` rather than
+  reusing the shared entry.
+- **`Bonus Proficiencies` confirms it's inherently a subclass-specific
+  name, never a sharing candidate** — College of Lore's version (three
+  skills) and College of Valor's version (medium armor, shields, martial
+  weapons) are mechanically unrelated aside from the name, joining
+  Assassin's already-prefixed `assassin-bonus-proficiencies` as the third
+  data point that this particular generic name always describes
+  whatever proficiencies that specific subclass happens to grant, not a
+  recurring mechanic — prefixed as `college-of-lore-bonus-proficiencies`
+  / `college-of-valor-bonus-proficiencies` without first checking for a
+  shared entry to reuse.
+- **Tools ("three musical instruments of your choice") has no
+  structured field**, the same category of gap as Monk's and Rogue's own
+  tool-choice/tool-proficiency-choice text — left unmodeled, consistent
+  with the standing precedent.
+- **Citation precision is coarser here than for the first four classes.**
+  Earlier classes' page citations were verified against a cleanly paginated
+  PHB PDF with reliable per-page footers. The PDF available for this pass
+  is an archive.org full-text OCR export whose embedded page-footer digits
+  are largely missing or corrupted; the class's overall page range (52–55)
+  was instead anchored against a separate, cleanly-extracted table of
+  contents (confirming Bard starts the PHB page immediately after Barbarian's
+  own citations end, and Cleric starts immediately after), with individual
+  feature-to-page assignments within that range reconstructed from content
+  flow rather than a literal per-feature footer read. Treat Bard's citations
+  as range-accurate but not independently re-verified at the same
+  per-paragraph precision as Fighter/Barbarian/Monk/Rogue's; re-check
+  against a cleaner scan if a consumer ever needs that precision.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -387,7 +452,7 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 16: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 17: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
@@ -396,26 +461,32 @@ senses, alignments), and races (all 9 PHB races plus all 9 subraces — see
 Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight),
 Barbarian (both subclasses — Path of the Berserker, Path of the Totem
 Warrior), Monk (all 3 subclasses — Way of the Open Hand, Way of Shadow,
-Way of the Four Elements), and Rogue (all 3 subclasses — Thief, Assassin,
-Arcane Trickster) are built — see "Classes" above, including the
-cross-class `RuleId` sharing question, resolved with evidence from all
-four (most recently: Evasion turned out shared between Monk and Rogue,
-while Rogue's own Ability Score Improvement is a third, independently
-divergent case from Fighter's). The other 8 PHB classes (Bard, Cleric,
-Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard) are not yet built —
-note that all of them are full or half spellcasters, a shape none of the
-four built so far are (Eldritch Knight's and Arcane Trickster's
-subclass-only spellcasting are the only precedent, both handled as a
-single citation-only feature with no spell-slot-table structure); when
-picking one up, treat a class's core `Spellcasting` feature the same way
-unless real need for structured spell-slot data emerges, and re-derive
-RuleId cross-class-sharing decisions against the precedent in "Classes"
-above (default to sharing a generic-named mechanic like Ability Score
-Improvement/Extra Attack/Evasion unless the actual PHB text diverges;
-prefix on a name collision with a different mechanic, like Unarmored
-Defense) rather than assuming it's settled for good — re-verify by
-reading the real text, the same discipline that's paid off at both the
-class level and the individual-feature level so far. Not yet started:
+Way of the Four Elements), Rogue (all 3 subclasses — Thief, Assassin,
+Arcane Trickster), and Bard (both subclasses — College of Lore, College
+of Valor) are built — see "Classes" above, including the cross-class
+`RuleId` sharing question, resolved with evidence from all five (most
+recently: Ability Score Improvement confirmed a third time verbatim
+against Bard's; Expertise turned out to be a genuine Bard/Rogue name
+collision, not a share, retroactively prefixing Rogue's previously-bare
+entry the same way Unarmored Defense's collision was handled). Bard is
+also the first full spellcaster built, confirming ahead of schedule that
+a class's own core `Spellcasting` feature reduces to one citation the
+same way Eldritch Knight's and Arcane Trickster's subclass-only
+spellcasting already did. The other 7 PHB classes (Cleric, Druid,
+Paladin, Ranger, Sorcerer, Warlock, Wizard) are not yet built — note that
+all of them are full or half spellcasters like Bard, so the core-
+`Spellcasting`-as-single-citation approach carries forward directly; when
+picking one up, re-derive RuleId cross-class-sharing decisions against
+the precedent in "Classes" above (default to sharing a generic-named
+mechanic like Ability Score Improvement/Extra Attack/Evasion unless the
+actual PHB text diverges; prefix on a name collision with a different
+mechanic, like Unarmored Defense/Expertise/Bonus Proficiencies) rather
+than assuming it's settled for good — re-verify by reading the real text,
+the same discipline that's paid off at both the class level and the
+individual-feature level so far. Bard's own page citations were
+reconstructed from a noisier PDF source than earlier classes (see
+"Classes" above, end of the Bard section) — worth re-verifying against a
+cleaner scan before treating them as paragraph-precise. Not yet started:
 backgrounds, spells, magic items, and combat/adventuring rule prose
 beyond the existing rules citation index (`Data/dnd5e2014/rules/`, split
 per-domain — see "Architecture" above). Feats (and, by extension,

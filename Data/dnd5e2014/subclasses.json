@@ -371,5 +371,67 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.college-of-lore",
+    "name": "College of Lore",
+    "classId": "dnd5e2014.class.bard",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.college-of-lore-bonus-proficiencies"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.cutting-words"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.additional-magical-secrets"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.peerless-skill"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 55,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.college-of-valor",
+    "name": "College of Valor",
+    "classId": "dnd5e2014.class.bard",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.college-of-valor-bonus-proficiencies"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.combat-inspiration"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.college-of-valor-extra-attack"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.battle-magic"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 55,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

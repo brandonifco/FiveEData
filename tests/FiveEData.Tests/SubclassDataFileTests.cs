@@ -32,12 +32,19 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.arcane-trickster"
     ];
 
+    private static readonly string[] ExpectedBardSubclassIds =
+    [
+        "dnd5e2014.subclass.college-of-lore",
+        "dnd5e2014.subclass.college-of-valor"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
         .. ExpectedBarbarianSubclassIds,
         .. ExpectedMonkSubclassIds,
-        .. ExpectedRogueSubclassIds
+        .. ExpectedRogueSubclassIds,
+        .. ExpectedBardSubclassIds
     ];
 
     [Fact]
@@ -45,7 +52,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(11, subclasses.Count);
+        Assert.Equal(13, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -368,6 +375,78 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(arcaneTrickster.Sources);
         Assert.Equal(97, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryBardSubclassReferencesTheBardClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedBardSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.bard",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesCollegeOfLoreMechanics()
+    {
+        SubclassDefinition collegeOfLore = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.college-of-lore");
+
+        Assert.Equal("College of Lore", collegeOfLore.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.college-of-lore-bonus-proficiencies",
+                "dnd5e2014.class-rule.cutting-words",
+                "dnd5e2014.class-rule.additional-magical-secrets",
+                "dnd5e2014.class-rule.peerless-skill"
+            ],
+            collegeOfLore.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(collegeOfLore.Sources);
+        Assert.Equal(55, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesCollegeOfValorMechanics()
+    {
+        SubclassDefinition collegeOfValor = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.college-of-valor");
+
+        Assert.Equal("College of Valor", collegeOfValor.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.college-of-valor-bonus-proficiencies",
+                "dnd5e2014.class-rule.combat-inspiration",
+                "dnd5e2014.class-rule.college-of-valor-extra-attack",
+                "dnd5e2014.class-rule.battle-magic"
+            ],
+            collegeOfValor.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(collegeOfValor.Sources);
+        Assert.Equal(55, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_KeepsCollegeOfValorExtraAttackDistinctFromSharedExtraAttack()
+    {
+        SubclassDefinition collegeOfValor = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.college-of-valor");
+
+        Assert.DoesNotContain(
+            collegeOfValor.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.extra-attack");
     }
 
     private static SubclassDefinition GetSubclass(
