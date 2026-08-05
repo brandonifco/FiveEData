@@ -1,0 +1,57 @@
+[
+  {
+    "id": "dnd5e2014.armor-rule.proficiency",
+    "name": "Armor proficiency consequences",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 144,
+        "section": "Chapter 5: Equipment — Armor and Shields — Armor Proficiency"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor-rule.strength-speed",
+    "name": "Heavy armor Strength and speed",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 144,
+        "section": "Chapter 5: Equipment — Armor and Shields — Heavy Armor"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor-rule.stealth",
+    "name": "Armor Stealth disadvantage",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 144,
+        "section": "Chapter 5: Equipment — Armor and Shields — Stealth"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor-rule.shield",
+    "name": "Shield use",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 144,
+        "section": "Chapter 5: Equipment — Armor and Shields — Shields"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.armor-rule.don-doff",
+    "name": "Donning and doffing armor",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 146,
+        "section": "Chapter 5: Equipment — Getting Into and Out of Armor"
+      }
+    ]
+  }
+]
