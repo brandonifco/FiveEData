@@ -372,5 +372,130 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.rogue",
+    "name": "Rogue",
+    "hitDieSides": 8,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.dexterity"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.dexterity",
+      "dnd5e2014.ability.intelligence"
+    ],
+    "armorProficiencyCategories": [
+      "Light"
+    ],
+    "proficientWithShields": false,
+    "weaponProficiencyCategories": [
+      "Simple"
+    ],
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.hand-crossbow",
+      "dnd5e2014.weapon.longsword",
+      "dnd5e2014.weapon.rapier",
+      "dnd5e2014.weapon.shortsword"
+    ],
+    "skillChoiceCount": 4,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.acrobatics",
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.deception",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.intimidation",
+      "dnd5e2014.skill.investigation",
+      "dnd5e2014.skill.perception",
+      "dnd5e2014.skill.performance",
+      "dnd5e2014.skill.persuasion",
+      "dnd5e2014.skill.sleight-of-hand",
+      "dnd5e2014.skill.stealth"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.expertise"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.sneak-attack"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.thieves-cant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.cunning-action"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.roguish-archetype"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.rogue-ability-score-improvement"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.uncanny-dodge"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.expertise"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.evasion"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.rogue-ability-score-improvement"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.rogue-ability-score-improvement"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.reliable-talent"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.rogue-ability-score-improvement"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.blindsense"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.slippery-mind"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.rogue-ability-score-improvement"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.elusive"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.rogue-ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.stroke-of-luck"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 95,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

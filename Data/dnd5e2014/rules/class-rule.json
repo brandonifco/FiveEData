@@ -622,6 +622,11 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 79,
         "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
       }
     ]
   },
@@ -797,6 +802,303 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 80,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.expertise",
+    "name": "Expertise",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.sneak-attack",
+    "name": "Sneak Attack",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.thieves-cant",
+    "name": "Thieves' Cant",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.cunning-action",
+    "name": "Cunning Action",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.roguish-archetype",
+    "name": "Roguish Archetype",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.rogue-ability-score-improvement",
+    "name": "Ability Score Improvement",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.uncanny-dodge",
+    "name": "Uncanny Dodge",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.reliable-talent",
+    "name": "Reliable Talent",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.blindsense",
+    "name": "Blindsense",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.slippery-mind",
+    "name": "Slippery Mind",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.elusive",
+    "name": "Elusive",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 96,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.stroke-of-luck",
+    "name": "Stroke of Luck",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.fast-hands",
+    "name": "Fast Hands",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.second-story-work",
+    "name": "Second-Story Work",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.supreme-sneak",
+    "name": "Supreme Sneak",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.use-magic-device",
+    "name": "Use Magic Device",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.thiefs-reflexes",
+    "name": "Thief's Reflexes",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.assassin-bonus-proficiencies",
+    "name": "Bonus Proficiencies",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.assassinate",
+    "name": "Assassinate",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.infiltration-expertise",
+    "name": "Infiltration Expertise",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.impostor",
+    "name": "Impostor",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.death-strike",
+    "name": "Death Strike",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 97,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.arcane-trickster-spellcasting",
+    "name": "Spellcasting",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 98,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.mage-hand-legerdemain",
+    "name": "Mage Hand Legerdemain",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 98,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.magical-ambush",
+    "name": "Magical Ambush",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 98,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.versatile-trickster",
+    "name": "Versatile Trickster",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 98,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.spell-thief",
+    "name": "Spell Thief",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 98,
         "section": "Chapter 3: Classes"
       }
     ]
