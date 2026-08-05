@@ -415,7 +415,7 @@
     "levelFeatures": [
       {
         "level": 1,
-        "featureRuleId": "dnd5e2014.class-rule.expertise"
+        "featureRuleId": "dnd5e2014.class-rule.rogue-expertise"
       },
       {
         "level": 1,
@@ -443,7 +443,7 @@
       },
       {
         "level": 6,
-        "featureRuleId": "dnd5e2014.class-rule.expertise"
+        "featureRuleId": "dnd5e2014.class-rule.rogue-expertise"
       },
       {
         "level": 7,
@@ -494,6 +494,158 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 95,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class.bard",
+    "name": "Bard",
+    "hitDieSides": 8,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.charisma"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.dexterity",
+      "dnd5e2014.ability.charisma"
+    ],
+    "armorProficiencyCategories": [
+      "Light"
+    ],
+    "proficientWithShields": false,
+    "weaponProficiencyCategories": [
+      "Simple"
+    ],
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.hand-crossbow",
+      "dnd5e2014.weapon.longsword",
+      "dnd5e2014.weapon.rapier",
+      "dnd5e2014.weapon.shortsword"
+    ],
+    "skillChoiceCount": 3,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.acrobatics",
+      "dnd5e2014.skill.animal-handling",
+      "dnd5e2014.skill.arcana",
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.deception",
+      "dnd5e2014.skill.history",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.intimidation",
+      "dnd5e2014.skill.investigation",
+      "dnd5e2014.skill.medicine",
+      "dnd5e2014.skill.nature",
+      "dnd5e2014.skill.perception",
+      "dnd5e2014.skill.performance",
+      "dnd5e2014.skill.persuasion",
+      "dnd5e2014.skill.religion",
+      "dnd5e2014.skill.sleight-of-hand",
+      "dnd5e2014.skill.stealth",
+      "dnd5e2014.skill.survival"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.bard-spellcasting"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.bardic-inspiration"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.jack-of-all-trades"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.song-of-rest"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.bard-college"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.bard-expertise"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.bardic-inspiration"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.font-of-inspiration"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.countercharm"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.song-of-rest"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.bardic-inspiration"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.bard-expertise"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.magical-secrets"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.song-of-rest"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.magical-secrets"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.bardic-inspiration"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.song-of-rest"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.magical-secrets"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.superior-inspiration"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 52,
         "section": "Chapter 3: Classes"
       }
     ]
