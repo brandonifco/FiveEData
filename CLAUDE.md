@@ -1,0 +1,121 @@
+# FiveEData
+
+A .NET 8 library that digitally recreates every pertinent rules element of the
+**2014 D&D 5th Edition Player's Handbook** as strongly-typed C# catalogs,
+loaded from embedded JSON. Scope is the 2014 PHB specifically — not the
+Monster Manual, DMG, or later sourcebooks. Each catalog entry that represents
+official book content carries a citation (source document, page, section)
+back to that PHB printing.
+
+## Architecture
+
+Every rules domain (weapons, armor, languages, conditions, ...) follows the
+same five-piece shape:
+
+- `<Domain>Id` — a `readonly record struct` wrapping a non-empty string ID
+  (e.g. `dnd5e2014.condition.blinded`). String IDs, not enums, so consumers
+  can add homebrew/extension content outside the `dnd5e2014.*` namespace
+  without touching this library.
+- `<Domain>Definition` — public, immutable (internal constructor, defensive
+  array copies on collection properties, no public setters).
+- `<Domain>DefinitionValidator` — internal static `Validate`/`EnsureValid`;
+  structural checks only (non-empty ID/name, at least one source reference,
+  defined enum values).
+- `Serialization/<Domain>DefinitionData` + `Serialization/<Domain>DefinitionLoader`
+  — internal. `*Data` is the strict JSON DTO (`[JsonRequired]` on every
+  member); `*Loader` deserializes via `StrictJson.DeserializeArray` (rejects
+  unknown/duplicate JSON properties), maps to the real definition type,
+  validates, and rejects duplicate IDs. Loaders are never public — see
+  `PublicApiBoundaryTests`.
+- `Rules/Catalog/<Domain>Catalog` — public, internal constructor. Orders
+  definitions by ID, rejects duplicates, wraps in a `FrozenDictionary`,
+  exposes `All`, `Count`, `Get`, `TryGet`.
+
+Data files live in `Data/dnd5e2014/*.json` and are embedded via explicit
+`<EmbeddedResource>` entries in `FiveEData.csproj` (logical name
+`FiveEData.Data.dnd5e2014.<file>.json`) — add new files to both the data
+directory and the csproj.
+
+`Dnd5e2014RulesetLoader.Load()` reads every embedded resource, builds a
+`RulesetDefinitionSet` (all raw definitions), runs
+`CatalogIntegrityValidator.EnsureValid` against it, then constructs the
+public `Dnd5e2014Ruleset` (all catalogs). `Dnd5e2014Ruleset.Instance` is a
+lazy singleton over that pipeline.
+
+### Provenance discipline
+
+`CatalogIntegrityValidator` (and domain-specific integrity validators like
+`CreatureVocabularyCatalogIntegrityValidator`) check every definition's
+`SourceReference.DocumentId` resolves to a loaded `SourceDocument`, and that
+cross-domain ID references (e.g. a skill's associated ability) resolve too.
+
+Separately, `OfficialCreatureVocabularySemanticValidator` (and its siblings
+for expenses, weapons, etc.) is a **closed-content guardrail**: for each
+domain considered "official" (currently: abilities, skills, languages,
+creature sizes, conditions, damage types, senses, alignments), it hardcodes
+the exact expected set of IDs, names, and one `(page, section)` citation per
+domain, and fails if the canonical data file doesn't match exactly —
+including rejecting *extra* entries. This is what keeps the canonical
+`Data/dnd5e2014/*.json` files honest against the real book. Non-canonical
+extension IDs (outside `dnd5e2014.*`) are exempt and covered by
+`NoncanonicalVocabulary_RemainsExtensionFriendly`-style tests.
+
+Before adding a new "official" domain, verify page/section citations against
+a real table of contents or errata document — don't rely on memory. Getting
+this wrong is exactly what these guardrail tests exist to catch, but it's
+cheaper to get it right the first time.
+
+## Test conventions
+
+Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
+current template):
+
+- `<Domain>FoundationTests` — ID validation, definition immutability,
+  validator rejections, catalog CRUD/ordering/duplicate-rejection/trust
+  boundary.
+- `<Domain>DefinitionLoaderTests` — strict JSON loading: valid case, null
+  root/element, unknown property, duplicate JSON property, null/missing
+  required members, duplicate IDs.
+- `<Domain>DataFileTests` — loads the real `Data/dnd5e2014/*.json` file and
+  asserts it's the exact expected closure (count + IDs) and that every entry
+  matches expected name/citation.
+
+Equipment/expense domains have a heavier version of this same pattern plus
+separate `*ImmutabilityTests`, `*CatalogIntegrityTests`, and
+`Official*SemanticIntegrityTests` files — follow whichever sibling domain is
+closest in shape when adding a new one.
+
+## Known architectural note
+
+`Rules/Common/DamageType.cs` is a legacy bare `enum` (the 13 damage types)
+used mechanically by `WeaponDamage` — it predates the vocabulary-catalog
+pattern and has no citations. `Rules/Creatures/DamageTypes/` (added in
+Phase 11) is the new citation-backed, extension-friendly catalog for the
+same 13 types, added without touching the Weapons domain to avoid an
+unplanned breaking change. Reconciling these (likely: migrate
+`WeaponDamage` to reference `DamageTypeId`) is an open follow-up, not yet
+scheduled.
+
+## Status
+
+Phases are tracked only in commit history (`git log --oneline`), not in a
+separate planning doc. As of Phase 11: equipment (weapons, armor, shields,
+adventuring gear, tools, mounts, vehicles, trade goods), expenses
+(lifestyles, food & drink, hospitality, mundane services), and creature
+vocabulary (abilities, skills, languages, sizes, conditions, damage types,
+senses, alignments) are complete. Not yet started: races, classes,
+backgrounds, spells, magic items, and combat/adventuring rule prose beyond
+the existing `rules.json` citation index. Feats are out of scope — they
+aren't part of the free 2014 SRD this project's provenance model is built
+around.
+
+## Build
+
+```bash
+dotnet build
+dotnet test
+```
+
+`global.json` pins SDK `8.0.129` with `"rollForward": "latestMajor"` so the
+build still works on environments that only have newer major SDKs (9.x,
+10.x) installed — both target frameworks stay `net8.0`.

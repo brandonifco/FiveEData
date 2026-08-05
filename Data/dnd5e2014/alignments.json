@@ -1,0 +1,119 @@
+[
+  {
+    "id": "dnd5e2014.alignment.lawful-good",
+    "name": "Lawful Good",
+    "ethic": "Lawful",
+    "morality": "Good",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.neutral-good",
+    "name": "Neutral Good",
+    "ethic": "Neutral",
+    "morality": "Good",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.chaotic-good",
+    "name": "Chaotic Good",
+    "ethic": "Chaotic",
+    "morality": "Good",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.lawful-neutral",
+    "name": "Lawful Neutral",
+    "ethic": "Lawful",
+    "morality": "Neutral",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.neutral",
+    "name": "Neutral",
+    "ethic": "Neutral",
+    "morality": "Neutral",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.chaotic-neutral",
+    "name": "Chaotic Neutral",
+    "ethic": "Chaotic",
+    "morality": "Neutral",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.lawful-evil",
+    "name": "Lawful Evil",
+    "ethic": "Lawful",
+    "morality": "Evil",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.neutral-evil",
+    "name": "Neutral Evil",
+    "ethic": "Neutral",
+    "morality": "Evil",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.alignment.chaotic-evil",
+    "name": "Chaotic Evil",
+    "ethic": "Chaotic",
+    "morality": "Evil",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 122,
+        "section": "Chapter 4: Personality and Background — Alignment"
+      }
+    ]
+  }
+]

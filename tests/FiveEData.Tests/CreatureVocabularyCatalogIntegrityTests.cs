@@ -1,7 +1,11 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Alignments;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Senses;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 
@@ -142,6 +146,104 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
     }
 
     [Fact]
+    public void MissingConditionSourceReference_IsRejected()
+    {
+        ConditionDefinition condition = CreateCondition(
+            "example.condition.dazed",
+            "Dazed");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    abilities: [],
+                    conditions: [condition]));
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "Condition 'example.condition.dazed'",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "missing source document",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MissingDamageTypeSourceReference_IsRejected()
+    {
+        DamageTypeDefinition damageType = CreateDamageType(
+            "example.damage-type.sonic",
+            "Sonic");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    abilities: [],
+                    damageTypes: [damageType]));
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "Damage type 'example.damage-type.sonic'",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "missing source document",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MissingSenseSourceReference_IsRejected()
+    {
+        SenseDefinition sense = CreateSense(
+            "example.sense.tremorsense",
+            "Tremorsense");
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    abilities: [],
+                    senses: [sense]));
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "Sense 'example.sense.tremorsense'",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "missing source document",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MissingAlignmentSourceReference_IsRejected()
+    {
+        AlignmentDefinition alignment = CreateAlignment(
+            "example.alignment.true-neutral",
+            "True Neutral",
+            AlignmentEthic.Neutral,
+            AlignmentMorality.Neutral);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    abilities: [],
+                    alignments: [alignment]));
+
+        Assert.Contains(
+            errors,
+            error =>
+                error.Contains(
+                    "Alignment 'example.alignment.true-neutral'",
+                    StringComparison.Ordinal) &&
+                error.Contains(
+                    "missing source document",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void MissingNormallyAssociatedAbility_IsRejected()
     {
         SkillDefinition skill = CreateSkill(
@@ -197,6 +299,24 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             "example.creature-size.minuscule",
             "Minuscule");
 
+        ConditionDefinition condition = CreateCondition(
+            "example.condition.dazed",
+            "Dazed");
+
+        DamageTypeDefinition damageType = CreateDamageType(
+            "example.damage-type.sonic",
+            "Sonic");
+
+        SenseDefinition sense = CreateSense(
+            "example.sense.tremorsense",
+            "Tremorsense");
+
+        AlignmentDefinition alignment = CreateAlignment(
+            "example.alignment.true-neutral",
+            "True Neutral",
+            AlignmentEthic.Neutral,
+            AlignmentMorality.Neutral);
+
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
@@ -204,6 +324,10 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
                     skills: [skill],
                     languages: [language],
                     sizes: [size],
+                    conditions: [condition],
+                    damageTypes: [damageType],
+                    senses: [sense],
+                    alignments: [alignment],
                     sourceDocuments:
                     [
                         new SourceDocument(
@@ -258,6 +382,50 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             [CreateSource()]);
     }
 
+    private static ConditionDefinition CreateCondition(
+        string id,
+        string name)
+    {
+        return new ConditionDefinition(
+            new ConditionId(id),
+            name,
+            [CreateSource()]);
+    }
+
+    private static DamageTypeDefinition CreateDamageType(
+        string id,
+        string name)
+    {
+        return new DamageTypeDefinition(
+            new DamageTypeId(id),
+            name,
+            [CreateSource()]);
+    }
+
+    private static SenseDefinition CreateSense(
+        string id,
+        string name)
+    {
+        return new SenseDefinition(
+            new SenseId(id),
+            name,
+            [CreateSource()]);
+    }
+
+    private static AlignmentDefinition CreateAlignment(
+        string id,
+        string name,
+        AlignmentEthic ethic,
+        AlignmentMorality morality)
+    {
+        return new AlignmentDefinition(
+            new AlignmentId(id),
+            name,
+            ethic,
+            morality,
+            [CreateSource()]);
+    }
+
     private static SourceReference CreateSource()
     {
         return new SourceReference(
@@ -270,6 +438,10 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<SkillDefinition>? skills = null,
         IReadOnlyList<LanguageDefinition>? languages = null,
         IReadOnlyList<CreatureSizeDefinition>? sizes = null,
+        IReadOnlyList<ConditionDefinition>? conditions = null,
+        IReadOnlyList<DamageTypeDefinition>? damageTypes = null,
+        IReadOnlyList<SenseDefinition>? senses = null,
+        IReadOnlyList<AlignmentDefinition>? alignments = null,
         IReadOnlyList<SourceDocument>? sourceDocuments = null)
     {
         var equipment = new EquipmentDefinitionSet(
@@ -297,7 +469,11 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
                 abilities: abilities,
                 skills: skills ?? [],
                 languages: languages ?? [],
-                sizes: sizes ?? []);
+                sizes: sizes ?? [],
+                conditions: conditions ?? [],
+                damageTypes: damageTypes ?? [],
+                senses: senses ?? [],
+                alignments: alignments ?? []);
 
         return new RulesetDefinitionSet(
             sourceDocuments: sourceDocuments ?? [],

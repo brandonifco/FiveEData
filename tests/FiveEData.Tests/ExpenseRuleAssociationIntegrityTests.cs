@@ -229,6 +229,10 @@ public sealed class ExpenseRuleAssociationIntegrityTests
                     abilities: [],
                     skills: [],
                     languages: [],
-                    sizes: []));
+                    sizes: [],
+                    conditions: [],
+                    damageTypes: [],
+                    senses: [],
+                    alignments: []));
     }
 }

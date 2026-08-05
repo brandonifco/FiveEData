@@ -1248,7 +1248,11 @@ public sealed class CatalogIntegrityTests
                     abilities: [],
                     skills: [],
                     languages: [],
-                    sizes: []));
+                    sizes: [],
+                    conditions: [],
+                    damageTypes: [],
+                    senses: [],
+                    alignments: []));
     }
 
     private static ToolDefinition CreateTool(

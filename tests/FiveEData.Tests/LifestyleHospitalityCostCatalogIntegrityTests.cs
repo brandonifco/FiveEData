@@ -237,6 +237,10 @@ public sealed class
                     abilities: [],
                     skills: [],
                     languages: [],
-                    sizes: []));
+                    sizes: [],
+                    conditions: [],
+                    damageTypes: [],
+                    senses: [],
+                    alignments: []));
     }
 }

@@ -1,6 +1,10 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Alignments.Serialization;
+using FiveEData.Rules.Creatures.Conditions.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes.Serialization;
 using FiveEData.Rules.Creatures.Languages.Serialization;
+using FiveEData.Rules.Creatures.Senses.Serialization;
 using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills.Serialization;
 using FiveEData.Rules.Common;
@@ -319,7 +323,19 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
                             DataPath("languages.json")),
                     sizes:
                         CreatureSizeDefinitionLoader.LoadFromFile(
-                            DataPath("creature-sizes.json"))));
+                            DataPath("creature-sizes.json")),
+                    conditions:
+                        ConditionDefinitionLoader.LoadFromFile(
+                            DataPath("conditions.json")),
+                    damageTypes:
+                        DamageTypeDefinitionLoader.LoadFromFile(
+                            DataPath("damage-types.json")),
+                    senses:
+                        SenseDefinitionLoader.LoadFromFile(
+                            DataPath("senses.json")),
+                    alignments:
+                        AlignmentDefinitionLoader.LoadFromFile(
+                            DataPath("alignments.json"))));
     }
 
     private static string DataPath(string fileName)

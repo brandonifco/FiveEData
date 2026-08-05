@@ -1,0 +1,13 @@
+[
+  {
+    "id": "dnd5e2014.sense.darkvision",
+    "name": "Darkvision",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 183,
+        "section": "Chapter 8: Adventuring — The Environment — Vision and Light"
+      }
+    ]
+  }
+]

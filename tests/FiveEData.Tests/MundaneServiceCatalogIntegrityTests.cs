@@ -303,6 +303,10 @@ public sealed class MundaneServiceCatalogIntegrityTests
                     abilities: [],
                     skills: [],
                     languages: [],
-                    sizes: []));
+                    sizes: [],
+                    conditions: [],
+                    damageTypes: [],
+                    senses: [],
+                    alignments: []));
     }
 }

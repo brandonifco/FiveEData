@@ -1,7 +1,11 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Alignments;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Senses;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 
@@ -83,6 +87,62 @@ internal static class CreatureVocabularyCatalogIntegrityValidator
         {
             ValidateSources(
                 $"Creature size '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            ConditionDefinition definition
+            in definitions.Conditions
+                .OrderBy(
+                    item => item.Id.Value,
+                    StringComparer.Ordinal))
+        {
+            ValidateSources(
+                $"Condition '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            DamageTypeDefinition definition
+            in definitions.DamageTypes
+                .OrderBy(
+                    item => item.Id.Value,
+                    StringComparer.Ordinal))
+        {
+            ValidateSources(
+                $"Damage type '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            SenseDefinition definition
+            in definitions.Senses
+                .OrderBy(
+                    item => item.Id.Value,
+                    StringComparer.Ordinal))
+        {
+            ValidateSources(
+                $"Sense '{definition.Id}'",
+                definition.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            AlignmentDefinition definition
+            in definitions.Alignments
+                .OrderBy(
+                    item => item.Id.Value,
+                    StringComparer.Ordinal))
+        {
+            ValidateSources(
+                $"Alignment '{definition.Id}'",
                 definition.Sources,
                 sourceIds,
                 errors);

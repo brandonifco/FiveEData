@@ -155,6 +155,10 @@ public sealed class LifestyleCatalogIntegrityTests
                     abilities: [],
                     skills: [],
                     languages: [],
-                    sizes: []));
+                    sizes: [],
+                    conditions: [],
+                    damageTypes: [],
+                    senses: [],
+                    alignments: []));
     }
 }
