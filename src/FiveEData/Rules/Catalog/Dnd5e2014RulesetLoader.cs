@@ -6,6 +6,8 @@ using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.EldritchInvocations.Serialization;
+using FiveEData.Rules.Classes.ElementalDisciplines;
+using FiveEData.Rules.Classes.ElementalDisciplines.Serialization;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.FightingStyles.Serialization;
 using FiveEData.Rules.Classes.Metamagic;
@@ -121,6 +123,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string EldritchInvocationsResource =
         "FiveEData.Data.dnd5e2014.eldritch-invocations.json";
+
+    private const string ElementalDisciplinesResource =
+        "FiveEData.Data.dnd5e2014.elemental-disciplines.json";
 
     private const string SpellSlotProgressionsResource =
         "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
@@ -299,6 +304,11 @@ internal static class Dnd5e2014RulesetLoader
                 EmbeddedDataReader.ReadRequiredText(
                     EldritchInvocationsResource));
 
+        IReadOnlyList<ElementalDisciplineDefinition> elementalDisciplines =
+            ElementalDisciplineDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    ElementalDisciplinesResource));
+
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
             SpellSlotProgressionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
@@ -460,6 +470,7 @@ internal static class Dnd5e2014RulesetLoader
             metamagicOptions: metamagicOptions,
             battleMasterManeuvers: battleMasterManeuvers,
             eldritchInvocations: eldritchInvocations,
+            elementalDisciplines: elementalDisciplines,
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds);
@@ -510,6 +521,8 @@ internal static class Dnd5e2014RulesetLoader
                 new BattleMasterManeuverCatalog(battleMasterManeuvers),
             eldritchInvocations:
                 new EldritchInvocationCatalog(eldritchInvocations),
+            elementalDisciplines:
+                new ElementalDisciplineCatalog(elementalDisciplines),
             spellSlotProgressions:
                 new SpellSlotProgressionCatalog(spellSlotProgressions),
             extraAttackProgressions:

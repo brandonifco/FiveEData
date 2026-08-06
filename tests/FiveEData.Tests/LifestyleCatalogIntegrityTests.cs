@@ -166,6 +166,7 @@ public sealed class LifestyleCatalogIntegrityTests
             metamagicOptions: [],
             battleMasterManeuvers: [],
             eldritchInvocations: [],
+            elementalDisciplines: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

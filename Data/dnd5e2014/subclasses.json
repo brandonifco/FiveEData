@@ -33,6 +33,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -76,22 +77,62 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": {
       "maneuversKnownByLevel": [
-        { "characterLevel": 3, "maneuversKnown": 3 },
-        { "characterLevel": 7, "maneuversKnown": 5 },
-        { "characterLevel": 10, "maneuversKnown": 7 },
-        { "characterLevel": 15, "maneuversKnown": 9 }
+        {
+          "characterLevel": 3,
+          "maneuversKnown": 3
+        },
+        {
+          "characterLevel": 7,
+          "maneuversKnown": 5
+        },
+        {
+          "characterLevel": 10,
+          "maneuversKnown": 7
+        },
+        {
+          "characterLevel": 15,
+          "maneuversKnown": 9
+        }
       ],
       "diceCountByLevel": [
-        { "characterLevel": 3, "diceCount": 4 },
-        { "characterLevel": 7, "diceCount": 5 },
-        { "characterLevel": 15, "diceCount": 6 }
+        {
+          "characterLevel": 3,
+          "diceCount": 4
+        },
+        {
+          "characterLevel": 7,
+          "diceCount": 5
+        },
+        {
+          "characterLevel": 15,
+          "diceCount": 6
+        }
       ],
       "dieSizeByLevel": [
-        { "characterLevel": 3, "die": { "count": 1, "sides": 8 } },
-        { "characterLevel": 10, "die": { "count": 1, "sides": 10 } },
-        { "characterLevel": 18, "die": { "count": 1, "sides": 12 } }
+        {
+          "characterLevel": 3,
+          "die": {
+            "count": 1,
+            "sides": 8
+          }
+        },
+        {
+          "characterLevel": 10,
+          "die": {
+            "count": 1,
+            "sides": 10
+          }
+        },
+        {
+          "characterLevel": 18,
+          "die": {
+            "count": 1,
+            "sides": 12
+          }
+        }
       ]
     },
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -138,6 +179,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -176,6 +218,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -218,6 +261,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -256,6 +300,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -294,6 +339,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -332,6 +378,44 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": {
+      "disciplinesKnownByLevel": [
+        {
+          "characterLevel": 3,
+          "disciplinesKnown": 2
+        },
+        {
+          "characterLevel": 6,
+          "disciplinesKnown": 3
+        },
+        {
+          "characterLevel": 11,
+          "disciplinesKnown": 4
+        },
+        {
+          "characterLevel": 17,
+          "disciplinesKnown": 5
+        }
+      ],
+      "maxKiPointsPerSpellByLevel": [
+        {
+          "characterLevel": 5,
+          "maxKiPoints": 3
+        },
+        {
+          "characterLevel": 9,
+          "maxKiPoints": 4
+        },
+        {
+          "characterLevel": 13,
+          "maxKiPoints": 5
+        },
+        {
+          "characterLevel": 17,
+          "maxKiPoints": 6
+        }
+      ]
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -374,6 +458,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -416,6 +501,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -458,6 +544,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -496,6 +583,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -534,6 +622,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -576,6 +665,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -618,6 +708,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -660,6 +751,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -702,6 +794,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -744,6 +837,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -786,6 +880,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -828,6 +923,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -870,6 +966,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -912,6 +1009,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -957,11 +1055,17 @@
       "damageByLevel": [
         {
           "characterLevel": 8,
-          "damage": { "count": 1, "sides": 8 }
+          "damage": {
+            "count": 1,
+            "sides": 8
+          }
         },
         {
           "characterLevel": 14,
-          "damage": { "count": 2, "sides": 8 }
+          "damage": {
+            "count": 2,
+            "sides": 8
+          }
         }
       ],
       "fixedDamageTypeId": "dnd5e2014.damage-type.radiant",
@@ -972,6 +1076,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1018,6 +1123,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1063,11 +1169,17 @@
       "damageByLevel": [
         {
           "characterLevel": 8,
-          "damage": { "count": 1, "sides": 8 }
+          "damage": {
+            "count": 1,
+            "sides": 8
+          }
         },
         {
           "characterLevel": 14,
-          "damage": { "count": 2, "sides": 8 }
+          "damage": {
+            "count": 2,
+            "sides": 8
+          }
         }
       ],
       "fixedDamageTypeId": null,
@@ -1082,6 +1194,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1127,11 +1240,17 @@
       "damageByLevel": [
         {
           "characterLevel": 8,
-          "damage": { "count": 1, "sides": 8 }
+          "damage": {
+            "count": 1,
+            "sides": 8
+          }
         },
         {
           "characterLevel": 14,
-          "damage": { "count": 2, "sides": 8 }
+          "damage": {
+            "count": 2,
+            "sides": 8
+          }
         }
       ],
       "fixedDamageTypeId": "dnd5e2014.damage-type.thunder",
@@ -1142,6 +1261,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1183,11 +1303,17 @@
       "damageByLevel": [
         {
           "characterLevel": 8,
-          "damage": { "count": 1, "sides": 8 }
+          "damage": {
+            "count": 1,
+            "sides": 8
+          }
         },
         {
           "characterLevel": 14,
-          "damage": { "count": 2, "sides": 8 }
+          "damage": {
+            "count": 2,
+            "sides": 8
+          }
         }
       ],
       "fixedDamageTypeId": "dnd5e2014.damage-type.poison",
@@ -1198,6 +1324,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1243,11 +1370,17 @@
       "damageByLevel": [
         {
           "characterLevel": 8,
-          "damage": { "count": 1, "sides": 8 }
+          "damage": {
+            "count": 1,
+            "sides": 8
+          }
         },
         {
           "characterLevel": 14,
-          "damage": { "count": 2, "sides": 8 }
+          "damage": {
+            "count": 2,
+            "sides": 8
+          }
         }
       ],
       "fixedDamageTypeId": null,
@@ -1258,6 +1391,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1300,6 +1434,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1342,6 +1477,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1384,6 +1520,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1442,6 +1579,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1486,17 +1624,36 @@
     "divineStrikeProgression": null,
     "circleFormsProgression": {
       "maxChallengeRatingByLevel": [
-        { "characterLevel": 2, "maxChallengeRating": 1.0 },
-        { "characterLevel": 6, "maxChallengeRating": 2.0 },
-        { "characterLevel": 9, "maxChallengeRating": 3.0 },
-        { "characterLevel": 12, "maxChallengeRating": 4.0 },
-        { "characterLevel": 15, "maxChallengeRating": 5.0 },
-        { "characterLevel": 18, "maxChallengeRating": 6.0 }
+        {
+          "characterLevel": 2,
+          "maxChallengeRating": 1.0
+        },
+        {
+          "characterLevel": 6,
+          "maxChallengeRating": 2.0
+        },
+        {
+          "characterLevel": 9,
+          "maxChallengeRating": 3.0
+        },
+        {
+          "characterLevel": 12,
+          "maxChallengeRating": 4.0
+        },
+        {
+          "characterLevel": 15,
+          "maxChallengeRating": 5.0
+        },
+        {
+          "characterLevel": 18,
+          "maxChallengeRating": 6.0
+        }
       ]
     },
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1535,6 +1692,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1573,6 +1731,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1642,6 +1801,7 @@
     },
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1711,6 +1871,7 @@
       "requiresConsciousness": false
     },
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1773,6 +1934,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1815,6 +1977,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1857,6 +2020,7 @@
     "auraOfDevotion": null,
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
+    "discipleOfTheElementsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

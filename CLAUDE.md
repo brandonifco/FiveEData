@@ -29,7 +29,8 @@ Font of Magic conversion ([PR #34](https://github.com/brandonifco/FiveEData/pull
 Song of Rest ([PR #35](https://github.com/brandonifco/FiveEData/pull/35)),
 Metamagic ([PR #36](https://github.com/brandonifco/FiveEData/pull/36)),
 Battle Master maneuvers ([PR #37](https://github.com/brandonifco/FiveEData/pull/37)),
-Eldritch Invocations ([PR #38](https://github.com/brandonifco/FiveEData/pull/38)).
+Eldritch Invocations ([PR #38](https://github.com/brandonifco/FiveEData/pull/38)),
+Elemental Disciplines ([PR #39](https://github.com/brandonifco/FiveEData/pull/39)).
 Pact Boon was evaluated and deliberately declined (no catalog needed —
 see its section below), documented directly on `main` with no PR since
 no code changed.
@@ -38,19 +39,21 @@ no code changed.
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Every per-level numeric progression is now
-converted. Four of six choice-point catalogs are resolved — Metamagic
+converted. Five of six choice-point catalogs are resolved — Metamagic
 (cost-only catalog), Pact Boon (no catalog needed), Battle Master
 maneuvers (effect-target-plus-save-ability catalog), Eldritch
 Invocations (three independent prerequisite facts plus a separate
-class-level known-count progression) — each a genuinely different
-outcome, so don't assume any one of them carries over to what's left.
-Order from here: the other two choice-point catalogs (Elemental
-Disciplines, Channel Divinity options) — verify each one's actual
-sub-structure and option count from the PHB directly rather than
-assuming a prior catalog's shape or a remembered count (Eldritch
-Invocations' own "~20" estimate undershot the real 32) — then race
-trait quantization, then a background numeric audit. Stop when that
-full list is done, not before. Check the
+class-level known-count progression), Elemental Disciplines (a
+cost/level catalog plus a class-level disciplines-known-and-max-ki
+progression) — each a genuinely different outcome, so don't assume
+any one of them carries over to what's left. Order from here: the
+last choice-point catalog (Channel Divinity options) — verify its
+actual sub-structure and option count from the PHB directly rather
+than assuming a prior catalog's shape or a remembered count (both
+Eldritch Invocations and Elemental Disciplines corrected an existing
+estimate once the real page was read) — then race trait quantization,
+then a background numeric audit. Stop when that full list is done,
+not before. Check the
 "Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
@@ -68,12 +71,12 @@ even after multiple attempts`; a `gh run rerun` was kicked off and sat
 `queued` for nearly an hour without progressing; PR #27's workflow run
 never even started. Confirmed via githubstatus.com (not just inferred
 from symptoms) as a major outage, still showing `"indicator":"major"`
-("Partial System Outage") as of PR #38, 6+ hours in. Given the size of
+("Partial System Outage") as of PR #39, 6+ hours in. Given the size of
 the remaining work list, the user gave a **standing authorization for
 the duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26 through #38 were all merged this way. **Once CI is confirmed
+PR #26 through #39 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1814,21 +1817,77 @@ choice-point split Battle Master's own pass established:
   `EldritchInvocationDefinitionLoaderTests`/
   `EldritchInvocationDataFileTests` for the new catalog, plus Invocations
   Known assertions folded into the existing `ClassDataFileTests`).
-- **Remaining, tracked but not started:** the other two choice-point
-  catalogs (Elemental Disciplines, Channel Divinity options) — four
-  data points now exist for how a choice point resolves (Metamagic:
-  cost-only catalog; Pact Boon: no catalog at all; Battle Master
-  maneuvers: effect-target-plus-save-ability catalog; Eldritch
-  Invocations: three independent non-exclusive prerequisite facts plus
-  a separate class-level known-count progression), so verify each
-  remaining catalog's actual shape from the PHB rather than assuming
-  any one of the four precedents carries over by default — and don't
-  trust a remembered option count either, count them directly off the
-  page the way Eldritch Invocations' own 32-vs-~20 correction just
-  proved necessary. After those: race trait quantization (Darkvision
-  range, resistance/advantage grants, granted spells), and a
-  background audit (likely little to quantize — most background
-  features are narrative/social, not numeric).
+**Elemental Disciplines converted twenty-first — Way of the Four
+Elements' own choice-point catalog, and a second confirmation that
+CLAUDE.md's own remembered option counts can't be trusted without
+re-reading the page.** This section's own earlier text (see "Classes"
+above) called it "18 individual elemental disciplines"; reading PHB
+page 81 directly found 17, not 18 — a smaller discrepancy than
+Eldritch Invocations' 32-vs-~20 gap, but the same lesson repeated
+immediately after being learned: recount every time, regardless of
+how confident an existing in-repo number looks. The same
+catalog/class-level-progression split every subclass-level choice
+point in this pass has used again:
+
+- **`Rules/Classes/ElementalDisciplines/`** (a new top-level catalog,
+  `dnd5e2014.elemental-discipline.*`, all 17 named disciplines from
+  page 81) captures each discipline's `KiPointCost: int?` and
+  `RequiredMinimumLevel: int?` — a simpler two-axis shape than
+  Eldritch Invocations' three, since Monk disciplines have no
+  cantrip-style or Pact-Boon-style gate to represent. 9 of the 17
+  require 6th/11th/17th level; Elemental Attunement alone has neither
+  a cost nor a level requirement (it's the one discipline granted
+  automatically, not chosen). **Which spell each discipline casts
+  (`burning hands`, `fireball`, `wall of stone`, ...) was deliberately
+  left unquantized** — this project doesn't model spells as a domain
+  at all, the same boundary that already kept Domain Spells/Circle
+  Spells/Oath Spells and every caster's own spell list out of
+  structured data; a discipline's spell reference has nowhere valid to
+  point without inventing a `SpellId` type this pass isn't scoped to
+  create.
+- **`Rules/Classes/DiscipleOfTheElements/`** (embedded on
+  `SubclassDefinition`, Way of the Four Elements only) captures two
+  independent leveled facts read off the same page-80/81 spread as the
+  feature's own prose: `DisciplinesKnownByLevel` (3rd→2 — Elemental
+  Attunement plus one chosen discipline — then +1 at 6th/11th/17th,
+  same recurring-choice-count shape Fighting Style's own "additional
+  option" grants never needed to quantize but this pass's later,
+  numbers-first entries do) and `MaxKiPointsPerSpellByLevel`, the
+  class's own "Spells and Ki Points" table (5th→3, 9th→4, 13th→5,
+  17th→6) governing how many extra ki points can upgrade a
+  discipline's spell level — a real leveled table sitting right next
+  to the discipline list that would have been easy to skip past as
+  "just more prose" without reading the full page closely.
+- Public API: two new public types per new domain
+  (`ElementalDisciplineId`/`Definition`/`Catalog`;
+  `DiscipleOfTheElementsDisciplinesKnownGrant`/`MaxKiPointsGrant`/
+  `ProgressionDetail`) and one new member each on the already-public
+  `Dnd5e2014Ruleset`/`RulesetDefinitionSet` (the new catalog) and
+  `SubclassDefinition` (the new embedded progression), wired through
+  the same pattern every prior catalog/progression in this pass used.
+  Full gate green: Debug+Release build 0 warnings, 1681 tests (was
+  1637; +44 new — `ElementalDisciplineFoundationTests`/
+  `ElementalDisciplineDefinitionLoaderTests`/
+  `ElementalDisciplineDataFileTests` for the new catalog, plus Disciple
+  of the Elements assertions folded into the existing
+  `SubclassDataFileTests`/`SubclassDefinitionLoaderTests`/
+  `SubclassFoundationTests`).
+- **Remaining, tracked but not started:** the last choice-point catalog
+  (Channel Divinity options) — five data points now exist for how a
+  choice point resolves (Metamagic: cost-only catalog; Pact Boon: no
+  catalog at all; Battle Master maneuvers: effect-target-plus-
+  save-ability catalog; Eldritch Invocations: three independent
+  non-exclusive prerequisite facts plus a class-level known-count
+  progression; Elemental Disciplines: a two-axis cost/level catalog
+  plus a class-level disciplines-known-and-max-ki progression), so
+  verify Channel Divinity options' own actual shape from the PHB
+  rather than assuming any one of the five precedents carries over by
+  default — and recount its options directly off the page rather than
+  trusting any existing estimate, the same discipline both Eldritch
+  Invocations and Elemental Disciplines just needed. After that: race
+  trait quantization (Darkvision range, resistance/advantage grants,
+  granted spells), and a background audit (likely little to quantize —
+  most background features are narrative/social, not numeric).
 
 ## Test conventions
 

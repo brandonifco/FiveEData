@@ -487,6 +487,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             metamagicOptions: [],
             battleMasterManeuvers: [],
             eldritchInvocations: [],
+            elementalDisciplines: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

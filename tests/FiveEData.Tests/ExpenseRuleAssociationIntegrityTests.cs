@@ -240,6 +240,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             metamagicOptions: [],
             battleMasterManeuvers: [],
             eldritchInvocations: [],
+            elementalDisciplines: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

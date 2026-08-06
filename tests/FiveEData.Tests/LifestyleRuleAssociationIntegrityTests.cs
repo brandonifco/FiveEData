@@ -279,6 +279,7 @@ public sealed class
             metamagicOptions: [],
             battleMasterManeuvers: [],
             eldritchInvocations: [],
+            elementalDisciplines: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

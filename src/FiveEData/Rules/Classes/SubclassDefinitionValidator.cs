@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
+using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Common;
 
@@ -69,7 +70,94 @@ internal static class SubclassDefinitionValidator
                 errors);
         }
 
+        if (subclass.DiscipleOfTheElementsProgression is
+            { } discipleOfTheElementsProgression)
+        {
+            ValidateDiscipleOfTheElementsProgression(
+                discipleOfTheElementsProgression,
+                errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateDiscipleOfTheElementsProgression(
+        DiscipleOfTheElementsProgressionDetail
+            discipleOfTheElementsProgression,
+        ICollection<string> errors)
+    {
+        if (discipleOfTheElementsProgression.DisciplinesKnownByLevel.Count ==
+            0)
+        {
+            errors.Add(
+                "Disciple of the Elements progression must grant at " +
+                "least one disciplines known increase.");
+        }
+
+        var seenDisciplinesKnownLevels = new HashSet<int>();
+        int? previousDisciplinesKnown = null;
+
+        foreach (
+            DiscipleOfTheElementsDisciplinesKnownGrant grant
+            in discipleOfTheElementsProgression.DisciplinesKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenDisciplinesKnownLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Disciple of the Elements disciplines known " +
+                    $"character level {grant.CharacterLevel} is " +
+                    "duplicated.");
+                continue;
+            }
+
+            if (previousDisciplinesKnown is { } previous &&
+                grant.DisciplinesKnown <= previous)
+            {
+                errors.Add(
+                    "Disciple of the Elements disciplines known at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousDisciplinesKnown = grant.DisciplinesKnown;
+        }
+
+        if (discipleOfTheElementsProgression.MaxKiPointsPerSpellByLevel
+                .Count == 0)
+        {
+            errors.Add(
+                "Disciple of the Elements progression must grant at " +
+                "least one max ki points increase.");
+        }
+
+        var seenMaxKiPointsLevels = new HashSet<int>();
+        int? previousMaxKiPoints = null;
+
+        foreach (
+            DiscipleOfTheElementsMaxKiPointsGrant grant
+            in discipleOfTheElementsProgression.MaxKiPointsPerSpellByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenMaxKiPointsLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Disciple of the Elements max ki points character " +
+                    $"level {grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousMaxKiPoints is { } previous &&
+                grant.MaxKiPoints <= previous)
+            {
+                errors.Add(
+                    "Disciple of the Elements max ki points at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousMaxKiPoints = grant.MaxKiPoints;
+        }
     }
 
     private static void ValidateCombatSuperiorityProgression(

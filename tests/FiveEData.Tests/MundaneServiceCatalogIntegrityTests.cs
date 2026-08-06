@@ -314,6 +314,7 @@ public sealed class MundaneServiceCatalogIntegrityTests
             metamagicOptions: [],
             battleMasterManeuvers: [],
             eldritchInvocations: [],
+            elementalDisciplines: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

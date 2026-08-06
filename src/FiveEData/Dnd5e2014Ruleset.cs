@@ -39,6 +39,7 @@ public sealed class Dnd5e2014Ruleset
         MetamagicOptionCatalog metamagicOptions,
         BattleMasterManeuverCatalog battleMasterManeuvers,
         EldritchInvocationCatalog eldritchInvocations,
+        ElementalDisciplineCatalog elementalDisciplines,
         SpellSlotProgressionCatalog spellSlotProgressions,
         ExtraAttackProgressionCatalog extraAttackProgressions,
         BackgroundCatalog backgrounds,
@@ -69,6 +70,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(metamagicOptions);
         ArgumentNullException.ThrowIfNull(battleMasterManeuvers);
         ArgumentNullException.ThrowIfNull(eldritchInvocations);
+        ArgumentNullException.ThrowIfNull(elementalDisciplines);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -99,6 +101,7 @@ public sealed class Dnd5e2014Ruleset
         MetamagicOptions = metamagicOptions;
         BattleMasterManeuvers = battleMasterManeuvers;
         EldritchInvocations = eldritchInvocations;
+        ElementalDisciplines = elementalDisciplines;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -137,6 +140,7 @@ public sealed class Dnd5e2014Ruleset
     public MetamagicOptionCatalog MetamagicOptions { get; }
     public BattleMasterManeuverCatalog BattleMasterManeuvers { get; }
     public EldritchInvocationCatalog EldritchInvocations { get; }
+    public ElementalDisciplineCatalog ElementalDisciplines { get; }
     public SpellSlotProgressionCatalog SpellSlotProgressions { get; }
     public ExtraAttackProgressionCatalog ExtraAttackProgressions { get; }
     public BackgroundCatalog Backgrounds { get; }
