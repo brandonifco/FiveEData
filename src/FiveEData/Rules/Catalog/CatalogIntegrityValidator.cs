@@ -1,5 +1,6 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
@@ -124,6 +125,33 @@ internal static class CatalogIntegrityValidator
                 skillIds,
                 weaponIds,
                 ruleIds));
+
+        HashSet<ClassId> classIds =
+            definitions.Classes.Classes
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        foreach (
+            FightingStyleDefinition fightingStyle
+            in definitions.FightingStyles)
+        {
+            string owner = $"Fighting style '{fightingStyle.Id}'";
+
+            ValidateSources(
+                owner,
+                fightingStyle.Sources,
+                sourceIds,
+                errors);
+
+            foreach (ClassId classId in fightingStyle.AvailableToClassIds)
+            {
+                if (!classIds.Contains(classId))
+                {
+                    errors.Add(
+                        $"{owner} references missing class '{classId}'.");
+                }
+            }
+        }
 
         errors.AddRange(
             BackgroundCatalogIntegrityValidator.Validate(

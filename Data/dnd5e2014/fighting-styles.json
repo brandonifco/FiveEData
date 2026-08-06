@@ -1,0 +1,178 @@
+[
+  {
+    "id": "dnd5e2014.fighting-style.archery",
+    "name": "Archery",
+    "availableToClassIds": [
+      "dnd5e2014.class.fighter",
+      "dnd5e2014.class.ranger"
+    ],
+    "rollBonus": {
+      "target": "AttackRoll",
+      "amount": 2,
+      "weaponRequirement": "RangedWeapon"
+    },
+    "armorClassBonus": null,
+    "damageDieReroll": null,
+    "reaction": null,
+    "grantsOffHandAbilityModifierDamage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 72,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.fighting-style.defense",
+    "name": "Defense",
+    "availableToClassIds": [
+      "dnd5e2014.class.fighter",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.paladin"
+    ],
+    "rollBonus": null,
+    "armorClassBonus": 1,
+    "damageDieReroll": null,
+    "reaction": null,
+    "grantsOffHandAbilityModifierDamage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 72,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 85,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.fighting-style.dueling",
+    "name": "Dueling",
+    "availableToClassIds": [
+      "dnd5e2014.class.fighter",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.paladin"
+    ],
+    "rollBonus": {
+      "target": "DamageRoll",
+      "amount": 2,
+      "weaponRequirement": "MeleeWeaponWieldedAloneInOneHand"
+    },
+    "armorClassBonus": null,
+    "damageDieReroll": null,
+    "reaction": null,
+    "grantsOffHandAbilityModifierDamage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 72,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 85,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.fighting-style.great-weapon-fighting",
+    "name": "Great Weapon Fighting",
+    "availableToClassIds": [
+      "dnd5e2014.class.fighter",
+      "dnd5e2014.class.paladin"
+    ],
+    "rollBonus": null,
+    "armorClassBonus": null,
+    "damageDieReroll": {
+      "rerollAtOrBelowValue": 2,
+      "weaponRequirement": "MeleeWeaponWithTwoHandedOrVersatileProperty"
+    },
+    "reaction": null,
+    "grantsOffHandAbilityModifierDamage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 72,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 85,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.fighting-style.protection",
+    "name": "Protection",
+    "availableToClassIds": [
+      "dnd5e2014.class.fighter",
+      "dnd5e2014.class.paladin"
+    ],
+    "rollBonus": null,
+    "armorClassBonus": null,
+    "damageDieReroll": null,
+    "reaction": {
+      "rangeFeet": 5,
+      "requiresShield": true
+    },
+    "grantsOffHandAbilityModifierDamage": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 72,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 85,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.fighting-style.two-weapon-fighting",
+    "name": "Two-Weapon Fighting",
+    "availableToClassIds": [
+      "dnd5e2014.class.fighter",
+      "dnd5e2014.class.ranger"
+    ],
+    "rollBonus": null,
+    "armorClassBonus": null,
+    "damageDieReroll": null,
+    "reaction": null,
+    "grantsOffHandAbilityModifierDamage": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 72,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

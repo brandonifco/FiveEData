@@ -347,6 +347,7 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
                             DataPath("alignments.json"))),
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
+            fightingStyles: [],
             backgrounds: []);
     }
 

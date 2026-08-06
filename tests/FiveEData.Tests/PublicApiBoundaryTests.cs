@@ -14,6 +14,8 @@ using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Backgrounds.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Classes.FightingStyles;
+using FiveEData.Rules.Classes.FightingStyles.Serialization;
 using FiveEData.Rules.Creatures.Languages.Serialization;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.Serialization;
@@ -107,6 +109,9 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(SubclassDefinitionValidator).IsPublic);
         Assert.False(typeof(ClassCatalogIntegrityValidator).IsPublic);
         Assert.False(typeof(ClassDefinitionSet).IsPublic);
+        Assert.False(typeof(FightingStyleDefinitionLoader).IsPublic);
+        Assert.False(typeof(FightingStyleDefinitionValidator).IsPublic);
+        Assert.False(typeof(RulesetDefinitionSet).IsPublic);
         Assert.False(typeof(BackgroundDefinitionLoader).IsPublic);
         Assert.False(typeof(BackgroundDefinitionValidator).IsPublic);
         Assert.False(typeof(BackgroundCatalogIntegrityValidator).IsPublic);

@@ -1324,6 +1324,7 @@ public sealed class CatalogIntegrityTests
             classes: new ClassDefinitionSet(
                 classes: classes ?? [],
                 subclasses: subclasses ?? []),
+            fightingStyles: [],
             backgrounds: []);
     }
 

@@ -485,6 +485,7 @@ public sealed class
                             DataPath("alignments.json"))),
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
+            fightingStyles: [],
             backgrounds: []);
     }
 
