@@ -695,6 +695,61 @@ already-merged PRs, not just the most recently built one:
   Killer/Horde Breaker, etc.) into one citation apiece, the same
   choice-point treatment as `Pact Boon` and `Fighting Style` itself.
 
+**Paladin was the eleventh class built**, and the first to produce a
+*near*-miss on `Fighting Style` sharing rather than a clean confirm or a
+clear divergence like College of Valor's:
+- **`Fighting Style` stayed unshared on a single dropped word, treated
+  as real rather than assumed OCR noise.** Paladin's gateway text reads
+  "you adopt a style of fighting as your specialty," missing the word
+  "particular" that both Fighter's and Ranger's identical phrasing
+  carries ("a *particular* style of fighting"). Working from an OCR
+  extraction, a one-word gap is genuinely ambiguous — it could be a
+  scanning artifact or a real, if inconsequential, printing difference.
+  Given that ambiguity, the choice was to keep `paladin-fighting-style`
+  separate rather than share: the two failure directions aren't
+  symmetric (wrongly merging two possibly-distinct texts under one
+  citation is a correctness problem; keeping an extra, possibly-
+  redundant citation around is not). This is the same strict standard
+  College of Valor's Extra Attack was held to over "Starting" vs.
+  "Beginning," applied consistently even though "particular" carries no
+  mechanical weight at all — the rule is about verified-identical text,
+  not about how much the difference seems to matter.
+- **`Extra Attack` and `Ability Score Improvement` both shared cleanly**,
+  word-for-word identical to the existing entries, no complications.
+- **`Aura of Protection` and `Aura of Courage` both reuse one `RuleId`
+  across their 6th/10th-level grant and shared 18th-level range
+  increase** — the class table's own "18th: Aura improvements" row is a
+  single generic placeholder covering both core auras at once (neither
+  aura gets its own numbered table row at 18th), the same recurring-
+  citation shape as `Wild Shape`. The two *oath*-specific auras (Aura of
+  Devotion, Aura of Warding) also each have their own "expands to 30 feet
+  at 18th level" clause in their prose, but with no table row cueing it
+  (unlike the core auras' explicit "18th: Aura improvements" row), that
+  detail was left inside each aura's own single citation rather than
+  given a second `LevelFeatures` entry — the table is what decides
+  whether a recurring mechanic gets a repeated `LevelFeatures` entry or
+  stays folded into one grant-level citation, not just "does the prose
+  mention scaling."
+- **Each oath's own `Oath Spells` framework got its own per-oath
+  `RuleId`, reused across all five grant levels (3rd/5th/9th/13th/17th)**,
+  matching Circle of the Land's `Circle Spells` treatment rather than
+  Cleric's `Domain Spells` (which folded into the gateway citation with
+  no separate entry at all) — the deciding factor is the same one used
+  throughout: `Circle Spells` and `Oath Spells` both show up as their
+  own explicitly leveled grants in each subclass's own text structure,
+  the same shape Cleric's domain spells lacked.
+- **Both class-level "framework" headings — `Oath Spells` (the general
+  explanation of how oath spells work) and `Channel Divinity` (the
+  general explanation of how Channel Divinity works) — folded into
+  `sacred-oath`'s own citation rather than getting their own `RuleId`s**,
+  since neither is its own row in the class table (unlike Cleric, where
+  `Channel Divinity` *is* its own 2nd-level table row and kept its own
+  citation for exactly that reason). The per-oath Channel Divinity
+  *options* (Sacred Weapon, Turn the Unholy, Nature's Wrath, Turn the
+  Faithless, Abjure Enemy, Vow of Enmity) each still get their own
+  citation, the same treatment Cleric's domain-specific Channel Divinity
+  options already established.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -730,7 +785,7 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 22: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 23: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
@@ -746,34 +801,41 @@ Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation),
 Cleric (all 7 divine domains — Knowledge, Life, Light, Nature, Tempest,
 Trickery, War), Warlock (all 3 otherworldly patrons — the Archfey, the
 Fiend, the Great Old One), Druid (both circles — Circle of the Land,
-Circle of the Moon), and Ranger (both archetypes — Hunter, Beast Master)
-are built — see "Classes" above, including the cross-class `RuleId`
-sharing question, resolved with evidence from all ten (most recently:
-Ranger contributed three separate cross-class shares in one pass —
-`Fighting Style` with Fighter, `Extra Attack` with the existing
-Barbarian/Monk share, and `Land's Stride` with Circle of the Land, a
-*Druid* subclass feature from two merged PRs earlier. That last one is
-the clearest evidence yet that collision/sharing checks need to cover
-every previously-built class, not just the one immediately before —
-Land's Stride would never have surfaced by comparing Ranger only against
-Druid's neighbor, Warlock). Druid resolved a forward-reference written
-back during Fighter's own build (`Fighter... has no exceptions to
-model... unlike Druid's nonmetal-only restriction"`): the restriction
-stays unmodeled, the same category of gap as unmodeled tool-proficiency
+Circle of the Moon), Ranger (both archetypes — Hunter, Beast Master), and
+Paladin (all 3 sacred oaths — Devotion, the Ancients, Vengeance) are
+built — see "Classes" above, including the cross-class `RuleId` sharing
+question, resolved with evidence from all eleven (most recently: Extra
+Attack and Ability Score Improvement both shared cleanly again, but
+Fighting Style did not — Paladin's gateway text drops the word
+"particular" that Fighter's and Ranger's identical phrasing carries, and
+rather than write that off as OCR noise, it was treated as a real
+difference and kept as its own `paladin-fighting-style` citation, the
+same "verified-identical or it stays separate" standard already applied
+to College of Valor's Extra Attack). Ranger contributed three separate
+cross-class shares in one pass before that — `Fighting Style` with
+Fighter, `Extra Attack` with the existing Barbarian/Monk share, and
+`Land's Stride` with Circle of the Land, a *Druid* subclass feature from
+two merged PRs earlier, the clearest evidence yet that collision/sharing
+checks need to cover every previously-built class, not just the one
+immediately before. Druid resolved a forward-reference written back
+during Fighter's own build (`Fighter... has no exceptions to model...
+unlike Druid's nonmetal-only restriction"`): the restriction stays
+unmodeled, the same category of gap as unmodeled tool-proficiency
 choices, since it's prose on the `Armor:` line, not a separate
 mechanical feature, and no field exists (or has a second consumer
-justifying one) for a material-restricted-proficiency axis. The other 2
-PHB classes (Paladin, Sorcerer) are not yet built — note that both are
-spellcasters like the nine already built, so the core-`Spellcasting`-
-as-single-citation approach carries forward directly (matching whatever
-that class's table actually names the feature — verify, don't assume
-"Spellcasting"); when picking one up, re-derive RuleId cross-class-
-sharing decisions against the precedent in "Classes" above (default to
-sharing a generic-named mechanic unless the actual PHB text diverges —
-verified, not assumed, every single time, against *every* earlier
-class's own entries, not just the most recently built one; prefix on a
-name collision with a different mechanic) rather than assuming it's
-settled for good. Use the cleanly-scanned PHB PDF
+justifying one) for a material-restricted-proficiency axis. The final
+PHB class (Sorcerer) is not yet built — note it's a spellcaster like the
+ten already built, so the core-`Spellcasting`-as-single-citation
+approach carries forward directly (matching whatever that class's table
+actually names the feature — verify, don't assume "Spellcasting"); when
+picking it up, re-derive RuleId cross-class-sharing decisions against
+the precedent in "Classes" above (default to sharing a generic-named
+mechanic unless the actual PHB text diverges — verified, not assumed,
+every single time, against *every* earlier class's own entries, not
+just the most recently built one, and treating even single-word gaps as
+real rather than dismissing them as scan noise; prefix on a name
+collision with a different mechanic) rather than assuming it's settled
+for good. Use the cleanly-scanned PHB PDF
 (`~/Downloads/Player's Handbook.pdf`, reliable per-page footers) for
 citations, not the archive.org OCR export used for the original Bard
 pass (see "Classes" above, end of the Bard section, for why). Not yet

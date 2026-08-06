@@ -80,6 +80,13 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.beast-master"
     ];
 
+    private static readonly string[] ExpectedPaladinSubclassIds =
+    [
+        "dnd5e2014.subclass.oath-of-devotion",
+        "dnd5e2014.subclass.oath-of-the-ancients",
+        "dnd5e2014.subclass.oath-of-vengeance"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
@@ -91,7 +98,8 @@ public sealed class SubclassDataFileTests
         .. ExpectedClericSubclassIds,
         .. ExpectedWarlockSubclassIds,
         .. ExpectedDruidSubclassIds,
-        .. ExpectedRangerSubclassIds
+        .. ExpectedRangerSubclassIds,
+        .. ExpectedPaladinSubclassIds
     ];
 
     [Fact]
@@ -99,7 +107,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(35, subclasses.Count);
+        Assert.Equal(38, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -172,6 +180,7 @@ public sealed class SubclassDataFileTests
             ["dnd5e2014.class.warlock"] = 1,
             ["dnd5e2014.class.druid"] = 2,
             ["dnd5e2014.class.ranger"] = 3,
+            ["dnd5e2014.class.paladin"] = 3,
         };
 
     [Fact]
@@ -516,6 +525,19 @@ public sealed class SubclassDataFileTests
                 subclass => ExpectedRangerSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(
                 "dnd5e2014.class.ranger",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryPaladinSubclassReferencesThePaladinClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedPaladinSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.paladin",
                 subclass.ClassId.Value));
     }
 
@@ -1239,6 +1261,129 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(beastMaster.Sources);
         Assert.Equal(93, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesOathOfDevotionMechanics()
+    {
+        SubclassDefinition devotion = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.oath-of-devotion");
+
+        Assert.Equal("Oath of Devotion", devotion.Name);
+        Assert.Equal(3, devotion.ChosenAtLevel);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.oath-of-devotion-spells",
+                "dnd5e2014.class-rule.channel-divinity-sacred-weapon",
+                "dnd5e2014.class-rule.channel-divinity-turn-the-unholy",
+                "dnd5e2014.class-rule.oath-of-devotion-spells",
+                "dnd5e2014.class-rule.aura-of-devotion",
+                "dnd5e2014.class-rule.oath-of-devotion-spells",
+                "dnd5e2014.class-rule.oath-of-devotion-spells",
+                "dnd5e2014.class-rule.purity-of-spirit",
+                "dnd5e2014.class-rule.oath-of-devotion-spells",
+                "dnd5e2014.class-rule.holy-nimbus"
+            ],
+            devotion.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(devotion.Sources);
+        Assert.Equal(85, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesOathSpellsAtEachGrantLevel()
+    {
+        SubclassDefinition devotion = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.oath-of-devotion");
+
+        int[] expectedLevels = [3, 5, 9, 13, 17];
+
+        int[] actualLevels = devotion.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.oath-of-devotion-spells")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesOathOfTheAncientsMechanics()
+    {
+        SubclassDefinition ancients = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.oath-of-the-ancients");
+
+        Assert.Equal("Oath of the Ancients", ancients.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.oath-of-the-ancients-spells",
+                "dnd5e2014.class-rule.channel-divinity-natures-wrath",
+                "dnd5e2014.class-rule.channel-divinity-turn-the-faithless",
+                "dnd5e2014.class-rule.oath-of-the-ancients-spells",
+                "dnd5e2014.class-rule.aura-of-warding",
+                "dnd5e2014.class-rule.oath-of-the-ancients-spells",
+                "dnd5e2014.class-rule.oath-of-the-ancients-spells",
+                "dnd5e2014.class-rule.undying-sentinel",
+                "dnd5e2014.class-rule.oath-of-the-ancients-spells",
+                "dnd5e2014.class-rule.elder-champion"
+            ],
+            ancients.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(ancients.Sources);
+        Assert.Equal(87, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesOathOfVengeanceMechanics()
+    {
+        SubclassDefinition vengeance = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.oath-of-vengeance");
+
+        Assert.Equal("Oath of Vengeance", vengeance.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.oath-of-vengeance-spells",
+                "dnd5e2014.class-rule.channel-divinity-abjure-enemy",
+                "dnd5e2014.class-rule.channel-divinity-vow-of-enmity",
+                "dnd5e2014.class-rule.oath-of-vengeance-spells",
+                "dnd5e2014.class-rule.relentless-avenger",
+                "dnd5e2014.class-rule.oath-of-vengeance-spells",
+                "dnd5e2014.class-rule.oath-of-vengeance-spells",
+                "dnd5e2014.class-rule.soul-of-vengeance",
+                "dnd5e2014.class-rule.oath-of-vengeance-spells",
+                "dnd5e2014.class-rule.avenging-angel"
+            ],
+            vengeance.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(vengeance.Sources);
+        Assert.Equal(88, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_KeepsEachOathsSpellsAsDistinctRuleIdsDespiteSharedName()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> oathSpellsRuleIds = subclasses
+            .Where(subclass => ExpectedPaladinSubclassIds.Contains(subclass.Id.Value))
+            .SelectMany(subclass => subclass.LevelFeatures)
+            .Select(feature => feature.FeatureRuleId.Value)
+            .Where(id => id.StartsWith("dnd5e2014.class-rule.oath-of-", StringComparison.Ordinal) &&
+                id.EndsWith("-spells", StringComparison.Ordinal));
+
+        Assert.Equal(3, oathSpellsRuleIds.Distinct().Count());
     }
 
     private static SubclassDefinition GetSubclass(

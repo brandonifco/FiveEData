@@ -18,7 +18,8 @@ public sealed class ClassDataFileTests
         "dnd5e2014.class.cleric",
         "dnd5e2014.class.warlock",
         "dnd5e2014.class.druid",
-        "dnd5e2014.class.ranger"
+        "dnd5e2014.class.ranger",
+        "dnd5e2014.class.paladin"
     ];
 
     [Fact]
@@ -26,7 +27,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(10, classes.Count);
+        Assert.Equal(11, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -316,7 +317,8 @@ public sealed class ClassDataFileTests
             "dnd5e2014.class.cleric",
             "dnd5e2014.class.warlock",
             "dnd5e2014.class.druid",
-            "dnd5e2014.class.ranger"
+            "dnd5e2014.class.ranger",
+            "dnd5e2014.class.paladin"
         ];
 
         Assert.All(
@@ -1076,6 +1078,109 @@ public sealed class ClassDataFileTests
             ranger.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.lands-stride");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesPaladinMechanics()
+    {
+        ClassDefinition paladin = GetClass(LoadClasses(), "dnd5e2014.class.paladin");
+
+        Assert.Equal("Paladin", paladin.Name);
+        Assert.Equal(1, paladin.HitDie.Count);
+        Assert.Equal(10, paladin.HitDie.Sides);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.strength",
+                "dnd5e2014.ability.charisma"
+            ],
+            paladin.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(paladin.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.wisdom",
+                "dnd5e2014.ability.charisma"
+            ],
+            paladin.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(
+            [ArmorCategory.Light, ArmorCategory.Medium, ArmorCategory.Heavy],
+            paladin.ArmorProficiencyCategories);
+        Assert.True(paladin.ProficientWithShields);
+        Assert.Equal(
+            [WeaponProficiencyCategory.Simple, WeaponProficiencyCategory.Martial],
+            paladin.WeaponProficiencyCategories);
+        Assert.Empty(paladin.WeaponProficiencyIds);
+        Assert.Equal(2, paladin.SkillChoiceCount);
+        Assert.Equal(6, paladin.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(paladin.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(84, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesAuraOfProtectionAndCourageAt18thLevelImprovement()
+    {
+        ClassDefinition paladin = GetClass(LoadClasses(), "dnd5e2014.class.paladin");
+
+        int[] expectedAuraOfProtectionLevels = [6, 18];
+        int[] expectedAuraOfCourageLevels = [10, 18];
+
+        int[] actualAuraOfProtectionLevels = paladin.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.aura-of-protection")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+        int[] actualAuraOfCourageLevels = paladin.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.aura-of-courage")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedAuraOfProtectionLevels, actualAuraOfProtectionLevels);
+        Assert.Equal(expectedAuraOfCourageLevels, actualAuraOfCourageLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSacredOathChoicePoint()
+    {
+        ClassDefinition paladin = GetClass(LoadClasses(), "dnd5e2014.class.paladin");
+
+        Assert.Contains(
+            paladin.LevelFeatures,
+            feature =>
+                feature.Level == 3 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.sacred-oath");
+    }
+
+    [Fact]
+    public void CanonicalFile_KeepsPaladinFightingStyleSeparateFromTheSharedEntry()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+        ClassDefinition paladin = GetClass(classes, "dnd5e2014.class.paladin");
+
+        // Paladin's gateway sentence ("you adopt a style of fighting as
+        // your specialty") drops the word "particular" present in
+        // Fighter's and Ranger's identical wording ("a particular style
+        // of fighting"). Kept separate rather than assumed to be OCR
+        // noise, consistent with treating small wording gaps as real
+        // until verified otherwise (the same caution applied to College
+        // of Valor's Extra Attack).
+        Assert.Contains(
+            paladin.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.paladin-fighting-style");
+        Assert.DoesNotContain(
+            paladin.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.fighting-style");
     }
 
     private static ClassDefinition GetClass(
