@@ -17,7 +17,8 @@ public sealed class ClassDataFileTests
         "dnd5e2014.class.wizard",
         "dnd5e2014.class.cleric",
         "dnd5e2014.class.warlock",
-        "dnd5e2014.class.druid"
+        "dnd5e2014.class.druid",
+        "dnd5e2014.class.ranger"
     ];
 
     [Fact]
@@ -25,7 +26,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(9, classes.Count);
+        Assert.Equal(10, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -314,7 +315,8 @@ public sealed class ClassDataFileTests
             "dnd5e2014.class.wizard",
             "dnd5e2014.class.cleric",
             "dnd5e2014.class.warlock",
-            "dnd5e2014.class.druid"
+            "dnd5e2014.class.druid",
+            "dnd5e2014.class.ranger"
         ];
 
         Assert.All(
@@ -964,6 +966,116 @@ public sealed class ClassDataFileTests
             monk.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.druid-timeless-body");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesRangerMechanics()
+    {
+        ClassDefinition ranger = GetClass(LoadClasses(), "dnd5e2014.class.ranger");
+
+        Assert.Equal("Ranger", ranger.Name);
+        Assert.Equal(1, ranger.HitDie.Count);
+        Assert.Equal(10, ranger.HitDie.Sides);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.dexterity",
+                "dnd5e2014.ability.wisdom"
+            ],
+            ranger.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(ranger.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.strength",
+                "dnd5e2014.ability.dexterity"
+            ],
+            ranger.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(
+            [ArmorCategory.Light, ArmorCategory.Medium],
+            ranger.ArmorProficiencyCategories);
+        Assert.True(ranger.ProficientWithShields);
+        Assert.Equal(
+            [WeaponProficiencyCategory.Simple, WeaponProficiencyCategory.Martial],
+            ranger.WeaponProficiencyCategories);
+        Assert.Empty(ranger.WeaponProficiencyIds);
+        Assert.Equal(3, ranger.SkillChoiceCount);
+        Assert.Equal(8, ranger.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(ranger.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(90, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesFavoredEnemyAndNaturalExplorerAtEachImprovementLevel()
+    {
+        ClassDefinition ranger = GetClass(LoadClasses(), "dnd5e2014.class.ranger");
+
+        int[] expectedFavoredEnemyLevels = [1, 6, 14];
+        int[] expectedNaturalExplorerLevels = [1, 6, 10];
+
+        int[] actualFavoredEnemyLevels = ranger.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.favored-enemy")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+        int[] actualNaturalExplorerLevels = ranger.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.natural-explorer")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedFavoredEnemyLevels, actualFavoredEnemyLevels);
+        Assert.Equal(expectedNaturalExplorerLevels, actualNaturalExplorerLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesRangerArchetypeChoicePoint()
+    {
+        ClassDefinition ranger = GetClass(LoadClasses(), "dnd5e2014.class.ranger");
+
+        Assert.Contains(
+            ranger.LevelFeatures,
+            feature =>
+                feature.Level == 3 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.ranger-archetype");
+    }
+
+    [Fact]
+    public void CanonicalFile_SharesFightingStyleExtraAttackAndLandsStrideRuleIdsAcrossEarlierClasses()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+        ClassDefinition ranger = GetClass(classes, "dnd5e2014.class.ranger");
+
+        // Fighting Style: shared with Fighter (word-for-word identical
+        // gateway text, options folded into the same citation).
+        Assert.Contains(
+            ranger.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.fighting-style");
+
+        // Extra Attack: shared with Barbarian/Monk's "Beginning at 5th
+        // level..." wording, not Fighter's own scaling version.
+        Assert.Contains(
+            ranger.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.extra-attack");
+
+        // Land's Stride: shared with Circle of the Land's own entry
+        // (Druid subclass) on word-for-word identical text discovered
+        // while building a later, unrelated class - not caught within
+        // Druid's own build.
+        Assert.Contains(
+            ranger.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.lands-stride");
     }
 
     private static ClassDefinition GetClass(

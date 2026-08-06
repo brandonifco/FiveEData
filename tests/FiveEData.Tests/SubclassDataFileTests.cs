@@ -74,6 +74,12 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.circle-of-the-moon"
     ];
 
+    private static readonly string[] ExpectedRangerSubclassIds =
+    [
+        "dnd5e2014.subclass.hunter",
+        "dnd5e2014.subclass.beast-master"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
@@ -84,7 +90,8 @@ public sealed class SubclassDataFileTests
         .. ExpectedWizardSubclassIds,
         .. ExpectedClericSubclassIds,
         .. ExpectedWarlockSubclassIds,
-        .. ExpectedDruidSubclassIds
+        .. ExpectedDruidSubclassIds,
+        .. ExpectedRangerSubclassIds
     ];
 
     [Fact]
@@ -92,7 +99,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(33, subclasses.Count);
+        Assert.Equal(35, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -164,6 +171,7 @@ public sealed class SubclassDataFileTests
             ["dnd5e2014.class.cleric"] = 1,
             ["dnd5e2014.class.warlock"] = 1,
             ["dnd5e2014.class.druid"] = 2,
+            ["dnd5e2014.class.ranger"] = 3,
         };
 
     [Fact]
@@ -495,6 +503,19 @@ public sealed class SubclassDataFileTests
                 subclass => ExpectedDruidSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(
                 "dnd5e2014.class.druid",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryRangerSubclassReferencesTheRangerClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedRangerSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.ranger",
                 subclass.ClassId.Value));
     }
 
@@ -1171,6 +1192,53 @@ public sealed class SubclassDataFileTests
             .ToArray();
 
         Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesHunterMechanics()
+    {
+        SubclassDefinition hunter = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.hunter");
+
+        Assert.Equal("Hunter", hunter.Name);
+        Assert.Equal(3, hunter.ChosenAtLevel);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.hunters-prey",
+                "dnd5e2014.class-rule.defensive-tactics",
+                "dnd5e2014.class-rule.multiattack",
+                "dnd5e2014.class-rule.superior-hunters-defense"
+            ],
+            hunter.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(hunter.Sources);
+        Assert.Equal(93, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesBeastMasterMechanics()
+    {
+        SubclassDefinition beastMaster = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.beast-master");
+
+        Assert.Equal("Beast Master", beastMaster.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.rangers-companion",
+                "dnd5e2014.class-rule.exceptional-training",
+                "dnd5e2014.class-rule.bestial-fury",
+                "dnd5e2014.class-rule.share-spells"
+            ],
+            beastMaster.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(beastMaster.Sources);
+        Assert.Equal(93, source.Page);
     }
 
     private static SubclassDefinition GetSubclass(

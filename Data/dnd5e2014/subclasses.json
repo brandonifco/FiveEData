@@ -1173,5 +1173,67 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.hunter",
+    "name": "Hunter",
+    "classId": "dnd5e2014.class.ranger",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.hunters-prey"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.defensive-tactics"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.multiattack"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.superior-hunters-defense"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.beast-master",
+    "name": "Beast Master",
+    "classId": "dnd5e2014.class.ranger",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.rangers-companion"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.exceptional-training"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.bestial-fury"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.share-spells"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

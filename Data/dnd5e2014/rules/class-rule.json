@@ -7,6 +7,11 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 72,
         "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
       }
     ]
   },
@@ -345,6 +350,11 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 67,
         "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
       }
     ]
   },
@@ -360,6 +370,11 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 79,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
         "section": "Chapter 3: Classes"
       }
     ]
@@ -2653,6 +2668,11 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 69,
         "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
       }
     ]
   },
@@ -2729,6 +2749,193 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.favored-enemy",
+    "name": "Favored Enemy",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.natural-explorer",
+    "name": "Natural Explorer",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.ranger-spellcasting",
+    "name": "Spellcasting",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 91,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.ranger-archetype",
+    "name": "Ranger Archetype",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.primeval-awareness",
+    "name": "Primeval Awareness",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.hide-in-plain-sight",
+    "name": "Hide in Plain Sight",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.vanish",
+    "name": "Vanish",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.feral-senses",
+    "name": "Feral Senses",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.foe-slayer",
+    "name": "Foe Slayer",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.hunters-prey",
+    "name": "Hunter's Prey",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.defensive-tactics",
+    "name": "Defensive Tactics",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.multiattack",
+    "name": "Multiattack",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.superior-hunters-defense",
+    "name": "Superior Hunter's Defense",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.rangers-companion",
+    "name": "Ranger's Companion",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.exceptional-training",
+    "name": "Exceptional Training",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.bestial-fury",
+    "name": "Bestial Fury",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.share-spells",
+    "name": "Share Spells",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
         "section": "Chapter 3: Classes"
       }
     ]
