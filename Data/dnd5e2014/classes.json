@@ -116,6 +116,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -293,6 +295,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -460,6 +464,8 @@
     },
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -668,6 +674,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -828,6 +836,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -917,6 +927,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1008,6 +1020,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1112,6 +1126,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1250,6 +1266,8 @@
       "usesPerRest": 2,
       "recoversOnShortRest": true
     },
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1386,6 +1404,8 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1513,6 +1533,23 @@
     "kiProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
+    "auraOfProtection": {
+      "range": {
+        "baseRangeFeet": 10,
+        "expandedRangeFeet": 30,
+        "expandedAtLevel": 18
+      },
+      "requiresConsciousness": true,
+      "savingThrowBonusMinimum": 1
+    },
+    "auraOfCourage": {
+      "range": {
+        "baseRangeFeet": 10,
+        "expandedRangeFeet": 30,
+        "expandedAtLevel": 18
+      },
+      "requiresConsciousness": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1633,6 +1670,8 @@
       "recoversOnShortRest": false
     },
     "wildShapeProgression": null,
+    "auraOfProtection": null,
+    "auraOfCourage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

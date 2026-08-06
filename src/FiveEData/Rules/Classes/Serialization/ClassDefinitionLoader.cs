@@ -1,3 +1,5 @@
+using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
@@ -182,6 +184,16 @@ internal static class ClassDefinitionLoader
                     wildShapeProgressionData)
                 : null;
 
+        AuraOfProtectionDetail? auraOfProtection =
+            data.AuraOfProtection is { } auraOfProtectionData
+                ? AuraOfProtectionDetailDataMapper.Map(auraOfProtectionData)
+                : null;
+
+        AuraOfCourageDetail? auraOfCourage =
+            data.AuraOfCourage is { } auraOfCourageData
+                ? AuraOfCourageDetailDataMapper.Map(auraOfCourageData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -204,6 +216,8 @@ internal static class ClassDefinitionLoader
             kiProgression,
             sorceryPointsProgression,
             wildShapeProgression,
+            auraOfProtection,
+            auraOfCourage,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

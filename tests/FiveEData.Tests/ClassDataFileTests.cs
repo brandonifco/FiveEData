@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
@@ -1162,6 +1163,25 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(84, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        AuraOfProtectionDetail auraOfProtection =
+            paladin.AuraOfProtection
+            ?? throw new InvalidOperationException(
+                "Expected Paladin to have an Aura of Protection.");
+        Assert.Equal(10, auraOfProtection.Range.BaseRangeFeet);
+        Assert.Equal(30, auraOfProtection.Range.ExpandedRangeFeet);
+        Assert.Equal(18, auraOfProtection.Range.ExpandedAtLevel);
+        Assert.True(auraOfProtection.RequiresConsciousness);
+        Assert.Equal(1, auraOfProtection.SavingThrowBonusMinimum);
+
+        AuraOfCourageDetail auraOfCourage =
+            paladin.AuraOfCourage
+            ?? throw new InvalidOperationException(
+                "Expected Paladin to have an Aura of Courage.");
+        Assert.Equal(10, auraOfCourage.Range.BaseRangeFeet);
+        Assert.Equal(30, auraOfCourage.Range.ExpandedRangeFeet);
+        Assert.Equal(18, auraOfCourage.Range.ExpandedAtLevel);
+        Assert.True(auraOfCourage.RequiresConsciousness);
     }
 
     [Fact]
@@ -1607,6 +1627,26 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.WildShapeProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonPaladinClassDeclaresNoAuras(string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.AuraOfProtection);
+        Assert.Null(@class.AuraOfCourage);
     }
 
     private static ClassDefinition GetClass(

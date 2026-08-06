@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
@@ -38,6 +39,8 @@ public sealed class ClassDefinition
         KiProgressionDetail? kiProgression,
         SorceryPointsProgressionDetail? sorceryPointsProgression,
         WildShapeProgressionDetail? wildShapeProgression,
+        AuraOfProtectionDetail? auraOfProtection,
+        AuraOfCourageDetail? auraOfCourage,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -74,6 +77,8 @@ public sealed class ClassDefinition
         KiProgression = kiProgression;
         SorceryPointsProgression = sorceryPointsProgression;
         WildShapeProgression = wildShapeProgression;
+        AuraOfProtection = auraOfProtection;
+        AuraOfCourage = auraOfCourage;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -98,5 +103,7 @@ public sealed class ClassDefinition
     public KiProgressionDetail? KiProgression { get; }
     public SorceryPointsProgressionDetail? SorceryPointsProgression { get; }
     public WildShapeProgressionDetail? WildShapeProgression { get; }
+    public AuraOfProtectionDetail? AuraOfProtection { get; }
+    public AuraOfCourageDetail? AuraOfCourage { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

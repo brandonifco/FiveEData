@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Spellcasting;
@@ -66,6 +67,8 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -82,6 +85,8 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -410,6 +415,8 @@ public sealed class SubclassFoundationTests
         AbilityId? spellcastingAbilityId = null,
         DivineStrikeProgressionDetail? divineStrikeProgression = null,
         CircleFormsProgressionDetail? circleFormsProgression = null,
+        AuraOfDevotionDetail? auraOfDevotion = null,
+        AuraOfWardingDetail? auraOfWarding = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -422,6 +429,8 @@ public sealed class SubclassFoundationTests
             spellcastingAbilityId,
             divineStrikeProgression,
             circleFormsProgression,
+            auraOfDevotion,
+            auraOfWarding,
             sources ?? [CreateSource()]);
     }
 

@@ -1,3 +1,5 @@
+using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.DivineStrike;
@@ -122,6 +124,16 @@ internal static class SubclassDefinitionLoader
                     circleFormsProgressionData)
                 : null;
 
+        AuraOfDevotionDetail? auraOfDevotion =
+            data.AuraOfDevotion is { } auraOfDevotionData
+                ? AuraOfDevotionDetailDataMapper.Map(auraOfDevotionData)
+                : null;
+
+        AuraOfWardingDetail? auraOfWarding =
+            data.AuraOfWarding is { } auraOfWardingData
+                ? AuraOfWardingDetailDataMapper.Map(auraOfWardingData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -132,6 +144,8 @@ internal static class SubclassDefinitionLoader
             spellcastingAbilityId,
             divineStrikeProgression,
             circleFormsProgression,
+            auraOfDevotion,
+            auraOfWarding,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }
