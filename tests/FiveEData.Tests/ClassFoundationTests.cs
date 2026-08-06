@@ -1,10 +1,12 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -136,6 +138,7 @@ public sealed class ClassFoundationTests
             null,
             null,
             null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -153,6 +156,115 @@ public sealed class ClassFoundationTests
             error => error.Contains(
                 "source",
                 StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsRageProgressionWithNoUseGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            rageProgression: new RageProgressionDetail(
+                [],
+                [new RageDamageBonusGrant(1, 2)],
+                1,
+                [new DamageTypeId("dnd5e2014.damage-type.bludgeoning")],
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "at least one uses-per-long-rest",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsRageProgressionWithNoDamageBonusGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            rageProgression: new RageProgressionDetail(
+                [new RageUseGrant(1, 2)],
+                [],
+                1,
+                [new DamageTypeId("dnd5e2014.damage-type.bludgeoning")],
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "at least one damage bonus",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsRageProgressionWithNonIncreasingDamageBonus()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            rageProgression: new RageProgressionDetail(
+                [new RageUseGrant(1, 2)],
+                [
+                    new RageDamageBonusGrant(9, 3),
+                    new RageDamageBonusGrant(16, 3)
+                ],
+                1,
+                [new DamageTypeId("dnd5e2014.damage-type.bludgeoning")],
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AllowsRageUsesToStayUnlimitedAfterReachingIt()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            rageProgression: new RageProgressionDetail(
+                [
+                    new RageUseGrant(1, 2),
+                    new RageUseGrant(20, null)
+                ],
+                [new RageDamageBonusGrant(1, 2)],
+                1,
+                [new DamageTypeId("dnd5e2014.damage-type.bludgeoning")],
+                true));
+
+        Assert.DoesNotContain(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Rage uses",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsRageProgressionWithDuplicateResistedDamageType()
+    {
+        var bludgeoning =
+            new DamageTypeId("dnd5e2014.damage-type.bludgeoning");
+
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            rageProgression: new RageProgressionDetail(
+                [new RageUseGrant(1, 2)],
+                [new RageDamageBonusGrant(1, 2)],
+                1,
+                [bludgeoning, bludgeoning],
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "duplicated",
+                    StringComparison.OrdinalIgnoreCase));
     }
 
     [Fact]
@@ -323,6 +435,7 @@ public sealed class ClassFoundationTests
         SpellSlotProgressionId? spellSlotProgressionId = null,
         AbilityId? spellcastingAbilityId = null,
         ExtraAttackProgressionId? extraAttackProgressionId = null,
+        RageProgressionDetail? rageProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -347,6 +460,7 @@ public sealed class ClassFoundationTests
             spellSlotProgressionId,
             spellcastingAbilityId,
             extraAttackProgressionId,
+            rageProgression,
             sources ?? [CreateSource()]);
     }
 

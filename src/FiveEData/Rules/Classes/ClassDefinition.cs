@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -28,6 +29,7 @@ public sealed class ClassDefinition
         SpellSlotProgressionId? spellSlotProgressionId,
         AbilityId? spellcastingAbilityId,
         ExtraAttackProgressionId? extraAttackProgressionId,
+        RageProgressionDetail? rageProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -59,6 +61,7 @@ public sealed class ClassDefinition
         SpellSlotProgressionId = spellSlotProgressionId;
         SpellcastingAbilityId = spellcastingAbilityId;
         ExtraAttackProgressionId = extraAttackProgressionId;
+        RageProgression = rageProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -78,5 +81,6 @@ public sealed class ClassDefinition
     public SpellSlotProgressionId? SpellSlotProgressionId { get; }
     public AbilityId? SpellcastingAbilityId { get; }
     public ExtraAttackProgressionId? ExtraAttackProgressionId { get; }
+    public RageProgressionDetail? RageProgression { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

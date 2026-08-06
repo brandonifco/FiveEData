@@ -1046,11 +1046,58 @@ to the quantized data: two progressions, `standard` (one grant, level
   `ExtraAttackGrant`) and one new member on `ClassDefinition`. Full
   gate green: Debug+Release build 0 warnings, 1256 tests (was 1214;
   +42 new).
+**Rage converted fourth — the first case where the shared-catalog
+pattern was deliberately *not* reused.** Fighting Style/Spell Slots/
+Extra Attack all needed a referenced-by-ID catalog because multiple
+classes shared the same table. Rage belongs to exactly one class
+(Barbarian) — nothing to share — so building a whole catalog+loader
+domain for it would have been indirection with no payoff, the same
+"don't build generality ahead of real need" call this project has made
+before. Instead `RageProgressionDetail` is a plain embedded value
+object, mapped inline by `RageProgressionDetailDataMapper` the same
+way `RaceAbilityScoreIncreaseData` is mapped inline inside
+`RaceDefinitionLoader` rather than getting its own top-level loader.
+
+- **The full mechanical fact set was captured, not just the two
+  leveled numbers.** Read directly off the Barbarian's own table and
+  Rage's own prose (pages 47-48): `UsesByLevel` (breakpoints at 1st→2,
+  3rd→3, 6th→4, 12th→5, 17th→6, 20th→unlimited) and
+  `DamageBonusByLevel` (1st→+2, 9th→+3, 16th→+4) are the two leveled
+  progressions, but a slot table alone still wouldn't make Rage
+  actually runnable — so `DurationMinutes` (1, "Your rage lasts for 1
+  minute" — not the 10-rounds figure a AD&D-era memory might reach
+  for, confirmed by reading the actual sentence), `ResistedDamageTypeIds`
+  (bludgeoning/piercing/slashing, a constant, not leveled), and
+  `RequiresNotWearingHeavyArmor` (every rage benefit — advantage on
+  Strength checks/saves, the damage bonus, the resistance — is gated
+  on this, per the table's own "if you aren't wearing heavy armor"
+  clause) all rode along in the same value object. Deliberately left
+  out: Persistent Rage (15th level, changes rage's *end conditions*,
+  not a number), Relentless Rage and Feral Instinct (separate features
+  entirely, not part of Rage's own progression) — all three stay
+  citation-only, since none of them reduces to a leveled number the
+  way this pass is scoped to capture.
+- **`UsesPerLongRest` is `int?`, not an `int` with a sentinel value,**
+  specifically so 20th level's "Unlimited" has an honest, unambiguous
+  representation (null) rather than something like `int.MaxValue`
+  standing in for a concept the type doesn't actually name.
+  `ClassDefinitionValidator`'s new ascending-sequence check treats a
+  transition *into* unlimited, or staying unlimited at a later grant,
+  as always valid — the "must increase" rule only applies while both
+  the previous and current grant are still finite numbers.
+- Public API: one new public type (`RageProgressionDetail`, plus its
+  two nested grant record structs `RageUseGrant`/`RageDamageBonusGrant`)
+  and one new member on `ClassDefinition`. No new catalog, no new
+  embedded-resource file — Barbarian's Rage data lives directly inside
+  `classes.json`. Full gate green: Debug+Release build 0 warnings,
+  1282 tests (was 1256; +26 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Rage, Sneak Attack, Divine Strike, Ki/sorcery
+  numeric progressions (Sneak Attack, Divine Strike, Ki/sorcery
   points, Wild Shape/Circle Forms caps, auras, Bardic Inspiration die,
-  Channel Divinity uses, Mystic Arcanum, Font of Magic conversion),
-  the larger choice-point catalogs (Eldritch Invocations, Battle
+  Channel Divinity uses, Mystic Arcanum, Font of Magic conversion) —
+  each single-class like Rage, so each gets the same "embedded value
+  object, not a catalog" treatment unless a real sharing case turns up
+  — the larger choice-point catalogs (Eldritch Invocations, Battle
   Master maneuvers, Metamagic, Elemental Disciplines, Channel Divinity
   options, Pact Boon), race trait quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
@@ -1194,8 +1241,8 @@ around.
 quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
-tables/abilities, and Extra Attack have been converted; every other
-named feature
+tables/abilities, Extra Attack, and Rage have been converted; every
+other named feature
 across Classes/Races/Backgrounds is still a `RuleId` citation with no
 mechanical payload.
 

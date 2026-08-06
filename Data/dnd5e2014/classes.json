@@ -111,6 +111,7 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.fighter",
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -235,6 +236,55 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "rageProgression": {
+      "usesByLevel": [
+        {
+          "characterLevel": 1,
+          "usesPerLongRest": 2
+        },
+        {
+          "characterLevel": 3,
+          "usesPerLongRest": 3
+        },
+        {
+          "characterLevel": 6,
+          "usesPerLongRest": 4
+        },
+        {
+          "characterLevel": 12,
+          "usesPerLongRest": 5
+        },
+        {
+          "characterLevel": 17,
+          "usesPerLongRest": 6
+        },
+        {
+          "characterLevel": 20,
+          "usesPerLongRest": null
+        }
+      ],
+      "damageBonusByLevel": [
+        {
+          "characterLevel": 1,
+          "bonus": 2
+        },
+        {
+          "characterLevel": 9,
+          "bonus": 3
+        },
+        {
+          "characterLevel": 16,
+          "bonus": 4
+        }
+      ],
+      "durationMinutes": 1,
+      "resistedDamageTypeIds": [
+        "dnd5e2014.damage-type.bludgeoning",
+        "dnd5e2014.damage-type.piercing",
+        "dnd5e2014.damage-type.slashing"
+      ],
+      "requiresNotWearingHeavyArmor": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -374,6 +424,7 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -502,6 +553,7 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": null,
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -657,6 +709,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -741,6 +794,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "extraAttackProgressionId": null,
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -827,6 +881,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": null,
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -926,6 +981,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.pact-magic",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1036,6 +1092,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": null,
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1167,6 +1224,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.half-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1289,6 +1347,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.half-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1381,6 +1440,7 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
+    "rageProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

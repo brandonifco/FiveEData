@@ -1,5 +1,7 @@
+using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -94,7 +96,110 @@ internal static class ClassDefinitionValidator
             }
         }
 
+        if (@class.RageProgression is { } rageProgression)
+        {
+            ValidateRageProgression(rageProgression, errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateRageProgression(
+        RageProgressionDetail rageProgression,
+        ICollection<string> errors)
+    {
+        if (rageProgression.UsesByLevel.Count == 0)
+        {
+            errors.Add(
+                "Rage progression must grant at least one uses-per-long" +
+                "-rest increase.");
+        }
+
+        ValidateAscending(
+            rageProgression.UsesByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.UsesPerLongRest)),
+            "Rage uses",
+            errors);
+
+        if (rageProgression.DamageBonusByLevel.Count == 0)
+        {
+            errors.Add(
+                "Rage progression must grant at least one damage bonus " +
+                "increase.");
+        }
+
+        ValidateAscending(
+            rageProgression.DamageBonusByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, (int?)grant.Bonus)),
+            "Rage damage bonus",
+            errors);
+
+        ValidateDistinct(
+            rageProgression.ResistedDamageTypeIds,
+            "Rage resisted damage type",
+            errors);
+    }
+
+    private static void ValidateAscending(
+        IEnumerable<(int CharacterLevel, int? Value)> grants,
+        string label,
+        ICollection<string> errors)
+    {
+        var seenLevels = new HashSet<int>();
+        int? previousValue = null;
+
+        foreach ((int characterLevel, int? value) in grants)
+        {
+            if (!seenLevels.Add(characterLevel))
+            {
+                errors.Add(
+                    $"{label} character level {characterLevel} is " +
+                    "duplicated.");
+                continue;
+            }
+
+            bool isIncrease =
+                previousValue is null ||
+                value is null ||
+                value > previousValue;
+
+            if (!isIncrease)
+            {
+                errors.Add(
+                    $"{label} at level {characterLevel} must be greater " +
+                    "than the value at the previous grant level, or " +
+                    "unlimited.");
+            }
+
+            previousValue = value;
+        }
+    }
+
+    private static void ValidateDistinct(
+        IReadOnlyList<DamageTypeId> ids,
+        string label,
+        ICollection<string> errors)
+    {
+        var seen = new HashSet<DamageTypeId>();
+
+        foreach (DamageTypeId id in ids)
+        {
+            if (string.IsNullOrWhiteSpace(id.Value))
+            {
+                errors.Add($"{label} ID must not be empty.");
+                continue;
+            }
+
+            if (!seen.Add(id))
+            {
+                errors.Add($"{label} '{id}' is duplicated.");
+            }
+        }
     }
 
     public static void EnsureValid(ClassDefinition @class)
