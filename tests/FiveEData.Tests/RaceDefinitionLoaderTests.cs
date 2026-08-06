@@ -22,6 +22,10 @@ public sealed class RaceDefinitionLoaderTests
           "languageIds": ["dnd5e2014.language.common"],
           "additionalLanguageChoiceCount": 0,
           "traitRuleIds": ["dnd5e2014.race-rule.darkvision"],
+          "darkvisionRangeFeet": null,
+          "resistedDamageTypeIds": [],
+          "tranceDurationHours": null,
+          "breathWeaponProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -97,6 +101,10 @@ public sealed class RaceDefinitionLoaderTests
                     "languageIds": [],
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "tranceDurationHours": null,
+                    "breathWeaponProgression": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -122,6 +130,10 @@ public sealed class RaceDefinitionLoaderTests
                     "languageIds": [],
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "tranceDurationHours": null,
+                    "breathWeaponProgression": null,
                     "sources": []
                   }
                 ]
@@ -144,6 +156,10 @@ public sealed class RaceDefinitionLoaderTests
                     "languageIds": [],
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "tranceDurationHours": null,
+                    "breathWeaponProgression": null,
                     "sources": []
                   }
                 ]
@@ -167,6 +183,10 @@ public sealed class RaceDefinitionLoaderTests
                     "languageIds": [],
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "tranceDurationHours": null,
+                    "breathWeaponProgression": null,
                     "sources": []
                   }
                 ]
@@ -190,6 +210,10 @@ public sealed class RaceDefinitionLoaderTests
                     "languageIds": [],
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "tranceDurationHours": null,
+                    "breathWeaponProgression": null,
                     "sources": []
                   }
                 ]
@@ -213,6 +237,10 @@ public sealed class RaceDefinitionLoaderTests
                     "languageIds": [],
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "tranceDurationHours": null,
+                    "breathWeaponProgression": null,
                     "sources": null
                   }
                 ]

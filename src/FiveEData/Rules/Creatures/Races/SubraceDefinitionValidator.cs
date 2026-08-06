@@ -1,5 +1,6 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -76,6 +77,41 @@ internal static class SubraceDefinitionValidator
                 errors.Add(
                     $"Subrace trait rule '{traitRuleId}' is duplicated.");
             }
+        }
+
+        if (subrace.DarkvisionRangeFeet is { } darkvisionRangeFeet &&
+            darkvisionRangeFeet <= 0)
+        {
+            errors.Add(
+                "Subrace darkvision range must be greater than zero feet " +
+                "when specified.");
+        }
+
+        var seenResistedDamageTypes = new HashSet<DamageTypeId>();
+
+        foreach (DamageTypeId damageTypeId in subrace.ResistedDamageTypeIds)
+        {
+            if (string.IsNullOrWhiteSpace(damageTypeId.Value))
+            {
+                errors.Add(
+                    "Subrace resisted damage type ID must not be empty.");
+                continue;
+            }
+
+            if (!seenResistedDamageTypes.Add(damageTypeId))
+            {
+                errors.Add(
+                    $"Subrace resisted damage type '{damageTypeId}' is " +
+                    "duplicated.");
+            }
+        }
+
+        if (subrace.HitPointBonusPerLevel is { } hitPointBonusPerLevel &&
+            hitPointBonusPerLevel <= 0)
+        {
+            errors.Add(
+                "Subrace hit point bonus per level must be greater than " +
+                "zero when specified.");
         }
 
         return errors;

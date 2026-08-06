@@ -88,6 +88,42 @@ public sealed class SubraceDataFileTests
         var source = Assert.Single(hillDwarf.Sources);
         Assert.Equal(20, source.Page);
         Assert.Equal("Chapter 2: Races", source.Section);
+
+        Assert.Equal(1, hillDwarf.HitPointBonusPerLevel);
+        Assert.Null(hillDwarf.DarkvisionRangeFeet);
+        Assert.Empty(hillDwarf.ResistedDamageTypeIds);
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyHillDwarfHasAHitPointBonusPerLevel()
+    {
+        IReadOnlyList<SubraceDefinition> subraces = LoadSubraces();
+
+        Assert.All(
+            subraces.Where(
+                subrace =>
+                    subrace.Id.Value != "dnd5e2014.subrace.hill-dwarf"),
+            subrace => Assert.Null(subrace.HitPointBonusPerLevel));
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyStoutHalflingHasResistedDamageTypes()
+    {
+        IReadOnlyList<SubraceDefinition> subraces = LoadSubraces();
+
+        SubraceDefinition stoutHalfling =
+            GetSubrace(subraces, "dnd5e2014.subrace.stout-halfling");
+
+        Assert.Equal(
+            "dnd5e2014.damage-type.poison",
+            Assert.Single(stoutHalfling.ResistedDamageTypeIds).Value);
+
+        Assert.All(
+            subraces.Where(
+                subrace =>
+                    subrace.Id.Value !=
+                    "dnd5e2014.subrace.stout-halfling"),
+            subrace => Assert.Empty(subrace.ResistedDamageTypeIds));
     }
 
     [Fact]
@@ -117,6 +153,19 @@ public sealed class SubraceDataFileTests
         Assert.Contains(
             darkElf.TraitRuleIds,
             id => id.Value == "dnd5e2014.race-rule.superior-darkvision");
+
+        Assert.Equal(120, darkElf.DarkvisionRangeFeet);
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyDarkElfOverridesDarkvision()
+    {
+        IReadOnlyList<SubraceDefinition> subraces = LoadSubraces();
+
+        Assert.All(
+            subraces.Where(
+                subrace => subrace.Id.Value != "dnd5e2014.subrace.dark-elf"),
+            subrace => Assert.Null(subrace.DarkvisionRangeFeet));
     }
 
     private static SubraceDefinition GetSubrace(

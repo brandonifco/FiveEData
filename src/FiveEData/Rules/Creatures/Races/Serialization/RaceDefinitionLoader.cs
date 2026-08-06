@@ -3,7 +3,10 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Races.BreathWeapon;
+using FiveEData.Rules.Creatures.Races.BreathWeapon.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
@@ -104,6 +107,11 @@ internal static class RaceDefinitionLoader
                 "Race trait rule IDs are required.",
                 nameof(data));
 
+        string[] resistedDamageTypeIdValues = data.ResistedDamageTypeIds
+            ?? throw new ArgumentException(
+                "Race resisted damage type IDs are required.",
+                nameof(data));
+
         SourceReferenceData[] sourceData = data.Sources
             ?? throw new ArgumentException(
                 "Race sources are required.",
@@ -122,6 +130,16 @@ internal static class RaceDefinitionLoader
             .Select(value => new RuleId(value))
             .ToArray();
 
+        DamageTypeId[] resistedDamageTypeIds = resistedDamageTypeIdValues
+            .Select(value => new DamageTypeId(value))
+            .ToArray();
+
+        BreathWeaponProgressionDetail? breathWeaponProgression =
+            data.BreathWeaponProgression is { } breathWeaponProgressionData
+                ? BreathWeaponProgressionDetailDataMapper.Map(
+                    breathWeaponProgressionData)
+                : null;
+
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
@@ -136,6 +154,10 @@ internal static class RaceDefinitionLoader
             languageIds,
             data.AdditionalLanguageChoiceCount,
             traitRuleIds,
+            data.DarkvisionRangeFeet,
+            resistedDamageTypeIds,
+            data.TranceDurationHours,
+            breathWeaponProgression,
             sources);
     }
 
