@@ -787,6 +787,63 @@ With Sorcerer merged, all 12 PHB classes and all 40 of their subclasses
 are built. See "Status" below for the closing summary of what the
 Classes pass as a whole established.
 
+## Backgrounds
+
+`Rules/Backgrounds/` is a new top-level domain (sibling to
+`Rules/Equipment`, `Rules/Expenses`, `Rules/Creatures`, `Rules/Classes`),
+not nested under `Rules/Creatures/` — same reasoning as Classes: a
+background is a player-build concept in its own right, not a
+creature-vocabulary consumer.
+
+Backgrounds turned out structurally much simpler than every other
+domain built so far, once the real content was read rather than assumed:
+- **`BackgroundDefinition` has no ability scores, no size/speed, no
+  level-gated feature list** — a background is a flat, one-shot grant.
+  The 2014 PHB's 13 backgrounds each reduce to exactly the same five
+  facts: two fixed skill proficiencies (never a choice — verified across
+  all 13, not assumed from the first few), a language choice count
+  (0, 1, or 2 — always "N of your choice," never named languages), and
+  one signature feature. `SkillProficiencyIds` is validated to be
+  exactly two, since that's true of every real background and a
+  background with one or three would indicate a data error, not a
+  legitimate variant.
+- **Tool proficiencies and starting equipment stay unmodeled**, the same
+  gap already established for classes (Monk's/Bard's/Rogue's own
+  unmodeled tool choices, Fighter's/Barbarian's own unmodeled starting
+  equipment). Backgrounds actually lean on this gap harder than classes
+  did — most backgrounds grant tool proficiencies (sometimes fixed,
+  sometimes "one type of X," occasionally both in the same background),
+  and every one of them lists starting equipment — but the same
+  "don't add a field speculatively ahead of a real consumer" reasoning
+  applies without needing a new exception.
+- **Suggested Characteristics tables (Personality Trait/Ideal/Bond/Flaw)
+  and the per-background flavor sub-tables (Criminal Specialty,
+  Entertainer Routines, Defining Event, Guild Business, Life of
+  Seclusion, Origin) are pure roleplay flavor with no mechanical
+  weight** — left out entirely, the same treatment already given to
+  Draconic Ancestry's damage sub-table and Battle Master's maneuver
+  list: real content, deliberately not modeled, because the citation
+  already covers it.
+- **Variant backgrounds (Spy, Gladiator, Guild Merchant, Knight,
+  Retainers, Pirate) are out of scope**, the same call already made for
+  Variant Human during Races — an optional reskin of an existing
+  background with swapped proficiencies isn't a new named background,
+  it's optional prose the citation already covers.
+- **One rule file per domain continues**: `background-rule.json`
+  joins `race-rule.json`/`class-rule.json` as its own file under
+  `Data/dnd5e2014/rules/`, merged the same way at load time. All 13
+  features are uniquely named (no cross-domain or cross-background
+  collisions), so no sharing/prefixing question came up this time —
+  the first domain pass where that didn't happen.
+- **Page citations were pinned down against the same cleanly-scanned
+  PDF** used for every class since Bard's citation-precision fix,
+  including several cases of the by-now-familiar two-column layout
+  artifact (a background's fixed-proficiency block appearing a page
+  before its own flavor text and named feature, because the facing
+  page's right column ran ahead of the left) — resolved the same way
+  as always: cite the page where the feature's own substantial body
+  text lives, not wherever a stray heading or stat line surfaces first.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -822,12 +879,13 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 24: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 25: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
 senses, alignments), races (all 9 PHB races plus all 9 subraces — see
-"Races" above), and **Classes (complete)** are done. All 12 PHB classes
+"Races" above), **Classes (complete)**, and **Backgrounds (complete —
+all 13 PHB backgrounds, see "Backgrounds" above)** are done. All 12 PHB classes
 and all 40 of their subclasses/archetypes/domains/traditions/oaths/
 patrons/circles/origins are built — Fighter (Champion, Battle Master,
 Eldritch Knight), Barbarian (Path of the Berserker, Path of the Totem
@@ -895,12 +953,25 @@ classes' worth of evidence settled:
   than accreting further one-offs; both absorbed the last several
   classes' worth of additions as one-line changes.
 
+Backgrounds turned out to be the simplest domain built so far — no
+ability scores, no level-gated features, no cross-class sharing question
+at all (all 13 feature names were unique on the first pass) — but it
+did surface one genuinely new find: **every one of the 13 backgrounds
+grants exactly two fixed skill proficiencies, never a choice**, verified
+across all 13 rather than assumed from the first few, which is why
+`SkillProficiencyIds` is validated as an exact-two field instead of a
+choice-count/option-list pair the way class skill choices are. Tool
+proficiencies and starting equipment leaned on the already-established
+unmodeled-gap precedent harder than any class did (nearly every
+background has one or both), confirming that gap generalizes cleanly
+rather than needing a background-specific carve-out.
+
 Use the cleanly-scanned PHB PDF (`~/Downloads/Player's Handbook.pdf`,
 reliable per-page footers) for any future citation work in this
 document — not the archive.org OCR export used for the original Bard
 pass (see "Classes" above, end of the Bard section, for why that
-matters). Not yet started: backgrounds, spells, magic items, and
-combat/adventuring rule prose beyond the existing rules citation index
+matters). Not yet started: spells, magic items, and combat/adventuring
+rule prose beyond the existing rules citation index
 (`Data/dnd5e2014/rules/`, split per-domain — see "Architecture" above).
 Feats (and, by extension, Variant Human) are out of scope — they aren't
 part of the free 2014 SRD this project's provenance model is built

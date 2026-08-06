@@ -12,9 +12,9 @@ public sealed class ServiceRuleDataFileTests
         IReadOnlyList<RuleDefinition> rules =
             LoadCanonical();
 
-        Assert.Equal(432, rules.Count);
+        Assert.Equal(445, rules.Count);
         Assert.Equal(
-            432,
+            445,
             rules.Select(rule => rule.Id).Distinct().Count());
     }
 
@@ -78,7 +78,8 @@ public sealed class ServiceRuleDataFileTests
                 Path.Combine(rulesDirectory, "expense-rule.json"),
                 Path.Combine(rulesDirectory, "lifestyle-rule.json"),
                 Path.Combine(rulesDirectory, "race-rule.json"),
-                Path.Combine(rulesDirectory, "class-rule.json")
+                Path.Combine(rulesDirectory, "class-rule.json"),
+                Path.Combine(rulesDirectory, "background-rule.json")
             ]);
     }
 

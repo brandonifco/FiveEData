@@ -1323,7 +1323,8 @@ public sealed class CatalogIntegrityTests
                 subraces: subraces ?? []),
             classes: new ClassDefinitionSet(
                 classes: classes ?? [],
-                subclasses: subclasses ?? []));
+                subclasses: subclasses ?? []),
+            backgrounds: []);
     }
 
     private static ToolDefinition CreateTool(

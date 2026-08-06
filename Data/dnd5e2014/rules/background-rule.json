@@ -1,0 +1,145 @@
+[
+  {
+    "id": "dnd5e2014.background-rule.shelter-of-the-faithful",
+    "name": "Shelter of the Faithful",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 125,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.false-identity",
+    "name": "False Identity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 126,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.criminal-contact",
+    "name": "Criminal Contact",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 127,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.by-popular-demand",
+    "name": "By Popular Demand",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 128,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.rustic-hospitality",
+    "name": "Rustic Hospitality",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 129,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.guild-membership",
+    "name": "Guild Membership",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 131,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.discovery",
+    "name": "Discovery",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 132,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.position-of-privilege",
+    "name": "Position of Privilege",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 133,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.wanderer",
+    "name": "Wanderer",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 134,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.researcher",
+    "name": "Researcher",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 135,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.ships-passage",
+    "name": "Ship's Passage",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 137,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.military-rank",
+    "name": "Military Rank",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 138,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background-rule.city-secrets",
+    "name": "City Secrets",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 139,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  }
+]

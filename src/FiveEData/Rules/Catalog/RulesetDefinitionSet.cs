@@ -1,3 +1,4 @@
+using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 
@@ -12,7 +13,8 @@ internal sealed class RulesetDefinitionSet
         ExpenseDefinitionSet expenses,
         CreatureVocabularyDefinitionSet creatureVocabulary,
         RaceDefinitionSet races,
-        ClassDefinitionSet classes)
+        ClassDefinitionSet classes,
+        IReadOnlyList<BackgroundDefinition> backgrounds)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(rules);
@@ -21,6 +23,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(creatureVocabulary);
         ArgumentNullException.ThrowIfNull(races);
         ArgumentNullException.ThrowIfNull(classes);
+        ArgumentNullException.ThrowIfNull(backgrounds);
 
         SourceDocuments = sourceDocuments;
         Rules = rules;
@@ -29,6 +32,7 @@ internal sealed class RulesetDefinitionSet
         CreatureVocabulary = creatureVocabulary;
         Races = races;
         Classes = classes;
+        Backgrounds = backgrounds;
     }
 
     public IReadOnlyList<SourceDocument> SourceDocuments { get; }
@@ -43,4 +47,5 @@ internal sealed class RulesetDefinitionSet
 
     public RaceDefinitionSet Races { get; }
     public ClassDefinitionSet Classes { get; }
+    public IReadOnlyList<BackgroundDefinition> Backgrounds { get; }
 }
