@@ -7,6 +7,37 @@ Monster Manual, DMG, or later sourcebooks. Each catalog entry that represents
 official book content carries a citation (source document, page, section)
 back to that PHB printing.
 
+## Handoff, 2026-08-06 — read this first if resuming cold
+
+Mid-stream on the "Quantized mechanics" pass (see that section below
+for the full design reasoning and the running list of what's done vs.
+remaining). **Merged to `main` so far:** Fighting Style ([PR #22](https://github.com/brandonifco/FiveEData/pull/22)),
+spell slot progressions ([PR #23](https://github.com/brandonifco/FiveEData/pull/23)),
+Extra Attack progressions ([PR #24](https://github.com/brandonifco/FiveEData/pull/24)),
+Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)).
+Sneak Attack is built, gated, and about to ship as its own PR the same
+way. All still-open items are tracked at the end of the "Quantized
+mechanics" section, not here — this handoff is deliberately kept
+short and current rather than accumulating stale blow-by-blow, so
+check *there* for what's actually left, not this paragraph's history.
+
+**One real, worth-remembering incident from this pass, in case it
+recurs:** PR #25's CI failed three consecutive times purely on
+GitHub Actions infrastructure — never once reaching `dotnet
+build`/`dotnet test` — with three different symptoms across the
+attempts (`Failed to resolve action download info. Error: Service
+Unavailable` twice, `The job was not acquired by Runner of type
+hosted even after multiple attempts` twice, all at "Set up job").
+Local gate (Debug+Release build, full test suite) had already passed
+before every push. Merged directly off the local gate on explicit
+user instruction once the pattern was clearly infra, not code — if
+this happens again, check <https://www.githubstatus.com/>, retry with
+`gh run rerun <run-id>` a couple of times first, and only bypass the
+"wait for green CI" default with the user's explicit go-ahead, the
+same way it happened here. A failure that ever shows real `dotnet`
+output is a different story — that's a genuine regression, not infra,
+and needs actual investigation before merging.
+
 ## Architecture
 
 Every rules domain (weapons, armor, languages, conditions, ...) follows the
@@ -1091,18 +1122,58 @@ way `RaceAbilityScoreIncreaseData` is mapped inline inside
   embedded-resource file — Barbarian's Rage data lives directly inside
   `classes.json`. Full gate green: Debug+Release build 0 warnings,
   1282 tests (was 1256; +26 new).
+**Sneak Attack converted fifth, same "embedded value object" shape as
+Rage** — Rogue-exclusive, nothing to share. Read directly off the
+Rogue's own table and Sneak Attack's own prose (page 96): dice count
+doubles at every odd level from 1st (1d6) through 19th (10d6), always
+the same die size.
+
+- **Each grant reuses the existing `DiceExpression` type** (already
+  used for `HitDie`/`WeaponDamage`) rather than a bare "dice count"
+  int paired with a separate constant die-size field — a
+  `SneakAttackDiceGrant` is `(CharacterLevel, DiceExpression)`, so
+  1d6→10d6 is stored exactly like a weapon's damage die would be,
+  instead of inventing a redundant number space next to a type that
+  already exists for precisely this.
+- **The full mechanical gate was captured alongside the leveled dice,
+  the same call as Rage's `RequiresNotWearingHeavyArmor`:**
+  `OncePerTurn` and `RequiresFinesseOrRangedWeapon` are both real,
+  simple, always-true facts read straight from the feature text
+  ("Once per turn... The attack must use a finesse or a ranged
+  weapon"). `ClassDefinitionValidator` additionally checks every
+  grant shares the same die size, since a Sneak Attack progression
+  that suddenly switched from d6 to d8 mid-table would be a data
+  error, not a legitimate variant.
+- **Deliberately left unmodeled: the alternative-to-advantage trigger**
+  ("you don't need advantage... if another enemy of the target is
+  within 5 feet of it, that enemy isn't incapacitated, and you don't
+  have disadvantage") — unlike `RequiresNotWearingHeavyArmor`, this
+  is compound combat-state prose (position, a target's own condition,
+  the attacker's own roll state), not a single static fact a data
+  file can hold without turning into a small rules engine. It stays
+  inside the existing `dnd5e2014.class-rule.sneak-attack` citation,
+  matching the same boundary Rage drew around Persistent Rage.
+- Public API: one new public type
+  (`SneakAttackProgressionDetail`, plus its nested
+  `SneakAttackDiceGrant`) and one new member on `ClassDefinition`.
+  Full gate green: Debug+Release build 0 warnings, 1301 tests (was
+  1282; +19 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Sneak Attack, Divine Strike, Ki/sorcery
-  points, Wild Shape/Circle Forms caps, auras, Bardic Inspiration die,
-  Channel Divinity uses, Mystic Arcanum, Font of Magic conversion) —
-  each single-class like Rage, so each gets the same "embedded value
-  object, not a catalog" treatment unless a real sharing case turns up
-  — the larger choice-point catalogs (Eldritch Invocations, Battle
-  Master maneuvers, Metamagic, Elemental Disciplines, Channel Divinity
-  options, Pact Boon), race trait quantization (Darkvision range,
-  resistance/advantage grants, granted spells), and a background audit
-  (likely little to quantize — most background features are
-  narrative/social, not numeric).
+  numeric progressions (Divine Strike, Ki/sorcery points, Wild
+  Shape/Circle Forms caps, auras, Bardic Inspiration die, Channel
+  Divinity uses, Mystic Arcanum, Font of Magic conversion) — each
+  single-class like Rage/Sneak Attack, so each gets the same
+  "embedded value object, not a catalog" treatment unless a real
+  sharing case turns up (Divine Strike is the one to watch — five
+  domains share the *template*, but CLAUDE.md's own Classes section
+  already found each domain's damage type differs, the same
+  template-with-a-substitution shape that kept Wizard's school
+  Savants split rather than shared) — the larger choice-point catalogs
+  (Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
+  Disciplines, Channel Divinity options, Pact Boon), race trait
+  quantization (Darkvision range, resistance/advantage grants, granted
+  spells), and a background audit (likely little to quantize — most
+  background features are narrative/social, not numeric).
 
 ## Test conventions
 
@@ -1241,8 +1312,8 @@ around.
 quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
-tables/abilities, Extra Attack, and Rage have been converted; every
-other named feature
+tables/abilities, Extra Attack, Rage, and Sneak Attack have been
+converted; every other named feature
 across Classes/Races/Backgrounds is still a `RuleId` citation with no
 mechanical payload.
 

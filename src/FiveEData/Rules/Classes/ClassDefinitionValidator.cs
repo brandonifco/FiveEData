@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes.Rage;
+using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
@@ -101,7 +102,51 @@ internal static class ClassDefinitionValidator
             ValidateRageProgression(rageProgression, errors);
         }
 
+        if (@class.SneakAttackProgression is { } sneakAttackProgression)
+        {
+            ValidateSneakAttackProgression(
+                sneakAttackProgression,
+                errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateSneakAttackProgression(
+        SneakAttackProgressionDetail sneakAttackProgression,
+        ICollection<string> errors)
+    {
+        if (sneakAttackProgression.DiceByLevel.Count == 0)
+        {
+            errors.Add(
+                "Sneak Attack progression must grant at least one dice " +
+                "increase.");
+        }
+
+        var seenSides = new HashSet<int>();
+
+        foreach (
+            SneakAttackDiceGrant grant
+            in sneakAttackProgression.DiceByLevel)
+        {
+            seenSides.Add(grant.Damage.Sides);
+        }
+
+        if (seenSides.Count > 1)
+        {
+            errors.Add(
+                "Sneak Attack progression must use the same damage die " +
+                "size at every grant level.");
+        }
+
+        ValidateAscending(
+            sneakAttackProgression.DiceByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, (int?)grant.Damage.Count)),
+            "Sneak Attack dice",
+            errors);
     }
 
     private static void ValidateRageProgression(
