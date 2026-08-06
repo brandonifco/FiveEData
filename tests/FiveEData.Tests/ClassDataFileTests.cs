@@ -13,7 +13,8 @@ public sealed class ClassDataFileTests
         "dnd5e2014.class.barbarian",
         "dnd5e2014.class.monk",
         "dnd5e2014.class.rogue",
-        "dnd5e2014.class.bard"
+        "dnd5e2014.class.bard",
+        "dnd5e2014.class.wizard"
     ];
 
     [Fact]
@@ -21,7 +22,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(5, classes.Count);
+        Assert.Equal(6, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -298,7 +299,7 @@ public sealed class ClassDataFileTests
     }
 
     [Fact]
-    public void CanonicalFile_SharesAbilityScoreImprovementRuleIdAcrossBarbarianMonkAndBard()
+    public void CanonicalFile_SharesAbilityScoreImprovementRuleIdAcrossBarbarianMonkBardAndWizard()
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
@@ -306,6 +307,7 @@ public sealed class ClassDataFileTests
             GetClass(classes, "dnd5e2014.class.barbarian");
         ClassDefinition monk = GetClass(classes, "dnd5e2014.class.monk");
         ClassDefinition bard = GetClass(classes, "dnd5e2014.class.bard");
+        ClassDefinition wizard = GetClass(classes, "dnd5e2014.class.wizard");
 
         Assert.Contains(
             barbarian.LevelFeatures,
@@ -317,6 +319,10 @@ public sealed class ClassDataFileTests
                 "dnd5e2014.class-rule.ability-score-improvement");
         Assert.Contains(
             bard.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.ability-score-improvement");
+        Assert.Contains(
+            wizard.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.ability-score-improvement");
 
@@ -576,6 +582,97 @@ public sealed class ClassDataFileTests
             rogue.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.bard-expertise");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWizardMechanics()
+    {
+        ClassDefinition wizard = GetClass(LoadClasses(), "dnd5e2014.class.wizard");
+
+        Assert.Equal("Wizard", wizard.Name);
+        Assert.Equal(1, wizard.HitDie.Count);
+        Assert.Equal(6, wizard.HitDie.Sides);
+        Assert.Equal(
+            ["dnd5e2014.ability.intelligence"],
+            wizard.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(wizard.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.intelligence",
+                "dnd5e2014.ability.wisdom"
+            ],
+            wizard.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Empty(wizard.ArmorProficiencyCategories);
+        Assert.False(wizard.ProficientWithShields);
+        Assert.Empty(wizard.WeaponProficiencyCategories);
+        Assert.Equal(
+            [
+                "dnd5e2014.weapon.dagger",
+                "dnd5e2014.weapon.dart",
+                "dnd5e2014.weapon.sling",
+                "dnd5e2014.weapon.quarterstaff",
+                "dnd5e2014.weapon.light-crossbow"
+            ],
+            wizard.WeaponProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(2, wizard.SkillChoiceCount);
+        Assert.Equal(6, wizard.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(wizard.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(113, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWizardAbilityScoreImprovementAtStandardLevels()
+    {
+        ClassDefinition wizard = GetClass(LoadClasses(), "dnd5e2014.class.wizard");
+
+        int[] expectedLevels = [4, 8, 12, 16, 19];
+
+        int[] actualLevels = wizard.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.ability-score-improvement")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesArcaneTraditionChoicePoint()
+    {
+        ClassDefinition wizard = GetClass(LoadClasses(), "dnd5e2014.class.wizard");
+
+        Assert.Contains(
+            wizard.LevelFeatures,
+            feature =>
+                feature.Level == 2 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.arcane-tradition");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSpellMasteryAndSignatureSpellsCapstones()
+    {
+        ClassDefinition wizard = GetClass(LoadClasses(), "dnd5e2014.class.wizard");
+
+        Assert.Contains(
+            wizard.LevelFeatures,
+            feature =>
+                feature.Level == 18 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.spell-mastery");
+        Assert.Contains(
+            wizard.LevelFeatures,
+            feature =>
+                feature.Level == 20 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.signature-spells");
     }
 
     private static ClassDefinition GetClass(

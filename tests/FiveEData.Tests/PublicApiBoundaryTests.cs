@@ -169,9 +169,9 @@ public sealed class PublicApiBoundaryTests
             ruleset.CreatureVocabulary.Alignments.Count);
         Assert.Equal(9, ruleset.Races.Count);
         Assert.Equal(9, ruleset.Subraces.Count);
-        Assert.Equal(5, ruleset.Classes.Count);
-        Assert.Equal(13, ruleset.Subclasses.Count);
-        Assert.Equal(244, ruleset.Rules.Count);
+        Assert.Equal(6, ruleset.Classes.Count);
+        Assert.Equal(21, ruleset.Subclasses.Count);
+        Assert.Equal(289, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
 }

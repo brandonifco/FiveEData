@@ -433,5 +433,285 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-abjuration",
+    "name": "School of Abjuration",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.abjuration-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.arcane-ward"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.projected-ward"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.improved-abjuration"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.spell-resistance"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 115,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-conjuration",
+    "name": "School of Conjuration",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.conjuration-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.minor-conjuration"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.benign-transposition"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.focused-conjuration"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.durable-summons"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 116,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-divination",
+    "name": "School of Divination",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.divination-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.portent"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.expert-divination"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.the-third-eye"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.greater-portent"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 116,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-enchantment",
+    "name": "School of Enchantment",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.enchantment-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.hypnotic-gaze"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.instinctive-charm"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.split-enchantment"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.alter-memories"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 117,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-evocation",
+    "name": "School of Evocation",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.evocation-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.sculpt-spells"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.potent-cantrip"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.empowered-evocation"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.overchannel"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 117,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-illusion",
+    "name": "School of Illusion",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.illusion-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.improved-minor-illusion"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.malleable-illusions"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.illusory-self"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.illusory-reality"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 118,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-necromancy",
+    "name": "School of Necromancy",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.necromancy-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.grim-harvest"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.undead-thralls"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.inured-to-undeath"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.command-undead"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 118,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.school-of-transmutation",
+    "name": "School of Transmutation",
+    "classId": "dnd5e2014.class.wizard",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.transmutation-savant"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.minor-alchemy"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.transmuters-stone"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.shapechanger"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.master-transmuter"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 119,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

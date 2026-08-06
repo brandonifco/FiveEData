@@ -649,5 +649,86 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.wizard",
+    "name": "Wizard",
+    "hitDieSides": 6,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.intelligence"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.intelligence",
+      "dnd5e2014.ability.wisdom"
+    ],
+    "armorProficiencyCategories": [],
+    "proficientWithShields": false,
+    "weaponProficiencyCategories": [],
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.dagger",
+      "dnd5e2014.weapon.dart",
+      "dnd5e2014.weapon.sling",
+      "dnd5e2014.weapon.quarterstaff",
+      "dnd5e2014.weapon.light-crossbow"
+    ],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.arcana",
+      "dnd5e2014.skill.history",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.investigation",
+      "dnd5e2014.skill.medicine",
+      "dnd5e2014.skill.religion"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.wizard-spellcasting"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.arcane-recovery"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.arcane-tradition"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.spell-mastery"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.signature-spells"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 113,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

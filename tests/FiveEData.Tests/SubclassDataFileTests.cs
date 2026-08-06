@@ -38,13 +38,26 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.college-of-valor"
     ];
 
+    private static readonly string[] ExpectedWizardSubclassIds =
+    [
+        "dnd5e2014.subclass.school-of-abjuration",
+        "dnd5e2014.subclass.school-of-conjuration",
+        "dnd5e2014.subclass.school-of-divination",
+        "dnd5e2014.subclass.school-of-enchantment",
+        "dnd5e2014.subclass.school-of-evocation",
+        "dnd5e2014.subclass.school-of-illusion",
+        "dnd5e2014.subclass.school-of-necromancy",
+        "dnd5e2014.subclass.school-of-transmutation"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
         .. ExpectedBarbarianSubclassIds,
         .. ExpectedMonkSubclassIds,
         .. ExpectedRogueSubclassIds,
-        .. ExpectedBardSubclassIds
+        .. ExpectedBardSubclassIds,
+        .. ExpectedWizardSubclassIds
     ];
 
     [Fact]
@@ -52,7 +65,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(13, subclasses.Count);
+        Assert.Equal(21, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -113,13 +126,25 @@ public sealed class SubclassDataFileTests
     }
 
     [Fact]
-    public void CanonicalFile_EverySubclassIsChosenAtThirdLevel()
+    public void CanonicalFile_EveryNonWizardSubclassIsChosenAtThirdLevel()
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
         Assert.All(
-            subclasses,
+            subclasses.Where(
+                subclass => !ExpectedWizardSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(3, subclass.ChosenAtLevel));
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryWizardSubclassIsChosenAtSecondLevel()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedWizardSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(2, subclass.ChosenAtLevel));
     }
 
     [Fact]
@@ -391,6 +416,19 @@ public sealed class SubclassDataFileTests
     }
 
     [Fact]
+    public void CanonicalFile_EveryWizardSubclassReferencesTheWizardClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedWizardSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.wizard",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
     public void CanonicalFile_PreservesCollegeOfLoreMechanics()
     {
         SubclassDefinition collegeOfLore = GetSubclass(
@@ -447,6 +485,213 @@ public sealed class SubclassDataFileTests
             collegeOfValor.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.extra-attack");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfAbjurationMechanics()
+    {
+        SubclassDefinition abjuration = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-abjuration");
+
+        Assert.Equal("School of Abjuration", abjuration.Name);
+        Assert.Equal(2, abjuration.ChosenAtLevel);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.abjuration-savant",
+                "dnd5e2014.class-rule.arcane-ward",
+                "dnd5e2014.class-rule.projected-ward",
+                "dnd5e2014.class-rule.improved-abjuration",
+                "dnd5e2014.class-rule.spell-resistance"
+            ],
+            abjuration.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(abjuration.Sources);
+        Assert.Equal(115, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfConjurationMechanics()
+    {
+        SubclassDefinition conjuration = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-conjuration");
+
+        Assert.Equal("School of Conjuration", conjuration.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.conjuration-savant",
+                "dnd5e2014.class-rule.minor-conjuration",
+                "dnd5e2014.class-rule.benign-transposition",
+                "dnd5e2014.class-rule.focused-conjuration",
+                "dnd5e2014.class-rule.durable-summons"
+            ],
+            conjuration.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(conjuration.Sources);
+        Assert.Equal(116, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfDivinationMechanics()
+    {
+        SubclassDefinition divination = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-divination");
+
+        Assert.Equal("School of Divination", divination.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.divination-savant",
+                "dnd5e2014.class-rule.portent",
+                "dnd5e2014.class-rule.expert-divination",
+                "dnd5e2014.class-rule.the-third-eye",
+                "dnd5e2014.class-rule.greater-portent"
+            ],
+            divination.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(divination.Sources);
+        Assert.Equal(116, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfEnchantmentMechanics()
+    {
+        SubclassDefinition enchantment = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-enchantment");
+
+        Assert.Equal("School of Enchantment", enchantment.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.enchantment-savant",
+                "dnd5e2014.class-rule.hypnotic-gaze",
+                "dnd5e2014.class-rule.instinctive-charm",
+                "dnd5e2014.class-rule.split-enchantment",
+                "dnd5e2014.class-rule.alter-memories"
+            ],
+            enchantment.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(enchantment.Sources);
+        Assert.Equal(117, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfEvocationMechanics()
+    {
+        SubclassDefinition evocation = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-evocation");
+
+        Assert.Equal("School of Evocation", evocation.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.evocation-savant",
+                "dnd5e2014.class-rule.sculpt-spells",
+                "dnd5e2014.class-rule.potent-cantrip",
+                "dnd5e2014.class-rule.empowered-evocation",
+                "dnd5e2014.class-rule.overchannel"
+            ],
+            evocation.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(evocation.Sources);
+        Assert.Equal(117, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfIllusionMechanics()
+    {
+        SubclassDefinition illusion = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-illusion");
+
+        Assert.Equal("School of Illusion", illusion.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.illusion-savant",
+                "dnd5e2014.class-rule.improved-minor-illusion",
+                "dnd5e2014.class-rule.malleable-illusions",
+                "dnd5e2014.class-rule.illusory-self",
+                "dnd5e2014.class-rule.illusory-reality"
+            ],
+            illusion.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(illusion.Sources);
+        Assert.Equal(118, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfNecromancyMechanics()
+    {
+        SubclassDefinition necromancy = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-necromancy");
+
+        Assert.Equal("School of Necromancy", necromancy.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.necromancy-savant",
+                "dnd5e2014.class-rule.grim-harvest",
+                "dnd5e2014.class-rule.undead-thralls",
+                "dnd5e2014.class-rule.inured-to-undeath",
+                "dnd5e2014.class-rule.command-undead"
+            ],
+            necromancy.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(necromancy.Sources);
+        Assert.Equal(118, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfTransmutationMechanics()
+    {
+        SubclassDefinition transmutation = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-transmutation");
+
+        Assert.Equal("School of Transmutation", transmutation.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.transmutation-savant",
+                "dnd5e2014.class-rule.minor-alchemy",
+                "dnd5e2014.class-rule.transmuters-stone",
+                "dnd5e2014.class-rule.shapechanger",
+                "dnd5e2014.class-rule.master-transmuter"
+            ],
+            transmutation.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(transmutation.Sources);
+        Assert.Equal(119, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_EverySchoolSavantFeatureIsItsOwnDistinctRuleId()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> savantRuleIds = subclasses
+            .Where(subclass => ExpectedWizardSubclassIds.Contains(subclass.Id.Value))
+            .SelectMany(subclass => subclass.LevelFeatures)
+            .Select(feature => feature.FeatureRuleId.Value)
+            .Where(id => id.EndsWith("-savant", StringComparison.Ordinal));
+
+        Assert.Equal(8, savantRuleIds.Distinct().Count());
     }
 
     private static SubclassDefinition GetSubclass(
