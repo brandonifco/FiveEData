@@ -3,6 +3,7 @@ using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SorceryPoints;
@@ -45,6 +46,7 @@ public sealed class ClassDefinition
         AuraOfCourageDetail? auraOfCourage,
         BardicInspirationProgressionDetail? bardicInspirationProgression,
         ChannelDivinityProgressionDetail? channelDivinityProgression,
+        MysticArcanumProgressionDetail? mysticArcanumProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -85,6 +87,7 @@ public sealed class ClassDefinition
         AuraOfCourage = auraOfCourage;
         BardicInspirationProgression = bardicInspirationProgression;
         ChannelDivinityProgression = channelDivinityProgression;
+        MysticArcanumProgression = mysticArcanumProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -116,6 +119,10 @@ public sealed class ClassDefinition
         get;
     }
     public ChannelDivinityProgressionDetail? ChannelDivinityProgression
+    {
+        get;
+    }
+    public MysticArcanumProgressionDetail? MysticArcanumProgression
     {
         get;
     }

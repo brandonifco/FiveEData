@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SorceryPoints;
@@ -153,6 +154,16 @@ internal static class ClassDefinitionValidator
                     .Select(
                         grant => (grant.CharacterLevel, grant.UsesPerRest)),
                 "Channel Divinity uses",
+                errors);
+        }
+
+        if (@class.MysticArcanumProgression is { } mysticArcanumProgression)
+        {
+            ValidatePointsProgression(
+                mysticArcanumProgression.ArcanumByLevel
+                    .Select(
+                        grant => (grant.CharacterLevel, grant.SpellLevel)),
+                "Mystic Arcanum spell level",
                 errors);
         }
 

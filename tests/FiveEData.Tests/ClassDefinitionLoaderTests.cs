@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -49,6 +50,7 @@ public sealed class ClassDefinitionLoaderTests
           "auraOfCourage": null,
           "bardicInspirationProgression": null,
           "channelDivinityProgression": null,
+          "mysticArcanumProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -103,6 +105,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.AuraOfCourage);
         Assert.Null(@class.BardicInspirationProgression);
         Assert.Null(@class.ChannelDivinityProgression);
+        Assert.Null(@class.MysticArcanumProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -170,6 +173,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -274,6 +278,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -349,6 +354,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -427,6 +433,7 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -505,6 +512,7 @@ public sealed class ClassDefinitionLoaderTests
                       "durationMinutes": 10
                     },
                     "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -574,6 +582,7 @@ public sealed class ClassDefinitionLoaderTests
                       ],
                       "recoversOnShortRest": true
                     },
+                    "mysticArcanumProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -598,6 +607,75 @@ public sealed class ClassDefinitionLoaderTests
             2,
             channelDivinityProgression.UsesByLevel[1].UsesPerRest);
         Assert.True(channelDivinityProgression.RecoversOnShortRest);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsMysticArcanumProgression()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.charisma"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.wisdom",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "mysticArcanumProgression": {
+                      "arcanumByLevel": [
+                        { "characterLevel": 11, "spellLevel": 6 },
+                        { "characterLevel": 13, "spellLevel": 7 }
+                      ],
+                      "recoversOnShortRest": false
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        MysticArcanumProgressionDetail mysticArcanumProgression =
+            @class.MysticArcanumProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Mystic Arcanum progression.");
+
+        Assert.Equal(2, mysticArcanumProgression.ArcanumByLevel.Count);
+        Assert.Equal(
+            6,
+            mysticArcanumProgression.ArcanumByLevel[0].SpellLevel);
+        Assert.Equal(
+            7,
+            mysticArcanumProgression.ArcanumByLevel[1].SpellLevel);
+        Assert.False(mysticArcanumProgression.RecoversOnShortRest);
     }
 
     [Fact]

@@ -5,6 +5,7 @@ using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SorceryPoints;
@@ -142,6 +143,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -463,6 +465,60 @@ public sealed class ClassFoundationTests
                     new ChannelDivinityUseGrant(18, 3)
                 ],
                 recoversOnShortRest: true));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void Validator_RejectsMysticArcanumProgressionWithNoGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            mysticArcanumProgression: new MysticArcanumProgressionDetail(
+                [],
+                recoversOnShortRest: false));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Mystic Arcanum spell level progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsMysticArcanumProgressionWithNonIncreasingSpellLevel()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            mysticArcanumProgression: new MysticArcanumProgressionDetail(
+                [
+                    new MysticArcanumGrant(11, 7),
+                    new MysticArcanumGrant(13, 6)
+                ],
+                recoversOnShortRest: false));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedMysticArcanumProgression()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            mysticArcanumProgression: new MysticArcanumProgressionDetail(
+                [
+                    new MysticArcanumGrant(11, 6),
+                    new MysticArcanumGrant(13, 7),
+                    new MysticArcanumGrant(15, 8),
+                    new MysticArcanumGrant(17, 9)
+                ],
+                recoversOnShortRest: false));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
     }
@@ -799,6 +855,7 @@ public sealed class ClassFoundationTests
         BardicInspirationProgressionDetail? bardicInspirationProgression =
             null,
         ChannelDivinityProgressionDetail? channelDivinityProgression = null,
+        MysticArcanumProgressionDetail? mysticArcanumProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -832,6 +889,7 @@ public sealed class ClassFoundationTests
             auraOfCourage,
             bardicInspirationProgression,
             channelDivinityProgression,
+            mysticArcanumProgression,
             sources ?? [CreateSource()]);
     }
 

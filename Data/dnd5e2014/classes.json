@@ -120,6 +120,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -301,6 +302,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -472,6 +474,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -684,6 +687,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -857,6 +861,7 @@
       "durationMinutes": 10
     },
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -950,6 +955,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1052,6 +1058,7 @@
       ],
       "recoversOnShortRest": true
     },
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1160,6 +1167,15 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": {
+      "arcanumByLevel": [
+        { "characterLevel": 11, "spellLevel": 6 },
+        { "characterLevel": 13, "spellLevel": 7 },
+        { "characterLevel": 15, "spellLevel": 8 },
+        { "characterLevel": 17, "spellLevel": 9 }
+      ],
+      "recoversOnShortRest": false
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1302,6 +1318,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1442,6 +1459,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1588,6 +1606,7 @@
     },
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1712,6 +1731,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "mysticArcanumProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

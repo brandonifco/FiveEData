@@ -3,6 +3,7 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
@@ -857,6 +858,17 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(106, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        MysticArcanumProgressionDetail mysticArcanumProgression =
+            warlock.MysticArcanumProgression
+            ?? throw new InvalidOperationException(
+                "Expected Warlock to have a Mystic Arcanum progression.");
+        Assert.Equal(
+            [(11, 6), (13, 7), (15, 8), (17, 9)],
+            mysticArcanumProgression.ArcanumByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellLevel)));
+        Assert.False(mysticArcanumProgression.RecoversOnShortRest);
     }
 
     [Fact]
@@ -1715,6 +1727,26 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.ChannelDivinityProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonWarlockClassDeclaresNoMysticArcanumProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.MysticArcanumProgression);
     }
 
     private static ClassDefinition GetClass(
