@@ -490,6 +490,7 @@ public sealed class
             battleMasterManeuvers: [],
             eldritchInvocations: [],
             elementalDisciplines: [],
+            channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

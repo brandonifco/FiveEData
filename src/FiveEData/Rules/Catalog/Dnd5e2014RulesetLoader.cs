@@ -4,6 +4,8 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
+using FiveEData.Rules.Classes.ChannelDivinityOptions;
+using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.EldritchInvocations.Serialization;
 using FiveEData.Rules.Classes.ElementalDisciplines;
@@ -126,6 +128,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string ElementalDisciplinesResource =
         "FiveEData.Data.dnd5e2014.elemental-disciplines.json";
+
+    private const string ChannelDivinityOptionsResource =
+        "FiveEData.Data.dnd5e2014.channel-divinity-options.json";
 
     private const string SpellSlotProgressionsResource =
         "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
@@ -309,6 +314,12 @@ internal static class Dnd5e2014RulesetLoader
                 EmbeddedDataReader.ReadRequiredText(
                     ElementalDisciplinesResource));
 
+        IReadOnlyList<ChannelDivinityOptionDefinition>
+            channelDivinityOptions =
+                ChannelDivinityOptionDefinitionLoader.LoadFromJson(
+                    EmbeddedDataReader.ReadRequiredText(
+                        ChannelDivinityOptionsResource));
+
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
             SpellSlotProgressionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
@@ -471,6 +482,7 @@ internal static class Dnd5e2014RulesetLoader
             battleMasterManeuvers: battleMasterManeuvers,
             eldritchInvocations: eldritchInvocations,
             elementalDisciplines: elementalDisciplines,
+            channelDivinityOptions: channelDivinityOptions,
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds);
@@ -523,6 +535,8 @@ internal static class Dnd5e2014RulesetLoader
                 new EldritchInvocationCatalog(eldritchInvocations),
             elementalDisciplines:
                 new ElementalDisciplineCatalog(elementalDisciplines),
+            channelDivinityOptions:
+                new ChannelDivinityOptionCatalog(channelDivinityOptions),
             spellSlotProgressions:
                 new SpellSlotProgressionCatalog(spellSlotProgressions),
             extraAttackProgressions:
