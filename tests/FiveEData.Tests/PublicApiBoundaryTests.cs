@@ -18,6 +18,8 @@ using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.FightingStyles.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.Spellcasting.Serialization;
+using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.ExtraAttack.Serialization;
 using FiveEData.Rules.Creatures.Languages.Serialization;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.Serialization;
@@ -117,6 +119,10 @@ public sealed class PublicApiBoundaryTests
             typeof(SpellSlotProgressionDefinitionLoader).IsPublic);
         Assert.False(
             typeof(SpellSlotProgressionDefinitionValidator).IsPublic);
+        Assert.False(
+            typeof(ExtraAttackProgressionDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(ExtraAttackProgressionDefinitionValidator).IsPublic);
         Assert.False(typeof(RulesetDefinitionSet).IsPublic);
         Assert.False(typeof(BackgroundDefinitionLoader).IsPublic);
         Assert.False(typeof(BackgroundDefinitionValidator).IsPublic);

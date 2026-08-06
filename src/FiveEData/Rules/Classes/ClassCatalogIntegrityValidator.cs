@@ -1,4 +1,5 @@
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -17,7 +18,8 @@ internal static class ClassCatalogIntegrityValidator
         IReadOnlySet<SkillId> skillIds,
         IReadOnlySet<WeaponId> weaponIds,
         IReadOnlySet<RuleId> ruleIds,
-        IReadOnlySet<SpellSlotProgressionId> spellSlotProgressionIds)
+        IReadOnlySet<SpellSlotProgressionId> spellSlotProgressionIds,
+        IReadOnlySet<ExtraAttackProgressionId> extraAttackProgressionIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(sourceIds);
@@ -26,6 +28,7 @@ internal static class ClassCatalogIntegrityValidator
         ArgumentNullException.ThrowIfNull(weaponIds);
         ArgumentNullException.ThrowIfNull(ruleIds);
         ArgumentNullException.ThrowIfNull(spellSlotProgressionIds);
+        ArgumentNullException.ThrowIfNull(extraAttackProgressionIds);
 
         var errors = new List<string>();
 
@@ -100,6 +103,14 @@ internal static class ClassCatalogIntegrityValidator
                 spellSlotProgressionIds,
                 abilityIds,
                 errors);
+
+            if (@class.ExtraAttackProgressionId is { } extraAttackId &&
+                !extraAttackProgressionIds.Contains(extraAttackId))
+            {
+                errors.Add(
+                    $"{owner} references missing Extra Attack " +
+                    $"progression '{extraAttackId}'.");
+            }
         }
 
         foreach (

@@ -485,6 +485,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
             spellSlotProgressions: [],
+            extraAttackProgressions: [],
             backgrounds: []);
     }
 }

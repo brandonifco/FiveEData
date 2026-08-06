@@ -3,6 +3,8 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.Spellcasting.Serialization;
+using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.ExtraAttack.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -107,6 +109,15 @@ public sealed class CatalogIntegrityTests
                     "dnd5e2014",
                     "spell-slot-progressions.json"));
 
+        IReadOnlyList<ExtraAttackProgressionDefinition>
+            extraAttackProgressions =
+                ExtraAttackProgressionDefinitionLoader.LoadFromFile(
+                    Path.Combine(
+                        root,
+                        "Data",
+                        "dnd5e2014",
+                        "extra-attack-progressions.json"));
+
         IReadOnlyList<RuleDefinition> rules = LoadAllRules(root);
 
         IReadOnlyList<ArmorDefinition> armor =
@@ -195,7 +206,8 @@ public sealed class CatalogIntegrityTests
                     subraces: subraces,
                     classes: classes,
                     subclasses: subclasses,
-                    spellSlotProgressions: spellSlotProgressions)));
+                    spellSlotProgressions: spellSlotProgressions,
+                    extraAttackProgressions: extraAttackProgressions)));
     }
 
     [Fact]
@@ -1292,7 +1304,9 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ClassDefinition>? classes = null,
         IReadOnlyList<SubclassDefinition>? subclasses = null,
         IReadOnlyList<SpellSlotProgressionDefinition>?
-            spellSlotProgressions = null)
+            spellSlotProgressions = null,
+        IReadOnlyList<ExtraAttackProgressionDefinition>?
+            extraAttackProgressions = null)
     {
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
@@ -1339,6 +1353,7 @@ public sealed class CatalogIntegrityTests
                 subclasses: subclasses ?? []),
             fightingStyles: [],
             spellSlotProgressions: spellSlotProgressions ?? [],
+            extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: []);
     }
 

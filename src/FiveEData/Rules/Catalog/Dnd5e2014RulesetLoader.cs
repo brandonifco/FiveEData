@@ -6,6 +6,8 @@ using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.FightingStyles.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.Spellcasting.Serialization;
+using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.ExtraAttack.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -107,6 +109,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string SpellSlotProgressionsResource =
         "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
+
+    private const string ExtraAttackProgressionsResource =
+        "FiveEData.Data.dnd5e2014.extra-attack-progressions.json";
 
     private const string BackgroundsResource =
         "FiveEData.Data.dnd5e2014.backgrounds.json";
@@ -269,6 +274,12 @@ internal static class Dnd5e2014RulesetLoader
                 EmbeddedDataReader.ReadRequiredText(
                     SpellSlotProgressionsResource));
 
+        IReadOnlyList<ExtraAttackProgressionDefinition>
+            extraAttackProgressions =
+                ExtraAttackProgressionDefinitionLoader.LoadFromJson(
+                    EmbeddedDataReader.ReadRequiredText(
+                        ExtraAttackProgressionsResource));
+
         IReadOnlyList<BackgroundDefinition> backgrounds =
             BackgroundDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(BackgroundsResource));
@@ -417,6 +428,7 @@ internal static class Dnd5e2014RulesetLoader
             classes: classDefinitionSet,
             fightingStyles: fightingStyles,
             spellSlotProgressions: spellSlotProgressions,
+            extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -462,6 +474,8 @@ internal static class Dnd5e2014RulesetLoader
             fightingStyles: new FightingStyleCatalog(fightingStyles),
             spellSlotProgressions:
                 new SpellSlotProgressionCatalog(spellSlotProgressions),
+            extraAttackProgressions:
+                new ExtraAttackProgressionCatalog(extraAttackProgressions),
             backgrounds: new BackgroundCatalog(backgrounds),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));

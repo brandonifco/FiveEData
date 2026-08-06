@@ -1337,6 +1337,49 @@ public sealed class ClassDataFileTests
         Assert.Null(@class.SpellcastingAbilityId);
     }
 
+    [Theory]
+    [InlineData(
+        "dnd5e2014.class.barbarian",
+        "dnd5e2014.extra-attack-progression.standard")]
+    [InlineData(
+        "dnd5e2014.class.fighter",
+        "dnd5e2014.extra-attack-progression.fighter")]
+    [InlineData(
+        "dnd5e2014.class.monk",
+        "dnd5e2014.extra-attack-progression.standard")]
+    [InlineData(
+        "dnd5e2014.class.paladin",
+        "dnd5e2014.extra-attack-progression.standard")]
+    [InlineData(
+        "dnd5e2014.class.ranger",
+        "dnd5e2014.extra-attack-progression.standard")]
+    public void CanonicalFile_ClassDeclaresExpectedExtraAttackProgression(
+        string classId,
+        string expectedProgressionId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Equal(
+            expectedProgressionId,
+            @class.ExtraAttackProgressionId?.Value);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonExtraAttackClassDeclaresNoProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.ExtraAttackProgressionId);
+    }
+
     private static ClassDefinition GetClass(
         IReadOnlyList<ClassDefinition> classes,
         string id)
