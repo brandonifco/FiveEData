@@ -1,3 +1,5 @@
+using FiveEData.Rules.Classes.DivineStrike;
+using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -106,6 +108,12 @@ internal static class SubclassDefinitionLoader
                 ? new AbilityId(spellcastingAbilityIdValue)
                 : null;
 
+        DivineStrikeProgressionDetail? divineStrikeProgression =
+            data.DivineStrikeProgression is { } divineStrikeProgressionData
+                ? DivineStrikeProgressionDetailDataMapper.Map(
+                    divineStrikeProgressionData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -114,6 +122,7 @@ internal static class SubclassDefinitionLoader
             levelFeatureData.Select(ClassDefinitionLoader.MapLevelFeature),
             spellSlotProgressionId,
             spellcastingAbilityId,
+            divineStrikeProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

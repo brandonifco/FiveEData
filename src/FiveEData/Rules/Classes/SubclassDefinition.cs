@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -14,6 +15,7 @@ public sealed class SubclassDefinition
         IEnumerable<ClassLevelFeature> levelFeatures,
         SpellSlotProgressionId? spellSlotProgressionId,
         AbilityId? spellcastingAbilityId,
+        DivineStrikeProgressionDetail? divineStrikeProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -27,6 +29,7 @@ public sealed class SubclassDefinition
         LevelFeatures = Array.AsReadOnly(levelFeatures.ToArray());
         SpellSlotProgressionId = spellSlotProgressionId;
         SpellcastingAbilityId = spellcastingAbilityId;
+        DivineStrikeProgression = divineStrikeProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -37,5 +40,6 @@ public sealed class SubclassDefinition
     public IReadOnlyList<ClassLevelFeature> LevelFeatures { get; }
     public SpellSlotProgressionId? SpellSlotProgressionId { get; }
     public AbilityId? SpellcastingAbilityId { get; }
+    public DivineStrikeProgressionDetail? DivineStrikeProgression { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

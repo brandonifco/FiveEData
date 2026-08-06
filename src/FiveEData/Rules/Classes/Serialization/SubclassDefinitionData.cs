@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 
 namespace FiveEData.Rules.Classes.Serialization;
@@ -25,6 +26,13 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public string? SpellcastingAbilityId { get; init; }
+
+    [JsonRequired]
+    public DivineStrikeProgressionDetailData? DivineStrikeProgression
+    {
+        get;
+        init;
+    }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
 
 namespace FiveEData.Tests;
@@ -876,6 +877,16 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(life.Sources);
         Assert.Equal(60, source.Page);
+
+        DivineStrikeProgressionDetail lifeDivineStrike =
+            life.DivineStrikeProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Divine Strike progression.");
+        Assert.Equal(
+            "dnd5e2014.damage-type.radiant",
+            lifeDivineStrike.FixedDamageTypeId?.Value);
+        Assert.Null(lifeDivineStrike.ChoosableDamageTypeIds);
+        Assert.False(lifeDivineStrike.MatchesWeaponDamageType);
     }
 
     [Fact]
@@ -901,6 +912,7 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(light.Sources);
         Assert.Equal(60, source.Page);
+        Assert.Null(light.DivineStrikeProgression);
     }
 
     [Fact]
@@ -946,6 +958,22 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(nature.Sources);
         Assert.Equal(61, source.Page);
+
+        DivineStrikeProgressionDetail natureDivineStrike =
+            nature.DivineStrikeProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Divine Strike progression.");
+        Assert.Null(natureDivineStrike.FixedDamageTypeId);
+        Assert.Equal(
+            [
+                "dnd5e2014.damage-type.cold",
+                "dnd5e2014.damage-type.fire",
+                "dnd5e2014.damage-type.lightning"
+            ],
+            natureDivineStrike.ChoosableDamageTypeIds
+                ?.Select(id => id.Value)
+                .ToArray());
+        Assert.False(natureDivineStrike.MatchesWeaponDamageType);
     }
 
     [Fact]
@@ -971,6 +999,16 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(tempest.Sources);
         Assert.Equal(62, source.Page);
+
+        DivineStrikeProgressionDetail tempestDivineStrike =
+            tempest.DivineStrikeProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Divine Strike progression.");
+        Assert.Equal(
+            "dnd5e2014.damage-type.thunder",
+            tempestDivineStrike.FixedDamageTypeId?.Value);
+        Assert.Null(tempestDivineStrike.ChoosableDamageTypeIds);
+        Assert.False(tempestDivineStrike.MatchesWeaponDamageType);
     }
 
     [Fact]
@@ -995,6 +1033,16 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(trickery.Sources);
         Assert.Equal(62, source.Page);
+
+        DivineStrikeProgressionDetail trickeryDivineStrike =
+            trickery.DivineStrikeProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Divine Strike progression.");
+        Assert.Equal(
+            "dnd5e2014.damage-type.poison",
+            trickeryDivineStrike.FixedDamageTypeId?.Value);
+        Assert.Null(trickeryDivineStrike.ChoosableDamageTypeIds);
+        Assert.False(trickeryDivineStrike.MatchesWeaponDamageType);
     }
 
     [Fact]
@@ -1020,6 +1068,14 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(war.Sources);
         Assert.Equal(63, source.Page);
+
+        DivineStrikeProgressionDetail warDivineStrike =
+            war.DivineStrikeProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Divine Strike progression.");
+        Assert.Null(warDivineStrike.FixedDamageTypeId);
+        Assert.Null(warDivineStrike.ChoosableDamageTypeIds);
+        Assert.True(warDivineStrike.MatchesWeaponDamageType);
     }
 
     [Fact]
@@ -1054,6 +1110,67 @@ public sealed class SubclassDataFileTests
             .Where(id => id.EndsWith("divine-strike", StringComparison.Ordinal));
 
         Assert.Equal(5, divineStrikeRuleIds.Distinct().Count());
+    }
+
+    [Fact]
+    public void CanonicalFile_SharesDivineStrikeDamageByLevelShapeAcrossAllFiveDomains()
+    {
+        string[] divineStrikeDomainIds =
+        [
+            "dnd5e2014.subclass.life-domain",
+            "dnd5e2014.subclass.nature-domain",
+            "dnd5e2014.subclass.tempest-domain",
+            "dnd5e2014.subclass.trickery-domain",
+            "dnd5e2014.subclass.war-domain"
+        ];
+
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        foreach (string domainId in divineStrikeDomainIds)
+        {
+            SubclassDefinition domain = GetSubclass(subclasses, domainId);
+
+            DivineStrikeProgressionDetail divineStrike =
+                domain.DivineStrikeProgression
+                ?? throw new InvalidOperationException(
+                    $"Expected '{domainId}' to have a Divine Strike " +
+                    "progression.");
+
+            Assert.Equal(
+                [(8, 1, 8), (14, 2, 8)],
+                divineStrike.DamageByLevel
+                    .Select(grant => (
+                        grant.CharacterLevel,
+                        grant.Damage.Count,
+                        grant.Damage.Sides))
+                    .ToArray());
+        }
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyTheFiveDivineStrikeDomainsHaveADivineStrikeProgression()
+    {
+        string[] divineStrikeDomainIds =
+        [
+            "dnd5e2014.subclass.life-domain",
+            "dnd5e2014.subclass.nature-domain",
+            "dnd5e2014.subclass.tempest-domain",
+            "dnd5e2014.subclass.trickery-domain",
+            "dnd5e2014.subclass.war-domain"
+        ];
+
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> otherSubclassIds = subclasses
+            .Select(subclass => subclass.Id.Value)
+            .Where(id => !divineStrikeDomainIds.Contains(id));
+
+        foreach (string id in otherSubclassIds)
+        {
+            SubclassDefinition subclass = GetSubclass(subclasses, id);
+
+            Assert.Null(subclass.DivineStrikeProgression);
+        }
     }
 
     [Fact]
