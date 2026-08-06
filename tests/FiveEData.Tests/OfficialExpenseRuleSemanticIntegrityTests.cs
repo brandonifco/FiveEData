@@ -349,6 +349,7 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
             spellSlotProgressions: [],
+            extraAttackProgressions: [],
             backgrounds: []);
     }
 

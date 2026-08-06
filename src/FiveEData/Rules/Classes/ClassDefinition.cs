@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -26,6 +27,7 @@ public sealed class ClassDefinition
         IEnumerable<ClassLevelFeature> levelFeatures,
         SpellSlotProgressionId? spellSlotProgressionId,
         AbilityId? spellcastingAbilityId,
+        ExtraAttackProgressionId? extraAttackProgressionId,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -56,6 +58,7 @@ public sealed class ClassDefinition
         LevelFeatures = Array.AsReadOnly(levelFeatures.ToArray());
         SpellSlotProgressionId = spellSlotProgressionId;
         SpellcastingAbilityId = spellcastingAbilityId;
+        ExtraAttackProgressionId = extraAttackProgressionId;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -74,5 +77,6 @@ public sealed class ClassDefinition
     public IReadOnlyList<ClassLevelFeature> LevelFeatures { get; }
     public SpellSlotProgressionId? SpellSlotProgressionId { get; }
     public AbilityId? SpellcastingAbilityId { get; }
+    public ExtraAttackProgressionId? ExtraAttackProgressionId { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

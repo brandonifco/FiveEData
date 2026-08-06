@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dnd5e2014.extra-attack-progression.standard",
+    "name": "Standard",
+    "grants": [
+      {
+        "characterLevel": 5,
+        "attackCount": 2
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 49,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 85,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 92,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.extra-attack-progression.fighter",
+    "name": "Fighter",
+    "grants": [
+      {
+        "characterLevel": 5,
+        "attackCount": 2
+      },
+      {
+        "characterLevel": 11,
+        "attackCount": 3
+      },
+      {
+        "characterLevel": 20,
+        "attackCount": 4
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 73,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

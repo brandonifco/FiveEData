@@ -36,6 +36,7 @@ public sealed class ClassDefinitionLoaderTests
           ],
           "spellSlotProgressionId": null,
           "spellcastingAbilityId": null,
+          "extraAttackProgressionId": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -80,6 +81,7 @@ public sealed class ClassDefinitionLoaderTests
 
         Assert.Null(@class.SpellSlotProgressionId);
         Assert.Null(@class.SpellcastingAbilityId);
+        Assert.Null(@class.ExtraAttackProgressionId);
         Assert.Single(@class.Sources);
     }
 
@@ -110,6 +112,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId":
                       "extension.spell-slot-progression.test",
                     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
+                    "extraAttackProgressionId":
+                      "extension.extra-attack-progression.test",
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -127,6 +131,9 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Equal(
             "dnd5e2014.ability.wisdom",
             @class.SpellcastingAbilityId?.Value);
+        Assert.Equal(
+            "extension.extra-attack-progression.test",
+            @class.ExtraAttackProgressionId?.Value);
     }
 
     [Fact]

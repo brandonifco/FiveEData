@@ -52,6 +52,9 @@
       Include="../../Data/dnd5e2014/spell-slot-progressions.json"
       LogicalName="FiveEData.Data.dnd5e2014.spell-slot-progressions.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/extra-attack-progressions.json"
+      LogicalName="FiveEData.Data.dnd5e2014.extra-attack-progressions.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/backgrounds.json"
       LogicalName="FiveEData.Data.dnd5e2014.backgrounds.json" />
     <EmbeddedResource

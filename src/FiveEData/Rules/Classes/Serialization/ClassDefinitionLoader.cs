@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -136,6 +137,13 @@ internal static class ClassDefinitionLoader
                 ? new AbilityId(spellcastingAbilityIdValue)
                 : null;
 
+        ExtraAttackProgressionId? extraAttackProgressionId =
+            data.ExtraAttackProgressionId is
+                { } extraAttackProgressionIdValue
+                ? new ExtraAttackProgressionId(
+                    extraAttackProgressionIdValue)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -152,6 +160,7 @@ internal static class ClassDefinitionLoader
             levelFeatureData.Select(MapLevelFeature),
             spellSlotProgressionId,
             spellcastingAbilityId,
+            extraAttackProgressionId,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

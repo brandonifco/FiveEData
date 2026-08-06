@@ -1009,16 +1009,53 @@ a deliberate scope cut — see below).
   coverage for the new domain, plus per-class and per-subclass
   spellcasting-field assertions folded into the existing
   `ClassDataFileTests`/`SubclassDataFileTests`).
-- **Remaining, tracked but not started:** the other per-level numeric
-  progressions (Extra Attack, Rage, Sneak Attack, Divine Strike,
-  Ki/sorcery points, Wild Shape/Circle Forms caps, auras, Bardic
-  Inspiration die, Channel Divinity uses, Mystic Arcanum, Font of
-  Magic conversion), the larger choice-point catalogs (Eldritch
-  Invocations, Battle Master maneuvers, Metamagic, Elemental
-  Disciplines, Channel Divinity options, Pact Boon), race trait
-  quantization (Darkvision range, resistance/advantage grants, granted
-  spells), and a background audit (likely little to quantize — most
-  background features are narrative/social, not numeric).
+**Extra Attack converted third — the first of the "other per-level
+numeric progressions" and a smaller shape than the previous two.**
+Where Fighting Style needed a full mechanism-typed effect and spell
+slots needed a dense 20-row table, Extra Attack is just "at which
+level(s) does the attack count go up, and to what" — a sparse list of
+breakpoints, not a value at every level. The same shared-vs-prefixed
+question the Classes pass already answered for the underlying `RuleId`
+(Barbarian/Monk/Ranger/Paladin share one "Beginning at 5th level, you
+can attack twice" citation; Fighter's own diverges with extra scaling
+at 11th/20th, so it stayed separately prefixed) carries over exactly
+to the quantized data: two progressions, `standard` (one grant, level
+5 → 2 attacks) and `fighter` (three grants: 5→2, 11→3, 20→4).
+
+- **New domain, `Rules/Classes/ExtraAttack/`**, same five-piece shape,
+  referenced from `ClassDefinition.ExtraAttackProgressionId` only —
+  no subclass grants Extra Attack in this ruleset, unlike spellcasting's
+  Eldritch Knight/Arcane Trickster case, so `SubclassDefinition` was
+  left untouched. `ExtraAttackGrant` (`CharacterLevel`, `AttackCount`)
+  self-validates in its own constructor (level 1-20, count ≥ 2 — 1
+  attack is the baseline everyone already has, not something a class
+  feature grants) the same way `ClassLevelFeature`/`RaceAbilityScoreIncrease`
+  already do; `ExtraAttackProgressionDefinitionValidator` additionally
+  checks grants are level-ordered with a strictly increasing attack
+  count, since a progression that doesn't increase isn't a real grant.
+- **Citations reused directly from the existing, already-verified
+  `RuleId` entries** (`dnd5e2014.class-rule.extra-attack`'s four pages
+  — Barbarian 49, Monk 79, Paladin 85, Ranger 92 — and
+  `fighter-extra-attack`'s page 73) rather than re-fetched from the
+  PDF, since those page numbers were already provenance-checked when
+  the Classes pass built the citation itself; re-deriving them here
+  would have been re-verifying already-verified work, not real risk
+  reduction.
+- Public API: three new public types
+  (`ExtraAttackProgressionId`/`Definition`/`Catalog`, plus
+  `ExtraAttackGrant`) and one new member on `ClassDefinition`. Full
+  gate green: Debug+Release build 0 warnings, 1256 tests (was 1214;
+  +42 new).
+- **Remaining, tracked but not started:** the rest of the per-level
+  numeric progressions (Rage, Sneak Attack, Divine Strike, Ki/sorcery
+  points, Wild Shape/Circle Forms caps, auras, Bardic Inspiration die,
+  Channel Divinity uses, Mystic Arcanum, Font of Magic conversion),
+  the larger choice-point catalogs (Eldritch Invocations, Battle
+  Master maneuvers, Metamagic, Elemental Disciplines, Channel Divinity
+  options, Pact Boon), race trait quantization (Darkvision range,
+  resistance/advantage grants, granted spells), and a background audit
+  (likely little to quantize — most background features are
+  narrative/social, not numeric).
 
 ## Test conventions
 
@@ -1156,8 +1193,9 @@ around.
 **"Complete" above means citation-complete, not mechanically
 quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
-reference — as of this writing, only Fighting Style and spellcasting
-slot tables/abilities have been converted; every other named feature
+reference — as of this writing, only Fighting Style, spellcasting slot
+tables/abilities, and Extra Attack have been converted; every other
+named feature
 across Classes/Races/Backgrounds is still a `RuleId` citation with no
 mechanical payload.
 

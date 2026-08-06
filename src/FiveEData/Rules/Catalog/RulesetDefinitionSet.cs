@@ -1,4 +1,5 @@
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
@@ -18,6 +19,8 @@ internal sealed class RulesetDefinitionSet
         ClassDefinitionSet classes,
         IReadOnlyList<FightingStyleDefinition> fightingStyles,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
+        IReadOnlyList<ExtraAttackProgressionDefinition>
+            extraAttackProgressions,
         IReadOnlyList<BackgroundDefinition> backgrounds)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
@@ -29,6 +32,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(classes);
         ArgumentNullException.ThrowIfNull(fightingStyles);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
+        ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
 
         SourceDocuments = sourceDocuments;
@@ -40,6 +44,7 @@ internal sealed class RulesetDefinitionSet
         Classes = classes;
         FightingStyles = fightingStyles;
         SpellSlotProgressions = spellSlotProgressions;
+        ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
     }
 
@@ -59,6 +64,10 @@ internal sealed class RulesetDefinitionSet
 
     public IReadOnlyList<SpellSlotProgressionDefinition>
         SpellSlotProgressions
+    { get; }
+
+    public IReadOnlyList<ExtraAttackProgressionDefinition>
+        ExtraAttackProgressions
     { get; }
 
     public IReadOnlyList<BackgroundDefinition> Backgrounds { get; }

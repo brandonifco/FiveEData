@@ -1,5 +1,6 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
@@ -123,6 +124,11 @@ internal static class CatalogIntegrityValidator
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
+        HashSet<ExtraAttackProgressionId> extraAttackProgressionIds =
+            definitions.ExtraAttackProgressions
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         errors.AddRange(
             ClassCatalogIntegrityValidator.Validate(
                 definitions.Classes,
@@ -131,7 +137,8 @@ internal static class CatalogIntegrityValidator
                 skillIds,
                 weaponIds,
                 ruleIds,
-                spellSlotProgressionIds));
+                spellSlotProgressionIds,
+                extraAttackProgressionIds));
 
         foreach (
             SpellSlotProgressionDefinition spellSlotProgression
@@ -140,6 +147,17 @@ internal static class CatalogIntegrityValidator
             ValidateSources(
                 $"Spell slot progression '{spellSlotProgression.Id}'",
                 spellSlotProgression.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            ExtraAttackProgressionDefinition extraAttackProgression
+            in definitions.ExtraAttackProgressions)
+        {
+            ValidateSources(
+                $"Extra Attack progression '{extraAttackProgression.Id}'",
+                extraAttackProgression.Sources,
                 sourceIds,
                 errors);
         }

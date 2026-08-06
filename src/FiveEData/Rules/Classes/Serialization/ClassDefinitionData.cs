@@ -54,6 +54,9 @@ internal sealed class ClassDefinitionData
     public string? SpellcastingAbilityId { get; init; }
 
     [JsonRequired]
+    public string? ExtraAttackProgressionId { get; init; }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }
 

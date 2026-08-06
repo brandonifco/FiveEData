@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -132,6 +133,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             [CreateSource()]);
@@ -320,6 +322,7 @@ public sealed class ClassFoundationTests
         IEnumerable<ClassLevelFeature>? levelFeatures = null,
         SpellSlotProgressionId? spellSlotProgressionId = null,
         AbilityId? spellcastingAbilityId = null,
+        ExtraAttackProgressionId? extraAttackProgressionId = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -343,6 +346,7 @@ public sealed class ClassFoundationTests
             levelFeatures ?? [],
             spellSlotProgressionId,
             spellcastingAbilityId,
+            extraAttackProgressionId,
             sources ?? [CreateSource()]);
     }
 
