@@ -163,6 +163,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
+            metamagicOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

@@ -1,6 +1,7 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
+using FiveEData.Rules.Classes.Metamagic;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -18,6 +19,7 @@ internal sealed class RulesetDefinitionSet
         RaceDefinitionSet races,
         ClassDefinitionSet classes,
         IReadOnlyList<FightingStyleDefinition> fightingStyles,
+        IReadOnlyList<MetamagicOptionDefinition> metamagicOptions,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
@@ -31,6 +33,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(races);
         ArgumentNullException.ThrowIfNull(classes);
         ArgumentNullException.ThrowIfNull(fightingStyles);
+        ArgumentNullException.ThrowIfNull(metamagicOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -43,6 +46,7 @@ internal sealed class RulesetDefinitionSet
         Races = races;
         Classes = classes;
         FightingStyles = fightingStyles;
+        MetamagicOptions = metamagicOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -61,6 +65,7 @@ internal sealed class RulesetDefinitionSet
     public RaceDefinitionSet Races { get; }
     public ClassDefinitionSet Classes { get; }
     public IReadOnlyList<FightingStyleDefinition> FightingStyles { get; }
+    public IReadOnlyList<MetamagicOptionDefinition> MetamagicOptions { get; }
 
     public IReadOnlyList<SpellSlotProgressionDefinition>
         SpellSlotProgressions

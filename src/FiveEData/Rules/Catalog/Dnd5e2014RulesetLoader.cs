@@ -4,6 +4,8 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.FightingStyles.Serialization;
+using FiveEData.Rules.Classes.Metamagic;
+using FiveEData.Rules.Classes.Metamagic.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.Spellcasting.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
@@ -106,6 +108,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string FightingStylesResource =
         "FiveEData.Data.dnd5e2014.fighting-styles.json";
+
+    private const string MetamagicOptionsResource =
+        "FiveEData.Data.dnd5e2014.metamagic-options.json";
 
     private const string SpellSlotProgressionsResource =
         "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
@@ -269,6 +274,11 @@ internal static class Dnd5e2014RulesetLoader
             FightingStyleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(FightingStylesResource));
 
+        IReadOnlyList<MetamagicOptionDefinition> metamagicOptions =
+            MetamagicOptionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    MetamagicOptionsResource));
+
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
             SpellSlotProgressionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
@@ -427,6 +437,7 @@ internal static class Dnd5e2014RulesetLoader
             races: raceDefinitionSet,
             classes: classDefinitionSet,
             fightingStyles: fightingStyles,
+            metamagicOptions: metamagicOptions,
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds);
@@ -472,6 +483,7 @@ internal static class Dnd5e2014RulesetLoader
             classes: new ClassCatalog(classes),
             subclasses: new SubclassCatalog(subclasses),
             fightingStyles: new FightingStyleCatalog(fightingStyles),
+            metamagicOptions: new MetamagicOptionCatalog(metamagicOptions),
             spellSlotProgressions:
                 new SpellSlotProgressionCatalog(spellSlotProgressions),
             extraAttackProgressions:

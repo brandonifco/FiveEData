@@ -1352,6 +1352,7 @@ public sealed class CatalogIntegrityTests
                 classes: classes ?? [],
                 subclasses: subclasses ?? []),
             fightingStyles: [],
+            metamagicOptions: [],
             spellSlotProgressions: spellSlotProgressions ?? [],
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: []);

@@ -2,6 +2,7 @@ using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
+using FiveEData.Rules.Classes.Metamagic;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -188,6 +189,17 @@ internal static class CatalogIntegrityValidator
                         $"{owner} references missing class '{classId}'.");
                 }
             }
+        }
+
+        foreach (
+            MetamagicOptionDefinition metamagicOption
+            in definitions.MetamagicOptions)
+        {
+            ValidateSources(
+                $"Metamagic option '{metamagicOption.Id}'",
+                metamagicOption.Sources,
+                sourceIds,
+                errors);
         }
 
         errors.AddRange(
