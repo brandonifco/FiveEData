@@ -1400,5 +1400,75 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.draconic-bloodline",
+    "name": "Draconic Bloodline",
+    "classId": "dnd5e2014.class.sorcerer",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.dragon-ancestor"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.draconic-resilience"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.elemental-affinity"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.dragon-wings"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.draconic-presence"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.wild-magic",
+    "name": "Wild Magic",
+    "classId": "dnd5e2014.class.sorcerer",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.wild-magic-surge"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.tides-of-chaos"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.bend-luck"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.controlled-chaos"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.spell-bombardment"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 103,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]
