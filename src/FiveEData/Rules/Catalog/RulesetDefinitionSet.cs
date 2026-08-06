@@ -1,5 +1,6 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
+using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ExtraAttack;
@@ -26,6 +27,8 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<BattleMasterManeuverDefinition> battleMasterManeuvers,
         IReadOnlyList<EldritchInvocationDefinition> eldritchInvocations,
         IReadOnlyList<ElementalDisciplineDefinition> elementalDisciplines,
+        IReadOnlyList<ChannelDivinityOptionDefinition>
+            channelDivinityOptions,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
@@ -43,6 +46,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(battleMasterManeuvers);
         ArgumentNullException.ThrowIfNull(eldritchInvocations);
         ArgumentNullException.ThrowIfNull(elementalDisciplines);
+        ArgumentNullException.ThrowIfNull(channelDivinityOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -59,6 +63,7 @@ internal sealed class RulesetDefinitionSet
         BattleMasterManeuvers = battleMasterManeuvers;
         EldritchInvocations = eldritchInvocations;
         ElementalDisciplines = elementalDisciplines;
+        ChannelDivinityOptions = channelDivinityOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -87,6 +92,10 @@ internal sealed class RulesetDefinitionSet
     { get; }
 
     public IReadOnlyList<ElementalDisciplineDefinition> ElementalDisciplines
+    { get; }
+
+    public IReadOnlyList<ChannelDivinityOptionDefinition>
+        ChannelDivinityOptions
     { get; }
 
     public IReadOnlyList<SpellSlotProgressionDefinition>

@@ -40,6 +40,7 @@ public sealed class Dnd5e2014Ruleset
         BattleMasterManeuverCatalog battleMasterManeuvers,
         EldritchInvocationCatalog eldritchInvocations,
         ElementalDisciplineCatalog elementalDisciplines,
+        ChannelDivinityOptionCatalog channelDivinityOptions,
         SpellSlotProgressionCatalog spellSlotProgressions,
         ExtraAttackProgressionCatalog extraAttackProgressions,
         BackgroundCatalog backgrounds,
@@ -71,6 +72,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(battleMasterManeuvers);
         ArgumentNullException.ThrowIfNull(eldritchInvocations);
         ArgumentNullException.ThrowIfNull(elementalDisciplines);
+        ArgumentNullException.ThrowIfNull(channelDivinityOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -102,6 +104,7 @@ public sealed class Dnd5e2014Ruleset
         BattleMasterManeuvers = battleMasterManeuvers;
         EldritchInvocations = eldritchInvocations;
         ElementalDisciplines = elementalDisciplines;
+        ChannelDivinityOptions = channelDivinityOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -141,6 +144,7 @@ public sealed class Dnd5e2014Ruleset
     public BattleMasterManeuverCatalog BattleMasterManeuvers { get; }
     public EldritchInvocationCatalog EldritchInvocations { get; }
     public ElementalDisciplineCatalog ElementalDisciplines { get; }
+    public ChannelDivinityOptionCatalog ChannelDivinityOptions { get; }
     public SpellSlotProgressionCatalog SpellSlotProgressions { get; }
     public ExtraAttackProgressionCatalog ExtraAttackProgressions { get; }
     public BackgroundCatalog Backgrounds { get; }

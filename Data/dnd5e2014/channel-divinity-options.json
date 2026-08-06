@@ -1,0 +1,112 @@
+[
+  {
+    "id": "dnd5e2014.channel-divinity-option.knowledge-of-the-ages",
+    "name": "Knowledge of the Ages",
+    "rangeFeet": null,
+    "savingThrowAbilityId": null,
+    "durationMinutes": 10,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 59, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.read-thoughts",
+    "name": "Read Thoughts",
+    "rangeFeet": 60,
+    "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 59, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.preserve-life",
+    "name": "Preserve Life",
+    "rangeFeet": 30,
+    "savingThrowAbilityId": null,
+    "durationMinutes": null,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 60, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.radiance-of-the-dawn",
+    "name": "Radiance of the Dawn",
+    "rangeFeet": 30,
+    "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+    "durationMinutes": null,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 61, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.charm-animals-and-plants",
+    "name": "Charm Animals and Plants",
+    "rangeFeet": 30,
+    "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 62, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.destructive-wrath",
+    "name": "Destructive Wrath",
+    "rangeFeet": null,
+    "savingThrowAbilityId": null,
+    "durationMinutes": null,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 62, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.invoke-duplicity",
+    "name": "Invoke Duplicity",
+    "rangeFeet": 30,
+    "savingThrowAbilityId": null,
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.cloak-of-shadows",
+    "name": "Cloak of Shadows",
+    "rangeFeet": null,
+    "savingThrowAbilityId": null,
+    "durationMinutes": null,
+    "rollBonus": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.guided-strike",
+    "name": "Guided Strike",
+    "rangeFeet": null,
+    "savingThrowAbilityId": null,
+    "durationMinutes": null,
+    "rollBonus": 10,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.war-gods-blessing",
+    "name": "War God's Blessing",
+    "rangeFeet": 30,
+    "savingThrowAbilityId": null,
+    "durationMinutes": null,
+    "rollBonus": 10,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
+    ]
+  }
+]

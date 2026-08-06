@@ -241,6 +241,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             battleMasterManeuvers: [],
             eldritchInvocations: [],
             elementalDisciplines: [],
+            channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

@@ -352,6 +352,7 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             battleMasterManeuvers: [],
             eldritchInvocations: [],
             elementalDisciplines: [],
+            channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

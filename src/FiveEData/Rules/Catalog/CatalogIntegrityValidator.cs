@@ -1,6 +1,7 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
+using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ExtraAttack;
@@ -247,6 +248,29 @@ internal static class CatalogIntegrityValidator
                 elementalDiscipline.Sources,
                 sourceIds,
                 errors);
+        }
+
+        foreach (
+            ChannelDivinityOptionDefinition channelDivinityOption
+            in definitions.ChannelDivinityOptions)
+        {
+            string owner =
+                $"Channel Divinity option '{channelDivinityOption.Id}'";
+
+            ValidateSources(
+                owner,
+                channelDivinityOption.Sources,
+                sourceIds,
+                errors);
+
+            if (channelDivinityOption.SavingThrowAbilityId is
+                    { } savingThrowAbilityId &&
+                !abilityIds.Contains(savingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{savingThrowAbilityId}'.");
+            }
         }
 
         errors.AddRange(
