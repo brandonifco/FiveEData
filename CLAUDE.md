@@ -844,6 +844,110 @@ domain built so far, once the real content was read rather than assumed:
   as always: cite the page where the feature's own substantial body
   text lives, not wherever a stray heading or stat line surfaces first.
 
+## Quantized mechanics — a second pass over already-built content
+
+**Standing decision, 2026-08-06.** Every domain built so far
+(Races/Classes/Backgrounds) stores a named feature's actual
+game-mechanical payload — Rage's damage bonus, Extra Attack's count, a
+spell slot table, a Fighting Style's own numbers — as a `RuleId`
+citation only (`RuleDefinition` is `Id`/`Name`/`Sources`, nothing else).
+That was the right call for the provenance-verified-breadth goal
+Classes/Races/Backgrounds were built for, but this project's other
+purpose — a possible future game, built and compared independently
+against 5eGoldBox's own hand-authored, execution-ready ruleset content
+(the two are parallel projects and are never wired together) — needs
+the numbers themselves, not a page reference. This is a real, large
+second pass over content already marked "complete" above, not new
+domain coverage, and it isn't finished — Fighting Style is the first
+domain converted, proving the shape; everything else this section
+lists as remaining is still citation-only.
+
+**Fighting Style converted first, proving the shape.** Chosen for the
+same reason Fighter was chosen to prove the Classes shape: shared
+across three classes (Fighter/Ranger/Paladin), exactly six named
+options, no sub-choices of its own, and — once actually read side by
+side against the PHB rather than assumed — a real per-class
+availability asymmetry worth getting right: Ranger offers 4 of 6 (no
+Great Weapon Fighting/Protection), Paladin offers a different 4 of 6
+(no Archery/Two-Weapon Fighting), Fighter alone offers all 6. Verified
+directly against the cleanly-scanned PHB PDF (pages 72/85/91), not
+from memory.
+
+- **New domain, additive only — no existing type touched.**
+  `Rules/Classes/FightingStyles/` follows the same five-piece shape
+  every domain uses (`FightingStyleId`/`FightingStyleDefinition`/
+  `FightingStyleDefinitionValidator`/`Serialization/*`/
+  `FightingStyleCatalog`), sibling to `Rules/Classes` the way
+  `Rules/Equipment/Weapons` sits under `Rules/Equipment`.
+  `ClassLevelFeature`/`classes.json`'s existing
+  `dnd5e2014.class-rule.fighting-style`/`paladin-fighting-style`
+  gateway citations are untouched — a fighting style option instead
+  carries its own `AvailableToClassIds: IReadOnlyList<ClassId>`, since
+  the per-class option subset can't be derived from which gateway
+  `RuleId` a class cites (Fighter and Ranger cite the *same* shared
+  gateway, yet offer different option sets).
+- **The effect schema is deliberately not a generic DSL.** 5e's
+  mechanics are too heterogeneous for one flat "Effect" shape to cover
+  honestly (a flat roll bonus, a conditional damage bonus, a reroll
+  rule, and a reaction are different in kind, not just in parameters)
+  — instead `FightingStyleDefinition` carries several typed, nullable
+  mechanism fields side by side (`RollBonus`/`ArmorClassBonus`/
+  `DamageDieReroll`/`Reaction`/`GrantsOffHandAbilityModifierDamage`),
+  the same multi-optional-field shape `WeaponDefinition` already
+  established (`Damage`/`Range`/`VersatileDamage`/`AmmunitionTypeId`),
+  not a new discriminated-union pattern this codebase doesn't
+  otherwise use. `FightingStyleDefinitionValidator` enforces exactly
+  one mechanism populated, since every real 2014 PHB option is a
+  single distinct mechanic.
+- **A new `FightingStyleWeaponRequirement` enum, not a reuse of
+  `WeaponUsageCategory`/`WeaponProperty`.** Archery's "ranged weapons"
+  condition could reuse `WeaponUsageCategory.Ranged` directly, but
+  Dueling's "wielding a melee weapon in one hand and no other weapons"
+  and Two-Weapon Fighting's "engaged in two-weapon fighting" are
+  wielding-state conditions — about what else is in the other hand —
+  not a property of a single weapon record, so they can't be expressed
+  by referencing `WeaponDefinition` fields alone. Great Weapon
+  Fighting's condition *does* map onto existing
+  `WeaponProperty.TwoHanded`/`.Versatile`, but is still named through
+  the same enum for one consistent "what does this fighting style
+  require of the weapon being used" axis across all three roll/reroll
+  mechanisms, rather than splitting reused-vs-new conditions across two
+  different types.
+- Public API: the exported surface grew by the new domain's own public
+  types (`FightingStyleId`, `FightingStyleDefinition`,
+  `FightingStyleRollTarget`, `FightingStyleWeaponRequirement`,
+  `FightingStyleRollBonus`, `FightingStyleDamageDieReroll`,
+  `FightingStyleReaction`, `FightingStyleCatalog`, plus
+  `Dnd5e2014Ruleset.FightingStyles`) — no existing public type's shape
+  changed. `RulesetDefinitionSet`/`Dnd5e2014RulesetLoader`/
+  `CatalogIntegrityValidator` wired through the same pattern every
+  other domain uses (cross-references `AvailableToClassIds` against
+  the real `ClassId` set). Full gate green: Debug+Release build 0
+  warnings, 1158 tests (was 1115; +43 new —
+  `FightingStyleFoundationTests`/`FightingStyleDefinitionLoaderTests`/
+  `FightingStyleDataFileTests`, the same three-file convention every
+  domain follows).
+- **Not yet decided: how the other, larger choice-point catalogs**
+  (Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
+  Disciplines, Channel Divinity options, Pact Boon) **should reuse or
+  diverge from this shape** — each is bigger, and some (Pact Boon,
+  Battle Master maneuvers) have real sub-structure of their own (a
+  maneuver has its own save DC and triggering condition, not just a
+  flat bonus). Fighting Style proved the *pattern* (typed mechanism
+  fields, not a DSL; a class-availability list kept separate from the
+  gateway citation); it didn't prove every mechanism shape a later
+  catalog will need.
+- **Remaining, tracked but not started:** spellcasting slot tables
+  (full/half/third-caster + Warlock's distinct Pact Magic table), the
+  other per-level numeric progressions (Extra Attack, Rage, Sneak
+  Attack, Divine Strike, Ki/sorcery points, Wild Shape/Circle Forms
+  caps, auras, Bardic Inspiration die, Channel Divinity uses, Mystic
+  Arcanum, Font of Magic conversion), the larger choice-point catalogs
+  above, race trait quantization (Darkvision range, resistance/
+  advantage grants, granted spells), and a background audit (likely
+  little to quantize — most background features are narrative/social,
+  not numeric).
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -976,6 +1080,13 @@ rule prose beyond the existing rules citation index
 Feats (and, by extension, Variant Human) are out of scope — they aren't
 part of the free 2014 SRD this project's provenance model is built
 around.
+
+**"Complete" above means citation-complete, not mechanically
+quantized.** Read "Quantized mechanics" below before assuming a class,
+race, or background feature exposes real numbers rather than a page
+reference — as of this writing, only Fighting Style has been
+converted; every other named feature across Classes/Races/Backgrounds
+is still a `RuleId` citation with no mechanical payload.
 
 ## Build
 

@@ -35,6 +35,7 @@ public sealed class Dnd5e2014Ruleset
         SubraceCatalog subraces,
         ClassCatalog classes,
         SubclassCatalog subclasses,
+        FightingStyleCatalog fightingStyles,
         BackgroundCatalog backgrounds,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
@@ -59,6 +60,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(subraces);
         ArgumentNullException.ThrowIfNull(classes);
         ArgumentNullException.ThrowIfNull(subclasses);
+        ArgumentNullException.ThrowIfNull(fightingStyles);
         ArgumentNullException.ThrowIfNull(backgrounds);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
@@ -83,6 +85,7 @@ public sealed class Dnd5e2014Ruleset
         Subraces = subraces;
         Classes = classes;
         Subclasses = subclasses;
+        FightingStyles = fightingStyles;
         Backgrounds = backgrounds;
         Sources = sources;
         Rules = rules;
@@ -115,6 +118,7 @@ public sealed class Dnd5e2014Ruleset
     public SubraceCatalog Subraces { get; }
     public ClassCatalog Classes { get; }
     public SubclassCatalog Subclasses { get; }
+    public FightingStyleCatalog FightingStyles { get; }
     public BackgroundCatalog Backgrounds { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }

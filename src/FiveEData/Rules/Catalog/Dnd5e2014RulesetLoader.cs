@@ -2,6 +2,8 @@ using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Backgrounds.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Classes.FightingStyles;
+using FiveEData.Rules.Classes.FightingStyles.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -97,6 +99,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string SubclassesResource =
         "FiveEData.Data.dnd5e2014.subclasses.json";
+
+    private const string FightingStylesResource =
+        "FiveEData.Data.dnd5e2014.fighting-styles.json";
 
     private const string BackgroundsResource =
         "FiveEData.Data.dnd5e2014.backgrounds.json";
@@ -250,6 +255,10 @@ internal static class Dnd5e2014RulesetLoader
             SubclassDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(SubclassesResource));
 
+        IReadOnlyList<FightingStyleDefinition> fightingStyles =
+            FightingStyleDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(FightingStylesResource));
+
         IReadOnlyList<BackgroundDefinition> backgrounds =
             BackgroundDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(BackgroundsResource));
@@ -396,6 +405,7 @@ internal static class Dnd5e2014RulesetLoader
             creatureVocabulary: creatureVocabulary,
             races: raceDefinitionSet,
             classes: classDefinitionSet,
+            fightingStyles: fightingStyles,
             backgrounds: backgrounds);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -438,6 +448,7 @@ internal static class Dnd5e2014RulesetLoader
             subraces: new SubraceCatalog(subraces),
             classes: new ClassCatalog(classes),
             subclasses: new SubclassCatalog(subclasses),
+            fightingStyles: new FightingStyleCatalog(fightingStyles),
             backgrounds: new BackgroundCatalog(backgrounds),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));

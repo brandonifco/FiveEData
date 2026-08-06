@@ -483,6 +483,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             creatureVocabulary: creatureVocabulary,
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
+            fightingStyles: [],
             backgrounds: []);
     }
 }

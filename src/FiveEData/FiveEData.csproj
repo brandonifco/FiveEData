@@ -46,6 +46,9 @@
       Include="../../Data/dnd5e2014/subclasses.json"
       LogicalName="FiveEData.Data.dnd5e2014.subclasses.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/fighting-styles.json"
+      LogicalName="FiveEData.Data.dnd5e2014.fighting-styles.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/backgrounds.json"
       LogicalName="FiveEData.Data.dnd5e2014.backgrounds.json" />
     <EmbeddedResource

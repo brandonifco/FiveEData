@@ -310,6 +310,7 @@ public sealed class MundaneServiceCatalogIntegrityTests
                     alignments: []),
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
+            fightingStyles: [],
             backgrounds: []);
     }
 }
