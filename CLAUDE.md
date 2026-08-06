@@ -418,6 +418,60 @@ word and nothing else).
   starting page throughout this project). Use this same cleanly-scanned PDF
   (not the archive.org export) for all classes built from here on.
 
+**Wizard was the sixth class built, and by far the most involved so
+far** — 8 arcane traditions (the most subclasses of any PHB class) plus a
+spellbook/ritual-casting/arcane-recovery mechanic no other class has:
+- **Core `Spellcasting` again reduces to one citation**, following Bard's
+  precedent exactly — Cantrips, the Spellbook mechanic (including the
+  "Your Spellbook" sidebar on copying/replacing a lost spellbook),
+  Preparing and Casting Spells, Spellcasting Ability, Ritual Casting, and
+  Spellcasting Focus are all folded into `wizard-spellcasting` with no
+  structured spellbook-contents field — consistent with the standing
+  discipline of never storing spell lists as data.
+- **`Ability Score Improvement` confirmed a fourth time**, word-for-word
+  identical to the Barbarian/Monk/Bard text, gaining a fourth
+  `SourceReference` rather than a `wizard-` prefixed entry.
+- **Each school's `X Savant` feature stays its own prefixed `RuleId`,
+  not a shared `savant` entry**, despite all eight being built from the
+  identical template sentence ("the gold and time you must spend to copy
+  a[n] `<school>` spell into your spellbook is halved") — the object of
+  the discount is a different, mutually exclusive trigger per school (an
+  Abjuration Savant gets no benefit copying a Divination spell), so this
+  is the same category of decision as `Bonus Proficiencies`: a recurring
+  template name that describes eight genuinely different mechanics, not
+  one mechanic repeated. `EverySchoolSavantFeatureIsItsOwnDistinctRuleId`
+  in `SubclassDataFileTests` pins this down explicitly so a future
+  "helpful" consolidation doesn't collapse them.
+- **Wizard's own weapon proficiencies are entirely named exceptions, no
+  category at all** — "Daggers, darts, slings, quarterstaffs, light
+  crossbows" is five `WeaponProficiencyIds` with an empty
+  `WeaponProficiencyCategories`, the first class where the category list
+  is empty rather than `[Simple]`-plus-exceptions (Monk/Rogue) or a bare
+  category (Fighter/Barbarian). `ArmorProficiencyCategories` is likewise
+  empty — Wizard is the first class with no armor proficiency of any
+  kind, not even Light.
+- **Arcane Tradition is chosen at 2nd level, not 3rd** — every subclass
+  gateway built so far (Primal Path, Martial Archetype, Monastic
+  Tradition, Roguish Archetype, Bard College) chose at 3rd level, which
+  had been enough precedent that `SubclassDataFileTests` asserted it as a
+  blanket rule (`ChosenAtLevel == 3` for every subclass) until Wizard's
+  real table text broke that assumption. The test is now split into
+  `EveryNonWizardSubclassIsChosenAtThirdLevel` /
+  `EveryWizardSubclassIsChosenAtSecondLevel` rather than special-cased
+  inline — a reminder that a rule confirmed by five classes in a row is
+  still only as solid as the PHB text of the sixth.
+- **`Spell Resistance` (Abjuration's 14th-level capstone) is a genuinely
+  new, unprefixed `RuleId`** despite the generic-sounding name — nothing
+  else in the catalog currently uses it, so there was no collision to
+  weigh, unlike `Bonus Proficiencies`/`Expertise`/`Extra Attack`. Revisit
+  if a later class's own "Spell Resistance"-named feature turns up with
+  different text.
+- **Page citations for this class came from the cleanly-scanned PDF from
+  the start** (see the Bard citation-precision note above), not
+  reconstructed after the fact — the school-by-school page assignments
+  were read directly off legible per-page footers throughout, the same
+  precision level as Fighter/Barbarian/Monk/Rogue.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -453,7 +507,7 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 17: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 18: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
@@ -463,36 +517,39 @@ Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight),
 Barbarian (both subclasses — Path of the Berserker, Path of the Totem
 Warrior), Monk (all 3 subclasses — Way of the Open Hand, Way of Shadow,
 Way of the Four Elements), Rogue (all 3 subclasses — Thief, Assassin,
-Arcane Trickster), and Bard (both subclasses — College of Lore, College
-of Valor) are built — see "Classes" above, including the cross-class
-`RuleId` sharing question, resolved with evidence from all five (most
-recently: Ability Score Improvement confirmed a third time verbatim
-against Bard's; Expertise turned out to be a genuine Bard/Rogue name
-collision, not a share, retroactively prefixing Rogue's previously-bare
-entry the same way Unarmored Defense's collision was handled). Bard is
-also the first full spellcaster built, confirming ahead of schedule that
-a class's own core `Spellcasting` feature reduces to one citation the
-same way Eldritch Knight's and Arcane Trickster's subclass-only
-spellcasting already did. The other 7 PHB classes (Cleric, Druid,
-Paladin, Ranger, Sorcerer, Warlock, Wizard) are not yet built — note that
-all of them are full or half spellcasters like Bard, so the core-
+Arcane Trickster), Bard (both subclasses — College of Lore, College of
+Valor), and Wizard (all 8 arcane traditions — Abjuration, Conjuration,
+Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation)
+are built — see "Classes" above, including the cross-class `RuleId`
+sharing question, resolved with evidence from all six (most recently:
+Ability Score Improvement confirmed a fourth time verbatim against
+Wizard's; each school's `X Savant` feature stayed separately prefixed
+despite a shared template sentence, since the actual discount applies to
+a different school each time). Wizard is also the first class where a
+recurring template name split into as many as eight separate `RuleId`s
+at once, and the first to break the "every subclass chosen at 3rd level"
+assumption the test suite had been asserting blanket-style since Fighter
+(Arcane Tradition is 2nd level). The other 6 PHB classes (Cleric, Druid,
+Paladin, Ranger, Sorcerer, Warlock) are not yet built — note that all of
+them are full or half spellcasters like Bard and Wizard, so the core-
 `Spellcasting`-as-single-citation approach carries forward directly; when
 picking one up, re-derive RuleId cross-class-sharing decisions against
 the precedent in "Classes" above (default to sharing a generic-named
 mechanic like Ability Score Improvement/Extra Attack/Evasion unless the
 actual PHB text diverges; prefix on a name collision with a different
-mechanic, like Unarmored Defense/Expertise/Bonus Proficiencies) rather
-than assuming it's settled for good — re-verify by reading the real text,
-the same discipline that's paid off at both the class level and the
-individual-feature level so far. Bard's own page citations were
-reconstructed from a noisier PDF source than earlier classes (see
-"Classes" above, end of the Bard section) — worth re-verifying against a
-cleaner scan before treating them as paragraph-precise. Not yet started:
-backgrounds, spells, magic items, and combat/adventuring rule prose
-beyond the existing rules citation index (`Data/dnd5e2014/rules/`, split
-per-domain — see "Architecture" above). Feats (and, by extension,
-Variant Human) are out of scope — they aren't part of the free 2014 SRD
-this project's provenance model is built around.
+mechanic, like Unarmored Defense/Expertise/Bonus Proficiencies/school
+Savant features) rather than assuming it's settled for good — re-verify
+by reading the real text, the same discipline that's paid off at both
+the class level and the individual-feature level so far. Use the
+cleanly-scanned PHB PDF (`~/Downloads/Player's Handbook.pdf`, reliable
+per-page footers) for citations, not the archive.org OCR export used for
+the original Bard pass (see "Classes" above, end of the Bard section, for
+why). Not yet started: backgrounds, spells, magic items, and
+combat/adventuring rule prose beyond the existing rules citation index
+(`Data/dnd5e2014/rules/`, split per-domain — see "Architecture" above).
+Feats (and, by extension, Variant Human) are out of scope — they aren't
+part of the free 2014 SRD this project's provenance model is built
+around.
 
 ## Build
 
