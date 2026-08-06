@@ -32,6 +32,12 @@ Built and complete:
   identified per-level numeric progression and choice-point catalog is
   converted or explicitly, verifiably declined
 
+**"Complete" means citation-complete, not mechanically quantized.** Most
+named features across Classes/Races/Backgrounds are still a `RuleId`
+citation with no mechanical payload — the quantized pass covered leveled
+numbers and choice-point options, not every feature. Check the inventory
+under "Quantized mechanics" before assuming a feature exposes real numbers.
+
 Gate as of the last merge: Debug+Release build 0 warnings, **1743 tests**.
 
 Not started: spells, magic items, and combat/adventuring rule prose beyond
@@ -94,6 +100,12 @@ Top-level domains are siblings: `Rules/Equipment`, `Rules/Expenses`,
 `Rules/Creatures/Races/` (they consume creature vocabulary); Classes and
 Backgrounds do not, since a class/background is a player-build concept in its
 own right, not a vocabulary consumer.
+
+**A parent/child pair is two sibling definitions, never nested.** The child
+carries a back-reference ID to its parent and is validated and cataloged
+independently — `Tool`/`ToolFamilyId` set the shape, `Race`/`Subrace` and
+`Class`/`Subclass` follow it. Follow it again for any future parent/child
+domain rather than nesting the child inside the parent's definition.
 
 ### `RuleDefinition` is split by domain, not one file
 
@@ -287,6 +299,29 @@ A completed second pass over already-built content, extracting the actual
 numbers that a running game needs from features previously stored as
 citations only. Every citation it touched was left in place — this is
 additive.
+
+**Inventory — what actually carries numbers.** Anything not listed here is
+citation-only. Verified against the definition types, not this list; re-check
+rather than trusting it.
+
+- **Catalogs referenced by ID:** `SpellSlotProgressionId` (+
+  `SpellcastingAbilityId`) and `ExtraAttackProgressionId`, on both
+  `ClassDefinition` and `SubclassDefinition`.
+- **Choice-point catalogs** (standalone, not referenced from a definition):
+  Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
+  Elemental Disciplines, Channel Divinity options.
+- **Embedded on `ClassDefinition`:** Rage, Sneak Attack, Ki, Sorcery Points,
+  Wild Shape, Bardic Inspiration, Song of Rest, Channel Divinity uses,
+  Mystic Arcanum, Font of Magic conversion, Aura of Protection, Aura of
+  Courage, Eldritch Invocations known.
+- **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
+  Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding.
+- **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
+  `ResistedDamageTypeIds`, `TranceDurationHours`, `HitPointBonusPerLevel`,
+  the subrace `Speed` override, and the embedded Breath Weapon progression.
+- **On `BackgroundDefinition`:** `SustainedLifestyleId` (a cross-domain
+  reference into the Lifestyles catalog), `AdditionalPeopleFedPerDay`,
+  `GuildDuesGoldPerMonth`, `FastTravelSpeedMultiplier`.
 
 **Shape selection:**
 
