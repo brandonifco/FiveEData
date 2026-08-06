@@ -1,6 +1,8 @@
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -32,6 +34,8 @@ public sealed class ClassDefinition
         ExtraAttackProgressionId? extraAttackProgressionId,
         RageProgressionDetail? rageProgression,
         SneakAttackProgressionDetail? sneakAttackProgression,
+        KiProgressionDetail? kiProgression,
+        SorceryPointsProgressionDetail? sorceryPointsProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -65,6 +69,8 @@ public sealed class ClassDefinition
         ExtraAttackProgressionId = extraAttackProgressionId;
         RageProgression = rageProgression;
         SneakAttackProgression = sneakAttackProgression;
+        KiProgression = kiProgression;
+        SorceryPointsProgression = sorceryPointsProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -86,5 +92,7 @@ public sealed class ClassDefinition
     public ExtraAttackProgressionId? ExtraAttackProgressionId { get; }
     public RageProgressionDetail? RageProgression { get; }
     public SneakAttackProgressionDetail? SneakAttackProgression { get; }
+    public KiProgressionDetail? KiProgression { get; }
+    public SorceryPointsProgressionDetail? SorceryPointsProgression { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

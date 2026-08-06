@@ -113,6 +113,8 @@
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.fighter",
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -287,6 +289,8 @@
       "requiresNotWearingHeavyArmor": true
     },
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -428,6 +432,31 @@
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": {
+      "pointsByLevel": [
+        { "characterLevel": 2, "points": 2 },
+        { "characterLevel": 3, "points": 3 },
+        { "characterLevel": 4, "points": 4 },
+        { "characterLevel": 5, "points": 5 },
+        { "characterLevel": 6, "points": 6 },
+        { "characterLevel": 7, "points": 7 },
+        { "characterLevel": 8, "points": 8 },
+        { "characterLevel": 9, "points": 9 },
+        { "characterLevel": 10, "points": 10 },
+        { "characterLevel": 11, "points": 11 },
+        { "characterLevel": 12, "points": 12 },
+        { "characterLevel": 13, "points": 13 },
+        { "characterLevel": 14, "points": 14 },
+        { "characterLevel": 15, "points": 15 },
+        { "characterLevel": 16, "points": 16 },
+        { "characterLevel": 17, "points": 17 },
+        { "characterLevel": 18, "points": 18 },
+        { "characterLevel": 19, "points": 19 },
+        { "characterLevel": 20, "points": 20 }
+      ],
+      "recoversOnShortRest": true
+    },
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -633,6 +662,8 @@
       "oncePerTurn": true,
       "requiresFinesseOrRangedWeapon": true
     },
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -790,6 +821,8 @@
     "extraAttackProgressionId": null,
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -876,6 +909,8 @@
     "extraAttackProgressionId": null,
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -964,6 +999,8 @@
     "extraAttackProgressionId": null,
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1065,6 +1102,8 @@
     "extraAttackProgressionId": null,
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1177,6 +1216,8 @@
     "extraAttackProgressionId": null,
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1310,6 +1351,8 @@
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1434,6 +1477,8 @@
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1528,6 +1573,31 @@
     "extraAttackProgressionId": null,
     "rageProgression": null,
     "sneakAttackProgression": null,
+    "kiProgression": null,
+    "sorceryPointsProgression": {
+      "pointsByLevel": [
+        { "characterLevel": 2, "points": 2 },
+        { "characterLevel": 3, "points": 3 },
+        { "characterLevel": 4, "points": 4 },
+        { "characterLevel": 5, "points": 5 },
+        { "characterLevel": 6, "points": 6 },
+        { "characterLevel": 7, "points": 7 },
+        { "characterLevel": 8, "points": 8 },
+        { "characterLevel": 9, "points": 9 },
+        { "characterLevel": 10, "points": 10 },
+        { "characterLevel": 11, "points": 11 },
+        { "characterLevel": 12, "points": 12 },
+        { "characterLevel": 13, "points": 13 },
+        { "characterLevel": 14, "points": 14 },
+        { "characterLevel": 15, "points": 15 },
+        { "characterLevel": 16, "points": 16 },
+        { "characterLevel": 17, "points": 17 },
+        { "characterLevel": 18, "points": 18 },
+        { "characterLevel": 19, "points": 19 },
+        { "characterLevel": 20, "points": 20 }
+      ],
+      "recoversOnShortRest": false
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

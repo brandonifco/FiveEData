@@ -1,8 +1,12 @@
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
+using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.SorceryPoints.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -159,6 +163,17 @@ internal static class ClassDefinitionLoader
                     sneakAttackProgressionData)
                 : null;
 
+        KiProgressionDetail? kiProgression =
+            data.KiProgression is { } kiProgressionData
+                ? KiProgressionDetailDataMapper.Map(kiProgressionData)
+                : null;
+
+        SorceryPointsProgressionDetail? sorceryPointsProgression =
+            data.SorceryPointsProgression is { } sorceryPointsProgressionData
+                ? SorceryPointsProgressionDetailDataMapper.Map(
+                    sorceryPointsProgressionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -178,6 +193,8 @@ internal static class ClassDefinitionLoader
             extraAttackProgressionId,
             rageProgression,
             sneakAttackProgression,
+            kiProgression,
+            sorceryPointsProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

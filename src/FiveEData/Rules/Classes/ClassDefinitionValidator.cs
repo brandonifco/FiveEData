@@ -1,5 +1,7 @@
+using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
@@ -109,7 +111,45 @@ internal static class ClassDefinitionValidator
                 errors);
         }
 
+        if (@class.KiProgression is { } kiProgression)
+        {
+            ValidatePointsProgression(
+                kiProgression.PointsByLevel
+                    .Select(grant => (grant.CharacterLevel, grant.Points)),
+                "Ki points",
+                errors);
+        }
+
+        if (@class.SorceryPointsProgression is { } sorceryPointsProgression)
+        {
+            ValidatePointsProgression(
+                sorceryPointsProgression.PointsByLevel
+                    .Select(grant => (grant.CharacterLevel, grant.Points)),
+                "Sorcery points",
+                errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidatePointsProgression(
+        IEnumerable<(int CharacterLevel, int Points)> pointsByLevel,
+        string label,
+        ICollection<string> errors)
+    {
+        (int CharacterLevel, int Points)[] grants = pointsByLevel.ToArray();
+
+        if (grants.Length == 0)
+        {
+            errors.Add($"{label} progression must grant at least one level.");
+        }
+
+        ValidateAscending(
+            grants
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, (int?)grant.Points)),
+            label,
+            errors);
     }
 
     private static void ValidateSneakAttackProgression(
