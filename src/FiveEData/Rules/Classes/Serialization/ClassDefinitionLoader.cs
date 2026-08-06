@@ -5,6 +5,8 @@ using FiveEData.Rules.Classes.BardicInspiration.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.FontOfMagic;
+using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -221,6 +223,12 @@ internal static class ClassDefinitionLoader
                     mysticArcanumProgressionData)
                 : null;
 
+        FontOfMagicConversionDetail? fontOfMagicConversion =
+            data.FontOfMagicConversion is { } fontOfMagicConversionData
+                ? FontOfMagicConversionDetailDataMapper.Map(
+                    fontOfMagicConversionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -248,6 +256,7 @@ internal static class ClassDefinitionLoader
             bardicInspirationProgression,
             channelDivinityProgression,
             mysticArcanumProgression,
+            fontOfMagicConversion,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

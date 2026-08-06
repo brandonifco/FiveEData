@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
@@ -1344,6 +1345,18 @@ public sealed class ClassDataFileTests
             20,
             sorceryPointsProgression.PointsByLevel[^1].CharacterLevel);
         Assert.False(sorceryPointsProgression.RecoversOnShortRest);
+
+        FontOfMagicConversionDetail fontOfMagicConversion =
+            sorcerer.FontOfMagicConversion
+            ?? throw new InvalidOperationException(
+                "Expected Sorcerer to have a Font of Magic conversion.");
+        Assert.Equal(
+            [(1, 2), (2, 3), (3, 5), (4, 6), (5, 7)],
+            fontOfMagicConversion.SlotCostByLevel
+                .OrderBy(grant => grant.SpellSlotLevel)
+                .Select(
+                    grant =>
+                        (grant.SpellSlotLevel, grant.SorceryPointCost)));
     }
 
     [Fact]
@@ -1747,6 +1760,26 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.MysticArcanumProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonSorcererClassDeclaresNoFontOfMagicConversion(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.FontOfMagicConversion);
     }
 
     private static ClassDefinition GetClass(

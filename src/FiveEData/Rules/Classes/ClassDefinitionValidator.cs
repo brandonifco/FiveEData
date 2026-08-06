@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
@@ -167,7 +168,52 @@ internal static class ClassDefinitionValidator
                 errors);
         }
 
+        if (@class.FontOfMagicConversion is { } fontOfMagicConversion)
+        {
+            ValidateFontOfMagicConversion(fontOfMagicConversion, errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateFontOfMagicConversion(
+        FontOfMagicConversionDetail fontOfMagicConversion,
+        ICollection<string> errors)
+    {
+        if (fontOfMagicConversion.SlotCostByLevel.Count == 0)
+        {
+            errors.Add(
+                "Font of Magic conversion must grant at least one spell " +
+                "slot cost.");
+        }
+
+        var seenSlotLevels = new HashSet<int>();
+        int? previousCost = null;
+
+        foreach (
+            FontOfMagicSlotCostGrant grant
+            in fontOfMagicConversion.SlotCostByLevel
+                .OrderBy(grant => grant.SpellSlotLevel))
+        {
+            if (!seenSlotLevels.Add(grant.SpellSlotLevel))
+            {
+                errors.Add(
+                    "Font of Magic spell slot level " +
+                    $"{grant.SpellSlotLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousCost is { } previous &&
+                grant.SorceryPointCost <= previous)
+            {
+                errors.Add(
+                    "Font of Magic sorcery point cost at spell slot " +
+                    $"level {grant.SpellSlotLevel} must be greater than " +
+                    "the cost at the previous spell slot level.");
+            }
+
+            previousCost = grant.SorceryPointCost;
+        }
     }
 
     private static void ValidateBardicInspirationProgression(
