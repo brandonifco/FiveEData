@@ -6,6 +6,7 @@ using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -138,6 +139,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -406,6 +408,62 @@ public sealed class ClassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsWildShapeProgressionWithNoFormLimits()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            wildShapeProgression: new WildShapeProgressionDetail(
+                [],
+                usesPerRest: 2,
+                recoversOnShortRest: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Wild Shape progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsWildShapeProgressionWithNonIncreasingChallengeRating()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            wildShapeProgression: new WildShapeProgressionDetail(
+                [
+                    new WildShapeFormLimit(2, 0.5, false, false),
+                    new WildShapeFormLimit(4, 0.5, false, true)
+                ],
+                usesPerRest: 2,
+                recoversOnShortRest: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedWildShapeProgression()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            wildShapeProgression: new WildShapeProgressionDetail(
+                [
+                    new WildShapeFormLimit(2, 0.25, false, false),
+                    new WildShapeFormLimit(4, 0.5, false, true),
+                    new WildShapeFormLimit(8, 1.0, true, true)
+                ],
+                usesPerRest: 2,
+                recoversOnShortRest: true));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
     public void Validator_RejectsNoPrimaryAbilities()
     {
         ClassDefinition @class = Create(
@@ -577,6 +635,7 @@ public sealed class ClassFoundationTests
         SneakAttackProgressionDetail? sneakAttackProgression = null,
         KiProgressionDetail? kiProgression = null,
         SorceryPointsProgressionDetail? sorceryPointsProgression = null,
+        WildShapeProgressionDetail? wildShapeProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -605,6 +664,7 @@ public sealed class ClassFoundationTests
             sneakAttackProgression,
             kiProgression,
             sorceryPointsProgression,
+            wildShapeProgression,
             sources ?? [CreateSource()]);
     }
 

@@ -115,6 +115,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -291,6 +292,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -457,6 +459,7 @@
       "recoversOnShortRest": true
     },
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -664,6 +667,7 @@
     },
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -823,6 +827,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -911,6 +916,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1001,6 +1007,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1104,6 +1111,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1218,6 +1226,30 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": {
+      "formLimitsByLevel": [
+        {
+          "characterLevel": 2,
+          "maxChallengeRating": 0.25,
+          "allowsFlyingSpeed": false,
+          "allowsSwimmingSpeed": false
+        },
+        {
+          "characterLevel": 4,
+          "maxChallengeRating": 0.5,
+          "allowsFlyingSpeed": false,
+          "allowsSwimmingSpeed": true
+        },
+        {
+          "characterLevel": 8,
+          "maxChallengeRating": 1.0,
+          "allowsFlyingSpeed": true,
+          "allowsSwimmingSpeed": true
+        }
+      ],
+      "usesPerRest": 2,
+      "recoversOnShortRest": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1353,6 +1385,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1479,6 +1512,7 @@
     "sneakAttackProgression": null,
     "kiProgression": null,
     "sorceryPointsProgression": null,
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1598,6 +1632,7 @@
       ],
       "recoversOnShortRest": false
     },
+    "wildShapeProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

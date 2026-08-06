@@ -3,6 +3,7 @@ using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
+using FiveEData.Rules.Classes.WildShape.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment.Armor;
@@ -75,6 +76,13 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public SorceryPointsProgressionDetailData? SorceryPointsProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public WildShapeProgressionDetailData? WildShapeProgression
     {
         get;
         init;

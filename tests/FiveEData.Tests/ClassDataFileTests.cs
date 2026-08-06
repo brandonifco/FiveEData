@@ -4,6 +4,7 @@ using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -931,6 +932,29 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(65, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        WildShapeProgressionDetail wildShapeProgression =
+            druid.WildShapeProgression
+            ?? throw new InvalidOperationException(
+                "Expected Druid to have a Wild Shape progression.");
+
+        Assert.Equal(
+            [
+                (2, 0.25, false, false),
+                (4, 0.5, false, true),
+                (8, 1.0, true, true)
+            ],
+            wildShapeProgression.FormLimitsByLevel
+                .OrderBy(limit => limit.CharacterLevel)
+                .Select(
+                    limit => (
+                        limit.CharacterLevel,
+                        limit.MaxChallengeRating,
+                        limit.AllowsFlyingSpeed,
+                        limit.AllowsSwimmingSpeed)));
+
+        Assert.Equal(2, wildShapeProgression.UsesPerRest);
+        Assert.True(wildShapeProgression.RecoversOnShortRest);
     }
 
     [Fact]
@@ -1563,6 +1587,26 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.SorceryPointsProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonDruidClassDeclaresNoWildShapeProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.WildShapeProgression);
     }
 
     private static ClassDefinition GetClass(

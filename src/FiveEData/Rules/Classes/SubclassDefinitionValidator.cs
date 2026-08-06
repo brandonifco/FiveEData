@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Common;
 
@@ -54,7 +55,52 @@ internal static class SubclassDefinitionValidator
             ValidateDivineStrikeProgression(divineStrikeProgression, errors);
         }
 
+        if (subclass.CircleFormsProgression is { } circleFormsProgression)
+        {
+            ValidateCircleFormsProgression(circleFormsProgression, errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateCircleFormsProgression(
+        CircleFormsProgressionDetail circleFormsProgression,
+        ICollection<string> errors)
+    {
+        if (circleFormsProgression.MaxChallengeRatingByLevel.Count == 0)
+        {
+            errors.Add(
+                "Circle Forms progression must grant at least one max " +
+                "challenge rating increase.");
+        }
+
+        var seenLevels = new HashSet<int>();
+        double? previousMaxChallengeRating = null;
+
+        foreach (
+            CircleFormsChallengeRatingGrant grant
+            in circleFormsProgression.MaxChallengeRatingByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    $"Circle Forms max challenge rating character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousMaxChallengeRating is { } previous &&
+                grant.MaxChallengeRating <= previous)
+            {
+                errors.Add(
+                    "Circle Forms max challenge rating at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousMaxChallengeRating = grant.MaxChallengeRating;
+        }
     }
 
     private static void ValidateDivineStrikeProgression(

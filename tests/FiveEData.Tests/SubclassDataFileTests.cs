@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
 
@@ -1174,6 +1175,24 @@ public sealed class SubclassDataFileTests
     }
 
     [Fact]
+    public void CanonicalFile_OnlyCircleOfTheMoonHasACircleFormsProgression()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> otherSubclassIds = subclasses
+            .Select(subclass => subclass.Id.Value)
+            .Where(
+                id => id != "dnd5e2014.subclass.circle-of-the-moon");
+
+        foreach (string id in otherSubclassIds)
+        {
+            SubclassDefinition subclass = GetSubclass(subclasses, id);
+
+            Assert.Null(subclass.CircleFormsProgression);
+        }
+    }
+
+    [Fact]
     public void CanonicalFile_PreservesTheArchfeyMechanics()
     {
         SubclassDefinition archfey = GetSubclass(
@@ -1332,6 +1351,20 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(moon.Sources);
         Assert.Equal(69, source.Page);
+
+        CircleFormsProgressionDetail circleFormsProgression =
+            moon.CircleFormsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Circle of the Moon to have a Circle Forms " +
+                "progression.");
+
+        Assert.Equal(
+            [(2, 1.0), (6, 2.0), (9, 3.0), (12, 4.0), (15, 5.0), (18, 6.0)],
+            circleFormsProgression.MaxChallengeRatingByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.MaxChallengeRating)));
     }
 
     [Fact]

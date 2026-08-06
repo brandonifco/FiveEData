@@ -1,3 +1,5 @@
+using FiveEData.Rules.Classes.CircleForms;
+using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
@@ -114,6 +116,12 @@ internal static class SubclassDefinitionLoader
                     divineStrikeProgressionData)
                 : null;
 
+        CircleFormsProgressionDetail? circleFormsProgression =
+            data.CircleFormsProgression is { } circleFormsProgressionData
+                ? CircleFormsProgressionDetailDataMapper.Map(
+                    circleFormsProgressionData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -123,6 +131,7 @@ internal static class SubclassDefinitionLoader
             spellSlotProgressionId,
             spellcastingAbilityId,
             divineStrikeProgression,
+            circleFormsProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

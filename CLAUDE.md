@@ -19,7 +19,8 @@ Extra Attack progressions ([PR #24](https://github.com/brandonifco/FiveEData/pul
 Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)),
 Sneak Attack ([PR #26](https://github.com/brandonifco/FiveEData/pull/26)),
 Divine Strike ([PR #27](https://github.com/brandonifco/FiveEData/pull/27)),
-Ki and Sorcery Points ([PR #28](https://github.com/brandonifco/FiveEData/pull/28)).
+Ki and Sorcery Points ([PR #28](https://github.com/brandonifco/FiveEData/pull/28)),
+Wild Shape and Circle Forms ([PR #29](https://github.com/brandonifco/FiveEData/pull/29)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
@@ -53,7 +54,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26, #27, and #28 were all merged this way. **Once CI is confirmed
+PR #26, #27, #28, and #29 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1287,16 +1288,73 @@ difference or forced an awkward per-instance override.
   `SorceryPointsProgressionDetail`) and two new members on
   `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
   1356 tests (was 1317; +39 new).
+
+**Wild Shape (Druid) and Circle Forms (Circle of the Moon) converted
+ninth and tenth, together — the first pass to combine a class-level
+progression with its own subclass-level override in one PR**, because
+reading Wild Shape's own text made clear the two features only make
+sense read together: Circle Forms explicitly modifies one column of
+Wild Shape's own table and leaves the other alone.
+
+- **Wild Shape's own leveled table (2nd/4th/8th) captures three
+  columns, not just the max CR number** — `WildShapeFormLimit` is
+  `(CharacterLevel, MaxChallengeRating, AllowsFlyingSpeed,
+  AllowsSwimmingSpeed)`, since the Beast Shapes table's own
+  "Limitations" column ("No flying or swimming speed" → "No flying
+  speed" → no limitation) is just as much a leveled fact as the CR cap
+  and was read off the same table row. **The use count itself is flat,
+  not leveled** — "you can use this feature twice" is one constant
+  (`UsesPerRest = 2`) for the whole class, confirmed by reading the
+  full feature text rather than assumed from the "recurring numeric
+  progression" framing every item on this list has carried so far; not
+  everything under a leveled table heading is itself leveled.
+- **`MaxChallengeRating` is a plain `double`, not a new
+  `ChallengeRating` type** — only three literal values ever appear
+  (1/4, 1/2, 1, later 2-6 for Circle Forms), all exactly representable
+  in binary floating point, and no other domain in this codebase
+  models challenge rating at all yet. Inventing a fraction/CR value
+  type for two call sites would be generality ahead of real need, the
+  same restraint already applied to `RecoversOnShortRest` staying a
+  plain bool instead of a shared enum.
+- **Circle Forms only stores its own CR override, not a duplicate copy
+  of the flying/swimming limitations** — its gateway sentence explicit
+  ("you ignore the Max. CR column of the Beast Shapes table, but must
+  abide by the other limitations there") decomposes cleanly into two
+  independent facts: a subclass-level CR-by-level list
+  (`CircleFormsProgressionDetail.MaxChallengeRatingByLevel`) and the
+  *already-modeled* base `WildShapeProgressionDetail.FormLimitsByLevel`
+  for everything else, combined by a consumer rather than duplicated in
+  data. This is the first quantized progression where a compound cross-
+  reference between a class-level and subclass-level feature turned out
+  to decompose cleanly instead of needing to stay citation-only (the
+  Sneak Attack/Rage precedent for compound rules) — verified by reading
+  both features' full text side by side before concluding it decomposed
+  rather than assuming it would.
+- **Circle Forms' own 6th-level breakpoint is a formula in the book**
+  ("your druid level divided by 3, rounded down"), the first quantized
+  progression built from a computed rule rather than a literal table
+  row. Rather than store the formula, every level 6-20 was hand-computed
+  (`floor(level/3)`) and only the levels where the *result* actually
+  changes were kept as explicit grants (6→2, 9→3, 12→4, 15→5, 18→6) —
+  the same "read the rule, expand it, store the resulting table"
+  treatment Ki/Sorcery Points' dense per-level list already established,
+  just applied to a sparser breakpoint result instead of a value that
+  changes every level.
+- Public API: four new public types (`WildShapeFormLimit`,
+  `WildShapeProgressionDetail`, `CircleFormsChallengeRatingGrant`,
+  `CircleFormsProgressionDetail`) and one new member apiece on
+  `ClassDefinition`/`SubclassDefinition`. Full gate green: Debug+Release
+  build 0 warnings, 1388 tests (was 1356; +32 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Wild Shape/Circle Forms caps, auras, Bardic
-  Inspiration die, Channel Divinity uses, Mystic Arcanum, Font of Magic
-  conversion) — each single-class like Rage/Sneak Attack, so each gets
-  the same "embedded value object, not a catalog" treatment by default,
-  but verify every time the way Divine Strike's three-way split shows
-  is actually necessary — the larger choice-point catalogs (Eldritch
-  Invocations, Battle Master maneuvers, Metamagic, Elemental
-  Disciplines, Channel Divinity options, Pact Boon), race trait
-  quantization (Darkvision range,
+  numeric progressions (auras, Bardic Inspiration die, Channel Divinity
+  uses, Mystic Arcanum, Font of Magic conversion) — each single-class
+  like Rage/Sneak Attack, so each gets the same "embedded value object,
+  not a catalog" treatment by default, but verify every time the way
+  Divine Strike's three-way split and Wild Shape/Circle Forms' compound
+  cross-reference both show is actually necessary — the larger
+  choice-point catalogs (Eldritch Invocations, Battle Master maneuvers,
+  Metamagic, Elemental Disciplines, Channel Divinity options, Pact
+  Boon), race trait quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
   (likely little to quantize — most background features are
   narrative/social, not numeric).
@@ -1439,9 +1497,9 @@ quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
-and Sorcery Points have been converted; every other named feature
-across Classes/Races/Backgrounds is still a `RuleId` citation with no
-mechanical payload.
+Sorcery Points, Wild Shape, and Circle Forms have been converted;
+every other named feature across Classes/Races/Backgrounds is still a
+`RuleId` citation with no mechanical payload.
 
 ## Build
 
