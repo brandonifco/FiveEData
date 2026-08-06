@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
@@ -64,6 +65,7 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -80,6 +82,7 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
             null,
             null,
             null,
@@ -273,6 +276,58 @@ public sealed class SubclassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsCircleFormsProgressionWithNoGrants()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            circleFormsProgression: new CircleFormsProgressionDetail([]));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error =>
+                error.Contains(
+                    "Circle Forms progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsCircleFormsProgressionWithNonIncreasingChallengeRating()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            circleFormsProgression: new CircleFormsProgressionDetail(
+                [
+                    new CircleFormsChallengeRatingGrant(2, 1.0),
+                    new CircleFormsChallengeRatingGrant(6, 1.0)
+                ]));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedCircleFormsProgression()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            circleFormsProgression: new CircleFormsProgressionDetail(
+                [
+                    new CircleFormsChallengeRatingGrant(2, 1.0),
+                    new CircleFormsChallengeRatingGrant(6, 2.0),
+                    new CircleFormsChallengeRatingGrant(9, 3.0),
+                    new CircleFormsChallengeRatingGrant(12, 4.0),
+                    new CircleFormsChallengeRatingGrant(15, 5.0),
+                    new CircleFormsChallengeRatingGrant(18, 6.0)
+                ]));
+
+        Assert.Empty(SubclassDefinitionValidator.Validate(subclass));
+    }
+
+    [Fact]
     public void Catalog_NullInputIsRejected()
     {
         Assert.Throws<ArgumentNullException>(() => new SubclassCatalog(null!));
@@ -354,6 +409,7 @@ public sealed class SubclassFoundationTests
         SpellSlotProgressionId? spellSlotProgressionId = null,
         AbilityId? spellcastingAbilityId = null,
         DivineStrikeProgressionDetail? divineStrikeProgression = null,
+        CircleFormsProgressionDetail? circleFormsProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -365,6 +421,7 @@ public sealed class SubclassFoundationTests
             spellSlotProgressionId,
             spellcastingAbilityId,
             divineStrikeProgression,
+            circleFormsProgression,
             sources ?? [CreateSource()]);
     }
 

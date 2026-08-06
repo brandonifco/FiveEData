@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
 
@@ -22,6 +23,7 @@ public sealed class SubclassDefinitionLoaderTests
           "spellSlotProgressionId": null,
           "spellcastingAbilityId": null,
           "divineStrikeProgression": null,
+          "circleFormsProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -52,6 +54,7 @@ public sealed class SubclassDefinitionLoaderTests
         Assert.Null(subclass.SpellSlotProgressionId);
         Assert.Null(subclass.SpellcastingAbilityId);
         Assert.Null(subclass.DivineStrikeProgression);
+        Assert.Null(subclass.CircleFormsProgression);
         Assert.Single(subclass.Sources);
     }
 
@@ -72,6 +75,7 @@ public sealed class SubclassDefinitionLoaderTests
                       "extension.spell-slot-progression.test",
                     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
                     "divineStrikeProgression": null,
+                    "circleFormsProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -121,6 +125,7 @@ public sealed class SubclassDefinitionLoaderTests
                       "choosableDamageTypeIds": null,
                       "matchesWeaponDamageType": false
                     },
+                    "circleFormsProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -143,6 +148,55 @@ public sealed class SubclassDefinitionLoaderTests
             divineStrikeProgression.FixedDamageTypeId?.Value);
         Assert.Null(divineStrikeProgression.ChoosableDamageTypeIds);
         Assert.False(divineStrikeProgression.MatchesWeaponDamageType);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsCircleFormsProgression()
+    {
+        SubclassDefinition subclass = Assert.Single(
+            SubclassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.subclass.test",
+                    "name": "Test",
+                    "classId": "dnd5e2014.class.druid",
+                    "chosenAtLevel": 2,
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "divineStrikeProgression": null,
+                    "circleFormsProgression": {
+                      "maxChallengeRatingByLevel": [
+                        { "characterLevel": 2, "maxChallengeRating": 1.0 },
+                        { "characterLevel": 6, "maxChallengeRating": 2.0 }
+                      ]
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        CircleFormsProgressionDetail circleFormsProgression =
+            subclass.CircleFormsProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Circle Forms progression.");
+
+        Assert.Equal(2, circleFormsProgression.MaxChallengeRatingByLevel.Count);
+        Assert.Equal(
+            1.0,
+            circleFormsProgression.MaxChallengeRatingByLevel[0]
+                .MaxChallengeRating);
+        Assert.Equal(
+            2.0,
+            circleFormsProgression.MaxChallengeRatingByLevel[1]
+                .MaxChallengeRating);
     }
 
     [Fact]

@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common.Provenance;
@@ -16,6 +17,7 @@ public sealed class SubclassDefinition
         SpellSlotProgressionId? spellSlotProgressionId,
         AbilityId? spellcastingAbilityId,
         DivineStrikeProgressionDetail? divineStrikeProgression,
+        CircleFormsProgressionDetail? circleFormsProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -30,6 +32,7 @@ public sealed class SubclassDefinition
         SpellSlotProgressionId = spellSlotProgressionId;
         SpellcastingAbilityId = spellcastingAbilityId;
         DivineStrikeProgression = divineStrikeProgression;
+        CircleFormsProgression = circleFormsProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -41,5 +44,6 @@ public sealed class SubclassDefinition
     public SpellSlotProgressionId? SpellSlotProgressionId { get; }
     public AbilityId? SpellcastingAbilityId { get; }
     public DivineStrikeProgressionDetail? DivineStrikeProgression { get; }
+    public CircleFormsProgressionDetail? CircleFormsProgression { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

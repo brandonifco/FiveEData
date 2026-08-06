@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 
@@ -29,6 +30,13 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public DivineStrikeProgressionDetailData? DivineStrikeProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public CircleFormsProgressionDetailData? CircleFormsProgression
     {
         get;
         init;

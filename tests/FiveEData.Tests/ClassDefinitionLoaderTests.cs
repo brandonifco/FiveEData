@@ -41,6 +41,7 @@ public sealed class ClassDefinitionLoaderTests
           "sneakAttackProgression": null,
           "kiProgression": null,
           "sorceryPointsProgression": null,
+          "wildShapeProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -90,6 +91,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.SneakAttackProgression);
         Assert.Null(@class.KiProgression);
         Assert.Null(@class.SorceryPointsProgression);
+        Assert.Null(@class.WildShapeProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -152,6 +154,7 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "kiProgression": null,
                     "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -251,6 +254,7 @@ public sealed class ClassDefinitionLoaderTests
                       ],
                       "recoversOnShortRest": false
                     },
+                    "wildShapeProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -271,6 +275,82 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Equal(2, @class.SorceryPointsProgression!.PointsByLevel.Count);
         Assert.Equal(3, @class.SorceryPointsProgression.PointsByLevel[1].Points);
         Assert.False(@class.SorceryPointsProgression.RecoversOnShortRest);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsWildShapeProgression()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.wisdom"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.intelligence",
+                      "dnd5e2014.ability.wisdom"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": {
+                      "formLimitsByLevel": [
+                        {
+                          "characterLevel": 2,
+                          "maxChallengeRating": 0.25,
+                          "allowsFlyingSpeed": false,
+                          "allowsSwimmingSpeed": false
+                        },
+                        {
+                          "characterLevel": 4,
+                          "maxChallengeRating": 0.5,
+                          "allowsFlyingSpeed": false,
+                          "allowsSwimmingSpeed": true
+                        }
+                      ],
+                      "usesPerRest": 2,
+                      "recoversOnShortRest": true
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.NotNull(@class.WildShapeProgression);
+        Assert.Equal(2, @class.WildShapeProgression!.FormLimitsByLevel.Count);
+        Assert.Equal(
+            0.25,
+            @class.WildShapeProgression.FormLimitsByLevel[0]
+                .MaxChallengeRating);
+        Assert.False(
+            @class.WildShapeProgression.FormLimitsByLevel[0]
+                .AllowsSwimmingSpeed);
+        Assert.True(
+            @class.WildShapeProgression.FormLimitsByLevel[1]
+                .AllowsSwimmingSpeed);
+        Assert.Equal(2, @class.WildShapeProgression.UsesPerRest);
+        Assert.True(@class.WildShapeProgression.RecoversOnShortRest);
     }
 
     [Fact]

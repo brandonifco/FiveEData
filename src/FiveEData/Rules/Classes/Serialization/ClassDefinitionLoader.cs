@@ -8,6 +8,8 @@ using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.WildShape;
+using FiveEData.Rules.Classes.WildShape.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -174,6 +176,12 @@ internal static class ClassDefinitionLoader
                     sorceryPointsProgressionData)
                 : null;
 
+        WildShapeProgressionDetail? wildShapeProgression =
+            data.WildShapeProgression is { } wildShapeProgressionData
+                ? WildShapeProgressionDetailDataMapper.Map(
+                    wildShapeProgressionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -195,6 +203,7 @@ internal static class ClassDefinitionLoader
             sneakAttackProgression,
             kiProgression,
             sorceryPointsProgression,
+            wildShapeProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

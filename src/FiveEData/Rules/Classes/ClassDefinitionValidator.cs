@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
@@ -129,7 +130,52 @@ internal static class ClassDefinitionValidator
                 errors);
         }
 
+        if (@class.WildShapeProgression is { } wildShapeProgression)
+        {
+            ValidateWildShapeProgression(wildShapeProgression, errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateWildShapeProgression(
+        WildShapeProgressionDetail wildShapeProgression,
+        ICollection<string> errors)
+    {
+        if (wildShapeProgression.FormLimitsByLevel.Count == 0)
+        {
+            errors.Add(
+                "Wild Shape progression must grant at least one form " +
+                "limit.");
+        }
+
+        var seenLevels = new HashSet<int>();
+        double? previousMaxChallengeRating = null;
+
+        foreach (
+            WildShapeFormLimit limit
+            in wildShapeProgression.FormLimitsByLevel
+                .OrderBy(limit => limit.CharacterLevel))
+        {
+            if (!seenLevels.Add(limit.CharacterLevel))
+            {
+                errors.Add(
+                    "Wild Shape form limit character level " +
+                    $"{limit.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousMaxChallengeRating is { } previous &&
+                limit.MaxChallengeRating <= previous)
+            {
+                errors.Add(
+                    "Wild Shape max challenge rating at level " +
+                    $"{limit.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousMaxChallengeRating = limit.MaxChallengeRating;
+        }
     }
 
     private static void ValidatePointsProgression(
