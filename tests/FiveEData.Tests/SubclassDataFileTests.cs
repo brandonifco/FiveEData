@@ -68,6 +68,12 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.the-great-old-one"
     ];
 
+    private static readonly string[] ExpectedDruidSubclassIds =
+    [
+        "dnd5e2014.subclass.circle-of-the-land",
+        "dnd5e2014.subclass.circle-of-the-moon"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
@@ -77,7 +83,8 @@ public sealed class SubclassDataFileTests
         .. ExpectedBardSubclassIds,
         .. ExpectedWizardSubclassIds,
         .. ExpectedClericSubclassIds,
-        .. ExpectedWarlockSubclassIds
+        .. ExpectedWarlockSubclassIds,
+        .. ExpectedDruidSubclassIds
     ];
 
     [Fact]
@@ -85,7 +92,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(31, subclasses.Count);
+        Assert.Equal(33, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -156,6 +163,7 @@ public sealed class SubclassDataFileTests
             ["dnd5e2014.class.wizard"] = 2,
             ["dnd5e2014.class.cleric"] = 1,
             ["dnd5e2014.class.warlock"] = 1,
+            ["dnd5e2014.class.druid"] = 2,
         };
 
     [Fact]
@@ -474,6 +482,19 @@ public sealed class SubclassDataFileTests
                 subclass => ExpectedWarlockSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(
                 "dnd5e2014.class.warlock",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryDruidSubclassReferencesTheDruidClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedDruidSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.druid",
                 subclass.ClassId.Value));
     }
 
@@ -1056,6 +1077,100 @@ public sealed class SubclassDataFileTests
             .Where(id => id.EndsWith("expanded-spell-list", StringComparison.Ordinal));
 
         Assert.Equal(3, expandedSpellListRuleIds.Distinct().Count());
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesCircleOfTheLandMechanics()
+    {
+        SubclassDefinition land = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.circle-of-the-land");
+
+        Assert.Equal("Circle of the Land", land.Name);
+        Assert.Equal(2, land.ChosenAtLevel);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.land-bonus-cantrip",
+                "dnd5e2014.class-rule.natural-recovery",
+                "dnd5e2014.class-rule.circle-spells",
+                "dnd5e2014.class-rule.circle-spells",
+                "dnd5e2014.class-rule.lands-stride",
+                "dnd5e2014.class-rule.circle-spells",
+                "dnd5e2014.class-rule.circle-spells",
+                "dnd5e2014.class-rule.natures-ward",
+                "dnd5e2014.class-rule.natures-sanctuary"
+            ],
+            land.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(land.Sources);
+        Assert.Equal(68, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesCircleSpellsAtEachGrantLevel()
+    {
+        SubclassDefinition land = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.circle-of-the-land");
+
+        int[] expectedLevels = [3, 5, 7, 9];
+
+        int[] actualLevels = land.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.circle-spells")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesCircleOfTheMoonMechanics()
+    {
+        SubclassDefinition moon = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.circle-of-the-moon");
+
+        Assert.Equal("Circle of the Moon", moon.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.combat-wild-shape",
+                "dnd5e2014.class-rule.circle-forms",
+                "dnd5e2014.class-rule.primal-strike",
+                "dnd5e2014.class-rule.circle-forms",
+                "dnd5e2014.class-rule.elemental-wild-shape",
+                "dnd5e2014.class-rule.thousand-forms"
+            ],
+            moon.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(moon.Sources);
+        Assert.Equal(69, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesCircleFormsAtInitialAndImprovementLevels()
+    {
+        SubclassDefinition moon = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.circle-of-the-moon");
+
+        int[] expectedLevels = [2, 6];
+
+        int[] actualLevels = moon.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.circle-forms")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
     }
 
     private static SubclassDefinition GetSubclass(

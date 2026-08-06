@@ -346,7 +346,7 @@
       },
       {
         "level": 15,
-        "featureRuleId": "dnd5e2014.class-rule.timeless-body"
+        "featureRuleId": "dnd5e2014.class-rule.monk-timeless-body"
       },
       {
         "level": 16,
@@ -906,6 +906,113 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 106,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class.druid",
+    "name": "Druid",
+    "hitDieSides": 8,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.wisdom"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.intelligence",
+      "dnd5e2014.ability.wisdom"
+    ],
+    "armorProficiencyCategories": [
+      "Light",
+      "Medium"
+    ],
+    "proficientWithShields": true,
+    "weaponProficiencyCategories": [],
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.club",
+      "dnd5e2014.weapon.dagger",
+      "dnd5e2014.weapon.dart",
+      "dnd5e2014.weapon.javelin",
+      "dnd5e2014.weapon.mace",
+      "dnd5e2014.weapon.quarterstaff",
+      "dnd5e2014.weapon.scimitar",
+      "dnd5e2014.weapon.sickle",
+      "dnd5e2014.weapon.sling",
+      "dnd5e2014.weapon.spear"
+    ],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.arcana",
+      "dnd5e2014.skill.animal-handling",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.medicine",
+      "dnd5e2014.skill.nature",
+      "dnd5e2014.skill.perception",
+      "dnd5e2014.skill.religion",
+      "dnd5e2014.skill.survival"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.druidic"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.druid-spellcasting"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.wild-shape"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.druid-circle"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.wild-shape"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.wild-shape"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.druid-timeless-body"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.beast-spells"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.archdruid"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 65,
         "section": "Chapter 3: Classes"
       }
     ]

@@ -16,7 +16,8 @@ public sealed class ClassDataFileTests
         "dnd5e2014.class.bard",
         "dnd5e2014.class.wizard",
         "dnd5e2014.class.cleric",
-        "dnd5e2014.class.warlock"
+        "dnd5e2014.class.warlock",
+        "dnd5e2014.class.druid"
     ];
 
     [Fact]
@@ -24,7 +25,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(8, classes.Count);
+        Assert.Equal(9, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -312,7 +313,8 @@ public sealed class ClassDataFileTests
             "dnd5e2014.class.bard",
             "dnd5e2014.class.wizard",
             "dnd5e2014.class.cleric",
-            "dnd5e2014.class.warlock"
+            "dnd5e2014.class.warlock",
+            "dnd5e2014.class.druid"
         ];
 
         Assert.All(
@@ -857,6 +859,111 @@ public sealed class ClassDataFileTests
                 feature.Level == 3 &&
                 feature.FeatureRuleId.Value ==
                     "dnd5e2014.class-rule.pact-boon");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDruidMechanics()
+    {
+        ClassDefinition druid = GetClass(LoadClasses(), "dnd5e2014.class.druid");
+
+        Assert.Equal("Druid", druid.Name);
+        Assert.Equal(1, druid.HitDie.Count);
+        Assert.Equal(8, druid.HitDie.Sides);
+        Assert.Equal(
+            ["dnd5e2014.ability.wisdom"],
+            druid.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(druid.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.intelligence",
+                "dnd5e2014.ability.wisdom"
+            ],
+            druid.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(
+            [ArmorCategory.Light, ArmorCategory.Medium],
+            druid.ArmorProficiencyCategories);
+        Assert.True(druid.ProficientWithShields);
+        Assert.Empty(druid.WeaponProficiencyCategories);
+        Assert.Equal(
+            [
+                "dnd5e2014.weapon.club",
+                "dnd5e2014.weapon.dagger",
+                "dnd5e2014.weapon.dart",
+                "dnd5e2014.weapon.javelin",
+                "dnd5e2014.weapon.mace",
+                "dnd5e2014.weapon.quarterstaff",
+                "dnd5e2014.weapon.scimitar",
+                "dnd5e2014.weapon.sickle",
+                "dnd5e2014.weapon.sling",
+                "dnd5e2014.weapon.spear"
+            ],
+            druid.WeaponProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(2, druid.SkillChoiceCount);
+        Assert.Equal(8, druid.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(druid.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(65, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWildShapeAtEachImprovementLevel()
+    {
+        ClassDefinition druid = GetClass(LoadClasses(), "dnd5e2014.class.druid");
+
+        int[] expectedLevels = [2, 4, 8];
+
+        int[] actualLevels = druid.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.wild-shape")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDruidCircleChoicePoint()
+    {
+        ClassDefinition druid = GetClass(LoadClasses(), "dnd5e2014.class.druid");
+
+        Assert.Contains(
+            druid.LevelFeatures,
+            feature =>
+                feature.Level == 2 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.druid-circle");
+    }
+
+    [Fact]
+    public void CanonicalFile_KeepsDruidAndMonkTimelessBodyAsDistinctRuleIdsDespiteSharedName()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        ClassDefinition druid = GetClass(classes, "dnd5e2014.class.druid");
+        ClassDefinition monk = GetClass(classes, "dnd5e2014.class.monk");
+
+        Assert.Contains(
+            druid.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.druid-timeless-body");
+        Assert.Contains(
+            monk.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.monk-timeless-body");
+        Assert.DoesNotContain(
+            druid.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.monk-timeless-body");
+        Assert.DoesNotContain(
+            monk.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.druid-timeless-body");
     }
 
     private static ClassDefinition GetClass(
