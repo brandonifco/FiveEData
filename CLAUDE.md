@@ -20,7 +20,8 @@ Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)),
 Sneak Attack ([PR #26](https://github.com/brandonifco/FiveEData/pull/26)),
 Divine Strike ([PR #27](https://github.com/brandonifco/FiveEData/pull/27)),
 Ki and Sorcery Points ([PR #28](https://github.com/brandonifco/FiveEData/pull/28)),
-Wild Shape and Circle Forms ([PR #29](https://github.com/brandonifco/FiveEData/pull/29)).
+Wild Shape and Circle Forms ([PR #29](https://github.com/brandonifco/FiveEData/pull/29)),
+Paladin auras ([PR #30](https://github.com/brandonifco/FiveEData/pull/30)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
@@ -54,7 +55,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26, #27, #28, and #29 were all merged this way. **Once CI is confirmed
+PR #26, #27, #28, #29, and #30 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1345,16 +1346,65 @@ Wild Shape's own table and leaves the other alone.
   `CircleFormsProgressionDetail`) and one new member apiece on
   `ClassDefinition`/`SubclassDefinition`. Full gate green: Debug+Release
   build 0 warnings, 1388 tests (was 1356; +32 new).
+
+**Paladin auras converted eleventh — Aura of Protection/Aura of
+Courage (Paladin core) and Aura of Devotion (Oath of Devotion)/Aura
+of Warding (Oath of the Ancients).** All four share the identical
+"10 feet, expands to 30 feet at 18th level" range progression — a
+genuine case (not just superficial coincidence) since the class
+table's own 18th-level row is literally one shared "Aura
+improvements" placeholder covering both core auras at once (already
+noted under "Classes" above), and both oath auras separately restate
+the same 10-foot/30-foot-at-18th numbers in their own prose, verified
+by reading all four side by side rather than assumed from the shared
+template.
+
+- **A shared `AuraRange` struct, embedded by value into four separate
+  per-aura types** (`AuraOfProtectionDetail`/`AuraOfCourageDetail` on
+  `ClassDefinition`; `AuraOfDevotionDetail`/`AuraOfWardingDetail` on
+  `SubclassDefinition`) — the range progression is genuinely identical
+  across all four, unlike Ki/Sorcery Points' coincidental numbers, so
+  reusing one small struct for that one shared fact is honest rather
+  than premature generalization; the four wrapper types stay separate
+  because each aura's own effect differs in kind (a numeric saving-throw
+  bonus vs. three different condition immunities/resistances).
+- **A real asymmetry caught by reading all four auras' full text
+  side by side, not assumed from the shared range template:** Aura of
+  Protection ("You must be conscious to grant this bonus"), Aura of
+  Courage, and Aura of Devotion (both "while you are conscious") all
+  gate on the paladin being conscious — Aura of Warding's own text has
+  no such clause at all. `RequiresConsciousness` is a plain bool on
+  all four types specifically so this real difference is visible in
+  the schema (`false` on Warding) rather than assumed uniformly `true`
+  from the other three.
+- **Three pre-existing PHB citation errors caught and fixed while
+  reading the source pages for this pass** (not something this task
+  set out to audit, but cheap to fix once found, matching the
+  provenance discipline in "Architecture" above): the existing
+  `dnd5e2014.class-rule.aura-of-devotion` citation said page 87, its
+  actual page 86; `aura-of-warding` said page 88, actual page 87; the
+  `dnd5e2014.subclass.oath-of-the-ancients` and
+  `dnd5e2014.subclass.oath-of-vengeance` subclass-level citations were
+  each off by one for the same reason (87→86, 88→87) — all four
+  verified directly against the cleanly-scanned PDF's own page
+  footers, not from memory, the same discipline every prior citation
+  in this project has used.
+- Public API: five new public types (`AuraRange`,
+  `AuraOfProtectionDetail`, `AuraOfCourageDetail`,
+  `AuraOfDevotionDetail`, `AuraOfWardingDetail`) and two new members
+  apiece on `ClassDefinition`/`SubclassDefinition`. Full gate green:
+  Debug+Release build 0 warnings, 1412 tests (was 1388; +24 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (auras, Bardic Inspiration die, Channel Divinity
-  uses, Mystic Arcanum, Font of Magic conversion) — each single-class
-  like Rage/Sneak Attack, so each gets the same "embedded value object,
-  not a catalog" treatment by default, but verify every time the way
-  Divine Strike's three-way split and Wild Shape/Circle Forms' compound
-  cross-reference both show is actually necessary — the larger
-  choice-point catalogs (Eldritch Invocations, Battle Master maneuvers,
-  Metamagic, Elemental Disciplines, Channel Divinity options, Pact
-  Boon), race trait quantization (Darkvision range,
+  numeric progressions (Bardic Inspiration die, Channel Divinity uses,
+  Mystic Arcanum, Font of Magic conversion) — each single-class like
+  Rage/Sneak Attack, so each gets the same "embedded value object, not
+  a catalog" treatment by default, but verify every time the way
+  Divine Strike's three-way split, Wild Shape/Circle Forms' compound
+  cross-reference, and the Paladin auras' real consciousness-gate
+  asymmetry all show is actually necessary — the larger choice-point
+  catalogs (Eldritch Invocations, Battle Master maneuvers, Metamagic,
+  Elemental Disciplines, Channel Divinity options, Pact Boon), race
+  trait quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
   (likely little to quantize — most background features are
   narrative/social, not numeric).
@@ -1497,9 +1547,10 @@ quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
-Sorcery Points, Wild Shape, and Circle Forms have been converted;
-every other named feature across Classes/Races/Backgrounds is still a
-`RuleId` citation with no mechanical payload.
+Sorcery Points, Wild Shape, Circle Forms, and the Paladin auras have
+been converted; every other named feature across
+Classes/Races/Backgrounds is still a `RuleId` citation with no
+mechanical payload.
 
 ## Build
 

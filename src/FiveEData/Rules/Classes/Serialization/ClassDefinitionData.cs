@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
@@ -87,6 +88,12 @@ internal sealed class ClassDefinitionData
         get;
         init;
     }
+
+    [JsonRequired]
+    public AuraOfProtectionDetailData? AuraOfProtection { get; init; }
+
+    [JsonRequired]
+    public AuraOfCourageDetailData? AuraOfCourage { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

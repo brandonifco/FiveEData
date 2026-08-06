@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
@@ -1193,6 +1194,26 @@ public sealed class SubclassDataFileTests
     }
 
     [Fact]
+    public void CanonicalFile_OnlyOathOfDevotionAndOathOfTheAncientsHaveAuras()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> otherSubclassIds = subclasses
+            .Select(subclass => subclass.Id.Value)
+            .Where(
+                id => id != "dnd5e2014.subclass.oath-of-devotion" &&
+                    id != "dnd5e2014.subclass.oath-of-the-ancients");
+
+        foreach (string id in otherSubclassIds)
+        {
+            SubclassDefinition subclass = GetSubclass(subclasses, id);
+
+            Assert.Null(subclass.AuraOfDevotion);
+            Assert.Null(subclass.AuraOfWarding);
+        }
+    }
+
+    [Fact]
     public void CanonicalFile_PreservesTheArchfeyMechanics()
     {
         SubclassDefinition archfey = GetSubclass(
@@ -1462,6 +1483,16 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(devotion.Sources);
         Assert.Equal(85, source.Page);
+
+        AuraOfDevotionDetail auraOfDevotion =
+            devotion.AuraOfDevotion
+            ?? throw new InvalidOperationException(
+                "Expected Oath of Devotion to have an Aura of Devotion.");
+        Assert.Equal(10, auraOfDevotion.Range.BaseRangeFeet);
+        Assert.Equal(30, auraOfDevotion.Range.ExpandedRangeFeet);
+        Assert.Equal(18, auraOfDevotion.Range.ExpandedAtLevel);
+        Assert.True(auraOfDevotion.RequiresConsciousness);
+        Assert.Null(devotion.AuraOfWarding);
     }
 
     [Fact]
@@ -1510,7 +1541,18 @@ public sealed class SubclassDataFileTests
                 .ToArray());
 
         var source = Assert.Single(ancients.Sources);
-        Assert.Equal(87, source.Page);
+        Assert.Equal(86, source.Page);
+
+        AuraOfWardingDetail auraOfWarding =
+            ancients.AuraOfWarding
+            ?? throw new InvalidOperationException(
+                "Expected Oath of the Ancients to have an Aura of " +
+                "Warding.");
+        Assert.Equal(10, auraOfWarding.Range.BaseRangeFeet);
+        Assert.Equal(30, auraOfWarding.Range.ExpandedRangeFeet);
+        Assert.Equal(18, auraOfWarding.Range.ExpandedAtLevel);
+        Assert.False(auraOfWarding.RequiresConsciousness);
+        Assert.Null(ancients.AuraOfDevotion);
     }
 
     [Fact]
@@ -1539,7 +1581,7 @@ public sealed class SubclassDataFileTests
                 .ToArray());
 
         var source = Assert.Single(vengeance.Sources);
-        Assert.Equal(88, source.Page);
+        Assert.Equal(87, source.Page);
     }
 
     [Fact]

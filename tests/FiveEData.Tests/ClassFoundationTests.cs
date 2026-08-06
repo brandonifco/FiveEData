@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
@@ -139,6 +140,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -636,6 +639,8 @@ public sealed class ClassFoundationTests
         KiProgressionDetail? kiProgression = null,
         SorceryPointsProgressionDetail? sorceryPointsProgression = null,
         WildShapeProgressionDetail? wildShapeProgression = null,
+        AuraOfProtectionDetail? auraOfProtection = null,
+        AuraOfCourageDetail? auraOfCourage = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -665,6 +670,8 @@ public sealed class ClassFoundationTests
             kiProgression,
             sorceryPointsProgression,
             wildShapeProgression,
+            auraOfProtection,
+            auraOfCourage,
             sources ?? [CreateSource()]);
     }
 

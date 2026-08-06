@@ -30,6 +30,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -69,6 +71,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -112,6 +116,8 @@
     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -147,6 +153,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -186,6 +194,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -221,6 +231,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -256,6 +268,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -291,6 +305,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -330,6 +346,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -369,6 +387,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -408,6 +428,8 @@
     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -443,6 +465,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -478,6 +502,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -517,6 +543,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -556,6 +584,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -595,6 +625,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -634,6 +666,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -673,6 +707,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -712,6 +748,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -751,6 +789,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -790,6 +830,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -829,6 +871,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -886,6 +930,8 @@
       "matchesWeaponDamageType": false
     },
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -929,6 +975,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -990,6 +1038,8 @@
       "matchesWeaponDamageType": false
     },
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1047,6 +1097,8 @@
       "matchesWeaponDamageType": false
     },
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1100,6 +1152,8 @@
       "matchesWeaponDamageType": false
     },
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1157,6 +1211,8 @@
       "matchesWeaponDamageType": true
     },
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1196,6 +1252,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1235,6 +1293,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1274,6 +1334,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1329,6 +1391,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1381,6 +1445,8 @@
         { "characterLevel": 18, "maxChallengeRating": 6.0 }
       ]
     },
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1416,6 +1482,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1451,6 +1519,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1510,6 +1580,15 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": {
+      "range": {
+        "baseRangeFeet": 10,
+        "expandedRangeFeet": 30,
+        "expandedAtLevel": 18
+      },
+      "requiresConsciousness": true
+    },
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1569,10 +1648,19 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": {
+      "range": {
+        "baseRangeFeet": 10,
+        "expandedRangeFeet": 30,
+        "expandedAtLevel": 18
+      },
+      "requiresConsciousness": false
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
-        "page": 87,
+        "page": 86,
         "section": "Chapter 3: Classes"
       }
     ]
@@ -1628,10 +1716,12 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
-        "page": 88,
+        "page": 87,
         "section": "Chapter 3: Classes"
       }
     ]
@@ -1667,6 +1757,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1706,6 +1798,8 @@
     "spellcastingAbilityId": null,
     "divineStrikeProgression": null,
     "circleFormsProgression": null,
+    "auraOfDevotion": null,
+    "auraOfWarding": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

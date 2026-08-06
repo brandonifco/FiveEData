@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -42,6 +43,8 @@ public sealed class ClassDefinitionLoaderTests
           "kiProgression": null,
           "sorceryPointsProgression": null,
           "wildShapeProgression": null,
+          "auraOfProtection": null,
+          "auraOfCourage": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -92,6 +95,8 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.KiProgression);
         Assert.Null(@class.SorceryPointsProgression);
         Assert.Null(@class.WildShapeProgression);
+        Assert.Null(@class.AuraOfProtection);
+        Assert.Null(@class.AuraOfCourage);
         Assert.Single(@class.Sources);
     }
 
@@ -155,6 +160,8 @@ public sealed class ClassDefinitionLoaderTests
                     "kiProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -255,6 +262,8 @@ public sealed class ClassDefinitionLoaderTests
                       "recoversOnShortRest": false
                     },
                     "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -326,6 +335,8 @@ public sealed class ClassDefinitionLoaderTests
                       "usesPerRest": 2,
                       "recoversOnShortRest": true
                     },
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -351,6 +362,84 @@ public sealed class ClassDefinitionLoaderTests
                 .AllowsSwimmingSpeed);
         Assert.Equal(2, @class.WildShapeProgression.UsesPerRest);
         Assert.True(@class.WildShapeProgression.RecoversOnShortRest);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsAuraOfProtectionAndAuraOfCourage()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 10,
+                    "primaryAbilityIds": ["dnd5e2014.ability.strength"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.wisdom",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": {
+                      "range": {
+                        "baseRangeFeet": 10,
+                        "expandedRangeFeet": 30,
+                        "expandedAtLevel": 18
+                      },
+                      "requiresConsciousness": true,
+                      "savingThrowBonusMinimum": 1
+                    },
+                    "auraOfCourage": {
+                      "range": {
+                        "baseRangeFeet": 10,
+                        "expandedRangeFeet": 30,
+                        "expandedAtLevel": 18
+                      },
+                      "requiresConsciousness": true
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        AuraOfProtectionDetail auraOfProtection =
+            @class.AuraOfProtection
+            ?? throw new InvalidOperationException(
+                "Expected an Aura of Protection.");
+        AuraOfCourageDetail auraOfCourage =
+            @class.AuraOfCourage
+            ?? throw new InvalidOperationException(
+                "Expected an Aura of Courage.");
+
+        Assert.Equal(10, auraOfProtection.Range.BaseRangeFeet);
+        Assert.Equal(30, auraOfProtection.Range.ExpandedRangeFeet);
+        Assert.Equal(18, auraOfProtection.Range.ExpandedAtLevel);
+        Assert.True(auraOfProtection.RequiresConsciousness);
+        Assert.Equal(1, auraOfProtection.SavingThrowBonusMinimum);
+
+        Assert.True(auraOfCourage.RequiresConsciousness);
     }
 
     [Fact]

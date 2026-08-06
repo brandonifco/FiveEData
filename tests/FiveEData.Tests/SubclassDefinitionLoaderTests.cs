@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
@@ -24,6 +25,8 @@ public sealed class SubclassDefinitionLoaderTests
           "spellcastingAbilityId": null,
           "divineStrikeProgression": null,
           "circleFormsProgression": null,
+          "auraOfDevotion": null,
+          "auraOfWarding": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -55,6 +58,8 @@ public sealed class SubclassDefinitionLoaderTests
         Assert.Null(subclass.SpellcastingAbilityId);
         Assert.Null(subclass.DivineStrikeProgression);
         Assert.Null(subclass.CircleFormsProgression);
+        Assert.Null(subclass.AuraOfDevotion);
+        Assert.Null(subclass.AuraOfWarding);
         Assert.Single(subclass.Sources);
     }
 
@@ -76,6 +81,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
                     "divineStrikeProgression": null,
                     "circleFormsProgression": null,
+                    "auraOfDevotion": null,
+                    "auraOfWarding": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -126,6 +133,8 @@ public sealed class SubclassDefinitionLoaderTests
                       "matchesWeaponDamageType": false
                     },
                     "circleFormsProgression": null,
+                    "auraOfDevotion": null,
+                    "auraOfWarding": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -172,6 +181,8 @@ public sealed class SubclassDefinitionLoaderTests
                         { "characterLevel": 6, "maxChallengeRating": 2.0 }
                       ]
                     },
+                    "auraOfDevotion": null,
+                    "auraOfWarding": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -197,6 +208,67 @@ public sealed class SubclassDefinitionLoaderTests
             2.0,
             circleFormsProgression.MaxChallengeRatingByLevel[1]
                 .MaxChallengeRating);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsAuraOfDevotionAndAuraOfWarding()
+    {
+        SubclassDefinition subclass = Assert.Single(
+            SubclassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.subclass.test",
+                    "name": "Test",
+                    "classId": "dnd5e2014.class.paladin",
+                    "chosenAtLevel": 3,
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "divineStrikeProgression": null,
+                    "circleFormsProgression": null,
+                    "auraOfDevotion": {
+                      "range": {
+                        "baseRangeFeet": 10,
+                        "expandedRangeFeet": 30,
+                        "expandedAtLevel": 18
+                      },
+                      "requiresConsciousness": true
+                    },
+                    "auraOfWarding": {
+                      "range": {
+                        "baseRangeFeet": 10,
+                        "expandedRangeFeet": 30,
+                        "expandedAtLevel": 18
+                      },
+                      "requiresConsciousness": false
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        AuraOfDevotionDetail auraOfDevotion =
+            subclass.AuraOfDevotion
+            ?? throw new InvalidOperationException(
+                "Expected an Aura of Devotion.");
+        AuraOfWardingDetail auraOfWarding =
+            subclass.AuraOfWarding
+            ?? throw new InvalidOperationException(
+                "Expected an Aura of Warding.");
+
+        Assert.Equal(10, auraOfDevotion.Range.BaseRangeFeet);
+        Assert.Equal(30, auraOfDevotion.Range.ExpandedRangeFeet);
+        Assert.Equal(18, auraOfDevotion.Range.ExpandedAtLevel);
+        Assert.True(auraOfDevotion.RequiresConsciousness);
+
+        Assert.False(auraOfWarding.RequiresConsciousness);
     }
 
     [Fact]
