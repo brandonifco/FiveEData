@@ -1,4 +1,5 @@
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.Metamagic;
@@ -20,6 +21,7 @@ internal sealed class RulesetDefinitionSet
         ClassDefinitionSet classes,
         IReadOnlyList<FightingStyleDefinition> fightingStyles,
         IReadOnlyList<MetamagicOptionDefinition> metamagicOptions,
+        IReadOnlyList<BattleMasterManeuverDefinition> battleMasterManeuvers,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
@@ -34,6 +36,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(classes);
         ArgumentNullException.ThrowIfNull(fightingStyles);
         ArgumentNullException.ThrowIfNull(metamagicOptions);
+        ArgumentNullException.ThrowIfNull(battleMasterManeuvers);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -47,6 +50,7 @@ internal sealed class RulesetDefinitionSet
         Classes = classes;
         FightingStyles = fightingStyles;
         MetamagicOptions = metamagicOptions;
+        BattleMasterManeuvers = battleMasterManeuvers;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -66,6 +70,10 @@ internal sealed class RulesetDefinitionSet
     public ClassDefinitionSet Classes { get; }
     public IReadOnlyList<FightingStyleDefinition> FightingStyles { get; }
     public IReadOnlyList<MetamagicOptionDefinition> MetamagicOptions { get; }
+
+    public IReadOnlyList<BattleMasterManeuverDefinition>
+        BattleMasterManeuvers
+    { get; }
 
     public IReadOnlyList<SpellSlotProgressionDefinition>
         SpellSlotProgressions

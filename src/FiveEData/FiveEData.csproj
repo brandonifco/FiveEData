@@ -52,6 +52,9 @@
       Include="../../Data/dnd5e2014/metamagic-options.json"
       LogicalName="FiveEData.Data.dnd5e2014.metamagic-options.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/battle-master-maneuvers.json"
+      LogicalName="FiveEData.Data.dnd5e2014.battle-master-maneuvers.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/spell-slot-progressions.json"
       LogicalName="FiveEData.Data.dnd5e2014.spell-slot-progressions.json" />
     <EmbeddedResource

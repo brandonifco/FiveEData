@@ -164,6 +164,7 @@ public sealed class LifestyleCatalogIntegrityTests
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
             metamagicOptions: [],
+            battleMasterManeuvers: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

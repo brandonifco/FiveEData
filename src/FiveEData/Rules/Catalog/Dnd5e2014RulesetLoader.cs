@@ -2,6 +2,8 @@ using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Backgrounds.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Classes.BattleMasterManeuvers;
+using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.FightingStyles.Serialization;
 using FiveEData.Rules.Classes.Metamagic;
@@ -111,6 +113,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string MetamagicOptionsResource =
         "FiveEData.Data.dnd5e2014.metamagic-options.json";
+
+    private const string BattleMasterManeuversResource =
+        "FiveEData.Data.dnd5e2014.battle-master-maneuvers.json";
 
     private const string SpellSlotProgressionsResource =
         "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
@@ -279,6 +284,11 @@ internal static class Dnd5e2014RulesetLoader
                 EmbeddedDataReader.ReadRequiredText(
                     MetamagicOptionsResource));
 
+        IReadOnlyList<BattleMasterManeuverDefinition> battleMasterManeuvers =
+            BattleMasterManeuverDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    BattleMasterManeuversResource));
+
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
             SpellSlotProgressionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
@@ -438,6 +448,7 @@ internal static class Dnd5e2014RulesetLoader
             classes: classDefinitionSet,
             fightingStyles: fightingStyles,
             metamagicOptions: metamagicOptions,
+            battleMasterManeuvers: battleMasterManeuvers,
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds);
@@ -484,6 +495,8 @@ internal static class Dnd5e2014RulesetLoader
             subclasses: new SubclassCatalog(subclasses),
             fightingStyles: new FightingStyleCatalog(fightingStyles),
             metamagicOptions: new MetamagicOptionCatalog(metamagicOptions),
+            battleMasterManeuvers:
+                new BattleMasterManeuverCatalog(battleMasterManeuvers),
             spellSlotProgressions:
                 new SpellSlotProgressionCatalog(spellSlotProgressions),
             extraAttackProgressions:

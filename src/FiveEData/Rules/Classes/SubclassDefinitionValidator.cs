@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes.CircleForms;
+using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Common;
 
@@ -60,7 +61,134 @@ internal static class SubclassDefinitionValidator
             ValidateCircleFormsProgression(circleFormsProgression, errors);
         }
 
+        if (subclass.CombatSuperiorityProgression is
+            { } combatSuperiorityProgression)
+        {
+            ValidateCombatSuperiorityProgression(
+                combatSuperiorityProgression,
+                errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateCombatSuperiorityProgression(
+        CombatSuperiorityProgressionDetail combatSuperiorityProgression,
+        ICollection<string> errors)
+    {
+        if (combatSuperiorityProgression.ManeuversKnownByLevel.Count == 0)
+        {
+            errors.Add(
+                "Combat Superiority progression must grant at least one " +
+                "maneuvers known increase.");
+        }
+
+        var seenManeuversKnownLevels = new HashSet<int>();
+        int? previousManeuversKnown = null;
+
+        foreach (
+            CombatSuperiorityManeuversKnownGrant grant
+            in combatSuperiorityProgression.ManeuversKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenManeuversKnownLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Combat Superiority maneuvers known character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousManeuversKnown is { } previous &&
+                grant.ManeuversKnown <= previous)
+            {
+                errors.Add(
+                    "Combat Superiority maneuvers known at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousManeuversKnown = grant.ManeuversKnown;
+        }
+
+        if (combatSuperiorityProgression.DiceCountByLevel.Count == 0)
+        {
+            errors.Add(
+                "Combat Superiority progression must grant at least one " +
+                "superiority dice count increase.");
+        }
+
+        var seenDiceCountLevels = new HashSet<int>();
+        int? previousDiceCount = null;
+
+        foreach (
+            CombatSuperiorityDiceCountGrant grant
+            in combatSuperiorityProgression.DiceCountByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenDiceCountLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Combat Superiority dice count character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousDiceCount is { } previous &&
+                grant.DiceCount <= previous)
+            {
+                errors.Add(
+                    "Combat Superiority dice count at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousDiceCount = grant.DiceCount;
+        }
+
+        if (combatSuperiorityProgression.DieSizeByLevel.Count == 0)
+        {
+            errors.Add(
+                "Combat Superiority progression must grant at least one " +
+                "superiority die size increase.");
+        }
+
+        var seenDieSizeLevels = new HashSet<int>();
+        var seenDieCounts = new HashSet<int>();
+        int? previousSides = null;
+
+        foreach (
+            CombatSuperiorityDieSizeGrant grant
+            in combatSuperiorityProgression.DieSizeByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            seenDieCounts.Add(grant.Die.Count);
+
+            if (!seenDieSizeLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Combat Superiority die size character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousSides is { } previous && grant.Die.Sides <= previous)
+            {
+                errors.Add(
+                    "Combat Superiority die size at level " +
+                    $"{grant.CharacterLevel} must use a larger die than " +
+                    "the value at the previous grant level.");
+            }
+
+            previousSides = grant.Die.Sides;
+        }
+
+        if (seenDieCounts.Count > 1)
+        {
+            errors.Add(
+                "Combat Superiority progression must grant the same " +
+                "number of dice at every grant level.");
+        }
     }
 
     private static void ValidateCircleFormsProgression(
