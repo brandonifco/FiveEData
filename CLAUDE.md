@@ -16,27 +16,28 @@ kept short/current on purpose, not a blow-by-blow history). **Merged
 to `main`:** Fighting Style ([PR #22](https://github.com/brandonifco/FiveEData/pull/22)),
 spell slot progressions ([PR #23](https://github.com/brandonifco/FiveEData/pull/23)),
 Extra Attack progressions ([PR #24](https://github.com/brandonifco/FiveEData/pull/24)),
-Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)).
+Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)),
+Sneak Attack ([PR #26](https://github.com/brandonifco/FiveEData/pull/26)).
 
-**Open right now:** [PR #26](https://github.com/brandonifco/FiveEData/pull/26)
-("Add Sneak Attack as an embedded, quantized value object"), branch
-`feature/sneak-attack-progression-detail`, commit `1c753a8`. Code is
-complete and was fully gated locally before pushing (Debug+Release
-build 0 warnings, 1301/1301 tests) — working tree is otherwise clean,
-nothing uncommitted this time. **Its CI (run `31124058091`) failed
-once already, both jobs, with `The job was not acquired by Runner of
-type hosted even after multiple attempts` after a full 15-minute
-wait** — this is the same GitHub Actions infrastructure class of
-failure PR #25 hit repeatedly (see the incident note below), not a
-code problem; a `gh run rerun` was already kicked off for it before
-this handoff was written, so check `gh pr checks 26` first. If green,
-merge normally (`gh pr merge 26 --merge --delete-branch`), then
-`git checkout main && git pull && git fetch --prune`. If it's still
-running or pending, give it time. If it fails again the same way
-(runner-not-acquired or the "Service Unavailable" download-info
-signature, always at job setup, never real `dotnet` output), retry
-with `gh run rerun` once or twice more before considering the
-same fallback used for PR #25 below.
+**Nothing open right now.** `main` is synced with `origin/main`,
+working tree clean. Next candidate work is whichever item is next on
+the "Remaining, tracked but not started" list at the end of the
+"Quantized mechanics" section below (Divine Strike is flagged there
+as the one to watch for a real sharing-vs-splitting case).
+
+**Second infra-bypass incident, same pattern as PR #25's (see below):**
+PR #26's CI failed once with `The job was not acquired by Runner of
+type hosted even after multiple attempts`, a `gh run rerun` was kicked
+off, and the rerun then sat `queued` for 5+ minutes with an empty
+status-check rollup. Checked <https://www.githubstatus.com/> this
+time (not just inferred from the symptom) and found GitHub Actions
+listed as an active **major outage** ("workflow runs are failing or
+delayed in starting, and some queued jobs may time out") at that
+exact time. With that confirmation plus explicit user go-ahead, merged
+PR #26 directly off the local gate (Debug+Release 0 warnings, 1301/1301
+tests) without waiting for CI. Reinforces the standing rule below —
+check githubstatus.com *before* asking to bypass, don't just assume
+infra from the symptom alone, and still ask every time regardless.
 
 **One real, worth-remembering incident from this pass, in case it
 recurs again:** PR #25's CI failed three consecutive times purely on
@@ -47,14 +48,14 @@ Unavailable` twice, `The job was not acquired by Runner of type
 hosted even after multiple attempts` twice, all at "Set up job").
 Local gate had already passed before every push. Merged directly off
 the local gate on explicit user instruction once the pattern was
-clearly infra, not code. **If PR #26 (or anything after it) hits the
-same wall repeatedly: check <https://www.githubstatus.com/>, retry
-with `gh run rerun <run-id>` a couple of times first, and only bypass
-the "wait for green CI" default with the user's explicit go-ahead —
-this is not a standing exception, it needs to be asked for each time
-it comes up.** A failure that ever shows real `dotnet` build/test
-output is a different story entirely — that's a genuine regression,
-not infra, and needs actual investigation before merging, full stop.
+clearly infra, not code. **If a future PR hits the same wall
+repeatedly: check <https://www.githubstatus.com/>, retry with
+`gh run rerun <run-id>` a couple of times first, and only bypass the
+"wait for green CI" default with the user's explicit go-ahead — this
+is not a standing exception, it needs to be asked for each time it
+comes up.** A failure that ever shows real `dotnet` build/test output
+is a different story entirely — that's a genuine regression, not
+infra, and needs actual investigation before merging, full stop.
 
 ## Architecture
 
