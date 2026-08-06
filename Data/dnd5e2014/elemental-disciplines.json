@@ -1,0 +1,155 @@
+[
+  {
+    "id": "dnd5e2014.elemental-discipline.breath-of-winter",
+    "name": "Breath of Winter",
+    "kiPointCost": 6,
+    "requiredMinimumLevel": 17,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.clench-of-the-north-wind",
+    "name": "Clench of the North Wind",
+    "kiPointCost": 3,
+    "requiredMinimumLevel": 6,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.elemental-attunement",
+    "name": "Elemental Attunement",
+    "kiPointCost": null,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.eternal-mountain-defense",
+    "name": "Eternal Mountain Defense",
+    "kiPointCost": 5,
+    "requiredMinimumLevel": 11,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.fangs-of-the-fire-snake",
+    "name": "Fangs of the Fire Snake",
+    "kiPointCost": 1,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.fist-of-four-thunders",
+    "name": "Fist of Four Thunders",
+    "kiPointCost": 2,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.fist-of-unbroken-air",
+    "name": "Fist of Unbroken Air",
+    "kiPointCost": 2,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.flames-of-the-phoenix",
+    "name": "Flames of the Phoenix",
+    "kiPointCost": 4,
+    "requiredMinimumLevel": 11,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.gong-of-the-summit",
+    "name": "Gong of the Summit",
+    "kiPointCost": 3,
+    "requiredMinimumLevel": 6,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.mist-stance",
+    "name": "Mist Stance",
+    "kiPointCost": 4,
+    "requiredMinimumLevel": 11,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.ride-the-wind",
+    "name": "Ride the Wind",
+    "kiPointCost": 4,
+    "requiredMinimumLevel": 11,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.river-of-hungry-flame",
+    "name": "River of Hungry Flame",
+    "kiPointCost": 5,
+    "requiredMinimumLevel": 17,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.rush-of-the-gale-spirits",
+    "name": "Rush of the Gale Spirits",
+    "kiPointCost": 2,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.shape-the-flowing-river",
+    "name": "Shape the Flowing River",
+    "kiPointCost": 1,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.sweeping-cinder-strike",
+    "name": "Sweeping Cinder Strike",
+    "kiPointCost": 2,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.water-whip",
+    "name": "Water Whip",
+    "kiPointCost": 2,
+    "requiredMinimumLevel": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.elemental-discipline.wave-of-rolling-earth",
+    "name": "Wave of Rolling Earth",
+    "kiPointCost": 6,
+    "requiredMinimumLevel": 17,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
+    ]
+  }
+]

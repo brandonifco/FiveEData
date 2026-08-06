@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
+using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common.Provenance;
@@ -23,6 +24,8 @@ public sealed class SubclassDefinition
         AuraOfDevotionDetail? auraOfDevotion,
         AuraOfWardingDetail? auraOfWarding,
         CombatSuperiorityProgressionDetail? combatSuperiorityProgression,
+        DiscipleOfTheElementsProgressionDetail?
+            discipleOfTheElementsProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -41,6 +44,7 @@ public sealed class SubclassDefinition
         AuraOfDevotion = auraOfDevotion;
         AuraOfWarding = auraOfWarding;
         CombatSuperiorityProgression = combatSuperiorityProgression;
+        DiscipleOfTheElementsProgression = discipleOfTheElementsProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -57,6 +61,10 @@ public sealed class SubclassDefinition
     public AuraOfWardingDetail? AuraOfWarding { get; }
 
     public CombatSuperiorityProgressionDetail? CombatSuperiorityProgression
+    { get; }
+
+    public DiscipleOfTheElementsProgressionDetail?
+        DiscipleOfTheElementsProgression
     { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }

@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
+using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
 
@@ -1759,6 +1760,55 @@ public sealed class SubclassDataFileTests
         Assert.All(
             combatSuperiority.DieSizeByLevel,
             grant => Assert.Equal(1, grant.Die.Count));
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyWayOfTheFourElementsHasADiscipleOfTheElementsProgression()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> otherSubclassIds = subclasses
+            .Select(subclass => subclass.Id.Value)
+            .Where(
+                id => id != "dnd5e2014.subclass.way-of-the-four-elements");
+
+        foreach (string id in otherSubclassIds)
+        {
+            SubclassDefinition subclass = GetSubclass(subclasses, id);
+
+            Assert.Null(subclass.DiscipleOfTheElementsProgression);
+        }
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWayOfTheFourElementsDiscipleOfTheElementsProgression()
+    {
+        SubclassDefinition wayOfFourElements = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.way-of-the-four-elements");
+
+        var source = Assert.Single(wayOfFourElements.Sources);
+        Assert.Equal(80, source.Page);
+
+        DiscipleOfTheElementsProgressionDetail discipleOfTheElements =
+            wayOfFourElements.DiscipleOfTheElementsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Way of the Four Elements to have a Disciple of " +
+                "the Elements progression.");
+
+        Assert.Equal(
+            [(3, 2), (6, 3), (11, 4), (17, 5)],
+            discipleOfTheElements.DisciplinesKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.DisciplinesKnown)));
+
+        Assert.Equal(
+            [(5, 3), (9, 4), (13, 5), (17, 6)],
+            discipleOfTheElements.MaxKiPointsPerSpellByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.MaxKiPoints)));
     }
 
     private static SubclassDefinition GetSubclass(

@@ -58,6 +58,9 @@
       Include="../../Data/dnd5e2014/eldritch-invocations.json"
       LogicalName="FiveEData.Data.dnd5e2014.eldritch-invocations.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/elemental-disciplines.json"
+      LogicalName="FiveEData.Data.dnd5e2014.elemental-disciplines.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/spell-slot-progressions.json"
       LogicalName="FiveEData.Data.dnd5e2014.spell-slot-progressions.json" />
     <EmbeddedResource

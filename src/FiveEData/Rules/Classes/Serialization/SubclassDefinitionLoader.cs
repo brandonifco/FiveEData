@@ -4,6 +4,8 @@ using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
+using FiveEData.Rules.Classes.DiscipleOfTheElements;
+using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
@@ -143,6 +145,14 @@ internal static class SubclassDefinitionLoader
                     combatSuperiorityProgressionData)
                 : null;
 
+        DiscipleOfTheElementsProgressionDetail?
+            discipleOfTheElementsProgression =
+                data.DiscipleOfTheElementsProgression is
+                    { } discipleOfTheElementsProgressionData
+                    ? DiscipleOfTheElementsProgressionDetailDataMapper.Map(
+                        discipleOfTheElementsProgressionData)
+                    : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -156,6 +166,7 @@ internal static class SubclassDefinitionLoader
             auraOfDevotion,
             auraOfWarding,
             combatSuperiorityProgression,
+            discipleOfTheElementsProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

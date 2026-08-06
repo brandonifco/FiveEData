@@ -28,6 +28,7 @@ public sealed class SubclassDefinitionLoaderTests
           "auraOfDevotion": null,
           "auraOfWarding": null,
           "combatSuperiorityProgression": null,
+          "discipleOfTheElementsProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -85,6 +86,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "auraOfDevotion": null,
                     "auraOfWarding": null,
                     "combatSuperiorityProgression": null,
+                    "discipleOfTheElementsProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -138,6 +140,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "auraOfDevotion": null,
                     "auraOfWarding": null,
                     "combatSuperiorityProgression": null,
+                    "discipleOfTheElementsProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -187,6 +190,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "auraOfDevotion": null,
                     "auraOfWarding": null,
                     "combatSuperiorityProgression": null,
+                    "discipleOfTheElementsProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -248,6 +252,7 @@ public sealed class SubclassDefinitionLoaderTests
                       "requiresConsciousness": false
                     },
                     "combatSuperiorityProgression": null,
+                    "discipleOfTheElementsProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",

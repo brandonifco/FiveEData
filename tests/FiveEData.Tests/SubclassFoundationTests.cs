@@ -3,6 +3,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
+using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
@@ -71,6 +72,7 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -87,6 +89,7 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
             null,
             null,
             null,
@@ -422,6 +425,8 @@ public sealed class SubclassFoundationTests
         AuraOfWardingDetail? auraOfWarding = null,
         CombatSuperiorityProgressionDetail? combatSuperiorityProgression =
             null,
+        DiscipleOfTheElementsProgressionDetail?
+            discipleOfTheElementsProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -437,6 +442,7 @@ public sealed class SubclassFoundationTests
             auraOfDevotion,
             auraOfWarding,
             combatSuperiorityProgression,
+            discipleOfTheElementsProgression,
             sources ?? [CreateSource()]);
     }
 
