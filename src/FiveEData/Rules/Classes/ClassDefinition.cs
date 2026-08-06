@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
@@ -41,6 +42,7 @@ public sealed class ClassDefinition
         WildShapeProgressionDetail? wildShapeProgression,
         AuraOfProtectionDetail? auraOfProtection,
         AuraOfCourageDetail? auraOfCourage,
+        BardicInspirationProgressionDetail? bardicInspirationProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -79,6 +81,7 @@ public sealed class ClassDefinition
         WildShapeProgression = wildShapeProgression;
         AuraOfProtection = auraOfProtection;
         AuraOfCourage = auraOfCourage;
+        BardicInspirationProgression = bardicInspirationProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -105,5 +108,9 @@ public sealed class ClassDefinition
     public WildShapeProgressionDetail? WildShapeProgression { get; }
     public AuraOfProtectionDetail? AuraOfProtection { get; }
     public AuraOfCourageDetail? AuraOfCourage { get; }
+    public BardicInspirationProgressionDetail? BardicInspirationProgression
+    {
+        get;
+    }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
@@ -530,6 +531,21 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(52, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        BardicInspirationProgressionDetail bardicInspirationProgression =
+            bard.BardicInspirationProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Bardic Inspiration progression.");
+        Assert.Equal(
+            [(1, 6), (5, 8), (10, 10), (15, 12)],
+            bardicInspirationProgression.DieByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.Die.Sides)));
+        Assert.All(
+            bardicInspirationProgression.DieByLevel,
+            grant => Assert.Equal(1, grant.Die.Count));
+        Assert.Equal(60, bardicInspirationProgression.RangeFeet);
+        Assert.Equal(10, bardicInspirationProgression.DurationMinutes);
     }
 
     [Fact]
@@ -1647,6 +1663,26 @@ public sealed class ClassDataFileTests
 
         Assert.Null(@class.AuraOfProtection);
         Assert.Null(@class.AuraOfCourage);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonBardClassDeclaresNoBardicInspirationProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.BardicInspirationProgression);
     }
 
     private static ClassDefinition GetClass(

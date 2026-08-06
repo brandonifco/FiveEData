@@ -1,6 +1,7 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
@@ -140,6 +141,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -467,6 +469,104 @@ public sealed class ClassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsBardicInspirationProgressionWithNoDieGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            bardicInspirationProgression:
+                new BardicInspirationProgressionDetail(
+                    [],
+                    rangeFeet: 60,
+                    durationMinutes: 10));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Bardic Inspiration progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsBardicInspirationProgressionWithNonIncreasingDieSize()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            bardicInspirationProgression:
+                new BardicInspirationProgressionDetail(
+                    [
+                        new BardicInspirationDieGrant(
+                            1,
+                            new DiceExpression(1, 8)),
+                        new BardicInspirationDieGrant(
+                            5,
+                            new DiceExpression(1, 6))
+                    ],
+                    rangeFeet: 60,
+                    durationMinutes: 10));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must use a larger die",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsBardicInspirationProgressionWithMixedDieCounts()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            bardicInspirationProgression:
+                new BardicInspirationProgressionDetail(
+                    [
+                        new BardicInspirationDieGrant(
+                            1,
+                            new DiceExpression(1, 6)),
+                        new BardicInspirationDieGrant(
+                            5,
+                            new DiceExpression(2, 8))
+                    ],
+                    rangeFeet: 60,
+                    durationMinutes: 10));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "same number of dice",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedBardicInspirationProgression()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            bardicInspirationProgression:
+                new BardicInspirationProgressionDetail(
+                    [
+                        new BardicInspirationDieGrant(
+                            1,
+                            new DiceExpression(1, 6)),
+                        new BardicInspirationDieGrant(
+                            5,
+                            new DiceExpression(1, 8)),
+                        new BardicInspirationDieGrant(
+                            10,
+                            new DiceExpression(1, 10)),
+                        new BardicInspirationDieGrant(
+                            15,
+                            new DiceExpression(1, 12))
+                    ],
+                    rangeFeet: 60,
+                    durationMinutes: 10));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
     public void Validator_RejectsNoPrimaryAbilities()
     {
         ClassDefinition @class = Create(
@@ -641,6 +741,8 @@ public sealed class ClassFoundationTests
         WildShapeProgressionDetail? wildShapeProgression = null,
         AuraOfProtectionDetail? auraOfProtection = null,
         AuraOfCourageDetail? auraOfCourage = null,
+        BardicInspirationProgressionDetail? bardicInspirationProgression =
+            null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -672,6 +774,7 @@ public sealed class ClassFoundationTests
             wildShapeProgression,
             auraOfProtection,
             auraOfCourage,
+            bardicInspirationProgression,
             sources ?? [CreateSource()]);
     }
 

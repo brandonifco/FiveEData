@@ -1,5 +1,7 @@
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Auras.Serialization;
+using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.BardicInspiration.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
@@ -194,6 +196,13 @@ internal static class ClassDefinitionLoader
                 ? AuraOfCourageDetailDataMapper.Map(auraOfCourageData)
                 : null;
 
+        BardicInspirationProgressionDetail? bardicInspirationProgression =
+            data.BardicInspirationProgression is
+                { } bardicInspirationProgressionData
+                ? BardicInspirationProgressionDetailDataMapper.Map(
+                    bardicInspirationProgressionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -218,6 +227,7 @@ internal static class ClassDefinitionLoader
             wildShapeProgression,
             auraOfProtection,
             auraOfCourage,
+            bardicInspirationProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

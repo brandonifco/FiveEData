@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
@@ -135,7 +136,64 @@ internal static class ClassDefinitionValidator
             ValidateWildShapeProgression(wildShapeProgression, errors);
         }
 
+        if (@class.BardicInspirationProgression is
+            { } bardicInspirationProgression)
+        {
+            ValidateBardicInspirationProgression(
+                bardicInspirationProgression,
+                errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateBardicInspirationProgression(
+        BardicInspirationProgressionDetail bardicInspirationProgression,
+        ICollection<string> errors)
+    {
+        if (bardicInspirationProgression.DieByLevel.Count == 0)
+        {
+            errors.Add(
+                "Bardic Inspiration progression must grant at least one " +
+                "die increase.");
+        }
+
+        var seenCounts = new HashSet<int>();
+        var seenLevels = new HashSet<int>();
+        int? previousSides = null;
+
+        foreach (
+            BardicInspirationDieGrant grant
+            in bardicInspirationProgression.DieByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            seenCounts.Add(grant.Die.Count);
+
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Bardic Inspiration die character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousSides is { } previous && grant.Die.Sides <= previous)
+            {
+                errors.Add(
+                    "Bardic Inspiration die at level " +
+                    $"{grant.CharacterLevel} must use a larger die than " +
+                    "the value at the previous grant level.");
+            }
+
+            previousSides = grant.Die.Sides;
+        }
+
+        if (seenCounts.Count > 1)
+        {
+            errors.Add(
+                "Bardic Inspiration progression must grant the same " +
+                "number of dice at every grant level.");
+        }
     }
 
     private static void ValidateWildShapeProgression(

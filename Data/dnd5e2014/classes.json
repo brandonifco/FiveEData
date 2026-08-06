@@ -118,6 +118,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -297,6 +298,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -466,6 +468,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -676,6 +679,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -838,6 +842,16 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": {
+      "dieByLevel": [
+        { "characterLevel": 1, "die": { "count": 1, "sides": 6 } },
+        { "characterLevel": 5, "die": { "count": 1, "sides": 8 } },
+        { "characterLevel": 10, "die": { "count": 1, "sides": 10 } },
+        { "characterLevel": 15, "die": { "count": 1, "sides": 12 } }
+      ],
+      "rangeFeet": 60,
+      "durationMinutes": 10
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -929,6 +943,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1022,6 +1037,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1128,6 +1144,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1268,6 +1285,7 @@
     },
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1406,6 +1424,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1550,6 +1569,7 @@
       },
       "requiresConsciousness": true
     },
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1672,6 +1692,7 @@
     "wildShapeProgression": null,
     "auraOfProtection": null,
     "auraOfCourage": null,
+    "bardicInspirationProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
