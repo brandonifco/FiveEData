@@ -22,20 +22,21 @@ Divine Strike ([PR #27](https://github.com/brandonifco/FiveEData/pull/27)),
 Ki and Sorcery Points ([PR #28](https://github.com/brandonifco/FiveEData/pull/28)),
 Wild Shape and Circle Forms ([PR #29](https://github.com/brandonifco/FiveEData/pull/29)),
 Paladin auras ([PR #30](https://github.com/brandonifco/FiveEData/pull/30)),
-Bardic Inspiration die ([PR #31](https://github.com/brandonifco/FiveEData/pull/31)).
+Bardic Inspiration die ([PR #31](https://github.com/brandonifco/FiveEData/pull/31)),
+Channel Divinity uses ([PR #32](https://github.com/brandonifco/FiveEData/pull/32)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Order: the rest of the per-level numeric
-progressions (Channel Divinity uses, Mystic Arcanum, Font of Magic
-conversion, and Song of Rest — this last one newly discovered
-alongside Bardic Inspiration, not in the original list, see the
-Bardic Inspiration section below for why it's separate), then the
-larger choice-point catalogs (Eldritch Invocations, Battle Master
-maneuvers, Metamagic, Elemental Disciplines, Channel Divinity options,
-Pact Boon), then race trait quantization, then a background numeric
-audit. Stop when that full list is done, not before. Check the
+progressions (Mystic Arcanum, Font of Magic conversion, and Song of
+Rest — this last one newly discovered alongside Bardic Inspiration,
+not in the original list, see the Bardic Inspiration section below
+for why it's separate), then the larger choice-point catalogs
+(Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
+Disciplines, Channel Divinity options, Pact Boon), then race trait
+quantization, then a background numeric audit. Stop when that full
+list is done, not before. Check the
 "Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
@@ -58,7 +59,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26, #27, #28, #29, #30, and #31 were all merged this way. **Once CI is confirmed
+PR #26, #27, #28, #29, #30, #31, and #32 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1432,17 +1433,44 @@ so `BardicInspirationProgressionDetail` doesn't carry either field.
   `BardicInspirationProgressionDetail`) and one new member on
   `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
   1434 tests (was 1412; +22 new).
+
+**Channel Divinity uses converted thirteenth — Cleric's own core
+uses-per-rest progression (2nd level → 1, 6th → 2, 18th → 3,
+recovering on a short or long rest), verified against the Cleric's
+own page 58 text rather than assumed from the "typical" 5e Channel
+Divinity shape.** Reused the exact same `ValidatePointsProgression`
+helper `ClassDefinitionValidator` already built for Ki/Sorcery Points
+— `ChannelDivinityUseGrant` is a plain `(CharacterLevel, UsesPerRest)`
+pair, the identical shape those two already use, so no new validation
+logic was needed, just a new call site.
+
+- **Paladin's own "Channel Divinity" was checked and confirmed to be
+  a genuinely different case, not an oversight for leaving unquantized
+  here.** Paladin has a same-named class-level framework (already
+  folded into `sacred-oath`'s own citation with no separate `RuleId`,
+  per the "Classes" section above), but its own text never scales —
+  it stays a flat one use, recovering on a short or long rest, for the
+  Paladin's entire career. A constant isn't a progression, so there
+  was nothing to quantize; this was verified by re-reading Paladin's
+  own Channel Divinity paragraph specifically to check for a "twice at
+  level X" clause like Cleric's, not assumed from the shared name.
+  `ChannelDivinityProgressionDetail` stays Cleric-only, unprefixed,
+  since the only real progression that exists belongs to one class.
+- Public API: two new public types (`ChannelDivinityUseGrant`,
+  `ChannelDivinityProgressionDetail`) and one new member on
+  `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
+  1455 tests (was 1434; +21 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Channel Divinity uses, Mystic Arcanum, Font of
-  Magic conversion — and, newly noted above, Song of Rest, which
-  wasn't on the original list) — each single-class like Rage/Sneak
-  Attack, so each gets the same "embedded value object, not a
-  catalog" treatment by default, but verify every time the way Divine
-  Strike's three-way split, Wild Shape/Circle Forms' compound
-  cross-reference, the Paladin auras' real consciousness-gate
-  asymmetry, and Bardic Inspiration's no-resource-pool shape all show
-  is actually necessary — the larger choice-point catalogs (Eldritch
-  Invocations, Battle Master maneuvers, Metamagic, Elemental
+  numeric progressions (Mystic Arcanum, Font of Magic conversion, and
+  Song of Rest, newly noted under Bardic Inspiration above) — each
+  single-class like Rage/Sneak Attack, so each gets the same "embedded
+  value object, not a catalog" treatment by default, but verify every
+  time the way Divine Strike's three-way split, Wild Shape/Circle
+  Forms' compound cross-reference, the Paladin auras' real
+  consciousness-gate asymmetry, Bardic Inspiration's no-resource-pool
+  shape, and Channel Divinity's Cleric-scales/Paladin-doesn't split
+  all show is actually necessary — the larger choice-point catalogs
+  (Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
   Disciplines, Channel Divinity options, Pact Boon), race trait
   quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
@@ -1587,9 +1615,10 @@ quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
-Sorcery Points, Wild Shape, Circle Forms, the Paladin auras, and
-Bardic Inspiration have been converted; every other named feature
-across Classes/Races/Backgrounds is still a `RuleId` citation with no
+Sorcery Points, Wild Shape, Circle Forms, the Paladin auras, Bardic
+Inspiration, and Channel Divinity uses have been converted; every
+other named feature across Classes/Races/Backgrounds is still a
+`RuleId` citation with no
 mechanical payload.
 
 ## Build

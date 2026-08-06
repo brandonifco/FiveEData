@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
+using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
@@ -98,6 +99,13 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public BardicInspirationProgressionDetailData? BardicInspirationProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public ChannelDivinityProgressionDetailData? ChannelDivinityProgression
     {
         get;
         init;

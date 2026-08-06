@@ -2,6 +2,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
@@ -141,6 +142,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -410,6 +412,59 @@ public sealed class ClassFoundationTests
                 error.Contains(
                     "must be greater than",
                     StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsChannelDivinityProgressionWithNoUseGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            channelDivinityProgression: new ChannelDivinityProgressionDetail(
+                [],
+                recoversOnShortRest: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Channel Divinity uses progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsChannelDivinityProgressionWithNonIncreasingUses()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            channelDivinityProgression: new ChannelDivinityProgressionDetail(
+                [
+                    new ChannelDivinityUseGrant(2, 2),
+                    new ChannelDivinityUseGrant(6, 2)
+                ],
+                recoversOnShortRest: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedChannelDivinityProgression()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            channelDivinityProgression: new ChannelDivinityProgressionDetail(
+                [
+                    new ChannelDivinityUseGrant(2, 1),
+                    new ChannelDivinityUseGrant(6, 2),
+                    new ChannelDivinityUseGrant(18, 3)
+                ],
+                recoversOnShortRest: true));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
     }
 
     [Fact]
@@ -743,6 +798,7 @@ public sealed class ClassFoundationTests
         AuraOfCourageDetail? auraOfCourage = null,
         BardicInspirationProgressionDetail? bardicInspirationProgression =
             null,
+        ChannelDivinityProgressionDetail? channelDivinityProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -775,6 +831,7 @@ public sealed class ClassFoundationTests
             auraOfProtection,
             auraOfCourage,
             bardicInspirationProgression,
+            channelDivinityProgression,
             sources ?? [CreateSource()]);
     }
 

@@ -119,6 +119,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -299,6 +300,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -469,6 +471,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -680,6 +683,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -852,6 +856,7 @@
       "rangeFeet": 60,
       "durationMinutes": 10
     },
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -944,6 +949,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1038,6 +1044,14 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": {
+      "usesByLevel": [
+        { "characterLevel": 2, "usesPerRest": 1 },
+        { "characterLevel": 6, "usesPerRest": 2 },
+        { "characterLevel": 18, "usesPerRest": 3 }
+      ],
+      "recoversOnShortRest": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1145,6 +1159,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1286,6 +1301,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1425,6 +1441,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1570,6 +1587,7 @@
       "requiresConsciousness": true
     },
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1693,6 +1711,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "channelDivinityProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

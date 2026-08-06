@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
@@ -43,6 +44,7 @@ public sealed class ClassDefinition
         AuraOfProtectionDetail? auraOfProtection,
         AuraOfCourageDetail? auraOfCourage,
         BardicInspirationProgressionDetail? bardicInspirationProgression,
+        ChannelDivinityProgressionDetail? channelDivinityProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -82,6 +84,7 @@ public sealed class ClassDefinition
         AuraOfProtection = auraOfProtection;
         AuraOfCourage = auraOfCourage;
         BardicInspirationProgression = bardicInspirationProgression;
+        ChannelDivinityProgression = channelDivinityProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -109,6 +112,10 @@ public sealed class ClassDefinition
     public AuraOfProtectionDetail? AuraOfProtection { get; }
     public AuraOfCourageDetail? AuraOfCourage { get; }
     public BardicInspirationProgressionDetail? BardicInspirationProgression
+    {
+        get;
+    }
+    public ChannelDivinityProgressionDetail? ChannelDivinityProgression
     {
         get;
     }
