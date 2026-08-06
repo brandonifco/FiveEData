@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
@@ -141,6 +142,17 @@ internal static class ClassDefinitionValidator
         {
             ValidateBardicInspirationProgression(
                 bardicInspirationProgression,
+                errors);
+        }
+
+        if (@class.ChannelDivinityProgression is
+            { } channelDivinityProgression)
+        {
+            ValidatePointsProgression(
+                channelDivinityProgression.UsesByLevel
+                    .Select(
+                        grant => (grant.CharacterLevel, grant.UsesPerRest)),
+                "Channel Divinity uses",
                 errors);
         }
 

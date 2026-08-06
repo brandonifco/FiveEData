@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -47,6 +48,7 @@ public sealed class ClassDefinitionLoaderTests
           "auraOfProtection": null,
           "auraOfCourage": null,
           "bardicInspirationProgression": null,
+          "channelDivinityProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -100,6 +102,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.AuraOfProtection);
         Assert.Null(@class.AuraOfCourage);
         Assert.Null(@class.BardicInspirationProgression);
+        Assert.Null(@class.ChannelDivinityProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -166,6 +169,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfProtection": null,
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -269,6 +273,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfProtection": null,
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -343,6 +348,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfProtection": null,
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -420,6 +426,7 @@ public sealed class ClassDefinitionLoaderTests
                       "requiresConsciousness": true
                     },
                     "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -497,6 +504,7 @@ public sealed class ClassDefinitionLoaderTests
                       "rangeFeet": 60,
                       "durationMinutes": 10
                     },
+                    "channelDivinityProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -522,6 +530,74 @@ public sealed class ClassDefinitionLoaderTests
             bardicInspirationProgression.DieByLevel[1].Die.Sides);
         Assert.Equal(60, bardicInspirationProgression.RangeFeet);
         Assert.Equal(10, bardicInspirationProgression.DurationMinutes);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsChannelDivinityProgression()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.wisdom"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.wisdom",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": {
+                      "usesByLevel": [
+                        { "characterLevel": 2, "usesPerRest": 1 },
+                        { "characterLevel": 6, "usesPerRest": 2 }
+                      ],
+                      "recoversOnShortRest": true
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        ChannelDivinityProgressionDetail channelDivinityProgression =
+            @class.ChannelDivinityProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Channel Divinity progression.");
+
+        Assert.Equal(2, channelDivinityProgression.UsesByLevel.Count);
+        Assert.Equal(
+            1,
+            channelDivinityProgression.UsesByLevel[0].UsesPerRest);
+        Assert.Equal(
+            2,
+            channelDivinityProgression.UsesByLevel[1].UsesPerRest);
+        Assert.True(channelDivinityProgression.RecoversOnShortRest);
     }
 
     [Fact]

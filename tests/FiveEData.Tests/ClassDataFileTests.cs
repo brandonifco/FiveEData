@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
@@ -759,6 +760,17 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(57, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        ChannelDivinityProgressionDetail channelDivinityProgression =
+            cleric.ChannelDivinityProgression
+            ?? throw new InvalidOperationException(
+                "Expected Cleric to have a Channel Divinity progression.");
+        Assert.Equal(
+            [(2, 1), (6, 2), (18, 3)],
+            channelDivinityProgression.UsesByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.UsesPerRest)));
+        Assert.True(channelDivinityProgression.RecoversOnShortRest);
     }
 
     [Fact]
@@ -1683,6 +1695,26 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.BardicInspirationProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonClericClassDeclaresNoChannelDivinityProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.ChannelDivinityProgression);
     }
 
     private static ClassDefinition GetClass(
