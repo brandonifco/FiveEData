@@ -39,6 +39,8 @@ public sealed class ClassDefinitionLoaderTests
           "extraAttackProgressionId": null,
           "rageProgression": null,
           "sneakAttackProgression": null,
+          "kiProgression": null,
+          "sorceryPointsProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -86,6 +88,8 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.ExtraAttackProgressionId);
         Assert.Null(@class.RageProgression);
         Assert.Null(@class.SneakAttackProgression);
+        Assert.Null(@class.KiProgression);
+        Assert.Null(@class.SorceryPointsProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -146,6 +150,8 @@ public sealed class ClassDefinitionLoaderTests
                       "oncePerTurn": true,
                       "requiresFinesseOrRangedWeapon": true
                     },
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -200,6 +206,71 @@ public sealed class ClassDefinitionLoaderTests
         Assert.True(@class.SneakAttackProgression.OncePerTurn);
         Assert.True(
             @class.SneakAttackProgression.RequiresFinesseOrRangedWeapon);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsKiAndSorceryPointsProgressions()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.dexterity"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.strength",
+                      "dnd5e2014.ability.dexterity"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": {
+                      "pointsByLevel": [
+                        { "characterLevel": 2, "points": 2 },
+                        { "characterLevel": 3, "points": 3 }
+                      ],
+                      "recoversOnShortRest": true
+                    },
+                    "sorceryPointsProgression": {
+                      "pointsByLevel": [
+                        { "characterLevel": 2, "points": 2 },
+                        { "characterLevel": 3, "points": 3 }
+                      ],
+                      "recoversOnShortRest": false
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.NotNull(@class.KiProgression);
+        Assert.Equal(2, @class.KiProgression!.PointsByLevel.Count);
+        Assert.Equal(2, @class.KiProgression.PointsByLevel[0].Points);
+        Assert.True(@class.KiProgression.RecoversOnShortRest);
+
+        Assert.NotNull(@class.SorceryPointsProgression);
+        Assert.Equal(2, @class.SorceryPointsProgression!.PointsByLevel.Count);
+        Assert.Equal(3, @class.SorceryPointsProgression.PointsByLevel[1].Points);
+        Assert.False(@class.SorceryPointsProgression.RecoversOnShortRest);
     }
 
     [Fact]

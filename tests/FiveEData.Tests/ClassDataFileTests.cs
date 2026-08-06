@@ -1,7 +1,9 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -255,6 +257,20 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(77, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        Assert.Null(monk.SorceryPointsProgression);
+
+        KiProgressionDetail kiProgression =
+            monk.KiProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have a Ki progression.");
+        Assert.Equal(19, kiProgression.PointsByLevel.Count);
+        Assert.All(
+            kiProgression.PointsByLevel,
+            grant => Assert.Equal(grant.CharacterLevel, grant.Points));
+        Assert.Equal(2, kiProgression.PointsByLevel[0].CharacterLevel);
+        Assert.Equal(20, kiProgression.PointsByLevel[^1].CharacterLevel);
+        Assert.True(kiProgression.RecoversOnShortRest);
     }
 
     [Fact]
@@ -1226,6 +1242,24 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(100, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        Assert.Null(sorcerer.KiProgression);
+
+        SorceryPointsProgressionDetail sorceryPointsProgression =
+            sorcerer.SorceryPointsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Sorcerer to have a Sorcery Points progression.");
+        Assert.Equal(19, sorceryPointsProgression.PointsByLevel.Count);
+        Assert.All(
+            sorceryPointsProgression.PointsByLevel,
+            grant => Assert.Equal(grant.CharacterLevel, grant.Points));
+        Assert.Equal(
+            2,
+            sorceryPointsProgression.PointsByLevel[0].CharacterLevel);
+        Assert.Equal(
+            20,
+            sorceryPointsProgression.PointsByLevel[^1].CharacterLevel);
+        Assert.False(sorceryPointsProgression.RecoversOnShortRest);
     }
 
     [Fact]
@@ -1489,6 +1523,46 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.SneakAttackProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonMonkClassDeclaresNoKiProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.KiProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonSorcererClassDeclaresNoSorceryPointsProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.SorceryPointsProgression);
     }
 
     private static ClassDefinition GetClass(

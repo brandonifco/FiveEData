@@ -18,7 +18,8 @@ spell slot progressions ([PR #23](https://github.com/brandonifco/FiveEData/pull/
 Extra Attack progressions ([PR #24](https://github.com/brandonifco/FiveEData/pull/24)),
 Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)),
 Sneak Attack ([PR #26](https://github.com/brandonifco/FiveEData/pull/26)),
-Divine Strike ([PR #27](https://github.com/brandonifco/FiveEData/pull/27)).
+Divine Strike ([PR #27](https://github.com/brandonifco/FiveEData/pull/27)),
+Ki and Sorcery Points ([PR #28](https://github.com/brandonifco/FiveEData/pull/28)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
@@ -39,19 +40,23 @@ bullet is the checklist.
 **Nothing open right now.** `main` is synced with `origin/main`,
 working tree clean.
 
-**Second infra-bypass incident, same pattern as PR #25's (see below):**
-PR #26's CI failed once with `The job was not acquired by Runner of
-type hosted even after multiple attempts`, a `gh run rerun` was kicked
-off, and the rerun then sat `queued` for 5+ minutes with an empty
-status-check rollup. Checked <https://www.githubstatus.com/> this
-time (not just inferred from the symptom) and found GitHub Actions
-listed as an active **major outage** ("workflow runs are failing or
-delayed in starting, and some queued jobs may time out") at that
-exact time. With that confirmation plus explicit user go-ahead, merged
-PR #26 directly off the local gate (Debug+Release 0 warnings, 1301/1301
-tests) without waiting for CI. Reinforces the standing rule below —
-check githubstatus.com *before* asking to bypass, don't just assume
-infra from the symptom alone, and still ask every time regardless.
+**GitHub Actions major outage, ongoing since 2026-08-06 15:22 UTC —
+check <https://www.githubstatus.com/> before assuming it's still
+active, this note will go stale the moment it recovers.** PR #26's CI
+failed once with `The job was not acquired by Runner of type hosted
+even after multiple attempts`; a `gh run rerun` was kicked off and sat
+`queued` for nearly an hour without progressing; PR #27's workflow run
+never even started. Confirmed via githubstatus.com (not just inferred
+from symptoms) as a major outage, still degraded 3.5+ hours in
+("recovery taking longer than expected"). Given the size of the
+remaining work list, the user gave a **standing authorization for the
+duration of this outage** (not a one-off, and not the
+ask-every-time-default described below) to merge every PR directly off
+the local gate without waiting for CI until GitHub Actions recovers —
+PR #26, #27, and #28 were all merged this way. **Once CI is confirmed
+green again on a real PR, go back to waiting for it normally** — this
+authorization is scoped to the outage, not a permanent standing
+exception.
 
 **One real, worth-remembering incident from this pass, in case it
 recurs again:** PR #25's CI failed three consecutive times purely on
@@ -1237,16 +1242,61 @@ match-the-weapon rule.
   plus its nested `DivineStrikeDamageGrant`) and one new member on
   `SubclassDefinition`. Full gate green: Debug+Release build 0
   warnings, 1317 tests (was 1301; +16 new).
+
+**Ki (Monk) and Sorcery Points (Sorcerer) converted seventh and
+eighth, together in one pass** — the first two "other per-level
+numeric progressions" from the remaining list, picked together because
+reading both PHB tables side by side (pages 77-78 and 100-101) showed
+they're numerically identical (`points = character level`, granted
+starting at 2nd level, every level 2-20) despite fueling completely
+unrelated mechanics (Ki's martial-arts trio vs. Font of Magic's spell
+slot conversion). That coincidence was explicitly treated as a
+non-reason to share a type — see the cross-class `RuleId`-sharing
+discipline in "Classes" above (a recurring template/number is never by
+itself evidence for or against sharing; only the actual mechanic
+matters) — and reading the full prose confirmed the mechanics
+genuinely differ: Ki recovers on a short **or** long rest, Sorcery
+Points only on a long rest. Sharing a type would have erased that
+difference or forced an awkward per-instance override.
+
+- **Two new sibling domains, `Rules/Classes/Ki/` and
+  `Rules/Classes/SorceryPoints/`**, each the same "plain embedded value
+  object, no catalog" shape as Rage/Sneak Attack — both are strictly
+  single-class, so there was never a referenced-by-ID case to make.
+  Each holds a dense `PointsByLevel` list (one grant per character
+  level, 2 through 20 — 19 entries) rather than a sparse breakpoint
+  list like Rage's own `UsesByLevel`/`DamageBonusByLevel`, because the
+  value genuinely changes at *every* level here, not just at a few
+  milestone levels — a dense list is what "read directly off the
+  table" honestly produces for this particular shape, the same
+  all-20-levels-present precedent the spell slot progression table
+  already established, without inventing a "points equal your level"
+  formula field the data model doesn't otherwise support.
+- **`RecoversOnShortRest` is a plain bool on each type, not a shared
+  enum** — `SpellSlotRecoveryRest` (`LongRest`/`ShortOrLongRest`)
+  already exists on the Spellcasting domain, but its name is
+  spell-slot-specific and reusing it here would read as claiming Ki
+  points *are* spell slots. Renaming/relocating it into a shared
+  location was considered and rejected as an unnecessary breaking
+  change to an already-shipped public type for a two-value distinction
+  that a local bool states just as clearly, matching Rage's own choice
+  not to generalize a "recovery timing" concept when it only ever
+  needed long-rest.
+- Public API: four new public types (`KiPointsGrant`,
+  `KiProgressionDetail`, `SorceryPointsGrant`,
+  `SorceryPointsProgressionDetail`) and two new members on
+  `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
+  1356 tests (was 1317; +39 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Ki/sorcery points, Wild Shape/Circle Forms
-  caps, auras, Bardic Inspiration die, Channel Divinity uses, Mystic
-  Arcanum, Font of Magic conversion) — each single-class like
-  Rage/Sneak Attack, so each gets the same "embedded value object, not
-  a catalog" treatment by default, but verify every time the way
-  Divine Strike's three-way split shows is actually necessary — the
-  larger choice-point catalogs (Eldritch Invocations, Battle Master
-  maneuvers, Metamagic, Elemental Disciplines, Channel Divinity
-  options, Pact Boon), race trait quantization (Darkvision range,
+  numeric progressions (Wild Shape/Circle Forms caps, auras, Bardic
+  Inspiration die, Channel Divinity uses, Mystic Arcanum, Font of Magic
+  conversion) — each single-class like Rage/Sneak Attack, so each gets
+  the same "embedded value object, not a catalog" treatment by default,
+  but verify every time the way Divine Strike's three-way split shows
+  is actually necessary — the larger choice-point catalogs (Eldritch
+  Invocations, Battle Master maneuvers, Metamagic, Elemental
+  Disciplines, Channel Divinity options, Pact Boon), race trait
+  quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
   (likely little to quantize — most background features are
   narrative/social, not numeric).
@@ -1388,8 +1438,8 @@ around.
 quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
-tables/abilities, Extra Attack, Rage, Sneak Attack, and Divine Strike
-have been converted; every other named feature
+tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
+and Sorcery Points have been converted; every other named feature
 across Classes/Races/Backgrounds is still a `RuleId` citation with no
 mechanical payload.
 

@@ -1,8 +1,10 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -136,6 +138,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -330,6 +334,78 @@ public sealed class ClassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsKiProgressionWithNoPointsGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            kiProgression: new KiProgressionDetail([], true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Ki points progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsKiProgressionWithNonIncreasingPoints()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            kiProgression: new KiProgressionDetail(
+                [
+                    new KiPointsGrant(2, 3),
+                    new KiPointsGrant(3, 3)
+                ],
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsSorceryPointsProgressionWithNoPointsGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            sorceryPointsProgression: new SorceryPointsProgressionDetail(
+                [],
+                false));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Sorcery points progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsSorceryPointsProgressionWithNonIncreasingPoints()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            sorceryPointsProgression: new SorceryPointsProgressionDetail(
+                [
+                    new SorceryPointsGrant(2, 3),
+                    new SorceryPointsGrant(3, 3)
+                ],
+                false));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
     public void Validator_RejectsNoPrimaryAbilities()
     {
         ClassDefinition @class = Create(
@@ -499,6 +575,8 @@ public sealed class ClassFoundationTests
         ExtraAttackProgressionId? extraAttackProgressionId = null,
         RageProgressionDetail? rageProgression = null,
         SneakAttackProgressionDetail? sneakAttackProgression = null,
+        KiProgressionDetail? kiProgression = null,
+        SorceryPointsProgressionDetail? sorceryPointsProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -525,6 +603,8 @@ public sealed class ClassFoundationTests
             extraAttackProgressionId,
             rageProgression,
             sneakAttackProgression,
+            kiProgression,
+            sorceryPointsProgression,
             sources ?? [CreateSource()]);
     }
 
