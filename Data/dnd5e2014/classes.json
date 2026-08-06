@@ -1144,5 +1144,124 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.paladin",
+    "name": "Paladin",
+    "hitDieSides": 10,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.strength",
+      "dnd5e2014.ability.charisma"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.wisdom",
+      "dnd5e2014.ability.charisma"
+    ],
+    "armorProficiencyCategories": [
+      "Light",
+      "Medium",
+      "Heavy"
+    ],
+    "proficientWithShields": true,
+    "weaponProficiencyCategories": [
+      "Simple",
+      "Martial"
+    ],
+    "weaponProficiencyIds": [],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.intimidation",
+      "dnd5e2014.skill.medicine",
+      "dnd5e2014.skill.persuasion",
+      "dnd5e2014.skill.religion"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.divine-sense"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.lay-on-hands"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.paladin-fighting-style"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.paladin-spellcasting"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.divine-smite"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.divine-health"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.sacred-oath"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.extra-attack"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.aura-of-protection"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.aura-of-courage"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.improved-divine-smite"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.cleansing-touch"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.aura-of-protection"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.aura-of-courage"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 84,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

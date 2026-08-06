@@ -12,9 +12,9 @@ public sealed class ServiceRuleDataFileTests
         IReadOnlyList<RuleDefinition> rules =
             LoadCanonical();
 
-        Assert.Equal(388, rules.Count);
+        Assert.Equal(417, rules.Count);
         Assert.Equal(
-            388,
+            417,
             rules.Select(rule => rule.Id).Distinct().Count());
     }
 

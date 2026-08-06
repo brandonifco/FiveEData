@@ -1235,5 +1235,170 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.oath-of-devotion",
+    "name": "Oath of Devotion",
+    "classId": "dnd5e2014.class.paladin",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-devotion-spells"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-sacred-weapon"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-turn-the-unholy"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-devotion-spells"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.aura-of-devotion"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-devotion-spells"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-devotion-spells"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.purity-of-spirit"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-devotion-spells"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.holy-nimbus"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 85,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.oath-of-the-ancients",
+    "name": "Oath of the Ancients",
+    "classId": "dnd5e2014.class.paladin",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-the-ancients-spells"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-natures-wrath"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-turn-the-faithless"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-the-ancients-spells"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.aura-of-warding"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-the-ancients-spells"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-the-ancients-spells"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.undying-sentinel"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-the-ancients-spells"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.elder-champion"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 87,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.oath-of-vengeance",
+    "name": "Oath of Vengeance",
+    "classId": "dnd5e2014.class.paladin",
+    "chosenAtLevel": 3,
+    "levelFeatures": [
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-vengeance-spells"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-abjure-enemy"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-vow-of-enmity"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-vengeance-spells"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.relentless-avenger"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-vengeance-spells"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-vengeance-spells"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.soul-of-vengeance"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.oath-of-vengeance-spells"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.avenging-angel"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 88,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]
