@@ -8,6 +8,7 @@ using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Equipment.Armor;
@@ -549,6 +550,19 @@ public sealed class ClassDataFileTests
             grant => Assert.Equal(1, grant.Die.Count));
         Assert.Equal(60, bardicInspirationProgression.RangeFeet);
         Assert.Equal(10, bardicInspirationProgression.DurationMinutes);
+
+        SongOfRestProgressionDetail songOfRestProgression =
+            bard.SongOfRestProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Song of Rest progression.");
+        Assert.Equal(
+            [(2, 6), (9, 8), (13, 10), (17, 12)],
+            songOfRestProgression.DieByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.Die.Sides)));
+        Assert.All(
+            songOfRestProgression.DieByLevel,
+            grant => Assert.Equal(1, grant.Die.Count));
     }
 
     [Fact]
@@ -1780,6 +1794,26 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.FontOfMagicConversion);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonBardClassDeclaresNoSongOfRestProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.SongOfRestProgression);
     }
 
     private static ClassDefinition GetClass(

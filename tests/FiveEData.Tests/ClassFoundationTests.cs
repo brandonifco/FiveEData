@@ -9,6 +9,7 @@ using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.WildShape;
@@ -144,6 +145,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -577,6 +579,75 @@ public sealed class ClassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsSongOfRestProgressionWithNoDieGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            songOfRestProgression: new SongOfRestProgressionDetail([]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Song of Rest progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsSongOfRestProgressionWithNonIncreasingDieSize()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            songOfRestProgression: new SongOfRestProgressionDetail(
+                [
+                    new SongOfRestDieGrant(2, new DiceExpression(1, 8)),
+                    new SongOfRestDieGrant(9, new DiceExpression(1, 6))
+                ]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must use a larger die",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsSongOfRestProgressionWithMixedDieCounts()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            songOfRestProgression: new SongOfRestProgressionDetail(
+                [
+                    new SongOfRestDieGrant(2, new DiceExpression(1, 6)),
+                    new SongOfRestDieGrant(9, new DiceExpression(2, 8))
+                ]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "same number of dice",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedSongOfRestProgression()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            songOfRestProgression: new SongOfRestProgressionDetail(
+                [
+                    new SongOfRestDieGrant(2, new DiceExpression(1, 6)),
+                    new SongOfRestDieGrant(9, new DiceExpression(1, 8)),
+                    new SongOfRestDieGrant(13, new DiceExpression(1, 10)),
+                    new SongOfRestDieGrant(17, new DiceExpression(1, 12))
+                ]));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
     public void Validator_RejectsWildShapeProgressionWithNoFormLimits()
     {
         ClassDefinition @class = Create(
@@ -910,6 +981,7 @@ public sealed class ClassFoundationTests
         ChannelDivinityProgressionDetail? channelDivinityProgression = null,
         MysticArcanumProgressionDetail? mysticArcanumProgression = null,
         FontOfMagicConversionDetail? fontOfMagicConversion = null,
+        SongOfRestProgressionDetail? songOfRestProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -945,6 +1017,7 @@ public sealed class ClassFoundationTests
             channelDivinityProgression,
             mysticArcanumProgression,
             fontOfMagicConversion,
+            songOfRestProgression,
             sources ?? [CreateSource()]);
     }
 

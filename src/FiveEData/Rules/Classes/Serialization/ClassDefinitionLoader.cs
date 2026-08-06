@@ -15,6 +15,8 @@ using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
+using FiveEData.Rules.Classes.SongOfRest;
+using FiveEData.Rules.Classes.SongOfRest.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
@@ -229,6 +231,12 @@ internal static class ClassDefinitionLoader
                     fontOfMagicConversionData)
                 : null;
 
+        SongOfRestProgressionDetail? songOfRestProgression =
+            data.SongOfRestProgression is { } songOfRestProgressionData
+                ? SongOfRestProgressionDetailDataMapper.Map(
+                    songOfRestProgressionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -257,6 +265,7 @@ internal static class ClassDefinitionLoader
             channelDivinityProgression,
             mysticArcanumProgression,
             fontOfMagicConversion,
+            songOfRestProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

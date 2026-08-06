@@ -122,6 +122,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -305,6 +306,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -478,6 +480,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -692,6 +695,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -867,6 +871,14 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": {
+      "dieByLevel": [
+        { "characterLevel": 2, "die": { "count": 1, "sides": 6 } },
+        { "characterLevel": 9, "die": { "count": 1, "sides": 8 } },
+        { "characterLevel": 13, "die": { "count": 1, "sides": 10 } },
+        { "characterLevel": 17, "die": { "count": 1, "sides": 12 } }
+      ]
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -962,6 +974,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1066,6 +1079,7 @@
     },
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1184,6 +1198,7 @@
       "recoversOnShortRest": false
     },
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1328,6 +1343,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1470,6 +1486,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1618,6 +1635,7 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1752,6 +1770,7 @@
         { "spellSlotLevel": 5, "sorceryPointCost": 7 }
       ]
     },
+    "songOfRestProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
