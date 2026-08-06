@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -1437,6 +1438,57 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.RageProgression);
+    }
+
+    [Fact]
+    public void CanonicalFile_RogueSneakAttackMatchesThePhbTable()
+    {
+        ClassDefinition rogue =
+            GetClass(LoadClasses(), "dnd5e2014.class.rogue");
+
+        SneakAttackProgressionDetail sneakAttack =
+            rogue.SneakAttackProgression
+            ?? throw new InvalidOperationException(
+                "Rogue is expected to declare a Sneak Attack " +
+                "progression.");
+
+        Assert.Equal(
+            [
+                (1, 1), (3, 2), (5, 3), (7, 4), (9, 5),
+                (11, 6), (13, 7), (15, 8), (17, 9), (19, 10)
+            ],
+            sneakAttack.DiceByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.Damage.Count)));
+
+        Assert.All(
+            sneakAttack.DiceByLevel,
+            grant => Assert.Equal(6, grant.Damage.Sides));
+
+        Assert.True(sneakAttack.OncePerTurn);
+        Assert.True(sneakAttack.RequiresFinesseOrRangedWeapon);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonRogueClassDeclaresNoSneakAttackProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.SneakAttackProgression);
     }
 
     private static ClassDefinition GetClass(

@@ -38,6 +38,7 @@ public sealed class ClassDefinitionLoaderTests
           "spellcastingAbilityId": null,
           "extraAttackProgressionId": null,
           "rageProgression": null,
+          "sneakAttackProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -84,6 +85,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.SpellcastingAbilityId);
         Assert.Null(@class.ExtraAttackProgressionId);
         Assert.Null(@class.RageProgression);
+        Assert.Null(@class.SneakAttackProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -130,6 +132,20 @@ public sealed class ClassDefinitionLoaderTests
                       ],
                       "requiresNotWearingHeavyArmor": true
                     },
+                    "sneakAttackProgression": {
+                      "diceByLevel": [
+                        {
+                          "characterLevel": 1,
+                          "damage": { "count": 1, "sides": 6 }
+                        },
+                        {
+                          "characterLevel": 3,
+                          "damage": { "count": 2, "sides": 6 }
+                        }
+                      ],
+                      "oncePerTurn": true,
+                      "requiresFinesseOrRangedWeapon": true
+                    },
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -167,6 +183,23 @@ public sealed class ClassDefinitionLoaderTests
             Assert.Single(
                 @class.RageProgression.ResistedDamageTypeIds).Value);
         Assert.True(@class.RageProgression.RequiresNotWearingHeavyArmor);
+
+        Assert.NotNull(@class.SneakAttackProgression);
+        Assert.Equal(
+            2,
+            @class.SneakAttackProgression!.DiceByLevel.Count);
+        Assert.Equal(
+            1,
+            @class.SneakAttackProgression.DiceByLevel[0].Damage.Count);
+        Assert.Equal(
+            6,
+            @class.SneakAttackProgression.DiceByLevel[0].Damage.Sides);
+        Assert.Equal(
+            2,
+            @class.SneakAttackProgression.DiceByLevel[1].Damage.Count);
+        Assert.True(@class.SneakAttackProgression.OncePerTurn);
+        Assert.True(
+            @class.SneakAttackProgression.RequiresFinesseOrRangedWeapon);
     }
 
     [Fact]

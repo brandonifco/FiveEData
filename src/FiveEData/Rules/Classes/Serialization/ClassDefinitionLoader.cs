@@ -1,6 +1,8 @@
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Rage.Serialization;
+using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -151,6 +153,12 @@ internal static class ClassDefinitionLoader
                 ? RageProgressionDetailDataMapper.Map(rageProgressionData)
                 : null;
 
+        SneakAttackProgressionDetail? sneakAttackProgression =
+            data.SneakAttackProgression is { } sneakAttackProgressionData
+                ? SneakAttackProgressionDetailDataMapper.Map(
+                    sneakAttackProgressionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -169,6 +177,7 @@ internal static class ClassDefinitionLoader
             spellcastingAbilityId,
             extraAttackProgressionId,
             rageProgression,
+            sneakAttackProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

@@ -112,6 +112,7 @@
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.fighter",
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -285,6 +286,7 @@
       ],
       "requiresNotWearingHeavyArmor": true
     },
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -425,6 +427,7 @@
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -554,6 +557,82 @@
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": null,
     "rageProgression": null,
+    "sneakAttackProgression": {
+      "diceByLevel": [
+        {
+          "characterLevel": 1,
+          "damage": {
+            "count": 1,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 3,
+          "damage": {
+            "count": 2,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 5,
+          "damage": {
+            "count": 3,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 7,
+          "damage": {
+            "count": 4,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 9,
+          "damage": {
+            "count": 5,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 11,
+          "damage": {
+            "count": 6,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 13,
+          "damage": {
+            "count": 7,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 15,
+          "damage": {
+            "count": 8,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 17,
+          "damage": {
+            "count": 9,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 19,
+          "damage": {
+            "count": 10,
+            "sides": 6
+          }
+        }
+      ],
+      "oncePerTurn": true,
+      "requiresFinesseOrRangedWeapon": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -710,6 +789,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -795,6 +875,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "extraAttackProgressionId": null,
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -882,6 +963,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": null,
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -982,6 +1064,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1093,6 +1176,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": null,
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1225,6 +1309,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1348,6 +1433,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1441,6 +1527,7 @@
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
     "rageProgression": null,
+    "sneakAttackProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

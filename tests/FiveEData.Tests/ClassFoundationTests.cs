@@ -2,6 +2,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Rage;
+using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -139,6 +140,7 @@ public sealed class ClassFoundationTests
             null,
             null,
             null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -264,6 +266,66 @@ public sealed class ClassFoundationTests
             error =>
                 error.Contains(
                     "duplicated",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsSneakAttackProgressionWithNoDiceGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            sneakAttackProgression: new SneakAttackProgressionDetail(
+                [],
+                true,
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "at least one dice increase",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsSneakAttackProgressionWithNonIncreasingDice()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            sneakAttackProgression: new SneakAttackProgressionDetail(
+                [
+                    new SneakAttackDiceGrant(3, new DiceExpression(2, 6)),
+                    new SneakAttackDiceGrant(5, new DiceExpression(2, 6))
+                ],
+                true,
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsSneakAttackProgressionWithMixedDieSizes()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            sneakAttackProgression: new SneakAttackProgressionDetail(
+                [
+                    new SneakAttackDiceGrant(1, new DiceExpression(1, 6)),
+                    new SneakAttackDiceGrant(3, new DiceExpression(2, 8))
+                ],
+                true,
+                true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "same damage die size",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -436,6 +498,7 @@ public sealed class ClassFoundationTests
         AbilityId? spellcastingAbilityId = null,
         ExtraAttackProgressionId? extraAttackProgressionId = null,
         RageProgressionDetail? rageProgression = null,
+        SneakAttackProgressionDetail? sneakAttackProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -461,6 +524,7 @@ public sealed class ClassFoundationTests
             spellcastingAbilityId,
             extraAttackProgressionId,
             rageProgression,
+            sneakAttackProgression,
             sources ?? [CreateSource()]);
     }
 
