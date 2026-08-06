@@ -1,4 +1,5 @@
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
@@ -163,9 +164,45 @@ internal static class ClassCatalogIntegrityValidator
                 spellSlotProgressionIds,
                 abilityIds,
                 errors);
+
+            if (subclass.DivineStrikeProgression is { } divineStrikeProgression)
+            {
+                ValidateDivineStrikeProgression(
+                    owner,
+                    divineStrikeProgression,
+                    damageTypeIds,
+                    errors);
+            }
         }
 
         return errors;
+    }
+
+    private static void ValidateDivineStrikeProgression(
+        string owner,
+        DivineStrikeProgressionDetail divineStrikeProgression,
+        IReadOnlySet<DamageTypeId> damageTypeIds,
+        ICollection<string> errors)
+    {
+        if (divineStrikeProgression.FixedDamageTypeId is { } fixedDamageTypeId &&
+            !damageTypeIds.Contains(fixedDamageTypeId))
+        {
+            errors.Add(
+                $"{owner} references missing damage type " +
+                $"'{fixedDamageTypeId}' in its Divine Strike progression.");
+        }
+
+        foreach (
+            DamageTypeId damageTypeId
+            in divineStrikeProgression.ChoosableDamageTypeIds ?? [])
+        {
+            if (!damageTypeIds.Contains(damageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{damageTypeId}' in its Divine Strike progression.");
+            }
+        }
     }
 
     private static void ValidateSpellcasting(

@@ -1,9 +1,11 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 
 namespace FiveEData.Tests;
 
@@ -61,6 +63,7 @@ public sealed class SubclassFoundationTests
             [],
             null,
             null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -77,6 +80,7 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
             null,
             null,
             [CreateSource()]);
@@ -132,6 +136,140 @@ public sealed class SubclassFoundationTests
         Assert.Contains(
             SubclassDefinitionValidator.Validate(subclass),
             error => error.Contains("duplicated", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsDivineStrikeProgressionWithNoDamageGrants()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            divineStrikeProgression: new DivineStrikeProgressionDetail(
+                [],
+                fixedDamageTypeId: new DamageTypeId(
+                    "dnd5e2014.damage-type.radiant"),
+                choosableDamageTypeIds: null,
+                matchesWeaponDamageType: false));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error => error.Contains(
+                "at least one",
+                StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsDivineStrikeProgressionWithNonAscendingDamage()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            divineStrikeProgression: new DivineStrikeProgressionDetail(
+                [
+                    new DivineStrikeDamageGrant(8, new DiceExpression(2, 8)),
+                    new DivineStrikeDamageGrant(14, new DiceExpression(1, 8))
+                ],
+                fixedDamageTypeId: new DamageTypeId(
+                    "dnd5e2014.damage-type.radiant"),
+                choosableDamageTypeIds: null,
+                matchesWeaponDamageType: false));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error => error.Contains(
+                "greater than",
+                StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsDivineStrikeProgressionWithMismatchedDieSizes()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            divineStrikeProgression: new DivineStrikeProgressionDetail(
+                [
+                    new DivineStrikeDamageGrant(8, new DiceExpression(1, 8)),
+                    new DivineStrikeDamageGrant(14, new DiceExpression(2, 6))
+                ],
+                fixedDamageTypeId: new DamageTypeId(
+                    "dnd5e2014.damage-type.radiant"),
+                choosableDamageTypeIds: null,
+                matchesWeaponDamageType: false));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error => error.Contains(
+                "same damage die size",
+                StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Theory]
+    [InlineData(null, null, false)]
+    [InlineData(
+        "dnd5e2014.damage-type.radiant",
+        new[] { "dnd5e2014.damage-type.cold", "dnd5e2014.damage-type.fire" },
+        false)]
+    [InlineData(
+        "dnd5e2014.damage-type.radiant",
+        null,
+        true)]
+    public void Validator_RejectsDivineStrikeProgressionWithoutExactlyOneDamageTypeMechanism(
+        string? fixedDamageTypeId,
+        string[]? choosableDamageTypeIds,
+        bool matchesWeaponDamageType)
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            divineStrikeProgression: new DivineStrikeProgressionDetail(
+                [new DivineStrikeDamageGrant(8, new DiceExpression(1, 8))],
+                fixedDamageTypeId is null
+                    ? null
+                    : new DamageTypeId(fixedDamageTypeId),
+                choosableDamageTypeIds?.Select(value => new DamageTypeId(value)),
+                matchesWeaponDamageType));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error => error.Contains(
+                "exactly one",
+                StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsDivineStrikeProgressionWithSingleChoosableDamageType()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            divineStrikeProgression: new DivineStrikeProgressionDetail(
+                [new DivineStrikeDamageGrant(8, new DiceExpression(1, 8))],
+                fixedDamageTypeId: null,
+                choosableDamageTypeIds:
+                [
+                    new DamageTypeId("dnd5e2014.damage-type.cold")
+                ],
+                matchesWeaponDamageType: false));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error => error.Contains(
+                "at least two options",
+                StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedDivineStrikeProgression()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            divineStrikeProgression: new DivineStrikeProgressionDetail(
+                [
+                    new DivineStrikeDamageGrant(8, new DiceExpression(1, 8)),
+                    new DivineStrikeDamageGrant(14, new DiceExpression(2, 8))
+                ],
+                fixedDamageTypeId: new DamageTypeId(
+                    "dnd5e2014.damage-type.radiant"),
+                choosableDamageTypeIds: null,
+                matchesWeaponDamageType: false));
+
+        Assert.Empty(SubclassDefinitionValidator.Validate(subclass));
     }
 
     [Fact]
@@ -215,6 +353,7 @@ public sealed class SubclassFoundationTests
         IEnumerable<ClassLevelFeature>? levelFeatures = null,
         SpellSlotProgressionId? spellSlotProgressionId = null,
         AbilityId? spellcastingAbilityId = null,
+        DivineStrikeProgressionDetail? divineStrikeProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -225,6 +364,7 @@ public sealed class SubclassFoundationTests
             levelFeatures ?? [],
             spellSlotProgressionId,
             spellcastingAbilityId,
+            divineStrikeProgression,
             sources ?? [CreateSource()]);
     }
 

@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
 
 namespace FiveEData.Tests;
@@ -20,6 +21,7 @@ public sealed class SubclassDefinitionLoaderTests
           ],
           "spellSlotProgressionId": null,
           "spellcastingAbilityId": null,
+          "divineStrikeProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -49,6 +51,7 @@ public sealed class SubclassDefinitionLoaderTests
 
         Assert.Null(subclass.SpellSlotProgressionId);
         Assert.Null(subclass.SpellcastingAbilityId);
+        Assert.Null(subclass.DivineStrikeProgression);
         Assert.Single(subclass.Sources);
     }
 
@@ -68,6 +71,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "spellSlotProgressionId":
                       "extension.spell-slot-progression.test",
                     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
+                    "divineStrikeProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -85,6 +89,60 @@ public sealed class SubclassDefinitionLoaderTests
         Assert.Equal(
             "dnd5e2014.ability.intelligence",
             subclass.SpellcastingAbilityId?.Value);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsDivineStrikeProgression()
+    {
+        SubclassDefinition subclass = Assert.Single(
+            SubclassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.subclass.test",
+                    "name": "Test",
+                    "classId": "dnd5e2014.class.fighter",
+                    "chosenAtLevel": 3,
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "divineStrikeProgression": {
+                      "damageByLevel": [
+                        {
+                          "characterLevel": 8,
+                          "damage": { "count": 1, "sides": 8 }
+                        },
+                        {
+                          "characterLevel": 14,
+                          "damage": { "count": 2, "sides": 8 }
+                        }
+                      ],
+                      "fixedDamageTypeId": "dnd5e2014.damage-type.radiant",
+                      "choosableDamageTypeIds": null,
+                      "matchesWeaponDamageType": false
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        DivineStrikeProgressionDetail divineStrikeProgression =
+            subclass.DivineStrikeProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Divine Strike progression.");
+
+        Assert.Equal(2, divineStrikeProgression.DamageByLevel.Count);
+        Assert.Equal(
+            "dnd5e2014.damage-type.radiant",
+            divineStrikeProgression.FixedDamageTypeId?.Value);
+        Assert.Null(divineStrikeProgression.ChoosableDamageTypeIds);
+        Assert.False(divineStrikeProgression.MatchesWeaponDamageType);
     }
 
     [Fact]

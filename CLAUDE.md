@@ -17,13 +17,27 @@ to `main`:** Fighting Style ([PR #22](https://github.com/brandonifco/FiveEData/p
 spell slot progressions ([PR #23](https://github.com/brandonifco/FiveEData/pull/23)),
 Extra Attack progressions ([PR #24](https://github.com/brandonifco/FiveEData/pull/24)),
 Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)),
-Sneak Attack ([PR #26](https://github.com/brandonifco/FiveEData/pull/26)).
+Sneak Attack ([PR #26](https://github.com/brandonifco/FiveEData/pull/26)),
+Divine Strike ([PR #27](https://github.com/brandonifco/FiveEData/pull/27)).
+
+**Standing instruction, 2026-08-06: work the entire "Quantized
+mechanics" remaining list to completion, one item per branch/PR, each
+gated and merged before starting the next, CLAUDE.md updated in the
+same commit every time.** Order: the rest of the per-level numeric
+progressions (Ki/sorcery points, Wild Shape/Circle Forms caps, auras,
+Bardic Inspiration die, Channel Divinity uses, Mystic Arcanum, Font of
+Magic conversion), then the larger choice-point catalogs (Eldritch
+Invocations, Battle Master maneuvers, Metamagic, Elemental
+Disciplines, Channel Divinity options, Pact Boon), then race trait
+quantization, then a background numeric audit. Stop when that full
+list is done, not before. Check the "Remaining, tracked but not
+started" bullet at the end of "Quantized mechanics" below for the
+live, shrinking version of this same list — it's kept current there
+after every merge; this paragraph is the standing directive, that
+bullet is the checklist.
 
 **Nothing open right now.** `main` is synced with `origin/main`,
-working tree clean. Next candidate work is whichever item is next on
-the "Remaining, tracked but not started" list at the end of the
-"Quantized mechanics" section below (Divine Strike is flagged there
-as the one to watch for a real sharing-vs-splitting case).
+working tree clean.
 
 **Second infra-bypass incident, same pattern as PR #25's (see below):**
 PR #26's CI failed once with `The job was not acquired by Runner of
@@ -1177,22 +1191,65 @@ the same die size.
   `SneakAttackDiceGrant`) and one new member on `ClassDefinition`.
   Full gate green: Debug+Release build 0 warnings, 1301 tests (was
   1282; +19 new).
+**Divine Strike converted sixth — the predicted "one to watch" case,
+confirmed exactly as predicted.** All five Cleric domains that grant it
+(Life, Nature, Tempest, Trickery, War) share the identical "1d8 at 8th,
+2d8 at 14th" template, but — read directly off the PHB (pages 60-63)
+rather than assumed — the damage-type payload actually takes three
+different shapes across the five, not one: a fixed type (Life/radiant,
+Tempest/thunder, Trickery/poison), a per-attack choice among several
+types (Nature/cold-fire-lightning), and a type that matches whatever
+weapon dealt the hit (War). This is a new shape this pass hadn't hit
+yet — Rage/Sneak Attack's own damage-type field (`ResistedDamageTypeIds`)
+is always a fixed, ID-referenced set, never a choice or a
+match-the-weapon rule.
+
+- **Lives on `SubclassDefinition`, not `ClassDefinition`** — the first
+  quantized progression embedded at the subclass level rather than the
+  class level, since Divine Strike is granted per-domain, not by
+  Cleric itself. `Rules/Classes/DivineStrike/` follows the same
+  five-piece-minus-catalog shape as `Rules/Classes/Rage/` and
+  `Rules/Classes/SneakAttack/` (a plain embedded value object mapped
+  inline by `DivineStrikeProgressionDetailDataMapper`, no top-level
+  catalog) for the same reason Rage skipped one: nothing shares this
+  table across classes, only across five subclasses of the same class,
+  and even that sharing is at the template level only, not the data.
+- **Three typed, mutually-exclusive damage-type fields, not an enum +
+  payload DSL** — `FixedDamageTypeId`/`ChoosableDamageTypeIds`/
+  `MatchesWeaponDamageType` sit side by side on
+  `DivineStrikeProgressionDetail`, the same "several typed nullable
+  mechanism fields, exactly one populated" shape
+  `FightingStyleDefinition` already established for its own five
+  mechanisms, rather than reusing `RageProgressionDetail`'s plain
+  `IReadOnlyList<DamageTypeId>` (which only ever means "resists all of
+  these," never "pick one" or "match the weapon"). Reusing Rage's shape
+  here would have silently misrepresented Nature's and War's mechanics.
+  `SubclassDefinitionValidator` enforces exactly one of the three is
+  set, at least two options when the choosable list is used, and the
+  same ascending-count/same-die-size checks Sneak Attack's own
+  `DiceByLevel` already established.
+- **Every damage type reused already-catalogued `DamageTypeId`s**
+  (radiant, cold, fire, lightning, thunder, poison — all pre-existing
+  from the Phase 11 creature-vocabulary pass), cross-referenced by
+  `ClassCatalogIntegrityValidator` the same way Rage's
+  `ResistedDamageTypeIds` already are; no new damage type needed.
+- Public API: one new public type (`DivineStrikeProgressionDetail`,
+  plus its nested `DivineStrikeDamageGrant`) and one new member on
+  `SubclassDefinition`. Full gate green: Debug+Release build 0
+  warnings, 1317 tests (was 1301; +16 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Divine Strike, Ki/sorcery points, Wild
-  Shape/Circle Forms caps, auras, Bardic Inspiration die, Channel
-  Divinity uses, Mystic Arcanum, Font of Magic conversion) — each
-  single-class like Rage/Sneak Attack, so each gets the same
-  "embedded value object, not a catalog" treatment unless a real
-  sharing case turns up (Divine Strike is the one to watch — five
-  domains share the *template*, but CLAUDE.md's own Classes section
-  already found each domain's damage type differs, the same
-  template-with-a-substitution shape that kept Wizard's school
-  Savants split rather than shared) — the larger choice-point catalogs
-  (Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
-  Disciplines, Channel Divinity options, Pact Boon), race trait
-  quantization (Darkvision range, resistance/advantage grants, granted
-  spells), and a background audit (likely little to quantize — most
-  background features are narrative/social, not numeric).
+  numeric progressions (Ki/sorcery points, Wild Shape/Circle Forms
+  caps, auras, Bardic Inspiration die, Channel Divinity uses, Mystic
+  Arcanum, Font of Magic conversion) — each single-class like
+  Rage/Sneak Attack, so each gets the same "embedded value object, not
+  a catalog" treatment by default, but verify every time the way
+  Divine Strike's three-way split shows is actually necessary — the
+  larger choice-point catalogs (Eldritch Invocations, Battle Master
+  maneuvers, Metamagic, Elemental Disciplines, Channel Divinity
+  options, Pact Boon), race trait quantization (Darkvision range,
+  resistance/advantage grants, granted spells), and a background audit
+  (likely little to quantize — most background features are
+  narrative/social, not numeric).
 
 ## Test conventions
 
@@ -1331,8 +1388,8 @@ around.
 quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
-tables/abilities, Extra Attack, Rage, and Sneak Attack have been
-converted; every other named feature
+tables/abilities, Extra Attack, Rage, Sneak Attack, and Divine Strike
+have been converted; every other named feature
 across Classes/Races/Backgrounds is still a `RuleId` citation with no
 mechanical payload.
 
