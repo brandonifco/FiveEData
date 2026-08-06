@@ -410,7 +410,7 @@ public sealed class SubclassDataFileTests
                 .ToArray());
 
         var source = Assert.Single(collegeOfLore.Sources);
-        Assert.Equal(55, source.Page);
+        Assert.Equal(54, source.Page);
     }
 
     [Fact]

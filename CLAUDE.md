@@ -403,19 +403,20 @@ word and nothing else).
   structured field**, the same category of gap as Monk's and Rogue's own
   tool-choice/tool-proficiency-choice text — left unmodeled, consistent
   with the standing precedent.
-- **Citation precision is coarser here than for the first four classes.**
-  Earlier classes' page citations were verified against a cleanly paginated
-  PHB PDF with reliable per-page footers. The PDF available for this pass
-  is an archive.org full-text OCR export whose embedded page-footer digits
-  are largely missing or corrupted; the class's overall page range (52–55)
-  was instead anchored against a separate, cleanly-extracted table of
-  contents (confirming Bard starts the PHB page immediately after Barbarian's
-  own citations end, and Cleric starts immediately after), with individual
-  feature-to-page assignments within that range reconstructed from content
-  flow rather than a literal per-feature footer read. Treat Bard's citations
-  as range-accurate but not independently re-verified at the same
-  per-paragraph precision as Fighter/Barbarian/Monk/Rogue's; re-check
-  against a cleaner scan if a consumer ever needs that precision.
+- **Citation precision note, resolved.** Bard's citations were originally
+  built from an archive.org full-text OCR export whose embedded page-footer
+  digits were largely missing or corrupted, reconstructed from a table-of-
+  contents anchor plus content-flow reasoning rather than literal per-feature
+  footer reads. A cleaner, actually page-scanned PHB PDF surfaced afterward
+  (reliable per-page footers throughout); re-verifying against it confirmed
+  most of the original reconstruction was already correct (the class's own
+  page-52 citation and the `bard-spellcasting` page-53 citation both landed
+  exactly right) and corrected the few that weren't (`bardic-inspiration`
+  starts on 53, not 54; College of Lore's `Bonus Proficiencies`/`Cutting
+  Words` and the subclass's own citation are page 54, not 55 — Cutting
+  Words runs onto 55 but starts on 54, and citations point at a feature's
+  starting page throughout this project). Use this same cleanly-scanned PDF
+  (not the archive.org export) for all classes built from here on.
 
 ## Test conventions
 
