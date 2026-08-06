@@ -45,6 +45,10 @@ public sealed class BackgroundFoundationTests
             skills,
             languageChoiceCount: 1,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             sources);
 
         skills.Clear();
@@ -63,6 +67,10 @@ public sealed class BackgroundFoundationTests
             TwoSkills(),
             languageChoiceCount: 0,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -80,6 +88,10 @@ public sealed class BackgroundFoundationTests
             TwoSkills(),
             languageChoiceCount: 0,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             []);
 
         Assert.Contains(
@@ -99,6 +111,10 @@ public sealed class BackgroundFoundationTests
             [new SkillId("dnd5e2014.skill.insight")],
             languageChoiceCount: 0,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -121,6 +137,10 @@ public sealed class BackgroundFoundationTests
             ],
             languageChoiceCount: 0,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -140,6 +160,10 @@ public sealed class BackgroundFoundationTests
             TwoSkills(),
             languageChoiceCount: -1,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -147,6 +171,75 @@ public sealed class BackgroundFoundationTests
             error =>
                 error.Contains(
                     "negative",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveAdditionalPeopleFedPerDay()
+    {
+        var definition = new BackgroundDefinition(
+            new BackgroundId("dnd5e2014.background.test"),
+            "Test",
+            TwoSkills(),
+            languageChoiceCount: 0,
+            new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            additionalPeopleFedPerDay: 0,
+            null,
+            null,
+            [CreateSource()]);
+
+        Assert.Contains(
+            BackgroundDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "people fed",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveGuildDuesGoldPerMonth()
+    {
+        var definition = new BackgroundDefinition(
+            new BackgroundId("dnd5e2014.background.test"),
+            "Test",
+            TwoSkills(),
+            languageChoiceCount: 0,
+            new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            guildDuesGoldPerMonth: 0,
+            null,
+            [CreateSource()]);
+
+        Assert.Contains(
+            BackgroundDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "guild dues",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsFastTravelSpeedMultiplierOfOne()
+    {
+        var definition = new BackgroundDefinition(
+            new BackgroundId("dnd5e2014.background.test"),
+            "Test",
+            TwoSkills(),
+            languageChoiceCount: 0,
+            new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            fastTravelSpeedMultiplier: 1,
+            [CreateSource()]);
+
+        Assert.Contains(
+            BackgroundDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "fast travel speed multiplier",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -232,6 +325,10 @@ public sealed class BackgroundFoundationTests
             TwoSkills(),
             languageChoiceCount: 0,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Throws<InvalidOperationException>(
@@ -246,6 +343,10 @@ public sealed class BackgroundFoundationTests
             TwoSkills(),
             languageChoiceCount: 0,
             new RuleId("dnd5e2014.background-rule.test"),
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
     }
 

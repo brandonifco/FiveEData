@@ -59,6 +59,32 @@ internal static class BackgroundDefinitionValidator
             errors.Add("Background must have at least one source reference.");
         }
 
+        if (background.AdditionalPeopleFedPerDay is
+                { } additionalPeopleFedPerDay &&
+            additionalPeopleFedPerDay <= 0)
+        {
+            errors.Add(
+                "Background additional people fed per day must be " +
+                "greater than zero when specified.");
+        }
+
+        if (background.GuildDuesGoldPerMonth is { } guildDuesGoldPerMonth &&
+            guildDuesGoldPerMonth <= 0)
+        {
+            errors.Add(
+                "Background guild dues must be greater than zero gold " +
+                "when specified.");
+        }
+
+        if (background.FastTravelSpeedMultiplier is
+                { } fastTravelSpeedMultiplier &&
+            fastTravelSpeedMultiplier <= 1)
+        {
+            errors.Add(
+                "Background fast travel speed multiplier must be " +
+                "greater than one when specified.");
+        }
+
         return errors;
     }
 

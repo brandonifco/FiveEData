@@ -145,6 +145,81 @@ public sealed class BackgroundDataFileTests
                 .Count());
     }
 
+    [Fact]
+    public void CanonicalFile_PreservesAcolyteSustainedLifestyle()
+    {
+        BackgroundDefinition acolyte = Get("dnd5e2014.background.acolyte");
+
+        Assert.Equal(
+            "dnd5e2014.lifestyle.modest",
+            acolyte.SustainedLifestyleId?.Value);
+        Assert.Null(acolyte.AdditionalPeopleFedPerDay);
+        Assert.Null(acolyte.GuildDuesGoldPerMonth);
+        Assert.Null(acolyte.FastTravelSpeedMultiplier);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesOutlanderWandererFeeding()
+    {
+        BackgroundDefinition outlander =
+            Get("dnd5e2014.background.outlander");
+
+        Assert.Equal(5, outlander.AdditionalPeopleFedPerDay);
+        Assert.Null(outlander.SustainedLifestyleId);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesGuildArtisanDues()
+    {
+        BackgroundDefinition guildArtisan =
+            Get("dnd5e2014.background.guild-artisan");
+
+        Assert.Equal(5, guildArtisan.GuildDuesGoldPerMonth);
+        Assert.Null(guildArtisan.SustainedLifestyleId);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesUrchinFastTravelMultiplier()
+    {
+        BackgroundDefinition urchin = Get("dnd5e2014.background.urchin");
+
+        Assert.Equal(2, urchin.FastTravelSpeedMultiplier);
+        Assert.Null(urchin.SustainedLifestyleId);
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyFourBackgroundsHaveQuantizedFeatureFacts()
+    {
+        IReadOnlyList<BackgroundDefinition> definitions = LoadCanonical();
+
+        HashSet<string> expectedIds =
+        [
+            "dnd5e2014.background.acolyte",
+            "dnd5e2014.background.outlander",
+            "dnd5e2014.background.guild-artisan",
+            "dnd5e2014.background.urchin"
+        ];
+
+        IEnumerable<BackgroundDefinition> withoutQuantizedFacts =
+            definitions.Where(
+                definition => !expectedIds.Contains(definition.Id.Value));
+
+        Assert.All(
+            withoutQuantizedFacts,
+            definition =>
+            {
+                Assert.Null(definition.SustainedLifestyleId);
+                Assert.Null(definition.AdditionalPeopleFedPerDay);
+                Assert.Null(definition.GuildDuesGoldPerMonth);
+                Assert.Null(definition.FastTravelSpeedMultiplier);
+            });
+    }
+
+    private static BackgroundDefinition Get(string id)
+    {
+        return LoadCanonical().Single(definition => definition.Id.Value == id);
+    }
+
     private static IReadOnlyList<BackgroundDefinition> LoadCanonical()
     {
         return BackgroundDefinitionLoader.LoadFromFile(

@@ -8,6 +8,10 @@
     ],
     "languageChoiceCount": 2,
     "featureRuleId": "dnd5e2014.background-rule.shelter-of-the-faithful",
+    "sustainedLifestyleId": "dnd5e2014.lifestyle.modest",
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -25,6 +29,10 @@
     ],
     "languageChoiceCount": 0,
     "featureRuleId": "dnd5e2014.background-rule.false-identity",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -42,6 +50,10 @@
     ],
     "languageChoiceCount": 0,
     "featureRuleId": "dnd5e2014.background-rule.criminal-contact",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -59,6 +71,10 @@
     ],
     "languageChoiceCount": 0,
     "featureRuleId": "dnd5e2014.background-rule.by-popular-demand",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -76,6 +92,10 @@
     ],
     "languageChoiceCount": 0,
     "featureRuleId": "dnd5e2014.background-rule.rustic-hospitality",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -93,6 +113,10 @@
     ],
     "languageChoiceCount": 1,
     "featureRuleId": "dnd5e2014.background-rule.guild-membership",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": 5,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -110,6 +134,10 @@
     ],
     "languageChoiceCount": 1,
     "featureRuleId": "dnd5e2014.background-rule.discovery",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -127,6 +155,10 @@
     ],
     "languageChoiceCount": 1,
     "featureRuleId": "dnd5e2014.background-rule.position-of-privilege",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -144,6 +176,10 @@
     ],
     "languageChoiceCount": 1,
     "featureRuleId": "dnd5e2014.background-rule.wanderer",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": 5,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -161,6 +197,10 @@
     ],
     "languageChoiceCount": 2,
     "featureRuleId": "dnd5e2014.background-rule.researcher",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -178,6 +218,10 @@
     ],
     "languageChoiceCount": 0,
     "featureRuleId": "dnd5e2014.background-rule.ships-passage",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -195,6 +239,10 @@
     ],
     "languageChoiceCount": 0,
     "featureRuleId": "dnd5e2014.background-rule.military-rank",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -212,6 +260,10 @@
     ],
     "languageChoiceCount": 0,
     "featureRuleId": "dnd5e2014.background-rule.city-secrets",
+    "sustainedLifestyleId": null,
+    "additionalPeopleFedPerDay": null,
+    "guildDuesGoldPerMonth": null,
+    "fastTravelSpeedMultiplier": 2,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

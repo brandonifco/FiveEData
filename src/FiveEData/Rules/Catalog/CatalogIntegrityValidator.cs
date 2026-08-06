@@ -279,7 +279,8 @@ internal static class CatalogIntegrityValidator
                 definitions.Backgrounds,
                 sourceIds,
                 skillIds,
-                ruleIds));
+                ruleIds,
+                lifestyleIds));
 
         HashSet<AdventuringGearId> adventuringGearIds =
             definitions.Equipment.AdventuringGear
