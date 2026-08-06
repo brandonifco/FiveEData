@@ -87,6 +87,12 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.oath-of-vengeance"
     ];
 
+    private static readonly string[] ExpectedSorcererSubclassIds =
+    [
+        "dnd5e2014.subclass.draconic-bloodline",
+        "dnd5e2014.subclass.wild-magic"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
@@ -99,7 +105,8 @@ public sealed class SubclassDataFileTests
         .. ExpectedWarlockSubclassIds,
         .. ExpectedDruidSubclassIds,
         .. ExpectedRangerSubclassIds,
-        .. ExpectedPaladinSubclassIds
+        .. ExpectedPaladinSubclassIds,
+        .. ExpectedSorcererSubclassIds
     ];
 
     [Fact]
@@ -107,7 +114,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(38, subclasses.Count);
+        Assert.Equal(40, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -181,6 +188,7 @@ public sealed class SubclassDataFileTests
             ["dnd5e2014.class.druid"] = 2,
             ["dnd5e2014.class.ranger"] = 3,
             ["dnd5e2014.class.paladin"] = 3,
+            ["dnd5e2014.class.sorcerer"] = 1,
         };
 
     [Fact]
@@ -538,6 +546,19 @@ public sealed class SubclassDataFileTests
                 subclass => ExpectedPaladinSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(
                 "dnd5e2014.class.paladin",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_EverySorcererSubclassReferencesTheSorcererClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedSorcererSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.sorcerer",
                 subclass.ClassId.Value));
     }
 
@@ -1384,6 +1405,67 @@ public sealed class SubclassDataFileTests
                 id.EndsWith("-spells", StringComparison.Ordinal));
 
         Assert.Equal(3, oathSpellsRuleIds.Distinct().Count());
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDraconicBloodlineMechanics()
+    {
+        SubclassDefinition draconicBloodline = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.draconic-bloodline");
+
+        Assert.Equal("Draconic Bloodline", draconicBloodline.Name);
+        Assert.Equal(1, draconicBloodline.ChosenAtLevel);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.dragon-ancestor",
+                "dnd5e2014.class-rule.draconic-resilience",
+                "dnd5e2014.class-rule.elemental-affinity",
+                "dnd5e2014.class-rule.dragon-wings",
+                "dnd5e2014.class-rule.draconic-presence"
+            ],
+            draconicBloodline.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(draconicBloodline.Sources);
+        Assert.Equal(102, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDraconicBloodlineDualLevelOneFeatures()
+    {
+        SubclassDefinition draconicBloodline = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.draconic-bloodline");
+
+        Assert.Equal(
+            2,
+            draconicBloodline.LevelFeatures.Count(feature => feature.Level == 1));
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWildMagicMechanics()
+    {
+        SubclassDefinition wildMagic = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.wild-magic");
+
+        Assert.Equal("Wild Magic", wildMagic.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.wild-magic-surge",
+                "dnd5e2014.class-rule.tides-of-chaos",
+                "dnd5e2014.class-rule.bend-luck",
+                "dnd5e2014.class-rule.controlled-chaos",
+                "dnd5e2014.class-rule.spell-bombardment"
+            ],
+            wildMagic.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(wildMagic.Sources);
+        Assert.Equal(103, source.Page);
     }
 
     private static SubclassDefinition GetSubclass(

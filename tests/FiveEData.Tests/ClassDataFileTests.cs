@@ -19,7 +19,8 @@ public sealed class ClassDataFileTests
         "dnd5e2014.class.warlock",
         "dnd5e2014.class.druid",
         "dnd5e2014.class.ranger",
-        "dnd5e2014.class.paladin"
+        "dnd5e2014.class.paladin",
+        "dnd5e2014.class.sorcerer"
     ];
 
     [Fact]
@@ -27,7 +28,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(11, classes.Count);
+        Assert.Equal(12, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -318,7 +319,8 @@ public sealed class ClassDataFileTests
             "dnd5e2014.class.warlock",
             "dnd5e2014.class.druid",
             "dnd5e2014.class.ranger",
-            "dnd5e2014.class.paladin"
+            "dnd5e2014.class.paladin",
+            "dnd5e2014.class.sorcerer"
         ];
 
         Assert.All(
@@ -1181,6 +1183,96 @@ public sealed class ClassDataFileTests
             paladin.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.fighting-style");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSorcererMechanics()
+    {
+        ClassDefinition sorcerer = GetClass(LoadClasses(), "dnd5e2014.class.sorcerer");
+
+        Assert.Equal("Sorcerer", sorcerer.Name);
+        Assert.Equal(1, sorcerer.HitDie.Count);
+        Assert.Equal(6, sorcerer.HitDie.Sides);
+        Assert.Equal(
+            ["dnd5e2014.ability.charisma"],
+            sorcerer.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(sorcerer.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.constitution",
+                "dnd5e2014.ability.charisma"
+            ],
+            sorcerer.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Empty(sorcerer.ArmorProficiencyCategories);
+        Assert.False(sorcerer.ProficientWithShields);
+        Assert.Empty(sorcerer.WeaponProficiencyCategories);
+        Assert.Equal(
+            [
+                "dnd5e2014.weapon.dagger",
+                "dnd5e2014.weapon.dart",
+                "dnd5e2014.weapon.sling",
+                "dnd5e2014.weapon.quarterstaff",
+                "dnd5e2014.weapon.light-crossbow"
+            ],
+            sorcerer.WeaponProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(2, sorcerer.SkillChoiceCount);
+        Assert.Equal(6, sorcerer.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(sorcerer.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(100, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesMetamagicAtEachGrantLevel()
+    {
+        ClassDefinition sorcerer = GetClass(LoadClasses(), "dnd5e2014.class.sorcerer");
+
+        int[] expectedLevels = [3, 10, 17];
+
+        int[] actualLevels = sorcerer.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.metamagic")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSorcerousOriginChoicePoint()
+    {
+        ClassDefinition sorcerer = GetClass(LoadClasses(), "dnd5e2014.class.sorcerer");
+
+        Assert.Contains(
+            sorcerer.LevelFeatures,
+            feature =>
+                feature.Level == 1 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.sorcerous-origin");
+    }
+
+    [Fact]
+    public void CanonicalFile_DoesNotDuplicateWizardsWeaponProficiencyIdList()
+    {
+        // Sorcerer's named weapon exceptions (dagger, dart, sling,
+        // quarterstaff, light crossbow) are identical to Wizard's own
+        // list - both classes reference the same underlying WeaponIds
+        // rather than each minting redundant data, but they remain two
+        // separate ClassDefinition entries since the class itself isn't
+        // a shareable unit the way a RuleId citation is.
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+        ClassDefinition sorcerer = GetClass(classes, "dnd5e2014.class.sorcerer");
+        ClassDefinition wizard = GetClass(classes, "dnd5e2014.class.wizard");
+
+        Assert.Equal(
+            wizard.WeaponProficiencyIds.Select(id => id.Value),
+            sorcerer.WeaponProficiencyIds.Select(id => id.Value));
     }
 
     private static ClassDefinition GetClass(

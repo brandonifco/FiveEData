@@ -1263,5 +1263,94 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.sorcerer",
+    "name": "Sorcerer",
+    "hitDieSides": 6,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.charisma"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.constitution",
+      "dnd5e2014.ability.charisma"
+    ],
+    "armorProficiencyCategories": [],
+    "proficientWithShields": false,
+    "weaponProficiencyCategories": [],
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.dagger",
+      "dnd5e2014.weapon.dart",
+      "dnd5e2014.weapon.sling",
+      "dnd5e2014.weapon.quarterstaff",
+      "dnd5e2014.weapon.light-crossbow"
+    ],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.arcana",
+      "dnd5e2014.skill.deception",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.intimidation",
+      "dnd5e2014.skill.persuasion",
+      "dnd5e2014.skill.religion"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.sorcerer-spellcasting"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.sorcerous-origin"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.font-of-magic"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.metamagic"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.metamagic"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.metamagic"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.sorcerous-restoration"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 100,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

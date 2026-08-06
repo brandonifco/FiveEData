@@ -750,6 +750,43 @@ clear divergence like College of Valor's:
   citation, the same treatment Cleric's domain-specific Channel Divinity
   options already established.
 
+**Sorcerer was the twelfth and final PHB class built**, closing out the
+Classes domain. Structurally the simplest of the spellcasters (only 2
+origins), but with two class-specific subsystems (Font of Magic,
+Metamagic) that don't exist anywhere else:
+- **`Font of Magic` folds Sorcery Points, Flexible Casting, the
+  Creating Spell Slots table, and the sorcery-points-to-spell-slot
+  conversion math into one citation** — the same "a feature's own
+  reference table stays inside its citation" treatment already given to
+  Destroy Undead's CR table and the Beast Shapes table Wild Shape
+  points to.
+- **All 8 Metamagic options (Careful/Distant/Empowered/Extended/
+  Heightened/Quickened/Subtle/Twinned Spell) fold into one `metamagic`
+  citation**, reused across all three grant levels (3rd/10th/17th) —
+  the same choice-point treatment as Eldritch Invocations, Pact Boon,
+  and Fighting Style, now exercised at yet another list size.
+- **No Ritual Casting subsection exists in core Spellcasting**, the
+  second class after Warlock where that's true (real 5e Sorcerers get
+  no baseline ritual casting) — confirms this is a genuine per-class
+  absence worth checking for each time, not a one-off Warlock quirk.
+- **Ability Score Improvement shared cleanly again**, word-for-word
+  identical, no complications — the eighth class to share this entry
+  without incident, against the two (Fighter, Rogue) and one near-miss
+  (Paladin's dropped "particular") that didn't.
+- **Sorcerer's five named weapon exceptions are identical to Wizard's
+  own list** (dagger, dart, sling, quarterstaff, light crossbow) —
+  confirmed by direct comparison rather than assumed from both classes
+  "feeling similar." This isn't a `RuleId`-sharing case (weapon lists
+  aren't citations), just a data-fidelity check that two independently
+  transcribed lists actually match; pinned down by
+  `DoesNotDuplicateWizardsWeaponProficiencyIdList` so a future edit to
+  either class's list doesn't silently drift the other out of sync
+  without someone noticing.
+
+With Sorcerer merged, all 12 PHB classes and all 40 of their subclasses
+are built. See "Status" below for the closing summary of what the
+Classes pass as a whole established.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -785,65 +822,89 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 23: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 24: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
-senses, alignments), and races (all 9 PHB races plus all 9 subraces — see
-"Races" above) are complete. Classes is started but far from complete:
-Fighter (all 3 subclasses — Champion, Battle Master, Eldritch Knight),
-Barbarian (both subclasses — Path of the Berserker, Path of the Totem
-Warrior), Monk (all 3 subclasses — Way of the Open Hand, Way of Shadow,
-Way of the Four Elements), Rogue (all 3 subclasses — Thief, Assassin,
-Arcane Trickster), Bard (both subclasses — College of Lore, College of
-Valor), Wizard (all 8 arcane traditions — Abjuration, Conjuration,
-Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation),
-Cleric (all 7 divine domains — Knowledge, Life, Light, Nature, Tempest,
-Trickery, War), Warlock (all 3 otherworldly patrons — the Archfey, the
-Fiend, the Great Old One), Druid (both circles — Circle of the Land,
-Circle of the Moon), Ranger (both archetypes — Hunter, Beast Master), and
-Paladin (all 3 sacred oaths — Devotion, the Ancients, Vengeance) are
-built — see "Classes" above, including the cross-class `RuleId` sharing
-question, resolved with evidence from all eleven (most recently: Extra
-Attack and Ability Score Improvement both shared cleanly again, but
-Fighting Style did not — Paladin's gateway text drops the word
-"particular" that Fighter's and Ranger's identical phrasing carries, and
-rather than write that off as OCR noise, it was treated as a real
-difference and kept as its own `paladin-fighting-style` citation, the
-same "verified-identical or it stays separate" standard already applied
-to College of Valor's Extra Attack). Ranger contributed three separate
-cross-class shares in one pass before that — `Fighting Style` with
-Fighter, `Extra Attack` with the existing Barbarian/Monk share, and
-`Land's Stride` with Circle of the Land, a *Druid* subclass feature from
-two merged PRs earlier, the clearest evidence yet that collision/sharing
-checks need to cover every previously-built class, not just the one
-immediately before. Druid resolved a forward-reference written back
-during Fighter's own build (`Fighter... has no exceptions to model...
-unlike Druid's nonmetal-only restriction"`): the restriction stays
-unmodeled, the same category of gap as unmodeled tool-proficiency
-choices, since it's prose on the `Armor:` line, not a separate
-mechanical feature, and no field exists (or has a second consumer
-justifying one) for a material-restricted-proficiency axis. The final
-PHB class (Sorcerer) is not yet built — note it's a spellcaster like the
-ten already built, so the core-`Spellcasting`-as-single-citation
-approach carries forward directly (matching whatever that class's table
-actually names the feature — verify, don't assume "Spellcasting"); when
-picking it up, re-derive RuleId cross-class-sharing decisions against
-the precedent in "Classes" above (default to sharing a generic-named
-mechanic unless the actual PHB text diverges — verified, not assumed,
-every single time, against *every* earlier class's own entries, not
-just the most recently built one, and treating even single-word gaps as
-real rather than dismissing them as scan noise; prefix on a name
-collision with a different mechanic) rather than assuming it's settled
-for good. Use the cleanly-scanned PHB PDF
-(`~/Downloads/Player's Handbook.pdf`, reliable per-page footers) for
-citations, not the archive.org OCR export used for the original Bard
-pass (see "Classes" above, end of the Bard section, for why). Not yet
-started: backgrounds, spells, magic items, and combat/adventuring rule
-prose beyond the existing rules citation index (`Data/dnd5e2014/rules/`,
-split per-domain — see "Architecture" above). Feats (and, by extension,
-Variant Human) are out of scope — they aren't part of the free 2014 SRD
-this project's provenance model is built around.
+senses, alignments), races (all 9 PHB races plus all 9 subraces — see
+"Races" above), and **Classes (complete)** are done. All 12 PHB classes
+and all 40 of their subclasses/archetypes/domains/traditions/oaths/
+patrons/circles/origins are built — Fighter (Champion, Battle Master,
+Eldritch Knight), Barbarian (Path of the Berserker, Path of the Totem
+Warrior), Monk (Way of the Open Hand, Way of Shadow, Way of the Four
+Elements), Rogue (Thief, Assassin, Arcane Trickster), Bard (College of
+Lore, College of Valor), Wizard (all 8 schools), Cleric (all 7 domains),
+Warlock (the Archfey, the Fiend, the Great Old One), Druid (Circle of
+the Land, Circle of the Moon), Ranger (Hunter, Beast Master), Paladin
+(Oath of Devotion, Oath of the Ancients, Oath of Vengeance), and
+Sorcerer (Draconic Bloodline, Wild Magic). See "Classes" above for the
+full build-by-build reasoning trail; the short version of what twelve
+classes' worth of evidence settled:
+
+- **RuleId sharing is never assumed, always verified, against every
+  previously-built class** — not just the most recently built one.
+  `Land's Stride` (Ranger/Druid) and `Timeless Body` (Druid/Monk) were
+  both discovered against classes separated by one or more intervening
+  PRs, not neighbors. A single dropped word (Paladin's Fighting Style)
+  was treated as a real difference, not scan noise, applying the same
+  standard as a deliberate wording change (College of Valor's Extra
+  Attack) — the two failure directions aren't symmetric, so uncertainty
+  resolves toward keeping citations separate, not merging them.
+- **A recurring template name is not by itself evidence for or against
+  sharing.** Wizard's 8 school `Savant` features and Cleric's 5-way
+  `Divine Strike` share an identical template but differ in the actual
+  substituted content (which school, which damage type) and stayed
+  split; Cleric's `Potent Spellcasting` (Knowledge/Light) and Tempest/
+  War's `Bonus Proficiencies` were verified character-for-character
+  identical and were shared. The only question that matters is whether
+  the cited text is actually the same, every time, regardless of how
+  the name pattern looks going in.
+- **A choice point (Fighting Style, Eldritch Invocations, Pact Boon,
+  Metamagic, Hunter's/Beast Master's own sub-features) always folds
+  into one citation**, independent of how many options it offers (6 to
+  20+) or how much text any individual option carries (one-liners to
+  ~200-word mechanics like Pact of the Blade) — the deciding factor is
+  the shape (a single named gateway offering sub-choices), never size.
+- **A class's own core spellcasting citation is always separately
+  prefixed per class** (never shared, even between two full casters),
+  and never assumed to literally be table-named "Spellcasting" — Warlock
+  calls it "Pact Magic." Two classes (Warlock, Sorcerer) have no Ritual
+  Casting subsection at all, a real absence rather than an oversight
+  each time.
+- **A framework heading only earns its own `RuleId` if it has its own
+  table row.** Cleric's `Channel Divinity` is its own 2nd-level row and
+  kept a citation; Paladin's `Channel Divinity`/`Oath Spells` framework
+  text is not a table row and folded into `Sacred Oath` instead. The
+  same logic decided which recurring mechanics got repeated
+  `LevelFeatures` entries (Wild Shape, Circle Forms, Aura of Protection/
+  Courage) versus which stayed single-citation with the scaling left in
+  prose (the oath-specific auras' own 18th-level range increase).
+- **Real spell-list content (Domain Spells, Circle Spells, Oath Spells)
+  never becomes structured spell references** — it stays inside
+  whichever citation the surrounding feature already uses, consistent
+  with spells not being a modeled domain yet.
+- Two forward-references written during early builds both closed out
+  correctly: Fighter's own note anticipating "Druid's nonmetal-only
+  restriction" (stayed unmodeled, same category as unmodeled tool
+  choices) and Bard's citation-precision caveat (resolved once a
+  cleanly-scanned PDF surfaced, see the Bard section above).
+- Two test patterns that would have kept growing a near-duplicate
+  assertion per class — `ChosenAtLevel` (now 1st/2nd/3rd depending on
+  class) and the shared-Ability-Score-Improvement class list — were each
+  generalized into a single data-driven test keyed by class ID rather
+  than accreting further one-offs; both absorbed the last several
+  classes' worth of additions as one-line changes.
+
+Use the cleanly-scanned PHB PDF (`~/Downloads/Player's Handbook.pdf`,
+reliable per-page footers) for any future citation work in this
+document — not the archive.org OCR export used for the original Bard
+pass (see "Classes" above, end of the Bard section, for why that
+matters). Not yet started: backgrounds, spells, magic items, and
+combat/adventuring rule prose beyond the existing rules citation index
+(`Data/dnd5e2014/rules/`, split per-domain — see "Architecture" above).
+Feats (and, by extension, Variant Human) are out of scope — they aren't
+part of the free 2014 SRD this project's provenance model is built
+around.
 
 ## Build
 
