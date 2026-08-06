@@ -1632,22 +1632,59 @@ shape Fighting Style already established, not a per-class leveled fact.
   new — `MetamagicFoundationTests`/
   `MetamagicOptionDefinitionLoaderTests`/`MetamagicOptionDataFileTests`,
   the same three-file convention every domain follows).
-- **Remaining, tracked but not started:** the other five choice-point
+**Pact Boon evaluated eighteenth and deliberately declined — the first
+choice-point catalog that turned out not to need a catalog at all.**
+The pre-Metamagic note above predicted Pact Boon would need real
+sub-structure (calling out "substantial, multi-paragraph mechanics"),
+which was true of the *prose* but turned out not to translate into
+leveled numeric data once the full text (PHB pages 107-108) was
+actually read side by side, the same "verify before assuming"
+discipline this whole pass has run on:
+
+- **Pact of the Chain** (a smarter familiar, special forms, forgo an
+  attack to let it attack) has no number to capture at all beyond
+  ordinary combat rules already implied elsewhere.
+- **Pact of the Blade** (conjure a melee weapon, treat it as magical,
+  a 1-hour ritual to bind a different magic weapon to the pact) has a
+  5-foot/1-minute dismissal trigger and a 1-hour ritual duration, but
+  both are compound trigger conditions embedded in prose — the same
+  "not a single static fact" boundary that already kept Sneak Attack's
+  alternative-to-advantage trigger and Rage's Persistent Rage
+  unquantized, applied consistently here.
+- **Pact of the Tome** grants three chosen cantrips — a real, isolated
+  number, but a flat one-time constant with nothing to progress by
+  level, and no second data point anywhere in this domain to justify a
+  field for it alone.
+- None of the three costs anything, has a save DC, or scales with
+  level — the actual dividing line this whole pass has used
+  throughout (a *leveled numeric progression* worth extracting,
+  the same bar Metamagic's per-option sorcery-point cost cleared and
+  Sneak Attack's alternative-trigger prose didn't) isn't cleared by
+  any of them. Building `PactBoonOptionId`/`Definition`/
+  `Catalog`/loader/tests here would reproduce
+  `dnd5e2014.class-rule.pact-boon`'s own three-option citation with no
+  new mechanical information attached — the same "don't build
+  generality ahead of real need" call Rage's own embedded-vs-catalog
+  decision already established, just resolved here as "don't build
+  *anything* new" rather than "build the smaller of two shapes." The
+  existing citation is left completely untouched; no code changed for
+  this item.
+- **Remaining, tracked but not started:** the other four choice-point
   catalogs (Eldritch Invocations, Battle Master maneuvers, Elemental
-  Disciplines, Channel Divinity options, Pact Boon) — Metamagic proved
-  the catalog *pattern* generalizes (new ID namespace, gateway citation
-  left untouched, typed cost/mechanism fields over a DSL), but not
-  every sub-structure a later catalog will need: Battle Master
-  maneuvers and Pact Boon in particular were already flagged as having
-  real sub-structure of their own (a maneuver's own save DC and
-  triggering condition; Pact Boon's three options being substantial,
-  multi-paragraph mechanics rather than Metamagic's compact ones) — so
-  verify each catalog's actual shape from the PHB before assuming
-  Metamagic's exact field set carries over unchanged. After those:
-  race trait quantization (Darkvision range, resistance/advantage
-  grants, granted spells), and a background audit (likely little to
-  quantize — most background features are narrative/social, not
-  numeric).
+  Disciplines, Channel Divinity options) — Metamagic proved the
+  catalog *pattern* generalizes (new ID namespace, gateway citation
+  left untouched, typed cost/mechanism fields over a DSL); Pact Boon
+  proved the pattern doesn't apply unconditionally — a choice point
+  only earns a catalog if at least one option actually carries a
+  leveled numeric fact. Battle Master maneuvers is still flagged as
+  the one likely to need real sub-structure (a maneuver's own save DC
+  and triggering condition) rather than Metamagic's cost-only shape or
+  Pact Boon's "nothing to quantize" outcome — verify each catalog's
+  actual shape from the PHB before assuming either precedent carries
+  over unchanged. After those: race trait quantization (Darkvision
+  range, resistance/advantage grants, granted spells), and a
+  background audit (likely little to quantize — most background
+  features are narrative/social, not numeric).
 
 ## Test conventions
 
