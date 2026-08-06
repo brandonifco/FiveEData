@@ -1,3 +1,4 @@
+using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -122,6 +123,13 @@ internal static class CatalogIntegrityValidator
                 abilityIds,
                 skillIds,
                 weaponIds,
+                ruleIds));
+
+        errors.AddRange(
+            BackgroundCatalogIntegrityValidator.Validate(
+                definitions.Backgrounds,
+                sourceIds,
+                skillIds,
                 ruleIds));
 
         HashSet<AdventuringGearId> adventuringGearIds =

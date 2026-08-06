@@ -1,3 +1,5 @@
+using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Backgrounds.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Common;
@@ -96,6 +98,9 @@ internal static class Dnd5e2014RulesetLoader
     private const string SubclassesResource =
         "FiveEData.Data.dnd5e2014.subclasses.json";
 
+    private const string BackgroundsResource =
+        "FiveEData.Data.dnd5e2014.backgrounds.json";
+
     private const string AmmunitionResource =
         "FiveEData.Data.dnd5e2014.ammunition.json";
 
@@ -180,6 +185,9 @@ internal static class Dnd5e2014RulesetLoader
     private const string ClassRuleResource =
         "FiveEData.Data.dnd5e2014.rules.class-rule.json";
 
+    private const string BackgroundRuleResource =
+        "FiveEData.Data.dnd5e2014.rules.background-rule.json";
+
     public static Dnd5e2014Ruleset Load()
     {
         IReadOnlyList<SourceDocument> sources =
@@ -241,6 +249,10 @@ internal static class Dnd5e2014RulesetLoader
         IReadOnlyList<SubclassDefinition> subclasses =
             SubclassDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(SubclassesResource));
+
+        IReadOnlyList<BackgroundDefinition> backgrounds =
+            BackgroundDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(BackgroundsResource));
 
         IReadOnlyList<AmmunitionDefinition> ammunition =
             AmmunitionDefinitionLoader.LoadFromJson(
@@ -331,7 +343,8 @@ internal static class Dnd5e2014RulesetLoader
                     EmbeddedDataReader.ReadRequiredText(ExpenseRuleResource),
                     EmbeddedDataReader.ReadRequiredText(LifestyleRuleResource),
                     EmbeddedDataReader.ReadRequiredText(RaceRuleResource),
-                    EmbeddedDataReader.ReadRequiredText(ClassRuleResource)
+                    EmbeddedDataReader.ReadRequiredText(ClassRuleResource),
+                    EmbeddedDataReader.ReadRequiredText(BackgroundRuleResource)
                 ]);
 
         var equipment = new EquipmentDefinitionSet(
@@ -382,7 +395,8 @@ internal static class Dnd5e2014RulesetLoader
             expenses: expenses,
             creatureVocabulary: creatureVocabulary,
             races: raceDefinitionSet,
-            classes: classDefinitionSet);
+            classes: classDefinitionSet,
+            backgrounds: backgrounds);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -424,6 +438,7 @@ internal static class Dnd5e2014RulesetLoader
             subraces: new SubraceCatalog(subraces),
             classes: new ClassCatalog(classes),
             subclasses: new SubclassCatalog(subclasses),
+            backgrounds: new BackgroundCatalog(backgrounds),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

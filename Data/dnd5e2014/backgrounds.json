@@ -1,0 +1,223 @@
+[
+  {
+    "id": "dnd5e2014.background.acolyte",
+    "name": "Acolyte",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.religion"
+    ],
+    "languageChoiceCount": 2,
+    "featureRuleId": "dnd5e2014.background-rule.shelter-of-the-faithful",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 125,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.charlatan",
+    "name": "Charlatan",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.deception",
+      "dnd5e2014.skill.sleight-of-hand"
+    ],
+    "languageChoiceCount": 0,
+    "featureRuleId": "dnd5e2014.background-rule.false-identity",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 126,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.criminal",
+    "name": "Criminal",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.deception",
+      "dnd5e2014.skill.stealth"
+    ],
+    "languageChoiceCount": 0,
+    "featureRuleId": "dnd5e2014.background-rule.criminal-contact",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 127,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.entertainer",
+    "name": "Entertainer",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.acrobatics",
+      "dnd5e2014.skill.performance"
+    ],
+    "languageChoiceCount": 0,
+    "featureRuleId": "dnd5e2014.background-rule.by-popular-demand",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 128,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.folk-hero",
+    "name": "Folk Hero",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.animal-handling",
+      "dnd5e2014.skill.survival"
+    ],
+    "languageChoiceCount": 0,
+    "featureRuleId": "dnd5e2014.background-rule.rustic-hospitality",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 129,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.guild-artisan",
+    "name": "Guild Artisan",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.persuasion"
+    ],
+    "languageChoiceCount": 1,
+    "featureRuleId": "dnd5e2014.background-rule.guild-membership",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 130,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.hermit",
+    "name": "Hermit",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.medicine",
+      "dnd5e2014.skill.religion"
+    ],
+    "languageChoiceCount": 1,
+    "featureRuleId": "dnd5e2014.background-rule.discovery",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 132,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.noble",
+    "name": "Noble",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.history",
+      "dnd5e2014.skill.persuasion"
+    ],
+    "languageChoiceCount": 1,
+    "featureRuleId": "dnd5e2014.background-rule.position-of-privilege",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 133,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.outlander",
+    "name": "Outlander",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.survival"
+    ],
+    "languageChoiceCount": 1,
+    "featureRuleId": "dnd5e2014.background-rule.wanderer",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 134,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.sage",
+    "name": "Sage",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.arcana",
+      "dnd5e2014.skill.history"
+    ],
+    "languageChoiceCount": 2,
+    "featureRuleId": "dnd5e2014.background-rule.researcher",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 135,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.sailor",
+    "name": "Sailor",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.perception"
+    ],
+    "languageChoiceCount": 0,
+    "featureRuleId": "dnd5e2014.background-rule.ships-passage",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 137,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.soldier",
+    "name": "Soldier",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.intimidation"
+    ],
+    "languageChoiceCount": 0,
+    "featureRuleId": "dnd5e2014.background-rule.military-rank",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 138,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.background.urchin",
+    "name": "Urchin",
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.sleight-of-hand",
+      "dnd5e2014.skill.stealth"
+    ],
+    "languageChoiceCount": 0,
+    "featureRuleId": "dnd5e2014.background-rule.city-secrets",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 139,
+        "section": "Chapter 4: Personality and Background"
+      }
+    ]
+  }
+]

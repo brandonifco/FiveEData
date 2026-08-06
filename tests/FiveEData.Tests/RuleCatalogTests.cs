@@ -9,7 +9,7 @@ public sealed class RuleCatalogTests
     {
         Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
 
-        Assert.Equal(432, ruleset.Rules.Count);
+        Assert.Equal(445, ruleset.Rules.Count);
 
         RuleDefinition lance =
             ruleset.Rules.Get(
@@ -261,6 +261,21 @@ public sealed class RuleCatalogTests
             Assert.True(
                 ruleset.Rules.TryGet(
                     ruleId,
+                    out RuleDefinition? definition));
+            Assert.NotNull(definition);
+        }
+    }
+
+    [Fact]
+    public void EveryBackgroundFeatureRuleId_Resolves()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        foreach (var background in ruleset.Backgrounds.All)
+        {
+            Assert.True(
+                ruleset.Rules.TryGet(
+                    background.FeatureRuleId,
                     out RuleDefinition? definition));
             Assert.NotNull(definition);
         }

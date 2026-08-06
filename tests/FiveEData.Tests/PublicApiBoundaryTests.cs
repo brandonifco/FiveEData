@@ -10,6 +10,8 @@ using FiveEData.Rules.Creatures.Abilities.Serialization;
 using FiveEData.Rules.Creatures.Alignments.Serialization;
 using FiveEData.Rules.Creatures.Conditions.Serialization;
 using FiveEData.Rules.Creatures.DamageTypes.Serialization;
+using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Backgrounds.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Creatures.Languages.Serialization;
@@ -105,6 +107,9 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(SubclassDefinitionValidator).IsPublic);
         Assert.False(typeof(ClassCatalogIntegrityValidator).IsPublic);
         Assert.False(typeof(ClassDefinitionSet).IsPublic);
+        Assert.False(typeof(BackgroundDefinitionLoader).IsPublic);
+        Assert.False(typeof(BackgroundDefinitionValidator).IsPublic);
+        Assert.False(typeof(BackgroundCatalogIntegrityValidator).IsPublic);
     }
 
     [Fact]
@@ -171,7 +176,8 @@ public sealed class PublicApiBoundaryTests
         Assert.Equal(9, ruleset.Subraces.Count);
         Assert.Equal(12, ruleset.Classes.Count);
         Assert.Equal(40, ruleset.Subclasses.Count);
-        Assert.Equal(432, ruleset.Rules.Count);
+        Assert.Equal(13, ruleset.Backgrounds.Count);
+        Assert.Equal(445, ruleset.Rules.Count);
         Assert.Equal(1, ruleset.Sources.Count);
     }
 }

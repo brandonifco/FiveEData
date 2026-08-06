@@ -346,7 +346,8 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
                         AlignmentDefinitionLoader.LoadFromFile(
                             DataPath("alignments.json"))),
             races: new RaceDefinitionSet(races: [], subraces: []),
-            classes: new ClassDefinitionSet(classes: [], subclasses: []));
+            classes: new ClassDefinitionSet(classes: [], subclasses: []),
+            backgrounds: []);
     }
 
     private static string DataPath(string fileName)

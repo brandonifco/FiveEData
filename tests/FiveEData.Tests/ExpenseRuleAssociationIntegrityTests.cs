@@ -235,6 +235,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
                     senses: [],
                     alignments: []),
             races: new RaceDefinitionSet(races: [], subraces: []),
-            classes: new ClassDefinitionSet(classes: [], subclasses: []));
+            classes: new ClassDefinitionSet(classes: [], subclasses: []),
+            backgrounds: []);
     }
 }
