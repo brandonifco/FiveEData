@@ -11,32 +11,50 @@ back to that PHB printing.
 
 Mid-stream on the "Quantized mechanics" pass (see that section below
 for the full design reasoning and the running list of what's done vs.
-remaining). **Merged to `main` so far:** Fighting Style ([PR #22](https://github.com/brandonifco/FiveEData/pull/22)),
+remaining — check *there* for what's actually left, this handoff is
+kept short/current on purpose, not a blow-by-blow history). **Merged
+to `main`:** Fighting Style ([PR #22](https://github.com/brandonifco/FiveEData/pull/22)),
 spell slot progressions ([PR #23](https://github.com/brandonifco/FiveEData/pull/23)),
 Extra Attack progressions ([PR #24](https://github.com/brandonifco/FiveEData/pull/24)),
 Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)).
-Sneak Attack is built, gated, and about to ship as its own PR the same
-way. All still-open items are tracked at the end of the "Quantized
-mechanics" section, not here — this handoff is deliberately kept
-short and current rather than accumulating stale blow-by-blow, so
-check *there* for what's actually left, not this paragraph's history.
+
+**Open right now:** [PR #26](https://github.com/brandonifco/FiveEData/pull/26)
+("Add Sneak Attack as an embedded, quantized value object"), branch
+`feature/sneak-attack-progression-detail`, commit `1c753a8`. Code is
+complete and was fully gated locally before pushing (Debug+Release
+build 0 warnings, 1301/1301 tests) — working tree is otherwise clean,
+nothing uncommitted this time. **Its CI (run `31124058091`) failed
+once already, both jobs, with `The job was not acquired by Runner of
+type hosted even after multiple attempts` after a full 15-minute
+wait** — this is the same GitHub Actions infrastructure class of
+failure PR #25 hit repeatedly (see the incident note below), not a
+code problem; a `gh run rerun` was already kicked off for it before
+this handoff was written, so check `gh pr checks 26` first. If green,
+merge normally (`gh pr merge 26 --merge --delete-branch`), then
+`git checkout main && git pull && git fetch --prune`. If it's still
+running or pending, give it time. If it fails again the same way
+(runner-not-acquired or the "Service Unavailable" download-info
+signature, always at job setup, never real `dotnet` output), retry
+with `gh run rerun` once or twice more before considering the
+same fallback used for PR #25 below.
 
 **One real, worth-remembering incident from this pass, in case it
-recurs:** PR #25's CI failed three consecutive times purely on
+recurs again:** PR #25's CI failed three consecutive times purely on
 GitHub Actions infrastructure — never once reaching `dotnet
 build`/`dotnet test` — with three different symptoms across the
 attempts (`Failed to resolve action download info. Error: Service
 Unavailable` twice, `The job was not acquired by Runner of type
 hosted even after multiple attempts` twice, all at "Set up job").
-Local gate (Debug+Release build, full test suite) had already passed
-before every push. Merged directly off the local gate on explicit
-user instruction once the pattern was clearly infra, not code — if
-this happens again, check <https://www.githubstatus.com/>, retry with
-`gh run rerun <run-id>` a couple of times first, and only bypass the
-"wait for green CI" default with the user's explicit go-ahead, the
-same way it happened here. A failure that ever shows real `dotnet`
-output is a different story — that's a genuine regression, not infra,
-and needs actual investigation before merging.
+Local gate had already passed before every push. Merged directly off
+the local gate on explicit user instruction once the pattern was
+clearly infra, not code. **If PR #26 (or anything after it) hits the
+same wall repeatedly: check <https://www.githubstatus.com/>, retry
+with `gh run rerun <run-id>` a couple of times first, and only bypass
+the "wait for green CI" default with the user's explicit go-ahead —
+this is not a standing exception, it needs to be asked for each time
+it comes up.** A failure that ever shows real `dotnet` build/test
+output is a different story entirely — that's a genuine regression,
+not infra, and needs actual investigation before merging, full stop.
 
 ## Architecture
 
