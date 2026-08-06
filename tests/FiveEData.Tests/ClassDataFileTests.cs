@@ -14,7 +14,8 @@ public sealed class ClassDataFileTests
         "dnd5e2014.class.monk",
         "dnd5e2014.class.rogue",
         "dnd5e2014.class.bard",
-        "dnd5e2014.class.wizard"
+        "dnd5e2014.class.wizard",
+        "dnd5e2014.class.cleric"
     ];
 
     [Fact]
@@ -22,7 +23,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(6, classes.Count);
+        Assert.Equal(7, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -299,38 +300,40 @@ public sealed class ClassDataFileTests
     }
 
     [Fact]
-    public void CanonicalFile_SharesAbilityScoreImprovementRuleIdAcrossBarbarianMonkBardAndWizard()
+    public void CanonicalFile_SharesAbilityScoreImprovementRuleIdAcrossClassesWithStandardWording()
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        ClassDefinition barbarian =
-            GetClass(classes, "dnd5e2014.class.barbarian");
-        ClassDefinition monk = GetClass(classes, "dnd5e2014.class.monk");
-        ClassDefinition bard = GetClass(classes, "dnd5e2014.class.bard");
-        ClassDefinition wizard = GetClass(classes, "dnd5e2014.class.wizard");
+        string[] classIdsSharingStandardWording =
+        [
+            "dnd5e2014.class.barbarian",
+            "dnd5e2014.class.monk",
+            "dnd5e2014.class.bard",
+            "dnd5e2014.class.wizard",
+            "dnd5e2014.class.cleric"
+        ];
 
-        Assert.Contains(
-            barbarian.LevelFeatures,
-            feature => feature.FeatureRuleId.Value ==
-                "dnd5e2014.class-rule.ability-score-improvement");
-        Assert.Contains(
-            monk.LevelFeatures,
-            feature => feature.FeatureRuleId.Value ==
-                "dnd5e2014.class-rule.ability-score-improvement");
-        Assert.Contains(
-            bard.LevelFeatures,
-            feature => feature.FeatureRuleId.Value ==
-                "dnd5e2014.class-rule.ability-score-improvement");
-        Assert.Contains(
-            wizard.LevelFeatures,
-            feature => feature.FeatureRuleId.Value ==
-                "dnd5e2014.class-rule.ability-score-improvement");
+        Assert.All(
+            classIdsSharingStandardWording,
+            classId => Assert.Contains(
+                GetClass(classes, classId).LevelFeatures,
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.ability-score-improvement"));
 
+        // Fighter and Rogue have their own divergent-wording ASI text
+        // (extra trigger levels named in their own sentences) and so
+        // keep prefixed RuleIds instead of the shared one.
         ClassDefinition fighter =
             GetClass(classes, "dnd5e2014.class.fighter");
+        ClassDefinition rogue =
+            GetClass(classes, "dnd5e2014.class.rogue");
 
         Assert.DoesNotContain(
             fighter.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.ability-score-improvement");
+        Assert.DoesNotContain(
+            rogue.LevelFeatures,
             feature => feature.FeatureRuleId.Value ==
                 "dnd5e2014.class-rule.ability-score-improvement");
     }
@@ -673,6 +676,92 @@ public sealed class ClassDataFileTests
                 feature.Level == 20 &&
                 feature.FeatureRuleId.Value ==
                     "dnd5e2014.class-rule.signature-spells");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesClericMechanics()
+    {
+        ClassDefinition cleric = GetClass(LoadClasses(), "dnd5e2014.class.cleric");
+
+        Assert.Equal("Cleric", cleric.Name);
+        Assert.Equal(1, cleric.HitDie.Count);
+        Assert.Equal(8, cleric.HitDie.Sides);
+        Assert.Equal(
+            ["dnd5e2014.ability.wisdom"],
+            cleric.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(cleric.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.wisdom",
+                "dnd5e2014.ability.charisma"
+            ],
+            cleric.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(
+            [ArmorCategory.Light, ArmorCategory.Medium],
+            cleric.ArmorProficiencyCategories);
+        Assert.True(cleric.ProficientWithShields);
+        Assert.Equal(
+            [WeaponProficiencyCategory.Simple],
+            cleric.WeaponProficiencyCategories);
+        Assert.Empty(cleric.WeaponProficiencyIds);
+        Assert.Equal(2, cleric.SkillChoiceCount);
+        Assert.Equal(5, cleric.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(cleric.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(57, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesClericAbilityScoreImprovementAtStandardLevels()
+    {
+        ClassDefinition cleric = GetClass(LoadClasses(), "dnd5e2014.class.cleric");
+
+        int[] expectedLevels = [4, 8, 12, 16, 19];
+
+        int[] actualLevels = cleric.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.ability-score-improvement")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDivineDomainChoicePoint()
+    {
+        ClassDefinition cleric = GetClass(LoadClasses(), "dnd5e2014.class.cleric");
+
+        Assert.Contains(
+            cleric.LevelFeatures,
+            feature =>
+                feature.Level == 1 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.divine-domain");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDivineInterventionAtGrantAndImprovementLevels()
+    {
+        ClassDefinition cleric = GetClass(LoadClasses(), "dnd5e2014.class.cleric");
+
+        int[] expectedLevels = [10, 20];
+
+        int[] actualLevels = cleric.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.divine-intervention")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
     }
 
     private static ClassDefinition GetClass(

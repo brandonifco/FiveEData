@@ -50,6 +50,17 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.school-of-transmutation"
     ];
 
+    private static readonly string[] ExpectedClericSubclassIds =
+    [
+        "dnd5e2014.subclass.knowledge-domain",
+        "dnd5e2014.subclass.life-domain",
+        "dnd5e2014.subclass.light-domain",
+        "dnd5e2014.subclass.nature-domain",
+        "dnd5e2014.subclass.tempest-domain",
+        "dnd5e2014.subclass.trickery-domain",
+        "dnd5e2014.subclass.war-domain"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
@@ -57,7 +68,8 @@ public sealed class SubclassDataFileTests
         .. ExpectedMonkSubclassIds,
         .. ExpectedRogueSubclassIds,
         .. ExpectedBardSubclassIds,
-        .. ExpectedWizardSubclassIds
+        .. ExpectedWizardSubclassIds,
+        .. ExpectedClericSubclassIds
     ];
 
     [Fact]
@@ -65,7 +77,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(21, subclasses.Count);
+        Assert.Equal(28, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -125,26 +137,28 @@ public sealed class SubclassDataFileTests
                 subclass.ClassId.Value));
     }
 
+    private static readonly IReadOnlyDictionary<string, int> ExpectedChosenAtLevelByClassId =
+        new Dictionary<string, int>
+        {
+            ["dnd5e2014.class.fighter"] = 3,
+            ["dnd5e2014.class.barbarian"] = 3,
+            ["dnd5e2014.class.monk"] = 3,
+            ["dnd5e2014.class.rogue"] = 3,
+            ["dnd5e2014.class.bard"] = 3,
+            ["dnd5e2014.class.wizard"] = 2,
+            ["dnd5e2014.class.cleric"] = 1,
+        };
+
     [Fact]
-    public void CanonicalFile_EveryNonWizardSubclassIsChosenAtThirdLevel()
+    public void CanonicalFile_EverySubclassIsChosenAtItsClassesExpectedLevel()
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
         Assert.All(
-            subclasses.Where(
-                subclass => !ExpectedWizardSubclassIds.Contains(subclass.Id.Value)),
-            subclass => Assert.Equal(3, subclass.ChosenAtLevel));
-    }
-
-    [Fact]
-    public void CanonicalFile_EveryWizardSubclassIsChosenAtSecondLevel()
-    {
-        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
-
-        Assert.All(
-            subclasses.Where(
-                subclass => ExpectedWizardSubclassIds.Contains(subclass.Id.Value)),
-            subclass => Assert.Equal(2, subclass.ChosenAtLevel));
+            subclasses,
+            subclass => Assert.Equal(
+                ExpectedChosenAtLevelByClassId[subclass.ClassId.Value],
+                subclass.ChosenAtLevel));
     }
 
     [Fact]
@@ -429,6 +443,19 @@ public sealed class SubclassDataFileTests
     }
 
     [Fact]
+    public void CanonicalFile_EveryClericSubclassReferencesTheClericClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedClericSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.cleric",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
     public void CanonicalFile_PreservesCollegeOfLoreMechanics()
     {
         SubclassDefinition collegeOfLore = GetSubclass(
@@ -692,6 +719,234 @@ public sealed class SubclassDataFileTests
             .Where(id => id.EndsWith("-savant", StringComparison.Ordinal));
 
         Assert.Equal(8, savantRuleIds.Distinct().Count());
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesKnowledgeDomainMechanics()
+    {
+        SubclassDefinition knowledge = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.knowledge-domain");
+
+        Assert.Equal("Knowledge Domain", knowledge.Name);
+        Assert.Equal(1, knowledge.ChosenAtLevel);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.blessings-of-knowledge",
+                "dnd5e2014.class-rule.channel-divinity-knowledge-of-the-ages",
+                "dnd5e2014.class-rule.channel-divinity-read-thoughts",
+                "dnd5e2014.class-rule.potent-spellcasting",
+                "dnd5e2014.class-rule.visions-of-the-past"
+            ],
+            knowledge.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(knowledge.Sources);
+        Assert.Equal(59, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesLifeDomainMechanics()
+    {
+        SubclassDefinition life = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.life-domain");
+
+        Assert.Equal("Life Domain", life.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.life-bonus-proficiency",
+                "dnd5e2014.class-rule.disciple-of-life",
+                "dnd5e2014.class-rule.channel-divinity-preserve-life",
+                "dnd5e2014.class-rule.blessed-healer",
+                "dnd5e2014.class-rule.life-divine-strike",
+                "dnd5e2014.class-rule.supreme-healing"
+            ],
+            life.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(life.Sources);
+        Assert.Equal(60, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesLightDomainMechanics()
+    {
+        SubclassDefinition light = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.light-domain");
+
+        Assert.Equal("Light Domain", light.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.light-bonus-cantrip",
+                "dnd5e2014.class-rule.warding-flare",
+                "dnd5e2014.class-rule.channel-divinity-radiance-of-the-dawn",
+                "dnd5e2014.class-rule.improved-flare",
+                "dnd5e2014.class-rule.potent-spellcasting",
+                "dnd5e2014.class-rule.corona-of-light"
+            ],
+            light.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(light.Sources);
+        Assert.Equal(60, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_SharesPotentSpellcastingRuleIdBetweenKnowledgeAndLight()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        SubclassDefinition knowledge = GetSubclass(
+            subclasses, "dnd5e2014.subclass.knowledge-domain");
+        SubclassDefinition light = GetSubclass(
+            subclasses, "dnd5e2014.subclass.light-domain");
+
+        Assert.Contains(
+            knowledge.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.potent-spellcasting");
+        Assert.Contains(
+            light.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.potent-spellcasting");
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesNatureDomainMechanics()
+    {
+        SubclassDefinition nature = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.nature-domain");
+
+        Assert.Equal("Nature Domain", nature.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.acolyte-of-nature",
+                "dnd5e2014.class-rule.nature-bonus-proficiency",
+                "dnd5e2014.class-rule.channel-divinity-charm-animals-and-plants",
+                "dnd5e2014.class-rule.dampen-elements",
+                "dnd5e2014.class-rule.nature-divine-strike",
+                "dnd5e2014.class-rule.master-of-nature"
+            ],
+            nature.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(nature.Sources);
+        Assert.Equal(61, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesTempestDomainMechanics()
+    {
+        SubclassDefinition tempest = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.tempest-domain");
+
+        Assert.Equal("Tempest Domain", tempest.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.martial-and-heavy-armor-proficiency",
+                "dnd5e2014.class-rule.wrath-of-the-storm",
+                "dnd5e2014.class-rule.channel-divinity-destructive-wrath",
+                "dnd5e2014.class-rule.thunderbolt-strike",
+                "dnd5e2014.class-rule.tempest-divine-strike",
+                "dnd5e2014.class-rule.stormborn"
+            ],
+            tempest.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(tempest.Sources);
+        Assert.Equal(62, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesTrickeryDomainMechanics()
+    {
+        SubclassDefinition trickery = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.trickery-domain");
+
+        Assert.Equal("Trickery Domain", trickery.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.blessing-of-the-trickster",
+                "dnd5e2014.class-rule.channel-divinity-invoke-duplicity",
+                "dnd5e2014.class-rule.channel-divinity-cloak-of-shadows",
+                "dnd5e2014.class-rule.trickery-divine-strike",
+                "dnd5e2014.class-rule.improved-duplicity"
+            ],
+            trickery.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(trickery.Sources);
+        Assert.Equal(62, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWarDomainMechanics()
+    {
+        SubclassDefinition war = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.war-domain");
+
+        Assert.Equal("War Domain", war.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.martial-and-heavy-armor-proficiency",
+                "dnd5e2014.class-rule.war-priest",
+                "dnd5e2014.class-rule.channel-divinity-guided-strike",
+                "dnd5e2014.class-rule.channel-divinity-war-gods-blessing",
+                "dnd5e2014.class-rule.war-divine-strike",
+                "dnd5e2014.class-rule.avatar-of-battle"
+            ],
+            war.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(war.Sources);
+        Assert.Equal(63, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_SharesMartialAndHeavyArmorProficiencyRuleIdBetweenTempestAndWar()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        SubclassDefinition tempest = GetSubclass(
+            subclasses, "dnd5e2014.subclass.tempest-domain");
+        SubclassDefinition war = GetSubclass(
+            subclasses, "dnd5e2014.subclass.war-domain");
+
+        Assert.Contains(
+            tempest.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.martial-and-heavy-armor-proficiency");
+        Assert.Contains(
+            war.LevelFeatures,
+            feature => feature.FeatureRuleId.Value ==
+                "dnd5e2014.class-rule.martial-and-heavy-armor-proficiency");
+    }
+
+    [Fact]
+    public void CanonicalFile_KeepsDivineStrikeDistinctPerDomainDespiteSharedName()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> divineStrikeRuleIds = subclasses
+            .Where(subclass => ExpectedClericSubclassIds.Contains(subclass.Id.Value))
+            .SelectMany(subclass => subclass.LevelFeatures)
+            .Select(feature => feature.FeatureRuleId.Value)
+            .Where(id => id.EndsWith("divine-strike", StringComparison.Ordinal));
+
+        Assert.Equal(5, divineStrikeRuleIds.Distinct().Count());
     }
 
     private static SubclassDefinition GetSubclass(

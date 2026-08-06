@@ -11,9 +11,9 @@ public sealed class LifestyleRuleDataFileTests
     {
         IReadOnlyList<RuleDefinition> rules = LoadCanonical();
 
-        Assert.Equal(289, rules.Count);
+        Assert.Equal(332, rules.Count);
         Assert.Equal(
-            289,
+            332,
             rules.Select(rule => rule.Id).Distinct().Count());
     }
 

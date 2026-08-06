@@ -730,5 +730,88 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.cleric",
+    "name": "Cleric",
+    "hitDieSides": 8,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.wisdom"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.wisdom",
+      "dnd5e2014.ability.charisma"
+    ],
+    "armorProficiencyCategories": [
+      "Light",
+      "Medium"
+    ],
+    "proficientWithShields": true,
+    "weaponProficiencyCategories": [
+      "Simple"
+    ],
+    "weaponProficiencyIds": [],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.history",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.medicine",
+      "dnd5e2014.skill.persuasion",
+      "dnd5e2014.skill.religion"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.cleric-spellcasting"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.divine-domain"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.destroy-undead"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.divine-intervention"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.divine-intervention"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 57,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]
