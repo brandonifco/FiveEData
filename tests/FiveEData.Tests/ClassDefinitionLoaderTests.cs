@@ -5,6 +5,7 @@ using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -53,6 +54,7 @@ public sealed class ClassDefinitionLoaderTests
           "channelDivinityProgression": null,
           "mysticArcanumProgression": null,
           "fontOfMagicConversion": null,
+          "songOfRestProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -109,6 +111,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.ChannelDivinityProgression);
         Assert.Null(@class.MysticArcanumProgression);
         Assert.Null(@class.FontOfMagicConversion);
+        Assert.Null(@class.SongOfRestProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -178,6 +181,7 @@ public sealed class ClassDefinitionLoaderTests
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -284,6 +288,7 @@ public sealed class ClassDefinitionLoaderTests
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -361,6 +366,7 @@ public sealed class ClassDefinitionLoaderTests
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -441,6 +447,7 @@ public sealed class ClassDefinitionLoaderTests
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -521,6 +528,7 @@ public sealed class ClassDefinitionLoaderTests
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -592,6 +600,7 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -662,6 +671,7 @@ public sealed class ClassDefinitionLoaderTests
                       "recoversOnShortRest": false
                     },
                     "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -731,6 +741,7 @@ public sealed class ClassDefinitionLoaderTests
                         { "spellSlotLevel": 2, "sorceryPointCost": 3 }
                       ]
                     },
+                    "songOfRestProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -754,6 +765,77 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Equal(
             3,
             fontOfMagicConversion.SlotCostByLevel[1].SorceryPointCost);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsSongOfRestProgression()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.charisma"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.dexterity",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
+                    "songOfRestProgression": {
+                      "dieByLevel": [
+                        {
+                          "characterLevel": 2,
+                          "die": { "count": 1, "sides": 6 }
+                        },
+                        {
+                          "characterLevel": 9,
+                          "die": { "count": 1, "sides": 8 }
+                        }
+                      ]
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        SongOfRestProgressionDetail songOfRestProgression =
+            @class.SongOfRestProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Song of Rest progression.");
+
+        Assert.Equal(2, songOfRestProgression.DieByLevel.Count);
+        Assert.Equal(6, songOfRestProgression.DieByLevel[0].Die.Sides);
+        Assert.Equal(8, songOfRestProgression.DieByLevel[1].Die.Sides);
     }
 
     [Fact]

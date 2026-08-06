@@ -25,20 +25,20 @@ Paladin auras ([PR #30](https://github.com/brandonifco/FiveEData/pull/30)),
 Bardic Inspiration die ([PR #31](https://github.com/brandonifco/FiveEData/pull/31)),
 Channel Divinity uses ([PR #32](https://github.com/brandonifco/FiveEData/pull/32)),
 Mystic Arcanum ([PR #33](https://github.com/brandonifco/FiveEData/pull/33)),
-Font of Magic conversion ([PR #34](https://github.com/brandonifco/FiveEData/pull/34)).
+Font of Magic conversion ([PR #34](https://github.com/brandonifco/FiveEData/pull/34)),
+Song of Rest ([PR #35](https://github.com/brandonifco/FiveEData/pull/35)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
-same commit every time.** The original "rest of the per-level numeric
-progressions" list is now fully closed out. Order from here: Song of
-Rest (newly discovered alongside Bardic Inspiration, not in the
-original list, see the Bardic Inspiration section below for why it's
-separate), then the larger choice-point catalogs (Eldritch
+same commit every time.** Every per-level numeric progression is now
+converted — the original list plus both items discovered along the
+way. Order from here: the larger choice-point catalogs (Eldritch
 Invocations, Battle Master maneuvers, Metamagic, Elemental
-Disciplines, Channel Divinity options, Pact Boon), then race trait
-quantization, then a background numeric audit. Stop when that full
-list is done, not before. Check the
+Disciplines, Channel Divinity options, Pact Boon) — a real design
+shift, not more of the same shape, see the Song of Rest section below
+— then race trait quantization, then a background numeric audit. Stop
+when that full list is done, not before. Check the
 "Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
@@ -61,7 +61,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26 through #34 were all merged this way. **Once CI is confirmed
+PR #26 through #35 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1522,23 +1522,54 @@ the per-level numeric progressions" list.**
   `FontOfMagicConversionDetail`) and one new member on
   `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
   1496 tests (was 1476; +20 new).
-- **Remaining, tracked but not started:** Song of Rest (newly noted
-  under Bardic Inspiration above, the one addition to the original
-  per-level-numeric-progressions list — that whole original list is
-  now otherwise closed out), then the larger choice-point catalogs
-  (Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
-  Disciplines, Channel Divinity options, Pact Boon), race trait
-  quantization (Darkvision range,
+
+**Song of Rest converted sixteenth — Bard's own healing-die progression
+(1d6 at 2nd level, 1d8 at 9th, 1d10 at 13th, 1d12 at 17th), the one
+addition to the original per-level-numeric-progressions list, closing
+it out for good.** Verified against the same page 54 already read for
+Bardic Inspiration (both features are on that page, but are genuinely
+separate mechanics with separate citations, not two columns of one
+table — confirmed by reading each one's own paragraph rather than
+assuming from proximity).
+
+- **Deliberately simpler than Bardic Inspiration's own shape** — Song
+  of Rest has no range or duration numbers in its own text at all (it
+  triggers automatically for "any friendly creatures who can hear your
+  performance" during a short rest, with no explicit feet or minutes
+  given the way Bardic Inspiration's "within 60 feet" and "within the
+  next 10 minutes" were), so `SongOfRestProgressionDetail` carries only
+  `DieByLevel`, no `RangeFeet`/`DurationMinutes` fields. This is the
+  "capture the full mechanical fact set" discipline working in the
+  other direction from usual — the fact set here genuinely only has one
+  member, confirmed by checking rather than assumed absent.
+  `ClassDefinitionValidator`'s own `ValidateSongOfRestProgression` is a
+  near-duplicate of `ValidateBardicInspirationProgression` (same
+  constant-count/ascending-sides checks) rather than a shared helper,
+  matching the same "domain-specific error wording matters" call Font
+  of Magic's own validator just established — a shared helper here
+  would only save a few lines and these two dice progressions could
+  plausibly diverge in a later pass.
+- Public API: two new public types (`SongOfRestDieGrant`,
+  `SongOfRestProgressionDetail`) and one new member on
+  `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
+  1515 tests (was 1496; +19 new).
+- **Every per-level numeric progression identified during this entire
+  pass — the original list plus both items discovered along the way
+  (Wild Shape/Circle Forms' compound pairing, Song of Rest) — is now
+  converted.** Remaining, tracked but not started: the larger
+  choice-point catalogs (Eldritch Invocations, Battle Master
+  maneuvers, Metamagic, Elemental Disciplines, Channel Divinity
+  options, Pact Boon), race trait quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
   (likely little to quantize — most background features are
-  narrative/social, not numeric). Verify every time the way this
-  entire pass's running list of surprises (Divine Strike's three-way
-  split, Wild Shape/Circle Forms' compound cross-reference, the
-  Paladin auras' consciousness-gate asymmetry, Bardic Inspiration's
-  no-resource-pool shape, Channel Divinity's/Mystic Arcanum's own
-  recovery-timing checks, and now Font of Magic's non-reusable
-  validator) shows is worth doing, rather than assuming any earlier
-  shape carries forward unchanged.
+  narrative/social, not numeric). These are structurally different
+  from everything converted so far — real choice-point catalogs with
+  their own sub-structure (a maneuver has its own save DC, an
+  invocation has its own prerequisites) rather than a single leveled
+  number — so the next session should expect to make a fresh design
+  call, not just repeat the "embedded value object with a grant list"
+  shape one more time. See the "Not yet decided" note under Fighting
+  Style, above, for the open questions already flagged about this.
 
 ## Test conventions
 
@@ -1679,9 +1710,10 @@ race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
 Sorcery Points, Wild Shape, Circle Forms, the Paladin auras, Bardic
-Inspiration, Channel Divinity uses, Mystic Arcanum, and Font of Magic
-conversion have been converted; every other named feature across
-Classes/Races/Backgrounds is still a `RuleId` citation with no
+Inspiration, Channel Divinity uses, Mystic Arcanum, Font of Magic
+conversion, and Song of Rest have been converted; every other named
+feature across Classes/Races/Backgrounds is still a `RuleId` citation
+with no
 mechanical payload.
 
 ## Build

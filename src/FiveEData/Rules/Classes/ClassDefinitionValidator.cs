@@ -5,6 +5,7 @@ using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
@@ -173,7 +174,61 @@ internal static class ClassDefinitionValidator
             ValidateFontOfMagicConversion(fontOfMagicConversion, errors);
         }
 
+        if (@class.SongOfRestProgression is { } songOfRestProgression)
+        {
+            ValidateSongOfRestProgression(songOfRestProgression, errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateSongOfRestProgression(
+        SongOfRestProgressionDetail songOfRestProgression,
+        ICollection<string> errors)
+    {
+        if (songOfRestProgression.DieByLevel.Count == 0)
+        {
+            errors.Add(
+                "Song of Rest progression must grant at least one die " +
+                "increase.");
+        }
+
+        var seenCounts = new HashSet<int>();
+        var seenLevels = new HashSet<int>();
+        int? previousSides = null;
+
+        foreach (
+            SongOfRestDieGrant grant
+            in songOfRestProgression.DieByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            seenCounts.Add(grant.Die.Count);
+
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Song of Rest die character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousSides is { } previous && grant.Die.Sides <= previous)
+            {
+                errors.Add(
+                    "Song of Rest die at level " +
+                    $"{grant.CharacterLevel} must use a larger die than " +
+                    "the value at the previous grant level.");
+            }
+
+            previousSides = grant.Die.Sides;
+        }
+
+        if (seenCounts.Count > 1)
+        {
+            errors.Add(
+                "Song of Rest progression must grant the same number of " +
+                "dice at every grant level.");
+        }
     }
 
     private static void ValidateFontOfMagicConversion(

@@ -7,6 +7,7 @@ using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
+using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.WildShape;
@@ -49,6 +50,7 @@ public sealed class ClassDefinition
         ChannelDivinityProgressionDetail? channelDivinityProgression,
         MysticArcanumProgressionDetail? mysticArcanumProgression,
         FontOfMagicConversionDetail? fontOfMagicConversion,
+        SongOfRestProgressionDetail? songOfRestProgression,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -91,6 +93,7 @@ public sealed class ClassDefinition
         ChannelDivinityProgression = channelDivinityProgression;
         MysticArcanumProgression = mysticArcanumProgression;
         FontOfMagicConversion = fontOfMagicConversion;
+        SongOfRestProgression = songOfRestProgression;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -130,5 +133,6 @@ public sealed class ClassDefinition
         get;
     }
     public FontOfMagicConversionDetail? FontOfMagicConversion { get; }
+    public SongOfRestProgressionDetail? SongOfRestProgression { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }
