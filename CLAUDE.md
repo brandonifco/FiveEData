@@ -472,6 +472,82 @@ spellbook/ritual-casting/arcane-recovery mechanic no other class has:
   were read directly off legible per-page footers throughout, the same
   precision level as Fighter/Barbarian/Monk/Rogue.
 
+**Cleric was the seventh class built, and the first with a genuinely
+new shared-vs-prefixed split discovered from real text rather than
+confirmed/denied against an existing precedent** — 7 divine domains
+(Knowledge, Life, Light, Nature, Tempest, Trickery, War), each
+structured like a subclass (`classId` = Cleric, its own `LevelFeatures`
+and `Sources`) even though the PHB calls them domains, not subclasses:
+- **`Divine Domain` is chosen at 1st level, not 2nd or 3rd** — a third
+  distinct `ChosenAtLevel` value after Wizard's 2nd broke the
+  3rd-level-only assumption. The blanket boolean test from before Wizard
+  had already been split in two; rather than add a third near-duplicate
+  test for Cleric, `SubclassDataFileTests` now carries one
+  class-to-expected-level dictionary
+  (`ExpectedChosenAtLevelByClassId`) and a single test that checks every
+  subclass against its own class's entry — this shape should keep
+  scaling as Druid (2nd), Sorcerer/Warlock (1st), and Paladin/Ranger
+  (3rd) get built, rather than accreting another one-off test each time.
+  The old cross-class Ability Score Improvement test
+  (`SharesAbilityScoreImprovementRuleIdAcrossBarbarianMonkBardAndWizard`)
+  got the same treatment here, generalized into
+  `SharesAbilityScoreImprovementRuleIdAcrossClassesWithStandardWording`
+  driven by a class-ID list instead of one parameter per class.
+- **`Divine Strike` is the clearest `X Savant`-style case yet**: five of
+  the seven domains (Life, Nature, Tempest, Trickery, War) grant an
+  8th-level `Divine Strike` built from an identical template sentence
+  ("you gain the ability to infuse your weapon strikes with divine
+  energy... an extra 1d8 `<type>` damage... 2d8 at 14th level"), differing
+  only in damage type (radiant/cold-fire-lightning-choice/thunder/poison/
+  weapon-matching). Prefixed five ways
+  (`life-divine-strike`/`nature-divine-strike`/etc.), same call as
+  Wizard's school `Savant` features and for the same reason: the
+  substituted word is the actual mechanical effect, not incidental
+  flavor text.
+- **`Potent Spellcasting` is the opposite finding from the same page**:
+  Knowledge's and Light's own 8th-level features carry this same name
+  *and* are verified word-for-word identical ("you add your Wisdom
+  modifier to the damage you deal with any cleric cantrip", no
+  substituted word at all) — a genuine share, gaining two
+  `SourceReference`s on one `RuleId`. Reading both templates side by
+  side in the same pass (`Divine Strike` right after `Potent
+  Spellcasting` in the source text) is what makes this pairing a clean
+  illustration of the actual dividing line: template-with-a-substitution
+  stays split, template-with-zero-difference shares — not "recurring
+  name" as a proxy for either outcome on its own.
+- **`Bonus Proficiencies`/`Bonus Proficiency` split down the middle
+  three ways among the seven domains, not uniformly**: Tempest's and
+  War's own text ("At 1st level, you gain proficiency with martial
+  weapons and heavy armor") is verified word-for-word identical and
+  shared as `martial-and-heavy-armor-proficiency`; Life's and Nature's
+  own singular `Bonus Proficiency` (heavy armor only) use different
+  lead-in clauses ("When you choose this domain..." vs "Also at 1st
+  level...") for the same grant and stayed separately prefixed
+  (`life-bonus-proficiency`/`nature-bonus-proficiency`) on that basis —
+  a real revision of the Bard-era blanket note that `Bonus
+  Proficiencies` "is inherently subclass-specific, never a sharing
+  candidate." That note was only three data points (Fighter/Barbarian/
+  Monk/Rogue subclasses, all genuinely divergent); Tempest/War is the
+  first verbatim match, proof the discipline is "verify every time," not
+  "this generic name never shares."
+- **Cleric's own `Channel Divinity` folds its baseline `Turn Undead`
+  effect into the class-level citation rather than minting a separate
+  `RuleId`** — the PHB table lists only "Channel Divinity (1/rest)" at
+  2nd level, not a separate Turn Undead row, the same reasoning that
+  kept Ki's Flurry of Blows/Patient Defense/Step of the Wind folded into
+  `ki` rather than split out. Each *domain's* own Channel Divinity
+  option (Knowledge of the Ages, Read Thoughts, Preserve Life, Radiance
+  of the Dawn, Charm Animals and Plants, Destructive Wrath, Invoke
+  Duplicity, Cloak of Shadows, Guided Strike, War God's Blessing) does
+  get its own citation, since each is a genuinely distinct named
+  sub-choice, not an automatic baseline grant.
+- **`Divine Intervention` reuses one `RuleId` at both its 10th-level
+  grant and 20th-level improvement**, the same recurring-feature shape
+  `Unarmored Movement`/`disciple-of-the-elements`/`Expertise` already
+  established — the 20th-level text ("your call for intervention
+  succeeds automatically") is a modifier on the same named feature, not
+  a new one.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -507,7 +583,7 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 18: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 19: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
@@ -518,37 +594,40 @@ Barbarian (both subclasses — Path of the Berserker, Path of the Totem
 Warrior), Monk (all 3 subclasses — Way of the Open Hand, Way of Shadow,
 Way of the Four Elements), Rogue (all 3 subclasses — Thief, Assassin,
 Arcane Trickster), Bard (both subclasses — College of Lore, College of
-Valor), and Wizard (all 8 arcane traditions — Abjuration, Conjuration,
-Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation)
-are built — see "Classes" above, including the cross-class `RuleId`
-sharing question, resolved with evidence from all six (most recently:
-Ability Score Improvement confirmed a fourth time verbatim against
-Wizard's; each school's `X Savant` feature stayed separately prefixed
-despite a shared template sentence, since the actual discount applies to
-a different school each time). Wizard is also the first class where a
-recurring template name split into as many as eight separate `RuleId`s
-at once, and the first to break the "every subclass chosen at 3rd level"
-assumption the test suite had been asserting blanket-style since Fighter
-(Arcane Tradition is 2nd level). The other 6 PHB classes (Cleric, Druid,
-Paladin, Ranger, Sorcerer, Warlock) are not yet built — note that all of
-them are full or half spellcasters like Bard and Wizard, so the core-
-`Spellcasting`-as-single-citation approach carries forward directly; when
-picking one up, re-derive RuleId cross-class-sharing decisions against
-the precedent in "Classes" above (default to sharing a generic-named
-mechanic like Ability Score Improvement/Extra Attack/Evasion unless the
-actual PHB text diverges; prefix on a name collision with a different
-mechanic, like Unarmored Defense/Expertise/Bonus Proficiencies/school
-Savant features) rather than assuming it's settled for good — re-verify
-by reading the real text, the same discipline that's paid off at both
-the class level and the individual-feature level so far. Use the
-cleanly-scanned PHB PDF (`~/Downloads/Player's Handbook.pdf`, reliable
-per-page footers) for citations, not the archive.org OCR export used for
-the original Bard pass (see "Classes" above, end of the Bard section, for
-why). Not yet started: backgrounds, spells, magic items, and
-combat/adventuring rule prose beyond the existing rules citation index
-(`Data/dnd5e2014/rules/`, split per-domain — see "Architecture" above).
-Feats (and, by extension, Variant Human) are out of scope — they aren't
-part of the free 2014 SRD this project's provenance model is built
+Valor), Wizard (all 8 arcane traditions — Abjuration, Conjuration,
+Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation),
+and Cleric (all 7 divine domains — Knowledge, Life, Light, Nature,
+Tempest, Trickery, War) are built — see "Classes" above, including the
+cross-class `RuleId` sharing question, resolved with evidence from all
+seven (most recently: `Divine Strike` split five ways by damage type
+following the school-`Savant` precedent, `Potent Spellcasting` shared
+between Knowledge/Light on genuinely identical text found on the same
+page, and `Bonus Proficiencies` split down the middle — Tempest/War
+verbatim-shared, Life/Nature separately prefixed — revising the
+Bard-era blanket note that name alone predicted a prefix). Cleric is
+also the first class where a subclass-equivalent (`Divine Domain`) is
+chosen at 1st level, a third distinct `ChosenAtLevel` value; the test
+that had been growing a new near-duplicate fact per class
+(`ChosenAtLevel`, and separately the shared-Ability-Score-Improvement
+class list) is now each a single data-driven test keyed by class ID,
+built to keep scaling rather than accrete further one-offs. The other 5
+PHB classes (Druid, Paladin, Ranger, Sorcerer, Warlock) are not yet
+built — note that all of them are full or half spellcasters like Bard,
+Wizard, and Cleric, so the core-`Spellcasting`-as-single-citation
+approach carries forward directly; when picking one up, re-derive
+RuleId cross-class-sharing decisions against the precedent in "Classes"
+above (default to sharing a generic-named mechanic unless the actual
+PHB text diverges — verified, not assumed, every single time; prefix on
+a name collision with a different mechanic) rather than assuming it's
+settled for good. Use the cleanly-scanned PHB PDF
+(`~/Downloads/Player's Handbook.pdf`, reliable per-page footers) for
+citations, not the archive.org OCR export used for the original Bard
+pass (see "Classes" above, end of the Bard section, for why). Not yet
+started: backgrounds, spells, magic items, and combat/adventuring rule
+prose beyond the existing rules citation index (`Data/dnd5e2014/rules/`,
+split per-domain — see "Architecture" above). Feats (and, by extension,
+Variant Human) are out of scope — they aren't part of the free 2014 SRD
+this project's provenance model is built
 around.
 
 ## Build

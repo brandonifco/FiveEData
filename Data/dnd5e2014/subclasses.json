@@ -713,5 +713,270 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.knowledge-domain",
+    "name": "Knowledge Domain",
+    "classId": "dnd5e2014.class.cleric",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.blessings-of-knowledge"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-knowledge-of-the-ages"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-read-thoughts"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.potent-spellcasting"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.visions-of-the-past"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 59,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.life-domain",
+    "name": "Life Domain",
+    "classId": "dnd5e2014.class.cleric",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.life-bonus-proficiency"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.disciple-of-life"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-preserve-life"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.blessed-healer"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.life-divine-strike"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.supreme-healing"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 60,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.light-domain",
+    "name": "Light Domain",
+    "classId": "dnd5e2014.class.cleric",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.light-bonus-cantrip"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.warding-flare"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-radiance-of-the-dawn"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.improved-flare"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.potent-spellcasting"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.corona-of-light"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 60,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.nature-domain",
+    "name": "Nature Domain",
+    "classId": "dnd5e2014.class.cleric",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.acolyte-of-nature"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.nature-bonus-proficiency"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-charm-animals-and-plants"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.dampen-elements"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.nature-divine-strike"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.master-of-nature"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 61,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.tempest-domain",
+    "name": "Tempest Domain",
+    "classId": "dnd5e2014.class.cleric",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.martial-and-heavy-armor-proficiency"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.wrath-of-the-storm"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-destructive-wrath"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.thunderbolt-strike"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.tempest-divine-strike"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.stormborn"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 62,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.trickery-domain",
+    "name": "Trickery Domain",
+    "classId": "dnd5e2014.class.cleric",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.blessing-of-the-trickster"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-invoke-duplicity"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-cloak-of-shadows"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.trickery-divine-strike"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.improved-duplicity"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 62,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.war-domain",
+    "name": "War Domain",
+    "classId": "dnd5e2014.class.cleric",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.martial-and-heavy-armor-proficiency"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.war-priest"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-guided-strike"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.channel-divinity-war-gods-blessing"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.war-divine-strike"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.avatar-of-battle"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 63,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]
