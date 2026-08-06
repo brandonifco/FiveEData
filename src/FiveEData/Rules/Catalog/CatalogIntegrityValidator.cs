@@ -138,7 +138,8 @@ internal static class CatalogIntegrityValidator
                 weaponIds,
                 ruleIds,
                 spellSlotProgressionIds,
-                extraAttackProgressionIds));
+                extraAttackProgressionIds,
+                damageTypeIds));
 
         foreach (
             SpellSlotProgressionDefinition spellSlotProgression

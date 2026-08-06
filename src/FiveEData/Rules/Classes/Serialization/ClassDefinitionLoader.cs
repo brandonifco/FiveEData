@@ -1,4 +1,6 @@
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.Rage;
+using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -144,6 +146,11 @@ internal static class ClassDefinitionLoader
                     extraAttackProgressionIdValue)
                 : null;
 
+        RageProgressionDetail? rageProgression =
+            data.RageProgression is { } rageProgressionData
+                ? RageProgressionDetailDataMapper.Map(rageProgressionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -161,6 +168,7 @@ internal static class ClassDefinitionLoader
             spellSlotProgressionId,
             spellcastingAbilityId,
             extraAttackProgressionId,
+            rageProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -1378,6 +1379,64 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.ExtraAttackProgressionId);
+    }
+
+    [Fact]
+    public void CanonicalFile_BarbarianRageMatchesThePhbTable()
+    {
+        ClassDefinition barbarian =
+            GetClass(LoadClasses(), "dnd5e2014.class.barbarian");
+
+        RageProgressionDetail rage = barbarian.RageProgression
+            ?? throw new InvalidOperationException(
+                "Barbarian is expected to declare a Rage progression.");
+
+        Assert.Equal(
+            [(1, 2), (3, 3), (6, 4), (12, 5), (17, 6), (20, (int?)null)],
+            rage.UsesByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.UsesPerLongRest)));
+
+        Assert.Equal(
+            [(1, 2), (9, 3), (16, 4)],
+            rage.DamageBonusByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.Bonus)));
+
+        Assert.Equal(1, rage.DurationMinutes);
+        Assert.True(rage.RequiresNotWearingHeavyArmor);
+
+        Assert.Equal(
+            [
+                "dnd5e2014.damage-type.bludgeoning",
+                "dnd5e2014.damage-type.piercing",
+                "dnd5e2014.damage-type.slashing"
+            ],
+            rage.ResistedDamageTypeIds
+                .Select(id => id.Value)
+                .OrderBy(value => value, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonBarbarianClassDeclaresNoRageProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.RageProgression);
     }
 
     private static ClassDefinition GetClass(

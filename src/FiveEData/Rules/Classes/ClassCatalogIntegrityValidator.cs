@@ -4,6 +4,7 @@ using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -19,7 +20,8 @@ internal static class ClassCatalogIntegrityValidator
         IReadOnlySet<WeaponId> weaponIds,
         IReadOnlySet<RuleId> ruleIds,
         IReadOnlySet<SpellSlotProgressionId> spellSlotProgressionIds,
-        IReadOnlySet<ExtraAttackProgressionId> extraAttackProgressionIds)
+        IReadOnlySet<ExtraAttackProgressionId> extraAttackProgressionIds,
+        IReadOnlySet<DamageTypeId> damageTypeIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(sourceIds);
@@ -29,6 +31,7 @@ internal static class ClassCatalogIntegrityValidator
         ArgumentNullException.ThrowIfNull(ruleIds);
         ArgumentNullException.ThrowIfNull(spellSlotProgressionIds);
         ArgumentNullException.ThrowIfNull(extraAttackProgressionIds);
+        ArgumentNullException.ThrowIfNull(damageTypeIds);
 
         var errors = new List<string>();
 
@@ -110,6 +113,21 @@ internal static class ClassCatalogIntegrityValidator
                 errors.Add(
                     $"{owner} references missing Extra Attack " +
                     $"progression '{extraAttackId}'.");
+            }
+
+            if (@class.RageProgression is { } rageProgression)
+            {
+                foreach (
+                    DamageTypeId damageTypeId
+                    in rageProgression.ResistedDamageTypeIds)
+                {
+                    if (!damageTypeIds.Contains(damageTypeId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing damage type " +
+                            $"'{damageTypeId}' in its Rage progression.");
+                    }
+                }
             }
         }
 

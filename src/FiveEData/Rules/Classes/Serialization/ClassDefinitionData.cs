@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment.Armor;
@@ -55,6 +56,9 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public string? ExtraAttackProgressionId { get; init; }
+
+    [JsonRequired]
+    public RageProgressionDetailData? RageProgression { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

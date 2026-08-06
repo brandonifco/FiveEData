@@ -37,6 +37,7 @@ public sealed class ClassDefinitionLoaderTests
           "spellSlotProgressionId": null,
           "spellcastingAbilityId": null,
           "extraAttackProgressionId": null,
+          "rageProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -82,6 +83,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.SpellSlotProgressionId);
         Assert.Null(@class.SpellcastingAbilityId);
         Assert.Null(@class.ExtraAttackProgressionId);
+        Assert.Null(@class.RageProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -114,6 +116,20 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
                     "extraAttackProgressionId":
                       "extension.extra-attack-progression.test",
+                    "rageProgression": {
+                      "usesByLevel": [
+                        { "characterLevel": 1, "usesPerLongRest": 2 },
+                        { "characterLevel": 20, "usesPerLongRest": null }
+                      ],
+                      "damageBonusByLevel": [
+                        { "characterLevel": 1, "bonus": 2 }
+                      ],
+                      "durationMinutes": 1,
+                      "resistedDamageTypeIds": [
+                        "dnd5e2014.damage-type.bludgeoning"
+                      ],
+                      "requiresNotWearingHeavyArmor": true
+                    },
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -134,6 +150,23 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Equal(
             "extension.extra-attack-progression.test",
             @class.ExtraAttackProgressionId?.Value);
+
+        Assert.NotNull(@class.RageProgression);
+        Assert.Equal(2, @class.RageProgression!.UsesByLevel.Count);
+        Assert.Equal(
+            2,
+            @class.RageProgression.UsesByLevel[0].UsesPerLongRest);
+        Assert.Null(
+            @class.RageProgression.UsesByLevel[1].UsesPerLongRest);
+        Assert.Equal(
+            2,
+            Assert.Single(@class.RageProgression.DamageBonusByLevel).Bonus);
+        Assert.Equal(1, @class.RageProgression.DurationMinutes);
+        Assert.Equal(
+            "dnd5e2014.damage-type.bludgeoning",
+            Assert.Single(
+                @class.RageProgression.ResistedDamageTypeIds).Value);
+        Assert.True(@class.RageProgression.RequiresNotWearingHeavyArmor);
     }
 
     [Fact]
