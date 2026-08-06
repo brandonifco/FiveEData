@@ -4,6 +4,7 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
@@ -143,6 +144,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -524,6 +526,57 @@ public sealed class ClassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsFontOfMagicConversionWithNoSlotCostGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            fontOfMagicConversion: new FontOfMagicConversionDetail([]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Font of Magic conversion must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsFontOfMagicConversionWithNonIncreasingCost()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            fontOfMagicConversion: new FontOfMagicConversionDetail(
+                [
+                    new FontOfMagicSlotCostGrant(1, 3),
+                    new FontOfMagicSlotCostGrant(2, 3)
+                ]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedFontOfMagicConversion()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            fontOfMagicConversion: new FontOfMagicConversionDetail(
+                [
+                    new FontOfMagicSlotCostGrant(1, 2),
+                    new FontOfMagicSlotCostGrant(2, 3),
+                    new FontOfMagicSlotCostGrant(3, 5),
+                    new FontOfMagicSlotCostGrant(4, 6),
+                    new FontOfMagicSlotCostGrant(5, 7)
+                ]));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
     public void Validator_RejectsWildShapeProgressionWithNoFormLimits()
     {
         ClassDefinition @class = Create(
@@ -856,6 +909,7 @@ public sealed class ClassFoundationTests
             null,
         ChannelDivinityProgressionDetail? channelDivinityProgression = null,
         MysticArcanumProgressionDetail? mysticArcanumProgression = null,
+        FontOfMagicConversionDetail? fontOfMagicConversion = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -890,6 +944,7 @@ public sealed class ClassFoundationTests
             bardicInspirationProgression,
             channelDivinityProgression,
             mysticArcanumProgression,
+            fontOfMagicConversion,
             sources ?? [CreateSource()]);
     }
 

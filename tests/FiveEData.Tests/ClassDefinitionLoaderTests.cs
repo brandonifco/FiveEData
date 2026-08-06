@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Equipment.Armor;
@@ -51,6 +52,7 @@ public sealed class ClassDefinitionLoaderTests
           "bardicInspirationProgression": null,
           "channelDivinityProgression": null,
           "mysticArcanumProgression": null,
+          "fontOfMagicConversion": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -106,6 +108,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.BardicInspirationProgression);
         Assert.Null(@class.ChannelDivinityProgression);
         Assert.Null(@class.MysticArcanumProgression);
+        Assert.Null(@class.FontOfMagicConversion);
         Assert.Single(@class.Sources);
     }
 
@@ -174,6 +177,7 @@ public sealed class ClassDefinitionLoaderTests
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -279,6 +283,7 @@ public sealed class ClassDefinitionLoaderTests
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -355,6 +360,7 @@ public sealed class ClassDefinitionLoaderTests
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -434,6 +440,7 @@ public sealed class ClassDefinitionLoaderTests
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -513,6 +520,7 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "channelDivinityProgression": null,
                     "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -583,6 +591,7 @@ public sealed class ClassDefinitionLoaderTests
                       "recoversOnShortRest": true
                     },
                     "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -652,6 +661,7 @@ public sealed class ClassDefinitionLoaderTests
                       ],
                       "recoversOnShortRest": false
                     },
+                    "fontOfMagicConversion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -676,6 +686,74 @@ public sealed class ClassDefinitionLoaderTests
             7,
             mysticArcanumProgression.ArcanumByLevel[1].SpellLevel);
         Assert.False(mysticArcanumProgression.RecoversOnShortRest);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsFontOfMagicConversion()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 6,
+                    "primaryAbilityIds": ["dnd5e2014.ability.charisma"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.constitution",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": {
+                      "slotCostByLevel": [
+                        { "spellSlotLevel": 1, "sorceryPointCost": 2 },
+                        { "spellSlotLevel": 2, "sorceryPointCost": 3 }
+                      ]
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        FontOfMagicConversionDetail fontOfMagicConversion =
+            @class.FontOfMagicConversion
+            ?? throw new InvalidOperationException(
+                "Expected a Font of Magic conversion.");
+
+        Assert.Equal(2, fontOfMagicConversion.SlotCostByLevel.Count);
+        Assert.Equal(
+            2,
+            fontOfMagicConversion.SlotCostByLevel[0].SorceryPointCost);
+        Assert.Equal(
+            3,
+            fontOfMagicConversion.SlotCostByLevel[1].SorceryPointCost);
     }
 
     [Fact]

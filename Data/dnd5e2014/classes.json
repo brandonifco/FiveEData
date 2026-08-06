@@ -121,6 +121,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -303,6 +304,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -475,6 +477,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -688,6 +691,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -862,6 +866,7 @@
     },
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -956,6 +961,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1059,6 +1065,7 @@
       "recoversOnShortRest": true
     },
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1176,6 +1183,7 @@
       ],
       "recoversOnShortRest": false
     },
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1319,6 +1327,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1460,6 +1469,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1607,6 +1617,7 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1732,6 +1743,15 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
     "mysticArcanumProgression": null,
+    "fontOfMagicConversion": {
+      "slotCostByLevel": [
+        { "spellSlotLevel": 1, "sorceryPointCost": 2 },
+        { "spellSlotLevel": 2, "sorceryPointCost": 3 },
+        { "spellSlotLevel": 3, "sorceryPointCost": 5 },
+        { "spellSlotLevel": 4, "sorceryPointCost": 6 },
+        { "spellSlotLevel": 5, "sorceryPointCost": 7 }
+      ]
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

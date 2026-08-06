@@ -24,14 +24,15 @@ Wild Shape and Circle Forms ([PR #29](https://github.com/brandonifco/FiveEData/p
 Paladin auras ([PR #30](https://github.com/brandonifco/FiveEData/pull/30)),
 Bardic Inspiration die ([PR #31](https://github.com/brandonifco/FiveEData/pull/31)),
 Channel Divinity uses ([PR #32](https://github.com/brandonifco/FiveEData/pull/32)),
-Mystic Arcanum ([PR #33](https://github.com/brandonifco/FiveEData/pull/33)).
+Mystic Arcanum ([PR #33](https://github.com/brandonifco/FiveEData/pull/33)),
+Font of Magic conversion ([PR #34](https://github.com/brandonifco/FiveEData/pull/34)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
-same commit every time.** Order: the rest of the per-level numeric
-progressions (Font of Magic conversion, and Song of Rest — this last
-one newly discovered alongside Bardic Inspiration, not in the
+same commit every time.** The original "rest of the per-level numeric
+progressions" list is now fully closed out. Order from here: Song of
+Rest (newly discovered alongside Bardic Inspiration, not in the
 original list, see the Bardic Inspiration section below for why it's
 separate), then the larger choice-point catalogs (Eldritch
 Invocations, Battle Master maneuvers, Metamagic, Elemental
@@ -60,7 +61,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26, #27, #28, #29, #30, #31, #32, and #33 were all merged this way. **Once CI is confirmed
+PR #26 through #34 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1486,22 +1487,58 @@ value being a spell level (1-9) instead of a resource count.
   `MysticArcanumProgressionDetail`) and one new member on
   `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
   1476 tests (was 1455; +21 new).
-- **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Font of Magic conversion, and Song of Rest,
-  newly noted under Bardic Inspiration above) — each single-class like
-  Rage/Sneak Attack, so each gets the same "embedded value object, not
-  a catalog" treatment by default, but verify every time the way
-  Divine Strike's three-way split, Wild Shape/Circle Forms' compound
-  cross-reference, the Paladin auras' real consciousness-gate
-  asymmetry, Bardic Inspiration's no-resource-pool shape, and Channel
-  Divinity's/Mystic Arcanum's own recovery-timing verifications all
-  show is actually necessary — the larger choice-point catalogs
+
+**Font of Magic conversion converted fifteenth — the Creating Spell
+Slots table (sorcery point costs 2/3/5/6/7 for spell slot levels 1-5),
+verified against the same page 101 already read during the Sorcery
+Points pass, closing out every item that was on the original "rest of
+the per-level numeric progressions" list.**
+
+- **The leveled axis is spell slot level, not character level — the
+  first quantized progression where that's true**, which is exactly
+  why it could *not* reuse the shared `ValidatePointsProgression`
+  helper the four previous progressions (Ki, Sorcery Points, Channel
+  Divinity, Mystic Arcanum) all shared without any new code: that
+  helper's `ValidateAscending` hardcodes "character level" into its
+  own error text. Reusing it here would have produced a validation
+  message that called a spell slot level a character level — caught
+  before writing the data, not after, by checking what the shared
+  helper's messages actually said rather than assuming the shape match
+  alone was enough. `ValidateFontOfMagicConversion` is a small bespoke
+  method instead, mirroring the same "shared helper only when the
+  domain vocabulary genuinely matches" restraint already implicit in
+  why Wild Shape/Circle Forms/Divine Strike never tried to reuse it in
+  the first place.
+- **The reverse conversion (spell slot → sorcery points, 1:1 with the
+  slot's own level) was deliberately not given a field of its own** —
+  unlike every other "capture the full mechanical fact set" case in
+  this pass, there's no independent number here: the point value *is*
+  the slot's level, a fact already fully expressed by the concept of
+  "spell slot level" itself, not a new leveled quantity like
+  `RangeFeet` or `DurationMinutes` was for Rage/Bardic Inspiration. A
+  field that always just echoes an existing axis back would be
+  redundant structure, not a new fact.
+- Public API: two new public types (`FontOfMagicSlotCostGrant`,
+  `FontOfMagicConversionDetail`) and one new member on
+  `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
+  1496 tests (was 1476; +20 new).
+- **Remaining, tracked but not started:** Song of Rest (newly noted
+  under Bardic Inspiration above, the one addition to the original
+  per-level-numeric-progressions list — that whole original list is
+  now otherwise closed out), then the larger choice-point catalogs
   (Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
   Disciplines, Channel Divinity options, Pact Boon), race trait
   quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
   (likely little to quantize — most background features are
-  narrative/social, not numeric).
+  narrative/social, not numeric). Verify every time the way this
+  entire pass's running list of surprises (Divine Strike's three-way
+  split, Wild Shape/Circle Forms' compound cross-reference, the
+  Paladin auras' consciousness-gate asymmetry, Bardic Inspiration's
+  no-resource-pool shape, Channel Divinity's/Mystic Arcanum's own
+  recovery-timing checks, and now Font of Magic's non-reusable
+  validator) shows is worth doing, rather than assuming any earlier
+  shape carries forward unchanged.
 
 ## Test conventions
 
@@ -1642,9 +1679,9 @@ race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
 Sorcery Points, Wild Shape, Circle Forms, the Paladin auras, Bardic
-Inspiration, Channel Divinity uses, and Mystic Arcanum have been
-converted; every other named feature across Classes/Races/Backgrounds
-is still a `RuleId` citation with no
+Inspiration, Channel Divinity uses, Mystic Arcanum, and Font of Magic
+conversion have been converted; every other named feature across
+Classes/Races/Backgrounds is still a `RuleId` citation with no
 mechanical payload.
 
 ## Build

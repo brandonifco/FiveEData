@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
@@ -47,6 +48,7 @@ public sealed class ClassDefinition
         BardicInspirationProgressionDetail? bardicInspirationProgression,
         ChannelDivinityProgressionDetail? channelDivinityProgression,
         MysticArcanumProgressionDetail? mysticArcanumProgression,
+        FontOfMagicConversionDetail? fontOfMagicConversion,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -88,6 +90,7 @@ public sealed class ClassDefinition
         BardicInspirationProgression = bardicInspirationProgression;
         ChannelDivinityProgression = channelDivinityProgression;
         MysticArcanumProgression = mysticArcanumProgression;
+        FontOfMagicConversion = fontOfMagicConversion;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -126,5 +129,6 @@ public sealed class ClassDefinition
     {
         get;
     }
+    public FontOfMagicConversionDetail? FontOfMagicConversion { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }
