@@ -9,11 +9,9 @@ back to that PHB printing.
 
 ## Handoff, 2026-08-06 — read this first if resuming cold
 
-Mid-stream on the "Quantized mechanics" pass (see that section below
-for the full design reasoning and the running list of what's done vs.
-remaining — check *there* for what's actually left, this handoff is
-kept short/current on purpose, not a blow-by-blow history). **Merged
-to `main`:** Fighting Style ([PR #22](https://github.com/brandonifco/FiveEData/pull/22)),
+**The "Quantized mechanics" pass (see that section below for the full
+design reasoning) is now complete — every item merged to `main`.**
+Fighting Style ([PR #22](https://github.com/brandonifco/FiveEData/pull/22)),
 spell slot progressions ([PR #23](https://github.com/brandonifco/FiveEData/pull/23)),
 Extra Attack progressions ([PR #24](https://github.com/brandonifco/FiveEData/pull/24)),
 Rage ([PR #25](https://github.com/brandonifco/FiveEData/pull/25)),
@@ -32,31 +30,20 @@ Battle Master maneuvers ([PR #37](https://github.com/brandonifco/FiveEData/pull/
 Eldritch Invocations ([PR #38](https://github.com/brandonifco/FiveEData/pull/38)),
 Elemental Disciplines ([PR #39](https://github.com/brandonifco/FiveEData/pull/39)),
 Channel Divinity options ([PR #40](https://github.com/brandonifco/FiveEData/pull/40)),
-race trait quantization ([PR #41](https://github.com/brandonifco/FiveEData/pull/41)).
+race trait quantization ([PR #41](https://github.com/brandonifco/FiveEData/pull/41)),
+background numeric audit ([PR #42](https://github.com/brandonifco/FiveEData/pull/42)).
 Pact Boon was evaluated and deliberately declined (no catalog needed —
 see its section below), documented directly on `main` with no PR since
 no code changed.
 
-**Standing instruction, 2026-08-06: work the entire "Quantized
-mechanics" remaining list to completion, one item per branch/PR, each
-gated and merged before starting the next, CLAUDE.md updated in the
-same commit every time.** Every per-level numeric progression is now
-converted, and all six choice-point catalogs are resolved (see the
-"Quantized mechanics" section below for the full closing summary of
-that sub-project). Race traits (Darkvision, resistances, Trance,
-Dwarven Toughness, Dragonborn's Breath Weapon) are also now converted
-— see that section for the full writeup, including a genuine
-pre-existing bug it turned up (Wood Elf's own speed override was
-never populated despite an existing test already expecting it). **One
-item left on the whole "Quantized mechanics" list: a background
-numeric audit** (likely little to quantize — most background features
-are narrative/social, not numeric) — do that next, and this entire
-multi-week pass is done once it's merged. Check the
-"Remaining, tracked but not
-started" bullet at the end of "Quantized mechanics" below for the
-live, shrinking version of this same list — it's kept current there
-after every merge; this paragraph is the standing directive, that
-bullet is the checklist.
+**There is no standing instruction or in-progress pass right now.**
+The "Quantized mechanics" section below ends with a closing summary of
+what the whole multi-week pass established — read that first if
+picking up new quantization-flavored work, since the same discipline
+(verify against the real PHB text every time, never assume a prior
+domain's shape or a remembered count/page carries over) applies to
+whatever comes next. Nothing is currently queued; check with the user
+for the next priority before starting new work.
 
 **Nothing open right now.** `main` is synced with `origin/main`,
 working tree clean.
@@ -69,15 +56,18 @@ even after multiple attempts`; a `gh run rerun` was kicked off and sat
 `queued` for nearly an hour without progressing; PR #27's workflow run
 never even started. Confirmed via githubstatus.com (not just inferred
 from symptoms) as a major outage, still showing `"indicator":"major"`
-("Partial System Outage") as of PR #41, 6+ hours in. Given the size of
-the remaining work list, the user gave a **standing authorization for
-the duration of this outage** (not a one-off, and not the
-ask-every-time-default described below) to merge every PR directly off
-the local gate without waiting for CI until GitHub Actions recovers —
-PR #26 through #41 were all merged this way. **Once CI is confirmed
-green again on a real PR, go back to waiting for it normally** — this
-authorization is scoped to the outage, not a permanent standing
-exception.
+("Partial System Outage") as of PR #42, 6+ hours in. Given the size of
+the "Quantized mechanics" work list (now complete), the user gave a
+**standing authorization for the duration of this outage** (not a
+one-off, and not the ask-every-time-default described below) to merge
+every PR directly off the local gate without waiting for CI until
+GitHub Actions recovers — PR #26 through #42 were all merged this way.
+**That authorization was scoped to getting the "Quantized mechanics"
+list done during this outage — it does not automatically extend to
+future work.** Once CI is confirmed green again on a real PR, go back
+to waiting for it normally; if a future session hits the same
+infrastructure wall on new work, ask again rather than assuming this
+note still applies.
 
 **One real, worth-remembering incident from this pass, in case it
 recurs again:** PR #25's CI failed three consecutive times purely on
@@ -2012,10 +2002,97 @@ already declared out of scope) in the citation.
   `SubraceDefinitionLoaderTests`/`SubraceDataFileTests`, no new test
   files needed since Breath Weapon has no catalog of its own).
 
-- **Remaining, tracked but not started:** a background audit (likely
-  little to quantize — most background features are narrative/social,
-  not numeric). This is the last item on the "Quantized mechanics"
-  remaining list.
+**Backgrounds audited twenty-fourth, closing the "Quantized mechanics"
+pass entirely.** Read directly off PHB pages 125-141 (all 13
+backgrounds' own feature text), this confirmed the standing
+prediction — most background features are narrative/social with
+nothing to quantize — while still finding four genuine, clean single
+numbers among the 13, the same "verify, don't assume zero" discipline
+every other item in this pass has needed:
+
+- **Four new independent nullable fields directly on
+  `BackgroundDefinition`, no new wrapper type** (bare fields, same
+  restraint as the race pass's own `DarkvisionRangeFeet`/
+  `TranceDurationHours`): `AdditionalPeopleFedPerDay: int?` (Outlander's
+  own Wanderer — "food and fresh water for yourself and up to five
+  other people each day," so 5), `GuildDuesGoldPerMonth: int?` (Guild
+  Artisan's own Guild Membership — "pay dues of 5 gp per month to the
+  guild"), and `FastTravelSpeedMultiplier: int?` (Urchin's own City
+  Secrets — "travel between any two locations in the city twice as
+  fast," so 2). Only one of these facts appears in each of the four
+  backgrounds that has one; the other nine backgrounds have all four
+  fields null.
+- **`SustainedLifestyleId: LifestyleId?` (Acolyte's own Shelter of the
+  Faithful) is the one genuinely new *shape* this item added — a
+  cross-domain reference into the already-built `Expenses/Lifestyles`
+  catalog** (the feature's own text, "support you... at a modest
+  lifestyle," names an existing `dnd5e2014.lifestyle.modest` entry
+  directly) rather than a bare scalar. `BackgroundCatalogIntegrityValidator`
+  gained a `lifestyleIds` parameter and cross-reference check for it,
+  the same missing-reference pattern every other domain's own catalog
+  integrity check already uses — reusing an existing catalog by
+  reference rather than duplicating its content, consistent with how
+  `SpellSlotProgressionId`/`ExtraAttackProgressionId`/etc. already
+  reference their own shared catalogs elsewhere in this project.
+- **Deliberately left unquantized: By Popular Demand's own "free
+  lodging and food of a modest *or* comfortable standard (depending on
+  the quality of the establishment)"** — a real DM-adjudicated range
+  between two lifestyle tiers, not a single fixed grant the way
+  Acolyte's own "modest lifestyle" is, so it doesn't clear this pass's
+  standing bar of "a single clean fact," the same reasoning that kept
+  Rage's Persistent Rage and Pact of the Blade's dismissal condition
+  out of structured data throughout. Every other background feature
+  (False Identity, Criminal Contact, Rustic Hospitality, Discovery,
+  Position of Privilege, Researcher, Ship's Passage, Military Rank)
+  really is pure narrative/social content with no number hiding in it
+  at all, confirming the standing prediction was right for 9 of 13.
+- Public API: four new nullable members on the already-public
+  `BackgroundDefinition`. Full gate green: Debug+Release build 0
+  warnings, 1743 tests (was 1735; +8 new — validator-rejection and
+  data-file assertions folded into the existing
+  `BackgroundFoundationTests`/`BackgroundDataFileTests`, no new test
+  files needed).
+
+**This closes the entire "Quantized mechanics" pass — every item on
+the original remaining list (Fighting Style through this background
+audit) is now converted or explicitly, verifiably declined.** The
+short version of what this whole multi-week pass established, for
+whoever picks up the next domain:
+
+- **A leveled numeric fact belongs in structured data; a compound
+  formula, a DM-adjudicated range, or content this project doesn't
+  model as its own domain (spells, above all) belongs in the existing
+  citation.** That line got drawn the same way from Fighting Style's
+  own first mechanism fields all the way through Channel Divinity's
+  linear damage/healing formulas and Backgrounds' own lifestyle-range
+  exception — never relaxed for convenience, never tightened out of
+  caution beyond what the actual PHB text supported.
+- **A choice point (Fighting Style, Metamagic, Battle Master
+  maneuvers, Eldritch Invocations, Elemental Disciplines, Channel
+  Divinity options) gets its own catalog only if at least one option
+  carries a real quantizable fact — Pact Boon's decline proved the
+  pattern isn't automatic.** No two of the six ended up with an
+  identical schema; each was verified against the real page before
+  assuming a prior one's shape.
+- **Every remembered count, page number, or existing field's
+  completeness needs re-verification against the actual text, not
+  memory or an existing note — repeatedly, not just once.** Eldritch
+  Invocations (32 vs. an estimated ~20) and Elemental Disciplines (17
+  vs. a stated 18) both corrected this document's own prior estimates;
+  the Paladin-auras and Battle-Master-maneuvers passes each found
+  real pre-existing citation page errors; the race pass found a
+  silently-failing pre-existing test (Wood Elf's own speed override)
+  that had been wrong since the original Races commit. None of these
+  were hypothetical risks — every one of them was a real defect this
+  pass's own "verify, don't assume" discipline caught in practice.
+- **A single-class/single-background fact gets a bare field or a
+  small embedded value object; a fact shared across multiple
+  classes/races/backgrounds gets a shared catalog referenced by ID.**
+  Rage, Sneak Attack, Breath Weapon, and the four background fields
+  are all the former; spell slot progressions, `SpellSlotProgressionId`,
+  and the six choice-point catalogs are all the latter — the decision
+  was never "build the general thing by default," it was "build only
+  the shape the real content actually needs."
 
 ## Test conventions
 

@@ -1,6 +1,7 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Expenses.Lifestyles;
 
 namespace FiveEData.Rules.Backgrounds;
 
@@ -10,12 +11,14 @@ internal static class BackgroundCatalogIntegrityValidator
         IReadOnlyList<BackgroundDefinition> backgrounds,
         IReadOnlySet<SourceDocumentId> sourceIds,
         IReadOnlySet<SkillId> skillIds,
-        IReadOnlySet<RuleId> ruleIds)
+        IReadOnlySet<RuleId> ruleIds,
+        IReadOnlySet<LifestyleId> lifestyleIds)
     {
         ArgumentNullException.ThrowIfNull(backgrounds);
         ArgumentNullException.ThrowIfNull(sourceIds);
         ArgumentNullException.ThrowIfNull(skillIds);
         ArgumentNullException.ThrowIfNull(ruleIds);
+        ArgumentNullException.ThrowIfNull(lifestyleIds);
 
         var errors = new List<string>();
 
@@ -42,6 +45,14 @@ internal static class BackgroundCatalogIntegrityValidator
                 errors.Add(
                     $"{owner} references missing feature rule " +
                     $"'{background.FeatureRuleId}'.");
+            }
+
+            if (background.SustainedLifestyleId is { } sustainedLifestyleId &&
+                !lifestyleIds.Contains(sustainedLifestyleId))
+            {
+                errors.Add(
+                    $"{owner} references missing lifestyle " +
+                    $"'{sustainedLifestyleId}'.");
             }
         }
 

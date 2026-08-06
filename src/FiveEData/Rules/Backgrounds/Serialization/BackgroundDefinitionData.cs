@@ -21,5 +21,17 @@ internal sealed class BackgroundDefinitionData
     public string? FeatureRuleId { get; init; }
 
     [JsonRequired]
+    public string? SustainedLifestyleId { get; init; }
+
+    [JsonRequired]
+    public int? AdditionalPeopleFedPerDay { get; init; }
+
+    [JsonRequired]
+    public int? GuildDuesGoldPerMonth { get; init; }
+
+    [JsonRequired]
+    public int? FastTravelSpeedMultiplier { get; init; }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }

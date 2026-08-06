@@ -3,6 +3,7 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Expenses.Lifestyles;
 
 namespace FiveEData.Rules.Backgrounds.Serialization;
 
@@ -106,12 +107,21 @@ internal static class BackgroundDefinitionLoader
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
 
+        LifestyleId? sustainedLifestyleId =
+            data.SustainedLifestyleId is { } sustainedLifestyleIdValue
+                ? new LifestyleId(sustainedLifestyleIdValue)
+                : null;
+
         return new BackgroundDefinition(
             id,
             name,
             skillProficiencyIds,
             data.LanguageChoiceCount,
             featureRuleId,
+            sustainedLifestyleId,
+            data.AdditionalPeopleFedPerDay,
+            data.GuildDuesGoldPerMonth,
+            data.FastTravelSpeedMultiplier,
             sources);
     }
 }
