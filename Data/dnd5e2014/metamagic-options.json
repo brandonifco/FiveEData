@@ -1,0 +1,106 @@
+[
+  {
+    "id": "dnd5e2014.metamagic-option.careful-spell",
+    "name": "Careful Spell",
+    "fixedSorceryPointCost": 1,
+    "costEqualsSpellLevelWithCantripMinimum": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.metamagic-option.distant-spell",
+    "name": "Distant Spell",
+    "fixedSorceryPointCost": 1,
+    "costEqualsSpellLevelWithCantripMinimum": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.metamagic-option.empowered-spell",
+    "name": "Empowered Spell",
+    "fixedSorceryPointCost": 1,
+    "costEqualsSpellLevelWithCantripMinimum": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.metamagic-option.extended-spell",
+    "name": "Extended Spell",
+    "fixedSorceryPointCost": 1,
+    "costEqualsSpellLevelWithCantripMinimum": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.metamagic-option.heightened-spell",
+    "name": "Heightened Spell",
+    "fixedSorceryPointCost": 3,
+    "costEqualsSpellLevelWithCantripMinimum": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.metamagic-option.quickened-spell",
+    "name": "Quickened Spell",
+    "fixedSorceryPointCost": 2,
+    "costEqualsSpellLevelWithCantripMinimum": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.metamagic-option.subtle-spell",
+    "name": "Subtle Spell",
+    "fixedSorceryPointCost": 1,
+    "costEqualsSpellLevelWithCantripMinimum": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.metamagic-option.twinned-spell",
+    "name": "Twinned Spell",
+    "fixedSorceryPointCost": null,
+    "costEqualsSpellLevelWithCantripMinimum": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 102,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

@@ -237,6 +237,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
+            metamagicOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

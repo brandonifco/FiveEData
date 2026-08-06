@@ -26,19 +26,24 @@ Bardic Inspiration die ([PR #31](https://github.com/brandonifco/FiveEData/pull/3
 Channel Divinity uses ([PR #32](https://github.com/brandonifco/FiveEData/pull/32)),
 Mystic Arcanum ([PR #33](https://github.com/brandonifco/FiveEData/pull/33)),
 Font of Magic conversion ([PR #34](https://github.com/brandonifco/FiveEData/pull/34)),
-Song of Rest ([PR #35](https://github.com/brandonifco/FiveEData/pull/35)).
+Song of Rest ([PR #35](https://github.com/brandonifco/FiveEData/pull/35)),
+Metamagic ([PR #36](https://github.com/brandonifco/FiveEData/pull/36)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Every per-level numeric progression is now
-converted — the original list plus both items discovered along the
-way. Order from here: the larger choice-point catalogs (Eldritch
-Invocations, Battle Master maneuvers, Metamagic, Elemental
-Disciplines, Channel Divinity options, Pact Boon) — a real design
-shift, not more of the same shape, see the Song of Rest section below
-— then race trait quantization, then a background numeric audit. Stop
-when that full list is done, not before. Check the
+converted, and Metamagic proved the choice-point-catalog shape works
+(see its section below) — the smallest of the six catalogs, chosen
+first for that reason, the same way Fighting Style was chosen first
+originally. Order from here: the other five choice-point catalogs
+(Eldritch Invocations, Battle Master maneuvers, Elemental Disciplines,
+Channel Divinity options, Pact Boon) — verify each one's actual
+sub-structure from the PHB rather than assuming Metamagic's exact
+field set carries over, Battle Master maneuvers and Pact Boon in
+particular were already flagged as having more of their own — then
+race trait quantization, then a background numeric audit. Stop when
+that full list is done, not before. Check the
 "Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
@@ -61,7 +66,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26 through #35 were all merged this way. **Once CI is confirmed
+PR #26 through #36 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1556,20 +1561,93 @@ assuming from proximity).
 - **Every per-level numeric progression identified during this entire
   pass — the original list plus both items discovered along the way
   (Wild Shape/Circle Forms' compound pairing, Song of Rest) — is now
-  converted.** Remaining, tracked but not started: the larger
-  choice-point catalogs (Eldritch Invocations, Battle Master
-  maneuvers, Metamagic, Elemental Disciplines, Channel Divinity
-  options, Pact Boon), race trait quantization (Darkvision range,
-  resistance/advantage grants, granted spells), and a background audit
-  (likely little to quantize — most background features are
-  narrative/social, not numeric). These are structurally different
-  from everything converted so far — real choice-point catalogs with
-  their own sub-structure (a maneuver has its own save DC, an
-  invocation has its own prerequisites) rather than a single leveled
-  number — so the next session should expect to make a fresh design
-  call, not just repeat the "embedded value object with a grant list"
-  shape one more time. See the "Not yet decided" note under Fighting
-  Style, above, for the open questions already flagged about this.
+  converted.**
+
+**Metamagic converted seventeenth, resolving the "Not yet decided" note
+above by proving out the choice-point-catalog shape on the smallest of
+the six remaining catalogs first — the same reason Fighting Style was
+chosen to prove the original shape.** All 8 options read directly off
+page 102 (Careful, Distant, Empowered, Extended, Heightened, Quickened,
+Subtle, Twinned Spell) — the first genuinely new top-level catalog
+domain since Fighting Style itself, not an embedded value object on
+`ClassDefinition` like everything else in this pass, because these are
+*named options a player chooses from*, the same vocabulary-catalog
+shape Fighting Style already established, not a per-class leveled fact.
+
+- **A brand-new ID namespace, `dnd5e2014.metamagic-option.*`, with no
+  prior citation to reconcile against** — unlike every progression
+  converted so far, the existing `dnd5e2014.class-rule.metamagic`
+  citation never had per-option sub-IDs (all 8 options were folded into
+  one citation, the same choice-point treatment Fighting Style's own
+  6 options got before *it* was quantized). That gateway citation on
+  Sorcerer's own `LevelFeatures` stays completely untouched — the new
+  `MetamagicOptionCatalog` is an additional, independent catalog, the
+  identical relationship Fighting Style's own catalog has to
+  `dnd5e2014.class-rule.fighting-style`.
+- **No `AvailableToClassIds` list, unlike Fighting Style** — Metamagic
+  is Sorcerer-only, so every option is implicitly available to the one
+  class that has the feature at all; adding a list that would always
+  contain exactly one entry would be structure with no discriminating
+  power, the same reasoning that kept `RequiresConsciousness` off
+  Warding but *on* the other three auras — add a field only where it
+  actually varies.
+- **Cost representation needed two mutually-exclusive shapes, not one
+  flat number, because Twinned Spell's own cost isn't fixed** — seven
+  of the eight options cost a flat number of sorcery points (1, 1, 1,
+  1, 3, 2, 1), but Twinned Spell costs "a number of sorcery points
+  equal to the spell's level (1 sorcery point if the spell is a
+  cantrip)" — a cost that depends on which spell is being cast, not a
+  per-option constant. `FixedSorceryPointCost: int?` /
+  `CostEqualsSpellLevelWithCantripMinimum: bool` sit side by side,
+  validated exactly-one-populated, the same "several typed nullable
+  mechanism fields" shape Fighting Style's own five mechanisms
+  established — proving that shape generalizes to a genuinely
+  different kind of mechanism (a cost formula, not an effect) on the
+  very first catalog tried.
+- **The individual spell effects themselves (double range, reroll
+  damage, disadvantage on a save, change casting time, drop
+  components, target a second creature) were deliberately left
+  unquantized** — this is a real, considered scope cut, not an
+  oversight: unlike Fighting Style's six options, which all reduced to
+  the *same small family* of mechanisms (a roll bonus, an AC bonus, a
+  reroll, a reaction) that a handful of shared types could honestly
+  cover, Metamagic's 8 effects are individually heterogeneous with no
+  shared shape between them. Modeling them would mean either inventing
+  a bespoke mechanism type per option (defeating the point of a shared
+  catalog schema) or building the general effect DSL this project has
+  explicitly rejected since Fighting Style's own design note. The
+  sorcery point *cost* is the number this whole pass has been about
+  quantizing; the prose effect stays exactly where every other
+  citation's prose already lives — nowhere in this domain's own data,
+  implicitly still covered by the untouched gateway citation.
+- Public API: five new public types (`MetamagicOptionId`,
+  `MetamagicOptionDefinition`, `MetamagicOptionCatalog`, plus the
+  `Dnd5e2014Ruleset.MetamagicOptions` catalog member and
+  `RulesetDefinitionSet.MetamagicOptions` on the internal definition
+  set) — `RulesetDefinitionSet`/`Dnd5e2014RulesetLoader`/
+  `Dnd5e2014Ruleset`/`CatalogIntegrityValidator` all wired through the
+  exact same pattern Fighting Style's own catalog established, new
+  embedded resource `Data/dnd5e2014/metamagic-options.json`. Full gate
+  green: Debug+Release build 0 warnings, 1548 tests (was 1515; +33
+  new — `MetamagicFoundationTests`/
+  `MetamagicOptionDefinitionLoaderTests`/`MetamagicOptionDataFileTests`,
+  the same three-file convention every domain follows).
+- **Remaining, tracked but not started:** the other five choice-point
+  catalogs (Eldritch Invocations, Battle Master maneuvers, Elemental
+  Disciplines, Channel Divinity options, Pact Boon) — Metamagic proved
+  the catalog *pattern* generalizes (new ID namespace, gateway citation
+  left untouched, typed cost/mechanism fields over a DSL), but not
+  every sub-structure a later catalog will need: Battle Master
+  maneuvers and Pact Boon in particular were already flagged as having
+  real sub-structure of their own (a maneuver's own save DC and
+  triggering condition; Pact Boon's three options being substantial,
+  multi-paragraph mechanics rather than Metamagic's compact ones) — so
+  verify each catalog's actual shape from the PHB before assuming
+  Metamagic's exact field set carries over unchanged. After those:
+  race trait quantization (Darkvision range, resistance/advantage
+  grants, granted spells), and a background audit (likely little to
+  quantize — most background features are narrative/social, not
+  numeric).
 
 ## Test conventions
 
@@ -1711,8 +1789,9 @@ reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
 Sorcery Points, Wild Shape, Circle Forms, the Paladin auras, Bardic
 Inspiration, Channel Divinity uses, Mystic Arcanum, Font of Magic
-conversion, and Song of Rest have been converted; every other named
-feature across Classes/Races/Backgrounds is still a `RuleId` citation
+conversion, Song of Rest, and Metamagic have been converted; every
+other named feature across Classes/Races/Backgrounds is still a
+`RuleId` citation
 with no
 mechanical payload.
 
