@@ -2,8 +2,10 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races;
+using FiveEData.Rules.Creatures.Races.BreathWeapon;
 using FiveEData.Rules.Creatures.Sizes;
 
 namespace FiveEData.Tests;
@@ -96,6 +98,10 @@ public sealed class RaceFoundationTests
             [],
             0,
             [],
+            null,
+            [],
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -214,6 +220,107 @@ public sealed class RaceFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsNonPositiveDarkvisionRangeFeet()
+    {
+        RaceDefinition race = Create(
+            "dnd5e2014.race.test",
+            darkvisionRangeFeet: 0);
+
+        Assert.Contains(
+            RaceDefinitionValidator.Validate(race),
+            error =>
+                error.Contains(
+                    "darkvision range",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsDuplicateResistedDamageType()
+    {
+        var poison = new DamageTypeId("dnd5e2014.damage-type.poison");
+
+        RaceDefinition race = Create(
+            "dnd5e2014.race.test",
+            resistedDamageTypeIds: [poison, poison]);
+
+        Assert.Contains(
+            RaceDefinitionValidator.Validate(race),
+            error => error.Contains("duplicated", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveTranceDurationHours()
+    {
+        RaceDefinition race = Create(
+            "dnd5e2014.race.test",
+            tranceDurationHours: 0);
+
+        Assert.Contains(
+            RaceDefinitionValidator.Validate(race),
+            error =>
+                error.Contains(
+                    "trance duration",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsBreathWeaponProgressionWithNoDamageGrants()
+    {
+        RaceDefinition race = Create(
+            "dnd5e2014.race.test",
+            breathWeaponProgression: new BreathWeaponProgressionDetail(
+                [],
+                true));
+
+        Assert.Contains(
+            RaceDefinitionValidator.Validate(race),
+            error =>
+                error.Contains(
+                    "at least one damage increase",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsBreathWeaponProgressionWithNonIncreasingDamage()
+    {
+        RaceDefinition race = Create(
+            "dnd5e2014.race.test",
+            breathWeaponProgression: new BreathWeaponProgressionDetail(
+                [
+                    new BreathWeaponDamageGrant(1, new DiceExpression(2, 6)),
+                    new BreathWeaponDamageGrant(6, new DiceExpression(2, 6))
+                ],
+                true));
+
+        Assert.Contains(
+            RaceDefinitionValidator.Validate(race),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsBreathWeaponProgressionWithMixedDieSizes()
+    {
+        RaceDefinition race = Create(
+            "dnd5e2014.race.test",
+            breathWeaponProgression: new BreathWeaponProgressionDetail(
+                [
+                    new BreathWeaponDamageGrant(1, new DiceExpression(2, 6)),
+                    new BreathWeaponDamageGrant(6, new DiceExpression(3, 8))
+                ],
+                true));
+
+        Assert.Contains(
+            RaceDefinitionValidator.Validate(race),
+            error =>
+                error.Contains(
+                    "same damage die size",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
     public void Catalog_NullInputIsRejected()
     {
         Assert.Throws<ArgumentNullException>(() => new RaceCatalog(null!));
@@ -294,6 +401,10 @@ public sealed class RaceFoundationTests
         IEnumerable<LanguageId>? languageIds = null,
         int additionalLanguageChoiceCount = 0,
         IEnumerable<RuleId>? traitRuleIds = null,
+        int? darkvisionRangeFeet = null,
+        IEnumerable<DamageTypeId>? resistedDamageTypeIds = null,
+        int? tranceDurationHours = null,
+        BreathWeaponProgressionDetail? breathWeaponProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new RaceDefinition(
@@ -306,6 +417,10 @@ public sealed class RaceFoundationTests
             languageIds ?? [],
             additionalLanguageChoiceCount,
             traitRuleIds ?? [],
+            darkvisionRangeFeet,
+            resistedDamageTypeIds ?? [],
+            tranceDurationHours,
+            breathWeaponProgression,
             sources ?? [CreateSource()]);
     }
 

@@ -2,6 +2,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Sizes;
 
@@ -15,7 +16,8 @@ internal static class RaceCatalogIntegrityValidator
         IReadOnlySet<AbilityId> abilityIds,
         IReadOnlySet<CreatureSizeId> sizeIds,
         IReadOnlySet<LanguageId> languageIds,
-        IReadOnlySet<RuleId> ruleIds)
+        IReadOnlySet<RuleId> ruleIds,
+        IReadOnlySet<DamageTypeId> damageTypeIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(sourceIds);
@@ -23,6 +25,7 @@ internal static class RaceCatalogIntegrityValidator
         ArgumentNullException.ThrowIfNull(sizeIds);
         ArgumentNullException.ThrowIfNull(languageIds);
         ArgumentNullException.ThrowIfNull(ruleIds);
+        ArgumentNullException.ThrowIfNull(damageTypeIds);
 
         var errors = new List<string>();
 
@@ -75,6 +78,16 @@ internal static class RaceCatalogIntegrityValidator
                         $"'{traitRuleId}'.");
                 }
             }
+
+            foreach (DamageTypeId damageTypeId in race.ResistedDamageTypeIds)
+            {
+                if (!damageTypeIds.Contains(damageTypeId))
+                {
+                    errors.Add(
+                        $"{owner} references missing damage type " +
+                        $"'{damageTypeId}'.");
+                }
+            }
         }
 
         foreach (
@@ -109,6 +122,17 @@ internal static class RaceCatalogIntegrityValidator
                     errors.Add(
                         $"{owner} references missing trait rule " +
                         $"'{traitRuleId}'.");
+                }
+            }
+
+            foreach (
+                DamageTypeId damageTypeId in subrace.ResistedDamageTypeIds)
+            {
+                if (!damageTypeIds.Contains(damageTypeId))
+                {
+                    errors.Add(
+                        $"{owner} references missing damage type " +
+                        $"'{damageTypeId}'.");
                 }
             }
         }

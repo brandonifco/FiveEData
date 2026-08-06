@@ -31,7 +31,8 @@ Metamagic ([PR #36](https://github.com/brandonifco/FiveEData/pull/36)),
 Battle Master maneuvers ([PR #37](https://github.com/brandonifco/FiveEData/pull/37)),
 Eldritch Invocations ([PR #38](https://github.com/brandonifco/FiveEData/pull/38)),
 Elemental Disciplines ([PR #39](https://github.com/brandonifco/FiveEData/pull/39)),
-Channel Divinity options ([PR #40](https://github.com/brandonifco/FiveEData/pull/40)).
+Channel Divinity options ([PR #40](https://github.com/brandonifco/FiveEData/pull/40)),
+race trait quantization ([PR #41](https://github.com/brandonifco/FiveEData/pull/41)).
 Pact Boon was evaluated and deliberately declined (no catalog needed —
 see its section below), documented directly on `main` with no PR since
 no code changed.
@@ -40,19 +41,17 @@ no code changed.
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Every per-level numeric progression is now
-converted, and **all six choice-point catalogs are now resolved** —
-Metamagic (cost-only), Pact Boon (declined, no catalog needed), Battle
-Master maneuvers (effect-target-plus-save-ability), Eldritch
-Invocations (three prerequisite facts plus a class-level known-count
-progression), Elemental Disciplines (cost/level plus a class-level
-disciplines-known-and-max-ki progression), Channel Divinity options
-(four independent nullable facts) — six genuinely different outcomes;
-see the "Quantized mechanics" section below for the full closing
-summary. Order from here: race trait quantization (Darkvision range,
-resistance/advantage grants, granted spells), then a background
-numeric audit (likely little to quantize — most background features
-are narrative/social). Stop when that full list is done, not before.
-Check the
+converted, and all six choice-point catalogs are resolved (see the
+"Quantized mechanics" section below for the full closing summary of
+that sub-project). Race traits (Darkvision, resistances, Trance,
+Dwarven Toughness, Dragonborn's Breath Weapon) are also now converted
+— see that section for the full writeup, including a genuine
+pre-existing bug it turned up (Wood Elf's own speed override was
+never populated despite an existing test already expecting it). **One
+item left on the whole "Quantized mechanics" list: a background
+numeric audit** (likely little to quantize — most background features
+are narrative/social, not numeric) — do that next, and this entire
+multi-week pass is done once it's merged. Check the
 "Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
@@ -70,12 +69,12 @@ even after multiple attempts`; a `gh run rerun` was kicked off and sat
 `queued` for nearly an hour without progressing; PR #27's workflow run
 never even started. Confirmed via githubstatus.com (not just inferred
 from symptoms) as a major outage, still showing `"indicator":"major"`
-("Partial System Outage") as of PR #40, 6+ hours in. Given the size of
+("Partial System Outage") as of PR #41, 6+ hours in. Given the size of
 the remaining work list, the user gave a **standing authorization for
 the duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26 through #40 were all merged this way. **Once CI is confirmed
+PR #26 through #41 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1944,10 +1943,79 @@ that a "choice point" is a *category* of feature, not a fixed
 template, and the actual PHB text has to be read every single time to
 find out which facts are real.
 
-- **Remaining, tracked but not started:** race trait quantization
-  (Darkvision range, resistance/advantage grants, granted spells), and
-  a background audit (likely little to quantize — most background
-  features are narrative/social, not numeric).
+**Race traits converted twenty-third — the first quantization pass
+over the Races domain, and it surfaced a genuine pre-existing bug
+along the way, not just new content.** Read directly off PHB pages
+20-43 (Dwarf/Hill Dwarf, Elf/High Elf/Wood Elf/Drow, Dragonborn), this
+pass covers the real leveled/scalar numeric facts hiding inside
+`RaceDefinition.TraitRuleIds`/`SubraceDefinition.TraitRuleIds`
+citations — the same restrained selection discipline as every prior
+item in this pass: capture what's a clean single number, leave
+compound or non-modeled content (granted-spell names, since spells
+aren't a domain here; Draconic Ancestry's own damage-type table,
+already declared out of scope) in the citation.
+
+- **Four new bare nullable/list fields directly on `RaceDefinition`
+  and/or `SubraceDefinition`, no new wrapper types** — `int?
+  DarkvisionRangeFeet` (60 for the six races that have it: Dwarf, Elf,
+  Gnome, Half-Elf, Half-Orc, Tiefling; a `SubraceDefinition` override
+  of 120 for Drow's own Superior Darkvision), `IReadOnlyList<DamageTypeId>
+  ResistedDamageTypeIds` (Dwarf/Stout Halfling → poison, Tiefling →
+  fire; Dragonborn's own resistance is deliberately left empty since
+  it depends on the declined-to-model Draconic Ancestry choice), `int?
+  TranceDurationHours` (Elf only, 4), and `int? HitPointBonusPerLevel`
+  (Hill Dwarf's own Dwarven Toughness, +1). Bare fields rather than
+  dedicated value-object types, since each is a single independent
+  scalar shared by at most a handful of races/subraces — the same
+  "don't build a wrapper type for one number" restraint
+  `FightingStyleDefinition.ArmorClassBonus` and
+  `ChannelDivinityOptionDefinition`'s own four scalar fields already
+  established.
+- **`Rules/Creatures/Races/BreathWeapon/`, a new embedded value object
+  on `RaceDefinition` (Dragonborn only)**, is the one race trait with
+  real sub-structure: a leveled damage-dice progression (1st→2d6,
+  6th→3d6, 11th→4d6, 16th→5d6) plus `RecoversOnShortRest: bool`, the
+  same shape as every other single-class leveled progression in this
+  pass (Rage, Sneak Attack, Combat Superiority, ...). The breath
+  weapon's actual damage *type* and shape (cone vs. line) still stay
+  fully unquantized, since both depend on the Draconic Ancestry choice
+  this project already decided not to model — the dice-count
+  progression itself doesn't depend on which ancestry was chosen, so
+  it was safe to capture without reopening that boundary.
+- **A genuine pre-existing bug found and fixed, not introduced by this
+  pass: Wood Elf's own Fleet of Foot speed override (35 feet) was
+  never populated in `subraces.json`, even though
+  `SubraceDefinition.Speed` already existed specifically for this
+  purpose and a test (`CanonicalFile_OnlyWoodElfOverridesSpeed`,
+  present since the original Races commit) already asserted the
+  correct value.** The test had been silently red since the Races
+  domain was first built — worth flagging because it's a reminder that
+  "the test exists" and "the test passes" are different claims, and
+  gate-running discipline only catches the gap if someone actually
+  runs the suite and reads a failure rather than assuming green.
+  Fixed in the same commit as everything else in this pass, verified
+  directly against the PHB's own "Fleet of Foot. Your base walking
+  speed increases to 35 feet" text rather than just trusting the
+  pre-existing test's expected value blindly.
+- Public API: one new public type set (`BreathWeaponProgressionDetail`
+  plus `BreathWeaponDamageGrant`) and four new members each split
+  across `RaceDefinition`/`SubraceDefinition` (the two darkvision
+  fields, two resisted-damage-type fields, trance duration, hit point
+  bonus, plus the one breath weapon progression). `RaceCatalogIntegrityValidator`
+  gained a `damageTypeIds` parameter and cross-reference check for
+  `ResistedDamageTypeIds`, the same missing-reference pattern every
+  other domain's own catalog integrity check already uses. Full gate
+  green: Debug+Release build 0 warnings, 1735 tests (was 1718; +17
+  new — validator-rejection and data-file assertions folded into the
+  existing `RaceFoundationTests`/`RaceDefinitionLoaderTests`/
+  `RaceDataFileTests`/`SubraceFoundationTests`/
+  `SubraceDefinitionLoaderTests`/`SubraceDataFileTests`, no new test
+  files needed since Breath Weapon has no catalog of its own).
+
+- **Remaining, tracked but not started:** a background audit (likely
+  little to quantize — most background features are narrative/social,
+  not numeric). This is the last item on the "Quantized mechanics"
+  remaining list.
 
 ## Test conventions
 

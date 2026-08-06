@@ -1,4 +1,5 @@
 using FiveEData.Rules.Creatures.Races;
+using FiveEData.Rules.Creatures.Races.BreathWeapon;
 using FiveEData.Rules.Creatures.Races.Serialization;
 
 namespace FiveEData.Tests;
@@ -73,6 +74,70 @@ public sealed class RaceDataFileTests
             source.DocumentId.Value);
         Assert.Equal(20, source.Page);
         Assert.Equal("Chapter 2: Races", source.Section);
+
+        Assert.Equal(60, dwarf.DarkvisionRangeFeet);
+        Assert.Equal(
+            "dnd5e2014.damage-type.poison",
+            Assert.Single(dwarf.ResistedDamageTypeIds).Value);
+        Assert.Null(dwarf.TranceDurationHours);
+        Assert.Null(dwarf.BreathWeaponProgression);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesElfTrance()
+    {
+        RaceDefinition elf = GetRace(LoadRaces(), "dnd5e2014.race.elf");
+
+        Assert.Equal(60, elf.DarkvisionRangeFeet);
+        Assert.Empty(elf.ResistedDamageTypeIds);
+        Assert.Equal(4, elf.TranceDurationHours);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesTieflingFireResistance()
+    {
+        RaceDefinition tiefling =
+            GetRace(LoadRaces(), "dnd5e2014.race.tiefling");
+
+        Assert.Equal(60, tiefling.DarkvisionRangeFeet);
+        Assert.Equal(
+            "dnd5e2014.damage-type.fire",
+            Assert.Single(tiefling.ResistedDamageTypeIds).Value);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDragonbornBreathWeaponProgression()
+    {
+        RaceDefinition dragonborn =
+            GetRace(LoadRaces(), "dnd5e2014.race.dragonborn");
+
+        Assert.Null(dragonborn.DarkvisionRangeFeet);
+        Assert.Empty(dragonborn.ResistedDamageTypeIds);
+
+        BreathWeaponProgressionDetail breathWeapon =
+            dragonborn.BreathWeaponProgression
+            ?? throw new InvalidOperationException(
+                "Expected Dragonborn to have a Breath Weapon progression.");
+
+        Assert.Equal(
+            [(1, 2), (6, 3), (11, 4), (16, 5)],
+            breathWeapon.DamageByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.Damage.Count)));
+        Assert.All(
+            breathWeapon.DamageByLevel,
+            grant => Assert.Equal(6, grant.Damage.Sides));
+        Assert.True(breathWeapon.RecoversOnShortRest);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.race.halfling")]
+    [InlineData("dnd5e2014.race.human")]
+    public void RacesWithNoDarkvision_HaveNullDarkvisionRangeFeet(string id)
+    {
+        RaceDefinition race = GetRace(LoadRaces(), id);
+
+        Assert.Null(race.DarkvisionRangeFeet);
     }
 
     [Fact]

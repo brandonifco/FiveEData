@@ -2,6 +2,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Races;
 
 namespace FiveEData.Tests;
@@ -85,6 +86,9 @@ public sealed class SubraceFoundationTests
             null,
             0,
             [],
+            null,
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -103,6 +107,9 @@ public sealed class SubraceFoundationTests
             null,
             0,
             [],
+            null,
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -189,6 +196,50 @@ public sealed class SubraceFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsNonPositiveDarkvisionRangeFeet()
+    {
+        SubraceDefinition subrace = Create(
+            "dnd5e2014.subrace.test",
+            darkvisionRangeFeet: 0);
+
+        Assert.Contains(
+            SubraceDefinitionValidator.Validate(subrace),
+            error =>
+                error.Contains(
+                    "darkvision range",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsDuplicateResistedDamageType()
+    {
+        var poison = new DamageTypeId("dnd5e2014.damage-type.poison");
+
+        SubraceDefinition subrace = Create(
+            "dnd5e2014.subrace.test",
+            resistedDamageTypeIds: [poison, poison]);
+
+        Assert.Contains(
+            SubraceDefinitionValidator.Validate(subrace),
+            error => error.Contains("duplicated", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveHitPointBonusPerLevel()
+    {
+        SubraceDefinition subrace = Create(
+            "dnd5e2014.subrace.test",
+            hitPointBonusPerLevel: 0);
+
+        Assert.Contains(
+            SubraceDefinitionValidator.Validate(subrace),
+            error =>
+                error.Contains(
+                    "hit point bonus per level",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
     public void Catalog_NullInputIsRejected()
     {
         Assert.Throws<ArgumentNullException>(() => new SubraceCatalog(null!));
@@ -269,6 +320,9 @@ public sealed class SubraceFoundationTests
         Distance? speed = null,
         int additionalLanguageChoiceCount = 0,
         IEnumerable<RuleId>? traitRuleIds = null,
+        int? darkvisionRangeFeet = null,
+        IEnumerable<DamageTypeId>? resistedDamageTypeIds = null,
+        int? hitPointBonusPerLevel = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubraceDefinition(
@@ -279,6 +333,9 @@ public sealed class SubraceFoundationTests
             speed,
             additionalLanguageChoiceCount,
             traitRuleIds ?? [],
+            darkvisionRangeFeet,
+            resistedDamageTypeIds ?? [],
+            hitPointBonusPerLevel,
             sources ?? [CreateSource()]);
     }
 

@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
+using FiveEData.Rules.Creatures.Races.BreathWeapon.Serialization;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
@@ -31,6 +32,22 @@ internal sealed class RaceDefinitionData
 
     [JsonRequired]
     public string[]? TraitRuleIds { get; init; }
+
+    [JsonRequired]
+    public int? DarkvisionRangeFeet { get; init; }
+
+    [JsonRequired]
+    public string[]? ResistedDamageTypeIds { get; init; }
+
+    [JsonRequired]
+    public int? TranceDurationHours { get; init; }
+
+    [JsonRequired]
+    public BreathWeaponProgressionDetailData? BreathWeaponProgression
+    {
+        get;
+        init;
+    }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

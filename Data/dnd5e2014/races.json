@@ -23,6 +23,12 @@
       "dnd5e2014.race-rule.dwarf-tool-proficiency",
       "dnd5e2014.race-rule.stonecunning"
     ],
+    "darkvisionRangeFeet": 60,
+    "resistedDamageTypeIds": [
+      "dnd5e2014.damage-type.poison"
+    ],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -54,6 +60,10 @@
       "dnd5e2014.race-rule.fey-ancestry",
       "dnd5e2014.race-rule.trance"
     ],
+    "darkvisionRangeFeet": 60,
+    "resistedDamageTypeIds": [],
+    "tranceDurationHours": 4,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -84,6 +94,10 @@
       "dnd5e2014.race-rule.brave",
       "dnd5e2014.race-rule.halfling-nimbleness"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -129,6 +143,10 @@
     ],
     "additionalLanguageChoiceCount": 1,
     "traitRuleIds": [],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -163,6 +181,42 @@
       "dnd5e2014.race-rule.breath-weapon",
       "dnd5e2014.race-rule.dragonborn-damage-resistance"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": {
+      "damageByLevel": [
+        {
+          "characterLevel": 1,
+          "damage": {
+            "count": 2,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 6,
+          "damage": {
+            "count": 3,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 11,
+          "damage": {
+            "count": 4,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 16,
+          "damage": {
+            "count": 5,
+            "sides": 6
+          }
+        }
+      ],
+      "recoversOnShortRest": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -192,6 +246,10 @@
       "dnd5e2014.race-rule.darkvision",
       "dnd5e2014.race-rule.gnome-cunning"
     ],
+    "darkvisionRangeFeet": 60,
+    "resistedDamageTypeIds": [],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -222,6 +280,10 @@
       "dnd5e2014.race-rule.fey-ancestry",
       "dnd5e2014.race-rule.skill-versatility"
     ],
+    "darkvisionRangeFeet": 60,
+    "resistedDamageTypeIds": [],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -257,6 +319,10 @@
       "dnd5e2014.race-rule.relentless-endurance",
       "dnd5e2014.race-rule.savage-attacks"
     ],
+    "darkvisionRangeFeet": 60,
+    "resistedDamageTypeIds": [],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -291,6 +357,12 @@
       "dnd5e2014.race-rule.hellish-resistance",
       "dnd5e2014.race-rule.infernal-legacy"
     ],
+    "darkvisionRangeFeet": 60,
+    "resistedDamageTypeIds": [
+      "dnd5e2014.damage-type.fire"
+    ],
+    "tranceDurationHours": null,
+    "breathWeaponProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

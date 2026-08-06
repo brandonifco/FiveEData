@@ -112,7 +112,8 @@ internal static class CatalogIntegrityValidator
                 abilityIds,
                 sizeIds,
                 languageIds,
-                ruleIds));
+                ruleIds,
+                damageTypeIds));
 
         HashSet<SkillId> skillIds =
             definitions.CreatureVocabulary.Skills

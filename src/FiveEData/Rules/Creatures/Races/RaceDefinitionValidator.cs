@@ -1,6 +1,8 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
+using FiveEData.Rules.Creatures.Races.BreathWeapon;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -101,7 +103,99 @@ internal static class RaceDefinitionValidator
             }
         }
 
+        if (race.DarkvisionRangeFeet is { } darkvisionRangeFeet &&
+            darkvisionRangeFeet <= 0)
+        {
+            errors.Add(
+                "Race darkvision range must be greater than zero feet " +
+                "when specified.");
+        }
+
+        var seenResistedDamageTypes = new HashSet<DamageTypeId>();
+
+        foreach (DamageTypeId damageTypeId in race.ResistedDamageTypeIds)
+        {
+            if (string.IsNullOrWhiteSpace(damageTypeId.Value))
+            {
+                errors.Add(
+                    "Race resisted damage type ID must not be empty.");
+                continue;
+            }
+
+            if (!seenResistedDamageTypes.Add(damageTypeId))
+            {
+                errors.Add(
+                    $"Race resisted damage type '{damageTypeId}' is " +
+                    "duplicated.");
+            }
+        }
+
+        if (race.TranceDurationHours is { } tranceDurationHours &&
+            tranceDurationHours <= 0)
+        {
+            errors.Add(
+                "Race trance duration must be greater than zero hours " +
+                "when specified.");
+        }
+
+        if (race.BreathWeaponProgression is { } breathWeaponProgression)
+        {
+            ValidateBreathWeaponProgression(
+                breathWeaponProgression,
+                errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateBreathWeaponProgression(
+        BreathWeaponProgressionDetail breathWeaponProgression,
+        ICollection<string> errors)
+    {
+        if (breathWeaponProgression.DamageByLevel.Count == 0)
+        {
+            errors.Add(
+                "Breath weapon progression must grant at least one " +
+                "damage increase.");
+        }
+
+        var seenSides = new HashSet<int>();
+        var seenLevels = new HashSet<int>();
+        int? previousCount = null;
+
+        foreach (
+            BreathWeaponDamageGrant grant
+            in breathWeaponProgression.DamageByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            seenSides.Add(grant.Damage.Sides);
+
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Breath weapon damage character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousCount is { } previous &&
+                grant.Damage.Count <= previous)
+            {
+                errors.Add(
+                    $"Breath weapon damage at level {grant.CharacterLevel} " +
+                    "must be greater than the value at the previous grant " +
+                    "level.");
+            }
+
+            previousCount = grant.Damage.Count;
+        }
+
+        if (seenSides.Count > 1)
+        {
+            errors.Add(
+                "Breath weapon progression must use the same damage die " +
+                "size at every grant level.");
+        }
     }
 
     public static void EnsureValid(RaceDefinition race)

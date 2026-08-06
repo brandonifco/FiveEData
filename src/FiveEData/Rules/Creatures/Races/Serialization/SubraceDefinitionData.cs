@@ -27,5 +27,14 @@ internal sealed class SubraceDefinitionData
     public string[]? TraitRuleIds { get; init; }
 
     [JsonRequired]
+    public int? DarkvisionRangeFeet { get; init; }
+
+    [JsonRequired]
+    public string[]? ResistedDamageTypeIds { get; init; }
+
+    [JsonRequired]
+    public int? HitPointBonusPerLevel { get; init; }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }

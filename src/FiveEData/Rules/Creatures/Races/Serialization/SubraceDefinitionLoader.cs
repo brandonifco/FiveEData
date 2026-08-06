@@ -2,6 +2,7 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
@@ -96,6 +97,11 @@ internal static class SubraceDefinitionLoader
                 "Subrace trait rule IDs are required.",
                 nameof(data));
 
+        string[] resistedDamageTypeIdValues = data.ResistedDamageTypeIds
+            ?? throw new ArgumentException(
+                "Subrace resisted damage type IDs are required.",
+                nameof(data));
+
         SourceReferenceData[] sourceData = data.Sources
             ?? throw new ArgumentException(
                 "Subrace sources are required.",
@@ -108,6 +114,10 @@ internal static class SubraceDefinitionLoader
 
         RuleId[] traitRuleIds = traitRuleIdValues
             .Select(value => new RuleId(value))
+            .ToArray();
+
+        DamageTypeId[] resistedDamageTypeIds = resistedDamageTypeIdValues
+            .Select(value => new DamageTypeId(value))
             .ToArray();
 
         SourceReference[] sources = sourceData
@@ -126,6 +136,9 @@ internal static class SubraceDefinitionLoader
             speed,
             data.AdditionalLanguageChoiceCount,
             traitRuleIds,
+            data.DarkvisionRangeFeet,
+            resistedDamageTypeIds,
+            data.HitPointBonusPerLevel,
             sources);
     }
 }

@@ -20,6 +20,9 @@ public sealed class SubraceDefinitionLoaderTests
           "speedFeet": 35,
           "additionalLanguageChoiceCount": 1,
           "traitRuleIds": ["dnd5e2014.race-rule.fleet-of-foot"],
+          "darkvisionRangeFeet": null,
+          "resistedDamageTypeIds": [],
+          "hitPointBonusPerLevel": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -68,6 +71,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "speedFeet": null,
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -114,6 +120,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "speedFeet": null,
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -137,6 +146,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "speedFeet": null,
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": []
                   }
                 ]
@@ -157,6 +169,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "speedFeet": null,
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": []
                   }
                 ]
@@ -177,6 +192,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "abilityScoreIncreases": [],
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": []
                   }
                 ]
@@ -198,6 +216,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "speedFeet": null,
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": []
                   }
                 ]
@@ -219,6 +240,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "speedFeet": null,
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": []
                   }
                 ]
@@ -240,6 +264,9 @@ public sealed class SubraceDefinitionLoaderTests
                     "speedFeet": null,
                     "additionalLanguageChoiceCount": 0,
                     "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "hitPointBonusPerLevel": null,
                     "sources": null
                   }
                 ]

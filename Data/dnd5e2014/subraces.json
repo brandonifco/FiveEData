@@ -14,6 +14,9 @@
     "traitRuleIds": [
       "dnd5e2014.race-rule.dwarven-toughness"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": 1,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -37,6 +40,9 @@
     "traitRuleIds": [
       "dnd5e2014.race-rule.dwarven-armor-training"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -61,6 +67,9 @@
       "dnd5e2014.race-rule.elf-weapon-training",
       "dnd5e2014.race-rule.high-elf-cantrip"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -86,6 +95,9 @@
       "dnd5e2014.race-rule.fleet-of-foot",
       "dnd5e2014.race-rule.mask-of-the-wild"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -112,6 +124,9 @@
       "dnd5e2014.race-rule.drow-magic",
       "dnd5e2014.race-rule.drow-weapon-training"
     ],
+    "darkvisionRangeFeet": 120,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -135,6 +150,9 @@
     "traitRuleIds": [
       "dnd5e2014.race-rule.naturally-stealthy"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -158,6 +176,11 @@
     "traitRuleIds": [
       "dnd5e2014.race-rule.stout-resilience"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [
+      "dnd5e2014.damage-type.poison"
+    ],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -182,6 +205,9 @@
       "dnd5e2014.race-rule.natural-illusionist",
       "dnd5e2014.race-rule.speak-with-small-beasts"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -206,6 +232,9 @@
       "dnd5e2014.race-rule.artificers-lore",
       "dnd5e2014.race-rule.tinker"
     ],
+    "darkvisionRangeFeet": null,
+    "resistedDamageTypeIds": [],
+    "hitPointBonusPerLevel": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
