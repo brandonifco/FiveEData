@@ -61,6 +61,13 @@ public sealed class SubclassDataFileTests
         "dnd5e2014.subclass.war-domain"
     ];
 
+    private static readonly string[] ExpectedWarlockSubclassIds =
+    [
+        "dnd5e2014.subclass.the-archfey",
+        "dnd5e2014.subclass.the-fiend",
+        "dnd5e2014.subclass.the-great-old-one"
+    ];
+
     private static readonly string[] ExpectedSubclassIds =
     [
         .. ExpectedFighterSubclassIds,
@@ -69,7 +76,8 @@ public sealed class SubclassDataFileTests
         .. ExpectedRogueSubclassIds,
         .. ExpectedBardSubclassIds,
         .. ExpectedWizardSubclassIds,
-        .. ExpectedClericSubclassIds
+        .. ExpectedClericSubclassIds,
+        .. ExpectedWarlockSubclassIds
     ];
 
     [Fact]
@@ -77,7 +85,7 @@ public sealed class SubclassDataFileTests
     {
         IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
 
-        Assert.Equal(28, subclasses.Count);
+        Assert.Equal(31, subclasses.Count);
         Assert.Equal(
             ExpectedSubclassIds.OrderBy(id => id, StringComparer.Ordinal),
             subclasses
@@ -147,6 +155,7 @@ public sealed class SubclassDataFileTests
             ["dnd5e2014.class.bard"] = 3,
             ["dnd5e2014.class.wizard"] = 2,
             ["dnd5e2014.class.cleric"] = 1,
+            ["dnd5e2014.class.warlock"] = 1,
         };
 
     [Fact]
@@ -452,6 +461,19 @@ public sealed class SubclassDataFileTests
                 subclass => ExpectedClericSubclassIds.Contains(subclass.Id.Value)),
             subclass => Assert.Equal(
                 "dnd5e2014.class.cleric",
+                subclass.ClassId.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_EveryWarlockSubclassReferencesTheWarlockClass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => ExpectedWarlockSubclassIds.Contains(subclass.Id.Value)),
+            subclass => Assert.Equal(
+                "dnd5e2014.class.warlock",
                 subclass.ClassId.Value));
     }
 
@@ -947,6 +969,93 @@ public sealed class SubclassDataFileTests
             .Where(id => id.EndsWith("divine-strike", StringComparison.Ordinal));
 
         Assert.Equal(5, divineStrikeRuleIds.Distinct().Count());
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesTheArchfeyMechanics()
+    {
+        SubclassDefinition archfey = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.the-archfey");
+
+        Assert.Equal("The Archfey", archfey.Name);
+        Assert.Equal(1, archfey.ChosenAtLevel);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.archfey-expanded-spell-list",
+                "dnd5e2014.class-rule.fey-presence",
+                "dnd5e2014.class-rule.misty-escape",
+                "dnd5e2014.class-rule.beguiling-defenses",
+                "dnd5e2014.class-rule.dark-delirium"
+            ],
+            archfey.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(archfey.Sources);
+        Assert.Equal(108, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesTheFiendMechanics()
+    {
+        SubclassDefinition fiend = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.the-fiend");
+
+        Assert.Equal("The Fiend", fiend.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.fiend-expanded-spell-list",
+                "dnd5e2014.class-rule.dark-ones-blessing",
+                "dnd5e2014.class-rule.dark-ones-own-luck",
+                "dnd5e2014.class-rule.fiendish-resilience",
+                "dnd5e2014.class-rule.hurl-through-hell"
+            ],
+            fiend.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(fiend.Sources);
+        Assert.Equal(109, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesTheGreatOldOneMechanics()
+    {
+        SubclassDefinition greatOldOne = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.the-great-old-one");
+
+        Assert.Equal("The Great Old One", greatOldOne.Name);
+        Assert.Equal(
+            [
+                "dnd5e2014.class-rule.great-old-one-expanded-spell-list",
+                "dnd5e2014.class-rule.awakened-mind",
+                "dnd5e2014.class-rule.entropic-ward",
+                "dnd5e2014.class-rule.thought-shield",
+                "dnd5e2014.class-rule.create-thrall"
+            ],
+            greatOldOne.LevelFeatures
+                .Select(feature => feature.FeatureRuleId.Value)
+                .ToArray());
+
+        var source = Assert.Single(greatOldOne.Sources);
+        Assert.Equal(109, source.Page);
+    }
+
+    [Fact]
+    public void CanonicalFile_KeepsExpandedSpellListDistinctPerPatronDespiteSharedName()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> expandedSpellListRuleIds = subclasses
+            .Where(subclass => ExpectedWarlockSubclassIds.Contains(subclass.Id.Value))
+            .SelectMany(subclass => subclass.LevelFeatures)
+            .Select(feature => feature.FeatureRuleId.Value)
+            .Where(id => id.EndsWith("expanded-spell-list", StringComparison.Ordinal));
+
+        Assert.Equal(3, expandedSpellListRuleIds.Distinct().Count());
     }
 
     private static SubclassDefinition GetSubclass(

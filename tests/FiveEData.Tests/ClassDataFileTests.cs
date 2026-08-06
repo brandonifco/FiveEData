@@ -15,7 +15,8 @@ public sealed class ClassDataFileTests
         "dnd5e2014.class.rogue",
         "dnd5e2014.class.bard",
         "dnd5e2014.class.wizard",
-        "dnd5e2014.class.cleric"
+        "dnd5e2014.class.cleric",
+        "dnd5e2014.class.warlock"
     ];
 
     [Fact]
@@ -23,7 +24,7 @@ public sealed class ClassDataFileTests
     {
         IReadOnlyList<ClassDefinition> classes = LoadClasses();
 
-        Assert.Equal(7, classes.Count);
+        Assert.Equal(8, classes.Count);
         Assert.Equal(
             ExpectedClassIds.OrderBy(id => id, StringComparer.Ordinal),
             classes
@@ -310,7 +311,8 @@ public sealed class ClassDataFileTests
             "dnd5e2014.class.monk",
             "dnd5e2014.class.bard",
             "dnd5e2014.class.wizard",
-            "dnd5e2014.class.cleric"
+            "dnd5e2014.class.cleric",
+            "dnd5e2014.class.warlock"
         ];
 
         Assert.All(
@@ -762,6 +764,99 @@ public sealed class ClassDataFileTests
             .ToArray();
 
         Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWarlockMechanics()
+    {
+        ClassDefinition warlock = GetClass(LoadClasses(), "dnd5e2014.class.warlock");
+
+        Assert.Equal("Warlock", warlock.Name);
+        Assert.Equal(1, warlock.HitDie.Count);
+        Assert.Equal(8, warlock.HitDie.Sides);
+        Assert.Equal(
+            ["dnd5e2014.ability.charisma"],
+            warlock.PrimaryAbilityIds.Select(id => id.Value).ToArray());
+        Assert.True(warlock.RequiresAllPrimaryAbilities);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.wisdom",
+                "dnd5e2014.ability.charisma"
+            ],
+            warlock.SavingThrowProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Equal(
+            [ArmorCategory.Light],
+            warlock.ArmorProficiencyCategories);
+        Assert.False(warlock.ProficientWithShields);
+        Assert.Equal(
+            [WeaponProficiencyCategory.Simple],
+            warlock.WeaponProficiencyCategories);
+        Assert.Empty(warlock.WeaponProficiencyIds);
+        Assert.Equal(2, warlock.SkillChoiceCount);
+        Assert.Equal(7, warlock.SkillChoiceOptionIds.Count);
+
+        var source = Assert.Single(warlock.Sources);
+        Assert.Equal(
+            "dnd5e2014.source.phb-first-printing",
+            source.DocumentId.Value);
+        Assert.Equal(106, source.Page);
+        Assert.Equal("Chapter 3: Classes", source.Section);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWarlockAbilityScoreImprovementAtStandardLevelsDespiteTableOmission()
+    {
+        ClassDefinition warlock = GetClass(LoadClasses(), "dnd5e2014.class.warlock");
+
+        // The printed Warlock table's Features column omits a 19th-level
+        // row, but the Ability Score Improvement feature's own body text
+        // names 19th level explicitly, word-for-word identical to every
+        // other class using the shared RuleId. The prose is treated as
+        // authoritative over the apparently-incomplete table, the same
+        // way the Dwarf throwing-hammer/light-hammer errata was resolved
+        // in favor of the corrected text over the original printing.
+        int[] expectedLevels = [4, 8, 12, 16, 19];
+
+        int[] actualLevels = warlock.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.ability-score-improvement")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesMysticArcanumAtEachGrantLevel()
+    {
+        ClassDefinition warlock = GetClass(LoadClasses(), "dnd5e2014.class.warlock");
+
+        int[] expectedLevels = [11, 13, 15, 17];
+
+        int[] actualLevels = warlock.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.mystic-arcanum")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal(expectedLevels, actualLevels);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesPactBoonChoicePoint()
+    {
+        ClassDefinition warlock = GetClass(LoadClasses(), "dnd5e2014.class.warlock");
+
+        Assert.Contains(
+            warlock.LevelFeatures,
+            feature =>
+                feature.Level == 3 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.pact-boon");
     }
 
     private static ClassDefinition GetClass(

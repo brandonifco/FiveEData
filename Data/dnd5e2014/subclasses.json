@@ -978,5 +978,110 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.the-archfey",
+    "name": "The Archfey",
+    "classId": "dnd5e2014.class.warlock",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.archfey-expanded-spell-list"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.fey-presence"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.misty-escape"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.beguiling-defenses"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.dark-delirium"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 108,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.the-fiend",
+    "name": "The Fiend",
+    "classId": "dnd5e2014.class.warlock",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.fiend-expanded-spell-list"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.dark-ones-blessing"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.dark-ones-own-luck"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.fiendish-resilience"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.hurl-through-hell"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 109,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.the-great-old-one",
+    "name": "The Great Old One",
+    "classId": "dnd5e2014.class.warlock",
+    "chosenAtLevel": 1,
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.great-old-one-expanded-spell-list"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.awakened-mind"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.entropic-ward"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.thought-shield"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.create-thrall"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 109,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]
