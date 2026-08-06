@@ -548,6 +548,64 @@ and `Sources`) even though the PHB calls them domains, not subclasses:
   succeeds automatically") is a modifier on the same named feature, not
   a new one.
 
+**Warlock was the eighth class built**, chosen ahead of the remaining
+five (Druid, Paladin, Ranger, Sorcerer) specifically because its shape —
+only 3 patrons, but three separate named subsystems (Pact Magic, Pact
+Boon, Eldritch Invocations) layered on top — stresses the domain
+differently than raw subclass count does:
+- **The class's own core spellcasting feature is table-named "Pact
+  Magic," not "Spellcasting"** — the first class where this is true.
+  `warlock-pact-magic` still folds Cantrips/Spell Slots/Spells
+  Known/Spellcasting Ability/Spellcasting Focus into one citation like
+  every prior class's core casting feature, but Warlock has no "Ritual
+  Casting" subsection at all in its core spellcasting text (that
+  capability only exists via the Pact of the Tome invocation), so
+  nothing was folded in for it — a real absence, not an oversight.
+- **All ~20 Eldritch Invocations fold into one `eldritch-invocations`
+  citation**, the same call as Fighting Style's 6 options, Battle
+  Master's maneuver list, and Way of the Four Elements' 18 elemental
+  disciplines — a flat choose-N-of-a-published-list feature stays one
+  citation regardless of list size, since the deciding factor per
+  precedent is "is this a choice point," not "how many options does it
+  have." The two PHB headings that together describe this feature (the
+  Class Features section's mechanical framework, and the "Eldritch
+  Invocations" reference-list preamble immediately before the
+  alphabetized options) both point at the same single `RuleId`.
+- **`Pact Boon`'s three named options (Chain/Blade/Tome) also fold into
+  one citation** rather than getting individual `RuleId`s, the same
+  choice-point treatment — even though each option here is a
+  substantial, multi-paragraph mechanic (Pact of the Blade alone runs
+  to roughly 200 words), well past Fighting Style's one-liners in size.
+  The precedent's dividing line is structural (a single choice point
+  offering named sub-options) rather than word count, so size alone
+  didn't earn them separate citations.
+- **`Expanded Spell List` is a `Divine Strike`-shaped case, not a
+  `Potent Spellcasting`-shaped one**: all three patrons use the
+  identical template sentence ("`<Patron>` lets you choose from an
+  expanded list of spells..."), but each actually adds a *different*
+  set of spells to the list — the substituted content is the entire
+  point of the feature, so all three stay prefixed
+  (`archfey-`/`fiend-`/`great-old-one-expanded-spell-list`), matching
+  the school-`Savant`/`Divine Strike` reasoning rather than
+  `Potent Spellcasting`'s zero-difference share.
+- **`Ability Score Improvement` is shared a sixth time, but only after
+  resolving a real table/prose conflict.** The printed Warlock table's
+  Features column has no 19th-level row (only 4th/8th/12th/16th), but
+  the feature's own body text explicitly names 19th level, word-for-word
+  identical to the shared entry's canonical wording used by every other
+  sharing class. Treated the prose as authoritative over the seemingly
+  incomplete table — the same resolution precedent (corrected text wins
+  over a printing artifact) as the Dwarf throwing-hammer/light-hammer
+  errata from the Races pass, formalized in the data as levels
+  4/8/12/16/19 and called out explicitly in
+  `PreservesWarlockAbilityScoreImprovementAtStandardLevelsDespiteTableOmission`
+  so a future reader checking the level list against the table doesn't
+  "fix" it back to a mistaken 4/8/12/16.
+- **`Mystic Arcanum` reuses one `RuleId` across all four grant levels**
+  (11th/13th/15th/17th), the same recurring-citation shape as `Divine
+  Intervention`/`Brutal Critical` — the per-level spell-tier scaling
+  lives in the citation's own prose, not in structured data.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -583,7 +641,7 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 19: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 20: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
@@ -596,30 +654,40 @@ Way of the Four Elements), Rogue (all 3 subclasses — Thief, Assassin,
 Arcane Trickster), Bard (both subclasses — College of Lore, College of
 Valor), Wizard (all 8 arcane traditions — Abjuration, Conjuration,
 Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation),
-and Cleric (all 7 divine domains — Knowledge, Life, Light, Nature,
-Tempest, Trickery, War) are built — see "Classes" above, including the
-cross-class `RuleId` sharing question, resolved with evidence from all
-seven (most recently: `Divine Strike` split five ways by damage type
-following the school-`Savant` precedent, `Potent Spellcasting` shared
-between Knowledge/Light on genuinely identical text found on the same
-page, and `Bonus Proficiencies` split down the middle — Tempest/War
-verbatim-shared, Life/Nature separately prefixed — revising the
-Bard-era blanket note that name alone predicted a prefix). Cleric is
-also the first class where a subclass-equivalent (`Divine Domain`) is
-chosen at 1st level, a third distinct `ChosenAtLevel` value; the test
-that had been growing a new near-duplicate fact per class
-(`ChosenAtLevel`, and separately the shared-Ability-Score-Improvement
-class list) is now each a single data-driven test keyed by class ID,
-built to keep scaling rather than accrete further one-offs. The other 5
-PHB classes (Druid, Paladin, Ranger, Sorcerer, Warlock) are not yet
-built — note that all of them are full or half spellcasters like Bard,
-Wizard, and Cleric, so the core-`Spellcasting`-as-single-citation
-approach carries forward directly; when picking one up, re-derive
-RuleId cross-class-sharing decisions against the precedent in "Classes"
-above (default to sharing a generic-named mechanic unless the actual
-PHB text diverges — verified, not assumed, every single time; prefix on
-a name collision with a different mechanic) rather than assuming it's
-settled for good. Use the cleanly-scanned PHB PDF
+Cleric (all 7 divine domains — Knowledge, Life, Light, Nature, Tempest,
+Trickery, War), and Warlock (all 3 otherworldly patrons — the Archfey,
+the Fiend, the Great Old One) are built — see "Classes" above, including
+the cross-class `RuleId` sharing question, resolved with evidence from
+all eight (most recently: `Expanded Spell List` split three ways
+following the `Divine Strike`/school-`Savant` reasoning since each
+patron's actual spell additions differ; Ability Score Improvement shared
+a sixth time only after resolving a real conflict between the printed
+table, which omits a 19th-level row, and the feature's own prose, which
+names it — prose won, the same way the Dwarf hammer errata was resolved
+during Races). Warlock is also the first class whose core spellcasting
+feature isn't table-named "Spellcasting" (it's "Pact Magic"), and the
+first where a choice point with substantial multi-paragraph named
+options (`Pact Boon`'s Chain/Blade/Tome, each ~200 words) still folded
+into one citation rather than getting individual `RuleId`s — confirming
+the Fighting-Style-derived precedent turns on being a choice point at
+all, not on how much text each option carries. Cleric was the first
+class where a subclass-equivalent (`Divine Domain`) is chosen at 1st
+level; the tests that had been growing a new near-duplicate fact per
+class (`ChosenAtLevel`, and separately the shared-Ability-Score-
+Improvement class list) are each a single data-driven test keyed by
+class ID, built to keep scaling rather than accrete further one-offs —
+Warlock's addition to both was a one-line change apiece, confirming the
+approach. The other 4 PHB classes (Druid, Paladin, Ranger, Sorcerer) are
+not yet built — note that all of them are full or half spellcasters like
+Bard, Wizard, Cleric, and Warlock, so the core-`Spellcasting`-as-single-
+citation approach carries forward directly (matching whatever that
+class's table actually names the feature, per Warlock's "Pact Magic"
+finding — verify, don't assume "Spellcasting"); when picking one up,
+re-derive RuleId cross-class-sharing decisions against the precedent in
+"Classes" above (default to sharing a generic-named mechanic unless the
+actual PHB text diverges — verified, not assumed, every single time;
+prefix on a name collision with a different mechanic) rather than
+assuming it's settled for good. Use the cleanly-scanned PHB PDF
 (`~/Downloads/Player's Handbook.pdf`, reliable per-page footers) for
 citations, not the archive.org OCR export used for the original Bard
 pass (see "Classes" above, end of the Bard section, for why). Not yet

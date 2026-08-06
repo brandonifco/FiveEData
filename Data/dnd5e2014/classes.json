@@ -813,5 +813,101 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.warlock",
+    "name": "Warlock",
+    "hitDieSides": 8,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.charisma"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.wisdom",
+      "dnd5e2014.ability.charisma"
+    ],
+    "armorProficiencyCategories": [
+      "Light"
+    ],
+    "proficientWithShields": false,
+    "weaponProficiencyCategories": [
+      "Simple"
+    ],
+    "weaponProficiencyIds": [],
+    "skillChoiceCount": 2,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.arcana",
+      "dnd5e2014.skill.deception",
+      "dnd5e2014.skill.history",
+      "dnd5e2014.skill.intimidation",
+      "dnd5e2014.skill.investigation",
+      "dnd5e2014.skill.nature",
+      "dnd5e2014.skill.religion"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.otherworldly-patron"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.warlock-pact-magic"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.eldritch-invocations"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.pact-boon"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.mystic-arcanum"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 13,
+        "featureRuleId": "dnd5e2014.class-rule.mystic-arcanum"
+      },
+      {
+        "level": 15,
+        "featureRuleId": "dnd5e2014.class-rule.mystic-arcanum"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.mystic-arcanum"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.eldritch-master"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 106,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]
