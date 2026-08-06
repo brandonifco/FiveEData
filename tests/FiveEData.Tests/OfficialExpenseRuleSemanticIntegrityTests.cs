@@ -350,6 +350,7 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             fightingStyles: [],
             metamagicOptions: [],
             battleMasterManeuvers: [],
+            eldritchInvocations: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

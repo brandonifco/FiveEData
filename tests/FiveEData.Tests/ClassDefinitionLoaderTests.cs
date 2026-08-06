@@ -55,6 +55,7 @@ public sealed class ClassDefinitionLoaderTests
           "mysticArcanumProgression": null,
           "fontOfMagicConversion": null,
           "songOfRestProgression": null,
+          "eldritchInvocationsKnownProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -182,6 +183,7 @@ public sealed class ClassDefinitionLoaderTests
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -289,6 +291,7 @@ public sealed class ClassDefinitionLoaderTests
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -367,6 +370,7 @@ public sealed class ClassDefinitionLoaderTests
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -448,6 +452,7 @@ public sealed class ClassDefinitionLoaderTests
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -529,6 +534,7 @@ public sealed class ClassDefinitionLoaderTests
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -601,6 +607,7 @@ public sealed class ClassDefinitionLoaderTests
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -672,6 +679,7 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -742,6 +750,7 @@ public sealed class ClassDefinitionLoaderTests
                       ]
                     },
                     "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -817,6 +826,7 @@ public sealed class ClassDefinitionLoaderTests
                         }
                       ]
                     },
+                    "eldritchInvocationsKnownProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",

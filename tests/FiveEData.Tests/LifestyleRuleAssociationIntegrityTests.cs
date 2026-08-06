@@ -278,6 +278,7 @@ public sealed class
             fightingStyles: [],
             metamagicOptions: [],
             battleMasterManeuvers: [],
+            eldritchInvocations: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

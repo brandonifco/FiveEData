@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -884,6 +885,37 @@ public sealed class ClassDataFileTests
                 .OrderBy(grant => grant.CharacterLevel)
                 .Select(grant => (grant.CharacterLevel, grant.SpellLevel)));
         Assert.False(mysticArcanumProgression.RecoversOnShortRest);
+
+        EldritchInvocationsKnownProgressionDetail
+            eldritchInvocationsKnownProgression =
+                warlock.EldritchInvocationsKnownProgression
+                ?? throw new InvalidOperationException(
+                    "Expected Warlock to have an Eldritch Invocations " +
+                    "known progression.");
+        Assert.Equal(
+            [(2, 2), (5, 3), (7, 4), (9, 5), (12, 6), (15, 7), (17, 8)],
+            eldritchInvocationsKnownProgression.InvocationsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.InvocationsKnown)));
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyWarlockHasAnEldritchInvocationsKnownProgression()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        IEnumerable<string> otherClassIds = classes
+            .Select(@class => @class.Id.Value)
+            .Where(id => id != "dnd5e2014.class.warlock");
+
+        foreach (string id in otherClassIds)
+        {
+            ClassDefinition @class = GetClass(classes, id);
+
+            Assert.Null(@class.EldritchInvocationsKnownProgression);
+        }
     }
 
     [Fact]
