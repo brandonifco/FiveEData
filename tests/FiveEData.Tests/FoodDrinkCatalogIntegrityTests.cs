@@ -164,6 +164,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
             metamagicOptions: [],
+            battleMasterManeuvers: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

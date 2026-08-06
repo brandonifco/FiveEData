@@ -487,6 +487,7 @@ public sealed class
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
             metamagicOptions: [],
+            battleMasterManeuvers: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

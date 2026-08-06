@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
+using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.Serialization;
 
@@ -1702,6 +1703,62 @@ public sealed class SubclassDataFileTests
                 $"{subclass.Id} unexpectedly declares a spellcasting " +
                 "ability.");
         }
+    }
+
+    [Fact]
+    public void CanonicalFile_OnlyBattleMasterHasACombatSuperiorityProgression()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        IEnumerable<string> otherSubclassIds = subclasses
+            .Select(subclass => subclass.Id.Value)
+            .Where(id => id != "dnd5e2014.subclass.battle-master");
+
+        foreach (string id in otherSubclassIds)
+        {
+            SubclassDefinition subclass = GetSubclass(subclasses, id);
+
+            Assert.Null(subclass.CombatSuperiorityProgression);
+        }
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesBattleMastersCombatSuperiorityProgression()
+    {
+        SubclassDefinition battleMaster = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.battle-master");
+
+        var source = Assert.Single(battleMaster.Sources);
+        Assert.Equal(73, source.Page);
+
+        CombatSuperiorityProgressionDetail combatSuperiority =
+            battleMaster.CombatSuperiorityProgression
+            ?? throw new InvalidOperationException(
+                "Expected Battle Master to have a Combat Superiority " +
+                "progression.");
+
+        Assert.Equal(
+            [(3, 3), (7, 5), (10, 7), (15, 9)],
+            combatSuperiority.ManeuversKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.ManeuversKnown)));
+
+        Assert.Equal(
+            [(3, 4), (7, 5), (15, 6)],
+            combatSuperiority.DiceCountByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.DiceCount)));
+
+        Assert.Equal(
+            [(3, 8), (10, 10), (18, 12)],
+            combatSuperiority.DieSizeByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.Die.Sides)));
+
+        Assert.All(
+            combatSuperiority.DieSizeByLevel,
+            grant => Assert.Equal(1, grant.Die.Count));
     }
 
     private static SubclassDefinition GetSubclass(

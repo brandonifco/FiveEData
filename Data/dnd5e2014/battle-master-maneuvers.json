@@ -1,0 +1,210 @@
+[
+  {
+    "id": "dnd5e2014.battle-master-maneuver.commanders-strike",
+    "name": "Commander's Strike",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.disarming-attack",
+    "name": "Disarming Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": "dnd5e2014.ability.strength",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.distracting-strike",
+    "name": "Distracting Strike",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.evasive-footwork",
+    "name": "Evasive Footwork",
+    "effectTarget": "ArmorClass",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.feinting-attack",
+    "name": "Feinting Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.goading-attack",
+    "name": "Goading Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.lunging-attack",
+    "name": "Lunging Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.maneuvering-attack",
+    "name": "Maneuvering Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.menacing-attack",
+    "name": "Menacing Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.parry",
+    "name": "Parry",
+    "effectTarget": "DamageReduction",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.precision-attack",
+    "name": "Precision Attack",
+    "effectTarget": "AttackRoll",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.pushing-attack",
+    "name": "Pushing Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": "dnd5e2014.ability.strength",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.rally",
+    "name": "Rally",
+    "effectTarget": "TemporaryHitPoints",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.riposte",
+    "name": "Riposte",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.sweeping-attack",
+    "name": "Sweeping Attack",
+    "effectTarget": "SecondaryTargetDamage",
+    "savingThrowAbilityId": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.battle-master-maneuver.trip-attack",
+    "name": "Trip Attack",
+    "effectTarget": "DamageRoll",
+    "savingThrowAbilityId": "dnd5e2014.ability.strength",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 74,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

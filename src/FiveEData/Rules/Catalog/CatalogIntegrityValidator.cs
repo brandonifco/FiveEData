@@ -1,5 +1,6 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.Metamagic;
@@ -200,6 +201,28 @@ internal static class CatalogIntegrityValidator
                 metamagicOption.Sources,
                 sourceIds,
                 errors);
+        }
+
+        foreach (
+            BattleMasterManeuverDefinition battleMasterManeuver
+            in definitions.BattleMasterManeuvers)
+        {
+            string owner = $"Battle Master maneuver '{battleMasterManeuver.Id}'";
+
+            ValidateSources(
+                owner,
+                battleMasterManeuver.Sources,
+                sourceIds,
+                errors);
+
+            if (battleMasterManeuver.SavingThrowAbilityId is
+                    { } savingThrowAbilityId &&
+                !abilityIds.Contains(savingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{savingThrowAbilityId}'.");
+            }
         }
 
         errors.AddRange(

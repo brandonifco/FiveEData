@@ -27,23 +27,26 @@ Channel Divinity uses ([PR #32](https://github.com/brandonifco/FiveEData/pull/32
 Mystic Arcanum ([PR #33](https://github.com/brandonifco/FiveEData/pull/33)),
 Font of Magic conversion ([PR #34](https://github.com/brandonifco/FiveEData/pull/34)),
 Song of Rest ([PR #35](https://github.com/brandonifco/FiveEData/pull/35)),
-Metamagic ([PR #36](https://github.com/brandonifco/FiveEData/pull/36)).
+Metamagic ([PR #36](https://github.com/brandonifco/FiveEData/pull/36)),
+Battle Master maneuvers ([PR #37](https://github.com/brandonifco/FiveEData/pull/37)).
+Pact Boon was evaluated and deliberately declined (no catalog needed —
+see its section below), documented directly on `main` with no PR since
+no code changed.
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Every per-level numeric progression is now
-converted, and Metamagic proved the choice-point-catalog shape works
-(see its section below) — the smallest of the six catalogs, chosen
-first for that reason, the same way Fighting Style was chosen first
-originally. Order from here: the other five choice-point catalogs
-(Eldritch Invocations, Battle Master maneuvers, Elemental Disciplines,
-Channel Divinity options, Pact Boon) — verify each one's actual
-sub-structure from the PHB rather than assuming Metamagic's exact
-field set carries over, Battle Master maneuvers and Pact Boon in
-particular were already flagged as having more of their own — then
-race trait quantization, then a background numeric audit. Stop when
-that full list is done, not before. Check the
+converted. Three of six choice-point catalogs are resolved — Metamagic
+(cost-only catalog), Pact Boon (no catalog needed), Battle Master
+maneuvers (effect-target-plus-save-ability catalog) — each a genuinely
+different outcome, so don't assume any one of the three carries over
+to what's left. Order from here: the other three choice-point catalogs
+(Eldritch Invocations, Elemental Disciplines, Channel Divinity
+options) — verify each one's actual sub-structure from the PHB rather
+than assuming a prior catalog's exact shape — then race trait
+quantization, then a background numeric audit. Stop when that full
+list is done, not before. Check the
 "Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
@@ -60,13 +63,13 @@ failed once with `The job was not acquired by Runner of type hosted
 even after multiple attempts`; a `gh run rerun` was kicked off and sat
 `queued` for nearly an hour without progressing; PR #27's workflow run
 never even started. Confirmed via githubstatus.com (not just inferred
-from symptoms) as a major outage, still degraded 3.5+ hours in
-("recovery taking longer than expected"). Given the size of the
-remaining work list, the user gave a **standing authorization for the
-duration of this outage** (not a one-off, and not the
+from symptoms) as a major outage, still showing `"indicator":"major"`
+("Partial System Outage") as of PR #37, 5+ hours in. Given the size of
+the remaining work list, the user gave a **standing authorization for
+the duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26 through #36 were all merged this way. **Once CI is confirmed
+PR #26 through #37 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1669,21 +1672,99 @@ discipline this whole pass has run on:
   *anything* new" rather than "build the smaller of two shapes." The
   existing citation is left completely untouched; no code changed for
   this item.
-- **Remaining, tracked but not started:** the other four choice-point
-  catalogs (Eldritch Invocations, Battle Master maneuvers, Elemental
-  Disciplines, Channel Divinity options) — Metamagic proved the
-  catalog *pattern* generalizes (new ID namespace, gateway citation
-  left untouched, typed cost/mechanism fields over a DSL); Pact Boon
-  proved the pattern doesn't apply unconditionally — a choice point
-  only earns a catalog if at least one option actually carries a
-  leveled numeric fact. Battle Master maneuvers is still flagged as
-  the one likely to need real sub-structure (a maneuver's own save DC
-  and triggering condition) rather than Metamagic's cost-only shape or
-  Pact Boon's "nothing to quantize" outcome — verify each catalog's
-  actual shape from the PHB before assuming either precedent carries
-  over unchanged. After those: race trait quantization (Darkvision
-  range, resistance/advantage grants, granted spells), and a
-  background audit (likely little to quantize — most background
+**Battle Master maneuvers converted nineteenth — the predicted "real
+sub-structure" case, confirmed, plus a fourth new choice-point-catalog
+shape and a genuine citation-page correction found along the way.**
+Unlike Metamagic's single cost axis or Pact Boon's "nothing to
+quantize" outcome, all 16 maneuvers (read directly off PHB page 74,
+alphabetically from Commander's Strike through Trip Attack) share a
+real, mechanically meaningful axis Metamagic's own effects never had:
+*where the rolled superiority die value gets applied*. This is a
+second, larger proof point for the same "several typed nullable
+mechanism fields" restraint Fighting Style pioneered and Divine
+Strike/Metamagic each reused — the axis just turned out to be a single
+enum rather than several mutually-exclusive numeric fields, since a
+maneuver only ever routes its die one way.
+
+- **Two separate new domains, not one** — `Rules/Classes/
+  BattleMasterManeuvers/` (a new top-level catalog, `dnd5e2014.
+  battle-master-maneuver.*`, the sixteen named choice options) and
+  `Rules/Classes/CombatSuperiority/` (an embedded value object on
+  `SubclassDefinition`, Battle Master-only, no sharing candidate) — the
+  same class-level-fact/named-option-list split Metamagic already drew
+  against Sorcerer's own Font of Magic vs. Metamagic options, applied
+  here to Battle Master's Combat Superiority framework (maneuvers
+  known, superiority dice count, superiority die size — all three
+  progress at different levels, so three separate grant lists, the
+  same multi-independent-axis shape Rage's own uses/damage-bonus split
+  already established) vs. its sixteen named maneuvers.
+- **`BattleMasterManeuverEffectTarget`, a 6-value enum** (DamageRoll,
+  AttackRoll, ArmorClass, DamageReduction, TemporaryHitPoints,
+  SecondaryTargetDamage) **captures where each maneuver's die value is
+  spent**, read directly off each maneuver's own sentence rather than
+  assumed from its name — eleven of sixteen add the die to a damage
+  roll, but Precision Attack adds it to the *attack* roll, Evasive
+  Footwork adds it to AC, Parry uses it as damage reduction against an
+  incoming hit, Rally grants it as temporary hit points to an ally, and
+  Sweeping Attack deals it as a wholly separate damage instance to a
+  second nearby creature. `RequiresSavingThrow: AbilityId?` sits
+  alongside it — five of sixteen (Disarming/Pushing/Trip Attack force a
+  Strength save; Goading/Menacing Attack force a Wisdom save) — the
+  same "each maneuver either has this fact or doesn't" nullable shape
+  every other domain in this pass already uses.
+- **Deliberately left unquantized, matching Metamagic's own precedent
+  exactly:** each maneuver's actual secondary effect (disarm, frighten,
+  knock prone, push up to 15 feet, extend reach by 5 feet, redirect an
+  ally's reaction, grant advantage, restore an ally to half speed
+  movement) — compound, per-maneuver prose with no shared shape across
+  all sixteen, the same reasoning that kept Metamagic's 8 individual
+  spell effects out of scope. The shared *save DC formula itself* (8 +
+  proficiency bonus + Strength or Dexterity, the wielder's choice) also
+  stays unquantized, consistent with every other class's own save-DC
+  formula never being modeled in this pass (Ki, Sorcery Points, and
+  every other resource with a save DC all leave the DC formula to the
+  citation) — what's captured here is only the two facts that vary
+  *per maneuver*, not the one formula shared by all of them.
+- **A genuine citation-page correction, the same category of finding
+  as the four caught during Paladin auras.** Reading PHB pages 73-75
+  directly for this conversion found `combat-superiority`/
+  `student-of-war`/`know-your-enemy` (all cited at page 74) actually
+  start on page 73, and `improved-combat-superiority`/`relentless`
+  (both cited at page 75) actually land on page 74 — a consistent
+  off-by-one across all five `class-rule.json` entries plus the Battle
+  Master subclass's own citation in `subclasses.json` (also corrected
+  from 74 to 73). All six fixed in the same commit as the new domain,
+  the same "fix it where you find it" precedent the auras pass set.
+- Public API: two new public types per new domain
+  (`BattleMasterManeuverId`/`Definition`/`EffectTarget`/`Catalog`, plus
+  `CombatSuperiorityManeuversKnownGrant`/`DiceCountGrant`/
+  `DieSizeGrant`/`ProgressionDetail`) and one new member each on the
+  already-public `Dnd5e2014Ruleset`/`RulesetDefinitionSet` (the new
+  catalog) and `SubclassDefinition` (the new embedded progression).
+  `RulesetDefinitionSet`/`Dnd5e2014RulesetLoader`/`Dnd5e2014Ruleset`/
+  `CatalogIntegrityValidator` wired through the exact same pattern
+  Fighting Style's and Metamagic's own catalogs established (including
+  a missing-`AbilityId` cross-reference check on
+  `SavingThrowAbilityId`, the same shape `RequiresAllPrimaryAbilities`
+  reference-checking already uses elsewhere), new embedded resource
+  `Data/dnd5e2014/battle-master-maneuvers.json`. Full gate green:
+  Debug+Release build 0 warnings, 1589 tests (was 1548; +41 new —
+  `BattleMasterManeuverFoundationTests`/
+  `BattleMasterManeuverDefinitionLoaderTests`/
+  `BattleMasterManeuverDataFileTests` for the new catalog, plus
+  Combat Superiority assertions folded into the existing
+  `SubclassDataFileTests`/`SubclassDefinitionLoaderTests`/
+  `SubclassFoundationTests`).
+- **Remaining, tracked but not started:** the other three choice-point
+  catalogs (Eldritch Invocations, Elemental Disciplines, Channel
+  Divinity options) — three data points now exist for how a choice
+  point resolves (Metamagic: cost-only catalog; Pact Boon: no catalog
+  at all; Battle Master maneuvers: effect-target-plus-save-ability
+  catalog), so verify each remaining catalog's actual shape from the
+  PHB rather than assuming any single one of the three precedents
+  carries over by default. After those: race trait quantization
+  (Darkvision range, resistance/advantage grants, granted spells), and
+  a background audit (likely little to quantize — most background
   features are narrative/social, not numeric).
 
 ## Test conventions

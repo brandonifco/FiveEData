@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
+using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 
@@ -48,6 +49,13 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public AuraOfWardingDetailData? AuraOfWarding { get; init; }
+
+    [JsonRequired]
+    public CombatSuperiorityProgressionDetailData? CombatSuperiorityProgression
+    {
+        get;
+        init;
+    }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
