@@ -1083,5 +1083,95 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.subclass.circle-of-the-land",
+    "name": "Circle of the Land",
+    "classId": "dnd5e2014.class.druid",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.land-bonus-cantrip"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.natural-recovery"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.circle-spells"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.circle-spells"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.lands-stride"
+      },
+      {
+        "level": 7,
+        "featureRuleId": "dnd5e2014.class-rule.circle-spells"
+      },
+      {
+        "level": 9,
+        "featureRuleId": "dnd5e2014.class-rule.circle-spells"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.natures-ward"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.natures-sanctuary"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 68,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.subclass.circle-of-the-moon",
+    "name": "Circle of the Moon",
+    "classId": "dnd5e2014.class.druid",
+    "chosenAtLevel": 2,
+    "levelFeatures": [
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.combat-wild-shape"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.circle-forms"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.primal-strike"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.circle-forms"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.elemental-wild-shape"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.thousand-forms"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

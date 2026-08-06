@@ -340,6 +340,11 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 108,
         "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 67,
+        "section": "Chapter 3: Classes"
       }
     ]
   },
@@ -695,7 +700,7 @@
     ]
   },
   {
-    "id": "dnd5e2014.class-rule.timeless-body",
+    "id": "dnd5e2014.class-rule.monk-timeless-body",
     "name": "Timeless Body",
     "sources": [
       {
@@ -2526,6 +2531,204 @@
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 110,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.druidic",
+    "name": "Druidic",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 66,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.druid-spellcasting",
+    "name": "Spellcasting",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 66,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.wild-shape",
+    "name": "Wild Shape",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 66,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.druid-circle",
+    "name": "Druid Circle",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 67,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.druid-timeless-body",
+    "name": "Timeless Body",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 67,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.beast-spells",
+    "name": "Beast Spells",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 67,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.archdruid",
+    "name": "Archdruid",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 67,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.land-bonus-cantrip",
+    "name": "Bonus Cantrip",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 68,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.natural-recovery",
+    "name": "Natural Recovery",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 68,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.circle-spells",
+    "name": "Circle Spells",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 68,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.lands-stride",
+    "name": "Land's Stride",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.natures-ward",
+    "name": "Nature's Ward",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.natures-sanctuary",
+    "name": "Nature's Sanctuary",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.combat-wild-shape",
+    "name": "Combat Wild Shape",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.circle-forms",
+    "name": "Circle Forms",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.primal-strike",
+    "name": "Primal Strike",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.elemental-wild-shape",
+    "name": "Elemental Wild Shape",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.class-rule.thousand-forms",
+    "name": "Thousand Forms",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 69,
         "section": "Chapter 3: Classes"
       }
     ]
