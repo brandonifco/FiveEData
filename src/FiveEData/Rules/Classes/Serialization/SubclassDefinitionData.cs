@@ -21,5 +21,11 @@ internal sealed class SubclassDefinitionData
     public ClassLevelFeatureData[]? LevelFeatures { get; init; }
 
     [JsonRequired]
+    public string? SpellSlotProgressionId { get; init; }
+
+    [JsonRequired]
+    public string? SpellcastingAbilityId { get; init; }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }

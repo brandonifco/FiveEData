@@ -1,5 +1,6 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes.FightingStyles;
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 
@@ -16,6 +17,7 @@ internal sealed class RulesetDefinitionSet
         RaceDefinitionSet races,
         ClassDefinitionSet classes,
         IReadOnlyList<FightingStyleDefinition> fightingStyles,
+        IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<BackgroundDefinition> backgrounds)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
@@ -26,6 +28,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(races);
         ArgumentNullException.ThrowIfNull(classes);
         ArgumentNullException.ThrowIfNull(fightingStyles);
+        ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
 
         SourceDocuments = sourceDocuments;
@@ -36,6 +39,7 @@ internal sealed class RulesetDefinitionSet
         Races = races;
         Classes = classes;
         FightingStyles = fightingStyles;
+        SpellSlotProgressions = spellSlotProgressions;
         Backgrounds = backgrounds;
     }
 
@@ -52,5 +56,10 @@ internal sealed class RulesetDefinitionSet
     public RaceDefinitionSet Races { get; }
     public ClassDefinitionSet Classes { get; }
     public IReadOnlyList<FightingStyleDefinition> FightingStyles { get; }
+
+    public IReadOnlyList<SpellSlotProgressionDefinition>
+        SpellSlotProgressions
+    { get; }
+
     public IReadOnlyList<BackgroundDefinition> Backgrounds { get; }
 }

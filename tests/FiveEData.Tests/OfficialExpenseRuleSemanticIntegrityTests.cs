@@ -348,6 +348,7 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
+            spellSlotProgressions: [],
             backgrounds: []);
     }
 

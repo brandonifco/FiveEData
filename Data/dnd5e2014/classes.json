@@ -108,6 +108,8 @@
         "featureRuleId": "dnd5e2014.class-rule.fighter-extra-attack"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -229,6 +231,8 @@
         "featureRuleId": "dnd5e2014.class-rule.primal-champion"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -365,6 +369,8 @@
         "featureRuleId": "dnd5e2014.class-rule.perfect-self"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -490,6 +496,8 @@
         "featureRuleId": "dnd5e2014.class-rule.stroke-of-luck"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -642,6 +650,8 @@
         "featureRuleId": "dnd5e2014.class-rule.superior-inspiration"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -723,6 +733,8 @@
         "featureRuleId": "dnd5e2014.class-rule.signature-spells"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -806,6 +818,8 @@
         "featureRuleId": "dnd5e2014.class-rule.divine-intervention"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -902,6 +916,8 @@
         "featureRuleId": "dnd5e2014.class-rule.eldritch-master"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.pact-magic",
+    "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1009,6 +1025,8 @@
         "featureRuleId": "dnd5e2014.class-rule.archdruid"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1137,6 +1155,8 @@
         "featureRuleId": "dnd5e2014.class-rule.foe-slayer"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.half-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1256,6 +1276,8 @@
         "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.half-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1345,6 +1367,8 @@
         "featureRuleId": "dnd5e2014.class-rule.sorcerous-restoration"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

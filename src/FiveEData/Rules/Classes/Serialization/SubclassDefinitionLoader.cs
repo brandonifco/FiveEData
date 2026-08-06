@@ -1,6 +1,8 @@
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.Abilities;
 
 namespace FiveEData.Rules.Classes.Serialization;
 
@@ -94,12 +96,24 @@ internal static class SubclassDefinitionLoader
                 "Subclass sources are required.",
                 nameof(data));
 
+        SpellSlotProgressionId? spellSlotProgressionId =
+            data.SpellSlotProgressionId is { } spellSlotProgressionIdValue
+                ? new SpellSlotProgressionId(spellSlotProgressionIdValue)
+                : null;
+
+        AbilityId? spellcastingAbilityId =
+            data.SpellcastingAbilityId is { } spellcastingAbilityIdValue
+                ? new AbilityId(spellcastingAbilityIdValue)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
             classId,
             data.ChosenAtLevel,
             levelFeatureData.Select(ClassDefinitionLoader.MapLevelFeature),
+            spellSlotProgressionId,
+            spellcastingAbilityId,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

@@ -1275,6 +1275,68 @@ public sealed class ClassDataFileTests
             sorcerer.WeaponProficiencyIds.Select(id => id.Value));
     }
 
+    [Theory]
+    [InlineData(
+        "dnd5e2014.class.bard",
+        "dnd5e2014.spell-slot-progression.full-caster",
+        "dnd5e2014.ability.charisma")]
+    [InlineData(
+        "dnd5e2014.class.cleric",
+        "dnd5e2014.spell-slot-progression.full-caster",
+        "dnd5e2014.ability.wisdom")]
+    [InlineData(
+        "dnd5e2014.class.druid",
+        "dnd5e2014.spell-slot-progression.full-caster",
+        "dnd5e2014.ability.wisdom")]
+    [InlineData(
+        "dnd5e2014.class.sorcerer",
+        "dnd5e2014.spell-slot-progression.full-caster",
+        "dnd5e2014.ability.charisma")]
+    [InlineData(
+        "dnd5e2014.class.wizard",
+        "dnd5e2014.spell-slot-progression.full-caster",
+        "dnd5e2014.ability.intelligence")]
+    [InlineData(
+        "dnd5e2014.class.paladin",
+        "dnd5e2014.spell-slot-progression.half-caster",
+        "dnd5e2014.ability.charisma")]
+    [InlineData(
+        "dnd5e2014.class.ranger",
+        "dnd5e2014.spell-slot-progression.half-caster",
+        "dnd5e2014.ability.wisdom")]
+    [InlineData(
+        "dnd5e2014.class.warlock",
+        "dnd5e2014.spell-slot-progression.pact-magic",
+        "dnd5e2014.ability.charisma")]
+    public void CanonicalFile_CastingClassDeclaresExpectedSpellcasting(
+        string classId,
+        string expectedProgressionId,
+        string expectedAbilityId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Equal(
+            expectedProgressionId,
+            @class.SpellSlotProgressionId?.Value);
+        Assert.Equal(
+            expectedAbilityId,
+            @class.SpellcastingAbilityId?.Value);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.rogue")]
+    public void CanonicalFile_NonCasterClassDeclaresNoSpellcasting(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.SpellSlotProgressionId);
+        Assert.Null(@class.SpellcastingAbilityId);
+    }
+
     private static ClassDefinition GetClass(
         IReadOnlyList<ClassDefinition> classes,
         string id)

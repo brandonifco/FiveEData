@@ -18,6 +18,8 @@ public sealed class SubclassDefinitionLoaderTests
               "featureRuleId": "dnd5e2014.class-rule.test"
             }
           ],
+          "spellSlotProgressionId": null,
+          "spellcastingAbilityId": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -45,7 +47,44 @@ public sealed class SubclassDefinitionLoaderTests
             "dnd5e2014.class-rule.test",
             feature.FeatureRuleId.Value);
 
+        Assert.Null(subclass.SpellSlotProgressionId);
+        Assert.Null(subclass.SpellcastingAbilityId);
         Assert.Single(subclass.Sources);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsSpellcastingFields()
+    {
+        SubclassDefinition subclass = Assert.Single(
+            SubclassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.subclass.test",
+                    "name": "Test",
+                    "classId": "dnd5e2014.class.fighter",
+                    "chosenAtLevel": 3,
+                    "levelFeatures": [],
+                    "spellSlotProgressionId":
+                      "extension.spell-slot-progression.test",
+                    "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.Equal(
+            "extension.spell-slot-progression.test",
+            subclass.SpellSlotProgressionId?.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.intelligence",
+            subclass.SpellcastingAbilityId?.Value);
     }
 
     [Fact]

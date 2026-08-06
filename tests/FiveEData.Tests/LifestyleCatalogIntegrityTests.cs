@@ -163,6 +163,7 @@ public sealed class LifestyleCatalogIntegrityTests
             races: new RaceDefinitionSet(races: [], subraces: []),
             classes: new ClassDefinitionSet(classes: [], subclasses: []),
             fightingStyles: [],
+            spellSlotProgressions: [],
             backgrounds: []);
     }
 }

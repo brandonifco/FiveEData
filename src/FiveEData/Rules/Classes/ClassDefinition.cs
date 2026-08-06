@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -23,6 +24,8 @@ public sealed class ClassDefinition
         int skillChoiceCount,
         IEnumerable<SkillId> skillChoiceOptionIds,
         IEnumerable<ClassLevelFeature> levelFeatures,
+        SpellSlotProgressionId? spellSlotProgressionId,
+        AbilityId? spellcastingAbilityId,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -51,6 +54,8 @@ public sealed class ClassDefinition
         SkillChoiceCount = skillChoiceCount;
         SkillChoiceOptionIds = Array.AsReadOnly(skillChoiceOptionIds.ToArray());
         LevelFeatures = Array.AsReadOnly(levelFeatures.ToArray());
+        SpellSlotProgressionId = spellSlotProgressionId;
+        SpellcastingAbilityId = spellcastingAbilityId;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -67,5 +72,7 @@ public sealed class ClassDefinition
     public int SkillChoiceCount { get; }
     public IReadOnlyList<SkillId> SkillChoiceOptionIds { get; }
     public IReadOnlyList<ClassLevelFeature> LevelFeatures { get; }
+    public SpellSlotProgressionId? SpellSlotProgressionId { get; }
+    public AbilityId? SpellcastingAbilityId { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

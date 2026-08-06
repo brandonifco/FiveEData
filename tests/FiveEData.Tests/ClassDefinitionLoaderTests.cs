@@ -34,6 +34,8 @@ public sealed class ClassDefinitionLoaderTests
               "featureRuleId": "dnd5e2014.class-rule.test"
             }
           ],
+          "spellSlotProgressionId": null,
+          "spellcastingAbilityId": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -76,7 +78,55 @@ public sealed class ClassDefinitionLoaderTests
             "dnd5e2014.class-rule.test",
             feature.FeatureRuleId.Value);
 
+        Assert.Null(@class.SpellSlotProgressionId);
+        Assert.Null(@class.SpellcastingAbilityId);
         Assert.Single(@class.Sources);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsSpellcastingFields()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 6,
+                    "primaryAbilityIds": ["dnd5e2014.ability.wisdom"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.wisdom",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId":
+                      "extension.spell-slot-progression.test",
+                    "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.Equal(
+            "extension.spell-slot-progression.test",
+            @class.SpellSlotProgressionId?.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            @class.SpellcastingAbilityId?.Value);
     }
 
     [Fact]

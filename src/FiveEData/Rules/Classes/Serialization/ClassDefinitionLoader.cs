@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -125,6 +126,16 @@ internal static class ClassDefinitionLoader
                 "Class sources are required.",
                 nameof(data));
 
+        SpellSlotProgressionId? spellSlotProgressionId =
+            data.SpellSlotProgressionId is { } spellSlotProgressionIdValue
+                ? new SpellSlotProgressionId(spellSlotProgressionIdValue)
+                : null;
+
+        AbilityId? spellcastingAbilityId =
+            data.SpellcastingAbilityId is { } spellcastingAbilityIdValue
+                ? new AbilityId(spellcastingAbilityIdValue)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -139,6 +150,8 @@ internal static class ClassDefinitionLoader
             data.SkillChoiceCount,
             skillChoiceOptionIdValues.Select(value => new SkillId(value)),
             levelFeatureData.Select(MapLevelFeature),
+            spellSlotProgressionId,
+            spellcastingAbilityId,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

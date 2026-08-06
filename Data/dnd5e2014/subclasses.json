@@ -26,6 +26,8 @@
         "featureRuleId": "dnd5e2014.class-rule.survivor"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -61,6 +63,8 @@
         "featureRuleId": "dnd5e2014.class-rule.relentless"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -100,6 +104,8 @@
         "featureRuleId": "dnd5e2014.class-rule.improved-war-magic"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.third-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -131,6 +137,8 @@
         "featureRuleId": "dnd5e2014.class-rule.retaliation"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -166,6 +174,8 @@
         "featureRuleId": "dnd5e2014.class-rule.totemic-attunement"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -197,6 +207,8 @@
         "featureRuleId": "dnd5e2014.class-rule.quivering-palm"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -228,6 +240,8 @@
         "featureRuleId": "dnd5e2014.class-rule.opportunist"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -259,6 +273,8 @@
         "featureRuleId": "dnd5e2014.class-rule.disciple-of-the-elements"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -294,6 +310,8 @@
         "featureRuleId": "dnd5e2014.class-rule.thiefs-reflexes"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -329,6 +347,8 @@
         "featureRuleId": "dnd5e2014.class-rule.death-strike"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -364,6 +384,8 @@
         "featureRuleId": "dnd5e2014.class-rule.spell-thief"
       }
     ],
+    "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.third-caster",
+    "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -395,6 +417,8 @@
         "featureRuleId": "dnd5e2014.class-rule.peerless-skill"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -426,6 +450,8 @@
         "featureRuleId": "dnd5e2014.class-rule.battle-magic"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -461,6 +487,8 @@
         "featureRuleId": "dnd5e2014.class-rule.spell-resistance"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -496,6 +524,8 @@
         "featureRuleId": "dnd5e2014.class-rule.durable-summons"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -531,6 +561,8 @@
         "featureRuleId": "dnd5e2014.class-rule.greater-portent"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -566,6 +598,8 @@
         "featureRuleId": "dnd5e2014.class-rule.alter-memories"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -601,6 +635,8 @@
         "featureRuleId": "dnd5e2014.class-rule.overchannel"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -636,6 +672,8 @@
         "featureRuleId": "dnd5e2014.class-rule.illusory-reality"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -671,6 +709,8 @@
         "featureRuleId": "dnd5e2014.class-rule.command-undead"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -706,6 +746,8 @@
         "featureRuleId": "dnd5e2014.class-rule.master-transmuter"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -741,6 +783,8 @@
         "featureRuleId": "dnd5e2014.class-rule.visions-of-the-past"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -780,6 +824,8 @@
         "featureRuleId": "dnd5e2014.class-rule.supreme-healing"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -819,6 +865,8 @@
         "featureRuleId": "dnd5e2014.class-rule.corona-of-light"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -858,6 +906,8 @@
         "featureRuleId": "dnd5e2014.class-rule.master-of-nature"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -897,6 +947,8 @@
         "featureRuleId": "dnd5e2014.class-rule.stormborn"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -932,6 +984,8 @@
         "featureRuleId": "dnd5e2014.class-rule.improved-duplicity"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -971,6 +1025,8 @@
         "featureRuleId": "dnd5e2014.class-rule.avatar-of-battle"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1006,6 +1062,8 @@
         "featureRuleId": "dnd5e2014.class-rule.dark-delirium"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1041,6 +1099,8 @@
         "featureRuleId": "dnd5e2014.class-rule.hurl-through-hell"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1076,6 +1136,8 @@
         "featureRuleId": "dnd5e2014.class-rule.create-thrall"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1127,6 +1189,8 @@
         "featureRuleId": "dnd5e2014.class-rule.natures-sanctuary"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1166,6 +1230,8 @@
         "featureRuleId": "dnd5e2014.class-rule.thousand-forms"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1197,6 +1263,8 @@
         "featureRuleId": "dnd5e2014.class-rule.superior-hunters-defense"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1228,6 +1296,8 @@
         "featureRuleId": "dnd5e2014.class-rule.share-spells"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1283,6 +1353,8 @@
         "featureRuleId": "dnd5e2014.class-rule.holy-nimbus"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1338,6 +1410,8 @@
         "featureRuleId": "dnd5e2014.class-rule.elder-champion"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1393,6 +1467,8 @@
         "featureRuleId": "dnd5e2014.class-rule.avenging-angel"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1428,6 +1504,8 @@
         "featureRuleId": "dnd5e2014.class-rule.draconic-presence"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1463,6 +1541,8 @@
         "featureRuleId": "dnd5e2014.class-rule.spell-bombardment"
       }
     ],
+    "spellSlotProgressionId": null,
+    "spellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

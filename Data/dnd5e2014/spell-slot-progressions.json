@@ -1,0 +1,1405 @@
+[
+  {
+    "id": "dnd5e2014.spell-slot-progression.full-caster",
+    "name": "Full Caster",
+    "recoveryRest": "LongRest",
+    "levelEntries": [
+      {
+        "characterLevel": 1,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 2,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 3,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 4,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 5,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 6,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 7,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 8,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 9,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 10,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 11,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 12,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 13,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          },
+          {
+            "spellLevel": 7,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 14,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          },
+          {
+            "spellLevel": 7,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 15,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          },
+          {
+            "spellLevel": 7,
+            "count": 1
+          },
+          {
+            "spellLevel": 8,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 16,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          },
+          {
+            "spellLevel": 7,
+            "count": 1
+          },
+          {
+            "spellLevel": 8,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 17,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          },
+          {
+            "spellLevel": 7,
+            "count": 1
+          },
+          {
+            "spellLevel": 8,
+            "count": 1
+          },
+          {
+            "spellLevel": 9,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 18,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 3
+          },
+          {
+            "spellLevel": 6,
+            "count": 1
+          },
+          {
+            "spellLevel": 7,
+            "count": 1
+          },
+          {
+            "spellLevel": 8,
+            "count": 1
+          },
+          {
+            "spellLevel": 9,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 19,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 3
+          },
+          {
+            "spellLevel": 6,
+            "count": 2
+          },
+          {
+            "spellLevel": 7,
+            "count": 1
+          },
+          {
+            "spellLevel": 8,
+            "count": 1
+          },
+          {
+            "spellLevel": 9,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 20,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 3
+          },
+          {
+            "spellLevel": 6,
+            "count": 2
+          },
+          {
+            "spellLevel": 7,
+            "count": 2
+          },
+          {
+            "spellLevel": 8,
+            "count": 1
+          },
+          {
+            "spellLevel": 9,
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 53,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 57,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 65,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 100,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 112,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell-slot-progression.half-caster",
+    "name": "Half Caster",
+    "recoveryRest": "LongRest",
+    "levelEntries": [
+      {
+        "characterLevel": 1,
+        "slots": []
+      },
+      {
+        "characterLevel": 2,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 3,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 4,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 5,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 6,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 7,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 8,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 9,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 10,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 11,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 12,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 13,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 14,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 15,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 16,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 17,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 18,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 19,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 20,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 3
+          },
+          {
+            "spellLevel": 5,
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 83,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 90,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell-slot-progression.third-caster",
+    "name": "Third Caster",
+    "recoveryRest": "LongRest",
+    "levelEntries": [
+      {
+        "characterLevel": 1,
+        "slots": []
+      },
+      {
+        "characterLevel": 2,
+        "slots": []
+      },
+      {
+        "characterLevel": 3,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 4,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 5,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 6,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 7,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 8,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 9,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 10,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 11,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 12,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 13,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 14,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 15,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 16,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 17,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 18,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 19,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 20,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 4
+          },
+          {
+            "spellLevel": 2,
+            "count": 3
+          },
+          {
+            "spellLevel": 3,
+            "count": 3
+          },
+          {
+            "spellLevel": 4,
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 75,
+        "section": "Chapter 3: Classes"
+      },
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 98,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell-slot-progression.pact-magic",
+    "name": "Pact Magic",
+    "recoveryRest": "ShortOrLongRest",
+    "levelEntries": [
+      {
+        "characterLevel": 1,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 1
+          }
+        ]
+      },
+      {
+        "characterLevel": 2,
+        "slots": [
+          {
+            "spellLevel": 1,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 3,
+        "slots": [
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 4,
+        "slots": [
+          {
+            "spellLevel": 2,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 5,
+        "slots": [
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 6,
+        "slots": [
+          {
+            "spellLevel": 3,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 7,
+        "slots": [
+          {
+            "spellLevel": 4,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 8,
+        "slots": [
+          {
+            "spellLevel": 4,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 9,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 10,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 2
+          }
+        ]
+      },
+      {
+        "characterLevel": 11,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 12,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 13,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 14,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 15,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 16,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "characterLevel": 17,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 4
+          }
+        ]
+      },
+      {
+        "characterLevel": 18,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 4
+          }
+        ]
+      },
+      {
+        "characterLevel": 19,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 4
+          }
+        ]
+      },
+      {
+        "characterLevel": 20,
+        "slots": [
+          {
+            "spellLevel": 5,
+            "count": 4
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 106,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]
