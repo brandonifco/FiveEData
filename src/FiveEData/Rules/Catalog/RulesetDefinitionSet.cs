@@ -1,5 +1,6 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
+using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.Metamagic;
@@ -22,6 +23,7 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<FightingStyleDefinition> fightingStyles,
         IReadOnlyList<MetamagicOptionDefinition> metamagicOptions,
         IReadOnlyList<BattleMasterManeuverDefinition> battleMasterManeuvers,
+        IReadOnlyList<EldritchInvocationDefinition> eldritchInvocations,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
@@ -37,6 +39,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(fightingStyles);
         ArgumentNullException.ThrowIfNull(metamagicOptions);
         ArgumentNullException.ThrowIfNull(battleMasterManeuvers);
+        ArgumentNullException.ThrowIfNull(eldritchInvocations);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -51,6 +54,7 @@ internal sealed class RulesetDefinitionSet
         FightingStyles = fightingStyles;
         MetamagicOptions = metamagicOptions;
         BattleMasterManeuvers = battleMasterManeuvers;
+        EldritchInvocations = eldritchInvocations;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -73,6 +77,9 @@ internal sealed class RulesetDefinitionSet
 
     public IReadOnlyList<BattleMasterManeuverDefinition>
         BattleMasterManeuvers
+    { get; }
+
+    public IReadOnlyList<EldritchInvocationDefinition> EldritchInvocations
     { get; }
 
     public IReadOnlyList<SpellSlotProgressionDefinition>

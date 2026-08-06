@@ -3,6 +3,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
@@ -145,6 +146,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -982,6 +984,8 @@ public sealed class ClassFoundationTests
         MysticArcanumProgressionDetail? mysticArcanumProgression = null,
         FontOfMagicConversionDetail? fontOfMagicConversion = null,
         SongOfRestProgressionDetail? songOfRestProgression = null,
+        EldritchInvocationsKnownProgressionDetail?
+            eldritchInvocationsKnownProgression = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -1018,6 +1022,7 @@ public sealed class ClassFoundationTests
             mysticArcanumProgression,
             fontOfMagicConversion,
             songOfRestProgression,
+            eldritchInvocationsKnownProgression,
             sources ?? [CreateSource()]);
     }
 

@@ -1354,6 +1354,7 @@ public sealed class CatalogIntegrityTests
             fightingStyles: [],
             metamagicOptions: [],
             battleMasterManeuvers: [],
+            eldritchInvocations: [],
             spellSlotProgressions: spellSlotProgressions ?? [],
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: []);

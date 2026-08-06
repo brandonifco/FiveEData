@@ -1,6 +1,7 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
+using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.Metamagic;
@@ -223,6 +224,17 @@ internal static class CatalogIntegrityValidator
                     $"{owner} references missing ability " +
                     $"'{savingThrowAbilityId}'.");
             }
+        }
+
+        foreach (
+            EldritchInvocationDefinition eldritchInvocation
+            in definitions.EldritchInvocations)
+        {
+            ValidateSources(
+                $"Eldritch invocation '{eldritchInvocation.Id}'",
+                eldritchInvocation.Sources,
+                sourceIds,
+                errors);
         }
 
         errors.AddRange(

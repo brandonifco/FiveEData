@@ -165,6 +165,7 @@ public sealed class LifestyleCatalogIntegrityTests
             fightingStyles: [],
             metamagicOptions: [],
             battleMasterManeuvers: [],
+            eldritchInvocations: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

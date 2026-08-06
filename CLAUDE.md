@@ -28,7 +28,8 @@ Mystic Arcanum ([PR #33](https://github.com/brandonifco/FiveEData/pull/33)),
 Font of Magic conversion ([PR #34](https://github.com/brandonifco/FiveEData/pull/34)),
 Song of Rest ([PR #35](https://github.com/brandonifco/FiveEData/pull/35)),
 Metamagic ([PR #36](https://github.com/brandonifco/FiveEData/pull/36)),
-Battle Master maneuvers ([PR #37](https://github.com/brandonifco/FiveEData/pull/37)).
+Battle Master maneuvers ([PR #37](https://github.com/brandonifco/FiveEData/pull/37)),
+Eldritch Invocations ([PR #38](https://github.com/brandonifco/FiveEData/pull/38)).
 Pact Boon was evaluated and deliberately declined (no catalog needed —
 see its section below), documented directly on `main` with no PR since
 no code changed.
@@ -37,16 +38,19 @@ no code changed.
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Every per-level numeric progression is now
-converted. Three of six choice-point catalogs are resolved — Metamagic
+converted. Four of six choice-point catalogs are resolved — Metamagic
 (cost-only catalog), Pact Boon (no catalog needed), Battle Master
-maneuvers (effect-target-plus-save-ability catalog) — each a genuinely
-different outcome, so don't assume any one of the three carries over
-to what's left. Order from here: the other three choice-point catalogs
-(Eldritch Invocations, Elemental Disciplines, Channel Divinity
-options) — verify each one's actual sub-structure from the PHB rather
-than assuming a prior catalog's exact shape — then race trait
-quantization, then a background numeric audit. Stop when that full
-list is done, not before. Check the
+maneuvers (effect-target-plus-save-ability catalog), Eldritch
+Invocations (three independent prerequisite facts plus a separate
+class-level known-count progression) — each a genuinely different
+outcome, so don't assume any one of them carries over to what's left.
+Order from here: the other two choice-point catalogs (Elemental
+Disciplines, Channel Divinity options) — verify each one's actual
+sub-structure and option count from the PHB directly rather than
+assuming a prior catalog's shape or a remembered count (Eldritch
+Invocations' own "~20" estimate undershot the real 32) — then race
+trait quantization, then a background numeric audit. Stop when that
+full list is done, not before. Check the
 "Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
@@ -64,12 +68,12 @@ even after multiple attempts`; a `gh run rerun` was kicked off and sat
 `queued` for nearly an hour without progressing; PR #27's workflow run
 never even started. Confirmed via githubstatus.com (not just inferred
 from symptoms) as a major outage, still showing `"indicator":"major"`
-("Partial System Outage") as of PR #37, 5+ hours in. Given the size of
+("Partial System Outage") as of PR #38, 6+ hours in. Given the size of
 the remaining work list, the user gave a **standing authorization for
 the duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26 through #37 were all merged this way. **Once CI is confirmed
+PR #26 through #38 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1755,16 +1759,75 @@ maneuver only ever routes its die one way.
   Combat Superiority assertions folded into the existing
   `SubclassDataFileTests`/`SubclassDefinitionLoaderTests`/
   `SubclassFoundationTests`).
-- **Remaining, tracked but not started:** the other three choice-point
-  catalogs (Eldritch Invocations, Elemental Disciplines, Channel
-  Divinity options) — three data points now exist for how a choice
-  point resolves (Metamagic: cost-only catalog; Pact Boon: no catalog
-  at all; Battle Master maneuvers: effect-target-plus-save-ability
-  catalog), so verify each remaining catalog's actual shape from the
-  PHB rather than assuming any single one of the three precedents
-  carries over by default. After those: race trait quantization
-  (Darkvision range, resistance/advantage grants, granted spells), and
-  a background audit (likely little to quantize — most background
+**Eldritch Invocations converted twentieth — by far the largest single
+choice-point catalog quantized so far, and the first with a real,
+independent class-level "known count" progression sitting alongside
+it.** CLAUDE.md's own earlier estimate ("~20 options") undershot the
+real PHB list badly: reading pages 110-111 directly found 32 named
+invocations, not ~20 — another instance of the standing "verify
+against the real text, not a remembered/estimated count" discipline
+paying for itself. Two separate new domains, the same class-level/
+choice-point split Battle Master's own pass established:
+
+- **`Rules/Classes/EldritchInvocationsKnown/`** (embedded on
+  `ClassDefinition`, Warlock-only) captures the Warlock table's own
+  "Invocations Known" column as a sparse breakpoint list — 2nd→2,
+  5th→3, 7th→4, 9th→5, 12th→6, 15th→7, 17th→8 — reusing
+  `ValidatePointsProgression` directly (a character-level, monotonic
+  count, exactly the shape that helper was built for). The table's own
+  further clause ("you can choose one of the invocations you know and
+  replace it with another... that you could learn at that level") is
+  a swap mechanic, not a number, and stays citation-only, matching
+  Metamagic's and Mystic Arcanum's own re-choice clauses.
+- **`Rules/Classes/EldritchInvocations/`** (a new top-level catalog,
+  `dnd5e2014.eldritch-invocation.*`, all 32 named options) captures
+  each invocation's prerequisites as three independent, non-exclusive
+  facts — `RequiresEldritchBlastCantrip: bool` (3 invocations),
+  `RequiredMinimumLevel: int?` (13), and `RequiresPactBoon:
+  WarlockPactBoon?` (5, three of which *also* carry a level) — rather
+  than Battle Master's single mutually-exclusive enum, since a real
+  invocation can and does stack more than one prerequisite type at
+  once (Chains of Carceri needs both 15th level *and* Pact of the
+  Chain). 11 of the 32 have no prerequisite at all.
+- **`WarlockPactBoon`, a new 3-value enum (`Chain`/`Blade`/`Tome`),
+  exists specifically because Pact Boon itself has no catalog to
+  reference.** Pact Boon was deliberately declined as its own domain
+  (see above) since none of its three options carried a leveled
+  numeric fact — but five Eldritch Invocations still need to name
+  *which* Pact Boon option they require, a real, checkable fact this
+  pass is scoped to capture regardless of whether the thing being
+  referenced got its own ID type. A small enum local to this domain
+  was the honest fix, not a reason to retroactively build the Pact
+  Boon catalog after all — the two decisions don't conflict, they
+  answer different questions (does Pact Boon itself have quantifiable
+  data of its own vs. does something else need to reference *which*
+  Pact Boon option was chosen).
+- Public API: two new public types per new domain
+  (`EldritchInvocationId`/`Definition`/`Catalog`, plus
+  `WarlockPactBoon`; `EldritchInvocationsKnownGrant`/
+  `ProgressionDetail`) and one new member each on the already-public
+  `Dnd5e2014Ruleset`/`RulesetDefinitionSet` (the new catalog) and
+  `ClassDefinition` (the new embedded progression), wired through the
+  same pattern every prior catalog/progression in this pass used. Full
+  gate green: Debug+Release build 0 warnings, 1637 tests (was 1589;
+  +48 new — `EldritchInvocationFoundationTests`/
+  `EldritchInvocationDefinitionLoaderTests`/
+  `EldritchInvocationDataFileTests` for the new catalog, plus Invocations
+  Known assertions folded into the existing `ClassDataFileTests`).
+- **Remaining, tracked but not started:** the other two choice-point
+  catalogs (Elemental Disciplines, Channel Divinity options) — four
+  data points now exist for how a choice point resolves (Metamagic:
+  cost-only catalog; Pact Boon: no catalog at all; Battle Master
+  maneuvers: effect-target-plus-save-ability catalog; Eldritch
+  Invocations: three independent non-exclusive prerequisite facts plus
+  a separate class-level known-count progression), so verify each
+  remaining catalog's actual shape from the PHB rather than assuming
+  any one of the four precedents carries over by default — and don't
+  trust a remembered option count either, count them directly off the
+  page the way Eldritch Invocations' own 32-vs-~20 correction just
+  proved necessary. After those: race trait quantization (Darkvision
+  range, resistance/advantage grants, granted spells), and a
+  background audit (likely little to quantize — most background
   features are narrative/social, not numeric).
 
 ## Test conventions

@@ -1,0 +1,322 @@
+[
+  {
+    "id": "dnd5e2014.eldritch-invocation.agonizing-blast",
+    "name": "Agonizing Blast",
+    "requiresEldritchBlastCantrip": true,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.armor-of-shadows",
+    "name": "Armor of Shadows",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.ascendant-step",
+    "name": "Ascendant Step",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 9,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.beast-speech",
+    "name": "Beast Speech",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.beguiling-influence",
+    "name": "Beguiling Influence",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.bewitching-whispers",
+    "name": "Bewitching Whispers",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 7,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.book-of-ancient-secrets",
+    "name": "Book of Ancient Secrets",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": "Tome",
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.chains-of-carceri",
+    "name": "Chains of Carceri",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 15,
+    "requiresPactBoon": "Chain",
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.devils-sight",
+    "name": "Devil's Sight",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.dreadful-word",
+    "name": "Dreadful Word",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 7,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.eldritch-sight",
+    "name": "Eldritch Sight",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.eldritch-spear",
+    "name": "Eldritch Spear",
+    "requiresEldritchBlastCantrip": true,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.eyes-of-the-rune-keeper",
+    "name": "Eyes of the Rune Keeper",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.fiendish-vigor",
+    "name": "Fiendish Vigor",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.gaze-of-two-minds",
+    "name": "Gaze of Two Minds",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.lifedrinker",
+    "name": "Lifedrinker",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 12,
+    "requiresPactBoon": "Blade",
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.mask-of-many-faces",
+    "name": "Mask of Many Faces",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.master-of-myriad-forms",
+    "name": "Master of Myriad Forms",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 15,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.minions-of-chaos",
+    "name": "Minions of Chaos",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 9,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.mire-the-mind",
+    "name": "Mire the Mind",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 5,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.misty-visions",
+    "name": "Misty Visions",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.one-with-shadows",
+    "name": "One with Shadows",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 5,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.otherworldly-leap",
+    "name": "Otherworldly Leap",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 9,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.repelling-blast",
+    "name": "Repelling Blast",
+    "requiresEldritchBlastCantrip": true,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.sculptor-of-flesh",
+    "name": "Sculptor of Flesh",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 7,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.sign-of-ill-omen",
+    "name": "Sign of Ill Omen",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 5,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.thief-of-five-fates",
+    "name": "Thief of Five Fates",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.thirsting-blade",
+    "name": "Thirsting Blade",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 5,
+    "requiresPactBoon": "Blade",
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.visions-of-distant-realms",
+    "name": "Visions of Distant Realms",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 15,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.voice-of-the-chain-master",
+    "name": "Voice of the Chain Master",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": null,
+    "requiresPactBoon": "Chain",
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.whispers-of-the-grave",
+    "name": "Whispers of the Grave",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 9,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.eldritch-invocation.witch-sight",
+    "name": "Witch Sight",
+    "requiresEldritchBlastCantrip": false,
+    "requiredMinimumLevel": 15,
+    "requiresPactBoon": null,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
+    ]
+  }
+]

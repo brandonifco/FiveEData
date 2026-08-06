@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
+using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
@@ -130,6 +131,14 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public SongOfRestProgressionDetailData? SongOfRestProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public EldritchInvocationsKnownProgressionDetailData?
+        EldritchInvocationsKnownProgression
     {
         get;
         init;

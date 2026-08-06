@@ -4,6 +4,8 @@ using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
+using FiveEData.Rules.Classes.EldritchInvocationsKnown;
+using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
@@ -237,6 +239,14 @@ internal static class ClassDefinitionLoader
                     songOfRestProgressionData)
                 : null;
 
+        EldritchInvocationsKnownProgressionDetail?
+            eldritchInvocationsKnownProgression =
+                data.EldritchInvocationsKnownProgression is
+                    { } eldritchInvocationsKnownProgressionData
+                    ? EldritchInvocationsKnownProgressionDetailDataMapper.Map(
+                        eldritchInvocationsKnownProgressionData)
+                    : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -266,6 +276,7 @@ internal static class ClassDefinitionLoader
             mysticArcanumProgression,
             fontOfMagicConversion,
             songOfRestProgression,
+            eldritchInvocationsKnownProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

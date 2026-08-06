@@ -165,6 +165,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             fightingStyles: [],
             metamagicOptions: [],
             battleMasterManeuvers: [],
+            eldritchInvocations: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: []);

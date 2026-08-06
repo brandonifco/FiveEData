@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -177,6 +178,18 @@ internal static class ClassDefinitionValidator
         if (@class.SongOfRestProgression is { } songOfRestProgression)
         {
             ValidateSongOfRestProgression(songOfRestProgression, errors);
+        }
+
+        if (@class.EldritchInvocationsKnownProgression is
+            { } eldritchInvocationsKnownProgression)
+        {
+            ValidatePointsProgression(
+                eldritchInvocationsKnownProgression.InvocationsKnownByLevel
+                    .Select(
+                        grant =>
+                            (grant.CharacterLevel, grant.InvocationsKnown)),
+                "Eldritch Invocations known",
+                errors);
         }
 
         return errors;

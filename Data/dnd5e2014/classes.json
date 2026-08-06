@@ -123,6 +123,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -307,6 +308,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -450,25 +452,82 @@
     "sneakAttackProgression": null,
     "kiProgression": {
       "pointsByLevel": [
-        { "characterLevel": 2, "points": 2 },
-        { "characterLevel": 3, "points": 3 },
-        { "characterLevel": 4, "points": 4 },
-        { "characterLevel": 5, "points": 5 },
-        { "characterLevel": 6, "points": 6 },
-        { "characterLevel": 7, "points": 7 },
-        { "characterLevel": 8, "points": 8 },
-        { "characterLevel": 9, "points": 9 },
-        { "characterLevel": 10, "points": 10 },
-        { "characterLevel": 11, "points": 11 },
-        { "characterLevel": 12, "points": 12 },
-        { "characterLevel": 13, "points": 13 },
-        { "characterLevel": 14, "points": 14 },
-        { "characterLevel": 15, "points": 15 },
-        { "characterLevel": 16, "points": 16 },
-        { "characterLevel": 17, "points": 17 },
-        { "characterLevel": 18, "points": 18 },
-        { "characterLevel": 19, "points": 19 },
-        { "characterLevel": 20, "points": 20 }
+        {
+          "characterLevel": 2,
+          "points": 2
+        },
+        {
+          "characterLevel": 3,
+          "points": 3
+        },
+        {
+          "characterLevel": 4,
+          "points": 4
+        },
+        {
+          "characterLevel": 5,
+          "points": 5
+        },
+        {
+          "characterLevel": 6,
+          "points": 6
+        },
+        {
+          "characterLevel": 7,
+          "points": 7
+        },
+        {
+          "characterLevel": 8,
+          "points": 8
+        },
+        {
+          "characterLevel": 9,
+          "points": 9
+        },
+        {
+          "characterLevel": 10,
+          "points": 10
+        },
+        {
+          "characterLevel": 11,
+          "points": 11
+        },
+        {
+          "characterLevel": 12,
+          "points": 12
+        },
+        {
+          "characterLevel": 13,
+          "points": 13
+        },
+        {
+          "characterLevel": 14,
+          "points": 14
+        },
+        {
+          "characterLevel": 15,
+          "points": 15
+        },
+        {
+          "characterLevel": 16,
+          "points": 16
+        },
+        {
+          "characterLevel": 17,
+          "points": 17
+        },
+        {
+          "characterLevel": 18,
+          "points": 18
+        },
+        {
+          "characterLevel": 19,
+          "points": 19
+        },
+        {
+          "characterLevel": 20,
+          "points": 20
+        }
       ],
       "recoversOnShortRest": true
     },
@@ -481,6 +540,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -696,6 +756,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -860,10 +921,34 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": {
       "dieByLevel": [
-        { "characterLevel": 1, "die": { "count": 1, "sides": 6 } },
-        { "characterLevel": 5, "die": { "count": 1, "sides": 8 } },
-        { "characterLevel": 10, "die": { "count": 1, "sides": 10 } },
-        { "characterLevel": 15, "die": { "count": 1, "sides": 12 } }
+        {
+          "characterLevel": 1,
+          "die": {
+            "count": 1,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 5,
+          "die": {
+            "count": 1,
+            "sides": 8
+          }
+        },
+        {
+          "characterLevel": 10,
+          "die": {
+            "count": 1,
+            "sides": 10
+          }
+        },
+        {
+          "characterLevel": 15,
+          "die": {
+            "count": 1,
+            "sides": 12
+          }
+        }
       ],
       "rangeFeet": 60,
       "durationMinutes": 10
@@ -873,12 +958,37 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": {
       "dieByLevel": [
-        { "characterLevel": 2, "die": { "count": 1, "sides": 6 } },
-        { "characterLevel": 9, "die": { "count": 1, "sides": 8 } },
-        { "characterLevel": 13, "die": { "count": 1, "sides": 10 } },
-        { "characterLevel": 17, "die": { "count": 1, "sides": 12 } }
+        {
+          "characterLevel": 2,
+          "die": {
+            "count": 1,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 9,
+          "die": {
+            "count": 1,
+            "sides": 8
+          }
+        },
+        {
+          "characterLevel": 13,
+          "die": {
+            "count": 1,
+            "sides": 10
+          }
+        },
+        {
+          "characterLevel": 17,
+          "die": {
+            "count": 1,
+            "sides": 12
+          }
+        }
       ]
     },
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -975,6 +1085,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1071,15 +1182,25 @@
     "bardicInspirationProgression": null,
     "channelDivinityProgression": {
       "usesByLevel": [
-        { "characterLevel": 2, "usesPerRest": 1 },
-        { "characterLevel": 6, "usesPerRest": 2 },
-        { "characterLevel": 18, "usesPerRest": 3 }
+        {
+          "characterLevel": 2,
+          "usesPerRest": 1
+        },
+        {
+          "characterLevel": 6,
+          "usesPerRest": 2
+        },
+        {
+          "characterLevel": 18,
+          "usesPerRest": 3
+        }
       ],
       "recoversOnShortRest": true
     },
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1190,15 +1311,59 @@
     "channelDivinityProgression": null,
     "mysticArcanumProgression": {
       "arcanumByLevel": [
-        { "characterLevel": 11, "spellLevel": 6 },
-        { "characterLevel": 13, "spellLevel": 7 },
-        { "characterLevel": 15, "spellLevel": 8 },
-        { "characterLevel": 17, "spellLevel": 9 }
+        {
+          "characterLevel": 11,
+          "spellLevel": 6
+        },
+        {
+          "characterLevel": 13,
+          "spellLevel": 7
+        },
+        {
+          "characterLevel": 15,
+          "spellLevel": 8
+        },
+        {
+          "characterLevel": 17,
+          "spellLevel": 9
+        }
       ],
       "recoversOnShortRest": false
     },
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": {
+      "invocationsKnownByLevel": [
+        {
+          "characterLevel": 2,
+          "invocationsKnown": 2
+        },
+        {
+          "characterLevel": 5,
+          "invocationsKnown": 3
+        },
+        {
+          "characterLevel": 7,
+          "invocationsKnown": 4
+        },
+        {
+          "characterLevel": 9,
+          "invocationsKnown": 5
+        },
+        {
+          "characterLevel": 12,
+          "invocationsKnown": 6
+        },
+        {
+          "characterLevel": 15,
+          "invocationsKnown": 7
+        },
+        {
+          "characterLevel": 17,
+          "invocationsKnown": 8
+        }
+      ]
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1344,6 +1509,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1487,6 +1653,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1636,6 +1803,7 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1733,25 +1901,82 @@
     "kiProgression": null,
     "sorceryPointsProgression": {
       "pointsByLevel": [
-        { "characterLevel": 2, "points": 2 },
-        { "characterLevel": 3, "points": 3 },
-        { "characterLevel": 4, "points": 4 },
-        { "characterLevel": 5, "points": 5 },
-        { "characterLevel": 6, "points": 6 },
-        { "characterLevel": 7, "points": 7 },
-        { "characterLevel": 8, "points": 8 },
-        { "characterLevel": 9, "points": 9 },
-        { "characterLevel": 10, "points": 10 },
-        { "characterLevel": 11, "points": 11 },
-        { "characterLevel": 12, "points": 12 },
-        { "characterLevel": 13, "points": 13 },
-        { "characterLevel": 14, "points": 14 },
-        { "characterLevel": 15, "points": 15 },
-        { "characterLevel": 16, "points": 16 },
-        { "characterLevel": 17, "points": 17 },
-        { "characterLevel": 18, "points": 18 },
-        { "characterLevel": 19, "points": 19 },
-        { "characterLevel": 20, "points": 20 }
+        {
+          "characterLevel": 2,
+          "points": 2
+        },
+        {
+          "characterLevel": 3,
+          "points": 3
+        },
+        {
+          "characterLevel": 4,
+          "points": 4
+        },
+        {
+          "characterLevel": 5,
+          "points": 5
+        },
+        {
+          "characterLevel": 6,
+          "points": 6
+        },
+        {
+          "characterLevel": 7,
+          "points": 7
+        },
+        {
+          "characterLevel": 8,
+          "points": 8
+        },
+        {
+          "characterLevel": 9,
+          "points": 9
+        },
+        {
+          "characterLevel": 10,
+          "points": 10
+        },
+        {
+          "characterLevel": 11,
+          "points": 11
+        },
+        {
+          "characterLevel": 12,
+          "points": 12
+        },
+        {
+          "characterLevel": 13,
+          "points": 13
+        },
+        {
+          "characterLevel": 14,
+          "points": 14
+        },
+        {
+          "characterLevel": 15,
+          "points": 15
+        },
+        {
+          "characterLevel": 16,
+          "points": 16
+        },
+        {
+          "characterLevel": 17,
+          "points": 17
+        },
+        {
+          "characterLevel": 18,
+          "points": 18
+        },
+        {
+          "characterLevel": 19,
+          "points": 19
+        },
+        {
+          "characterLevel": 20,
+          "points": 20
+        }
       ],
       "recoversOnShortRest": false
     },
@@ -1763,14 +1988,30 @@
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": {
       "slotCostByLevel": [
-        { "spellSlotLevel": 1, "sorceryPointCost": 2 },
-        { "spellSlotLevel": 2, "sorceryPointCost": 3 },
-        { "spellSlotLevel": 3, "sorceryPointCost": 5 },
-        { "spellSlotLevel": 4, "sorceryPointCost": 6 },
-        { "spellSlotLevel": 5, "sorceryPointCost": 7 }
+        {
+          "spellSlotLevel": 1,
+          "sorceryPointCost": 2
+        },
+        {
+          "spellSlotLevel": 2,
+          "sorceryPointCost": 3
+        },
+        {
+          "spellSlotLevel": 3,
+          "sorceryPointCost": 5
+        },
+        {
+          "spellSlotLevel": 4,
+          "sorceryPointCost": 6
+        },
+        {
+          "spellSlotLevel": 5,
+          "sorceryPointCost": 7
+        }
       ]
     },
     "songOfRestProgression": null,
+    "eldritchInvocationsKnownProgression": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
