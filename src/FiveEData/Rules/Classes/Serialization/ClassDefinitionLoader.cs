@@ -7,6 +7,8 @@ using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
+using FiveEData.Rules.Classes.MysticArcanum;
+using FiveEData.Rules.Classes.MysticArcanum.Serialization;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
@@ -212,6 +214,13 @@ internal static class ClassDefinitionLoader
                     channelDivinityProgressionData)
                 : null;
 
+        MysticArcanumProgressionDetail? mysticArcanumProgression =
+            data.MysticArcanumProgression is
+                { } mysticArcanumProgressionData
+                ? MysticArcanumProgressionDetailDataMapper.Map(
+                    mysticArcanumProgressionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -238,6 +247,7 @@ internal static class ClassDefinitionLoader
             auraOfCourage,
             bardicInspirationProgression,
             channelDivinityProgression,
+            mysticArcanumProgression,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

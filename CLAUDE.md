@@ -23,17 +23,18 @@ Ki and Sorcery Points ([PR #28](https://github.com/brandonifco/FiveEData/pull/28
 Wild Shape and Circle Forms ([PR #29](https://github.com/brandonifco/FiveEData/pull/29)),
 Paladin auras ([PR #30](https://github.com/brandonifco/FiveEData/pull/30)),
 Bardic Inspiration die ([PR #31](https://github.com/brandonifco/FiveEData/pull/31)),
-Channel Divinity uses ([PR #32](https://github.com/brandonifco/FiveEData/pull/32)).
+Channel Divinity uses ([PR #32](https://github.com/brandonifco/FiveEData/pull/32)),
+Mystic Arcanum ([PR #33](https://github.com/brandonifco/FiveEData/pull/33)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Order: the rest of the per-level numeric
-progressions (Mystic Arcanum, Font of Magic conversion, and Song of
-Rest — this last one newly discovered alongside Bardic Inspiration,
-not in the original list, see the Bardic Inspiration section below
-for why it's separate), then the larger choice-point catalogs
-(Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
+progressions (Font of Magic conversion, and Song of Rest — this last
+one newly discovered alongside Bardic Inspiration, not in the
+original list, see the Bardic Inspiration section below for why it's
+separate), then the larger choice-point catalogs (Eldritch
+Invocations, Battle Master maneuvers, Metamagic, Elemental
 Disciplines, Channel Divinity options, Pact Boon), then race trait
 quantization, then a background numeric audit. Stop when that full
 list is done, not before. Check the
@@ -59,7 +60,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26, #27, #28, #29, #30, #31, and #32 were all merged this way. **Once CI is confirmed
+PR #26, #27, #28, #29, #30, #31, #32, and #33 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1460,16 +1461,41 @@ logic was needed, just a new call site.
   `ChannelDivinityProgressionDetail`) and one new member on
   `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
   1455 tests (was 1434; +21 new).
+
+**Mystic Arcanum converted fourteenth — Warlock's own spell-tier-by-
+level progression (11th → 6th-level spell, 13th → 7th, 15th → 8th,
+17th → 9th, each usable once per long rest), verified against page
+108 rather than assumed from the well-known "one 6th/7th/8th/9th
+level slot equivalent" 5e shape.** The fourth progression in this
+pass to reuse `ClassDefinitionValidator`'s shared
+`ValidatePointsProgression` helper without any new validation logic —
+`MysticArcanumGrant` is the same `(CharacterLevel, Value)` shape
+Ki/Sorcery Points/Channel Divinity already established, just with the
+value being a spell level (1-9) instead of a resource count.
+
+- **`RecoversOnShortRest` stays `false` here, the third distinct
+  value in this field's short history** (Ki: `true`, Sorcery Points:
+  `false`, Channel Divinity: `true`) — Mystic Arcanum's own text says
+  only "You regain all uses of Mystic Arcanum when you finish a long
+  rest," no short-rest option at all, confirmed by reading the actual
+  sentence rather than assuming a warlock resource follows Pact
+  Magic's own short-or-long-rest pattern from the spell slot pass.
+  Every one of these four leveled-progression PRs has now landed on
+  whichever value the text actually says, not a class-family default.
+- Public API: two new public types (`MysticArcanumGrant`,
+  `MysticArcanumProgressionDetail`) and one new member on
+  `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
+  1476 tests (was 1455; +21 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Mystic Arcanum, Font of Magic conversion, and
-  Song of Rest, newly noted under Bardic Inspiration above) — each
-  single-class like Rage/Sneak Attack, so each gets the same "embedded
-  value object, not a catalog" treatment by default, but verify every
-  time the way Divine Strike's three-way split, Wild Shape/Circle
-  Forms' compound cross-reference, the Paladin auras' real
-  consciousness-gate asymmetry, Bardic Inspiration's no-resource-pool
-  shape, and Channel Divinity's Cleric-scales/Paladin-doesn't split
-  all show is actually necessary — the larger choice-point catalogs
+  numeric progressions (Font of Magic conversion, and Song of Rest,
+  newly noted under Bardic Inspiration above) — each single-class like
+  Rage/Sneak Attack, so each gets the same "embedded value object, not
+  a catalog" treatment by default, but verify every time the way
+  Divine Strike's three-way split, Wild Shape/Circle Forms' compound
+  cross-reference, the Paladin auras' real consciousness-gate
+  asymmetry, Bardic Inspiration's no-resource-pool shape, and Channel
+  Divinity's/Mystic Arcanum's own recovery-timing verifications all
+  show is actually necessary — the larger choice-point catalogs
   (Eldritch Invocations, Battle Master maneuvers, Metamagic, Elemental
   Disciplines, Channel Divinity options, Pact Boon), race trait
   quantization (Darkvision range,
@@ -1616,9 +1642,9 @@ race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
 Sorcery Points, Wild Shape, Circle Forms, the Paladin auras, Bardic
-Inspiration, and Channel Divinity uses have been converted; every
-other named feature across Classes/Races/Backgrounds is still a
-`RuleId` citation with no
+Inspiration, Channel Divinity uses, and Mystic Arcanum have been
+converted; every other named feature across Classes/Races/Backgrounds
+is still a `RuleId` citation with no
 mechanical payload.
 
 ## Build
