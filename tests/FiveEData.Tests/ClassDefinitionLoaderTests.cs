@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -45,6 +46,7 @@ public sealed class ClassDefinitionLoaderTests
           "wildShapeProgression": null,
           "auraOfProtection": null,
           "auraOfCourage": null,
+          "bardicInspirationProgression": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -97,6 +99,7 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Null(@class.WildShapeProgression);
         Assert.Null(@class.AuraOfProtection);
         Assert.Null(@class.AuraOfCourage);
+        Assert.Null(@class.BardicInspirationProgression);
         Assert.Single(@class.Sources);
     }
 
@@ -162,6 +165,7 @@ public sealed class ClassDefinitionLoaderTests
                     "wildShapeProgression": null,
                     "auraOfProtection": null,
                     "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -264,6 +268,7 @@ public sealed class ClassDefinitionLoaderTests
                     "wildShapeProgression": null,
                     "auraOfProtection": null,
                     "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -337,6 +342,7 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "auraOfProtection": null,
                     "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -413,6 +419,7 @@ public sealed class ClassDefinitionLoaderTests
                       },
                       "requiresConsciousness": true
                     },
+                    "bardicInspirationProgression": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -440,6 +447,81 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Equal(1, auraOfProtection.SavingThrowBonusMinimum);
 
         Assert.True(auraOfCourage.RequiresConsciousness);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsBardicInspirationProgression()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.charisma"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.dexterity",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": {
+                      "dieByLevel": [
+                        {
+                          "characterLevel": 1,
+                          "die": { "count": 1, "sides": 6 }
+                        },
+                        {
+                          "characterLevel": 5,
+                          "die": { "count": 1, "sides": 8 }
+                        }
+                      ],
+                      "rangeFeet": 60,
+                      "durationMinutes": 10
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        BardicInspirationProgressionDetail bardicInspirationProgression =
+            @class.BardicInspirationProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Bardic Inspiration progression.");
+
+        Assert.Equal(2, bardicInspirationProgression.DieByLevel.Count);
+        Assert.Equal(
+            6,
+            bardicInspirationProgression.DieByLevel[0].Die.Sides);
+        Assert.Equal(
+            8,
+            bardicInspirationProgression.DieByLevel[1].Die.Sides);
+        Assert.Equal(60, bardicInspirationProgression.RangeFeet);
+        Assert.Equal(10, bardicInspirationProgression.DurationMinutes);
     }
 
     [Fact]

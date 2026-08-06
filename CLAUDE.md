@@ -21,19 +21,22 @@ Sneak Attack ([PR #26](https://github.com/brandonifco/FiveEData/pull/26)),
 Divine Strike ([PR #27](https://github.com/brandonifco/FiveEData/pull/27)),
 Ki and Sorcery Points ([PR #28](https://github.com/brandonifco/FiveEData/pull/28)),
 Wild Shape and Circle Forms ([PR #29](https://github.com/brandonifco/FiveEData/pull/29)),
-Paladin auras ([PR #30](https://github.com/brandonifco/FiveEData/pull/30)).
+Paladin auras ([PR #30](https://github.com/brandonifco/FiveEData/pull/30)),
+Bardic Inspiration die ([PR #31](https://github.com/brandonifco/FiveEData/pull/31)).
 
 **Standing instruction, 2026-08-06: work the entire "Quantized
 mechanics" remaining list to completion, one item per branch/PR, each
 gated and merged before starting the next, CLAUDE.md updated in the
 same commit every time.** Order: the rest of the per-level numeric
-progressions (Ki/sorcery points, Wild Shape/Circle Forms caps, auras,
-Bardic Inspiration die, Channel Divinity uses, Mystic Arcanum, Font of
-Magic conversion), then the larger choice-point catalogs (Eldritch
-Invocations, Battle Master maneuvers, Metamagic, Elemental
-Disciplines, Channel Divinity options, Pact Boon), then race trait
-quantization, then a background numeric audit. Stop when that full
-list is done, not before. Check the "Remaining, tracked but not
+progressions (Channel Divinity uses, Mystic Arcanum, Font of Magic
+conversion, and Song of Rest — this last one newly discovered
+alongside Bardic Inspiration, not in the original list, see the
+Bardic Inspiration section below for why it's separate), then the
+larger choice-point catalogs (Eldritch Invocations, Battle Master
+maneuvers, Metamagic, Elemental Disciplines, Channel Divinity options,
+Pact Boon), then race trait quantization, then a background numeric
+audit. Stop when that full list is done, not before. Check the
+"Remaining, tracked but not
 started" bullet at the end of "Quantized mechanics" below for the
 live, shrinking version of this same list — it's kept current there
 after every merge; this paragraph is the standing directive, that
@@ -55,7 +58,7 @@ remaining work list, the user gave a **standing authorization for the
 duration of this outage** (not a one-off, and not the
 ask-every-time-default described below) to merge every PR directly off
 the local gate without waiting for CI until GitHub Actions recovers —
-PR #26, #27, #28, #29, and #30 were all merged this way. **Once CI is confirmed
+PR #26, #27, #28, #29, #30, and #31 were all merged this way. **Once CI is confirmed
 green again on a real PR, go back to waiting for it normally** — this
 authorization is scoped to the outage, not a permanent standing
 exception.
@@ -1394,17 +1397,54 @@ template.
   `AuraOfDevotionDetail`, `AuraOfWardingDetail`) and two new members
   apiece on `ClassDefinition`/`SubclassDefinition`. Full gate green:
   Debug+Release build 0 warnings, 1412 tests (was 1388; +24 new).
+
+**Bardic Inspiration die converted twelfth — the first quantized
+progression with no personal resource pool at all**, structurally
+different from Ki/Sorcery Points despite a superficially similar "a
+die/points that scales with level" shape: a Bardic Inspiration die is
+granted to *another* creature via a bonus action and is simply gone
+once rolled — there's no cap, no rest-recovery rule, nothing that
+looks like `UsesPerRest`/`RecoversOnShortRest` on Ki/Sorcery Points,
+so `BardicInspirationProgressionDetail` doesn't carry either field.
+
+- **Die *size* increases (d6→d8→d10→d12), not die *count*** — the
+  breakpoint list (1st/5th/10th/15th, read off the Bard table) is a
+  `BardicInspirationDieGrant` list validated the mirror image of Sneak
+  Attack's own check: count must stay constant (always 1) while sides
+  strictly increase, rather than Sneak Attack's constant sides with
+  increasing count. Confirmed both dimensions from the actual table
+  rather than assuming "leveled die progression" always means the same
+  thing Sneak Attack's did.
+- **`RangeFeet` (60) and `DurationMinutes` (10) captured alongside the
+  leveled die**, the same "capture the full mechanical fact set, not
+  just the leveled number" call as Rage's `DurationMinutes`/Sneak
+  Attack's `RequiresFinesseOrRangedWeapon` — both are flat, unleveled
+  facts read directly from the feature's own prose ("within 60 feet of
+  you," "within the next 10 minutes"), not part of the Bard table
+  itself.
+- **Song of Rest's own die-size progression (2nd/9th/13th/17th,
+  visible in the same table column) was deliberately left untouched**
+  by this PR — it's a separate named feature from Bardic Inspiration
+  with its own citation, not a second column of the same mechanic, so
+  quantizing it is a distinct future item, not folded in here just
+  because it happened to be on the same page.
+- Public API: two new public types (`BardicInspirationDieGrant`,
+  `BardicInspirationProgressionDetail`) and one new member on
+  `ClassDefinition`. Full gate green: Debug+Release build 0 warnings,
+  1434 tests (was 1412; +22 new).
 - **Remaining, tracked but not started:** the rest of the per-level
-  numeric progressions (Bardic Inspiration die, Channel Divinity uses,
-  Mystic Arcanum, Font of Magic conversion) — each single-class like
-  Rage/Sneak Attack, so each gets the same "embedded value object, not
-  a catalog" treatment by default, but verify every time the way
-  Divine Strike's three-way split, Wild Shape/Circle Forms' compound
-  cross-reference, and the Paladin auras' real consciousness-gate
-  asymmetry all show is actually necessary — the larger choice-point
-  catalogs (Eldritch Invocations, Battle Master maneuvers, Metamagic,
-  Elemental Disciplines, Channel Divinity options, Pact Boon), race
-  trait quantization (Darkvision range,
+  numeric progressions (Channel Divinity uses, Mystic Arcanum, Font of
+  Magic conversion — and, newly noted above, Song of Rest, which
+  wasn't on the original list) — each single-class like Rage/Sneak
+  Attack, so each gets the same "embedded value object, not a
+  catalog" treatment by default, but verify every time the way Divine
+  Strike's three-way split, Wild Shape/Circle Forms' compound
+  cross-reference, the Paladin auras' real consciousness-gate
+  asymmetry, and Bardic Inspiration's no-resource-pool shape all show
+  is actually necessary — the larger choice-point catalogs (Eldritch
+  Invocations, Battle Master maneuvers, Metamagic, Elemental
+  Disciplines, Channel Divinity options, Pact Boon), race trait
+  quantization (Darkvision range,
   resistance/advantage grants, granted spells), and a background audit
   (likely little to quantize — most background features are
   narrative/social, not numeric).
@@ -1547,9 +1587,9 @@ quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
 reference — as of this writing, only Fighting Style, spellcasting slot
 tables/abilities, Extra Attack, Rage, Sneak Attack, Divine Strike, Ki,
-Sorcery Points, Wild Shape, Circle Forms, and the Paladin auras have
-been converted; every other named feature across
-Classes/Races/Backgrounds is still a `RuleId` citation with no
+Sorcery Points, Wild Shape, Circle Forms, the Paladin auras, and
+Bardic Inspiration have been converted; every other named feature
+across Classes/Races/Backgrounds is still a `RuleId` citation with no
 mechanical payload.
 
 ## Build
