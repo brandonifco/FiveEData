@@ -1,6 +1,7 @@
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.FightingStyles;
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
@@ -117,6 +118,11 @@ internal static class CatalogIntegrityValidator
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
+        HashSet<SpellSlotProgressionId> spellSlotProgressionIds =
+            definitions.SpellSlotProgressions
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         errors.AddRange(
             ClassCatalogIntegrityValidator.Validate(
                 definitions.Classes,
@@ -124,7 +130,19 @@ internal static class CatalogIntegrityValidator
                 abilityIds,
                 skillIds,
                 weaponIds,
-                ruleIds));
+                ruleIds,
+                spellSlotProgressionIds));
+
+        foreach (
+            SpellSlotProgressionDefinition spellSlotProgression
+            in definitions.SpellSlotProgressions)
+        {
+            ValidateSources(
+                $"Spell slot progression '{spellSlotProgression.Id}'",
+                spellSlotProgression.Sources,
+                sourceIds,
+                errors);
+        }
 
         HashSet<ClassId> classIds =
             definitions.Classes.Classes

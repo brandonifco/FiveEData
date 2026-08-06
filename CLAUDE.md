@@ -937,16 +937,88 @@ from memory.
   fields, not a DSL; a class-availability list kept separate from the
   gateway citation); it didn't prove every mechanism shape a later
   catalog will need.
-- **Remaining, tracked but not started:** spellcasting slot tables
-  (full/half/third-caster + Warlock's distinct Pact Magic table), the
-  other per-level numeric progressions (Extra Attack, Rage, Sneak
-  Attack, Divine Strike, Ki/sorcery points, Wild Shape/Circle Forms
-  caps, auras, Bardic Inspiration die, Channel Divinity uses, Mystic
-  Arcanum, Font of Magic conversion), the larger choice-point catalogs
-  above, race trait quantization (Darkvision range, resistance/
-  advantage grants, granted spells), and a background audit (likely
-  little to quantize — most background features are narrative/social,
-  not numeric).
+**Spellcasting slot tables converted second**, closing the first item
+on that "remaining" list. Every caster's `Spellcasting`/`Pact Magic`
+`RuleId` citation stayed exactly as it was — this only adds the two
+facts a game actually needs to run the resource economy (how many
+slots, of what level, at each character level, and which ability
+governs it), not the surrounding prose (cantrips-known/spells-known
+counts, ritual casting, spellbook mechanics all stay citation-only,
+a deliberate scope cut — see below).
+
+- **A new domain, `SpellSlotProgression`, referenced by ID rather than
+  duplicated per class.** All 5 full casters (Bard, Cleric, Druid,
+  Sorcerer, Wizard) share one byte-identical slot table; Paladin and
+  Ranger share a second (the "half-caster" table); Eldritch Knight and
+  Arcane Trickster share a third (the "third-caster" table); Warlock's
+  Pact Magic is a fourth, structurally different table (one slot
+  *level* per character level rather than a spread across several
+  spell levels, and — read directly off the Warlock's own page rather
+  than assumed — recovers on a short *or* long rest, not long rest
+  only like every other caster). Four `SpellSlotProgressionDefinition`
+  rows total, cross-referenced by ID from `ClassDefinition`
+  (`SpellSlotProgressionId?`/`SpellcastingAbilityId?`, both null for
+  the four non-caster base classes) and from `SubclassDefinition` (null
+  for every subclass except Eldritch Knight/Arcane Trickster, which
+  grant casting at the subclass level, not the class level) — the same
+  "reference a shared row by ID instead of repeating it" shape
+  `RuleId` itself already established, chosen specifically because
+  repeating a 20-row table five times in `classes.json` would have
+  been real, avoidable duplication.
+- **The table shape is uniform on purpose.** A `SpellSlotLevelEntry` is
+  always present for character levels 1-20 even where a caster has no
+  slots yet (Ranger/Paladin at 1st, Eldritch Knight/Arcane Trickster at
+  1st-2nd) — an empty `Slots` list, not a missing row — so every
+  progression has the same 20-entry shape regardless of when its
+  caster actually starts casting, and `SpellSlotProgressionDefinitionValidator`
+  enforces exactly one entry per level 1-20, not "at least the levels
+  that matter."
+- **Every number was read directly off the PHB, not derived from the
+  well-known 5e slot-progression tables from memory** — the project's
+  own standing discipline, re-applied here specifically because a
+  table this size is exactly where a memory slip is easy and costly.
+  Confirmed page-for-page: Wizard's own table (full caster), Ranger's
+  *and* Paladin's own tables independently (half caster — not assumed
+  shared from one, checked against both, the same "verify every time"
+  rule the Classes pass established for `RuleId` sharing), Eldritch
+  Knight's *and* Arcane Trickster's own tables independently (third
+  caster), and Warlock's own table (Pact Magic).
+- **`SpellcastingAbilityId` rides alongside the slot progression on
+  the same two fields**, not a separate lookup — without it, a slot
+  table alone can't compute an attack bonus or save DC, so it was
+  added in the same pass rather than deferred: Charisma (Bard,
+  Sorcerer, Paladin, Warlock), Wisdom (Cleric, Druid, Ranger),
+  Intelligence (Wizard, Eldritch Knight, Arcane Trickster) — each
+  verified against its own class's "Spellcasting Ability" paragraph,
+  not inferred from the class's primary ability score.
+- **Deliberately still citation-only, not folded into this pass:**
+  cantrips-known-by-level and spells-known-by-level (both are real
+  per-class tables, but *not* shared across classes the way slots are
+  — each full caster's own cantrip progression differs — so
+  quantizing them is a second, separate content-authoring pass, not a
+  reference-by-ID problem like this one was), ritual casting,
+  spellbook/preparation mechanics, and Sorcery Points/Font of Magic
+  (a Sorcerer-specific resource, picked up instead under the
+  per-level-numeric-progressions item below).
+- Public API: four new public types
+  (`SpellSlotProgressionId`/`Definition`/`Catalog`, plus
+  `SpellSlotRecoveryRest`/`SpellSlotCount`/`SpellSlotLevelEntry`) and
+  two new members apiece on the already-public `ClassDefinition`/
+  `SubclassDefinition`. Full gate green: Debug+Release build 0
+  warnings, 1214 tests (was 1158; +56 new — foundation/loader/data-file
+  coverage for the new domain, plus per-class and per-subclass
+  spellcasting-field assertions folded into the existing
+  `ClassDataFileTests`/`SubclassDataFileTests`).
+- **Remaining, tracked but not started:** the other per-level numeric
+  progressions (Extra Attack, Rage, Sneak Attack, Divine Strike,
+  Ki/sorcery points, Wild Shape/Circle Forms caps, auras, Bardic
+  Inspiration die, Channel Divinity uses, Mystic Arcanum, Font of
+  Magic conversion), the larger choice-point catalogs (Eldritch
+  Invocations, Battle Master maneuvers, Metamagic, Elemental
+  Disciplines, Channel Divinity options, Pact Boon), race trait
+  quantization (Darkvision range, resistance/advantage grants, granted
+  spells), and a background audit (likely little to quantize — most
+  background features are narrative/social, not numeric).
 
 ## Test conventions
 
@@ -1084,9 +1156,10 @@ around.
 **"Complete" above means citation-complete, not mechanically
 quantized.** Read "Quantized mechanics" below before assuming a class,
 race, or background feature exposes real numbers rather than a page
-reference — as of this writing, only Fighting Style has been
-converted; every other named feature across Classes/Races/Backgrounds
-is still a `RuleId` citation with no mechanical payload.
+reference — as of this writing, only Fighting Style and spellcasting
+slot tables/abilities have been converted; every other named feature
+across Classes/Races/Backgrounds is still a `RuleId` citation with no
+mechanical payload.
 
 ## Build
 

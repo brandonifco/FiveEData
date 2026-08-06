@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -131,6 +132,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -315,6 +318,8 @@ public sealed class ClassFoundationTests
         int skillChoiceCount = 0,
         IEnumerable<SkillId>? skillChoiceOptionIds = null,
         IEnumerable<ClassLevelFeature>? levelFeatures = null,
+        SpellSlotProgressionId? spellSlotProgressionId = null,
+        AbilityId? spellcastingAbilityId = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -336,6 +341,8 @@ public sealed class ClassFoundationTests
             skillChoiceCount,
             skillChoiceOptionIds ?? [],
             levelFeatures ?? [],
+            spellSlotProgressionId,
+            spellcastingAbilityId,
             sources ?? [CreateSource()]);
     }
 

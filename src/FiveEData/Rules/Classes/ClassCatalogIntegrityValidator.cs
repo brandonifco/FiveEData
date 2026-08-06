@@ -1,4 +1,5 @@
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -15,7 +16,8 @@ internal static class ClassCatalogIntegrityValidator
         IReadOnlySet<AbilityId> abilityIds,
         IReadOnlySet<SkillId> skillIds,
         IReadOnlySet<WeaponId> weaponIds,
-        IReadOnlySet<RuleId> ruleIds)
+        IReadOnlySet<RuleId> ruleIds,
+        IReadOnlySet<SpellSlotProgressionId> spellSlotProgressionIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(sourceIds);
@@ -23,6 +25,7 @@ internal static class ClassCatalogIntegrityValidator
         ArgumentNullException.ThrowIfNull(skillIds);
         ArgumentNullException.ThrowIfNull(weaponIds);
         ArgumentNullException.ThrowIfNull(ruleIds);
+        ArgumentNullException.ThrowIfNull(spellSlotProgressionIds);
 
         var errors = new List<string>();
 
@@ -89,6 +92,14 @@ internal static class ClassCatalogIntegrityValidator
                         $"'{feature.FeatureRuleId}'.");
                 }
             }
+
+            ValidateSpellcasting(
+                owner,
+                @class.SpellSlotProgressionId,
+                @class.SpellcastingAbilityId,
+                spellSlotProgressionIds,
+                abilityIds,
+                errors);
         }
 
         foreach (
@@ -115,9 +126,49 @@ internal static class ClassCatalogIntegrityValidator
                         $"'{feature.FeatureRuleId}'.");
                 }
             }
+
+            ValidateSpellcasting(
+                owner,
+                subclass.SpellSlotProgressionId,
+                subclass.SpellcastingAbilityId,
+                spellSlotProgressionIds,
+                abilityIds,
+                errors);
         }
 
         return errors;
+    }
+
+    private static void ValidateSpellcasting(
+        string owner,
+        SpellSlotProgressionId? spellSlotProgressionId,
+        AbilityId? spellcastingAbilityId,
+        IReadOnlySet<SpellSlotProgressionId> spellSlotProgressionIds,
+        IReadOnlySet<AbilityId> abilityIds,
+        ICollection<string> errors)
+    {
+        if (spellSlotProgressionId is { } progressionId &&
+            !spellSlotProgressionIds.Contains(progressionId))
+        {
+            errors.Add(
+                $"{owner} references missing spell slot progression " +
+                $"'{progressionId}'.");
+        }
+
+        if (spellcastingAbilityId is { } abilityId &&
+            !abilityIds.Contains(abilityId))
+        {
+            errors.Add(
+                $"{owner} references missing spellcasting ability " +
+                $"'{abilityId}'.");
+        }
+
+        if (spellSlotProgressionId is null != spellcastingAbilityId is null)
+        {
+            errors.Add(
+                $"{owner} must define both a spell slot progression " +
+                "and a spellcasting ability, or neither.");
+        }
     }
 
     private static void ValidateSources(

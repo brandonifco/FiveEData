@@ -1468,6 +1468,50 @@ public sealed class SubclassDataFileTests
         Assert.Equal(103, source.Page);
     }
 
+    [Theory]
+    [InlineData("dnd5e2014.subclass.eldritch-knight")]
+    [InlineData("dnd5e2014.subclass.arcane-trickster")]
+    public void CanonicalFile_ThirdCasterSubclassDeclaresExpectedSpellcasting(
+        string subclassId)
+    {
+        SubclassDefinition subclass =
+            GetSubclass(LoadSubclasses(), subclassId);
+
+        Assert.Equal(
+            "dnd5e2014.spell-slot-progression.third-caster",
+            subclass.SpellSlotProgressionId?.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.intelligence",
+            subclass.SpellcastingAbilityId?.Value);
+    }
+
+    [Fact]
+    public void CanonicalFile_NonCastingSubclassesDeclareNoSpellcasting()
+    {
+        string[] castingSubclassIds =
+        [
+            "dnd5e2014.subclass.eldritch-knight",
+            "dnd5e2014.subclass.arcane-trickster"
+        ];
+
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        foreach (
+            SubclassDefinition subclass
+            in subclasses.Where(
+                subclass => !castingSubclassIds.Contains(subclass.Id.Value)))
+        {
+            Assert.True(
+                subclass.SpellSlotProgressionId is null,
+                $"{subclass.Id} unexpectedly declares a spell slot " +
+                "progression.");
+            Assert.True(
+                subclass.SpellcastingAbilityId is null,
+                $"{subclass.Id} unexpectedly declares a spellcasting " +
+                "ability.");
+        }
+    }
+
     private static SubclassDefinition GetSubclass(
         IReadOnlyList<SubclassDefinition> subclasses,
         string id)

@@ -1,6 +1,8 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.Spellcasting.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -97,6 +99,14 @@ public sealed class CatalogIntegrityTests
             SubclassDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "subclasses.json"));
 
+        IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
+            SpellSlotProgressionDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "spell-slot-progressions.json"));
+
         IReadOnlyList<RuleDefinition> rules = LoadAllRules(root);
 
         IReadOnlyList<ArmorDefinition> armor =
@@ -184,7 +194,8 @@ public sealed class CatalogIntegrityTests
                     races: races,
                     subraces: subraces,
                     classes: classes,
-                    subclasses: subclasses)));
+                    subclasses: subclasses,
+                    spellSlotProgressions: spellSlotProgressions)));
     }
 
     [Fact]
@@ -1279,7 +1290,9 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<RaceDefinition>? races = null,
         IReadOnlyList<SubraceDefinition>? subraces = null,
         IReadOnlyList<ClassDefinition>? classes = null,
-        IReadOnlyList<SubclassDefinition>? subclasses = null)
+        IReadOnlyList<SubclassDefinition>? subclasses = null,
+        IReadOnlyList<SpellSlotProgressionDefinition>?
+            spellSlotProgressions = null)
     {
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
@@ -1325,6 +1338,7 @@ public sealed class CatalogIntegrityTests
                 classes: classes ?? [],
                 subclasses: subclasses ?? []),
             fightingStyles: [],
+            spellSlotProgressions: spellSlotProgressions ?? [],
             backgrounds: []);
     }
 

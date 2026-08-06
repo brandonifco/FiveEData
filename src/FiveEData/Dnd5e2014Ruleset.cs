@@ -36,6 +36,7 @@ public sealed class Dnd5e2014Ruleset
         ClassCatalog classes,
         SubclassCatalog subclasses,
         FightingStyleCatalog fightingStyles,
+        SpellSlotProgressionCatalog spellSlotProgressions,
         BackgroundCatalog backgrounds,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
@@ -61,6 +62,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(classes);
         ArgumentNullException.ThrowIfNull(subclasses);
         ArgumentNullException.ThrowIfNull(fightingStyles);
+        ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
@@ -86,6 +88,7 @@ public sealed class Dnd5e2014Ruleset
         Classes = classes;
         Subclasses = subclasses;
         FightingStyles = fightingStyles;
+        SpellSlotProgressions = spellSlotProgressions;
         Backgrounds = backgrounds;
         Sources = sources;
         Rules = rules;
@@ -119,6 +122,7 @@ public sealed class Dnd5e2014Ruleset
     public ClassCatalog Classes { get; }
     public SubclassCatalog Subclasses { get; }
     public FightingStyleCatalog FightingStyles { get; }
+    public SpellSlotProgressionCatalog SpellSlotProgressions { get; }
     public BackgroundCatalog Backgrounds { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }

@@ -4,6 +4,8 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.FightingStyles.Serialization;
+using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.Spellcasting.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -102,6 +104,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string FightingStylesResource =
         "FiveEData.Data.dnd5e2014.fighting-styles.json";
+
+    private const string SpellSlotProgressionsResource =
+        "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
 
     private const string BackgroundsResource =
         "FiveEData.Data.dnd5e2014.backgrounds.json";
@@ -259,6 +264,11 @@ internal static class Dnd5e2014RulesetLoader
             FightingStyleDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(FightingStylesResource));
 
+        IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
+            SpellSlotProgressionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    SpellSlotProgressionsResource));
+
         IReadOnlyList<BackgroundDefinition> backgrounds =
             BackgroundDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(BackgroundsResource));
@@ -406,6 +416,7 @@ internal static class Dnd5e2014RulesetLoader
             races: raceDefinitionSet,
             classes: classDefinitionSet,
             fightingStyles: fightingStyles,
+            spellSlotProgressions: spellSlotProgressions,
             backgrounds: backgrounds);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
@@ -449,6 +460,8 @@ internal static class Dnd5e2014RulesetLoader
             classes: new ClassCatalog(classes),
             subclasses: new SubclassCatalog(subclasses),
             fightingStyles: new FightingStyleCatalog(fightingStyles),
+            spellSlotProgressions:
+                new SpellSlotProgressionCatalog(spellSlotProgressions),
             backgrounds: new BackgroundCatalog(backgrounds),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));

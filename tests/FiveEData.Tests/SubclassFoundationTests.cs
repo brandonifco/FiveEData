@@ -1,7 +1,9 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.Abilities;
 
 namespace FiveEData.Tests;
 
@@ -57,6 +59,8 @@ public sealed class SubclassFoundationTests
             new ClassId("dnd5e2014.class.fighter"),
             3,
             [],
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -73,6 +77,8 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -207,6 +213,8 @@ public sealed class SubclassFoundationTests
         string classId = "dnd5e2014.class.fighter",
         int chosenAtLevel = 3,
         IEnumerable<ClassLevelFeature>? levelFeatures = null,
+        SpellSlotProgressionId? spellSlotProgressionId = null,
+        AbilityId? spellcastingAbilityId = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -215,6 +223,8 @@ public sealed class SubclassFoundationTests
             new ClassId(classId),
             chosenAtLevel,
             levelFeatures ?? [],
+            spellSlotProgressionId,
+            spellcastingAbilityId,
             sources ?? [CreateSource()]);
     }
 
