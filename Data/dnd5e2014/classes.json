@@ -1016,5 +1016,133 @@
         "section": "Chapter 3: Classes"
       }
     ]
+  },
+  {
+    "id": "dnd5e2014.class.ranger",
+    "name": "Ranger",
+    "hitDieSides": 10,
+    "primaryAbilityIds": [
+      "dnd5e2014.ability.dexterity",
+      "dnd5e2014.ability.wisdom"
+    ],
+    "requiresAllPrimaryAbilities": true,
+    "savingThrowProficiencyIds": [
+      "dnd5e2014.ability.strength",
+      "dnd5e2014.ability.dexterity"
+    ],
+    "armorProficiencyCategories": [
+      "Light",
+      "Medium"
+    ],
+    "proficientWithShields": true,
+    "weaponProficiencyCategories": [
+      "Simple",
+      "Martial"
+    ],
+    "weaponProficiencyIds": [],
+    "skillChoiceCount": 3,
+    "skillChoiceOptionIds": [
+      "dnd5e2014.skill.animal-handling",
+      "dnd5e2014.skill.athletics",
+      "dnd5e2014.skill.insight",
+      "dnd5e2014.skill.investigation",
+      "dnd5e2014.skill.nature",
+      "dnd5e2014.skill.perception",
+      "dnd5e2014.skill.stealth",
+      "dnd5e2014.skill.survival"
+    ],
+    "levelFeatures": [
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.favored-enemy"
+      },
+      {
+        "level": 1,
+        "featureRuleId": "dnd5e2014.class-rule.natural-explorer"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.fighting-style"
+      },
+      {
+        "level": 2,
+        "featureRuleId": "dnd5e2014.class-rule.ranger-spellcasting"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.ranger-archetype"
+      },
+      {
+        "level": 3,
+        "featureRuleId": "dnd5e2014.class-rule.primeval-awareness"
+      },
+      {
+        "level": 4,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 5,
+        "featureRuleId": "dnd5e2014.class-rule.extra-attack"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.favored-enemy"
+      },
+      {
+        "level": 6,
+        "featureRuleId": "dnd5e2014.class-rule.natural-explorer"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.lands-stride"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.natural-explorer"
+      },
+      {
+        "level": 10,
+        "featureRuleId": "dnd5e2014.class-rule.hide-in-plain-sight"
+      },
+      {
+        "level": 12,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.favored-enemy"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.vanish"
+      },
+      {
+        "level": 16,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 18,
+        "featureRuleId": "dnd5e2014.class-rule.feral-senses"
+      },
+      {
+        "level": 19,
+        "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
+      },
+      {
+        "level": 20,
+        "featureRuleId": "dnd5e2014.class-rule.foe-slayer"
+      }
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 90,
+        "section": "Chapter 3: Classes"
+      }
+    ]
   }
 ]

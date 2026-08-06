@@ -653,6 +653,48 @@ this in advance — here's how it actually resolved:
   identical text, no complications this time (unlike Warlock's
   table/prose conflict).
 
+**Ranger was the tenth class built**, and the first to supply *three*
+new cross-class shares in one pass rather than a same-class or
+same-page finding — all three discovered by reading Ranger's actual
+text and checking it against classes built in entirely separate,
+already-merged PRs, not just the most recently built one:
+- **`Fighting Style` is shared with Fighter's existing entry.** Ranger's
+  gateway sentence ("you adopt a particular style of fighting as your
+  specialty. Choose one of the following options. You can't take a
+  Fighting Style option more than once...") is word-for-word identical
+  to Fighter's own (module the "At 2nd level" trigger clause, already
+  handled by `LevelFeatures` rather than the citation text). Ranger
+  offers only 4 of Fighter's 6 named options (no Great Weapon
+  Fighting/Protection) — confirmed this doesn't block sharing, since the
+  citation never enumerated which options belong to which class in the
+  first place; a shared choice-point `RuleId` was never a promise that
+  every consuming class offers the identical option set, only that the
+  *gateway mechanic's own wording* matches.
+- **`Extra Attack` joins the existing Barbarian/Monk share**, using
+  their exact "Beginning at 5th level..." wording rather than Fighter's
+  own divergent (extra-scaling) version — a third confirmation of that
+  specific shared entry, not a new one.
+- **`Land's Stride` turned out to already exist, word-for-word, as
+  Circle of the Land's own entry** (a Druid subclass feature from two
+  classes and two merged PRs earlier). Ranger's version differs only in
+  trigger level (8th vs. Circle of the Land's 6th) — everything else,
+  including the `entangle`-spell example, matches exactly. This is the
+  first share discovered across genuinely non-adjacent classes (Druid
+  wasn't the class immediately before Ranger — Warlock was), which is
+  the real proof the "verify against every earlier class, not just the
+  last one" framing (added during Druid's `Timeless Body` collision) is
+  necessary and not just cautious phrasing: a same-page or same-build
+  comparison alone would never have caught this one.
+- **No new archetype-specific `RuleId`s split by a template this time**
+  — Hunter's and Beast Master's own features are each uniquely named
+  with no repeated-template-across-siblings shape (unlike Wizard's
+  Savants or Cleric's Divine Strike), so this class contributed sharing
+  *discoveries* without also contributing a new *splitting* precedent.
+  `Hunter's Prey`/`Defensive Tactics`/`Multiattack`/`Superior Hunter's
+  Defense` each fold their own named sub-options (Colossus Slayer/Giant
+  Killer/Horde Breaker, etc.) into one citation apiece, the same
+  choice-point treatment as `Pact Boon` and `Fighting Style` itself.
+
 ## Test conventions
 
 Per vocabulary domain (see `tests/FiveEData.Tests/Condition*Tests.cs` for the
@@ -688,7 +730,7 @@ full dotted ID (`"dnd5e2014.damage-type.bludgeoning"`) to match.
 ## Status
 
 Phases are tracked only in commit history (`git log --oneline`), not in a
-separate planning doc. As of Phase 21: equipment (weapons, armor, shields,
+separate planning doc. As of Phase 22: equipment (weapons, armor, shields,
 adventuring gear, tools, mounts, vehicles, trade goods), expenses
 (lifestyles, food & drink, hospitality, mundane services), creature
 vocabulary (abilities, skills, languages, sizes, conditions, damage types,
@@ -703,41 +745,43 @@ Valor), Wizard (all 8 arcane traditions — Abjuration, Conjuration,
 Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation),
 Cleric (all 7 divine domains — Knowledge, Life, Light, Nature, Tempest,
 Trickery, War), Warlock (all 3 otherworldly patrons — the Archfey, the
-Fiend, the Great Old One), and Druid (both circles — Circle of the Land,
-Circle of the Moon) are built — see "Classes" above, including the
-cross-class `RuleId` sharing question, resolved with evidence from all
-nine (most recently: `Timeless Body` turned out to be a second
-`Unarmored Defense`-shaped collision, this time caught by cross-checking
-an already-merged earlier class — Monk — rather than within the same
-build, confirming the "verify every time" discipline holds across both
-"new class vs. its own immediate predecessor" and "new class vs. any
-earlier one" collision shapes). Druid also resolved a forward-reference
-written back during Fighter's own build (`Fighter... has no exceptions
-to model... unlike Druid's nonmetal-only restriction"`): the restriction
+Fiend, the Great Old One), Druid (both circles — Circle of the Land,
+Circle of the Moon), and Ranger (both archetypes — Hunter, Beast Master)
+are built — see "Classes" above, including the cross-class `RuleId`
+sharing question, resolved with evidence from all ten (most recently:
+Ranger contributed three separate cross-class shares in one pass —
+`Fighting Style` with Fighter, `Extra Attack` with the existing
+Barbarian/Monk share, and `Land's Stride` with Circle of the Land, a
+*Druid* subclass feature from two merged PRs earlier. That last one is
+the clearest evidence yet that collision/sharing checks need to cover
+every previously-built class, not just the one immediately before —
+Land's Stride would never have surfaced by comparing Ranger only against
+Druid's neighbor, Warlock). Druid resolved a forward-reference written
+back during Fighter's own build (`Fighter... has no exceptions to
+model... unlike Druid's nonmetal-only restriction"`): the restriction
 stays unmodeled, the same category of gap as unmodeled tool-proficiency
 choices, since it's prose on the `Armor:` line, not a separate
 mechanical feature, and no field exists (or has a second consumer
-justifying one) for a material-restricted-proficiency axis. The other 3
-PHB classes (Paladin, Ranger, Sorcerer) are not yet built — note that
-all of them are full or half spellcasters like the eight already built,
-so the core-`Spellcasting`-as-single-citation approach carries forward
-directly (matching whatever that class's table actually names the
-feature, per Warlock's "Pact Magic" finding — verify, don't assume
+justifying one) for a material-restricted-proficiency axis. The other 2
+PHB classes (Paladin, Sorcerer) are not yet built — note that both are
+spellcasters like the nine already built, so the core-`Spellcasting`-
+as-single-citation approach carries forward directly (matching whatever
+that class's table actually names the feature — verify, don't assume
 "Spellcasting"); when picking one up, re-derive RuleId cross-class-
 sharing decisions against the precedent in "Classes" above (default to
 sharing a generic-named mechanic unless the actual PHB text diverges —
-verified, not assumed, every single time; prefix on a name collision
-with a different mechanic, checking against *every* earlier class, not
-just the most recent one) rather than assuming it's settled for good.
-Use the cleanly-scanned PHB PDF (`~/Downloads/Player's Handbook.pdf`,
-reliable per-page footers) for citations, not the archive.org OCR export
-used for the original Bard pass (see "Classes" above, end of the Bard
-section, for why). Not yet started: backgrounds, spells, magic items,
-and combat/adventuring rule prose beyond the existing rules citation
-index (`Data/dnd5e2014/rules/`, split per-domain — see "Architecture"
-above). Feats (and, by extension, Variant Human) are out of scope — they
-aren't part of the free 2014 SRD this project's provenance model is
-built around.
+verified, not assumed, every single time, against *every* earlier
+class's own entries, not just the most recently built one; prefix on a
+name collision with a different mechanic) rather than assuming it's
+settled for good. Use the cleanly-scanned PHB PDF
+(`~/Downloads/Player's Handbook.pdf`, reliable per-page footers) for
+citations, not the archive.org OCR export used for the original Bard
+pass (see "Classes" above, end of the Bard section, for why). Not yet
+started: backgrounds, spells, magic items, and combat/adventuring rule
+prose beyond the existing rules citation index (`Data/dnd5e2014/rules/`,
+split per-domain — see "Architecture" above). Feats (and, by extension,
+Variant Human) are out of scope — they aren't part of the free 2014 SRD
+this project's provenance model is built around.
 
 ## Build
 
