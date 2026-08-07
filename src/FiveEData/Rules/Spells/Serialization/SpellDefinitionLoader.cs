@@ -149,7 +149,9 @@ internal static class SpellDefinitionLoader
             data.Somatic ?? throw Missing("somatic component"),
             data.Material ?? throw Missing("material component"),
             data.MaterialDescription,
-            data.MaterialCostGoldPieces);
+            data.MaterialCostGoldPieces,
+            data.MaterialIsConsumed
+            ?? throw Missing("material consumed flag"));
     }
 
     private static SpellDuration MapDuration(SpellDurationData data)

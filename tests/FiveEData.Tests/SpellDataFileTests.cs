@@ -11,12 +11,12 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(42, LoadCanonical().Count);
+        Assert.Equal(56, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
         Assert.Equal(
-            15,
+            29,
             LoadCanonical().Count(spell => spell.Level == 1));
     }
 
@@ -31,7 +31,7 @@ public sealed class SpellDataFileTests
     }
 
     [Fact]
-    public void FirstLevelBatchContainsExactlyTheAThroughCSpells()
+    public void FirstLevelBatchContainsExactlyTheAThroughFSpells()
     {
         Assert.Equal(
             [
@@ -49,7 +49,21 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.compelled-duel",
                 "dnd5e2014.spell.comprehend-languages",
                 "dnd5e2014.spell.create-or-destroy-water",
-                "dnd5e2014.spell.cure-wounds"
+                "dnd5e2014.spell.cure-wounds",
+                "dnd5e2014.spell.detect-evil-and-good",
+                "dnd5e2014.spell.detect-magic",
+                "dnd5e2014.spell.detect-poison-and-disease",
+                "dnd5e2014.spell.disguise-self",
+                "dnd5e2014.spell.dissonant-whispers",
+                "dnd5e2014.spell.divine-favor",
+                "dnd5e2014.spell.ensnaring-strike",
+                "dnd5e2014.spell.entangle",
+                "dnd5e2014.spell.expeditious-retreat",
+                "dnd5e2014.spell.faerie-fire",
+                "dnd5e2014.spell.false-life",
+                "dnd5e2014.spell.feather-fall",
+                "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.fog-cloud"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 1)
@@ -101,7 +115,13 @@ public sealed class SpellDataFileTests
     public void RitualsAreExactlyTheTaggedFirstLevelSpells()
     {
         Assert.Equal(
-            ["dnd5e2014.spell.alarm", "dnd5e2014.spell.comprehend-languages"],
+            [
+                "dnd5e2014.spell.alarm",
+                "dnd5e2014.spell.comprehend-languages",
+                "dnd5e2014.spell.detect-magic",
+                "dnd5e2014.spell.detect-poison-and-disease",
+                "dnd5e2014.spell.find-familiar"
+            ],
             LoadCanonical()
                 .Where(spell => spell.IsRitual)
                 .Select(spell => spell.Id.Value)
@@ -144,17 +164,50 @@ public sealed class SpellDataFileTests
     }
 
     [Fact]
-    public void ChromaticOrbIsTheOnlyCostedMaterialSoFar()
+    public void CostedMaterialsAreTrackedSeparatelyFromConsumedOnes()
     {
-        SpellDefinition[] costed = LoadCanonical()
-            .Where(spell =>
-                spell.Components.MaterialCostGoldPieces is not null)
-            .ToArray();
+        // Chromatic Orb's 50 gp diamond is kept; Find Familiar's 10 gp of
+        // charcoal and incense is destroyed. Cost and consumption are
+        // independent facts, which is why they are separate fields.
+        Assert.Equal(
+            ["dnd5e2014.spell.chromatic-orb", "dnd5e2014.spell.find-familiar"],
+            LoadCanonical()
+                .Where(spell =>
+                    spell.Components.MaterialCostGoldPieces is not null)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
 
-        SpellDefinition only = Assert.Single(costed);
+        SpellComponents orb = Get("dnd5e2014.spell.chromatic-orb").Components;
+        Assert.Equal(50, orb.MaterialCostGoldPieces);
+        Assert.False(orb.MaterialIsConsumed);
 
-        Assert.Equal("dnd5e2014.spell.chromatic-orb", only.Id.Value);
-        Assert.Equal(50, only.Components.MaterialCostGoldPieces);
+        SpellComponents familiar =
+            Get("dnd5e2014.spell.find-familiar").Components;
+        Assert.Equal(10, familiar.MaterialCostGoldPieces);
+        Assert.True(familiar.MaterialIsConsumed);
+    }
+
+    [Fact]
+    public void FeatherFallIsTheOnlyReactionSpellSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell => spell.CastingTime.Unit
+                    == SpellCastingTimeUnit.Reaction));
+
+        Assert.Equal("dnd5e2014.spell.feather-fall", only.Id.Value);
+    }
+
+    [Fact]
+    public void FindFamiliarIsTheOnlyHourLongCastingSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell => spell.CastingTime.Unit
+                    == SpellCastingTimeUnit.Hour));
+
+        Assert.Equal("dnd5e2014.spell.find-familiar", only.Id.Value);
+        Assert.True(only.IsRitual);
     }
 
     [Fact]

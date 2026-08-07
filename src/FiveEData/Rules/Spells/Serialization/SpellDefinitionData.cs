@@ -79,6 +79,9 @@ internal sealed class SpellComponentsData
 
     [JsonRequired]
     public int? MaterialCostGoldPieces { get; init; }
+
+    [JsonRequired]
+    public bool? MaterialIsConsumed { get; init; }
 }
 
 internal sealed class SpellDurationData

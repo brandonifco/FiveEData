@@ -19,7 +19,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -61,7 +62,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a tiny bell and a piece of fine silver wire",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -103,7 +105,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a morsel of food",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -146,7 +149,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a cup of water",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -187,7 +191,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -228,7 +233,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a drop of blood",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -270,7 +276,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -314,7 +321,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a sprinkling of holy water",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -356,7 +364,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -398,7 +407,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -443,7 +453,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -486,7 +497,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a diamond worth at least 50 gp",
-      "materialCostGoldPieces": 50
+      "materialCostGoldPieces": 50,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -528,7 +540,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a pinch of powder or sand that is colored red, yellow, and blue",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -570,7 +583,8 @@
       "somatic": false,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -612,7 +626,8 @@
       "somatic": false,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -653,7 +668,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a pinch of soot and salt",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -697,7 +713,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a drop of water if creating water or a few grains of sand if destroying it",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -739,7 +756,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -784,7 +802,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a bit of phosphorus or wychwood, or a glowworm",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -808,6 +827,270 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.detect-evil-and-good",
+    "name": "Detect Evil and Good",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 231,
+        "section": "Chapter 11: Spells — Spell Descriptions — Detect Evil and Good"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.detect-magic",
+    "name": "Detect Magic",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 231,
+        "section": "Chapter 11: Spells — Spell Descriptions — Detect Magic"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.detect-poison-and-disease",
+    "name": "Detect Poison and Disease",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a yew leaf",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 231,
+        "section": "Chapter 11: Spells — Spell Descriptions — Detect Poison and Disease"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.disguise-self",
+    "name": "Disguise Self",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 233,
+        "section": "Chapter 11: Spells — Spell Descriptions — Disguise Self"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.dissonant-whispers",
+    "name": "Dissonant Whispers",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 234,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dissonant Whispers"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.divine-favor",
+    "name": "Divine Favor",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 234,
+        "section": "Chapter 11: Spells — Spell Descriptions — Divine Favor"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.druidcraft",
     "name": "Druidcraft",
     "level": 0,
@@ -827,7 +1110,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -868,7 +1152,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -886,6 +1171,306 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 237,
         "section": "Chapter 11: Spells — Spell Descriptions — Eldritch Blast"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.ensnaring-strike",
+    "name": "Ensnaring Strike",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 237,
+        "section": "Chapter 11: Spells — Spell Descriptions — Ensnaring Strike"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.entangle",
+    "name": "Entangle",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 238,
+        "section": "Chapter 11: Spells — Spell Descriptions — Entangle"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.expeditious-retreat",
+    "name": "Expeditious Retreat",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 238,
+        "section": "Chapter 11: Spells — Spell Descriptions — Expeditious Retreat"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.faerie-fire",
+    "name": "Faerie Fire",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 239,
+        "section": "Chapter 11: Spells — Spell Descriptions — Faerie Fire"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.false-life",
+    "name": "False Life",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small amount of alcohol or distilled spirits",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 239,
+        "section": "Chapter 11: Spells — Spell Descriptions — False Life"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.feather-fall",
+    "name": "Feather Fall",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Reaction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": true,
+      "materialDescription": "a small feather or piece of down",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 239,
+        "section": "Chapter 11: Spells — Spell Descriptions — Feather Fall"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.find-familiar",
+    "name": "Find Familiar",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "10 gp worth of charcoal, incense, and herbs that must be consumed by fire in a brass brazier",
+      "materialCostGoldPieces": 10,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 240,
+        "section": "Chapter 11: Spells — Spell Descriptions — Find Familiar"
       }
     ]
   },
@@ -909,7 +1494,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -928,6 +1514,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 242,
         "section": "Chapter 11: Spells — Spell Descriptions — Fire Bolt"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.fog-cloud",
+    "name": "Fog Cloud",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 243,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fog Cloud"
       }
     ]
   },
@@ -951,7 +1582,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a small amount of makeup applied to the face as this spell is cast",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -995,7 +1627,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1037,7 +1670,8 @@
       "somatic": false,
       "material": true,
       "materialDescription": "a firefly or phosphorescent moss",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1081,7 +1715,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1125,7 +1760,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "two lodestones",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -1170,7 +1806,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a short piece of copper wire",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1213,7 +1850,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a bit of fleece",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1257,7 +1895,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -1301,7 +1940,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1345,7 +1985,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1386,7 +2027,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -1428,7 +2070,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "a miniature cloak",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1470,7 +2113,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -1511,7 +2155,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "mistletoe, a shamrock leaf, and a club or quarterstaff",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1552,7 +2197,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -1594,7 +2240,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -1635,7 +2282,8 @@
       "somatic": false,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1676,7 +2324,8 @@
       "somatic": true,
       "material": true,
       "materialDescription": "the stem of a plant with thorns",
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
@@ -1717,7 +2366,8 @@
       "somatic": true,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": false,
@@ -1761,7 +2411,8 @@
       "somatic": false,
       "material": false,
       "materialDescription": null,
-      "materialCostGoldPieces": null
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
     },
     "duration": {
       "isInstantaneous": true,
