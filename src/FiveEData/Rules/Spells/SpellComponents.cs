@@ -6,7 +6,8 @@ public readonly record struct SpellComponents
         bool verbal,
         bool somatic,
         bool material,
-        string? materialDescription)
+        string? materialDescription,
+        int? materialCostGoldPieces = null)
     {
         if (!verbal && !somatic && !material)
         {
@@ -21,22 +22,50 @@ public readonly record struct SpellComponents
                 materialDescription,
                 nameof(materialDescription));
         }
-        else if (materialDescription is not null)
+        else
         {
-            throw new ArgumentException(
-                "A spell without a material component must not carry a " +
-                "material description.",
-                nameof(materialDescription));
+            if (materialDescription is not null)
+            {
+                throw new ArgumentException(
+                    "A spell without a material component must not carry " +
+                    "a material description.",
+                    nameof(materialDescription));
+            }
+
+            if (materialCostGoldPieces is not null)
+            {
+                throw new ArgumentException(
+                    "A spell without a material component must not carry " +
+                    "a material cost.",
+                    nameof(materialCostGoldPieces));
+            }
+        }
+
+        if (materialCostGoldPieces is <= 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(materialCostGoldPieces),
+                materialCostGoldPieces,
+                "Spell material cost must be greater than zero when " +
+                "specified.");
         }
 
         Verbal = verbal;
         Somatic = somatic;
         Material = material;
         MaterialDescription = materialDescription;
+        MaterialCostGoldPieces = materialCostGoldPieces;
     }
 
     public bool Verbal { get; }
     public bool Somatic { get; }
     public bool Material { get; }
     public string? MaterialDescription { get; }
+
+    /// <summary>
+    /// Minimum gold-piece value the PHB states for a material component,
+    /// as in Chromatic Orb's "a diamond worth at least 50 gp". Null when
+    /// the component carries no stated cost.
+    /// </summary>
+    public int? MaterialCostGoldPieces { get; }
 }

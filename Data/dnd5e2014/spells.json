@@ -10,13 +10,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 60
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -25,6 +28,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -34,6 +38,215 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 211,
         "section": "Chapter 11: Spells — Spell Descriptions — Acid Splash"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.alarm",
+    "name": "Alarm",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a tiny bell and a piece of fine silver wire",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 211,
+        "section": "Chapter 11: Spells — Spell Descriptions — Alarm"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.animal-friendship",
+    "name": "Animal Friendship",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a morsel of food",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 212,
+        "section": "Chapter 11: Spells — Spell Descriptions — Animal Friendship"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.armor-of-agathys",
+    "name": "Armor of Agathys",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a cup of water",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 215,
+        "section": "Chapter 11: Spells — Spell Descriptions — Armor of Agathys"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.arms-of-hadar",
+    "name": "Arms of Hadar",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 215,
+        "section": "Chapter 11: Spells — Spell Descriptions — Arms of Hadar"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.bane",
+    "name": "Bane",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a drop of blood",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 216,
+        "section": "Chapter 11: Spells — Spell Descriptions — Bane"
       }
     ]
   },
@@ -48,13 +261,16 @@
     },
     "range": {
       "kind": "Self",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -63,6 +279,7 @@
       "amount": 1,
       "unit": "Round"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -78,6 +295,135 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.bless",
+    "name": "Bless",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a sprinkling of holy water",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 219,
+        "section": "Chapter 11: Spells — Spell Descriptions — Bless"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.burning-hands",
+    "name": "Burning Hands",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Cone",
+      "areaSizeFeet": 15
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 220,
+        "section": "Chapter 11: Spells — Spell Descriptions — Burning Hands"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.charm-person",
+    "name": "Charm Person",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 221,
+        "section": "Chapter 11: Spells — Spell Descriptions — Charm Person"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.chill-touch",
     "name": "Chill Touch",
     "level": 0,
@@ -88,13 +434,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 120
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -103,6 +452,7 @@
       "amount": 1,
       "unit": "Round"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -117,6 +467,304 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.chromatic-orb",
+    "name": "Chromatic Orb",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a diamond worth at least 50 gp",
+      "materialCostGoldPieces": 50
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 221,
+        "section": "Chapter 11: Spells — Spell Descriptions — Chromatic Orb"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.color-spray",
+    "name": "Color Spray",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Cone",
+      "areaSizeFeet": 15
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of powder or sand that is colored red, yellow, and blue",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 222,
+        "section": "Chapter 11: Spells — Spell Descriptions — Color Spray"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.command",
+    "name": "Command",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 223,
+        "section": "Chapter 11: Spells — Spell Descriptions — Command"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.compelled-duel",
+    "name": "Compelled Duel",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 224,
+        "section": "Chapter 11: Spells — Spell Descriptions — Compelled Duel"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.comprehend-languages",
+    "name": "Comprehend Languages",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of soot and salt",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 224,
+        "section": "Chapter 11: Spells — Spell Descriptions — Comprehend Languages"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.create-or-destroy-water",
+    "name": "Create or Destroy Water",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a drop of water if creating water or a few grains of sand if destroying it",
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 229,
+        "section": "Chapter 11: Spells — Spell Descriptions — Create or Destroy Water"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.cure-wounds",
+    "name": "Cure Wounds",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 230,
+        "section": "Chapter 11: Spells — Spell Descriptions — Cure Wounds"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.dancing-lights",
     "name": "Dancing Lights",
     "level": 0,
@@ -127,13 +775,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 120
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": true,
-      "materialDescription": "a bit of phosphorus or wychwood, or a glowworm"
+      "materialDescription": "a bit of phosphorus or wychwood, or a glowworm",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -142,6 +793,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -166,13 +818,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 30
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -181,6 +836,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -203,13 +859,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 120
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -218,6 +877,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.warlock"
     ],
@@ -240,13 +900,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 120
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -255,6 +918,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -278,13 +942,16 @@
     },
     "range": {
       "kind": "Self",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": false,
       "somatic": true,
       "material": true,
-      "materialDescription": "a small amount of makeup applied to the face as this spell is cast"
+      "materialDescription": "a small amount of makeup applied to the face as this spell is cast",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -293,6 +960,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -318,13 +986,16 @@
     },
     "range": {
       "kind": "Touch",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -333,6 +1004,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -356,13 +1028,16 @@
     },
     "range": {
       "kind": "Touch",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": false,
       "material": true,
-      "materialDescription": "a firefly or phosphorescent moss"
+      "materialDescription": "a firefly or phosphorescent moss",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -371,6 +1046,7 @@
       "amount": 1,
       "unit": "Hour"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -396,13 +1072,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 30
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -411,6 +1090,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -436,13 +1116,16 @@
     },
     "range": {
       "kind": "Touch",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": true,
-      "materialDescription": "two lodestones"
+      "materialDescription": "two lodestones",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -451,6 +1134,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -477,13 +1161,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 120
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": true,
-      "materialDescription": "a short piece of copper wire"
+      "materialDescription": "a short piece of copper wire",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -492,6 +1179,7 @@
       "amount": 1,
       "unit": "Round"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -516,13 +1204,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 30
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": false,
       "somatic": true,
       "material": true,
-      "materialDescription": "a bit of fleece"
+      "materialDescription": "a bit of fleece",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -531,6 +1222,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -556,13 +1248,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 10
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -571,6 +1266,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -596,13 +1292,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 10
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -611,6 +1310,7 @@
       "amount": 1,
       "unit": "Hour"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -636,13 +1336,16 @@
     },
     "range": {
       "kind": "Self",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -651,6 +1354,7 @@
       "amount": 10,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -673,13 +1377,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 60
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -688,6 +1395,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -711,13 +1419,16 @@
     },
     "range": {
       "kind": "Touch",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": true,
-      "materialDescription": "a miniature cloak"
+      "materialDescription": "a miniature cloak",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -726,6 +1437,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -749,13 +1461,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 60
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -764,6 +1479,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -786,13 +1502,16 @@
     },
     "range": {
       "kind": "Touch",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": true,
-      "materialDescription": "mistletoe, a shamrock leaf, and a club or quarterstaff"
+      "materialDescription": "mistletoe, a shamrock leaf, and a club or quarterstaff",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -801,6 +1520,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -823,13 +1543,16 @@
     },
     "range": {
       "kind": "Touch",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -838,6 +1561,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -861,13 +1585,16 @@
     },
     "range": {
       "kind": "Touch",
-      "distanceFeet": null
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -876,6 +1603,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -898,13 +1626,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 30
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": false,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -913,6 +1644,7 @@
       "amount": 1,
       "unit": "Minute"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -935,13 +1667,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 30
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": true,
       "material": true,
-      "materialDescription": "the stem of a plant with thorns"
+      "materialDescription": "the stem of a plant with thorns",
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -950,6 +1685,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -972,13 +1708,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 30
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": false,
       "somatic": true,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": false,
@@ -987,6 +1726,7 @@
       "amount": 1,
       "unit": "Round"
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -1012,13 +1752,16 @@
     },
     "range": {
       "kind": "Distance",
-      "distanceFeet": 60
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
     },
     "components": {
       "verbal": true,
       "somatic": false,
       "material": false,
-      "materialDescription": null
+      "materialDescription": null,
+      "materialCostGoldPieces": null
     },
     "duration": {
       "isInstantaneous": true,
@@ -1027,6 +1770,7 @@
       "amount": null,
       "unit": null
     },
+    "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.bard"
     ],

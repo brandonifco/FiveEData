@@ -14,15 +14,20 @@ public sealed class SpellDefinitionLoaderTests
                 "level": 0,
                 "schoolId": "dnd5e2014.magic-school.evocation",
                 "castingTime": { "amount": 1, "unit": "Action" },
-                "range": { "kind": "Distance", "distanceFeet": 30 },
+                "range": {
+                  "kind": "Distance", "distanceFeet": 30,
+                  "areaShape": null, "areaSizeFeet": null
+                },
                 "components": {
                   "verbal": true, "somatic": true,
-                  "material": false, "materialDescription": null
+                  "material": false, "materialDescription": null,
+                  "materialCostGoldPieces": null
                 },
                 "duration": {
                   "isInstantaneous": true, "requiresConcentration": false,
                   "isUpTo": false, "amount": null, "unit": null
                 },
+                "isRitual": false,
                 "availableToClassIds": ["dnd5e2014.class.wizard"],
                 "sources": [{
                   "documentId": "extension.source.test",

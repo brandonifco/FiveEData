@@ -87,6 +87,46 @@ public sealed class SpellFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsRitualCantrip()
+    {
+        Assert.Contains(
+            SpellDefinitionValidator.Validate(
+                Create(level: 0, isRitual: true)),
+            error => error.Contains(
+                "must not be tagged as a ritual",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Range_SelfWithAreaCarriesShapeAndSize()
+    {
+        SpellRange range =
+            SpellRange.SelfWithArea(SpellAreaShape.Cone, 15);
+
+        Assert.Equal(SpellRangeKind.Self, range.Kind);
+        Assert.Equal(SpellAreaShape.Cone, range.AreaShape);
+        Assert.Equal(15, range.AreaSizeFeet);
+        Assert.Null(range.DistanceFeet);
+        Assert.Null(SpellRange.Self().AreaShape);
+    }
+
+    [Fact]
+    public void Components_RejectCostWithoutMaterial()
+    {
+        Assert.Throws<ArgumentException>(
+            () => new SpellComponents(true, true, false, null, 50));
+    }
+
+    [Fact]
+    public void Components_CarryStatedMaterialCost()
+    {
+        var components =
+            new SpellComponents(true, true, true, "a diamond", 50);
+
+        Assert.Equal(50, components.MaterialCostGoldPieces);
+    }
+
+    [Fact]
     public void Components_RejectNoComponentsAtAll()
     {
         Assert.Throws<ArgumentException>(
@@ -213,6 +253,7 @@ public sealed class SpellFoundationTests
     private static SpellDefinition Create(
         string id = "dnd5e2014.spell.acid-splash",
         int level = 0,
+        bool isRitual = false,
         IEnumerable<ClassId>? classes = null,
         IEnumerable<SourceReference>? sources = null)
     {
@@ -225,6 +266,7 @@ public sealed class SpellFoundationTests
             SpellRange.Distance(60),
             new SpellComponents(true, true, false, null),
             SpellDuration.Instantaneous(),
+            isRitual,
             classes ?? [new ClassId("dnd5e2014.class.wizard")],
             sources ?? [TestSource()]);
     }
