@@ -5,12 +5,14 @@ using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -43,6 +45,8 @@ public sealed class ClassDefinition
         RageProgressionDetail? rageProgression,
         SneakAttackProgressionDetail? sneakAttackProgression,
         KiProgressionDetail? kiProgression,
+        MartialArtsProgressionDetail? martialArtsProgression,
+        UnarmoredMovementProgressionDetail? unarmoredMovementProgression,
         SorceryPointsProgressionDetail? sorceryPointsProgression,
         WildShapeProgressionDetail? wildShapeProgression,
         AuraOfProtectionDetail? auraOfProtection,
@@ -88,6 +92,8 @@ public sealed class ClassDefinition
         RageProgression = rageProgression;
         SneakAttackProgression = sneakAttackProgression;
         KiProgression = kiProgression;
+        MartialArtsProgression = martialArtsProgression;
+        UnarmoredMovementProgression = unarmoredMovementProgression;
         SorceryPointsProgression = sorceryPointsProgression;
         WildShapeProgression = wildShapeProgression;
         AuraOfProtection = auraOfProtection;
@@ -121,6 +127,13 @@ public sealed class ClassDefinition
     public RageProgressionDetail? RageProgression { get; }
     public SneakAttackProgressionDetail? SneakAttackProgression { get; }
     public KiProgressionDetail? KiProgression { get; }
+    public MartialArtsProgressionDetail? MartialArtsProgression { get; }
+
+    public UnarmoredMovementProgressionDetail? UnarmoredMovementProgression
+    {
+        get;
+    }
+
     public SorceryPointsProgressionDetail? SorceryPointsProgression { get; }
     public WildShapeProgressionDetail? WildShapeProgression { get; }
     public AuraOfProtectionDetail? AuraOfProtection { get; }

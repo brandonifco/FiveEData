@@ -28,9 +28,10 @@ Built and complete:
 - Races — all 9 PHB races, all 9 subraces
 - Classes — all 12 PHB classes, all 40 subclasses
 - Backgrounds — all 13 PHB backgrounds
-- Quantized mechanics — the full second pass (see that section); every
-  identified per-level numeric progression and choice-point catalog is
-  converted or explicitly, verifiably declined
+- Quantized mechanics — the second pass (see that section). **Complete
+  against its own enumerated list, not against a sweep** — a later sweep of
+  all 305 `class-rule` entries found a real tail it never listed; see
+  "Quantized mechanics: the remaining tail"
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -38,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **1743 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **1888 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -379,10 +380,10 @@ rather than trusting it.
 - **Choice-point catalogs** (standalone, not referenced from a definition):
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
   Elemental Disciplines, Channel Divinity options.
-- **Embedded on `ClassDefinition`:** Rage, Sneak Attack, Ki, Sorcery Points,
-  Wild Shape, Bardic Inspiration, Song of Rest, Channel Divinity uses,
-  Mystic Arcanum, Font of Magic conversion, Aura of Protection, Aura of
-  Courage, Eldritch Invocations known.
+- **Embedded on `ClassDefinition`:** Rage, Sneak Attack, Ki, Martial Arts,
+  Unarmored Movement, Sorcery Points, Wild Shape, Bardic Inspiration, Song of
+  Rest, Channel Divinity uses, Mystic Arcanum, Font of Magic conversion, Aura
+  of Protection, Aura of Courage, Eldritch Invocations known.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
@@ -482,6 +483,52 @@ shape, so modeling them means either a bespoke type per option or the DSL
 this project rejects. Shared formulas (Battle Master's save DC, every
 resource's save DC) stay unquantized too — capture only what varies per
 option.
+
+## Quantized mechanics: the remaining tail
+
+The pass above closed when its enumerated list was done. A later sweep of all
+305 `class-rule` entries found features carrying clean numbers that were never
+on that list — so **"the pass is complete" meant list-complete, and the
+distinction is load-bearing.** Martial Arts and Unarmored Movement are done;
+the rest below are verified-as-candidates by name only and still need their
+values read off the page images.
+
+**Tier A — a shape already built elsewhere, no new design needed:** Brutal
+Critical (leveled dice count), Action Surge and Indomitable (leveled
+uses/rest), Destroy Undead (leveled max CR — `MaxChallengeRating` already
+exists from Wild Shape), Favored Enemy / Natural Explorer / Magical Secrets /
+Portent (leveled choice counts), Draconic Resilience (+1 HP per level, the
+Hill Dwarf `HitPointBonusPerLevel` shape).
+
+**Two of these were explicitly declined during the original pass, and both
+declines predate the precedent that now covers them** — Brutal Critical's
+scaling was left "in the prose" and Destroy Undead's CR table was cited as
+precedent for leaving Font of Magic's table inline, both decided before Sneak
+Attack and Wild Shape existed. **A decline is only as good as the precedents
+available when it was made; re-read old declines against newer shapes rather
+than treating them as settled.**
+
+**Tier B — flat scalars, the `DarkvisionRangeFeet` shape:** Fast Movement,
+Improved/Superior Critical (crit range), Blindsense, Feral Senses, Shadow
+Step, Divine Sense (ranges), Reliable Talent (d20 floor), Improved Divine
+Smite, Indomitable Might / Primal Champion, the fixed ki and sorcery-point
+costs, Hurl Through Hell, Wrath of the Storm, Thunderbolt Strike.
+
+**Tier C — stays citation**, on the settled linear-in-level line: Lay on
+Hands, Second Wind, Arcane Recovery, Natural Recovery, Divine Intervention,
+Arcane Ward, Dark One's Blessing, Wholeness of Body, Slow Fall, Deflect
+Missiles, Survivor, Divine Smite's slot scaling.
+
+**A class table's numeric column and its Features column are two different
+lists and may legitimately disagree — neither is a stale copy of the other.**
+Monk proved both directions at once: Unarmored Movement's speed grows at
+2/6/10/14/18 while the Features column names it at 2 and 9 (the 9th-level
+entry is the vertical-surfaces clause, which carries no number), and Martial
+Arts is a single 1st-level feature row whose die grows at 5/11/17 with no row
+at all. Pinned by
+`CanonicalFile_MonkUnarmoredMovementSpeedLevelsDifferFromFeatureLevels` and
+`CanonicalFile_MonkGrantsMartialArtsOnlyAtFirstLevelDespiteDieUpgrades` —
+both exist to stop a future pass "aligning" one list to the other.
 
 **Verify every remembered count, page number, and existing field's
 completeness against the actual text, repeatedly — including numbers written

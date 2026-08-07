@@ -5,11 +5,13 @@ using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
+using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SongOfRest.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
+using FiveEData.Rules.Classes.UnarmoredMovement.Serialization;
 using FiveEData.Rules.Classes.WildShape.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
@@ -80,6 +82,20 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public KiProgressionDetailData? KiProgression { get; init; }
+
+    [JsonRequired]
+    public MartialArtsProgressionDetailData? MartialArtsProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public UnarmoredMovementProgressionDetailData? UnarmoredMovementProgression
+    {
+        get;
+        init;
+    }
 
     [JsonRequired]
     public SorceryPointsProgressionDetailData? SorceryPointsProgression

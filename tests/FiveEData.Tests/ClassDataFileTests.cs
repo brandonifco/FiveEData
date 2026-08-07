@@ -5,12 +5,14 @@ using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -279,6 +281,97 @@ public sealed class ClassDataFileTests
         Assert.Equal(2, kiProgression.PointsByLevel[0].CharacterLevel);
         Assert.Equal(20, kiProgression.PointsByLevel[^1].CharacterLevel);
         Assert.True(kiProgression.RecoversOnShortRest);
+
+        MartialArtsProgressionDetail martialArtsProgression =
+            monk.MartialArtsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have a Martial Arts progression.");
+        Assert.Equal(
+            [(1, 4), (5, 6), (11, 8), (17, 10)],
+            martialArtsProgression.DieByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.Die.Sides)));
+        Assert.All(
+            martialArtsProgression.DieByLevel,
+            grant => Assert.Equal(1, grant.Die.Count));
+        Assert.True(martialArtsProgression.CanUseDexterityForAttackAndDamage);
+        Assert.True(martialArtsProgression.GrantsBonusActionUnarmedStrike);
+        Assert.True(martialArtsProgression.RequiresNotWearingArmor);
+        Assert.True(martialArtsProgression.RequiresNotWieldingShield);
+
+        UnarmoredMovementProgressionDetail unarmoredMovementProgression =
+            monk.UnarmoredMovementProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have an Unarmored Movement progression.");
+        Assert.Equal(
+            [(2, 10), (6, 15), (10, 20), (14, 25), (18, 30)],
+            unarmoredMovementProgression.SpeedBonusByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.SpeedBonusFeet)));
+        Assert.True(unarmoredMovementProgression.RequiresNotWearingArmor);
+        Assert.True(unarmoredMovementProgression.RequiresNotWieldingShield);
+    }
+
+    // The Monk table's Unarmored Movement column and its Features column
+    // disagree on purpose: the speed bonus grows at 2nd/6th/10th/14th/18th,
+    // while the Features column names the feature at 2nd and again at 9th for
+    // the vertical-surfaces and across-liquids clause, which carries no
+    // number. Neither list is a stale copy of the other.
+    [Fact]
+    public void CanonicalFile_MonkUnarmoredMovementSpeedLevelsDifferFromFeatureLevels()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        UnarmoredMovementProgressionDetail unarmoredMovementProgression =
+            monk.UnarmoredMovementProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have an Unarmored Movement progression.");
+
+        int[] speedBonusLevels = unarmoredMovementProgression.SpeedBonusByLevel
+            .Select(grant => grant.CharacterLevel)
+            .OrderBy(level => level)
+            .ToArray();
+
+        int[] featureLevels = monk.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.unarmored-movement")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal([2, 6, 10, 14, 18], speedBonusLevels);
+        Assert.Equal([2, 9], featureLevels);
+    }
+
+    // Martial Arts is granted once, at 1st level, even though its die grows at
+    // 5th, 11th, and 17th — the Monk table has no Features-column row for
+    // those upgrades, so the progression is the only place they are recorded.
+    [Fact]
+    public void CanonicalFile_MonkGrantsMartialArtsOnlyAtFirstLevelDespiteDieUpgrades()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        int[] featureLevels = monk.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.martial-arts")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal([1], featureLevels);
+
+        MartialArtsProgressionDetail martialArtsProgression =
+            monk.MartialArtsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have a Martial Arts progression.");
+        Assert.Equal(
+            [1, 5, 11, 17],
+            martialArtsProgression.DieByLevel
+                .Select(grant => grant.CharacterLevel)
+                .OrderBy(level => level));
     }
 
     [Fact]
@@ -1846,6 +1939,75 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.SongOfRestProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonMonkClassDeclaresNoMartialArtsProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.MartialArtsProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonMonkClassDeclaresNoUnarmoredMovementProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.UnarmoredMovementProgression);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedMonkTableProgressions()
+    {
+        ClassDefinition monk =
+            Dnd5e2014Ruleset.Instance.Classes.Get(
+                new ClassId("dnd5e2014.class.monk"));
+
+        MartialArtsProgressionDetail martialArtsProgression =
+            monk.MartialArtsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have a Martial Arts progression.");
+        Assert.Equal(
+            [(1, 4), (5, 6), (11, 8), (17, 10)],
+            martialArtsProgression.DieByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.Die.Sides)));
+
+        UnarmoredMovementProgressionDetail unarmoredMovementProgression =
+            monk.UnarmoredMovementProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have an Unarmored Movement progression.");
+        Assert.Equal(
+            [(2, 10), (6, 15), (10, 20), (14, 25), (18, 30)],
+            unarmoredMovementProgression.SpeedBonusByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.SpeedBonusFeet)));
     }
 
     private static ClassDefinition GetClass(

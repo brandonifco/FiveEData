@@ -114,6 +114,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -299,6 +301,8 @@
     },
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -531,6 +535,68 @@
       ],
       "recoversOnShortRest": true
     },
+    "martialArtsProgression": {
+      "dieByLevel": [
+        {
+          "characterLevel": 1,
+          "die": {
+            "count": 1,
+            "sides": 4
+          }
+        },
+        {
+          "characterLevel": 5,
+          "die": {
+            "count": 1,
+            "sides": 6
+          }
+        },
+        {
+          "characterLevel": 11,
+          "die": {
+            "count": 1,
+            "sides": 8
+          }
+        },
+        {
+          "characterLevel": 17,
+          "die": {
+            "count": 1,
+            "sides": 10
+          }
+        }
+      ],
+      "canUseDexterityForAttackAndDamage": true,
+      "grantsBonusActionUnarmedStrike": true,
+      "requiresNotWearingArmor": true,
+      "requiresNotWieldingShield": true
+    },
+    "unarmoredMovementProgression": {
+      "speedBonusByLevel": [
+        {
+          "characterLevel": 2,
+          "speedBonusFeet": 10
+        },
+        {
+          "characterLevel": 6,
+          "speedBonusFeet": 15
+        },
+        {
+          "characterLevel": 10,
+          "speedBonusFeet": 20
+        },
+        {
+          "characterLevel": 14,
+          "speedBonusFeet": 25
+        },
+        {
+          "characterLevel": 18,
+          "speedBonusFeet": 30
+        }
+      ],
+      "requiresNotWearingArmor": true,
+      "requiresNotWieldingShield": true
+    },
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -747,6 +813,8 @@
       "requiresFinesseOrRangedWeapon": true
     },
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -915,6 +983,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -1076,6 +1146,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -1175,6 +1247,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -1303,6 +1377,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -1477,6 +1553,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": {
       "formLimitsByLevel": [
@@ -1644,6 +1722,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": null,
@@ -1779,6 +1859,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": null,
     "wildShapeProgression": null,
     "auraOfProtection": {
@@ -1899,6 +1981,8 @@
     "rageProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
+    "martialArtsProgression": null,
+    "unarmoredMovementProgression": null,
     "sorceryPointsProgression": {
       "pointsByLevel": [
         {

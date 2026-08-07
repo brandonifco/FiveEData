@@ -11,6 +11,8 @@ using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
+using FiveEData.Rules.Classes.MartialArts;
+using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
 using FiveEData.Rules.Classes.Rage;
@@ -22,6 +24,8 @@ using FiveEData.Rules.Classes.SongOfRest.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.UnarmoredMovement;
+using FiveEData.Rules.Classes.UnarmoredMovement.Serialization;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Classes.WildShape.Serialization;
 using FiveEData.Rules.Common;
@@ -184,6 +188,19 @@ internal static class ClassDefinitionLoader
                 ? KiProgressionDetailDataMapper.Map(kiProgressionData)
                 : null;
 
+        MartialArtsProgressionDetail? martialArtsProgression =
+            data.MartialArtsProgression is { } martialArtsProgressionData
+                ? MartialArtsProgressionDetailDataMapper.Map(
+                    martialArtsProgressionData)
+                : null;
+
+        UnarmoredMovementProgressionDetail? unarmoredMovementProgression =
+            data.UnarmoredMovementProgression is
+                { } unarmoredMovementProgressionData
+                ? UnarmoredMovementProgressionDetailDataMapper.Map(
+                    unarmoredMovementProgressionData)
+                : null;
+
         SorceryPointsProgressionDetail? sorceryPointsProgression =
             data.SorceryPointsProgression is { } sorceryPointsProgressionData
                 ? SorceryPointsProgressionDetailDataMapper.Map(
@@ -267,6 +284,8 @@ internal static class ClassDefinitionLoader
             rageProgression,
             sneakAttackProgression,
             kiProgression,
+            martialArtsProgression,
+            unarmoredMovementProgression,
             sorceryPointsProgression,
             wildShapeProgression,
             auraOfProtection,
