@@ -40,8 +40,21 @@ under "Quantized mechanics" before assuming a feature exposes real numbers.
 
 Gate as of the last merge: Debug+Release build 0 warnings, **1743 tests**.
 
-Not started: spells, magic items, and combat/adventuring rule prose beyond
-the existing citation index. Feats (and by extension Variant Human) are out
+**In progress: the Spells domain.** `Rules/Spells/` is a new top-level
+domain; `MagicSchools` is its first piece (the 8 schools, a closed official
+set, all cited to the p.203 sidebar). Next: `SpellDefinition` itself,
+proving the shape on all cantrips before fanning out by spell level.
+
+Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
+school, casting time, range, components, duration* — that's what
+`SpellDefinition` stores. The effect prose, and the per-spell "At Higher
+Levels" text, stay in the citation: heterogeneous across spells with no
+shared shape, the same call already made for Metamagic's 8 effects.
+
+Not started: magic items, and combat/adventuring rule prose beyond the
+existing citation index. Still deferred and unmodeled: per-class
+cantrips-known and spells-known tables (identified during the spell slot
+pass as a separate authoring job; they need no spell domain to exist). Feats (and by extension Variant Human) are out
 of scope — not part of the free 2014 SRD this project's provenance model is
 built around.
 
@@ -140,6 +153,11 @@ cross-domain ID references (a skill's associated ability, a race's resisted
 damage types, a background's sustained lifestyle, a maneuver's saving-throw
 ability) resolve too. Any new cross-domain reference field gets the same
 check wired in.
+
+**A new closed official domain does not need its own `Official*SemanticValidator`.**
+That runtime-validator pattern exists only for the older creature-vocabulary
+and expense domains; every catalog added since Fighting Style asserts its
+exact closure in `<Domain>DataFileTests` instead. Follow the newer pattern.
 
 `OfficialCreatureVocabularySemanticValidator` (and its siblings for expenses,
 weapons, etc.) is a **closed-content guardrail**: for each domain considered
@@ -451,6 +469,14 @@ existing three.
 and the shared-Ability-Score-Improvement list were each generalized into a
 single test keyed by class ID after accreting near-duplicates; both now
 absorb a new class as a one-line change.
+
+**Add every new loader and validator to `PublicApiBoundaryTests`.** That
+convention silently lapsed for five catalogs (Metamagic through Channel
+Divinity options), leaving internal types unguarded; the gap was closed when
+Magic Schools was added. A new domain's `*DataFileTests` should also assert
+that `Dnd5e2014Ruleset.Instance` exposes the same closure as the on-disk
+file — data-file tests read from disk, so nothing else catches a data file
+that was added without its `<EmbeddedResource>` csproj entry.
 
 **Some tests exist specifically to block a plausible-looking
 consolidation** — don't delete them as redundant:

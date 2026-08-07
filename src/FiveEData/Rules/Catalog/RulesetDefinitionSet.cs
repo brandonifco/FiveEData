@@ -1,4 +1,5 @@
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.EldritchInvocations;
@@ -32,7 +33,8 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
-        IReadOnlyList<BackgroundDefinition> backgrounds)
+        IReadOnlyList<BackgroundDefinition> backgrounds,
+        IReadOnlyList<MagicSchoolDefinition> magicSchools)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(rules);
@@ -50,6 +52,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
+        ArgumentNullException.ThrowIfNull(magicSchools);
 
         SourceDocuments = sourceDocuments;
         Rules = rules;
@@ -67,6 +70,7 @@ internal sealed class RulesetDefinitionSet
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
+        MagicSchools = magicSchools;
     }
 
     public IReadOnlyList<SourceDocument> SourceDocuments { get; }
@@ -107,4 +111,5 @@ internal sealed class RulesetDefinitionSet
     { get; }
 
     public IReadOnlyList<BackgroundDefinition> Backgrounds { get; }
+    public IReadOnlyList<MagicSchoolDefinition> MagicSchools { get; }
 }

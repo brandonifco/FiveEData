@@ -318,6 +318,7 @@ public sealed class MundaneServiceCatalogIntegrityTests
             channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
-            backgrounds: []);
+            backgrounds: [],
+            magicSchools: []);
     }
 }

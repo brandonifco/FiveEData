@@ -1,4 +1,6 @@
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Spells.MagicSchools;
+using FiveEData.Rules.Spells.MagicSchools.Serialization;
 using FiveEData.Rules.Backgrounds.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
@@ -119,6 +121,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string MetamagicOptionsResource =
         "FiveEData.Data.dnd5e2014.metamagic-options.json";
+
+    private const string MagicSchoolsResource =
+        "FiveEData.Data.dnd5e2014.magic-schools.json";
 
     private const string BattleMasterManeuversResource =
         "FiveEData.Data.dnd5e2014.battle-master-maneuvers.json";
@@ -298,6 +303,11 @@ internal static class Dnd5e2014RulesetLoader
             MetamagicOptionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
                     MetamagicOptionsResource));
+
+        IReadOnlyList<MagicSchoolDefinition> magicSchools =
+            MagicSchoolDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    MagicSchoolsResource));
 
         IReadOnlyList<BattleMasterManeuverDefinition> battleMasterManeuvers =
             BattleMasterManeuverDefinitionLoader.LoadFromJson(
@@ -479,6 +489,7 @@ internal static class Dnd5e2014RulesetLoader
             classes: classDefinitionSet,
             fightingStyles: fightingStyles,
             metamagicOptions: metamagicOptions,
+            magicSchools: magicSchools,
             battleMasterManeuvers: battleMasterManeuvers,
             eldritchInvocations: eldritchInvocations,
             elementalDisciplines: elementalDisciplines,
@@ -529,6 +540,7 @@ internal static class Dnd5e2014RulesetLoader
             subclasses: new SubclassCatalog(subclasses),
             fightingStyles: new FightingStyleCatalog(fightingStyles),
             metamagicOptions: new MetamagicOptionCatalog(metamagicOptions),
+            magicSchools: new MagicSchoolCatalog(magicSchools),
             battleMasterManeuvers:
                 new BattleMasterManeuverCatalog(battleMasterManeuvers),
             eldritchInvocations:

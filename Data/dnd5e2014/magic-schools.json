@@ -1,0 +1,90 @@
+[
+  {
+    "id": "dnd5e2014.magic-school.abjuration",
+    "name": "Abjuration",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Abjuration"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.magic-school.conjuration",
+    "name": "Conjuration",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Conjuration"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.magic-school.divination",
+    "name": "Divination",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Divination"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.magic-school.enchantment",
+    "name": "Enchantment",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Enchantment"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.magic-school.evocation",
+    "name": "Evocation",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Evocation"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.magic-school.illusion",
+    "name": "Illusion",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Illusion"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.magic-school.necromancy",
+    "name": "Necromancy",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Necromancy"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.magic-school.transmutation",
+    "name": "Transmutation",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 203,
+        "section": "Chapter 10: Spellcasting — The Schools of Magic — Transmutation"
+      }
+    ]
+  }
+]

@@ -1,3 +1,4 @@
+using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
@@ -194,6 +195,17 @@ internal static class CatalogIntegrityValidator
                         $"{owner} references missing class '{classId}'.");
                 }
             }
+        }
+
+        foreach (
+            MagicSchoolDefinition magicSchool
+            in definitions.MagicSchools)
+        {
+            ValidateSources(
+                $"Magic school '{magicSchool.Id}'",
+                magicSchool.Sources,
+                sourceIds,
+                errors);
         }
 
         foreach (
