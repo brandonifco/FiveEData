@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
@@ -8,6 +9,7 @@ using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FontOfMagic;
+using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -150,6 +152,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -586,6 +590,102 @@ public sealed class ClassFoundationTests
                 ]));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void Validator_RejectsActionSurgeProgressionWithNoUseGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            actionSurgeProgression: new ActionSurgeProgressionDetail(
+                [],
+                recoversOnShortRest: true,
+                oncePerTurn: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Action Surge uses progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsActionSurgeProgressionWithNonIncreasingUses()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            actionSurgeProgression: new ActionSurgeProgressionDetail(
+                [
+                    new ActionSurgeUseGrant(2, 2),
+                    new ActionSurgeUseGrant(17, 1)
+                ],
+                recoversOnShortRest: true,
+                oncePerTurn: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsIndomitableProgressionWithDuplicateLevels()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            indomitableProgression: new IndomitableProgressionDetail(
+                [
+                    new IndomitableUseGrant(9, 1),
+                    new IndomitableUseGrant(9, 2)
+                ],
+                recoversOnShortRest: false));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "is duplicated",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedActionSurgeAndIndomitableProgressions()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            actionSurgeProgression: new ActionSurgeProgressionDetail(
+                [
+                    new ActionSurgeUseGrant(2, 1),
+                    new ActionSurgeUseGrant(17, 2)
+                ],
+                recoversOnShortRest: true,
+                oncePerTurn: true),
+            indomitableProgression: new IndomitableProgressionDetail(
+                [
+                    new IndomitableUseGrant(9, 1),
+                    new IndomitableUseGrant(13, 2),
+                    new IndomitableUseGrant(17, 3)
+                ],
+                recoversOnShortRest: false));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void ActionSurgeUseGrant_RejectsNonPositiveUsesPerRest()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new ActionSurgeUseGrant(2, 0));
+    }
+
+    [Fact]
+    public void IndomitableUseGrant_RejectsOutOfRangeCharacterLevel()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new IndomitableUseGrant(0, 1));
     }
 
     [Fact]
@@ -1245,6 +1345,8 @@ public sealed class ClassFoundationTests
         SpellSlotProgressionId? spellSlotProgressionId = null,
         AbilityId? spellcastingAbilityId = null,
         ExtraAttackProgressionId? extraAttackProgressionId = null,
+        ActionSurgeProgressionDetail? actionSurgeProgression = null,
+        IndomitableProgressionDetail? indomitableProgression = null,
         RageProgressionDetail? rageProgression = null,
         BrutalCriticalProgressionDetail? brutalCriticalProgression
             = null,
@@ -1290,6 +1392,8 @@ public sealed class ClassFoundationTests
             spellSlotProgressionId,
             spellcastingAbilityId,
             extraAttackProgressionId,
+            actionSurgeProgression,
+            indomitableProgression,
             rageProgression,
             brutalCriticalProgression,
             fastMovement,

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using FiveEData.Rules.Classes.ActionSurge.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
 using FiveEData.Rules.Classes.BrutalCritical.Serialization;
@@ -6,6 +7,7 @@ using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
+using FiveEData.Rules.Classes.Indomitable.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
@@ -71,6 +73,20 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public string? ExtraAttackProgressionId { get; init; }
+
+    [JsonRequired]
+    public ActionSurgeProgressionDetailData? ActionSurgeProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public IndomitableProgressionDetailData? IndomitableProgression
+    {
+        get;
+        init;
+    }
 
     [JsonRequired]
     public RageProgressionDetailData? RageProgression { get; init; }

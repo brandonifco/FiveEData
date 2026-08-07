@@ -1,8 +1,10 @@
+using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FontOfMagic;
+using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -107,6 +109,26 @@ internal static class ClassDefinitionValidator
                     $"Class level feature '{feature.FeatureRuleId}' is " +
                     $"duplicated at level {feature.Level}.");
             }
+        }
+
+        if (@class.ActionSurgeProgression is { } actionSurgeProgression)
+        {
+            ValidatePointsProgression(
+                actionSurgeProgression.UsesByLevel
+                    .Select(
+                        grant => (grant.CharacterLevel, grant.UsesPerRest)),
+                "Action Surge uses",
+                errors);
+        }
+
+        if (@class.IndomitableProgression is { } indomitableProgression)
+        {
+            ValidatePointsProgression(
+                indomitableProgression.UsesByLevel
+                    .Select(
+                        grant => (grant.CharacterLevel, grant.UsesPerRest)),
+                "Indomitable uses",
+                errors);
         }
 
         if (@class.RageProgression is { } rageProgression)

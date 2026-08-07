@@ -43,6 +43,8 @@ public sealed class ClassDefinitionLoaderTests
           "spellSlotProgressionId": null,
           "spellcastingAbilityId": null,
           "extraAttackProgressionId": null,
+          "actionSurgeProgression": null,
+          "indomitableProgression": null,
           "rageProgression": null,
           "brutalCriticalProgression": null,
           "fastMovement": null,
@@ -149,6 +151,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
                     "extraAttackProgressionId":
                       "extension.extra-attack-progression.test",
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": {
                       "usesByLevel": [
                         { "characterLevel": 1, "usesPerLongRest": 2 },
@@ -275,6 +279,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -327,6 +333,95 @@ public sealed class ClassDefinitionLoaderTests
     }
 
     [Fact]
+    public void ValidDefinition_LoadsActionSurgeAndIndomitableProgressions()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 10,
+                    "primaryAbilityIds": ["dnd5e2014.ability.strength"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.strength",
+                      "dnd5e2014.ability.constitution"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "actionSurgeProgression": {
+                      "usesByLevel": [
+                        { "characterLevel": 2, "usesPerRest": 1 },
+                        { "characterLevel": 17, "usesPerRest": 2 }
+                      ],
+                      "recoversOnShortRest": true,
+                      "oncePerTurn": true
+                    },
+                    "indomitableProgression": {
+                      "usesByLevel": [
+                        { "characterLevel": 9, "usesPerRest": 1 },
+                        { "characterLevel": 13, "usesPerRest": 2 }
+                      ],
+                      "recoversOnShortRest": false
+                    },
+                    "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.NotNull(@class.ActionSurgeProgression);
+        Assert.Equal(2, @class.ActionSurgeProgression!.UsesByLevel.Count);
+        Assert.Equal(
+            2,
+            @class.ActionSurgeProgression.UsesByLevel[0].CharacterLevel);
+        Assert.Equal(
+            2,
+            @class.ActionSurgeProgression.UsesByLevel[1].UsesPerRest);
+        Assert.True(@class.ActionSurgeProgression.RecoversOnShortRest);
+        Assert.True(@class.ActionSurgeProgression.OncePerTurn);
+
+        Assert.NotNull(@class.IndomitableProgression);
+        Assert.Equal(2, @class.IndomitableProgression!.UsesByLevel.Count);
+        Assert.Equal(
+            9,
+            @class.IndomitableProgression.UsesByLevel[0].CharacterLevel);
+        Assert.False(@class.IndomitableProgression.RecoversOnShortRest);
+    }
+
+    [Fact]
     public void ValidDefinition_LoadsBrutalCriticalProgressionAndFastMovement()
     {
         ClassDefinition @class = Assert.Single(
@@ -353,6 +448,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": {
                       "additionalDiceByLevel": [
@@ -436,6 +533,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -544,6 +643,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -632,6 +733,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -720,6 +823,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -804,6 +909,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -880,6 +987,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -956,6 +1065,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
@@ -1030,6 +1141,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellSlotProgressionId": null,
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
