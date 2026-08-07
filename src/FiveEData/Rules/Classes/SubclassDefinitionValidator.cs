@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.ImprovedCritical;
 using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Common;
@@ -93,7 +94,59 @@ internal static class SubclassDefinitionValidator
             ValidatePortentProgression(portentProgression, errors);
         }
 
+        if (subclass.ImprovedCriticalProgression is
+            { } improvedCriticalProgression)
+        {
+            ValidateImprovedCriticalProgression(
+                improvedCriticalProgression,
+                errors);
+        }
+
         return errors;
+    }
+
+    // The only progression in the codebase whose value falls as level
+    // rises: a lower critical-hit threshold is the improvement, so 19 at 3rd
+    // becomes 18 at 15th. Do not "fix" this to the ascending check every
+    // other progression uses.
+    private static void ValidateImprovedCriticalProgression(
+        ImprovedCriticalProgressionDetail improvedCriticalProgression,
+        ICollection<string> errors)
+    {
+        if (improvedCriticalProgression.MinimumRollByLevel.Count == 0)
+        {
+            errors.Add(
+                "Improved Critical progression must grant at least one " +
+                "critical hit threshold.");
+        }
+
+        var seenLevels = new HashSet<int>();
+        int? previousMinimumRoll = null;
+
+        foreach (
+            CriticalHitThresholdGrant grant
+            in improvedCriticalProgression.MinimumRollByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Improved Critical threshold character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousMinimumRoll is { } previous &&
+                grant.MinimumRoll >= previous)
+            {
+                errors.Add(
+                    "Improved Critical minimum roll at level " +
+                    $"{grant.CharacterLevel} must be lower than the value " +
+                    "at the previous grant level.");
+            }
+
+            previousMinimumRoll = grant.MinimumRoll;
+        }
     }
 
     private static void ValidateMagicalSecretsProgression(

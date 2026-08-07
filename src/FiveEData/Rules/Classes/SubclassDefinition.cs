@@ -3,10 +3,15 @@ using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.HurlThroughHell;
+using FiveEData.Rules.Classes.ImprovedCritical;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.Portent;
+using FiveEData.Rules.Classes.ShadowStep;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.ThunderboltStrike;
+using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 
@@ -32,6 +37,11 @@ public sealed class SubclassDefinition
         MagicalSecretsProgressionDetail? magicalSecretsProgression,
         PortentProgressionDetail? portentProgression,
         DraconicResilienceDetail? draconicResilience,
+        ImprovedCriticalProgressionDetail? improvedCriticalProgression,
+        ShadowStepDetail? shadowStep,
+        HurlThroughHellDetail? hurlThroughHell,
+        WrathOfTheStormDetail? wrathOfTheStorm,
+        ThunderboltStrikeDetail? thunderboltStrike,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -54,6 +64,11 @@ public sealed class SubclassDefinition
         MagicalSecretsProgression = magicalSecretsProgression;
         PortentProgression = portentProgression;
         DraconicResilience = draconicResilience;
+        ImprovedCriticalProgression = improvedCriticalProgression;
+        ShadowStep = shadowStep;
+        HurlThroughHell = hurlThroughHell;
+        WrathOfTheStorm = wrathOfTheStorm;
+        ThunderboltStrike = thunderboltStrike;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -84,6 +99,19 @@ public sealed class SubclassDefinition
     public PortentProgressionDetail? PortentProgression { get; }
 
     public DraconicResilienceDetail? DraconicResilience { get; }
+
+    public ImprovedCriticalProgressionDetail? ImprovedCriticalProgression
+    {
+        get;
+    }
+
+    public ShadowStepDetail? ShadowStep { get; }
+
+    public HurlThroughHellDetail? HurlThroughHell { get; }
+
+    public WrathOfTheStormDetail? WrathOfTheStorm { get; }
+
+    public ThunderboltStrikeDetail? ThunderboltStrike { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

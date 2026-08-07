@@ -37,6 +37,22 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": {
+      "minimumRollByLevel": [
+        {
+          "characterLevel": 3,
+          "minimumRoll": 19
+        },
+        {
+          "characterLevel": 15,
+          "minimumRoll": 18
+        }
+      ]
+    },
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -139,6 +155,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -189,6 +210,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -231,6 +257,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -277,6 +308,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -319,6 +355,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -361,6 +402,14 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": {
+      "teleportRangeFeet": 60,
+      "grantsAdvantageOnNextMeleeAttack": true
+    },
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -440,6 +489,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -486,6 +540,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -532,6 +591,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -578,6 +642,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -628,6 +697,11 @@
     },
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -670,6 +744,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -716,6 +795,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -762,6 +846,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -821,6 +910,11 @@
       "recoversOnLongRest": true
     },
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -867,6 +961,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -913,6 +1012,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -959,6 +1063,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1005,6 +1114,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1051,6 +1165,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1097,6 +1216,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1167,6 +1291,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1217,6 +1346,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1291,6 +1425,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1361,6 +1500,27 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": {
+      "triggerRangeFeet": 5,
+      "damage": {
+        "count": 2,
+        "sides": 8
+      },
+      "choosableDamageTypeIds": [
+        "dnd5e2014.damage-type.lightning",
+        "dnd5e2014.damage-type.thunder"
+      ],
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "recoversOnLongRest": true
+    },
+    "thunderboltStrike": {
+      "pushDistanceFeet": 10,
+      "maximumTargetSizeId": "dnd5e2014.creature-size.large"
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1427,6 +1587,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1497,6 +1662,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1543,6 +1713,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1589,6 +1764,19 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": {
+      "damage": {
+        "count": 10,
+        "sides": 10
+      },
+      "damageTypeId": "dnd5e2014.damage-type.psychic",
+      "exemptsFiends": true,
+      "recoversOnLongRest": true
+    },
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1635,6 +1823,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1697,6 +1890,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1774,6 +1972,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1816,6 +2019,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1858,6 +2066,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1931,6 +2144,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2004,6 +2222,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2070,6 +2293,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2120,6 +2348,11 @@
       "unarmoredBaseArmorClass": 13,
       "unarmoredIncludesDexterityModifier": true
     },
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2166,6 +2399,11 @@
     "magicalSecretsProgression": null,
     "portentProgression": null,
     "draconicResilience": null,
+    "improvedCriticalProgression": null,
+    "shadowStep": null,
+    "hurlThroughHell": null,
+    "wrathOfTheStorm": null,
+    "thunderboltStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

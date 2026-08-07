@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2066 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2083 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -394,7 +394,8 @@ rather than trusting it.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding,
   Additional Magical Secrets (the same `MagicalSecretsProgressionDetail` the
-  Bard uses), Portent, Draconic Resilience.
+  Bard uses), Portent, Draconic Resilience, Improved Critical, Shadow Step,
+  Hurl Through Hell, Wrath of the Storm, Thunderbolt Strike.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
   `ResistedDamageTypeIds`, `TranceDurationHours`, `HitPointBonusPerLevel`,
   the subrace `Speed` override, and the embedded Breath Weapon progression.
@@ -557,10 +558,16 @@ feature, never inferred from the class.
 
 **Tier B — flat scalars, the `DarkvisionRangeFeet` shape.** Done on
 `ClassDefinition`: Blindsense, Reliable Talent, Feral Senses, Divine Sense,
-Improved Divine Smite, Primal Champion. Still open: Improved/Superior Critical
-(crit range), Shadow Step, the fixed ki and sorcery-point costs, Hurl Through
-Hell, Wrath of the Storm, Thunderbolt Strike — all subclass-level except the
-resource costs.
+Improved Divine Smite, Primal Champion. Done on `SubclassDefinition`: Improved
+Critical, Shadow Step, Hurl Through Hell, Wrath of the Storm, Thunderbolt
+Strike. Still open: the fixed ki and sorcery-point costs.
+
+**One progression descends.** Improved Critical's threshold goes 19 at 3rd to
+18 at 15th, because a *lower* crit threshold is the improvement — the only
+progression in the codebase whose value falls as level rises. It gets a
+bespoke descending validator, flagged in a comment on the method and pinned by
+`Validator_RejectsImprovedCriticalProgressionWithRisingThreshold`. Don't
+"align" it to `ValidatePointsProgression`.
 
 **Indomitable Might was a listed Tier B candidate and carries no number.**
 "If your total for a Strength check is less than your Strength score, you can

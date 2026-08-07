@@ -35,6 +35,11 @@ public sealed class SubclassDefinitionLoaderTests
           "magicalSecretsProgression": null,
           "portentProgression": null,
           "draconicResilience": null,
+          "improvedCriticalProgression": null,
+          "shadowStep": null,
+          "hurlThroughHell": null,
+          "wrathOfTheStorm": null,
+          "thunderboltStrike": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -96,6 +101,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -153,6 +163,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -206,6 +221,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -271,6 +291,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -339,6 +364,11 @@ public sealed class SubclassDefinitionLoaderTests
                       "unarmoredBaseArmorClass": 13,
                       "unarmoredIncludesDexterityModifier": true
                     },
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -417,6 +447,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -441,6 +476,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": []
                   }
                 ]
@@ -462,6 +502,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": []
                   }
                 ]
@@ -484,6 +529,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": []
                   }
                 ]
@@ -506,6 +556,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": []
                   }
                 ]
@@ -528,6 +583,11 @@ public sealed class SubclassDefinitionLoaderTests
                     "magicalSecretsProgression": null,
                     "portentProgression": null,
                     "draconicResilience": null,
+                    "improvedCriticalProgression": null,
+                    "shadowStep": null,
+                    "hurlThroughHell": null,
+                    "wrathOfTheStorm": null,
+                    "thunderboltStrike": null,
                     "sources": null
                   }
                 ]

@@ -7,10 +7,20 @@ using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
 using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.HurlThroughHell;
+using FiveEData.Rules.Classes.HurlThroughHell.Serialization;
+using FiveEData.Rules.Classes.ImprovedCritical;
+using FiveEData.Rules.Classes.ImprovedCritical.Serialization;
 using FiveEData.Rules.Classes.DraconicResilience.Serialization;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
 using FiveEData.Rules.Classes.Portent;
+using FiveEData.Rules.Classes.ShadowStep;
+using FiveEData.Rules.Classes.ShadowStep.Serialization;
+using FiveEData.Rules.Classes.ThunderboltStrike;
+using FiveEData.Rules.Classes.ThunderboltStrike.Serialization;
+using FiveEData.Rules.Classes.WrathOfTheStorm;
+using FiveEData.Rules.Classes.WrathOfTheStorm.Serialization;
 using FiveEData.Rules.Classes.Portent.Serialization;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
@@ -178,6 +188,36 @@ internal static class SubclassDefinitionLoader
                     draconicResilienceData)
                 : null;
 
+        ImprovedCriticalProgressionDetail? improvedCriticalProgression =
+            data.ImprovedCriticalProgression is
+                { } improvedCriticalProgressionData
+                ? ImprovedCriticalProgressionDetailDataMapper.Map(
+                    improvedCriticalProgressionData)
+                : null;
+
+        ShadowStepDetail? shadowStep =
+            data.ShadowStep is { } shadowStepData
+                ? ShadowStepDetailDataMapper.Map(shadowStepData)
+                : null;
+
+        HurlThroughHellDetail? hurlThroughHell =
+            data.HurlThroughHell is { } hurlThroughHellData
+                ? HurlThroughHellDetailDataMapper.Map(
+                    hurlThroughHellData)
+                : null;
+
+        WrathOfTheStormDetail? wrathOfTheStorm =
+            data.WrathOfTheStorm is { } wrathOfTheStormData
+                ? WrathOfTheStormDetailDataMapper.Map(
+                    wrathOfTheStormData)
+                : null;
+
+        ThunderboltStrikeDetail? thunderboltStrike =
+            data.ThunderboltStrike is { } thunderboltStrikeData
+                ? ThunderboltStrikeDetailDataMapper.Map(
+                    thunderboltStrikeData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -195,6 +235,11 @@ internal static class SubclassDefinitionLoader
             magicalSecretsProgression,
             portentProgression,
             draconicResilience,
+            improvedCriticalProgression,
+            shadowStep,
+            hurlThroughHell,
+            wrathOfTheStorm,
+            thunderboltStrike,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }
