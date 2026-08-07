@@ -6,6 +6,12 @@ using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races.BreathWeapon;
+using FiveEData.Rules.Creatures.Races.Lucky;
+using FiveEData.Rules.Creatures.Races.Lucky.Serialization;
+using FiveEData.Rules.Creatures.Races.RelentlessEndurance;
+using FiveEData.Rules.Creatures.Races.RelentlessEndurance.Serialization;
+using FiveEData.Rules.Creatures.Races.SavageAttacks;
+using FiveEData.Rules.Creatures.Races.SavageAttacks.Serialization;
 using FiveEData.Rules.Creatures.Races.BreathWeapon.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
 
@@ -144,6 +150,22 @@ internal static class RaceDefinitionLoader
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
 
+        SavageAttacksDetail? savageAttacks =
+            data.SavageAttacks is { } savageAttacksData
+                ? SavageAttacksDetailDataMapper.Map(savageAttacksData)
+                : null;
+
+        RelentlessEnduranceDetail? relentlessEndurance =
+            data.RelentlessEndurance is { } relentlessEnduranceData
+                ? RelentlessEnduranceDetailDataMapper.Map(
+                    relentlessEnduranceData)
+                : null;
+
+        LuckyDetail? lucky =
+            data.Lucky is { } luckyData
+                ? LuckyDetailDataMapper.Map(luckyData)
+                : null;
+
         return new RaceDefinition(
             id,
             name,
@@ -158,6 +180,9 @@ internal static class RaceDefinitionLoader
             resistedDamageTypeIds,
             data.TranceDurationHours,
             breathWeaponProgression,
+            savageAttacks,
+            relentlessEndurance,
+            lucky,
             sources);
     }
 

@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2103 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2129 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -399,7 +399,8 @@ rather than trusting it.
   Quivering Palm ki costs, Draconic Presence's sorcery point cost, Bend Luck.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
   `ResistedDamageTypeIds`, `TranceDurationHours`, `HitPointBonusPerLevel`,
-  the subrace `Speed` override, and the embedded Breath Weapon progression.
+  the subrace `Speed` override, the embedded Breath Weapon progression, and
+  Savage Attacks, Relentless Endurance, and Lucky.
 - **On `BackgroundDefinition`:** `SustainedLifestyleId` (a cross-domain
   reference into the Lifestyles catalog), `AdditionalPeopleFedPerDay`,
   `GuildDuesGoldPerMonth`, `FastTravelSpeedMultiplier`.
@@ -507,8 +508,23 @@ and Draconic Resilience are done — all of Tier A. The Tier B list below is
 verified-as-candidates by name only and still needs values read off the page
 images.
 
-**Tier A and Tier B are both closed.** What remains of the sweep is the Race
-tail (Savage Attacks' extra crit die); Tier C stays citation by design.
+**Tier A, Tier B, and the Race tail are all closed. The sweep is done.** Tier
+C stays citation by design.
+
+**The Race tail held three features, not the one the list named.** Savage
+Attacks (1 extra crit die, melee weapon), Relentless Endurance (drop to 1 hp,
+long rest), and Halfling Lucky (reroll a natural 1, must use the new roll).
+Savage Attacks stores a *count* rather than a `DiceExpression` for the same
+reason Brutal Critical does — the die size comes from the weapon.
+
+**Rock Gnome's Tinker is declined despite carrying numbers.** 1 hour and 10 gp
+to build, AC 5, 1 hp, 24 hours, up to three active — but those describe a
+*constructed object*, and objects are not a modeled domain here; its three
+device options are per-option effect prose besides. Pinned by
+`CanonicalFile_RockGnomeTinkerStaysCitationOnly`. This is the "content this
+project doesn't model as its own domain" line, not the "no number" line that
+covers Pact Boon and Indomitable Might — revisit if a crafting or object
+domain ever exists.
 
 **Two features here were explicitly declined during the original pass, and
 both declines predate the precedent that now covers them** — Brutal Critical's

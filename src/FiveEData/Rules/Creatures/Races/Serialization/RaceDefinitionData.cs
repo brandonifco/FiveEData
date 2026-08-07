@@ -1,6 +1,9 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Creatures.Races.BreathWeapon.Serialization;
+using FiveEData.Rules.Creatures.Races.Lucky.Serialization;
+using FiveEData.Rules.Creatures.Races.RelentlessEndurance.Serialization;
+using FiveEData.Rules.Creatures.Races.SavageAttacks.Serialization;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
@@ -48,6 +51,19 @@ internal sealed class RaceDefinitionData
         get;
         init;
     }
+
+    [JsonRequired]
+    public SavageAttacksDetailData? SavageAttacks { get; init; }
+
+    [JsonRequired]
+    public RelentlessEnduranceDetailData? RelentlessEndurance
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public LuckyDetailData? Lucky { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

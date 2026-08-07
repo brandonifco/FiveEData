@@ -1,4 +1,7 @@
 using FiveEData.Rules.Creatures.Races;
+using FiveEData.Rules.Creatures.Races.SavageAttacks;
+using FiveEData.Rules.Creatures.Races.RelentlessEndurance;
+using FiveEData.Rules.Creatures.Races.Lucky;
 using FiveEData.Rules.Creatures.Races.Serialization;
 
 namespace FiveEData.Tests;
@@ -26,6 +29,9 @@ public sealed class RaceDefinitionLoaderTests
           "resistedDamageTypeIds": [],
           "tranceDurationHours": null,
           "breathWeaponProgression": null,
+          "savageAttacks": null,
+          "relentlessEndurance": null,
+          "lucky": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -35,6 +41,71 @@ public sealed class RaceDefinitionLoaderTests
           ]
         }
         """;
+
+    [Fact]
+    public void ValidDefinition_LoadsRaceTailScalars()
+    {
+        RaceDefinition race = Assert.Single(
+            RaceDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.race.test",
+                    "name": "Test",
+                    "size": "dnd5e2014.creature-size.medium",
+                    "speedFeet": 30,
+                    "abilityScoreIncreases": [],
+                    "choosableAbilityScoreIncreaseCount": 0,
+                    "languageIds": [],
+                    "additionalLanguageChoiceCount": 0,
+                    "traitRuleIds": [],
+                    "darkvisionRangeFeet": null,
+                    "resistedDamageTypeIds": [],
+                    "tranceDurationHours": null,
+                    "breathWeaponProgression": null,
+                    "savageAttacks": {
+                      "additionalCriticalDice": 1,
+                      "requiresMeleeWeapon": true
+                    },
+                    "relentlessEndurance": {
+                      "hitPointsRetained": 1,
+                      "recoversOnLongRest": true
+                    },
+                    "lucky": {
+                      "rerollOnNaturalRoll": 1,
+                      "mustUseNewRoll": false
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        SavageAttacksDetail savageAttacks =
+            race.SavageAttacks
+            ?? throw new InvalidOperationException(
+                "Expected Savage Attacks.");
+        Assert.Equal(1, savageAttacks.AdditionalCriticalDice);
+        Assert.True(savageAttacks.RequiresMeleeWeapon);
+
+        RelentlessEnduranceDetail relentlessEndurance =
+            race.RelentlessEndurance
+            ?? throw new InvalidOperationException(
+                "Expected Relentless Endurance.");
+        Assert.Equal(1, relentlessEndurance.HitPointsRetained);
+        Assert.True(relentlessEndurance.RecoversOnLongRest);
+
+        LuckyDetail lucky =
+            race.Lucky
+            ?? throw new InvalidOperationException("Expected Lucky.");
+        Assert.Equal(1, lucky.RerollOnNaturalRoll);
+        Assert.False(lucky.MustUseNewRoll);
+    }
 
     [Fact]
     public void ValidDefinition_LoadsStrictly()
@@ -105,6 +176,9 @@ public sealed class RaceDefinitionLoaderTests
                     "resistedDamageTypeIds": [],
                     "tranceDurationHours": null,
                     "breathWeaponProgression": null,
+                    "savageAttacks": null,
+                    "relentlessEndurance": null,
+                    "lucky": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -134,6 +208,9 @@ public sealed class RaceDefinitionLoaderTests
                     "resistedDamageTypeIds": [],
                     "tranceDurationHours": null,
                     "breathWeaponProgression": null,
+                    "savageAttacks": null,
+                    "relentlessEndurance": null,
+                    "lucky": null,
                     "sources": []
                   }
                 ]
@@ -160,6 +237,9 @@ public sealed class RaceDefinitionLoaderTests
                     "resistedDamageTypeIds": [],
                     "tranceDurationHours": null,
                     "breathWeaponProgression": null,
+                    "savageAttacks": null,
+                    "relentlessEndurance": null,
+                    "lucky": null,
                     "sources": []
                   }
                 ]
@@ -187,6 +267,9 @@ public sealed class RaceDefinitionLoaderTests
                     "resistedDamageTypeIds": [],
                     "tranceDurationHours": null,
                     "breathWeaponProgression": null,
+                    "savageAttacks": null,
+                    "relentlessEndurance": null,
+                    "lucky": null,
                     "sources": []
                   }
                 ]
@@ -214,6 +297,9 @@ public sealed class RaceDefinitionLoaderTests
                     "resistedDamageTypeIds": [],
                     "tranceDurationHours": null,
                     "breathWeaponProgression": null,
+                    "savageAttacks": null,
+                    "relentlessEndurance": null,
+                    "lucky": null,
                     "sources": []
                   }
                 ]
@@ -241,6 +327,9 @@ public sealed class RaceDefinitionLoaderTests
                     "resistedDamageTypeIds": [],
                     "tranceDurationHours": null,
                     "breathWeaponProgression": null,
+                    "savageAttacks": null,
+                    "relentlessEndurance": null,
+                    "lucky": null,
                     "sources": null
                   }
                 ]
