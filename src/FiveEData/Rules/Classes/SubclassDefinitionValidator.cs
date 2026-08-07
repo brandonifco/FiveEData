@@ -1,6 +1,8 @@
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
+using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Common;
 
@@ -78,7 +80,100 @@ internal static class SubclassDefinitionValidator
                 errors);
         }
 
+        if (subclass.MagicalSecretsProgression is
+            { } magicalSecretsProgression)
+        {
+            ValidateMagicalSecretsProgression(
+                magicalSecretsProgression,
+                errors);
+        }
+
+        if (subclass.PortentProgression is { } portentProgression)
+        {
+            ValidatePortentProgression(portentProgression, errors);
+        }
+
         return errors;
+    }
+
+    private static void ValidateMagicalSecretsProgression(
+        MagicalSecretsProgressionDetail magicalSecretsProgression,
+        ICollection<string> errors)
+    {
+        if (magicalSecretsProgression.SpellsKnownByLevel.Count == 0)
+        {
+            errors.Add(
+                "Magical Secrets progression must grant at least one " +
+                "spells known increase.");
+        }
+
+        var seenLevels = new HashSet<int>();
+        int? previousSpellsKnown = null;
+
+        foreach (
+            MagicalSecretsChoiceGrant grant
+            in magicalSecretsProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Magical Secrets spells known character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousSpellsKnown is { } previous &&
+                grant.SpellsKnown <= previous)
+            {
+                errors.Add(
+                    "Magical Secrets spells known at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousSpellsKnown = grant.SpellsKnown;
+        }
+    }
+
+    private static void ValidatePortentProgression(
+        PortentProgressionDetail portentProgression,
+        ICollection<string> errors)
+    {
+        if (portentProgression.ForetellingRollsByLevel.Count == 0)
+        {
+            errors.Add(
+                "Portent progression must grant at least one foretelling " +
+                "rolls increase.");
+        }
+
+        var seenLevels = new HashSet<int>();
+        int? previousForetellingRolls = null;
+
+        foreach (
+            PortentRollGrant grant
+            in portentProgression.ForetellingRollsByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Portent foretelling rolls character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousForetellingRolls is { } previous &&
+                grant.ForetellingRolls <= previous)
+            {
+                errors.Add(
+                    "Portent foretelling rolls at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousForetellingRolls = grant.ForetellingRolls;
+        }
     }
 
     private static void ValidateDiscipleOfTheElementsProgression(

@@ -2,6 +2,9 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.DivineStrike;
+using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.Serialization;
 
 namespace FiveEData.Tests;
@@ -29,6 +32,9 @@ public sealed class SubclassDefinitionLoaderTests
           "auraOfWarding": null,
           "combatSuperiorityProgression": null,
           "discipleOfTheElementsProgression": null,
+          "magicalSecretsProgression": null,
+          "portentProgression": null,
+          "draconicResilience": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -87,6 +93,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "auraOfWarding": null,
                     "combatSuperiorityProgression": null,
                     "discipleOfTheElementsProgression": null,
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -141,6 +150,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "auraOfWarding": null,
                     "combatSuperiorityProgression": null,
                     "discipleOfTheElementsProgression": null,
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -191,6 +203,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "auraOfWarding": null,
                     "combatSuperiorityProgression": null,
                     "discipleOfTheElementsProgression": null,
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -253,6 +268,9 @@ public sealed class SubclassDefinitionLoaderTests
                     },
                     "combatSuperiorityProgression": null,
                     "discipleOfTheElementsProgression": null,
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -279,6 +297,91 @@ public sealed class SubclassDefinitionLoaderTests
         Assert.True(auraOfDevotion.RequiresConsciousness);
 
         Assert.False(auraOfWarding.RequiresConsciousness);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsQuantizedSubclassFeatures()
+    {
+        SubclassDefinition subclass = Assert.Single(
+            SubclassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.subclass.test",
+                    "name": "Test",
+                    "classId": "dnd5e2014.class.wizard",
+                    "chosenAtLevel": 2,
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "divineStrikeProgression": null,
+                    "circleFormsProgression": null,
+                    "auraOfDevotion": null,
+                    "auraOfWarding": null,
+                    "combatSuperiorityProgression": null,
+                    "discipleOfTheElementsProgression": null,
+                    "magicalSecretsProgression": {
+                      "spellsKnownByLevel": [
+                        { "characterLevel": 6, "spellsKnown": 2 }
+                      ],
+                      "countsAgainstSpellsKnown": false
+                    },
+                    "portentProgression": {
+                      "foretellingRollsByLevel": [
+                        { "characterLevel": 2, "foretellingRolls": 2 },
+                        { "characterLevel": 14, "foretellingRolls": 3 }
+                      ],
+                      "oncePerTurn": true,
+                      "recoversOnLongRest": true
+                    },
+                    "draconicResilience": {
+                      "hitPointBonusPerLevel": 1,
+                      "unarmoredBaseArmorClass": 13,
+                      "unarmoredIncludesDexterityModifier": true
+                    },
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        MagicalSecretsProgressionDetail magicalSecretsProgression =
+            subclass.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Magical Secrets progression.");
+        Assert.Equal(
+            6,
+            Assert.Single(magicalSecretsProgression.SpellsKnownByLevel)
+                .CharacterLevel);
+        Assert.False(magicalSecretsProgression.CountsAgainstSpellsKnown);
+
+        PortentProgressionDetail portentProgression =
+            subclass.PortentProgression
+            ?? throw new InvalidOperationException(
+                "Expected a Portent progression.");
+        Assert.Equal(2, portentProgression.ForetellingRollsByLevel.Count);
+        Assert.Equal(
+            3,
+            portentProgression.ForetellingRollsByLevel[1].ForetellingRolls);
+        Assert.True(portentProgression.OncePerTurn);
+        Assert.True(portentProgression.RecoversOnLongRest);
+
+        DraconicResilienceDetail draconicResilience =
+            subclass.DraconicResilience
+            ?? throw new InvalidOperationException(
+                "Expected Draconic Resilience.");
+        Assert.Equal(1, draconicResilience.HitPointBonusPerLevel);
+        Assert.Equal(
+            13,
+            draconicResilience.UnarmoredArmorClass.BaseArmorClass);
+        Assert.True(
+            draconicResilience.UnarmoredArmorClass
+                .IncludesDexterityModifier);
     }
 
     [Fact]
@@ -311,6 +414,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "classId": "dnd5e2014.class.fighter",
                     "chosenAtLevel": 3,
                     "levelFeatures": [],
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -332,6 +438,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "classId": "dnd5e2014.class.fighter",
                     "chosenAtLevel": 3,
                     "levelFeatures": [],
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": []
                   }
                 ]
@@ -350,6 +459,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "name": "Test",
                     "chosenAtLevel": 3,
                     "levelFeatures": [],
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": []
                   }
                 ]
@@ -369,6 +481,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "classId": "dnd5e2014.class.fighter",
                     "chosenAtLevel": 3,
                     "levelFeatures": [],
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": []
                   }
                 ]
@@ -388,6 +503,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "classId": null,
                     "chosenAtLevel": 3,
                     "levelFeatures": [],
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": []
                   }
                 ]
@@ -407,6 +525,9 @@ public sealed class SubclassDefinitionLoaderTests
                     "classId": "dnd5e2014.class.fighter",
                     "chosenAtLevel": 3,
                     "levelFeatures": [],
+                    "magicalSecretsProgression": null,
+                    "portentProgression": null,
+                    "draconicResilience": null,
                     "sources": null
                   }
                 ]

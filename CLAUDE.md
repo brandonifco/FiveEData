@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2017 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2031 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -392,7 +392,9 @@ rather than trusting it.
   Undead, Mystic Arcanum, Font of Magic conversion, Aura of Protection, Aura
   of Courage, Eldritch Invocations known.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
-  Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding.
+  Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding,
+  Additional Magical Secrets (the same `MagicalSecretsProgressionDetail` the
+  Bard uses), Portent, Draconic Resilience.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
   `ResistedDamageTypeIds`, `TranceDurationHours`, `HitPointBonusPerLevel`,
   the subrace `Speed` override, and the embedded Breath Weapon progression.
@@ -498,15 +500,13 @@ The pass above closed when its enumerated list was done. A later sweep of all
 on that list — so **"the pass is complete" meant list-complete, and the
 distinction is load-bearing.** Martial Arts, Unarmored Movement, Brutal
 Critical, Fast Movement, Action Surge, Indomitable, Destroy Undead, Favored
-Enemy, Natural Explorer, and Magical Secrets are done; the rest below are
-verified-as-candidates by name only and still need their values read off the
-page images.
+Enemy, Natural Explorer, Magical Secrets, Additional Magical Secrets, Portent,
+and Draconic Resilience are done — all of Tier A. The Tier B list below is
+verified-as-candidates by name only and still needs values read off the page
+images.
 
-**Tier A — a shape already built elsewhere, no new design needed:** Portent
-(leveled choice count) and Draconic Resilience (+1 HP per level, the Hill
-Dwarf `HitPointBonusPerLevel` shape). Both are subclass features, so they land
-on `SubclassDefinition`; College of Lore's Additional Magical Secrets belongs
-with them.
+**Tier A is closed.** What remains is Tier B and the Race tail (Savage
+Attacks' extra crit die).
 
 **Two features here were explicitly declined during the original pass, and
 both declines predate the precedent that now covers them** — Brutal Critical's
@@ -516,6 +516,21 @@ Attack and Wild Shape existed. Both have since been reversed and converted.
 **A decline is only as good as the precedents available when it was made;
 re-read old declines against newer shapes rather than treating them as
 settled.**
+
+**One progression may span two separately cited features.** Portent and
+Greater Portent are two `RuleId`s, but Greater Portent's entire mechanical
+content is "you roll three d20s for your Portent feature, rather than two" —
+so one `PortentProgression` carries both rows (2nd → 2, 14th → 3) while both
+citations stay in `LevelFeatures`. Pinned by
+`CanonicalFile_GreaterPortentSuppliesTheFourteenthLevelPortentRow`. Split the
+progression only when the second feature is a genuinely separate resource.
+
+**The same detail type can serve a class and a subclass when the mechanic is
+the same.** `MagicalSecretsProgressionDetail` sits on both `ClassDefinition`
+(Bard) and `SubclassDefinition` (College of Lore); `CountsAgainstSpellsKnown`
+is `true` for one and `false` for the other, which is exactly the difference
+the PHB states. A field that distinguishes two real instances beats two
+near-identical types.
 
 **A leveled choice count is stored as a cumulative total, not an increment.**
 Favored Enemy is 1/2/3 at levels 1/6/14, not 1/+1/+1 — the same convention

@@ -3,6 +3,9 @@ using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
+using FiveEData.Rules.Classes.DraconicResilience.Serialization;
+using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
+using FiveEData.Rules.Classes.Portent.Serialization;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 
@@ -65,6 +68,19 @@ internal sealed class SubclassDefinitionData
         get;
         init;
     }
+
+    [JsonRequired]
+    public MagicalSecretsProgressionDetailData? MagicalSecretsProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public PortentProgressionDetailData? PortentProgression { get; init; }
+
+    [JsonRequired]
+    public DraconicResilienceDetailData? DraconicResilience { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

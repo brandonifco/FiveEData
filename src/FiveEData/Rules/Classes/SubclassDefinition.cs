@@ -2,7 +2,10 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
+using FiveEData.Rules.Classes.DraconicResilience;
 using FiveEData.Rules.Classes.DivineStrike;
+using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -26,6 +29,9 @@ public sealed class SubclassDefinition
         CombatSuperiorityProgressionDetail? combatSuperiorityProgression,
         DiscipleOfTheElementsProgressionDetail?
             discipleOfTheElementsProgression,
+        MagicalSecretsProgressionDetail? magicalSecretsProgression,
+        PortentProgressionDetail? portentProgression,
+        DraconicResilienceDetail? draconicResilience,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -45,6 +51,9 @@ public sealed class SubclassDefinition
         AuraOfWarding = auraOfWarding;
         CombatSuperiorityProgression = combatSuperiorityProgression;
         DiscipleOfTheElementsProgression = discipleOfTheElementsProgression;
+        MagicalSecretsProgression = magicalSecretsProgression;
+        PortentProgression = portentProgression;
+        DraconicResilience = draconicResilience;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -66,6 +75,15 @@ public sealed class SubclassDefinition
     public DiscipleOfTheElementsProgressionDetail?
         DiscipleOfTheElementsProgression
     { get; }
+
+    public MagicalSecretsProgressionDetail? MagicalSecretsProgression
+    {
+        get;
+    }
+
+    public PortentProgressionDetail? PortentProgression { get; }
+
+    public DraconicResilienceDetail? DraconicResilience { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

@@ -6,6 +6,12 @@ using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
+using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.DraconicResilience.Serialization;
+using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
+using FiveEData.Rules.Classes.Portent;
+using FiveEData.Rules.Classes.Portent.Serialization;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
@@ -153,6 +159,25 @@ internal static class SubclassDefinitionLoader
                         discipleOfTheElementsProgressionData)
                     : null;
 
+        MagicalSecretsProgressionDetail? magicalSecretsProgression =
+            data.MagicalSecretsProgression is
+                { } magicalSecretsProgressionData
+                ? MagicalSecretsProgressionDetailDataMapper.Map(
+                    magicalSecretsProgressionData)
+                : null;
+
+        PortentProgressionDetail? portentProgression =
+            data.PortentProgression is { } portentProgressionData
+                ? PortentProgressionDetailDataMapper.Map(
+                    portentProgressionData)
+                : null;
+
+        DraconicResilienceDetail? draconicResilience =
+            data.DraconicResilience is { } draconicResilienceData
+                ? DraconicResilienceDetailDataMapper.Map(
+                    draconicResilienceData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -167,6 +192,9 @@ internal static class SubclassDefinitionLoader
             auraOfWarding,
             combatSuperiorityProgression,
             discipleOfTheElementsProgression,
+            magicalSecretsProgression,
+            portentProgression,
+            draconicResilience,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

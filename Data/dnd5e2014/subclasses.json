@@ -34,6 +34,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -133,6 +136,9 @@
       ]
     },
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -180,6 +186,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -219,6 +228,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -262,6 +274,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -301,6 +316,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -340,6 +358,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -416,6 +437,9 @@
         }
       ]
     },
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -459,6 +483,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -502,6 +529,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -545,6 +575,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -584,6 +617,17 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": {
+      "spellsKnownByLevel": [
+        {
+          "characterLevel": 6,
+          "spellsKnown": 2
+        }
+      ],
+      "countsAgainstSpellsKnown": false
+    },
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -623,6 +667,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -666,6 +713,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -709,6 +759,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -752,6 +805,22 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": {
+      "foretellingRollsByLevel": [
+        {
+          "characterLevel": 2,
+          "foretellingRolls": 2
+        },
+        {
+          "characterLevel": 14,
+          "foretellingRolls": 3
+        }
+      ],
+      "oncePerTurn": true,
+      "recoversOnLongRest": true
+    },
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -795,6 +864,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -838,6 +910,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -881,6 +956,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -924,6 +1002,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -967,6 +1048,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1010,6 +1094,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1077,6 +1164,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1124,6 +1214,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1195,6 +1288,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1262,6 +1358,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1325,6 +1424,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1392,6 +1494,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1435,6 +1540,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1478,6 +1586,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1521,6 +1632,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1580,6 +1694,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1654,6 +1771,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1693,6 +1813,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1732,6 +1855,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1802,6 +1928,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1872,6 +2001,9 @@
     },
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1935,6 +2067,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1978,6 +2113,13 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": {
+      "hitPointBonusPerLevel": 1,
+      "unarmoredBaseArmorClass": 13,
+      "unarmoredIncludesDexterityModifier": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2021,6 +2163,9 @@
     "auraOfWarding": null,
     "combatSuperiorityProgression": null,
     "discipleOfTheElementsProgression": null,
+    "magicalSecretsProgression": null,
+    "portentProgression": null,
+    "draconicResilience": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
