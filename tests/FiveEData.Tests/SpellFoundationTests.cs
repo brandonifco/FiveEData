@@ -191,10 +191,37 @@ public sealed class SpellFoundationTests
         SpellDuration duration = SpellDuration.Instantaneous();
 
         Assert.True(duration.IsInstantaneous);
+        Assert.False(duration.IsUntilDispelled);
         Assert.False(duration.RequiresConcentration);
         Assert.False(duration.IsUpTo);
         Assert.Null(duration.Amount);
         Assert.Null(duration.Unit);
+    }
+
+    // "Until dispelled" is a third duration kind alongside instantaneous
+    // and timed — not an unbounded amount, so it carries neither an amount
+    // nor a unit and is never a concentration or "up to" duration.
+    [Fact]
+    public void Duration_UntilDispelledCarriesNoAmountAndIsNotInstantaneous()
+    {
+        SpellDuration duration = SpellDuration.UntilDispelled();
+
+        Assert.True(duration.IsUntilDispelled);
+        Assert.False(duration.IsInstantaneous);
+        Assert.False(duration.RequiresConcentration);
+        Assert.False(duration.IsUpTo);
+        Assert.Null(duration.Amount);
+        Assert.Null(duration.Unit);
+    }
+
+    [Fact]
+    public void Duration_TimedIsNeitherInstantaneousNorUntilDispelled()
+    {
+        SpellDuration duration =
+            SpellDuration.Fixed(8, SpellDurationUnit.Hour);
+
+        Assert.False(duration.IsInstantaneous);
+        Assert.False(duration.IsUntilDispelled);
     }
 
     [Fact]

@@ -39,12 +39,13 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2144 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2156 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
-`SpellDefinition`. **All 27 cantrips and all 62 first-level spells are built;
-levels 2–9 are not.**
+`SpellDefinition`. **All 27 cantrips and all 62 first-level spells are built.
+Second level is in progress: 15 of its 59 spells (A–C, Aid through Crown of
+Madness) are built; levels 3–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -61,29 +62,43 @@ instantaneous, "up to", and concentration. **"Up to" is not a synonym for
 concentration** — Prestidigitation is "Up to 1 hour" with no concentration,
 while concentration is always an "up to" duration.
 
-**First level was added in alphabetical batches** — 62 spells over ~38 pages
-was too much to read reliably in one pass. All four batches are merged;
-`SpellDataFileTests` pins the exact built closure, so any future partial
-state is asserted rather than implied. **Use the same batching for levels
-2–9.**
+**Every level is added in alphabetical batches** — 62 first-level spells over
+~38 pages was too much to read reliably in one pass, and second level's 59 is
+no better. `SpellDataFileTests` pins the exact built closure, so a partial
+level is asserted rather than implied. **Keep batching for levels 3–9.**
 
 Each batch drove schema additions from real content, never anticipation:
 
-- **A–C:** `IsRitual` (Alarm, Comprehend Languages); area-of-effect ranges
-  via `SpellRange.SelfWithArea` (Arms of Hadar's radius, Burning Hands and
-  Color Spray's cones); `MaterialCostGoldPieces` (Chromatic Orb's 50 gp
-  diamond). A cantrip may never be a ritual — the validator enforces it.
-- **D–F:** the `Reaction` casting-time unit (Feather Fall) and `Hour` (Find
-  Familiar); `MaterialIsConsumed` (Find Familiar's charcoal and incense).
-- **G–P:** the `Day` duration unit (Illusory Script's 10 days).
-- **R–W:** the `Cube` area shape (Thunderwave's 15-foot cube) — the first
-  area that is neither a cone nor a radius.
+- **1st A–C:** `IsRitual` (Alarm, Comprehend Languages); area-of-effect
+  ranges via `SpellRange.SelfWithArea` (Arms of Hadar's radius, Burning
+  Hands and Color Spray's cones); `MaterialCostGoldPieces` (Chromatic Orb's
+  50 gp diamond). A cantrip may never be a ritual — the validator enforces
+  it.
+- **1st D–F:** the `Reaction` casting-time unit (Feather Fall) and `Hour`
+  (Find Familiar); `MaterialIsConsumed` (Find Familiar's charcoal and
+  incense).
+- **1st G–P:** the `Day` duration unit (Illusory Script's 10 days).
+- **1st R–W:** the `Cube` area shape (Thunderwave's 15-foot cube) — the
+  first area that is neither a cone nor a radius.
+- **2nd A–C:** `SpellDuration.UntilDispelled()` and its `IsUntilDispelled`
+  flag (Arcane Lock, Continual Flame) — a **third duration kind**, not an
+  unbounded amount, so it carries neither amount nor unit and is never
+  concentration or "up to". The validator enforces exactly one of the three
+  kinds.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
 same at 100 gp, Illusory Script and Find Familiar both, and Protection from
-Evil and Good consumed with no stated cost. Two PHB phrasings carry a cost:
-"worth at least X gp" and "X gp worth of".
+Evil and Good consumed with no stated cost. **Three** PHB phrasings carry a
+cost: "worth at least X gp", "X gp worth of", and — new at second level —
+a bare "worth X gp" (Continual Flame's ruby dust).
+
+**A spell entry is cited to the page bearing its name heading**, even when
+its stat block or body runs onto the next page. Armor of Agathys set this
+precedent at first level; Alter Self and Branding Smite follow it at second.
+This is the one place the general "cite where the body text starts" rule is
+read as "where the entry starts" — a spell's citation backs its header
+block, and the header block begins with the name.
 
 **A reaction spell's trigger stays in the citation.** The PHB states it as
 prose ("which you take when you or a creature within 60 feet of you falls");
@@ -96,7 +111,12 @@ amount is not 1.
 **`AvailableToClassIds` comes from the Chapter 11 class spell lists
 (pp.207–210), never from the spell description** — the description never
 names its classes. Thunderwave reaches four classes, the Paladin smites
-exactly one; both are read off those list pages.
+exactly one; both are read off those list pages. Those four pages are laid
+out in **four narrow columns**, not the two the description pages use — read
+them as quadrant crops or a column's continuation gets missed. The 2nd-level
+union of all eight class lists is **59 spells**; the per-class counts are
+Bard 22, Cleric 17, Druid 18, Paladin 8, Ranger 13, Sorcerer 24, Warlock 12,
+Wizard 34.
 
 **A duration unit does not imply a duration shape.** Shield and True Strike
 are both 1 round, but Shield's is flat while True Strike's is concentration

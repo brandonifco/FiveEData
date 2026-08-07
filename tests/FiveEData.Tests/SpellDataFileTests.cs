@@ -11,23 +11,141 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(89, LoadCanonical().Count);
+        Assert.Equal(104, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
         Assert.Equal(
             62,
             LoadCanonical().Count(spell => spell.Level == 1));
+        Assert.Equal(
+            15,
+            LoadCanonical().Count(spell => spell.Level == 2));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsAndFirstLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughSecondLevelForNow()
     {
-        // Levels 2-9 are not built yet. First level is complete: all 62
-        // of the PHB's 1st-level spells are here.
+        // Levels 3-9 are not built yet. First level is complete; second
+        // level is partial - only the A-C batch of its 59 spells is here.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 1));
+            spell => Assert.InRange(spell.Level, 0, 2));
+    }
+
+    [Fact]
+    public void SecondLevelContainsExactlyTheBuiltAThroughCBatch()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.aid",
+                "dnd5e2014.spell.alter-self",
+                "dnd5e2014.spell.animal-messenger",
+                "dnd5e2014.spell.arcane-lock",
+                "dnd5e2014.spell.augury",
+                "dnd5e2014.spell.barkskin",
+                "dnd5e2014.spell.beast-sense",
+                "dnd5e2014.spell.blindness-deafness",
+                "dnd5e2014.spell.blur",
+                "dnd5e2014.spell.branding-smite",
+                "dnd5e2014.spell.calm-emotions",
+                "dnd5e2014.spell.cloud-of-daggers",
+                "dnd5e2014.spell.continual-flame",
+                "dnd5e2014.spell.cordon-of-arrows",
+                "dnd5e2014.spell.crown-of-madness"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 2)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.aid", "Aid", "abjuration", 211)]
+    [InlineData("dnd5e2014.spell.augury", "Augury", "divination", 215)]
+    [InlineData("dnd5e2014.spell.blur", "Blur", "illusion", 219)]
+    [InlineData("dnd5e2014.spell.cloud-of-daggers", "Cloud of Daggers", "conjuration", 222)]
+    [InlineData("dnd5e2014.spell.crown-of-madness", "Crown of Madness", "enchantment", 229)]
+    public void SecondLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(2, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Arcane Lock and Continual Flame drove the "until dispelled" duration,
+    // the first that is neither instantaneous nor a span. Both are also
+    // costed *and* consumed, and Continual Flame carries a third PHB cost
+    // phrasing - "ruby dust worth 50 gp", with no "at least".
+    [Fact]
+    public void UntilDispelledDurationsAreArcaneLockAndContinualFlame()
+    {
+        SpellDefinition[] dispelled = LoadCanonical()
+            .Where(spell => spell.Duration.IsUntilDispelled)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
+
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.arcane-lock",
+                "dnd5e2014.spell.continual-flame"
+            ],
+            dispelled.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            dispelled,
+            spell =>
+            {
+                Assert.False(spell.Duration.IsInstantaneous);
+                Assert.Null(spell.Duration.Amount);
+                Assert.Null(spell.Duration.Unit);
+                Assert.True(spell.Components.MaterialIsConsumed);
+                Assert.NotNull(spell.Components.MaterialCostGoldPieces);
+            });
+
+        Assert.Equal(
+            25,
+            Get("dnd5e2014.spell.arcane-lock")
+                .Components.MaterialCostGoldPieces);
+        Assert.Equal(
+            50,
+            Get("dnd5e2014.spell.continual-flame")
+                .Components.MaterialCostGoldPieces);
+    }
+
+    // Aid's 8 hours, Animal Messenger's 24 and Cordon of Arrows' 8 are flat
+    // spans, not the "up to" kind - the second level's first evidence that
+    // a long duration need not be dismissible.
+    [Fact]
+    public void LongFlatDurationsAreNeitherUpToNorConcentration()
+    {
+        SpellDefinition[] flat =
+        [
+            Get("dnd5e2014.spell.aid"),
+            Get("dnd5e2014.spell.animal-messenger"),
+            Get("dnd5e2014.spell.cordon-of-arrows")
+        ];
+
+        Assert.All(
+            flat,
+            spell =>
+            {
+                Assert.Equal(SpellDurationUnit.Hour, spell.Duration.Unit);
+                Assert.False(spell.Duration.IsUpTo);
+                Assert.False(spell.Duration.RequiresConcentration);
+            });
+
+        Assert.Equal(24, Get("dnd5e2014.spell.animal-messenger")
+            .Duration.Amount);
     }
 
     [Fact]
@@ -145,11 +263,14 @@ public sealed class SpellDataFileTests
     }
 
     [Fact]
-    public void RitualsAreExactlyTheTaggedFirstLevelSpells()
+    public void RitualsAreExactlyTheTaggedSpells()
     {
         Assert.Equal(
             [
                 "dnd5e2014.spell.alarm",
+                "dnd5e2014.spell.animal-messenger",
+                "dnd5e2014.spell.augury",
+                "dnd5e2014.spell.beast-sense",
                 "dnd5e2014.spell.comprehend-languages",
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
@@ -211,7 +332,10 @@ public sealed class SpellDataFileTests
         // independent facts, which is why they are separate fields.
         Assert.Equal(
             [
+                "dnd5e2014.spell.arcane-lock",
+                "dnd5e2014.spell.augury",
                 "dnd5e2014.spell.chromatic-orb",
+                "dnd5e2014.spell.continual-flame",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script"

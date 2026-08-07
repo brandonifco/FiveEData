@@ -4,12 +4,14 @@ public readonly record struct SpellDuration
 {
     private SpellDuration(
         bool isInstantaneous,
+        bool isUntilDispelled,
         bool requiresConcentration,
         bool isUpTo,
         int? amount,
         SpellDurationUnit? unit)
     {
         IsInstantaneous = isInstantaneous;
+        IsUntilDispelled = isUntilDispelled;
         RequiresConcentration = requiresConcentration;
         IsUpTo = isUpTo;
         Amount = amount;
@@ -17,6 +19,14 @@ public readonly record struct SpellDuration
     }
 
     public bool IsInstantaneous { get; }
+
+    /// <summary>
+    /// True for the PHB's "Until dispelled" duration, which has no span at
+    /// all — Arcane Lock and Continual Flame. It is not an unbounded
+    /// amount/unit pair, so it is its own flag rather than a sentinel
+    /// amount.
+    /// </summary>
+    public bool IsUntilDispelled { get; }
 
     /// <summary>
     /// True when the duration is the maximum the caster may sustain rather
@@ -33,7 +43,10 @@ public readonly record struct SpellDuration
     public SpellDurationUnit? Unit { get; }
 
     public static SpellDuration Instantaneous() =>
-        new(true, false, false, null, null);
+        new(true, false, false, false, null, null);
+
+    public static SpellDuration UntilDispelled() =>
+        new(false, true, false, false, null, null);
 
     public static SpellDuration Fixed(int amount, SpellDurationUnit unit) =>
         Timed(amount, unit, isUpTo: false, requiresConcentration: false);
@@ -69,6 +82,7 @@ public readonly record struct SpellDuration
         }
 
         return new SpellDuration(
+            false,
             false,
             requiresConcentration,
             isUpTo,

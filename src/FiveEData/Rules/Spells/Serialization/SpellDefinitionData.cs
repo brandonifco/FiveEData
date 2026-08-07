@@ -90,6 +90,9 @@ internal sealed class SpellDurationData
     public bool? IsInstantaneous { get; init; }
 
     [JsonRequired]
+    public bool? IsUntilDispelled { get; init; }
+
+    [JsonRequired]
     public bool? RequiresConcentration { get; init; }
 
     [JsonRequired]
