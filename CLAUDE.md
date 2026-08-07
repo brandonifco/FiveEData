@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **1888 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **1919 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -380,10 +380,11 @@ rather than trusting it.
 - **Choice-point catalogs** (standalone, not referenced from a definition):
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
   Elemental Disciplines, Channel Divinity options.
-- **Embedded on `ClassDefinition`:** Rage, Sneak Attack, Ki, Martial Arts,
-  Unarmored Movement, Sorcery Points, Wild Shape, Bardic Inspiration, Song of
-  Rest, Channel Divinity uses, Mystic Arcanum, Font of Magic conversion, Aura
-  of Protection, Aura of Courage, Eldritch Invocations known.
+- **Embedded on `ClassDefinition`:** Rage, Brutal Critical, Fast Movement,
+  Sneak Attack, Ki, Martial Arts, Unarmored Movement, Sorcery Points, Wild
+  Shape, Bardic Inspiration, Song of Rest, Channel Divinity uses, Mystic
+  Arcanum, Font of Magic conversion, Aura of Protection, Aura of Courage,
+  Eldritch Invocations known.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
@@ -489,26 +490,32 @@ option.
 The pass above closed when its enumerated list was done. A later sweep of all
 305 `class-rule` entries found features carrying clean numbers that were never
 on that list — so **"the pass is complete" meant list-complete, and the
-distinction is load-bearing.** Martial Arts and Unarmored Movement are done;
-the rest below are verified-as-candidates by name only and still need their
-values read off the page images.
+distinction is load-bearing.** Martial Arts, Unarmored Movement, Brutal
+Critical, and Fast Movement are done; the rest below are
+verified-as-candidates by name only and still need their values read off the
+page images.
 
-**Tier A — a shape already built elsewhere, no new design needed:** Brutal
-Critical (leveled dice count), Action Surge and Indomitable (leveled
-uses/rest), Destroy Undead (leveled max CR — `MaxChallengeRating` already
-exists from Wild Shape), Favored Enemy / Natural Explorer / Magical Secrets /
-Portent (leveled choice counts), Draconic Resilience (+1 HP per level, the
-Hill Dwarf `HitPointBonusPerLevel` shape).
+**Tier A — a shape already built elsewhere, no new design needed:** Action
+Surge and Indomitable (leveled uses/rest), Destroy Undead (leveled max CR —
+`MaxChallengeRating` already exists from Wild Shape), Favored Enemy / Natural
+Explorer / Magical Secrets / Portent (leveled choice counts), Draconic
+Resilience (+1 HP per level, the Hill Dwarf `HitPointBonusPerLevel` shape).
 
-**Two of these were explicitly declined during the original pass, and both
-declines predate the precedent that now covers them** — Brutal Critical's
+**Two features here were explicitly declined during the original pass, and
+both declines predate the precedent that now covers them** — Brutal Critical's
 scaling was left "in the prose" and Destroy Undead's CR table was cited as
 precedent for leaving Font of Magic's table inline, both decided before Sneak
-Attack and Wild Shape existed. **A decline is only as good as the precedents
-available when it was made; re-read old declines against newer shapes rather
-than treating them as settled.**
+Attack and Wild Shape existed. Brutal Critical has since been reversed and
+converted; Destroy Undead is still open. **A decline is only as good as the
+precedents available when it was made; re-read old declines against newer
+shapes rather than treating them as settled.**
 
-**Tier B — flat scalars, the `DarkvisionRangeFeet` shape:** Fast Movement,
+**An armor gate is read per feature, never generalized.** Rage and Fast
+Movement stop at *heavy* armor (`RequiresNotWearingHeavyArmor`); Monk's
+Martial Arts and Unarmored Movement are blocked by *any* armor and by a
+shield. Pinned by `CanonicalFile_BarbarianFastMovementGatesOnHeavyArmorOnly`.
+
+**Tier B — flat scalars, the `DarkvisionRangeFeet` shape:**
 Improved/Superior Critical (crit range), Blindsense, Feral Senses, Shadow
 Step, Divine Sense (ranges), Reliable Talent (d20 floor), Improved Divine
 Smite, Indomitable Might / Primal Champion, the fixed ki and sorcery-point

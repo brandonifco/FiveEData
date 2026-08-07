@@ -1,8 +1,10 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
+using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
@@ -175,6 +177,49 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(47, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        BrutalCriticalProgressionDetail brutalCriticalProgression =
+            barbarian.BrutalCriticalProgression
+            ?? throw new InvalidOperationException(
+                "Expected Barbarian to have a Brutal Critical progression.");
+        Assert.Equal(
+            [(9, 1), (13, 2), (17, 3)],
+            brutalCriticalProgression.AdditionalDiceByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.AdditionalDice)));
+        Assert.True(brutalCriticalProgression.RequiresMeleeAttack);
+
+        FastMovementDetail fastMovement =
+            barbarian.FastMovement
+            ?? throw new InvalidOperationException(
+                "Expected Barbarian to have Fast Movement.");
+        Assert.Equal(10, fastMovement.SpeedBonusFeet);
+        Assert.True(fastMovement.RequiresNotWearingHeavyArmor);
+    }
+
+    // Fast Movement and Rage both gate on armor, and on different thresholds:
+    // Fast Movement is blocked only by heavy armor, while Monk's Unarmored
+    // Movement is blocked by any armor. The threshold is read per feature.
+    [Fact]
+    public void CanonicalFile_BarbarianFastMovementGatesOnHeavyArmorOnly()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        FastMovementDetail fastMovement =
+            GetClass(classes, "dnd5e2014.class.barbarian").FastMovement
+            ?? throw new InvalidOperationException(
+                "Expected Barbarian to have Fast Movement.");
+
+        UnarmoredMovementProgressionDetail unarmoredMovement =
+            GetClass(classes, "dnd5e2014.class.monk")
+                .UnarmoredMovementProgression
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have an Unarmored Movement progression.");
+
+        Assert.True(fastMovement.RequiresNotWearingHeavyArmor);
+        Assert.True(unarmoredMovement.RequiresNotWearingArmor);
+        Assert.True(unarmoredMovement.RequiresNotWieldingShield);
     }
 
     [Fact]
@@ -1979,6 +2024,71 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.UnarmoredMovementProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonBarbarianClassDeclaresNoBrutalCriticalProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.BrutalCriticalProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonBarbarianClassDeclaresNoFastMovement(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.FastMovement);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedBarbarianQuantizedFeatures()
+    {
+        ClassDefinition barbarian =
+            Dnd5e2014Ruleset.Instance.Classes.Get(
+                new ClassId("dnd5e2014.class.barbarian"));
+
+        BrutalCriticalProgressionDetail brutalCriticalProgression =
+            barbarian.BrutalCriticalProgression
+            ?? throw new InvalidOperationException(
+                "Expected Barbarian to have a Brutal Critical progression.");
+        Assert.Equal(
+            [(9, 1), (13, 2), (17, 3)],
+            brutalCriticalProgression.AdditionalDiceByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.AdditionalDice)));
+
+        FastMovementDetail fastMovement =
+            barbarian.FastMovement
+            ?? throw new InvalidOperationException(
+                "Expected Barbarian to have Fast Movement.");
+        Assert.Equal(10, fastMovement.SpeedBonusFeet);
     }
 
     [Fact]

@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FontOfMagic;
@@ -111,6 +112,18 @@ internal static class ClassDefinitionValidator
         if (@class.RageProgression is { } rageProgression)
         {
             ValidateRageProgression(rageProgression, errors);
+        }
+
+        if (@class.BrutalCriticalProgression is
+            { } brutalCriticalProgression)
+        {
+            ValidatePointsProgression(
+                brutalCriticalProgression.AdditionalDiceByLevel
+                    .Select(
+                        grant =>
+                            (grant.CharacterLevel, grant.AdditionalDice)),
+                "Brutal Critical additional dice",
+                errors);
         }
 
         if (@class.SneakAttackProgression is { } sneakAttackProgression)

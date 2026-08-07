@@ -1,8 +1,10 @@
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
@@ -43,6 +45,8 @@ public sealed class ClassDefinition
         AbilityId? spellcastingAbilityId,
         ExtraAttackProgressionId? extraAttackProgressionId,
         RageProgressionDetail? rageProgression,
+        BrutalCriticalProgressionDetail? brutalCriticalProgression,
+        FastMovementDetail? fastMovement,
         SneakAttackProgressionDetail? sneakAttackProgression,
         KiProgressionDetail? kiProgression,
         MartialArtsProgressionDetail? martialArtsProgression,
@@ -90,6 +94,8 @@ public sealed class ClassDefinition
         SpellcastingAbilityId = spellcastingAbilityId;
         ExtraAttackProgressionId = extraAttackProgressionId;
         RageProgression = rageProgression;
+        BrutalCriticalProgression = brutalCriticalProgression;
+        FastMovement = fastMovement;
         SneakAttackProgression = sneakAttackProgression;
         KiProgression = kiProgression;
         MartialArtsProgression = martialArtsProgression;
@@ -125,6 +131,13 @@ public sealed class ClassDefinition
     public AbilityId? SpellcastingAbilityId { get; }
     public ExtraAttackProgressionId? ExtraAttackProgressionId { get; }
     public RageProgressionDetail? RageProgression { get; }
+
+    public BrutalCriticalProgressionDetail? BrutalCriticalProgression
+    {
+        get;
+    }
+
+    public FastMovementDetail? FastMovement { get; }
     public SneakAttackProgressionDetail? SneakAttackProgression { get; }
     public KiProgressionDetail? KiProgression { get; }
     public MartialArtsProgressionDetail? MartialArtsProgression { get; }

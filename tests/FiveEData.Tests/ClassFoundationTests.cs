@@ -2,9 +2,11 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
+using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
@@ -13,8 +15,8 @@ using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
-using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -148,6 +150,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -582,6 +586,98 @@ public sealed class ClassFoundationTests
                 ]));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void Validator_RejectsBrutalCriticalProgressionWithNoDiceGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            brutalCriticalProgression: new BrutalCriticalProgressionDetail(
+                [],
+                requiresMeleeAttack: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Brutal Critical additional dice progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsBrutalCriticalProgressionWithNonIncreasingDice()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            brutalCriticalProgression: new BrutalCriticalProgressionDetail(
+                [
+                    new BrutalCriticalDiceGrant(9, 2),
+                    new BrutalCriticalDiceGrant(13, 1)
+                ],
+                requiresMeleeAttack: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsBrutalCriticalProgressionWithDuplicateLevels()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            brutalCriticalProgression: new BrutalCriticalProgressionDetail(
+                [
+                    new BrutalCriticalDiceGrant(9, 1),
+                    new BrutalCriticalDiceGrant(9, 2)
+                ],
+                requiresMeleeAttack: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "is duplicated",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedBrutalCriticalProgressionAndFastMovement()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            brutalCriticalProgression: new BrutalCriticalProgressionDetail(
+                [
+                    new BrutalCriticalDiceGrant(9, 1),
+                    new BrutalCriticalDiceGrant(13, 2),
+                    new BrutalCriticalDiceGrant(17, 3)
+                ],
+                requiresMeleeAttack: true),
+            fastMovement: new FastMovementDetail(
+                speedBonusFeet: 10,
+                requiresNotWearingHeavyArmor: true));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void BrutalCriticalDiceGrant_RejectsNonPositiveAdditionalDice()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new BrutalCriticalDiceGrant(9, 0));
+    }
+
+    [Fact]
+    public void FastMovementDetail_RejectsNonPositiveSpeedBonus()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new FastMovementDetail(
+                speedBonusFeet: 0,
+                requiresNotWearingHeavyArmor: true));
     }
 
     [Fact]
@@ -1150,6 +1246,9 @@ public sealed class ClassFoundationTests
         AbilityId? spellcastingAbilityId = null,
         ExtraAttackProgressionId? extraAttackProgressionId = null,
         RageProgressionDetail? rageProgression = null,
+        BrutalCriticalProgressionDetail? brutalCriticalProgression
+            = null,
+        FastMovementDetail? fastMovement = null,
         SneakAttackProgressionDetail? sneakAttackProgression = null,
         KiProgressionDetail? kiProgression = null,
         MartialArtsProgressionDetail? martialArtsProgression = null,
@@ -1192,6 +1291,8 @@ public sealed class ClassFoundationTests
             spellcastingAbilityId,
             extraAttackProgressionId,
             rageProgression,
+            brutalCriticalProgression,
+            fastMovement,
             sneakAttackProgression,
             kiProgression,
             martialArtsProgression,
