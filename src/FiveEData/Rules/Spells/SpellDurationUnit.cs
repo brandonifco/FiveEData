@@ -4,5 +4,6 @@ public enum SpellDurationUnit
 {
     Round,
     Minute,
-    Hour
+    Hour,
+    Day
 }

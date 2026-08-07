@@ -61,8 +61,8 @@ while concentration is always an "up to" duration.
 
 **First-level spells are being added in alphabetical batches** — 62 of them,
 spread over ~38 pages, is too much to read reliably in one pass. Built so
-far: **A–F, Alarm through Fog Cloud (29 spells)**. Remaining batches: G–P
-(18), R–W (15). `SpellDataFileTests` pins the exact built closure, so the
+far: **A–P, Alarm through Purify Food and Drink (47 spells)**. One batch
+remains: R–W (15). `SpellDataFileTests` pins the exact built closure, so the
 partial state is asserted rather than implied.
 
 Each batch has driven schema additions from real content, never
@@ -74,8 +74,13 @@ anticipation:
   diamond). A cantrip may never be a ritual — the validator enforces it.
 - **D–F:** the `Reaction` casting-time unit (Feather Fall) and `Hour` (Find
   Familiar); `MaterialIsConsumed` (Find Familiar's charcoal and incense).
-  **Cost and consumption are independent** — Chromatic Orb's diamond is
-  costed but kept, Find Familiar's components are both costed and destroyed.
+- **G–P:** the `Day` duration unit (Illusory Script's 10 days).
+
+**Material cost and consumption are independent fields, and all four
+combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
+same at 100 gp, Illusory Script and Find Familiar both, and Protection from
+Evil and Good consumed with no stated cost. Two PHB phrasings carry a cost:
+"worth at least X gp" and "X gp worth of".
 
 **A reaction spell's trigger stays in the citation.** The PHB states it as
 prose ("which you take when you or a creature within 60 feet of you falls");

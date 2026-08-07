@@ -11,12 +11,12 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(56, LoadCanonical().Count);
+        Assert.Equal(74, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
         Assert.Equal(
-            29,
+            47,
             LoadCanonical().Count(spell => spell.Level == 1));
     }
 
@@ -31,7 +31,7 @@ public sealed class SpellDataFileTests
     }
 
     [Fact]
-    public void FirstLevelBatchContainsExactlyTheAThroughFSpells()
+    public void FirstLevelBatchContainsExactlyTheAThroughPSpells()
     {
         Assert.Equal(
             [
@@ -63,7 +63,25 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.false-life",
                 "dnd5e2014.spell.feather-fall",
                 "dnd5e2014.spell.find-familiar",
-                "dnd5e2014.spell.fog-cloud"
+                "dnd5e2014.spell.fog-cloud",
+                "dnd5e2014.spell.goodberry",
+                "dnd5e2014.spell.grease",
+                "dnd5e2014.spell.guiding-bolt",
+                "dnd5e2014.spell.hail-of-thorns",
+                "dnd5e2014.spell.healing-word",
+                "dnd5e2014.spell.hellish-rebuke",
+                "dnd5e2014.spell.heroism",
+                "dnd5e2014.spell.hex",
+                "dnd5e2014.spell.hunters-mark",
+                "dnd5e2014.spell.identify",
+                "dnd5e2014.spell.illusory-script",
+                "dnd5e2014.spell.inflict-wounds",
+                "dnd5e2014.spell.jump",
+                "dnd5e2014.spell.longstrider",
+                "dnd5e2014.spell.mage-armor",
+                "dnd5e2014.spell.magic-missile",
+                "dnd5e2014.spell.protection-from-evil-and-good",
+                "dnd5e2014.spell.purify-food-and-drink"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 1)
@@ -120,7 +138,10 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.comprehend-languages",
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
-                "dnd5e2014.spell.find-familiar"
+                "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.identify",
+                "dnd5e2014.spell.illusory-script",
+                "dnd5e2014.spell.purify-food-and-drink"
             ],
             LoadCanonical()
                 .Where(spell => spell.IsRitual)
@@ -170,12 +191,25 @@ public sealed class SpellDataFileTests
         // charcoal and incense is destroyed. Cost and consumption are
         // independent facts, which is why they are separate fields.
         Assert.Equal(
-            ["dnd5e2014.spell.chromatic-orb", "dnd5e2014.spell.find-familiar"],
+            [
+                "dnd5e2014.spell.chromatic-orb",
+                "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.identify",
+                "dnd5e2014.spell.illusory-script"
+            ],
             LoadCanonical()
                 .Where(spell =>
                     spell.Components.MaterialCostGoldPieces is not null)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
+
+        // Protection from Evil and Good is consumed with no stated cost —
+        // all four cost/consumed combinations now appear, which is the
+        // evidence these are two fields rather than one.
+        SpellComponents protection =
+            Get("dnd5e2014.spell.protection-from-evil-and-good").Components;
+        Assert.Null(protection.MaterialCostGoldPieces);
+        Assert.True(protection.MaterialIsConsumed);
 
         SpellComponents orb = Get("dnd5e2014.spell.chromatic-orb").Components;
         Assert.Equal(50, orb.MaterialCostGoldPieces);
@@ -188,14 +222,31 @@ public sealed class SpellDataFileTests
     }
 
     [Fact]
-    public void FeatherFallIsTheOnlyReactionSpellSoFar()
+    public void ReactionSpellsAreFeatherFallAndHellishRebuke()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.feather-fall",
+                "dnd5e2014.spell.hellish-rebuke"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.CastingTime.Unit
+                    == SpellCastingTimeUnit.Reaction)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Fact]
+    public void IllusoryScriptIsTheOnlyDayLongDurationSoFar()
     {
         SpellDefinition only = Assert.Single(
             LoadCanonical()
-                .Where(spell => spell.CastingTime.Unit
-                    == SpellCastingTimeUnit.Reaction));
+                .Where(spell =>
+                    spell.Duration.Unit == SpellDurationUnit.Day));
 
-        Assert.Equal("dnd5e2014.spell.feather-fall", only.Id.Value);
+        Assert.Equal("dnd5e2014.spell.illusory-script", only.Id.Value);
+        Assert.Equal(10, only.Duration.Amount);
+        Assert.False(only.Duration.RequiresConcentration);
     }
 
     [Fact]
