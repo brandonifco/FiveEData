@@ -39,14 +39,12 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2170 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2185 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
-`SpellDefinition`. **All 27 cantrips and all 62 first-level spells are built.
-Second level is in progress: 46 of its 59 spells (A–P, Aid through
-Protection from Poison) are built; one batch remains, R–Z. Levels 3–9 are
-not started.**
+`SpellDefinition`. **All 27 cantrips, all 62 first-level and all 59
+second-level spells are built — 148 in total. Levels 3–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -64,9 +62,10 @@ concentration** — Prestidigitation is "Up to 1 hour" with no concentration,
 while concentration is always an "up to" duration.
 
 **Every level is added in alphabetical batches** — 62 first-level spells over
-~38 pages was too much to read reliably in one pass, and second level's 59 is
-no better. `SpellDataFileTests` pins the exact built closure, so a partial
-level is asserted rather than implied. **Keep batching for levels 3–9.**
+~38 pages was too much to read reliably in one pass, and second level's 59 was
+no better. Four batches each time. `SpellDataFileTests` pins the exact built
+closure, so a partial level is asserted rather than implied. **Keep batching
+for levels 3–9.**
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -94,6 +93,9 @@ Each batch drove schema additions from real content, never anticipation:
 - **2nd I–P:** nothing. The first batch of the project to need no schema
   change at all — evidence the header-block shape has converged, not that
   the batch was read carelessly.
+- **2nd R–Z:** nothing either. Two consecutive schema-quiet batches closed
+  second level; treat the shape as settled and expect level 3 to add at
+  most an area shape or two.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -101,6 +103,12 @@ same at 100 gp, Illusory Script and Find Familiar both, and Protection from
 Evil and Good consumed with no stated cost. **Three** PHB phrasings carry a
 cost: "worth at least X gp", "X gp worth of", and — new at second level —
 a bare "worth X gp" (Continual Flame's ruby dust).
+
+**`MaterialCostGoldPieces` holds the figure the PHB prints, never a derived
+total.** Warding Bond's "a pair of platinum rings worth at least 50 gp each"
+stores 50, not 100; the "each" survives in `MaterialDescription`, so a
+consumer that wants the total can still compute it. Pinned by
+`WardingBondStoresThePrintedPerItemCostNotTheTotal`.
 
 **A spell entry is cited to the page bearing its name heading**, even when
 its stat block or body runs onto the next page. Armor of Agathys set this
