@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
@@ -6,6 +7,7 @@ using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FontOfMagic;
+using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -16,6 +18,8 @@ using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
+using FiveEData.Rules.Common;
+using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -90,6 +94,79 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(71, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        ActionSurgeProgressionDetail actionSurgeProgression =
+            fighter.ActionSurgeProgression
+            ?? throw new InvalidOperationException(
+                "Expected Fighter to have an Action Surge progression.");
+        Assert.Equal(
+            [(2, 1), (17, 2)],
+            actionSurgeProgression.UsesByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.UsesPerRest)));
+        Assert.True(actionSurgeProgression.RecoversOnShortRest);
+        Assert.True(actionSurgeProgression.OncePerTurn);
+
+        IndomitableProgressionDetail indomitableProgression =
+            fighter.IndomitableProgression
+            ?? throw new InvalidOperationException(
+                "Expected Fighter to have an Indomitable progression.");
+        Assert.Equal(
+            [(9, 1), (13, 2), (17, 3)],
+            indomitableProgression.UsesByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.UsesPerRest)));
+        Assert.False(indomitableProgression.RecoversOnShortRest);
+    }
+
+    // Two features on the same class table, at the same 17th-level row, that
+    // recover on different rests: Action Surge on a short rest, Indomitable
+    // only on a long one. The rest is read per feature, never inferred from
+    // the class.
+    [Fact]
+    public void CanonicalFile_FighterActionSurgeAndIndomitableRecoverOnDifferentRests()
+    {
+        ClassDefinition fighter =
+            GetClass(LoadClasses(), "dnd5e2014.class.fighter");
+
+        ActionSurgeProgressionDetail actionSurgeProgression =
+            fighter.ActionSurgeProgression
+            ?? throw new InvalidOperationException(
+                "Expected Fighter to have an Action Surge progression.");
+
+        IndomitableProgressionDetail indomitableProgression =
+            fighter.IndomitableProgression
+            ?? throw new InvalidOperationException(
+                "Expected Fighter to have an Indomitable progression.");
+
+        Assert.True(actionSurgeProgression.RecoversOnShortRest);
+        Assert.False(indomitableProgression.RecoversOnShortRest);
+    }
+
+    // These pages were corrected from an off-by-one that placed the whole
+    // block a page late. Every one was verified against the rendered page
+    // image: p.72 carries Action Surge through Remarkable Athlete, and p.73
+    // starts at Additional Fighting Style.
+    [Theory]
+    [InlineData("dnd5e2014.class-rule.action-surge", 72)]
+    [InlineData("dnd5e2014.class-rule.martial-archetype", 72)]
+    [InlineData("dnd5e2014.class-rule.fighter-ability-score-improvement", 72)]
+    [InlineData("dnd5e2014.class-rule.fighter-extra-attack", 72)]
+    [InlineData("dnd5e2014.class-rule.indomitable", 72)]
+    [InlineData("dnd5e2014.class-rule.improved-critical", 72)]
+    [InlineData("dnd5e2014.class-rule.remarkable-athlete", 72)]
+    [InlineData("dnd5e2014.class-rule.additional-fighting-style", 73)]
+    [InlineData("dnd5e2014.class-rule.superior-critical", 73)]
+    [InlineData("dnd5e2014.class-rule.survivor", 73)]
+    public void CanonicalFile_CitesFighterFeaturePagesWhereTheirBodyTextStarts(
+        string ruleId,
+        int expectedPage)
+    {
+        RuleDefinition rule =
+            Dnd5e2014Ruleset.Instance.Rules.Get(new RuleId(ruleId));
+
+        SourceReference source = Assert.Single(rule.Sources);
+        Assert.Equal(expectedPage, source.Page);
     }
 
     [Fact]
@@ -2064,6 +2141,74 @@ public sealed class ClassDataFileTests
         ClassDefinition @class = GetClass(LoadClasses(), classId);
 
         Assert.Null(@class.FastMovement);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonFighterClassDeclaresNoActionSurgeProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.ActionSurgeProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonFighterClassDeclaresNoIndomitableProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.IndomitableProgression);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedFighterQuantizedFeatures()
+    {
+        ClassDefinition fighter =
+            Dnd5e2014Ruleset.Instance.Classes.Get(
+                new ClassId("dnd5e2014.class.fighter"));
+
+        ActionSurgeProgressionDetail actionSurgeProgression =
+            fighter.ActionSurgeProgression
+            ?? throw new InvalidOperationException(
+                "Expected Fighter to have an Action Surge progression.");
+        Assert.Equal(
+            [(2, 1), (17, 2)],
+            actionSurgeProgression.UsesByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.UsesPerRest)));
+
+        IndomitableProgressionDetail indomitableProgression =
+            fighter.IndomitableProgression
+            ?? throw new InvalidOperationException(
+                "Expected Fighter to have an Indomitable progression.");
+        Assert.Equal(
+            [(9, 1), (13, 2), (17, 3)],
+            indomitableProgression.UsesByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.UsesPerRest)));
     }
 
     [Fact]

@@ -111,6 +111,37 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.fighter",
+    "actionSurgeProgression": {
+      "usesByLevel": [
+        {
+          "characterLevel": 2,
+          "usesPerRest": 1
+        },
+        {
+          "characterLevel": 17,
+          "usesPerRest": 2
+        }
+      ],
+      "recoversOnShortRest": true,
+      "oncePerTurn": true
+    },
+    "indomitableProgression": {
+      "usesByLevel": [
+        {
+          "characterLevel": 9,
+          "usesPerRest": 1
+        },
+        {
+          "characterLevel": 13,
+          "usesPerRest": 2
+        },
+        {
+          "characterLevel": 17,
+          "usesPerRest": 3
+        }
+      ],
+      "recoversOnShortRest": false
+    },
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -252,6 +283,8 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": {
       "usesByLevel": [
         {
@@ -475,6 +508,8 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -760,6 +795,8 @@
     "spellSlotProgressionId": null,
     "spellcastingAbilityId": null,
     "extraAttackProgressionId": null,
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -1007,6 +1044,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -1172,6 +1211,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "extraAttackProgressionId": null,
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -1275,6 +1316,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": null,
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -1407,6 +1450,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.pact-magic",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -1585,6 +1630,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": null,
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -1756,6 +1803,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.half-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.wisdom",
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -1895,6 +1944,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.half-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": "dnd5e2014.extra-attack-progression.standard",
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
@@ -2019,6 +2070,8 @@
     "spellSlotProgressionId": "dnd5e2014.spell-slot-progression.full-caster",
     "spellcastingAbilityId": "dnd5e2014.ability.charisma",
     "extraAttackProgressionId": null,
+    "actionSurgeProgression": null,
+    "indomitableProgression": null,
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,

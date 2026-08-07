@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
@@ -6,6 +7,7 @@ using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FontOfMagic;
+using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -44,6 +46,8 @@ public sealed class ClassDefinition
         SpellSlotProgressionId? spellSlotProgressionId,
         AbilityId? spellcastingAbilityId,
         ExtraAttackProgressionId? extraAttackProgressionId,
+        ActionSurgeProgressionDetail? actionSurgeProgression,
+        IndomitableProgressionDetail? indomitableProgression,
         RageProgressionDetail? rageProgression,
         BrutalCriticalProgressionDetail? brutalCriticalProgression,
         FastMovementDetail? fastMovement,
@@ -93,6 +97,8 @@ public sealed class ClassDefinition
         SpellSlotProgressionId = spellSlotProgressionId;
         SpellcastingAbilityId = spellcastingAbilityId;
         ExtraAttackProgressionId = extraAttackProgressionId;
+        ActionSurgeProgression = actionSurgeProgression;
+        IndomitableProgression = indomitableProgression;
         RageProgression = rageProgression;
         BrutalCriticalProgression = brutalCriticalProgression;
         FastMovement = fastMovement;
@@ -130,6 +136,10 @@ public sealed class ClassDefinition
     public SpellSlotProgressionId? SpellSlotProgressionId { get; }
     public AbilityId? SpellcastingAbilityId { get; }
     public ExtraAttackProgressionId? ExtraAttackProgressionId { get; }
+
+    public ActionSurgeProgressionDetail? ActionSurgeProgression { get; }
+
+    public IndomitableProgressionDetail? IndomitableProgression { get; }
     public RageProgressionDetail? RageProgression { get; }
 
     public BrutalCriticalProgressionDetail? BrutalCriticalProgression

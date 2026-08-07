@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **1919 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **1960 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -227,8 +227,13 @@ entries. Non-canonical extension IDs (outside `dnd5e2014.*`) are exempt.
   of the feature it belongs to.
 - **Verify every page number against the real text, every time.** Separate
   passes found genuine pre-existing off-by-one citation errors (four during
-  the Paladin auras work, six during Battle Master maneuvers). Fix them where
-  you find them, in the same commit.
+  the Paladin auras work, six during Battle Master maneuvers, ten during the
+  Fighter quantized pass). **Off-by-one errors cluster but do not run
+  uniformly** — the Fighter block had seven rules one page late and three more
+  one page late from a different starting page, while three neighbours in
+  between were already correct. Check each entry against the image; never
+  extrapolate a shift across a range. Fix them where you find them, in the
+  same commit.
 - Errata and body prose beat printing artifacts. The Dwarf trait's printed
   "throwing hammer" is corrected to "light hammer" by official errata, and
   that's what's stored. The Warlock table omits a 19th-level Ability Score
@@ -380,11 +385,11 @@ rather than trusting it.
 - **Choice-point catalogs** (standalone, not referenced from a definition):
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
   Elemental Disciplines, Channel Divinity options.
-- **Embedded on `ClassDefinition`:** Rage, Brutal Critical, Fast Movement,
-  Sneak Attack, Ki, Martial Arts, Unarmored Movement, Sorcery Points, Wild
-  Shape, Bardic Inspiration, Song of Rest, Channel Divinity uses, Mystic
-  Arcanum, Font of Magic conversion, Aura of Protection, Aura of Courage,
-  Eldritch Invocations known.
+- **Embedded on `ClassDefinition`:** Action Surge, Indomitable, Rage, Brutal
+  Critical, Fast Movement, Sneak Attack, Ki, Martial Arts, Unarmored Movement,
+  Sorcery Points, Wild Shape, Bardic Inspiration, Song of Rest, Channel
+  Divinity uses, Mystic Arcanum, Font of Magic conversion, Aura of Protection,
+  Aura of Courage, Eldritch Invocations known.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
@@ -491,15 +496,15 @@ The pass above closed when its enumerated list was done. A later sweep of all
 305 `class-rule` entries found features carrying clean numbers that were never
 on that list — so **"the pass is complete" meant list-complete, and the
 distinction is load-bearing.** Martial Arts, Unarmored Movement, Brutal
-Critical, and Fast Movement are done; the rest below are
-verified-as-candidates by name only and still need their values read off the
-page images.
+Critical, Fast Movement, Action Surge, and Indomitable are done; the rest
+below are verified-as-candidates by name only and still need their values read
+off the page images.
 
-**Tier A — a shape already built elsewhere, no new design needed:** Action
-Surge and Indomitable (leveled uses/rest), Destroy Undead (leveled max CR —
-`MaxChallengeRating` already exists from Wild Shape), Favored Enemy / Natural
-Explorer / Magical Secrets / Portent (leveled choice counts), Draconic
-Resilience (+1 HP per level, the Hill Dwarf `HitPointBonusPerLevel` shape).
+**Tier A — a shape already built elsewhere, no new design needed:** Destroy
+Undead (leveled max CR — `MaxChallengeRating` already exists from Wild Shape),
+Favored Enemy / Natural Explorer / Magical Secrets / Portent (leveled choice
+counts), Draconic Resilience (+1 HP per level, the Hill Dwarf
+`HitPointBonusPerLevel` shape).
 
 **Two features here were explicitly declined during the original pass, and
 both declines predate the precedent that now covers them** — Brutal Critical's
@@ -514,6 +519,13 @@ shapes rather than treating them as settled.**
 Movement stop at *heavy* armor (`RequiresNotWearingHeavyArmor`); Monk's
 Martial Arts and Unarmored Movement are blocked by *any* armor and by a
 shield. Pinned by `CanonicalFile_BarbarianFastMovementGatesOnHeavyArmorOnly`.
+
+**`RecoversOnShortRest` can differ between two features on the same table
+row.** Fighter's Action Surge and Indomitable both step up at 17th level;
+Action Surge returns on a short rest, Indomitable only on a long one. Pinned
+by `CanonicalFile_FighterActionSurgeAndIndomitableRecoverOnDifferentRests` —
+the strongest case yet for the standing rule that the rest is read per
+feature, never inferred from the class.
 
 **Tier B — flat scalars, the `DarkvisionRangeFeet` shape:**
 Improved/Superior Critical (crit range), Blindsense, Feral Senses, Shadow

@@ -1,3 +1,5 @@
+using FiveEData.Rules.Classes.ActionSurge;
+using FiveEData.Rules.Classes.ActionSurge.Serialization;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration;
@@ -13,6 +15,8 @@ using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
+using FiveEData.Rules.Classes.Indomitable;
+using FiveEData.Rules.Classes.Indomitable.Serialization;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.MartialArts;
@@ -176,6 +180,19 @@ internal static class ClassDefinitionLoader
                     extraAttackProgressionIdValue)
                 : null;
 
+        ActionSurgeProgressionDetail? actionSurgeProgression =
+            data.ActionSurgeProgression is { } actionSurgeProgressionData
+                ? ActionSurgeProgressionDetailDataMapper.Map(
+                    actionSurgeProgressionData)
+                : null;
+
+        IndomitableProgressionDetail? indomitableProgression =
+            data.IndomitableProgression is
+                { } indomitableProgressionData
+                ? IndomitableProgressionDetailDataMapper.Map(
+                    indomitableProgressionData)
+                : null;
+
         RageProgressionDetail? rageProgression =
             data.RageProgression is { } rageProgressionData
                 ? RageProgressionDetailDataMapper.Map(rageProgressionData)
@@ -297,6 +314,8 @@ internal static class ClassDefinitionLoader
             spellSlotProgressionId,
             spellcastingAbilityId,
             extraAttackProgressionId,
+            actionSurgeProgression,
+            indomitableProgression,
             rageProgression,
             brutalCriticalProgression,
             fastMovement,
