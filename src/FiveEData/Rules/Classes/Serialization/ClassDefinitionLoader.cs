@@ -23,6 +23,8 @@ using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Indomitable.Serialization;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
+using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum;
@@ -283,6 +285,13 @@ internal static class ClassDefinitionLoader
                     bardicInspirationProgressionData)
                 : null;
 
+        MagicalSecretsProgressionDetail? magicalSecretsProgression =
+            data.MagicalSecretsProgression is
+                { } magicalSecretsProgressionData
+                ? MagicalSecretsProgressionDetailDataMapper.Map(
+                    magicalSecretsProgressionData)
+                : null;
+
         ChannelDivinityProgressionDetail? channelDivinityProgression =
             data.ChannelDivinityProgression is
                 { } channelDivinityProgressionData
@@ -357,6 +366,7 @@ internal static class ClassDefinitionLoader
             auraOfProtection,
             auraOfCourage,
             bardicInspirationProgression,
+            magicalSecretsProgression,
             channelDivinityProgression,
             destroyUndeadProgression,
             mysticArcanumProgression,

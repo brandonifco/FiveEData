@@ -11,6 +11,7 @@ using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
@@ -65,6 +66,7 @@ public sealed class ClassDefinition
         AuraOfProtectionDetail? auraOfProtection,
         AuraOfCourageDetail? auraOfCourage,
         BardicInspirationProgressionDetail? bardicInspirationProgression,
+        MagicalSecretsProgressionDetail? magicalSecretsProgression,
         ChannelDivinityProgressionDetail? channelDivinityProgression,
         DestroyUndeadProgressionDetail? destroyUndeadProgression,
         MysticArcanumProgressionDetail? mysticArcanumProgression,
@@ -119,6 +121,7 @@ public sealed class ClassDefinition
         AuraOfProtection = auraOfProtection;
         AuraOfCourage = auraOfCourage;
         BardicInspirationProgression = bardicInspirationProgression;
+        MagicalSecretsProgression = magicalSecretsProgression;
         ChannelDivinityProgression = channelDivinityProgression;
         DestroyUndeadProgression = destroyUndeadProgression;
         MysticArcanumProgression = mysticArcanumProgression;
@@ -184,6 +187,9 @@ public sealed class ClassDefinition
     {
         get;
     }
+
+    public MagicalSecretsProgressionDetail? MagicalSecretsProgression { get; }
+
     public ChannelDivinityProgressionDetail? ChannelDivinityProgression
     {
         get;

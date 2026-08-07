@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **1999 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2017 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -388,9 +388,9 @@ rather than trusting it.
 - **Embedded on `ClassDefinition`:** Action Surge, Indomitable, Rage, Brutal
   Critical, Fast Movement, Favored Enemy, Natural Explorer, Sneak Attack, Ki,
   Martial Arts, Unarmored Movement, Sorcery Points, Wild Shape, Bardic
-  Inspiration, Song of Rest, Channel Divinity uses, Destroy Undead, Mystic
-  Arcanum, Font of Magic conversion, Aura of Protection, Aura of Courage,
-  Eldritch Invocations known.
+  Inspiration, Song of Rest, Magical Secrets, Channel Divinity uses, Destroy
+  Undead, Mystic Arcanum, Font of Magic conversion, Aura of Protection, Aura
+  of Courage, Eldritch Invocations known.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
@@ -498,13 +498,15 @@ The pass above closed when its enumerated list was done. A later sweep of all
 on that list — so **"the pass is complete" meant list-complete, and the
 distinction is load-bearing.** Martial Arts, Unarmored Movement, Brutal
 Critical, Fast Movement, Action Surge, Indomitable, Destroy Undead, Favored
-Enemy, and Natural Explorer are done; the rest below are
+Enemy, Natural Explorer, and Magical Secrets are done; the rest below are
 verified-as-candidates by name only and still need their values read off the
 page images.
 
-**Tier A — a shape already built elsewhere, no new design needed:** Magical
-Secrets and Portent (leveled choice counts), Draconic Resilience (+1 HP per
-level, the Hill Dwarf `HitPointBonusPerLevel` shape).
+**Tier A — a shape already built elsewhere, no new design needed:** Portent
+(leveled choice count) and Draconic Resilience (+1 HP per level, the Hill
+Dwarf `HitPointBonusPerLevel` shape). Both are subclass features, so they land
+on `SubclassDefinition`; College of Lore's Additional Magical Secrets belongs
+with them.
 
 **Two features here were explicitly declined during the original pass, and
 both declines predate the precedent that now covers them** — Brutal Critical's

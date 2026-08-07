@@ -8,6 +8,7 @@ using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
@@ -210,6 +211,17 @@ internal static class ClassDefinitionValidator
         {
             ValidateBardicInspirationProgression(
                 bardicInspirationProgression,
+                errors);
+        }
+
+        if (@class.MagicalSecretsProgression is
+            { } magicalSecretsProgression)
+        {
+            ValidatePointsProgression(
+                magicalSecretsProgression.SpellsKnownByLevel
+                    .Select(
+                        grant => (grant.CharacterLevel, grant.SpellsKnown)),
+                "Magical Secrets spells known",
                 errors);
         }
 
