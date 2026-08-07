@@ -163,6 +163,12 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -377,6 +383,19 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": {
+      "abilityIds": [
+        "dnd5e2014.ability.strength",
+        "dnd5e2014.ability.constitution"
+      ],
+      "abilityScoreIncrease": 4,
+      "maximumAbilityScore": 24
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -679,6 +698,12 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -905,6 +930,15 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": {
+      "rangeFeet": 10,
+      "requiresHearing": true
+    },
+    "reliableTalentMinimumD20Roll": 10,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1163,6 +1197,12 @@
       ]
     },
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1270,6 +1310,12 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1434,6 +1480,12 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1607,6 +1659,12 @@
         }
       ]
     },
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1763,6 +1821,12 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1948,6 +2012,15 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": {
+      "rangeFeet": 30,
+      "negatesUnseenAttackDisadvantage": true
+    },
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2108,6 +2181,22 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": {
+      "rangeFeet": 60,
+      "recoversOnLongRest": true
+    },
+    "improvedDivineSmite": {
+      "damage": {
+        "count": 1,
+        "sides": 8
+      },
+      "damageTypeId": "dnd5e2014.damage-type.radiant",
+      "requiresMeleeWeapon": true
+    },
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2326,6 +2415,12 @@
     },
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "blindsense": null,
+    "reliableTalentMinimumD20Roll": null,
+    "feralSenses": null,
+    "divineSense": null,
+    "improvedDivineSmite": null,
+    "primalChampion": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

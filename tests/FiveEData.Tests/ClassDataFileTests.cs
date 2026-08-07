@@ -1,6 +1,11 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.PrimalChampion;
+using FiveEData.Rules.Classes.ImprovedDivineSmite;
+using FiveEData.Rules.Classes.FeralSenses;
+using FiveEData.Rules.Classes.DivineSense;
+using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
@@ -258,6 +263,16 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(47, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        PrimalChampionDetail primalChampion =
+            barbarian.PrimalChampion
+            ?? throw new InvalidOperationException(
+                "Expected Barbarian to have Primal Champion.");
+        Assert.Equal(
+            ["dnd5e2014.ability.strength", "dnd5e2014.ability.constitution"],
+            primalChampion.AbilityIds.Select(id => id.Value).ToArray());
+        Assert.Equal(4, primalChampion.AbilityScoreIncrease);
+        Assert.Equal(24, primalChampion.MaximumAbilityScore);
 
         BrutalCriticalProgressionDetail brutalCriticalProgression =
             barbarian.BrutalCriticalProgression
@@ -2578,6 +2593,176 @@ public sealed class ClassDataFileTests
                 .OrderBy(grant => grant.CharacterLevel)
                 .Select(
                     grant => (grant.CharacterLevel, grant.SpeedBonusFeet)));
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesRogueTierBScalars()
+    {
+        ClassDefinition rogue = GetClass(LoadClasses(), "dnd5e2014.class.rogue");
+
+        BlindsenseDetail blindsense =
+            rogue.Blindsense
+            ?? throw new InvalidOperationException(
+                "Expected Rogue to have Blindsense.");
+        Assert.Equal(10, blindsense.RangeFeet);
+        Assert.True(blindsense.RequiresHearing);
+
+        Assert.Equal(10, rogue.ReliableTalentMinimumD20Roll);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesRangerFeralSenses()
+    {
+        ClassDefinition ranger =
+            GetClass(LoadClasses(), "dnd5e2014.class.ranger");
+
+        FeralSensesDetail feralSenses =
+            ranger.FeralSenses
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have Feral Senses.");
+        Assert.Equal(30, feralSenses.RangeFeet);
+        Assert.True(feralSenses.NegatesUnseenAttackDisadvantage);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesPaladinTierBScalars()
+    {
+        ClassDefinition paladin =
+            GetClass(LoadClasses(), "dnd5e2014.class.paladin");
+
+        DivineSenseDetail divineSense =
+            paladin.DivineSense
+            ?? throw new InvalidOperationException(
+                "Expected Paladin to have Divine Sense.");
+        Assert.Equal(60, divineSense.RangeFeet);
+        Assert.True(divineSense.RecoversOnLongRest);
+
+        ImprovedDivineSmiteDetail improvedDivineSmite =
+            paladin.ImprovedDivineSmite
+            ?? throw new InvalidOperationException(
+                "Expected Paladin to have Improved Divine Smite.");
+        Assert.Equal(1, improvedDivineSmite.Damage.Count);
+        Assert.Equal(8, improvedDivineSmite.Damage.Sides);
+        Assert.Equal(
+            "dnd5e2014.damage-type.radiant",
+            improvedDivineSmite.DamageTypeId.Value);
+        Assert.True(improvedDivineSmite.RequiresMeleeWeapon);
+    }
+
+    // Blindsense, Feral Senses, and Divine Sense are all "you are aware of
+    // creatures within N feet", and all three carry a different range and a
+    // different qualifying condition. The range is read per feature.
+    [Fact]
+    public void CanonicalFile_TierBAwarenessRangesDifferPerFeature()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        int blindsenseRange =
+            (GetClass(classes, "dnd5e2014.class.rogue").Blindsense
+                ?? throw new InvalidOperationException(
+                    "Expected Rogue to have Blindsense.")).RangeFeet;
+        int feralSensesRange =
+            (GetClass(classes, "dnd5e2014.class.ranger").FeralSenses
+                ?? throw new InvalidOperationException(
+                    "Expected Ranger to have Feral Senses.")).RangeFeet;
+        int divineSenseRange =
+            (GetClass(classes, "dnd5e2014.class.paladin").DivineSense
+                ?? throw new InvalidOperationException(
+                    "Expected Paladin to have Divine Sense.")).RangeFeet;
+
+        Assert.Equal(10, blindsenseRange);
+        Assert.Equal(30, feralSensesRange);
+        Assert.Equal(60, divineSenseRange);
+    }
+
+    // Indomitable Might sits at Barbarian 18th, one row above Primal
+    // Champion, and was listed as a Tier B candidate. Reading it shows it
+    // carries no number at all — "if your total for a Strength check is less
+    // than your Strength score, you can use that score in place of the
+    // total". It stays citation-only, the same call Pact Boon earned.
+    [Fact]
+    public void CanonicalFile_BarbarianIndomitableMightStaysCitationOnly()
+    {
+        ClassDefinition barbarian =
+            GetClass(LoadClasses(), "dnd5e2014.class.barbarian");
+
+        Assert.Contains(
+            barbarian.LevelFeatures,
+            feature => feature.Level == 18 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.indomitable-might");
+        Assert.Contains(
+            barbarian.LevelFeatures,
+            feature => feature.Level == 20 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.primal-champion");
+        Assert.NotNull(barbarian.PrimalChampion);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonRogueClassDeclaresNoBlindsenseOrReliableTalent(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.Blindsense);
+        Assert.Null(@class.ReliableTalentMinimumD20Roll);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonPaladinClassDeclaresNoDivineSenseOrImprovedDivineSmite(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.DivineSense);
+        Assert.Null(@class.ImprovedDivineSmite);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedTierBClassScalars()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        Assert.Equal(
+            10,
+            ruleset.Classes.Get(new ClassId("dnd5e2014.class.rogue"))
+                .ReliableTalentMinimumD20Roll);
+        Assert.Equal(
+            30,
+            (ruleset.Classes.Get(new ClassId("dnd5e2014.class.ranger"))
+                .FeralSenses
+                ?? throw new InvalidOperationException(
+                    "Expected Ranger to have Feral Senses.")).RangeFeet);
+        Assert.Equal(
+            24,
+            (ruleset.Classes.Get(new ClassId("dnd5e2014.class.barbarian"))
+                .PrimalChampion
+                ?? throw new InvalidOperationException(
+                    "Expected Barbarian to have Primal Champion."))
+                .MaximumAbilityScore);
     }
 
     private static ClassDefinition GetClass(

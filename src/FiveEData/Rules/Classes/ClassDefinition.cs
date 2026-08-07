@@ -2,19 +2,24 @@ using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.DestroyUndead;
+using FiveEData.Rules.Classes.DivineSense;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FavoredEnemy;
+using FiveEData.Rules.Classes.FeralSenses;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
+using FiveEData.Rules.Classes.ImprovedDivineSmite;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
+using FiveEData.Rules.Classes.PrimalChampion;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
@@ -74,6 +79,12 @@ public sealed class ClassDefinition
         SongOfRestProgressionDetail? songOfRestProgression,
         EldritchInvocationsKnownProgressionDetail?
             eldritchInvocationsKnownProgression,
+        BlindsenseDetail? blindsense,
+        int? reliableTalentMinimumD20Roll,
+        FeralSensesDetail? feralSenses,
+        DivineSenseDetail? divineSense,
+        ImprovedDivineSmiteDetail? improvedDivineSmite,
+        PrimalChampionDetail? primalChampion,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -129,6 +140,12 @@ public sealed class ClassDefinition
         SongOfRestProgression = songOfRestProgression;
         EldritchInvocationsKnownProgression =
             eldritchInvocationsKnownProgression;
+        Blindsense = blindsense;
+        ReliableTalentMinimumD20Roll = reliableTalentMinimumD20Roll;
+        FeralSenses = feralSenses;
+        DivineSense = divineSense;
+        ImprovedDivineSmite = improvedDivineSmite;
+        PrimalChampion = primalChampion;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -207,6 +224,18 @@ public sealed class ClassDefinition
     public EldritchInvocationsKnownProgressionDetail?
         EldritchInvocationsKnownProgression
     { get; }
+
+    public BlindsenseDetail? Blindsense { get; }
+
+    public int? ReliableTalentMinimumD20Roll { get; }
+
+    public FeralSensesDetail? FeralSenses { get; }
+
+    public DivineSenseDetail? DivineSense { get; }
+
+    public ImprovedDivineSmiteDetail? ImprovedDivineSmite { get; }
+
+    public PrimalChampionDetail? PrimalChampion { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

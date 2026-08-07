@@ -4,11 +4,15 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
+using FiveEData.Rules.Classes.Blindsense;
+using FiveEData.Rules.Classes.Blindsense.Serialization;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.BrutalCritical.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead;
+using FiveEData.Rules.Classes.DivineSense;
+using FiveEData.Rules.Classes.DivineSense.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
@@ -16,11 +20,15 @@ using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
 using FiveEData.Rules.Classes.FavoredEnemy;
+using FiveEData.Rules.Classes.FeralSenses;
+using FiveEData.Rules.Classes.FeralSenses.Serialization;
 using FiveEData.Rules.Classes.FavoredEnemy.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Indomitable.Serialization;
+using FiveEData.Rules.Classes.ImprovedDivineSmite;
+using FiveEData.Rules.Classes.ImprovedDivineSmite.Serialization;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.MagicalSecrets;
@@ -30,6 +38,8 @@ using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
 using FiveEData.Rules.Classes.NaturalExplorer;
+using FiveEData.Rules.Classes.PrimalChampion;
+using FiveEData.Rules.Classes.PrimalChampion.Serialization;
 using FiveEData.Rules.Classes.NaturalExplorer.Serialization;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Rage.Serialization;
@@ -333,6 +343,32 @@ internal static class ClassDefinitionLoader
                         eldritchInvocationsKnownProgressionData)
                     : null;
 
+        BlindsenseDetail? blindsense =
+            data.Blindsense is { } blindsenseData
+                ? BlindsenseDetailDataMapper.Map(blindsenseData)
+                : null;
+
+        FeralSensesDetail? feralSenses =
+            data.FeralSenses is { } feralSensesData
+                ? FeralSensesDetailDataMapper.Map(feralSensesData)
+                : null;
+
+        DivineSenseDetail? divineSense =
+            data.DivineSense is { } divineSenseData
+                ? DivineSenseDetailDataMapper.Map(divineSenseData)
+                : null;
+
+        ImprovedDivineSmiteDetail? improvedDivineSmite =
+            data.ImprovedDivineSmite is { } improvedDivineSmiteData
+                ? ImprovedDivineSmiteDetailDataMapper.Map(
+                    improvedDivineSmiteData)
+                : null;
+
+        PrimalChampionDetail? primalChampion =
+            data.PrimalChampion is { } primalChampionData
+                ? PrimalChampionDetailDataMapper.Map(primalChampionData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -373,6 +409,12 @@ internal static class ClassDefinitionLoader
             fontOfMagicConversion,
             songOfRestProgression,
             eldritchInvocationsKnownProgression,
+            blindsense,
+            data.ReliableTalentMinimumD20Roll,
+            feralSenses,
+            divineSense,
+            improvedDivineSmite,
+            primalChampion,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

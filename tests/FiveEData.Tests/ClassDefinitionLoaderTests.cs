@@ -1,5 +1,10 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.PrimalChampion;
+using FiveEData.Rules.Classes.ImprovedDivineSmite;
+using FiveEData.Rules.Classes.FeralSenses;
+using FiveEData.Rules.Classes.DivineSense;
+using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.FontOfMagic;
@@ -66,6 +71,12 @@ public sealed class ClassDefinitionLoaderTests
           "fontOfMagicConversion": null,
           "songOfRestProgression": null,
           "eldritchInvocationsKnownProgression": null,
+          "blindsense": null,
+          "reliableTalentMinimumD20Roll": null,
+          "feralSenses": null,
+          "divineSense": null,
+          "improvedDivineSmite": null,
+          "primalChampion": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -204,6 +215,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -322,6 +339,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -405,6 +428,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -437,6 +466,100 @@ public sealed class ClassDefinitionLoaderTests
             6,
             @class.NaturalExplorerProgression.FavoredTerrainsKnownByLevel[1]
                 .CharacterLevel);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsTierBScalars()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                $"[{ValidClass}]"
+                    .Replace(
+                        "\"blindsense\": null",
+                        """
+                        "blindsense": {
+                            "rangeFeet": 10,
+                            "requiresHearing": true
+                          }
+                        """.Trim(),
+                        StringComparison.Ordinal)
+                    .Replace(
+                        "\"reliableTalentMinimumD20Roll\": null",
+                        "\"reliableTalentMinimumD20Roll\": 10",
+                        StringComparison.Ordinal)
+                    .Replace(
+                        "\"feralSenses\": null",
+                        """
+                        "feralSenses": {
+                            "rangeFeet": 30,
+                            "negatesUnseenAttackDisadvantage": false
+                          }
+                        """.Trim(),
+                        StringComparison.Ordinal)
+                    .Replace(
+                        "\"divineSense\": null",
+                        """
+                        "divineSense": {
+                            "rangeFeet": 60,
+                            "recoversOnLongRest": true
+                          }
+                        """.Trim(),
+                        StringComparison.Ordinal)
+                    .Replace(
+                        "\"improvedDivineSmite\": null",
+                        """
+                        "improvedDivineSmite": {
+                            "damage": { "count": 1, "sides": 8 },
+                            "damageTypeId": "dnd5e2014.damage-type.radiant",
+                            "requiresMeleeWeapon": true
+                          }
+                        """.Trim(),
+                        StringComparison.Ordinal)
+                    .Replace(
+                        "\"primalChampion\": null",
+                        """
+                        "primalChampion": {
+                            "abilityIds": ["dnd5e2014.ability.strength"],
+                            "abilityScoreIncrease": 4,
+                            "maximumAbilityScore": 24
+                          }
+                        """.Trim(),
+                        StringComparison.Ordinal)));
+
+        BlindsenseDetail blindsense =
+            @class.Blindsense
+            ?? throw new InvalidOperationException("Expected Blindsense.");
+        Assert.Equal(10, blindsense.RangeFeet);
+        Assert.True(blindsense.RequiresHearing);
+
+        Assert.Equal(10, @class.ReliableTalentMinimumD20Roll);
+
+        FeralSensesDetail feralSenses =
+            @class.FeralSenses
+            ?? throw new InvalidOperationException("Expected Feral Senses.");
+        Assert.Equal(30, feralSenses.RangeFeet);
+        Assert.False(feralSenses.NegatesUnseenAttackDisadvantage);
+
+        DivineSenseDetail divineSense =
+            @class.DivineSense
+            ?? throw new InvalidOperationException("Expected Divine Sense.");
+        Assert.Equal(60, divineSense.RangeFeet);
+
+        ImprovedDivineSmiteDetail improvedDivineSmite =
+            @class.ImprovedDivineSmite
+            ?? throw new InvalidOperationException(
+                "Expected Improved Divine Smite.");
+        Assert.Equal(8, improvedDivineSmite.Damage.Sides);
+        Assert.Equal(
+            "dnd5e2014.damage-type.radiant",
+            improvedDivineSmite.DamageTypeId.Value);
+
+        PrimalChampionDetail primalChampion =
+            @class.PrimalChampion
+            ?? throw new InvalidOperationException(
+                "Expected Primal Champion.");
+        Assert.Equal(4, primalChampion.AbilityScoreIncrease);
+        Assert.Equal(24, primalChampion.MaximumAbilityScore);
     }
 
     [Fact]
@@ -494,6 +617,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -586,6 +715,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -675,6 +810,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -777,6 +918,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -886,6 +1033,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -978,6 +1131,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1070,6 +1229,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1153,6 +1318,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1235,6 +1406,12 @@ public sealed class ClassDefinitionLoaderTests
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1316,6 +1493,12 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "songOfRestProgression": null,
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1402,6 +1585,12 @@ public sealed class ClassDefinitionLoaderTests
                       ]
                     },
                     "eldritchInvocationsKnownProgression": null,
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1461,6 +1650,12 @@ public sealed class ClassDefinitionLoaderTests
                     "skillChoiceCount": 0,
                     "skillChoiceOptionIds": [],
                     "levelFeatures": [],
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -1490,6 +1685,12 @@ public sealed class ClassDefinitionLoaderTests
                     "skillChoiceCount": 0,
                     "skillChoiceOptionIds": [],
                     "levelFeatures": [],
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": []
                   }
                 ]
@@ -1516,6 +1717,12 @@ public sealed class ClassDefinitionLoaderTests
                     "skillChoiceCount": 0,
                     "skillChoiceOptionIds": [],
                     "levelFeatures": [],
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": []
                   }
                 ]
@@ -1543,6 +1750,12 @@ public sealed class ClassDefinitionLoaderTests
                     "skillChoiceCount": 0,
                     "skillChoiceOptionIds": [],
                     "levelFeatures": [],
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": []
                   }
                 ]
@@ -1570,6 +1783,12 @@ public sealed class ClassDefinitionLoaderTests
                     "skillChoiceCount": 0,
                     "skillChoiceOptionIds": [],
                     "levelFeatures": [],
+                    "blindsense": null,
+                    "reliableTalentMinimumD20Roll": null,
+                    "feralSenses": null,
+                    "divineSense": null,
+                    "improvedDivineSmite": null,
+                    "primalChampion": null,
                     "sources": null
                   }
                 ]
