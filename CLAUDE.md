@@ -39,13 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2164 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2170 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips and all 62 first-level spells are built.
-Second level is in progress: 29 of its 59 spells (A–H, Aid through Hold
-Person) are built; levels 3–9 are not started.**
+Second level is in progress: 46 of its 59 spells (A–P, Aid through
+Protection from Poison) are built; one batch remains, R–Z. Levels 3–9 are
+not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -90,6 +91,9 @@ Each batch drove schema additions from real content, never anticipation:
   that the *first* spell to need a shape is rarely the memorable one. Find
   Steed's 10-minute casting time is the first whose amount is not 1; the
   field already allowed it, so no schema change was needed.
+- **2nd I–P:** nothing. The first batch of the project to need no schema
+  change at all — evidence the header-block shape has converged, not that
+  the batch was read carelessly.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
