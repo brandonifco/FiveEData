@@ -13,6 +13,7 @@ using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
@@ -155,6 +156,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -596,6 +598,66 @@ public sealed class ClassFoundationTests
                 ]));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void Validator_RejectsMagicalSecretsProgressionWithNoGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            magicalSecretsProgression: new MagicalSecretsProgressionDetail(
+                [],
+                countsAgainstSpellsKnown: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Magical Secrets spells known progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsMagicalSecretsProgressionWithNonIncreasingCount()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            magicalSecretsProgression: new MagicalSecretsProgressionDetail(
+                [
+                    new MagicalSecretsChoiceGrant(10, 4),
+                    new MagicalSecretsChoiceGrant(14, 2)
+                ],
+                countsAgainstSpellsKnown: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedMagicalSecretsProgression()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            magicalSecretsProgression: new MagicalSecretsProgressionDetail(
+                [
+                    new MagicalSecretsChoiceGrant(10, 2),
+                    new MagicalSecretsChoiceGrant(14, 4),
+                    new MagicalSecretsChoiceGrant(18, 6)
+                ],
+                countsAgainstSpellsKnown: true));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void MagicalSecretsChoiceGrant_RejectsNonPositiveSpellsKnown()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new MagicalSecretsChoiceGrant(10, 0));
     }
 
     [Fact]
@@ -1522,6 +1584,7 @@ public sealed class ClassFoundationTests
         AuraOfCourageDetail? auraOfCourage = null,
         BardicInspirationProgressionDetail? bardicInspirationProgression =
             null,
+        MagicalSecretsProgressionDetail? magicalSecretsProgression = null,
         ChannelDivinityProgressionDetail? channelDivinityProgression = null,
         DestroyUndeadProgressionDetail? destroyUndeadProgression = null,
         MysticArcanumProgressionDetail? mysticArcanumProgression = null,
@@ -1569,6 +1632,7 @@ public sealed class ClassFoundationTests
             auraOfProtection,
             auraOfCourage,
             bardicInspirationProgression,
+            magicalSecretsProgression,
             channelDivinityProgression,
             destroyUndeadProgression,
             mysticArcanumProgression,

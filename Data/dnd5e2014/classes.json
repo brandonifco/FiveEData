@@ -156,6 +156,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -369,6 +370,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -670,6 +672,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -895,6 +898,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -1105,6 +1109,23 @@
       "rangeFeet": 60,
       "durationMinutes": 10
     },
+    "magicalSecretsProgression": {
+      "spellsKnownByLevel": [
+        {
+          "characterLevel": 10,
+          "spellsKnown": 2
+        },
+        {
+          "characterLevel": 14,
+          "spellsKnown": 4
+        },
+        {
+          "characterLevel": 18,
+          "spellsKnown": 6
+        }
+      ],
+      "countsAgainstSpellsKnown": true
+    },
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -1242,6 +1263,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -1366,6 +1388,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": {
       "usesByLevel": [
         {
@@ -1526,6 +1549,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": {
@@ -1732,6 +1756,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -1916,6 +1941,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -2075,6 +2101,7 @@
       "requiresConsciousness": true
     },
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
@@ -2269,6 +2296,7 @@
     "auraOfProtection": null,
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
+    "magicalSecretsProgression": null,
     "channelDivinityProgression": null,
     "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,

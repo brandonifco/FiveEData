@@ -11,6 +11,7 @@ using FiveEData.Rules.Classes.FavoredEnemy.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Indomitable.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
+using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
 using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
 using FiveEData.Rules.Classes.NaturalExplorer.Serialization;
@@ -165,6 +166,13 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public BardicInspirationProgressionDetailData? BardicInspirationProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public MagicalSecretsProgressionDetailData? MagicalSecretsProgression
     {
         get;
         init;

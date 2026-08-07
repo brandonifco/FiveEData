@@ -11,6 +11,7 @@ using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
@@ -782,6 +783,100 @@ public sealed class ClassDataFileTests
         Assert.All(
             songOfRestProgression.DieByLevel,
             grant => Assert.Equal(1, grant.Die.Count));
+
+        MagicalSecretsProgressionDetail magicalSecretsProgression =
+            bard.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Magical Secrets progression.");
+        Assert.Equal(
+            [(10, 2), (14, 4), (18, 6)],
+            magicalSecretsProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
+        Assert.True(magicalSecretsProgression.CountsAgainstSpellsKnown);
+    }
+
+    // The Bard's own Magical Secrets spells "are included in the number in
+    // the Spells Known column" — the table's Spells Known jumps by two at
+    // 10th, 14th, and 18th to absorb them. College of Lore's Additional
+    // Magical Secrets explicitly does the opposite, which is why this is a
+    // field rather than an assumed constant.
+    [Fact]
+    public void CanonicalFile_BardMagicalSecretsCountAgainstSpellsKnown()
+    {
+        ClassDefinition bard = GetClass(LoadClasses(), "dnd5e2014.class.bard");
+
+        MagicalSecretsProgressionDetail magicalSecretsProgression =
+            bard.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Magical Secrets progression.");
+
+        Assert.True(magicalSecretsProgression.CountsAgainstSpellsKnown);
+    }
+
+    [Fact]
+    public void CanonicalFile_BardGrantsMagicalSecretsAtEveryProgressionLevel()
+    {
+        ClassDefinition bard = GetClass(LoadClasses(), "dnd5e2014.class.bard");
+
+        int[] featureLevels = bard.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.magical-secrets")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        MagicalSecretsProgressionDetail magicalSecretsProgression =
+            bard.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Magical Secrets progression.");
+
+        int[] progressionLevels = magicalSecretsProgression.SpellsKnownByLevel
+            .Select(grant => grant.CharacterLevel)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal([10, 14, 18], featureLevels);
+        Assert.Equal(featureLevels, progressionLevels);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonBardClassDeclaresNoMagicalSecretsProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.MagicalSecretsProgression);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedBardMagicalSecretsProgression()
+    {
+        ClassDefinition bard =
+            Dnd5e2014Ruleset.Instance.Classes.Get(
+                new ClassId("dnd5e2014.class.bard"));
+
+        MagicalSecretsProgressionDetail magicalSecretsProgression =
+            bard.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Magical Secrets progression.");
+        Assert.Equal(
+            [(10, 2), (14, 4), (18, 6)],
+            magicalSecretsProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
     }
 
     [Fact]
