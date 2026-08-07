@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(118, LoadCanonical().Count);
+        Assert.Equal(135, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -19,7 +19,7 @@ public sealed class SpellDataFileTests
             62,
             LoadCanonical().Count(spell => spell.Level == 1));
         Assert.Equal(
-            29,
+            46,
             LoadCanonical().Count(spell => spell.Level == 2));
     }
 
@@ -27,14 +27,14 @@ public sealed class SpellDataFileTests
     public void CanonicalFile_ContainsOnlyCantripsThroughSecondLevelForNow()
     {
         // Levels 3-9 are not built yet. First level is complete; second
-        // level is partial - the A-C and D-H batches of its 59 spells.
+        // level is partial - A-P of its 59 spells, R-Z still to come.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 2));
     }
 
     [Fact]
-    public void SecondLevelContainsExactlyTheBuiltAThroughHBatches()
+    public void SecondLevelContainsExactlyTheBuiltAThroughPBatches()
     {
         Assert.Equal(
             [
@@ -66,7 +66,24 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.heat-metal",
-                "dnd5e2014.spell.hold-person"
+                "dnd5e2014.spell.hold-person",
+                "dnd5e2014.spell.invisibility",
+                "dnd5e2014.spell.knock",
+                "dnd5e2014.spell.lesser-restoration",
+                "dnd5e2014.spell.levitate",
+                "dnd5e2014.spell.locate-animals-or-plants",
+                "dnd5e2014.spell.locate-object",
+                "dnd5e2014.spell.magic-mouth",
+                "dnd5e2014.spell.magic-weapon",
+                "dnd5e2014.spell.melfs-acid-arrow",
+                "dnd5e2014.spell.mirror-image",
+                "dnd5e2014.spell.misty-step",
+                "dnd5e2014.spell.moonbeam",
+                "dnd5e2014.spell.nystuls-magic-aura",
+                "dnd5e2014.spell.pass-without-trace",
+                "dnd5e2014.spell.phantasmal-force",
+                "dnd5e2014.spell.prayer-of-healing",
+                "dnd5e2014.spell.protection-from-poison"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 2)
@@ -85,6 +102,12 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.flaming-sphere", "Flaming Sphere", "conjuration", 242)]
     [InlineData("dnd5e2014.spell.gentle-repose", "Gentle Repose", "necromancy", 245)]
     [InlineData("dnd5e2014.spell.hold-person", "Hold Person", "enchantment", 251)]
+    [InlineData("dnd5e2014.spell.knock", "Knock", "transmutation", 254)]
+    [InlineData("dnd5e2014.spell.melfs-acid-arrow", "Melf's Acid Arrow", "evocation", 259)]
+    [InlineData("dnd5e2014.spell.misty-step", "Misty Step", "conjuration", 260)]
+    [InlineData("dnd5e2014.spell.nystuls-magic-aura", "Nystul's Magic Aura", "illusion", 263)]
+    [InlineData("dnd5e2014.spell.pass-without-trace", "Pass without Trace", "abjuration", 264)]
+    [InlineData("dnd5e2014.spell.protection-from-poison", "Protection from Poison", "abjuration", 270)]
     public void SecondLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -102,11 +125,13 @@ public sealed class SpellDataFileTests
     }
 
     // Arcane Lock and Continual Flame drove the "until dispelled" duration,
-    // the first that is neither instantaneous nor a span. Both are also
-    // costed *and* consumed, and Continual Flame carries a third PHB cost
-    // phrasing - "ruby dust worth 50 gp", with no "at least".
+    // the first that is neither instantaneous nor a span; Magic Mouth joins
+    // them. All three are costed *and* consumed - so far the two facts have
+    // never come apart on an "until dispelled" spell - and Continual Flame
+    // carries a third PHB cost phrasing, "ruby dust worth 50 gp", with no
+    // "at least".
     [Fact]
-    public void UntilDispelledDurationsAreArcaneLockAndContinualFlame()
+    public void UntilDispelledSpellsAreCostedAndConsumed()
     {
         SpellDefinition[] dispelled = LoadCanonical()
             .Where(spell => spell.Duration.IsUntilDispelled)
@@ -116,7 +141,8 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.arcane-lock",
-                "dnd5e2014.spell.continual-flame"
+                "dnd5e2014.spell.continual-flame",
+                "dnd5e2014.spell.magic-mouth"
             ],
             dispelled.Select(spell => spell.Id.Value));
 
@@ -297,6 +323,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
+                "dnd5e2014.spell.locate-animals-or-plants",
+                "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.purify-food-and-drink",
                 "dnd5e2014.spell.speak-with-animals",
                 "dnd5e2014.spell.tensers-floating-disk",
@@ -359,7 +387,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.continual-flame",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.identify",
-                "dnd5e2014.spell.illusory-script"
+                "dnd5e2014.spell.illusory-script",
+                "dnd5e2014.spell.magic-mouth"
             ],
             LoadCanonical()
                 .Where(spell =>
@@ -541,18 +570,33 @@ public sealed class SpellDataFileTests
         Assert.Equal(60, only.Range.AreaSizeFeet);
     }
 
-    // Find Steed's "10 minutes" is the first casting time whose amount is
+    // Find Steed's "10 minutes" was the first casting time whose amount is
     // not 1 - the field always allowed it, but no built spell exercised it.
+    // Prayer of Healing is the second, and both are 10 minutes.
     [Fact]
-    public void FindSteedIsTheOnlyCastingTimeWhoseAmountIsNotOne()
+    public void CastingTimesWhoseAmountIsNotOneAreBothTenMinutes()
     {
-        SpellDefinition only = Assert.Single(
-            LoadCanonical()
-                .Where(spell => spell.CastingTime.Amount != 1));
+        SpellDefinition[] slow = LoadCanonical()
+            .Where(spell => spell.CastingTime.Amount != 1)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
 
-        Assert.Equal("dnd5e2014.spell.find-steed", only.Id.Value);
-        Assert.Equal(10, only.CastingTime.Amount);
-        Assert.Equal(SpellCastingTimeUnit.Minute, only.CastingTime.Unit);
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.find-steed",
+                "dnd5e2014.spell.prayer-of-healing"
+            ],
+            slow.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            slow,
+            spell =>
+            {
+                Assert.Equal(10, spell.CastingTime.Amount);
+                Assert.Equal(
+                    SpellCastingTimeUnit.Minute,
+                    spell.CastingTime.Unit);
+            });
     }
 
     // Hold Person reaches six classes, the widest membership in the book so
