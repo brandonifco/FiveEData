@@ -1,6 +1,11 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.WrathOfTheStorm;
+using FiveEData.Rules.Classes.ThunderboltStrike;
+using FiveEData.Rules.Classes.ShadowStep;
+using FiveEData.Rules.Classes.ImprovedCritical;
+using FiveEData.Rules.Classes.HurlThroughHell;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
@@ -2018,6 +2023,201 @@ public sealed class SubclassDataFileTests
                 "Expected College of Lore to have a Magical Secrets " +
                 "progression.");
         Assert.False(magicalSecretsProgression.CountsAgainstSpellsKnown);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesChampionCriticalHitThresholds()
+    {
+        SubclassDefinition champion = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.champion");
+
+        ImprovedCriticalProgressionDetail improvedCriticalProgression =
+            champion.ImprovedCriticalProgression
+            ?? throw new InvalidOperationException(
+                "Expected Champion to have an Improved Critical " +
+                "progression.");
+        Assert.Equal(
+            [(3, 19), (15, 18)],
+            improvedCriticalProgression.MinimumRollByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.MinimumRoll)));
+    }
+
+    // Improved Critical and Superior Critical are two cited features driving
+    // one threshold, the Portent shape. Uniquely, the value falls as level
+    // rises — 19 at 3rd, 18 at 15th — because a lower threshold is the
+    // improvement. Every other progression in the codebase ascends.
+    [Fact]
+    public void CanonicalFile_ChampionCriticalHitThresholdFallsAsLevelRises()
+    {
+        SubclassDefinition champion = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.champion");
+
+        ImprovedCriticalProgressionDetail improvedCriticalProgression =
+            champion.ImprovedCriticalProgression
+            ?? throw new InvalidOperationException(
+                "Expected Champion to have an Improved Critical " +
+                "progression.");
+
+        CriticalHitThresholdGrant[] ordered = improvedCriticalProgression
+            .MinimumRollByLevel
+            .OrderBy(grant => grant.CharacterLevel)
+            .ToArray();
+
+        Assert.True(ordered[^1].MinimumRoll < ordered[0].MinimumRoll);
+
+        int improvedCriticalLevel = champion.LevelFeatures
+            .Single(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.improved-critical")
+            .Level;
+        int superiorCriticalLevel = champion.LevelFeatures
+            .Single(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.superior-critical")
+            .Level;
+
+        Assert.Equal(
+            [improvedCriticalLevel, superiorCriticalLevel],
+            ordered.Select(grant => grant.CharacterLevel));
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWayOfShadowShadowStep()
+    {
+        SubclassDefinition wayOfShadow = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.way-of-shadow");
+
+        ShadowStepDetail shadowStep =
+            wayOfShadow.ShadowStep
+            ?? throw new InvalidOperationException(
+                "Expected Way of Shadow to have Shadow Step.");
+        Assert.Equal(60, shadowStep.TeleportRangeFeet);
+        Assert.True(shadowStep.GrantsAdvantageOnNextMeleeAttack);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesFiendHurlThroughHell()
+    {
+        SubclassDefinition fiend = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.the-fiend");
+
+        HurlThroughHellDetail hurlThroughHell =
+            fiend.HurlThroughHell
+            ?? throw new InvalidOperationException(
+                "Expected the Fiend to have Hurl Through Hell.");
+        Assert.Equal(10, hurlThroughHell.Damage.Count);
+        Assert.Equal(10, hurlThroughHell.Damage.Sides);
+        Assert.Equal(
+            "dnd5e2014.damage-type.psychic",
+            hurlThroughHell.DamageTypeId.Value);
+        Assert.True(hurlThroughHell.ExemptsFiends);
+        Assert.True(hurlThroughHell.RecoversOnLongRest);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesTempestDomainTierBScalars()
+    {
+        SubclassDefinition tempest = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.tempest-domain");
+
+        WrathOfTheStormDetail wrathOfTheStorm =
+            tempest.WrathOfTheStorm
+            ?? throw new InvalidOperationException(
+                "Expected Tempest Domain to have Wrath of the Storm.");
+        Assert.Equal(5, wrathOfTheStorm.TriggerRangeFeet);
+        Assert.Equal(2, wrathOfTheStorm.Damage.Count);
+        Assert.Equal(8, wrathOfTheStorm.Damage.Sides);
+        Assert.Equal(
+            [
+                "dnd5e2014.damage-type.lightning",
+                "dnd5e2014.damage-type.thunder"
+            ],
+            wrathOfTheStorm.ChoosableDamageTypeIds
+                .Select(id => id.Value)
+                .ToArray());
+        Assert.Equal(
+            "dnd5e2014.ability.dexterity",
+            wrathOfTheStorm.SavingThrowAbilityId.Value);
+        Assert.True(wrathOfTheStorm.HalfDamageOnSuccessfulSave);
+        Assert.True(wrathOfTheStorm.RecoversOnLongRest);
+
+        ThunderboltStrikeDetail thunderboltStrike =
+            tempest.ThunderboltStrike
+            ?? throw new InvalidOperationException(
+                "Expected Tempest Domain to have Thunderbolt Strike.");
+        Assert.Equal(10, thunderboltStrike.PushDistanceFeet);
+        Assert.Equal(
+            "dnd5e2014.creature-size.large",
+            thunderboltStrike.MaximumTargetSizeId.Value);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.subclass.champion")]
+    [InlineData("dnd5e2014.subclass.way-of-shadow")]
+    [InlineData("dnd5e2014.subclass.the-fiend")]
+    [InlineData("dnd5e2014.subclass.tempest-domain")]
+    public void CanonicalFile_TierBSubclassScalarsAreExclusiveToTheirSubclass(
+        string subclassId)
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        string[] owners =
+        [
+            "dnd5e2014.subclass.champion",
+            "dnd5e2014.subclass.way-of-shadow",
+            "dnd5e2014.subclass.the-fiend",
+            "dnd5e2014.subclass.tempest-domain"
+        ];
+
+        Assert.Contains(subclassId, owners);
+
+        foreach (SubclassDefinition other in subclasses
+            .Where(subclass => !owners.Contains(subclass.Id.Value)))
+        {
+            Assert.Null(other.ImprovedCriticalProgression);
+            Assert.Null(other.ShadowStep);
+            Assert.Null(other.HurlThroughHell);
+            Assert.Null(other.WrathOfTheStorm);
+            Assert.Null(other.ThunderboltStrike);
+        }
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedTierBSubclassScalars()
+    {
+        SubclassCatalog catalog = Dnd5e2014Ruleset.Instance.Subclasses;
+
+        Assert.Equal(
+            60,
+            (catalog.Get(new SubclassId("dnd5e2014.subclass.way-of-shadow"))
+                .ShadowStep
+                ?? throw new InvalidOperationException(
+                    "Expected Way of Shadow to have Shadow Step."))
+                .TeleportRangeFeet);
+        Assert.Equal(
+            10,
+            (catalog.Get(new SubclassId("dnd5e2014.subclass.tempest-domain"))
+                .ThunderboltStrike
+                ?? throw new InvalidOperationException(
+                    "Expected Tempest Domain to have Thunderbolt Strike."))
+                .PushDistanceFeet);
+        Assert.Equal(
+            18,
+            (catalog.Get(new SubclassId("dnd5e2014.subclass.champion"))
+                .ImprovedCriticalProgression
+                ?? throw new InvalidOperationException(
+                    "Expected Champion to have an Improved Critical " +
+                    "progression."))
+                .MinimumRollByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Last()
+                .MinimumRoll);
     }
 
     private static SubclassDefinition GetSubclass(

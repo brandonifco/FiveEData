@@ -6,6 +6,7 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
 
@@ -22,9 +23,11 @@ internal static class ClassCatalogIntegrityValidator
         IReadOnlySet<RuleId> ruleIds,
         IReadOnlySet<SpellSlotProgressionId> spellSlotProgressionIds,
         IReadOnlySet<ExtraAttackProgressionId> extraAttackProgressionIds,
-        IReadOnlySet<DamageTypeId> damageTypeIds)
+        IReadOnlySet<DamageTypeId> damageTypeIds,
+        IReadOnlySet<CreatureSizeId> creatureSizeIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
+        ArgumentNullException.ThrowIfNull(creatureSizeIds);
         ArgumentNullException.ThrowIfNull(sourceIds);
         ArgumentNullException.ThrowIfNull(abilityIds);
         ArgumentNullException.ThrowIfNull(skillIds);
@@ -194,6 +197,48 @@ internal static class ClassCatalogIntegrityValidator
                     divineStrikeProgression,
                     damageTypeIds,
                     errors);
+            }
+
+            if (subclass.HurlThroughHell is { } hurlThroughHell &&
+                !damageTypeIds.Contains(hurlThroughHell.DamageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{hurlThroughHell.DamageTypeId}' in its Hurl Through " +
+                    "Hell.");
+            }
+
+            if (subclass.WrathOfTheStorm is { } wrathOfTheStorm)
+            {
+                foreach (
+                    DamageTypeId damageTypeId
+                    in wrathOfTheStorm.ChoosableDamageTypeIds)
+                {
+                    if (!damageTypeIds.Contains(damageTypeId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing damage type " +
+                            $"'{damageTypeId}' in its Wrath of the Storm.");
+                    }
+                }
+
+                if (!abilityIds.Contains(wrathOfTheStorm.SavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{wrathOfTheStorm.SavingThrowAbilityId}' in its " +
+                        "Wrath of the Storm.");
+                }
+            }
+
+            if (subclass.ThunderboltStrike is { } thunderboltStrike &&
+                !creatureSizeIds.Contains(
+                    thunderboltStrike.MaximumTargetSizeId))
+            {
+                errors.Add(
+                    $"{owner} references missing creature size " +
+                    $"'{thunderboltStrike.MaximumTargetSizeId}' in its " +
+                    "Thunderbolt Strike.");
             }
         }
 

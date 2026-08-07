@@ -4,8 +4,13 @@ using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
 using FiveEData.Rules.Classes.DraconicResilience.Serialization;
+using FiveEData.Rules.Classes.HurlThroughHell.Serialization;
+using FiveEData.Rules.Classes.ImprovedCritical.Serialization;
 using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
 using FiveEData.Rules.Classes.Portent.Serialization;
+using FiveEData.Rules.Classes.ShadowStep.Serialization;
+using FiveEData.Rules.Classes.ThunderboltStrike.Serialization;
+using FiveEData.Rules.Classes.WrathOfTheStorm.Serialization;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 
@@ -81,6 +86,26 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public DraconicResilienceDetailData? DraconicResilience { get; init; }
+
+    [JsonRequired]
+    public ImprovedCriticalProgressionDetailData?
+        ImprovedCriticalProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public ShadowStepDetailData? ShadowStep { get; init; }
+
+    [JsonRequired]
+    public HurlThroughHellDetailData? HurlThroughHell { get; init; }
+
+    [JsonRequired]
+    public WrathOfTheStormDetailData? WrathOfTheStorm { get; init; }
+
+    [JsonRequired]
+    public ThunderboltStrikeDetailData? ThunderboltStrike { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

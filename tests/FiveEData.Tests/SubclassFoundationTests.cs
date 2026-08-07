@@ -1,6 +1,11 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.WrathOfTheStorm;
+using FiveEData.Rules.Classes.ThunderboltStrike;
+using FiveEData.Rules.Classes.ShadowStep;
+using FiveEData.Rules.Classes.ImprovedCritical;
+using FiveEData.Rules.Classes.HurlThroughHell;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
@@ -9,6 +14,7 @@ using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
@@ -80,6 +86,11 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -96,6 +107,11 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -422,6 +438,113 @@ public sealed class SubclassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsImprovedCriticalProgressionWithNoGrants()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            improvedCriticalProgression:
+                new ImprovedCriticalProgressionDetail([]));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error =>
+                error.Contains(
+                    "Improved Critical progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    // The threshold must fall, not rise: a rising value is the bug this
+    // guards against, because every sibling progression ascends.
+    [Fact]
+    public void Validator_RejectsImprovedCriticalProgressionWithRisingThreshold()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            improvedCriticalProgression:
+                new ImprovedCriticalProgressionDetail(
+                    [
+                        new CriticalHitThresholdGrant(3, 18),
+                        new CriticalHitThresholdGrant(15, 19)
+                    ]));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error =>
+                error.Contains(
+                    "must be lower than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedTierBSubclassScalars()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            improvedCriticalProgression:
+                new ImprovedCriticalProgressionDetail(
+                    [
+                        new CriticalHitThresholdGrant(3, 19),
+                        new CriticalHitThresholdGrant(15, 18)
+                    ]),
+            shadowStep: new ShadowStepDetail(
+                60,
+                grantsAdvantageOnNextMeleeAttack: true),
+            hurlThroughHell: new HurlThroughHellDetail(
+                new DiceExpression(10, 10),
+                new DamageTypeId("dnd5e2014.damage-type.psychic"),
+                exemptsFiends: true,
+                recoversOnLongRest: true),
+            wrathOfTheStorm: new WrathOfTheStormDetail(
+                5,
+                new DiceExpression(2, 8),
+                [new DamageTypeId("dnd5e2014.damage-type.lightning")],
+                new AbilityId("dnd5e2014.ability.dexterity"),
+                halfDamageOnSuccessfulSave: true,
+                recoversOnLongRest: true),
+            thunderboltStrike: new ThunderboltStrikeDetail(
+                10,
+                new CreatureSizeId("dnd5e2014.creature-size.large")));
+
+        Assert.Empty(SubclassDefinitionValidator.Validate(subclass));
+    }
+
+    [Fact]
+    public void CriticalHitThresholdGrant_RejectsOutOfRangeMinimumRoll()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new CriticalHitThresholdGrant(3, 21));
+    }
+
+    [Fact]
+    public void ShadowStepDetail_RejectsNonPositiveTeleportRange()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new ShadowStepDetail(
+                0,
+                grantsAdvantageOnNextMeleeAttack: true));
+    }
+
+    [Fact]
+    public void ThunderboltStrikeDetail_RejectsDefaultMaximumTargetSizeId()
+    {
+        Assert.Throws<ArgumentException>(
+            () => new ThunderboltStrikeDetail(10, default));
+    }
+
+    [Fact]
+    public void WrathOfTheStormDetail_RejectsNonPositiveTriggerRange()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new WrathOfTheStormDetail(
+                0,
+                new DiceExpression(2, 8),
+                [],
+                new AbilityId("dnd5e2014.ability.dexterity"),
+                halfDamageOnSuccessfulSave: true,
+                recoversOnLongRest: true));
+    }
+
+    [Fact]
     public void Validator_RejectsPortentProgressionWithNoGrants()
     {
         SubclassDefinition subclass = Create(
@@ -538,6 +661,11 @@ public sealed class SubclassFoundationTests
         MagicalSecretsProgressionDetail? magicalSecretsProgression = null,
         PortentProgressionDetail? portentProgression = null,
         DraconicResilienceDetail? draconicResilience = null,
+        ImprovedCriticalProgressionDetail? improvedCriticalProgression = null,
+        ShadowStepDetail? shadowStep = null,
+        HurlThroughHellDetail? hurlThroughHell = null,
+        WrathOfTheStormDetail? wrathOfTheStorm = null,
+        ThunderboltStrikeDetail? thunderboltStrike = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -557,6 +685,11 @@ public sealed class SubclassFoundationTests
             magicalSecretsProgression,
             portentProgression,
             draconicResilience,
+            improvedCriticalProgression,
+            shadowStep,
+            hurlThroughHell,
+            wrathOfTheStorm,
+            thunderboltStrike,
             sources ?? [CreateSource()]);
     }
 
