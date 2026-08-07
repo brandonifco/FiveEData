@@ -158,14 +158,30 @@ internal static class SpellDefinitionLoader
     {
         bool isInstantaneous =
             data.IsInstantaneous ?? throw Missing("duration kind");
+        bool isUntilDispelled =
+            data.IsUntilDispelled
+            ?? throw Missing("duration until-dispelled flag");
         bool requiresConcentration =
             data.RequiresConcentration
             ?? throw Missing("duration concentration flag");
         bool isUpTo = data.IsUpTo ?? throw Missing("duration up-to flag");
 
+        if (isInstantaneous && isUntilDispelled)
+        {
+            throw new ArgumentException(
+                "Spell duration cannot be both instantaneous and until " +
+                "dispelled.",
+                "data");
+        }
+
         if (isInstantaneous)
         {
             return SpellDuration.Instantaneous();
+        }
+
+        if (isUntilDispelled)
+        {
+            return SpellDuration.UntilDispelled();
         }
 
         int amount = data.Amount ?? throw Missing("duration amount");

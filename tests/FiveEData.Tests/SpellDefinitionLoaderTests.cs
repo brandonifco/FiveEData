@@ -25,7 +25,8 @@ public sealed class SpellDefinitionLoaderTests
                   "materialIsConsumed": false
                 },
                 "duration": {
-                  "isInstantaneous": true, "requiresConcentration": false,
+                  "isInstantaneous": true, "isUntilDispelled": false,
+                  "requiresConcentration": false,
                   "isUpTo": false, "amount": null, "unit": null
                 },
                 "isRitual": false,
@@ -133,6 +134,33 @@ public sealed class SpellDefinitionLoaderTests
                 ValidJson.Replace(
                     "\"material\": false",
                     "\"material\": true",
+                    StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void UntilDispelledDuration_LoadsWithNoAmountOrUnit()
+    {
+        SpellDefinition definition = Assert.Single(
+            SpellDefinitionLoader.LoadFromJson(
+                ValidJson.Replace(
+                    "\"isInstantaneous\": true, \"isUntilDispelled\": false",
+                    "\"isInstantaneous\": false, \"isUntilDispelled\": true",
+                    StringComparison.Ordinal)));
+
+        Assert.True(definition.Duration.IsUntilDispelled);
+        Assert.False(definition.Duration.IsInstantaneous);
+        Assert.Null(definition.Duration.Amount);
+        Assert.Null(definition.Duration.Unit);
+    }
+
+    [Fact]
+    public void DurationThatIsBothInstantaneousAndUntilDispelled_IsRejected()
+    {
+        Assert.ThrowsAny<Exception>(
+            () => SpellDefinitionLoader.LoadFromJson(
+                ValidJson.Replace(
+                    "\"isUntilDispelled\": false",
+                    "\"isUntilDispelled\": true",
                     StringComparison.Ordinal)));
     }
 }

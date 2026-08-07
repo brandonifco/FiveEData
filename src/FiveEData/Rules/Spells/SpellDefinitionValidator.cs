@@ -98,6 +98,33 @@ internal static class SpellDefinitionValidator
     {
         SpellDuration duration = definition.Duration;
 
+        if (duration.IsInstantaneous && duration.IsUntilDispelled)
+        {
+            errors.Add(
+                "A spell duration must not be both instantaneous and " +
+                "until dispelled.");
+            return;
+        }
+
+        if (duration.IsUntilDispelled)
+        {
+            if (duration.Amount is not null || duration.Unit is not null)
+            {
+                errors.Add(
+                    "An \"until dispelled\" spell must not specify a " +
+                    "duration amount or unit.");
+            }
+
+            if (duration.RequiresConcentration || duration.IsUpTo)
+            {
+                errors.Add(
+                    "An \"until dispelled\" spell must not require " +
+                    "concentration or be an \"up to\" duration.");
+            }
+
+            return;
+        }
+
         if (duration.IsInstantaneous)
         {
             if (duration.Amount is not null || duration.Unit is not null)
