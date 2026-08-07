@@ -7,11 +7,13 @@ using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FastMovement;
+using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
+using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
@@ -1463,6 +1465,116 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(90, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        FavoredEnemyProgressionDetail favoredEnemyProgression =
+            ranger.FavoredEnemyProgression
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have a Favored Enemy progression.");
+        Assert.Equal(
+            [(1, 1), (6, 2), (14, 3)],
+            favoredEnemyProgression.EnemyTypesKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.EnemyTypesKnown)));
+        Assert.True(
+            favoredEnemyProgression.GrantsAssociatedLanguagePerChoice);
+
+        NaturalExplorerProgressionDetail naturalExplorerProgression =
+            ranger.NaturalExplorerProgression
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have a Natural Explorer progression.");
+        Assert.Equal(
+            [(1, 1), (6, 2), (10, 3)],
+            naturalExplorerProgression.FavoredTerrainsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.FavoredTerrainsKnown)));
+    }
+
+    // Both counts are cumulative totals, not per-level increments: a 14th
+    // level ranger knows three favored enemies, not one plus one plus one.
+    // Both features also improve together at 6th and then diverge — Favored
+    // Enemy at 14th, Natural Explorer at 10th — so neither level list can be
+    // derived from the other.
+    [Fact]
+    public void CanonicalFile_RangerFavoredEnemyAndNaturalExplorerDivergeAfterSixthLevel()
+    {
+        ClassDefinition ranger =
+            GetClass(LoadClasses(), "dnd5e2014.class.ranger");
+
+        FavoredEnemyProgressionDetail favoredEnemyProgression =
+            ranger.FavoredEnemyProgression
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have a Favored Enemy progression.");
+
+        NaturalExplorerProgressionDetail naturalExplorerProgression =
+            ranger.NaturalExplorerProgression
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have a Natural Explorer progression.");
+
+        Assert.Equal(
+            [1, 6, 14],
+            favoredEnemyProgression.EnemyTypesKnownByLevel
+                .Select(grant => grant.CharacterLevel)
+                .OrderBy(level => level));
+        Assert.Equal(
+            [1, 6, 10],
+            naturalExplorerProgression.FavoredTerrainsKnownByLevel
+                .Select(grant => grant.CharacterLevel)
+                .OrderBy(level => level));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonRangerClassDeclaresNoFavoredEnemyProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.FavoredEnemyProgression);
+        Assert.Null(@class.NaturalExplorerProgression);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedRangerQuantizedFeatures()
+    {
+        ClassDefinition ranger =
+            Dnd5e2014Ruleset.Instance.Classes.Get(
+                new ClassId("dnd5e2014.class.ranger"));
+
+        FavoredEnemyProgressionDetail favoredEnemyProgression =
+            ranger.FavoredEnemyProgression
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have a Favored Enemy progression.");
+        Assert.Equal(
+            [(1, 1), (6, 2), (14, 3)],
+            favoredEnemyProgression.EnemyTypesKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.EnemyTypesKnown)));
+
+        NaturalExplorerProgressionDetail naturalExplorerProgression =
+            ranger.NaturalExplorerProgression
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have a Natural Explorer progression.");
+        Assert.Equal(
+            [(1, 1), (6, 2), (10, 3)],
+            naturalExplorerProgression.FavoredTerrainsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.FavoredTerrainsKnown)));
     }
 
     [Fact]

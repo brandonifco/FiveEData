@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **1979 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **1999 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -386,10 +386,11 @@ rather than trusting it.
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
   Elemental Disciplines, Channel Divinity options.
 - **Embedded on `ClassDefinition`:** Action Surge, Indomitable, Rage, Brutal
-  Critical, Fast Movement, Sneak Attack, Ki, Martial Arts, Unarmored Movement,
-  Sorcery Points, Wild Shape, Bardic Inspiration, Song of Rest, Channel
-  Divinity uses, Destroy Undead, Mystic Arcanum, Font of Magic conversion,
-  Aura of Protection, Aura of Courage, Eldritch Invocations known.
+  Critical, Fast Movement, Favored Enemy, Natural Explorer, Sneak Attack, Ki,
+  Martial Arts, Unarmored Movement, Sorcery Points, Wild Shape, Bardic
+  Inspiration, Song of Rest, Channel Divinity uses, Destroy Undead, Mystic
+  Arcanum, Font of Magic conversion, Aura of Protection, Aura of Courage,
+  Eldritch Invocations known.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
@@ -496,14 +497,14 @@ The pass above closed when its enumerated list was done. A later sweep of all
 305 `class-rule` entries found features carrying clean numbers that were never
 on that list — so **"the pass is complete" meant list-complete, and the
 distinction is load-bearing.** Martial Arts, Unarmored Movement, Brutal
-Critical, Fast Movement, Action Surge, Indomitable, and Destroy Undead are
-done; the rest below are verified-as-candidates by name only and still need
-their values read off the page images.
+Critical, Fast Movement, Action Surge, Indomitable, Destroy Undead, Favored
+Enemy, and Natural Explorer are done; the rest below are
+verified-as-candidates by name only and still need their values read off the
+page images.
 
-**Tier A — a shape already built elsewhere, no new design needed:** Favored
-Enemy / Natural Explorer / Magical Secrets / Portent (leveled choice counts),
-Draconic Resilience (+1 HP per level, the Hill Dwarf `HitPointBonusPerLevel`
-shape).
+**Tier A — a shape already built elsewhere, no new design needed:** Magical
+Secrets and Portent (leveled choice counts), Draconic Resilience (+1 HP per
+level, the Hill Dwarf `HitPointBonusPerLevel` shape).
 
 **Two features here were explicitly declined during the original pass, and
 both declines predate the precedent that now covers them** — Brutal Critical's
@@ -513,6 +514,11 @@ Attack and Wild Shape existed. Both have since been reversed and converted.
 **A decline is only as good as the precedents available when it was made;
 re-read old declines against newer shapes rather than treating them as
 settled.**
+
+**A leveled choice count is stored as a cumulative total, not an increment.**
+Favored Enemy is 1/2/3 at levels 1/6/14, not 1/+1/+1 — the same convention
+every other progression already uses, and what `ValidatePointsProgression`'s
+ascending check assumes.
 
 **Quantizing a feature means re-reading its table row, not just its numbers.**
 Destroy Undead's `LevelFeatures` recorded only 5th level while the Cleric

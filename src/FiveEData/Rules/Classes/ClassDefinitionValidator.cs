@@ -4,11 +4,13 @@ using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
+using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
+using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
@@ -146,6 +148,30 @@ internal static class ClassDefinitionValidator
                         grant =>
                             (grant.CharacterLevel, grant.AdditionalDice)),
                 "Brutal Critical additional dice",
+                errors);
+        }
+
+        if (@class.FavoredEnemyProgression is { } favoredEnemyProgression)
+        {
+            ValidatePointsProgression(
+                favoredEnemyProgression.EnemyTypesKnownByLevel
+                    .Select(
+                        grant =>
+                            (grant.CharacterLevel, grant.EnemyTypesKnown)),
+                "Favored Enemy types known",
+                errors);
+        }
+
+        if (@class.NaturalExplorerProgression is
+            { } naturalExplorerProgression)
+        {
+            ValidatePointsProgression(
+                naturalExplorerProgression.FavoredTerrainsKnownByLevel
+                    .Select(
+                        grant =>
+                            (grant.CharacterLevel,
+                                grant.FavoredTerrainsKnown)),
+                "Natural Explorer favored terrains known",
                 errors);
         }
 
