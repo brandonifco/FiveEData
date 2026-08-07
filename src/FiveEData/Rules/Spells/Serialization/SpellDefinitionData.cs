@@ -30,6 +30,9 @@ internal sealed class SpellDefinitionData
     public SpellDurationData? Duration { get; init; }
 
     [JsonRequired]
+    public bool? IsRitual { get; init; }
+
+    [JsonRequired]
     public string[]? AvailableToClassIds { get; init; }
 
     [JsonRequired]
@@ -52,6 +55,12 @@ internal sealed class SpellRangeData
 
     [JsonRequired]
     public int? DistanceFeet { get; init; }
+
+    [JsonRequired]
+    public string? AreaShape { get; init; }
+
+    [JsonRequired]
+    public int? AreaSizeFeet { get; init; }
 }
 
 internal sealed class SpellComponentsData
@@ -67,6 +76,9 @@ internal sealed class SpellComponentsData
 
     [JsonRequired]
     public string? MaterialDescription { get; init; }
+
+    [JsonRequired]
+    public int? MaterialCostGoldPieces { get; init; }
 }
 
 internal sealed class SpellDurationData

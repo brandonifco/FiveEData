@@ -15,6 +15,7 @@ public sealed class SpellDefinition
         SpellRange range,
         SpellComponents components,
         SpellDuration duration,
+        bool isRitual,
         IEnumerable<ClassId> availableToClassIds,
         IEnumerable<SourceReference> sources)
     {
@@ -30,6 +31,7 @@ public sealed class SpellDefinition
         Range = range;
         Components = components;
         Duration = duration;
+        IsRitual = isRitual;
         AvailableToClassIds =
             Array.AsReadOnly(availableToClassIds.ToArray());
         Sources = Array.AsReadOnly(sources.ToArray());
@@ -46,6 +48,13 @@ public sealed class SpellDefinition
     public SpellRange Range { get; }
     public SpellComponents Components { get; }
     public SpellDuration Duration { get; }
+
+    /// <summary>
+    /// True when the spell carries the PHB's ritual tag (p.201), which
+    /// lets it be cast without expending a slot at ten minutes' extra
+    /// casting time. No cantrip is a ritual.
+    /// </summary>
+    public bool IsRitual { get; }
     public IReadOnlyList<ClassId> AvailableToClassIds { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 

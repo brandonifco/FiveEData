@@ -9,47 +9,152 @@ namespace FiveEData.Tests;
 public sealed class SpellDataFileTests
 {
     [Fact]
-    public void CanonicalFile_ContainsExactCantripClosure()
+    public void CanonicalFile_ContainsExactBuiltSpellClosure()
+    {
+        Assert.Equal(42, LoadCanonical().Count);
+        Assert.Equal(
+            27,
+            LoadCanonical().Count(spell => spell.Level == 0));
+        Assert.Equal(
+            15,
+            LoadCanonical().Count(spell => spell.Level == 1));
+    }
+
+    [Fact]
+    public void CanonicalFile_ContainsOnlyCantripsAndFirstLevelForNow()
+    {
+        // Levels 2-9 are not built yet. First-level coverage stops at
+        // Cure Wounds; see CLAUDE.md for the alphabetical batch plan.
+        Assert.All(
+            LoadCanonical(),
+            spell => Assert.InRange(spell.Level, 0, 1));
+    }
+
+    [Fact]
+    public void FirstLevelBatchContainsExactlyTheAThroughCSpells()
     {
         Assert.Equal(
             [
-                "dnd5e2014.spell.acid-splash",
-                "dnd5e2014.spell.blade-ward",
-                "dnd5e2014.spell.chill-touch",
-                "dnd5e2014.spell.dancing-lights",
-                "dnd5e2014.spell.druidcraft",
-                "dnd5e2014.spell.eldritch-blast",
-                "dnd5e2014.spell.fire-bolt",
-                "dnd5e2014.spell.friends",
-                "dnd5e2014.spell.guidance",
-                "dnd5e2014.spell.light",
-                "dnd5e2014.spell.mage-hand",
-                "dnd5e2014.spell.mending",
-                "dnd5e2014.spell.message",
-                "dnd5e2014.spell.minor-illusion",
-                "dnd5e2014.spell.poison-spray",
-                "dnd5e2014.spell.prestidigitation",
-                "dnd5e2014.spell.produce-flame",
-                "dnd5e2014.spell.ray-of-frost",
-                "dnd5e2014.spell.resistance",
-                "dnd5e2014.spell.sacred-flame",
-                "dnd5e2014.spell.shillelagh",
-                "dnd5e2014.spell.shocking-grasp",
-                "dnd5e2014.spell.spare-the-dying",
-                "dnd5e2014.spell.thaumaturgy",
-                "dnd5e2014.spell.thorn-whip",
-                "dnd5e2014.spell.true-strike",
-                "dnd5e2014.spell.vicious-mockery"
+                "dnd5e2014.spell.alarm",
+                "dnd5e2014.spell.animal-friendship",
+                "dnd5e2014.spell.armor-of-agathys",
+                "dnd5e2014.spell.arms-of-hadar",
+                "dnd5e2014.spell.bane",
+                "dnd5e2014.spell.bless",
+                "dnd5e2014.spell.burning-hands",
+                "dnd5e2014.spell.charm-person",
+                "dnd5e2014.spell.chromatic-orb",
+                "dnd5e2014.spell.color-spray",
+                "dnd5e2014.spell.command",
+                "dnd5e2014.spell.compelled-duel",
+                "dnd5e2014.spell.comprehend-languages",
+                "dnd5e2014.spell.create-or-destroy-water",
+                "dnd5e2014.spell.cure-wounds"
             ],
             LoadCanonical()
+                .Where(spell => spell.Level == 1)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.alarm", "Alarm", "abjuration", 211)]
+    [InlineData("dnd5e2014.spell.arms-of-hadar", "Arms of Hadar", "conjuration", 215)]
+    [InlineData("dnd5e2014.spell.color-spray", "Color Spray", "illusion", 222)]
+    [InlineData("dnd5e2014.spell.compelled-duel", "Compelled Duel", "enchantment", 224)]
+    [InlineData("dnd5e2014.spell.cure-wounds", "Cure Wounds", "evocation", 230)]
+    public void FirstLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(1, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    [Fact]
+    public void CompelledDuelIsCastAsABonusActionAtFirstLevel()
+    {
+        SpellCastingTime castingTime =
+            Get("dnd5e2014.spell.compelled-duel").CastingTime;
+
+        Assert.Equal(SpellCastingTimeUnit.BonusAction, castingTime.Unit);
+        Assert.Equal(1, castingTime.Amount);
+    }
+
+    [Fact]
+    public void NoCantripIsARitual()
+    {
+        Assert.All(
+            LoadCanonical().Where(spell => spell.IsCantrip),
+            spell => Assert.False(spell.IsRitual));
+    }
+
+    [Fact]
+    public void RitualsAreExactlyTheTaggedFirstLevelSpells()
+    {
+        Assert.Equal(
+            ["dnd5e2014.spell.alarm", "dnd5e2014.spell.comprehend-languages"],
+            LoadCanonical()
+                .Where(spell => spell.IsRitual)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsForNow()
+    public void AreaOfEffectRangesAreSelfRangedWithShapeAndSize()
     {
-        Assert.All(LoadCanonical(), spell => Assert.True(spell.IsCantrip));
+        SpellDefinition[] areas = LoadCanonical()
+            .Where(spell => spell.Range.AreaShape is not null)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
+
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.arms-of-hadar",
+                "dnd5e2014.spell.burning-hands",
+                "dnd5e2014.spell.color-spray"
+            ],
+            areas.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            areas,
+            spell =>
+            {
+                Assert.Equal(SpellRangeKind.Self, spell.Range.Kind);
+                Assert.NotNull(spell.Range.AreaSizeFeet);
+            });
+
+        Assert.Equal(
+            SpellAreaShape.Radius,
+            Get("dnd5e2014.spell.arms-of-hadar").Range.AreaShape);
+        Assert.Equal(
+            SpellAreaShape.Cone,
+            Get("dnd5e2014.spell.burning-hands").Range.AreaShape);
+        Assert.Equal(
+            15,
+            Get("dnd5e2014.spell.burning-hands").Range.AreaSizeFeet);
+    }
+
+    [Fact]
+    public void ChromaticOrbIsTheOnlyCostedMaterialSoFar()
+    {
+        SpellDefinition[] costed = LoadCanonical()
+            .Where(spell =>
+                spell.Components.MaterialCostGoldPieces is not null)
+            .ToArray();
+
+        SpellDefinition only = Assert.Single(costed);
+
+        Assert.Equal("dnd5e2014.spell.chromatic-orb", only.Id.Value);
+        Assert.Equal(50, only.Components.MaterialCostGoldPieces);
     }
 
     [Fact]
@@ -75,6 +180,7 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             8,
             LoadCanonical()
+                .Where(spell => spell.IsCantrip)
                 .Select(spell => spell.SchoolId.Value)
                 .Distinct()
                 .Count());
@@ -106,8 +212,8 @@ public sealed class SpellDataFileTests
     public void MendingIsTheOnlyCantripCastOverAMinute()
     {
         SpellDefinition[] slow = LoadCanonical()
-            .Where(spell =>
-                spell.CastingTime.Unit == SpellCastingTimeUnit.Minute)
+            .Where(spell => spell.IsCantrip
+                && spell.CastingTime.Unit == SpellCastingTimeUnit.Minute)
             .ToArray();
 
         Assert.Equal(
@@ -119,8 +225,9 @@ public sealed class SpellDataFileTests
     public void ShillelaghIsTheOnlyCantripCastAsABonusAction()
     {
         SpellDefinition[] bonus = LoadCanonical()
-            .Where(spell =>
-                spell.CastingTime.Unit == SpellCastingTimeUnit.BonusAction)
+            .Where(spell => spell.IsCantrip
+                && spell.CastingTime.Unit
+                    == SpellCastingTimeUnit.BonusAction)
             .ToArray();
 
         Assert.Equal(
@@ -139,6 +246,7 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             6,
             LoadCanonical()
+                .Where(spell => spell.IsCantrip)
                 .Select(spell =>
                 (
                     spell.Components.Verbal,
@@ -175,6 +283,7 @@ public sealed class SpellDataFileTests
     public void NeitherPaladinNorRangerHasACantrip()
     {
         string[] classIds = LoadCanonical()
+            .Where(spell => spell.IsCantrip)
             .SelectMany(spell => spell.AvailableToClassIds)
             .Select(classId => classId.Value)
             .Distinct()
@@ -209,8 +318,9 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             expectedCount,
             LoadCanonical()
-                .Count(spell => spell.AvailableToClassIds
-                    .Any(id => id.Value == classId)));
+                .Count(spell => spell.IsCantrip
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
     }
 
     [Fact]

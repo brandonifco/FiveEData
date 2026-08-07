@@ -104,6 +104,7 @@ internal static class SpellDefinitionLoader
             MapRange(rangeData),
             MapComponents(componentsData),
             MapDuration(durationData),
+            data.IsRitual ?? throw Missing("ritual flag"),
             classIdValues.Select(value => new ClassId(value)).ToArray(),
             sourceData.Select(SourceReferenceDataMapper.Map).ToArray());
     }
@@ -124,6 +125,13 @@ internal static class SpellDefinitionLoader
             data.Kind ?? throw Missing("range kind"),
             "range kind");
 
+        if (kind == SpellRangeKind.Self && data.AreaShape is not null)
+        {
+            return SpellRange.SelfWithArea(
+                ParseEnum<SpellAreaShape>(data.AreaShape, "area shape"),
+                data.AreaSizeFeet ?? throw Missing("area size"));
+        }
+
         return kind switch
         {
             SpellRangeKind.Self => SpellRange.Self(),
@@ -140,7 +148,8 @@ internal static class SpellDefinitionLoader
             data.Verbal ?? throw Missing("verbal component"),
             data.Somatic ?? throw Missing("somatic component"),
             data.Material ?? throw Missing("material component"),
-            data.MaterialDescription);
+            data.MaterialDescription,
+            data.MaterialCostGoldPieces);
     }
 
     private static SpellDuration MapDuration(SpellDurationData data)

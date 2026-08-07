@@ -33,6 +33,11 @@ internal static class SpellDefinitionValidator
             errors.Add("Spell must reference a magic school.");
         }
 
+        if (definition.Level == 0 && definition.IsRitual)
+        {
+            errors.Add("A cantrip must not be tagged as a ritual.");
+        }
+
         ValidateRange(definition, errors);
         ValidateDuration(definition, errors);
 
@@ -70,6 +75,20 @@ internal static class SpellDefinitionValidator
         {
             errors.Add(
                 "A self or touch spell must not specify a distance.");
+        }
+
+        bool hasShape = definition.Range.AreaShape is not null;
+        bool hasSize = definition.Range.AreaSizeFeet is not null;
+
+        if (hasShape != hasSize)
+        {
+            errors.Add(
+                "A spell area must specify both a shape and a size.");
+        }
+
+        if (hasShape && definition.Range.Kind != SpellRangeKind.Self)
+        {
+            errors.Add("Only a self-ranged spell may specify an area.");
         }
     }
 

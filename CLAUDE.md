@@ -59,12 +59,24 @@ instantaneous, "up to", and concentration. **"Up to" is not a synonym for
 concentration** — Prestidigitation is "Up to 1 hour" with no concentration,
 while concentration is always an "up to" duration.
 
-**Deliberately omitted until levels 1–9 land**, per "add a field only where
-it actually varies": `IsRitual` (no cantrip is a ritual), material component
-cost/consumed flags (no cantrip has a costed material), area-of-effect ranges
-such as "Self (15-foot cone)", and the `Reaction`/`Hour` casting-time units.
-Each is a purely additive change when the content that needs it arrives —
-`Alarm` on p.211 is the first ritual.
+**First-level spells are being added in alphabetical batches** — 62 of them,
+spread over ~38 pages, is too much to read reliably in one pass. Built so
+far: **A–C, Alarm through Cure Wounds (15 spells)**. Remaining batches: D–F
+(14), G–P (18), R–W (15). `SpellDataFileTests` pins the exact built closure,
+so the partial state is asserted rather than implied.
+
+That first batch drove three schema additions, each from real content:
+`IsRitual` (Alarm, Comprehend Languages), area-of-effect ranges via
+`SpellRange.SelfWithArea` (Arms of Hadar's 10-foot radius, Burning Hands and
+Color Spray's 15-foot cones), and `MaterialCostGoldPieces` (Chromatic Orb's
+50 gp diamond). A cantrip may never be a ritual, and the validator enforces
+that.
+
+**Still omitted until content needs them:** `MaterialIsConsumed` (nothing
+built yet says "which the spell consumes" — Find Familiar in the D–F batch
+is the first), the `Reaction` and `Hour` casting-time units (Shield and
+Hellish Rebuke are reactions; Find Familiar takes an hour), and area shapes
+beyond `Cone`/`Radius` (Thunderwave's cube and Lightning Bolt's line).
 
 Not started: magic items, and combat/adventuring rule prose beyond the
 existing citation index. Still deferred and unmodeled: per-class
