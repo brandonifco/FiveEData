@@ -6,6 +6,9 @@ using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.BreathWeapon;
+using FiveEData.Rules.Creatures.Races.SavageAttacks;
+using FiveEData.Rules.Creatures.Races.RelentlessEndurance;
+using FiveEData.Rules.Creatures.Races.Lucky;
 using FiveEData.Rules.Creatures.Sizes;
 
 namespace FiveEData.Tests;
@@ -100,6 +103,9 @@ public sealed class RaceFoundationTests
             [],
             null,
             [],
+            null,
+            null,
+            null,
             null,
             null,
             [CreateSource()]);
@@ -391,6 +397,43 @@ public sealed class RaceFoundationTests
             () => new RaceCatalog([race]));
     }
 
+    [Fact]
+    public void SavageAttacksDetail_RejectsNonPositiveAdditionalDice()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new SavageAttacksDetail(0, requiresMeleeWeapon: true));
+    }
+
+    [Fact]
+    public void RelentlessEnduranceDetail_RejectsNonPositiveHitPoints()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new RelentlessEnduranceDetail(0, recoversOnLongRest: true));
+    }
+
+    [Fact]
+    public void LuckyDetail_RejectsOutOfRangeRerollTrigger()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new LuckyDetail(21, mustUseNewRoll: true));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedRaceTailScalars()
+    {
+        RaceDefinition race = Create(
+            "dnd5e2014.race.test",
+            savageAttacks: new SavageAttacksDetail(
+                1,
+                requiresMeleeWeapon: true),
+            relentlessEndurance: new RelentlessEnduranceDetail(
+                1,
+                recoversOnLongRest: true),
+            lucky: new LuckyDetail(1, mustUseNewRoll: true));
+
+        Assert.Empty(RaceDefinitionValidator.Validate(race));
+    }
+
     private static RaceDefinition Create(
         string id,
         string name = "Test",
@@ -405,6 +448,9 @@ public sealed class RaceFoundationTests
         IEnumerable<DamageTypeId>? resistedDamageTypeIds = null,
         int? tranceDurationHours = null,
         BreathWeaponProgressionDetail? breathWeaponProgression = null,
+        SavageAttacksDetail? savageAttacks = null,
+        RelentlessEnduranceDetail? relentlessEndurance = null,
+        LuckyDetail? lucky = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new RaceDefinition(
@@ -421,6 +467,9 @@ public sealed class RaceFoundationTests
             resistedDamageTypeIds ?? [],
             tranceDurationHours,
             breathWeaponProgression,
+            savageAttacks,
+            relentlessEndurance,
+            lucky,
             sources ?? [CreateSource()]);
     }
 

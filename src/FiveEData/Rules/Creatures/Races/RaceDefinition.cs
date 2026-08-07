@@ -3,6 +3,9 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races.BreathWeapon;
+using FiveEData.Rules.Creatures.Races.Lucky;
+using FiveEData.Rules.Creatures.Races.RelentlessEndurance;
+using FiveEData.Rules.Creatures.Races.SavageAttacks;
 using FiveEData.Rules.Creatures.Sizes;
 
 namespace FiveEData.Rules.Creatures.Races;
@@ -23,6 +26,9 @@ public sealed class RaceDefinition
         IEnumerable<DamageTypeId> resistedDamageTypeIds,
         int? tranceDurationHours,
         BreathWeaponProgressionDetail? breathWeaponProgression,
+        SavageAttacksDetail? savageAttacks,
+        RelentlessEnduranceDetail? relentlessEndurance,
+        LuckyDetail? lucky,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -48,6 +54,9 @@ public sealed class RaceDefinition
             Array.AsReadOnly(resistedDamageTypeIds.ToArray());
         TranceDurationHours = tranceDurationHours;
         BreathWeaponProgression = breathWeaponProgression;
+        SavageAttacks = savageAttacks;
+        RelentlessEndurance = relentlessEndurance;
+        Lucky = lucky;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -64,5 +73,11 @@ public sealed class RaceDefinition
     public IReadOnlyList<DamageTypeId> ResistedDamageTypeIds { get; }
     public int? TranceDurationHours { get; }
     public BreathWeaponProgressionDetail? BreathWeaponProgression { get; }
+
+    public SavageAttacksDetail? SavageAttacks { get; }
+
+    public RelentlessEnduranceDetail? RelentlessEndurance { get; }
+
+    public LuckyDetail? Lucky { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }
