@@ -1608,6 +1608,91 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.goodberry",
+    "name": "Goodberry",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a sprig of mistletoe",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 246,
+        "section": "Chapter 11: Spells — Spell Descriptions — Goodberry"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.grease",
+    "name": "Grease",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of pork rind or butter",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 246,
+        "section": "Chapter 11: Spells — Spell Descriptions — Grease"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.guidance",
     "name": "Guidance",
     "level": 0,
@@ -1647,6 +1732,477 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 248,
         "section": "Chapter 11: Spells — Spell Descriptions — Guidance"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.guiding-bolt",
+    "name": "Guiding Bolt",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 248,
+        "section": "Chapter 11: Spells — Spell Descriptions — Guiding Bolt"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hail-of-thorns",
+    "name": "Hail of Thorns",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 249,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hail of Thorns"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.healing-word",
+    "name": "Healing Word",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 250,
+        "section": "Chapter 11: Spells — Spell Descriptions — Healing Word"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hellish-rebuke",
+    "name": "Hellish Rebuke",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Reaction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 250,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hellish Rebuke"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.heroism",
+    "name": "Heroism",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 250,
+        "section": "Chapter 11: Spells — Spell Descriptions — Heroism"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hex",
+    "name": "Hex",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "the petrified eye of a newt",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 251,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hex"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hunters-mark",
+    "name": "Hunter's Mark",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 251,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hunter's Mark"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.identify",
+    "name": "Identify",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pearl worth at least 100 gp and an owl feather",
+      "materialCostGoldPieces": 100,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 252,
+        "section": "Chapter 11: Spells — Spell Descriptions — Identify"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.illusory-script",
+    "name": "Illusory Script",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a lead-based ink worth at least 10 gp, which the spell consumes",
+      "materialCostGoldPieces": 10,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Day"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 252,
+        "section": "Chapter 11: Spells — Spell Descriptions — Illusory Script"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.inflict-wounds",
+    "name": "Inflict Wounds",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 253,
+        "section": "Chapter 11: Spells — Spell Descriptions — Inflict Wounds"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.jump",
+    "name": "Jump",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a grasshopper's hind leg",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 254,
+        "section": "Chapter 11: Spells — Spell Descriptions — Jump"
       }
     ]
   },
@@ -1696,6 +2252,94 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.longstrider",
+    "name": "Longstrider",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of dirt",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 256,
+        "section": "Chapter 11: Spells — Spell Descriptions — Longstrider"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.mage-armor",
+    "name": "Mage Armor",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a piece of cured leather",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 256,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mage Armor"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.mage-hand",
     "name": "Mage Hand",
     "level": 0,
@@ -1737,6 +2381,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 256,
         "section": "Chapter 11: Spells — Spell Descriptions — Mage Hand"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.magic-missile",
+    "name": "Magic Missile",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 257,
+        "section": "Chapter 11: Spells — Spell Descriptions — Magic Missile"
       }
     ]
   },
@@ -2004,6 +2691,95 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 269,
         "section": "Chapter 11: Spells — Spell Descriptions — Produce Flame"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.protection-from-evil-and-good",
+    "name": "Protection from Evil and Good",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "holy water or powdered silver and iron, which the spell consumes",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 270,
+        "section": "Chapter 11: Spells — Spell Descriptions — Protection from Evil and Good"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.purify-food-and-drink",
+    "name": "Purify Food and Drink",
+    "level": 1,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 270,
+        "section": "Chapter 11: Spells — Spell Descriptions — Purify Food and Drink"
       }
     ]
   },
