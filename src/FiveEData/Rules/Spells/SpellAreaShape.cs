@@ -4,5 +4,6 @@ public enum SpellAreaShape
 {
     Cone,
     Radius,
-    Cube
+    Cube,
+    Line
 }
