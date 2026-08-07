@@ -44,6 +44,8 @@ public sealed class ClassDefinitionLoaderTests
           "spellcastingAbilityId": null,
           "extraAttackProgressionId": null,
           "rageProgression": null,
+          "brutalCriticalProgression": null,
+          "fastMovement": null,
           "sneakAttackProgression": null,
           "kiProgression": null,
           "martialArtsProgression": null,
@@ -161,6 +163,8 @@ public sealed class ClassDefinitionLoaderTests
                       ],
                       "requiresNotWearingHeavyArmor": true
                     },
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": {
                       "diceByLevel": [
                         {
@@ -272,6 +276,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": {
                       "pointsByLevel": [
@@ -321,6 +327,89 @@ public sealed class ClassDefinitionLoaderTests
     }
 
     [Fact]
+    public void ValidDefinition_LoadsBrutalCriticalProgressionAndFastMovement()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 12,
+                    "primaryAbilityIds": ["dnd5e2014.ability.strength"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.strength",
+                      "dnd5e2014.ability.constitution"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "brutalCriticalProgression": {
+                      "additionalDiceByLevel": [
+                        { "characterLevel": 9, "additionalDice": 1 },
+                        { "characterLevel": 13, "additionalDice": 2 }
+                      ],
+                      "requiresMeleeAttack": true
+                    },
+                    "fastMovement": {
+                      "speedBonusFeet": 10,
+                      "requiresNotWearingHeavyArmor": false
+                    },
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.NotNull(@class.BrutalCriticalProgression);
+        Assert.Equal(
+            2,
+            @class.BrutalCriticalProgression!.AdditionalDiceByLevel.Count);
+        Assert.Equal(
+            9,
+            @class.BrutalCriticalProgression.AdditionalDiceByLevel[0]
+                .CharacterLevel);
+        Assert.Equal(
+            2,
+            @class.BrutalCriticalProgression.AdditionalDiceByLevel[1]
+                .AdditionalDice);
+        Assert.True(@class.BrutalCriticalProgression.RequiresMeleeAttack);
+
+        Assert.NotNull(@class.FastMovement);
+        Assert.Equal(10, @class.FastMovement!.SpeedBonusFeet);
+        Assert.False(@class.FastMovement.RequiresNotWearingHeavyArmor);
+    }
+
+    [Fact]
     public void ValidDefinition_LoadsMartialArtsAndUnarmoredMovementProgressions()
     {
         ClassDefinition @class = Assert.Single(
@@ -348,6 +437,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": {
@@ -454,6 +545,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -540,6 +633,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -626,6 +721,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -708,6 +805,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -782,6 +881,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -856,6 +957,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -928,6 +1031,8 @@ public sealed class ClassDefinitionLoaderTests
                     "spellcastingAbilityId": null,
                     "extraAttackProgressionId": null,
                     "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,

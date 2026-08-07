@@ -2,11 +2,15 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
+using FiveEData.Rules.Classes.BrutalCritical;
+using FiveEData.Rules.Classes.BrutalCritical.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
+using FiveEData.Rules.Classes.FastMovement;
+using FiveEData.Rules.Classes.FastMovement.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Ki;
@@ -177,6 +181,18 @@ internal static class ClassDefinitionLoader
                 ? RageProgressionDetailDataMapper.Map(rageProgressionData)
                 : null;
 
+        BrutalCriticalProgressionDetail? brutalCriticalProgression =
+            data.BrutalCriticalProgression is
+                { } brutalCriticalProgressionData
+                ? BrutalCriticalProgressionDetailDataMapper.Map(
+                    brutalCriticalProgressionData)
+                : null;
+
+        FastMovementDetail? fastMovement =
+            data.FastMovement is { } fastMovementData
+                ? FastMovementDetailDataMapper.Map(fastMovementData)
+                : null;
+
         SneakAttackProgressionDetail? sneakAttackProgression =
             data.SneakAttackProgression is { } sneakAttackProgressionData
                 ? SneakAttackProgressionDetailDataMapper.Map(
@@ -282,6 +298,8 @@ internal static class ClassDefinitionLoader
             spellcastingAbilityId,
             extraAttackProgressionId,
             rageProgression,
+            brutalCriticalProgression,
+            fastMovement,
             sneakAttackProgression,
             kiProgression,
             martialArtsProgression,
