@@ -16,6 +16,8 @@ using FiveEData.Rules.Classes.DivineSense.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
+using FiveEData.Rules.Classes.EmptyBody;
+using FiveEData.Rules.Classes.EmptyBody.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
@@ -369,6 +371,11 @@ internal static class ClassDefinitionLoader
                 ? PrimalChampionDetailDataMapper.Map(primalChampionData)
                 : null;
 
+        EmptyBodyDetail? emptyBody =
+            data.EmptyBody is { } emptyBodyData
+                ? EmptyBodyDetailDataMapper.Map(emptyBodyData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -415,6 +422,11 @@ internal static class ClassDefinitionLoader
             divineSense,
             improvedDivineSmite,
             primalChampion,
+            data.StunningStrikeKiCost,
+            data.DiamondSoulRerollKiCost,
+            emptyBody,
+            data.PerfectSelfKiPointsRegained,
+            data.SorcerousRestorationSorceryPointsRegained,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

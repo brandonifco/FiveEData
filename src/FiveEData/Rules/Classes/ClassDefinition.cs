@@ -7,6 +7,7 @@ using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.DivineSense;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
+using FiveEData.Rules.Classes.EmptyBody;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FavoredEnemy;
@@ -85,6 +86,11 @@ public sealed class ClassDefinition
         DivineSenseDetail? divineSense,
         ImprovedDivineSmiteDetail? improvedDivineSmite,
         PrimalChampionDetail? primalChampion,
+        int? stunningStrikeKiCost,
+        int? diamondSoulRerollKiCost,
+        EmptyBodyDetail? emptyBody,
+        int? perfectSelfKiPointsRegained,
+        int? sorcerousRestorationSorceryPointsRegained,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -146,6 +152,12 @@ public sealed class ClassDefinition
         DivineSense = divineSense;
         ImprovedDivineSmite = improvedDivineSmite;
         PrimalChampion = primalChampion;
+        StunningStrikeKiCost = stunningStrikeKiCost;
+        DiamondSoulRerollKiCost = diamondSoulRerollKiCost;
+        EmptyBody = emptyBody;
+        PerfectSelfKiPointsRegained = perfectSelfKiPointsRegained;
+        SorcerousRestorationSorceryPointsRegained =
+            sorcerousRestorationSorceryPointsRegained;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -236,6 +248,16 @@ public sealed class ClassDefinition
     public ImprovedDivineSmiteDetail? ImprovedDivineSmite { get; }
 
     public PrimalChampionDetail? PrimalChampion { get; }
+
+    public int? StunningStrikeKiCost { get; }
+
+    public int? DiamondSoulRerollKiCost { get; }
+
+    public EmptyBodyDetail? EmptyBody { get; }
+
+    public int? PerfectSelfKiPointsRegained { get; }
+
+    public int? SorcerousRestorationSorceryPointsRegained { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

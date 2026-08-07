@@ -77,6 +77,11 @@ public sealed class ClassDefinitionLoaderTests
           "divineSense": null,
           "improvedDivineSmite": null,
           "primalChampion": null,
+          "stunningStrikeKiCost": null,
+          "diamondSoulRerollKiCost": null,
+          "emptyBody": null,
+          "perfectSelfKiPointsRegained": null,
+          "sorcerousRestorationSorceryPointsRegained": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -221,6 +226,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -345,6 +355,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -434,6 +449,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -623,6 +643,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -721,6 +746,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -816,6 +846,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -924,6 +959,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1039,6 +1079,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1137,6 +1182,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1235,6 +1285,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1324,6 +1379,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1412,6 +1472,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1499,6 +1564,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1591,6 +1661,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1656,6 +1731,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -1691,6 +1771,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": []
                   }
                 ]
@@ -1723,6 +1808,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": []
                   }
                 ]
@@ -1756,6 +1846,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": []
                   }
                 ]
@@ -1789,6 +1884,11 @@ public sealed class ClassDefinitionLoaderTests
                     "divineSense": null,
                     "improvedDivineSmite": null,
                     "primalChampion": null,
+                    "stunningStrikeKiCost": null,
+                    "diamondSoulRerollKiCost": null,
+                    "emptyBody": null,
+                    "perfectSelfKiPointsRegained": null,
+                    "sorcerousRestorationSorceryPointsRegained": null,
                     "sources": null
                   }
                 ]

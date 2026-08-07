@@ -1,4 +1,5 @@
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
@@ -42,6 +43,10 @@ public sealed class SubclassDefinition
         HurlThroughHellDetail? hurlThroughHell,
         WrathOfTheStormDetail? wrathOfTheStorm,
         ThunderboltStrikeDetail? thunderboltStrike,
+        int? shadowArtsKiCost,
+        int? quiveringPalmKiCost,
+        int? draconicPresenceSorceryPointCost,
+        BendLuckDetail? bendLuck,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -69,6 +74,11 @@ public sealed class SubclassDefinition
         HurlThroughHell = hurlThroughHell;
         WrathOfTheStorm = wrathOfTheStorm;
         ThunderboltStrike = thunderboltStrike;
+        ShadowArtsKiCost = shadowArtsKiCost;
+        QuiveringPalmKiCost = quiveringPalmKiCost;
+        DraconicPresenceSorceryPointCost =
+            draconicPresenceSorceryPointCost;
+        BendLuck = bendLuck;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -112,6 +122,14 @@ public sealed class SubclassDefinition
     public WrathOfTheStormDetail? WrathOfTheStorm { get; }
 
     public ThunderboltStrikeDetail? ThunderboltStrike { get; }
+
+    public int? ShadowArtsKiCost { get; }
+
+    public int? QuiveringPalmKiCost { get; }
+
+    public int? DraconicPresenceSorceryPointCost { get; }
+
+    public BendLuckDetail? BendLuck { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

@@ -169,6 +169,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -396,6 +401,11 @@
       "abilityScoreIncrease": 4,
       "maximumAbilityScore": 24
     },
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -704,6 +714,15 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": 1,
+    "diamondSoulRerollKiCost": 1,
+    "emptyBody": {
+      "invisibilityKiCost": 4,
+      "invisibilityDurationMinutes": 1,
+      "astralProjectionKiCost": 8
+    },
+    "perfectSelfKiPointsRegained": 4,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -939,6 +958,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1203,6 +1227,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1316,6 +1345,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1486,6 +1520,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1665,6 +1704,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1827,6 +1871,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2021,6 +2070,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2197,6 +2251,11 @@
       "requiresMeleeWeapon": true
     },
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2421,6 +2480,11 @@
     "divineSense": null,
     "improvedDivineSmite": null,
     "primalChampion": null,
+    "stunningStrikeKiCost": null,
+    "diamondSoulRerollKiCost": null,
+    "emptyBody": null,
+    "perfectSelfKiPointsRegained": null,
+    "sorcerousRestorationSorceryPointsRegained": 4,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

@@ -8,6 +8,7 @@ using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead.Serialization;
 using FiveEData.Rules.Classes.DivineSense.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
+using FiveEData.Rules.Classes.EmptyBody.Serialization;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
 using FiveEData.Rules.Classes.FavoredEnemy.Serialization;
 using FiveEData.Rules.Classes.FeralSenses.Serialization;
@@ -243,6 +244,25 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public PrimalChampionDetailData? PrimalChampion { get; init; }
+
+    [JsonRequired]
+    public int? StunningStrikeKiCost { get; init; }
+
+    [JsonRequired]
+    public int? DiamondSoulRerollKiCost { get; init; }
+
+    [JsonRequired]
+    public EmptyBodyDetailData? EmptyBody { get; init; }
+
+    [JsonRequired]
+    public int? PerfectSelfKiPointsRegained { get; init; }
+
+    [JsonRequired]
+    public int? SorcerousRestorationSorceryPointsRegained
+    {
+        get;
+        init;
+    }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

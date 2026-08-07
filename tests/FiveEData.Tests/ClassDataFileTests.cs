@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.EmptyBody;
 using FiveEData.Rules.Classes.PrimalChampion;
 using FiveEData.Rules.Classes.ImprovedDivineSmite;
 using FiveEData.Rules.Classes.FeralSenses;
@@ -2763,6 +2764,102 @@ public sealed class ClassDataFileTests
                 ?? throw new InvalidOperationException(
                     "Expected Barbarian to have Primal Champion."))
                 .MaximumAbilityScore);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesMonkFixedKiCosts()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        Assert.Equal(1, monk.StunningStrikeKiCost);
+        Assert.Equal(1, monk.DiamondSoulRerollKiCost);
+        Assert.Equal(4, monk.PerfectSelfKiPointsRegained);
+
+        EmptyBodyDetail emptyBody =
+            monk.EmptyBody
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have Empty Body.");
+        Assert.Equal(4, emptyBody.InvisibilityKiCost);
+        Assert.Equal(1, emptyBody.InvisibilityDurationMinutes);
+        Assert.Equal(8, emptyBody.AstralProjectionKiCost);
+    }
+
+    // Empty Body buys two different things at two different prices from one
+    // feature - 4 ki to turn invisible, 8 ki to cast astral projection - so
+    // it cannot be a single ki-cost scalar the way Stunning Strike is.
+    [Fact]
+    public void CanonicalFile_MonkEmptyBodyCarriesTwoDistinctKiCosts()
+    {
+        ClassDefinition monk = GetClass(LoadClasses(), "dnd5e2014.class.monk");
+
+        EmptyBodyDetail emptyBody =
+            monk.EmptyBody
+            ?? throw new InvalidOperationException(
+                "Expected Monk to have Empty Body.");
+
+        Assert.NotEqual(
+            emptyBody.InvisibilityKiCost,
+            emptyBody.AstralProjectionKiCost);
+    }
+
+    // Perfect Self and Sorcerous Restoration regain points rather than
+    // spending them, which is why they are named "…Regained" and not "…Cost".
+    [Fact]
+    public void CanonicalFile_RegainedResourcesAreDistinctFromCosts()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        Assert.Equal(
+            4,
+            GetClass(classes, "dnd5e2014.class.monk")
+                .PerfectSelfKiPointsRegained);
+        Assert.Equal(
+            4,
+            GetClass(classes, "dnd5e2014.class.sorcerer")
+                .SorcerousRestorationSorceryPointsRegained);
+        Assert.Null(
+            GetClass(classes, "dnd5e2014.class.sorcerer")
+                .StunningStrikeKiCost);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonMonkClassDeclaresNoKiCosts(string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.StunningStrikeKiCost);
+        Assert.Null(@class.DiamondSoulRerollKiCost);
+        Assert.Null(@class.EmptyBody);
+        Assert.Null(@class.PerfectSelfKiPointsRegained);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedFixedResourceCosts()
+    {
+        Dnd5e2014Ruleset ruleset = Dnd5e2014Ruleset.Instance;
+
+        Assert.Equal(
+            8,
+            (ruleset.Classes.Get(new ClassId("dnd5e2014.class.monk"))
+                .EmptyBody
+                ?? throw new InvalidOperationException(
+                    "Expected Monk to have Empty Body."))
+                .AstralProjectionKiCost);
+        Assert.Equal(
+            4,
+            ruleset.Classes.Get(new ClassId("dnd5e2014.class.sorcerer"))
+                .SorcerousRestorationSorceryPointsRegained);
     }
 
     private static ClassDefinition GetClass(

@@ -1,5 +1,7 @@
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Auras.Serialization;
+using FiveEData.Rules.Classes.BendLuck;
+using FiveEData.Rules.Classes.BendLuck.Serialization;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority;
@@ -218,6 +220,11 @@ internal static class SubclassDefinitionLoader
                     thunderboltStrikeData)
                 : null;
 
+        BendLuckDetail? bendLuck =
+            data.BendLuck is { } bendLuckData
+                ? BendLuckDetailDataMapper.Map(bendLuckData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -240,6 +247,10 @@ internal static class SubclassDefinitionLoader
             hurlThroughHell,
             wrathOfTheStorm,
             thunderboltStrike,
+            data.ShadowArtsKiCost,
+            data.QuiveringPalmKiCost,
+            data.DraconicPresenceSorceryPointCost,
+            bendLuck,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

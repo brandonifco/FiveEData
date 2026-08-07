@@ -2,6 +2,7 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.EmptyBody;
 using FiveEData.Rules.Classes.PrimalChampion;
 using FiveEData.Rules.Classes.ImprovedDivineSmite;
 using FiveEData.Rules.Classes.FeralSenses;
@@ -161,6 +162,11 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -609,6 +615,16 @@ public sealed class ClassFoundationTests
                 ]));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void EmptyBodyDetail_RejectsNonPositiveAstralProjectionKiCost()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new EmptyBodyDetail(
+                invisibilityKiCost: 4,
+                invisibilityDurationMinutes: 1,
+                astralProjectionKiCost: 0));
     }
 
     [Fact]
@@ -1667,6 +1683,11 @@ public sealed class ClassFoundationTests
         DivineSenseDetail? divineSense = null,
         ImprovedDivineSmiteDetail? improvedDivineSmite = null,
         PrimalChampionDetail? primalChampion = null,
+        int? stunningStrikeKiCost = null,
+        int? diamondSoulRerollKiCost = null,
+        EmptyBodyDetail? emptyBody = null,
+        int? perfectSelfKiPointsRegained = null,
+        int? sorcerousRestorationSorceryPointsRegained = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -1720,6 +1741,11 @@ public sealed class ClassFoundationTests
             divineSense,
             improvedDivineSmite,
             primalChampion,
+            stunningStrikeKiCost,
+            diamondSoulRerollKiCost,
+            emptyBody,
+            perfectSelfKiPointsRegained,
+            sorcerousRestorationSorceryPointsRegained,
             sources ?? [CreateSource()]);
     }
 

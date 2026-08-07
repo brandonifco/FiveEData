@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2083 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2103 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -395,7 +395,8 @@ rather than trusting it.
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding,
   Additional Magical Secrets (the same `MagicalSecretsProgressionDetail` the
   Bard uses), Portent, Draconic Resilience, Improved Critical, Shadow Step,
-  Hurl Through Hell, Wrath of the Storm, Thunderbolt Strike.
+  Hurl Through Hell, Wrath of the Storm, Thunderbolt Strike, Shadow Arts and
+  Quivering Palm ki costs, Draconic Presence's sorcery point cost, Bend Luck.
 - **On `RaceDefinition`/`SubraceDefinition`:** `DarkvisionRangeFeet`,
   `ResistedDamageTypeIds`, `TranceDurationHours`, `HitPointBonusPerLevel`,
   the subrace `Speed` override, and the embedded Breath Weapon progression.
@@ -506,8 +507,8 @@ and Draconic Resilience are done — all of Tier A. The Tier B list below is
 verified-as-candidates by name only and still needs values read off the page
 images.
 
-**Tier A is closed.** What remains is Tier B and the Race tail (Savage
-Attacks' extra crit die).
+**Tier A and Tier B are both closed.** What remains of the sweep is the Race
+tail (Savage Attacks' extra crit die); Tier C stays citation by design.
 
 **Two features here were explicitly declined during the original pass, and
 both declines predate the precedent that now covers them** — Brutal Critical's
@@ -560,7 +561,20 @@ feature, never inferred from the class.
 `ClassDefinition`: Blindsense, Reliable Talent, Feral Senses, Divine Sense,
 Improved Divine Smite, Primal Champion. Done on `SubclassDefinition`: Improved
 Critical, Shadow Step, Hurl Through Hell, Wrath of the Storm, Thunderbolt
-Strike. Still open: the fixed ki and sorcery-point costs.
+Strike. The fixed ki and sorcery-point costs are done. **Tier B is closed.**
+
+**A cost and a regain are different fields.** Perfect Self *regains* 4 ki and
+Sorcerous Restoration *regains* 4 sorcery points, while Stunning Strike and
+Shadow Arts *spend* theirs — hence `…KiPointsRegained` versus `…KiCost`. Empty
+Body needed a detail object rather than a scalar because one feature buys two
+different things at two different prices (4 ki to turn invisible, 8 to cast
+astral projection).
+
+**Quivering Palm is a Way of the Open Hand feature, not a Monk class
+feature** — the Monk table's 17th-level row reads "Monastic Tradition
+feature". Its ki cost lives on `SubclassDefinition`. Pinned by
+`CanonicalFile_QuiveringPalmBelongsToWayOfTheOpenHand`, because the PHB prints
+it in the same column flow as the class features.
 
 **One progression descends.** Improved Critical's threshold goes 19 at 3rd to
 18 at 15th, because a *lower* crit threshold is the improvement — the only

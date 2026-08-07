@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
+using FiveEData.Rules.Classes.BendLuck.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
@@ -106,6 +107,18 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public ThunderboltStrikeDetailData? ThunderboltStrike { get; init; }
+
+    [JsonRequired]
+    public int? ShadowArtsKiCost { get; init; }
+
+    [JsonRequired]
+    public int? QuiveringPalmKiCost { get; init; }
+
+    [JsonRequired]
+    public int? DraconicPresenceSorceryPointCost { get; init; }
+
+    [JsonRequired]
+    public BendLuckDetailData? BendLuck { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
