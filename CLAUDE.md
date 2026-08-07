@@ -39,11 +39,12 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2129 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2144 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
-`SpellDefinition`. **All 27 cantrips are built; levels 1–9 are not.**
+`SpellDefinition`. **All 27 cantrips and all 62 first-level spells are built;
+levels 2–9 are not.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -60,14 +61,13 @@ instantaneous, "up to", and concentration. **"Up to" is not a synonym for
 concentration** — Prestidigitation is "Up to 1 hour" with no concentration,
 while concentration is always an "up to" duration.
 
-**First-level spells are being added in alphabetical batches** — 62 of them,
-spread over ~38 pages, is too much to read reliably in one pass. Built so
-far: **A–P, Alarm through Purify Food and Drink (47 spells)**. One batch
-remains: R–W (15). `SpellDataFileTests` pins the exact built closure, so the
-partial state is asserted rather than implied.
+**First level was added in alphabetical batches** — 62 spells over ~38 pages
+was too much to read reliably in one pass. All four batches are merged;
+`SpellDataFileTests` pins the exact built closure, so any future partial
+state is asserted rather than implied. **Use the same batching for levels
+2–9.**
 
-Each batch has driven schema additions from real content, never
-anticipation:
+Each batch drove schema additions from real content, never anticipation:
 
 - **A–C:** `IsRitual` (Alarm, Comprehend Languages); area-of-effect ranges
   via `SpellRange.SelfWithArea` (Arms of Hadar's radius, Burning Hands and
@@ -76,6 +76,8 @@ anticipation:
 - **D–F:** the `Reaction` casting-time unit (Feather Fall) and `Hour` (Find
   Familiar); `MaterialIsConsumed` (Find Familiar's charcoal and incense).
 - **G–P:** the `Day` duration unit (Illusory Script's 10 days).
+- **R–W:** the `Cube` area shape (Thunderwave's 15-foot cube) — the first
+  area that is neither a cone nor a radius.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -88,8 +90,18 @@ prose ("which you take when you or a creature within 60 feet of you falls");
 only the unit is data, consistent with never storing rules text.
 
 **Still omitted until content needs them:** area shapes beyond
-`Cone`/`Radius` (Thunderwave's cube, Lightning Bolt's line), and any casting
-time whose amount is not 1.
+`Cone`/`Radius`/`Cube` (Lightning Bolt's line), and any casting time whose
+amount is not 1.
+
+**`AvailableToClassIds` comes from the Chapter 11 class spell lists
+(pp.207–210), never from the spell description** — the description never
+names its classes. Thunderwave reaches four classes, the Paladin smites
+exactly one; both are read off those list pages.
+
+**A duration unit does not imply a duration shape.** Shield and True Strike
+are both 1 round, but Shield's is flat while True Strike's is concentration
+and "up to". Pinned by
+`ShieldsRoundDurationIsFlatWhileTrueStrikesIsUpTo`.
 
 Not started: magic items, and combat/adventuring rule prose beyond the
 existing citation index. Still deferred and unmodeled: per-class

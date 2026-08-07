@@ -11,27 +11,27 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(74, LoadCanonical().Count);
+        Assert.Equal(89, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
         Assert.Equal(
-            47,
+            62,
             LoadCanonical().Count(spell => spell.Level == 1));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsAndFirstLevelForNow()
     {
-        // Levels 2-9 are not built yet. First-level coverage stops at
-        // Cure Wounds; see CLAUDE.md for the alphabetical batch plan.
+        // Levels 2-9 are not built yet. First level is complete: all 62
+        // of the PHB's 1st-level spells are here.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 1));
     }
 
     [Fact]
-    public void FirstLevelBatchContainsExactlyTheAThroughPSpells()
+    public void FirstLevelContainsExactlyThePhbsSixtyTwoSpells()
     {
         Assert.Equal(
             [
@@ -81,7 +81,22 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.mage-armor",
                 "dnd5e2014.spell.magic-missile",
                 "dnd5e2014.spell.protection-from-evil-and-good",
-                "dnd5e2014.spell.purify-food-and-drink"
+                "dnd5e2014.spell.purify-food-and-drink",
+                "dnd5e2014.spell.ray-of-sickness",
+                "dnd5e2014.spell.sanctuary",
+                "dnd5e2014.spell.searing-smite",
+                "dnd5e2014.spell.shield",
+                "dnd5e2014.spell.shield-of-faith",
+                "dnd5e2014.spell.silent-image",
+                "dnd5e2014.spell.sleep",
+                "dnd5e2014.spell.speak-with-animals",
+                "dnd5e2014.spell.tashas-hideous-laughter",
+                "dnd5e2014.spell.tensers-floating-disk",
+                "dnd5e2014.spell.thunderous-smite",
+                "dnd5e2014.spell.thunderwave",
+                "dnd5e2014.spell.unseen-servant",
+                "dnd5e2014.spell.witch-bolt",
+                "dnd5e2014.spell.wrathful-smite"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 1)
@@ -141,7 +156,10 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
-                "dnd5e2014.spell.purify-food-and-drink"
+                "dnd5e2014.spell.purify-food-and-drink",
+                "dnd5e2014.spell.speak-with-animals",
+                "dnd5e2014.spell.tensers-floating-disk",
+                "dnd5e2014.spell.unseen-servant"
             ],
             LoadCanonical()
                 .Where(spell => spell.IsRitual)
@@ -161,7 +179,8 @@ public sealed class SpellDataFileTests
             [
                 "dnd5e2014.spell.arms-of-hadar",
                 "dnd5e2014.spell.burning-hands",
-                "dnd5e2014.spell.color-spray"
+                "dnd5e2014.spell.color-spray",
+                "dnd5e2014.spell.thunderwave"
             ],
             areas.Select(spell => spell.Id.Value));
 
@@ -222,17 +241,119 @@ public sealed class SpellDataFileTests
     }
 
     [Fact]
-    public void ReactionSpellsAreFeatherFallAndHellishRebuke()
+    public void ReactionSpellsAreFeatherFallHellishRebukeAndShield()
     {
         Assert.Equal(
             [
                 "dnd5e2014.spell.feather-fall",
-                "dnd5e2014.spell.hellish-rebuke"
+                "dnd5e2014.spell.hellish-rebuke",
+                "dnd5e2014.spell.shield"
             ],
             LoadCanonical()
                 .Where(spell => spell.CastingTime.Unit
                     == SpellCastingTimeUnit.Reaction)
                 .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Thunderwave drove the Cube area shape; it is the first spell whose
+    // area is neither a cone nor a radius. Lightning Bolt's line still
+    // awaits a 3rd-level batch.
+    [Fact]
+    public void ThunderwaveIsTheOnlyCubeAreaSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell =>
+                    spell.Range.AreaShape == SpellAreaShape.Cube));
+
+        Assert.Equal("dnd5e2014.spell.thunderwave", only.Id.Value);
+        Assert.Equal(SpellRangeKind.Self, only.Range.Kind);
+        Assert.Equal(15, only.Range.AreaSizeFeet);
+    }
+
+    // Shield's round is a flat duration, not an "up to" one — the same unit
+    // True Strike uses on the concentration side of that distinction. Both
+    // are pinned so the two never get collapsed.
+    [Fact]
+    public void ShieldsRoundDurationIsFlatWhileTrueStrikesIsUpTo()
+    {
+        SpellDuration shield = Get("dnd5e2014.spell.shield").Duration;
+        SpellDuration trueStrike = Get("dnd5e2014.spell.true-strike").Duration;
+
+        Assert.Equal(SpellDurationUnit.Round, shield.Unit);
+        Assert.Equal(1, shield.Amount);
+        Assert.False(shield.RequiresConcentration);
+        Assert.False(shield.IsUpTo);
+
+        Assert.Equal(SpellDurationUnit.Round, trueStrike.Unit);
+        Assert.True(trueStrike.RequiresConcentration);
+        Assert.True(trueStrike.IsUpTo);
+    }
+
+    // The four Paladin smites are the only 1st-level spells available to
+    // exactly one class that is not a full caster, and all four share the
+    // same header shape: bonus action, Self, verbal only, concentration up
+    // to 1 minute.
+    [Theory]
+    [InlineData("dnd5e2014.spell.searing-smite")]
+    [InlineData("dnd5e2014.spell.thunderous-smite")]
+    [InlineData("dnd5e2014.spell.wrathful-smite")]
+    public void PaladinSmitesShareTheSameHeaderShape(string id)
+    {
+        SpellDefinition smite = Get(id);
+
+        Assert.Equal(
+            "dnd5e2014.class.paladin",
+            Assert.Single(smite.AvailableToClassIds).Value);
+        Assert.Equal(SpellCastingTimeUnit.BonusAction, smite.CastingTime.Unit);
+        Assert.Equal(SpellRangeKind.Self, smite.Range.Kind);
+        Assert.True(smite.Components.Verbal);
+        Assert.False(smite.Components.Somatic);
+        Assert.False(smite.Components.Material);
+        Assert.True(smite.Duration.RequiresConcentration);
+        Assert.Equal(1, smite.Duration.Amount);
+        Assert.Equal(SpellDurationUnit.Minute, smite.Duration.Unit);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.ray-of-sickness", "Ray of Sickness", "necromancy", 271)]
+    [InlineData("dnd5e2014.spell.sanctuary", "Sanctuary", "abjuration", 272)]
+    [InlineData("dnd5e2014.spell.silent-image", "Silent Image", "illusion", 276)]
+    [InlineData("dnd5e2014.spell.speak-with-animals", "Speak with Animals", "divination", 277)]
+    [InlineData("dnd5e2014.spell.tensers-floating-disk", "Tenser's Floating Disk", "conjuration", 282)]
+    [InlineData("dnd5e2014.spell.witch-bolt", "Witch Bolt", "evocation", 289)]
+    public void RThroughWSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(1, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Thunderwave reaches four classes, the widest 1st-level spell list
+    // membership in the book; the smites reach one. Both are read off the
+    // Chapter 11 class spell lists, not the spell description.
+    [Fact]
+    public void ThunderwaveIsAvailableToFourClasses()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.class.bard",
+                "dnd5e2014.class.druid",
+                "dnd5e2014.class.sorcerer",
+                "dnd5e2014.class.wizard"
+            ],
+            Get("dnd5e2014.spell.thunderwave").AvailableToClassIds
+                .Select(id => id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
     }
 
