@@ -110,6 +110,19 @@ public sealed class SpellFoundationTests
         Assert.Null(SpellRange.Self().AreaShape);
     }
 
+    [Theory]
+    [InlineData(SpellAreaShape.Cone)]
+    [InlineData(SpellAreaShape.Radius)]
+    [InlineData(SpellAreaShape.Cube)]
+    public void Range_SelfWithAreaAcceptsEveryDefinedShape(
+        SpellAreaShape shape)
+    {
+        SpellRange range = SpellRange.SelfWithArea(shape, 15);
+
+        Assert.Equal(shape, range.AreaShape);
+        Assert.Equal(15, range.AreaSizeFeet);
+    }
+
     [Fact]
     public void Components_RejectCostWithoutMaterial()
     {
