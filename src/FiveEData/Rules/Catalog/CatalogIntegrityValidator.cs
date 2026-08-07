@@ -1,3 +1,4 @@
+using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Classes;
@@ -206,6 +207,33 @@ internal static class CatalogIntegrityValidator
                 magicSchool.Sources,
                 sourceIds,
                 errors);
+        }
+
+        var magicSchoolIds = definitions.MagicSchools
+            .Select(magicSchool => magicSchool.Id)
+            .ToHashSet();
+
+        foreach (SpellDefinition spell in definitions.Spells)
+        {
+            string owner = $"Spell '{spell.Id}'";
+
+            ValidateSources(owner, spell.Sources, sourceIds, errors);
+
+            if (!magicSchoolIds.Contains(spell.SchoolId))
+            {
+                errors.Add(
+                    $"{owner} references missing magic school " +
+                    $"'{spell.SchoolId}'.");
+            }
+
+            foreach (ClassId classId in spell.AvailableToClassIds)
+            {
+                if (!classIds.Contains(classId))
+                {
+                    errors.Add(
+                        $"{owner} references missing class '{classId}'.");
+                }
+            }
         }
 
         foreach (

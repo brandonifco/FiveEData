@@ -1,0 +1,1041 @@
+[
+  {
+    "id": "dnd5e2014.spell.acid-splash",
+    "name": "Acid Splash",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 211,
+        "section": "Chapter 11: Spells — Spell Descriptions — Acid Splash"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.blade-ward",
+    "name": "Blade Ward",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 218,
+        "section": "Chapter 11: Spells — Spell Descriptions — Blade Ward"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.chill-touch",
+    "name": "Chill Touch",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 221,
+        "section": "Chapter 11: Spells — Spell Descriptions — Chill Touch"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.dancing-lights",
+    "name": "Dancing Lights",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of phosphorus or wychwood, or a glowworm"
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 230,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dancing Lights"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.druidcraft",
+    "name": "Druidcraft",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 236,
+        "section": "Chapter 11: Spells — Spell Descriptions — Druidcraft"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.eldritch-blast",
+    "name": "Eldritch Blast",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 237,
+        "section": "Chapter 11: Spells — Spell Descriptions — Eldritch Blast"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.fire-bolt",
+    "name": "Fire Bolt",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 242,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fire Bolt"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.friends",
+    "name": "Friends",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small amount of makeup applied to the face as this spell is cast"
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 244,
+        "section": "Chapter 11: Spells — Spell Descriptions — Friends"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.guidance",
+    "name": "Guidance",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 248,
+        "section": "Chapter 11: Spells — Spell Descriptions — Guidance"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.light",
+    "name": "Light",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": true,
+      "materialDescription": "a firefly or phosphorescent moss"
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 255,
+        "section": "Chapter 11: Spells — Spell Descriptions — Light"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.mage-hand",
+    "name": "Mage Hand",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 256,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mage Hand"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.mending",
+    "name": "Mending",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "two lodestones"
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 259,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mending"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.message",
+    "name": "Message",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a short piece of copper wire"
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 259,
+        "section": "Chapter 11: Spells — Spell Descriptions — Message"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.minor-illusion",
+    "name": "Minor Illusion",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of fleece"
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 260,
+        "section": "Chapter 11: Spells — Spell Descriptions — Minor Illusion"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.poison-spray",
+    "name": "Poison Spray",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 266,
+        "section": "Chapter 11: Spells — Spell Descriptions — Poison Spray"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.prestidigitation",
+    "name": "Prestidigitation",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 267,
+        "section": "Chapter 11: Spells — Spell Descriptions — Prestidigitation"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.produce-flame",
+    "name": "Produce Flame",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 269,
+        "section": "Chapter 11: Spells — Spell Descriptions — Produce Flame"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.ray-of-frost",
+    "name": "Ray of Frost",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 271,
+        "section": "Chapter 11: Spells — Spell Descriptions — Ray of Frost"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.resistance",
+    "name": "Resistance",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a miniature cloak"
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 272,
+        "section": "Chapter 11: Spells — Spell Descriptions — Resistance"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.sacred-flame",
+    "name": "Sacred Flame",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 272,
+        "section": "Chapter 11: Spells — Spell Descriptions — Sacred Flame"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.shillelagh",
+    "name": "Shillelagh",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "mistletoe, a shamrock leaf, and a club or quarterstaff"
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 275,
+        "section": "Chapter 11: Spells — Spell Descriptions — Shillelagh"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.shocking-grasp",
+    "name": "Shocking Grasp",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 275,
+        "section": "Chapter 11: Spells — Spell Descriptions — Shocking Grasp"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.spare-the-dying",
+    "name": "Spare the Dying",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 277,
+        "section": "Chapter 11: Spells — Spell Descriptions — Spare the Dying"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.thaumaturgy",
+    "name": "Thaumaturgy",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": false,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 282,
+        "section": "Chapter 11: Spells — Spell Descriptions — Thaumaturgy"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.thorn-whip",
+    "name": "Thorn Whip",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "the stem of a plant with thorns"
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 282,
+        "section": "Chapter 11: Spells — Spell Descriptions — Thorn Whip"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.true-strike",
+    "name": "True Strike",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 284,
+        "section": "Chapter 11: Spells — Spell Descriptions — True Strike"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.vicious-mockery",
+    "name": "Vicious Mockery",
+    "level": 0,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "availableToClassIds": [
+      "dnd5e2014.class.bard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 285,
+        "section": "Chapter 11: Spells — Spell Descriptions — Vicious Mockery"
+      }
+    ]
+  }
+]

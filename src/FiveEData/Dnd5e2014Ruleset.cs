@@ -45,6 +45,7 @@ public sealed class Dnd5e2014Ruleset
         ExtraAttackProgressionCatalog extraAttackProgressions,
         BackgroundCatalog backgrounds,
         MagicSchoolCatalog magicSchools,
+        SpellCatalog spells,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -78,6 +79,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
         ArgumentNullException.ThrowIfNull(magicSchools);
+        ArgumentNullException.ThrowIfNull(spells);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -111,6 +113,7 @@ public sealed class Dnd5e2014Ruleset
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
         MagicSchools = magicSchools;
+        Spells = spells;
         Sources = sources;
         Rules = rules;
     }
@@ -152,6 +155,7 @@ public sealed class Dnd5e2014Ruleset
     public ExtraAttackProgressionCatalog ExtraAttackProgressions { get; }
     public BackgroundCatalog Backgrounds { get; }
     public MagicSchoolCatalog MagicSchools { get; }
+    public SpellCatalog Spells { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }
