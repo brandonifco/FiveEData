@@ -171,6 +171,7 @@ public sealed class LifestyleCatalogIntegrityTests
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],
-            magicSchools: []);
+            magicSchools: [],
+            spells: []);
     }
 }

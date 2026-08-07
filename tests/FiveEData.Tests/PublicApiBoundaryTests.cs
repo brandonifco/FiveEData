@@ -41,6 +41,8 @@ using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 using FiveEData.Rules.Equipment.Tools.Serialization;
+using FiveEData.Rules.Spells;
+using FiveEData.Rules.Spells.Serialization;
 using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Spells.MagicSchools.Serialization;
 using FiveEData.Rules.Classes.Metamagic;
@@ -141,6 +143,8 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(BackgroundCatalogIntegrityValidator).IsPublic);
         Assert.False(typeof(MagicSchoolDefinitionLoader).IsPublic);
         Assert.False(typeof(MagicSchoolDefinitionValidator).IsPublic);
+        Assert.False(typeof(SpellDefinitionLoader).IsPublic);
+        Assert.False(typeof(SpellDefinitionValidator).IsPublic);
         Assert.False(typeof(MetamagicOptionDefinitionLoader).IsPublic);
         Assert.False(typeof(MetamagicOptionDefinitionValidator).IsPublic);
         Assert.False(

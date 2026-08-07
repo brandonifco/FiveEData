@@ -1360,7 +1360,8 @@ public sealed class CatalogIntegrityTests
             spellSlotProgressions: spellSlotProgressions ?? [],
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: [],
-            magicSchools: []);
+            magicSchools: [],
+            spells: []);
     }
 
     private static ToolDefinition CreateTool(

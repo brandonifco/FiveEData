@@ -40,16 +40,31 @@ under "Quantized mechanics" before assuming a feature exposes real numbers.
 
 Gate as of the last merge: Debug+Release build 0 warnings, **1743 tests**.
 
-**In progress: the Spells domain.** `Rules/Spells/` is a new top-level
-domain; `MagicSchools` is its first piece (the 8 schools, a closed official
-set, all cited to the p.203 sidebar). Next: `SpellDefinition` itself,
-proving the shape on all cantrips before fanning out by spell level.
+**In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
+(the 8 schools, a closed official set, cited to the p.203 sidebar) and
+`SpellDefinition`. **All 27 cantrips are built; levels 1–9 are not.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
 `SpellDefinition` stores. The effect prose, and the per-spell "At Higher
 Levels" text, stay in the citation: heterogeneous across spells with no
 shared shape, the same call already made for Metamagic's 8 effects.
+
+Cantrips were chosen to prove the shape because they are a complete, closed
+set that exercises every school and, as it turned out, six of the possible
+V/S/M combinations — which is why components are three independent bools,
+not an enum. Casting time is not uniform even here (Mending is 1 minute,
+Shillelagh 1 bonus action), and duration needed three independent axes:
+instantaneous, "up to", and concentration. **"Up to" is not a synonym for
+concentration** — Prestidigitation is "Up to 1 hour" with no concentration,
+while concentration is always an "up to" duration.
+
+**Deliberately omitted until levels 1–9 land**, per "add a field only where
+it actually varies": `IsRitual` (no cantrip is a ritual), material component
+cost/consumed flags (no cantrip has a costed material), area-of-effect ranges
+such as "Self (15-foot cone)", and the `Reaction`/`Hour` casting-time units.
+Each is a purely additive change when the content that needs it arrives —
+`Alarm` on p.211 is the first ritual.
 
 Not started: magic items, and combat/adventuring rule prose beyond the
 existing citation index. Still deferred and unmodeled: per-class
@@ -173,6 +188,14 @@ entries. Non-canonical extension IDs (outside `dnd5e2014.*`) are exempt.
   reliable per-page footers) — **not** the archive.org OCR export, whose
   page-footer digits are missing or corrupted. An early Bard pass built from
   the OCR export had to be re-verified and partly corrected.
+- **Read values off the page images, never off `pdftotext`.** That PDF's
+  own text layer is OCR and is badly noisy — "Id6" for 1d6, "leveI" for
+  level, "I action" for 1 action, "calltrip" for cantrip. It is fine for
+  *locating* a spell or heading (grep it to find the page, which is much
+  cheaper than paging through images), but every value that lands in a data
+  file must come from the rendered page. The cantrip pass used exactly this
+  split, and the locating step still guessed two pages wrong (Produce Flame,
+  Thaumaturgy) that the images corrected.
 - Cite the page where a feature's own substantial body text **starts**, not
   where it ends and not wherever a stray heading or stat line surfaces first.
   The PHB's two-column layout regularly puts a proficiency block a page ahead
@@ -326,6 +349,9 @@ rather than trusting it.
 - **Catalogs referenced by ID:** `SpellSlotProgressionId` (+
   `SpellcastingAbilityId`) and `ExtraAttackProgressionId`, on both
   `ClassDefinition` and `SubclassDefinition`.
+- **`SpellDefinition`** carries its own header block as structured data
+  (level, school, casting time, range, components, duration) plus
+  `AvailableToClassIds` — cantrips only so far; see "Current state".
 - **Choice-point catalogs** (standalone, not referenced from a definition):
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
   Elemental Disciplines, Channel Divinity options.
