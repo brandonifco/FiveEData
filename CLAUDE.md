@@ -51,14 +51,15 @@ and the 24-item Quantized pass lived in this file through commit `e2bd672`
 and is recoverable with `git show e2bd672:CLAUDE.md` — the durable rules
 those builds established are all retained below.
 
-**CI note:** a GitHub Actions major outage was ongoing as of 2026-08-06.
-During it, the user gave a *scoped* authorization to merge off the local gate
-without CI — **that authorization expired with the Quantized pass and does
-not carry forward.** If CI fails again: check <https://www.githubstatus.com/>,
-retry `gh run rerun <run-id>` a couple of times, and only bypass the
-wait-for-green default with the user's explicit go-ahead, asked for fresh
-each time. A failure that shows real `dotnet` build/test output is a genuine
-regression, not infra — investigate, never bypass.
+**When CI fails on infrastructure, not code:** check
+<https://www.githubstatus.com/> to confirm it's real rather than inferring it
+from symptoms, then retry with `gh run rerun <run-id>` a couple of times —
+during the 2026-08-06 Actions outage, runs sat queued for up to two hours
+before eventually going green on their own. Only bypass the wait-for-green
+default with the user's explicit go-ahead, **asked for fresh each time**; a
+past bypass never carries forward. A failure that shows real `dotnet`
+build/test output is a genuine regression, not infra — investigate, never
+bypass.
 
 ## Architecture
 
