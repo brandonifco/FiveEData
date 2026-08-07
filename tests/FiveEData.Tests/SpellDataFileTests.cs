@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(135, LoadCanonical().Count);
+        Assert.Equal(148, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -19,22 +19,44 @@ public sealed class SpellDataFileTests
             62,
             LoadCanonical().Count(spell => spell.Level == 1));
         Assert.Equal(
-            46,
+            59,
             LoadCanonical().Count(spell => spell.Level == 2));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsThroughSecondLevelForNow()
     {
-        // Levels 3-9 are not built yet. First level is complete; second
-        // level is partial - A-P of its 59 spells, R-Z still to come.
+        // Levels 3-9 are not built yet. Levels 0-2 are all complete.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 2));
     }
 
+    // Read off the eight class spell lists on pp.207-210, whose 2nd-level
+    // sections hold 22/17/18/8/13/24/12/34 entries; their union is 59.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 22)]
+    [InlineData("dnd5e2014.class.cleric", 17)]
+    [InlineData("dnd5e2014.class.druid", 18)]
+    [InlineData("dnd5e2014.class.paladin", 8)]
+    [InlineData("dnd5e2014.class.ranger", 13)]
+    [InlineData("dnd5e2014.class.sorcerer", 24)]
+    [InlineData("dnd5e2014.class.warlock", 12)]
+    [InlineData("dnd5e2014.class.wizard", 34)]
+    public void ClassSecondLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 2
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
+    }
+
     [Fact]
-    public void SecondLevelContainsExactlyTheBuiltAThroughPBatches()
+    public void SecondLevelContainsExactlyThePhbsFiftyNineSpells()
     {
         Assert.Equal(
             [
@@ -83,7 +105,20 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.pass-without-trace",
                 "dnd5e2014.spell.phantasmal-force",
                 "dnd5e2014.spell.prayer-of-healing",
-                "dnd5e2014.spell.protection-from-poison"
+                "dnd5e2014.spell.protection-from-poison",
+                "dnd5e2014.spell.ray-of-enfeeblement",
+                "dnd5e2014.spell.rope-trick",
+                "dnd5e2014.spell.scorching-ray",
+                "dnd5e2014.spell.see-invisibility",
+                "dnd5e2014.spell.shatter",
+                "dnd5e2014.spell.silence",
+                "dnd5e2014.spell.spider-climb",
+                "dnd5e2014.spell.spike-growth",
+                "dnd5e2014.spell.spiritual-weapon",
+                "dnd5e2014.spell.suggestion",
+                "dnd5e2014.spell.warding-bond",
+                "dnd5e2014.spell.web",
+                "dnd5e2014.spell.zone-of-truth"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 2)
@@ -108,6 +143,11 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.nystuls-magic-aura", "Nystul's Magic Aura", "illusion", 263)]
     [InlineData("dnd5e2014.spell.pass-without-trace", "Pass without Trace", "abjuration", 264)]
     [InlineData("dnd5e2014.spell.protection-from-poison", "Protection from Poison", "abjuration", 270)]
+    [InlineData("dnd5e2014.spell.rope-trick", "Rope Trick", "transmutation", 272)]
+    [InlineData("dnd5e2014.spell.silence", "Silence", "illusion", 275)]
+    [InlineData("dnd5e2014.spell.spiritual-weapon", "Spiritual Weapon", "evocation", 278)]
+    [InlineData("dnd5e2014.spell.web", "Web", "conjuration", 287)]
+    [InlineData("dnd5e2014.spell.zone-of-truth", "Zone of Truth", "enchantment", 289)]
     public void SecondLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -326,6 +366,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.locate-animals-or-plants",
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.purify-food-and-drink",
+                "dnd5e2014.spell.silence",
                 "dnd5e2014.spell.speak-with-animals",
                 "dnd5e2014.spell.tensers-floating-disk",
                 "dnd5e2014.spell.unseen-servant"
@@ -388,7 +429,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
-                "dnd5e2014.spell.magic-mouth"
+                "dnd5e2014.spell.magic-mouth",
+                "dnd5e2014.spell.warding-bond"
             ],
             LoadCanonical()
                 .Where(spell =>
@@ -615,6 +657,47 @@ public sealed class SpellDataFileTests
             ],
             Get("dnd5e2014.spell.hold-person").AvailableToClassIds
                 .Select(id => id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Warding Bond is the first costed material whose printed figure is
+    // per item rather than total: "a pair of platinum rings worth at least
+    // 50 gp each". The field stores the figure the PHB prints, 50, not the
+    // derived 100 - the "each" survives in MaterialDescription, so a
+    // consumer that wants the total can still get there.
+    [Fact]
+    public void WardingBondStoresThePrintedPerItemCostNotTheTotal()
+    {
+        SpellComponents components = Get("dnd5e2014.spell.warding-bond")
+            .Components;
+
+        Assert.Equal(50, components.MaterialCostGoldPieces);
+        Assert.False(components.MaterialIsConsumed);
+        Assert.Contains(
+            "each",
+            components.MaterialDescription!,
+            StringComparison.Ordinal);
+    }
+
+    // Verbal and material with no somatic component is the rarest of the
+    // six V/S/M combinations the built set uses - four spells across three
+    // levels. Pinned because a reader scanning components is prone to
+    // assume material implies somatic.
+    [Fact]
+    public void VerbalAndMaterialWithoutSomaticIsTheRarestCombination()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.darkness",
+                "dnd5e2014.spell.feather-fall",
+                "dnd5e2014.spell.light",
+                "dnd5e2014.spell.suggestion"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Components.Verbal
+                    && !spell.Components.Somatic
+                    && spell.Components.Material)
+                .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
     }
 
