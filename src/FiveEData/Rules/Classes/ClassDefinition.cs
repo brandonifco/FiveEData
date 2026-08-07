@@ -7,11 +7,13 @@ using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
+using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
+using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
@@ -52,6 +54,8 @@ public sealed class ClassDefinition
         RageProgressionDetail? rageProgression,
         BrutalCriticalProgressionDetail? brutalCriticalProgression,
         FastMovementDetail? fastMovement,
+        FavoredEnemyProgressionDetail? favoredEnemyProgression,
+        NaturalExplorerProgressionDetail? naturalExplorerProgression,
         SneakAttackProgressionDetail? sneakAttackProgression,
         KiProgressionDetail? kiProgression,
         MartialArtsProgressionDetail? martialArtsProgression,
@@ -104,6 +108,8 @@ public sealed class ClassDefinition
         RageProgression = rageProgression;
         BrutalCriticalProgression = brutalCriticalProgression;
         FastMovement = fastMovement;
+        FavoredEnemyProgression = favoredEnemyProgression;
+        NaturalExplorerProgression = naturalExplorerProgression;
         SneakAttackProgression = sneakAttackProgression;
         KiProgression = kiProgression;
         MartialArtsProgression = martialArtsProgression;
@@ -151,6 +157,16 @@ public sealed class ClassDefinition
     }
 
     public FastMovementDetail? FastMovement { get; }
+
+    public FavoredEnemyProgressionDetail? FavoredEnemyProgression
+    {
+        get;
+    }
+
+    public NaturalExplorerProgressionDetail? NaturalExplorerProgression
+    {
+        get;
+    }
     public SneakAttackProgressionDetail? SneakAttackProgression { get; }
     public KiProgressionDetail? KiProgression { get; }
     public MartialArtsProgressionDetail? MartialArtsProgression { get; }

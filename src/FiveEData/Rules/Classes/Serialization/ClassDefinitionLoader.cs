@@ -15,6 +15,8 @@ using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
+using FiveEData.Rules.Classes.FavoredEnemy;
+using FiveEData.Rules.Classes.FavoredEnemy.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Indomitable;
@@ -25,6 +27,8 @@ using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
+using FiveEData.Rules.Classes.NaturalExplorer;
+using FiveEData.Rules.Classes.NaturalExplorer.Serialization;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
@@ -212,6 +216,20 @@ internal static class ClassDefinitionLoader
                 ? FastMovementDetailDataMapper.Map(fastMovementData)
                 : null;
 
+        FavoredEnemyProgressionDetail? favoredEnemyProgression =
+            data.FavoredEnemyProgression is
+                { } favoredEnemyProgressionData
+                ? FavoredEnemyProgressionDetailDataMapper.Map(
+                    favoredEnemyProgressionData)
+                : null;
+
+        NaturalExplorerProgressionDetail? naturalExplorerProgression =
+            data.NaturalExplorerProgression is
+                { } naturalExplorerProgressionData
+                ? NaturalExplorerProgressionDetailDataMapper.Map(
+                    naturalExplorerProgressionData)
+                : null;
+
         SneakAttackProgressionDetail? sneakAttackProgression =
             data.SneakAttackProgression is { } sneakAttackProgressionData
                 ? SneakAttackProgressionDetailDataMapper.Map(
@@ -328,6 +346,8 @@ internal static class ClassDefinitionLoader
             rageProgression,
             brutalCriticalProgression,
             fastMovement,
+            favoredEnemyProgression,
+            naturalExplorerProgression,
             sneakAttackProgression,
             kiProgression,
             martialArtsProgression,

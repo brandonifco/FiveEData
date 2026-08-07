@@ -48,6 +48,8 @@ public sealed class ClassDefinitionLoaderTests
           "rageProgression": null,
           "brutalCriticalProgression": null,
           "fastMovement": null,
+          "favoredEnemyProgression": null,
+          "naturalExplorerProgression": null,
           "sneakAttackProgression": null,
           "kiProgression": null,
           "martialArtsProgression": null,
@@ -170,6 +172,8 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": {
                       "diceByLevel": [
                         {
@@ -286,6 +290,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": {
                       "pointsByLevel": [
@@ -336,6 +342,100 @@ public sealed class ClassDefinitionLoaderTests
     }
 
     [Fact]
+    public void ValidDefinition_LoadsFavoredEnemyAndNaturalExplorerProgressions()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 10,
+                    "primaryAbilityIds": ["dnd5e2014.ability.dexterity"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.strength",
+                      "dnd5e2014.ability.dexterity"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
+                    "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
+                    "favoredEnemyProgression": {
+                      "enemyTypesKnownByLevel": [
+                        { "characterLevel": 1, "enemyTypesKnown": 1 },
+                        { "characterLevel": 6, "enemyTypesKnown": 2 }
+                      ],
+                      "grantsAssociatedLanguagePerChoice": true
+                    },
+                    "naturalExplorerProgression": {
+                      "favoredTerrainsKnownByLevel": [
+                        { "characterLevel": 1, "favoredTerrainsKnown": 1 },
+                        { "characterLevel": 6, "favoredTerrainsKnown": 2 }
+                      ]
+                    },
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
+                    "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.NotNull(@class.FavoredEnemyProgression);
+        Assert.Equal(
+            2,
+            @class.FavoredEnemyProgression!.EnemyTypesKnownByLevel.Count);
+        Assert.Equal(
+            2,
+            @class.FavoredEnemyProgression.EnemyTypesKnownByLevel[1]
+                .EnemyTypesKnown);
+        Assert.True(
+            @class.FavoredEnemyProgression
+                .GrantsAssociatedLanguagePerChoice);
+
+        Assert.NotNull(@class.NaturalExplorerProgression);
+        Assert.Equal(
+            2,
+            @class.NaturalExplorerProgression!.FavoredTerrainsKnownByLevel
+                .Count);
+        Assert.Equal(
+            6,
+            @class.NaturalExplorerProgression.FavoredTerrainsKnownByLevel[1]
+                .CharacterLevel);
+    }
+
+    [Fact]
     public void ValidDefinition_LoadsDestroyUndeadProgression()
     {
         ClassDefinition @class = Assert.Single(
@@ -367,6 +467,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -461,6 +563,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -547,6 +651,8 @@ public sealed class ClassDefinitionLoaderTests
                       "speedBonusFeet": 10,
                       "requiresNotWearingHeavyArmor": false
                     },
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -624,6 +730,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": {
@@ -735,6 +843,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -826,6 +936,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -917,6 +1029,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -1004,6 +1118,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -1083,6 +1199,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -1162,6 +1280,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,
@@ -1239,6 +1359,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "brutalCriticalProgression": null,
                     "fastMovement": null,
+                    "favoredEnemyProgression": null,
+                    "naturalExplorerProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
                     "martialArtsProgression": null,

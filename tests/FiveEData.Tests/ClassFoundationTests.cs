@@ -9,11 +9,13 @@ using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
+using FiveEData.Rules.Classes.FavoredEnemy;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
+using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
@@ -153,6 +155,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -592,6 +596,100 @@ public sealed class ClassFoundationTests
                 ]));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void Validator_RejectsFavoredEnemyProgressionWithNoGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            favoredEnemyProgression: new FavoredEnemyProgressionDetail(
+                [],
+                grantsAssociatedLanguagePerChoice: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Favored Enemy types known progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsFavoredEnemyProgressionWithNonIncreasingCount()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            favoredEnemyProgression: new FavoredEnemyProgressionDetail(
+                [
+                    new FavoredEnemyChoiceGrant(1, 2),
+                    new FavoredEnemyChoiceGrant(6, 1)
+                ],
+                grantsAssociatedLanguagePerChoice: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNaturalExplorerProgressionWithDuplicateLevels()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            naturalExplorerProgression:
+                new NaturalExplorerProgressionDetail(
+                    [
+                        new NaturalExplorerChoiceGrant(1, 1),
+                        new NaturalExplorerChoiceGrant(1, 2)
+                    ]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "is duplicated",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedFavoredEnemyAndNaturalExplorerProgressions()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            favoredEnemyProgression: new FavoredEnemyProgressionDetail(
+                [
+                    new FavoredEnemyChoiceGrant(1, 1),
+                    new FavoredEnemyChoiceGrant(6, 2),
+                    new FavoredEnemyChoiceGrant(14, 3)
+                ],
+                grantsAssociatedLanguagePerChoice: true),
+            naturalExplorerProgression:
+                new NaturalExplorerProgressionDetail(
+                    [
+                        new NaturalExplorerChoiceGrant(1, 1),
+                        new NaturalExplorerChoiceGrant(6, 2),
+                        new NaturalExplorerChoiceGrant(10, 3)
+                    ]));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void FavoredEnemyChoiceGrant_RejectsNonPositiveCount()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new FavoredEnemyChoiceGrant(1, 0));
+    }
+
+    [Fact]
+    public void NaturalExplorerChoiceGrant_RejectsOutOfRangeCharacterLevel()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new NaturalExplorerChoiceGrant(21, 1));
     }
 
     [Fact]
@@ -1409,6 +1507,10 @@ public sealed class ClassFoundationTests
         BrutalCriticalProgressionDetail? brutalCriticalProgression
             = null,
         FastMovementDetail? fastMovement = null,
+        FavoredEnemyProgressionDetail? favoredEnemyProgression
+            = null,
+        NaturalExplorerProgressionDetail? naturalExplorerProgression
+            = null,
         SneakAttackProgressionDetail? sneakAttackProgression = null,
         KiProgressionDetail? kiProgression = null,
         MartialArtsProgressionDetail? martialArtsProgression = null,
@@ -1456,6 +1558,8 @@ public sealed class ClassFoundationTests
             rageProgression,
             brutalCriticalProgression,
             fastMovement,
+            favoredEnemyProgression,
+            naturalExplorerProgression,
             sneakAttackProgression,
             kiProgression,
             martialArtsProgression,

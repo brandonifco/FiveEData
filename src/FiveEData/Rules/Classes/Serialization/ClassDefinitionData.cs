@@ -7,11 +7,13 @@ using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
+using FiveEData.Rules.Classes.FavoredEnemy.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Indomitable.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
+using FiveEData.Rules.Classes.NaturalExplorer.Serialization;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SongOfRest.Serialization;
@@ -101,6 +103,21 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public FastMovementDetailData? FastMovement { get; init; }
+
+    [JsonRequired]
+    public FavoredEnemyProgressionDetailData? FavoredEnemyProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public NaturalExplorerProgressionDetailData?
+        NaturalExplorerProgression
+    {
+        get;
+        init;
+    }
 
     [JsonRequired]
     public SneakAttackProgressionDetailData? SneakAttackProgression

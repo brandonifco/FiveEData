@@ -145,6 +145,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -356,6 +358,8 @@
       "speedBonusFeet": 10,
       "requiresNotWearingHeavyArmor": true
     },
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -515,6 +519,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": {
       "pointsByLevel": [
@@ -803,6 +809,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": {
       "diceByLevel": [
         {
@@ -1053,6 +1061,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -1221,6 +1231,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -1343,6 +1355,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -1501,6 +1515,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -1682,6 +1698,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -1856,6 +1874,39 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": {
+      "enemyTypesKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "enemyTypesKnown": 1
+        },
+        {
+          "characterLevel": 6,
+          "enemyTypesKnown": 2
+        },
+        {
+          "characterLevel": 14,
+          "enemyTypesKnown": 3
+        }
+      ],
+      "grantsAssociatedLanguagePerChoice": true
+    },
+    "naturalExplorerProgression": {
+      "favoredTerrainsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "favoredTerrainsKnown": 1
+        },
+        {
+          "characterLevel": 6,
+          "favoredTerrainsKnown": 2
+        },
+        {
+          "characterLevel": 10,
+          "favoredTerrainsKnown": 3
+        }
+      ]
+    },
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -1998,6 +2049,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
@@ -2125,6 +2178,8 @@
     "rageProgression": null,
     "brutalCriticalProgression": null,
     "fastMovement": null,
+    "favoredEnemyProgression": null,
+    "naturalExplorerProgression": null,
     "sneakAttackProgression": null,
     "kiProgression": null,
     "martialArtsProgression": null,
