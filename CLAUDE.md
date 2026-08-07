@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2031 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2066 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -555,11 +555,26 @@ by `CanonicalFile_FighterActionSurgeAndIndomitableRecoverOnDifferentRests` —
 the strongest case yet for the standing rule that the rest is read per
 feature, never inferred from the class.
 
-**Tier B — flat scalars, the `DarkvisionRangeFeet` shape:**
-Improved/Superior Critical (crit range), Blindsense, Feral Senses, Shadow
-Step, Divine Sense (ranges), Reliable Talent (d20 floor), Improved Divine
-Smite, Indomitable Might / Primal Champion, the fixed ki and sorcery-point
-costs, Hurl Through Hell, Wrath of the Storm, Thunderbolt Strike.
+**Tier B — flat scalars, the `DarkvisionRangeFeet` shape.** Done on
+`ClassDefinition`: Blindsense, Reliable Talent, Feral Senses, Divine Sense,
+Improved Divine Smite, Primal Champion. Still open: Improved/Superior Critical
+(crit range), Shadow Step, the fixed ki and sorcery-point costs, Hurl Through
+Hell, Wrath of the Storm, Thunderbolt Strike — all subclass-level except the
+resource costs.
+
+**Indomitable Might was a listed Tier B candidate and carries no number.**
+"If your total for a Strength check is less than your Strength score, you can
+use that score in place of the total" is a comparison rule, not a value.
+Declined and pinned by
+`CanonicalFile_BarbarianIndomitableMightStaysCitationOnly`, the same call Pact
+Boon earned. **A tier listing is a candidate list, not a promise** — read the
+page before building the field.
+
+**Three features share the phrase "aware of … within N feet" and no other
+fact.** Blindsense 10 ft (requires hearing), Feral Senses 30 ft (also negates
+unseen-attack disadvantage), Divine Sense 60 ft (recovers on a long rest).
+Each got its own detail type carrying its own second fact rather than a shared
+"awareness range" type.
 
 **Tier C — stays citation**, on the settled linear-in-level line: Lay on
 Hands, Second Wind, Arcane Recovery, Natural Recovery, Divine Intervention,

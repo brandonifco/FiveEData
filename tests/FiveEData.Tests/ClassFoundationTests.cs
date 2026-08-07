@@ -2,6 +2,11 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.PrimalChampion;
+using FiveEData.Rules.Classes.ImprovedDivineSmite;
+using FiveEData.Rules.Classes.FeralSenses;
+using FiveEData.Rules.Classes.DivineSense;
+using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
@@ -156,6 +161,12 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -598,6 +609,64 @@ public sealed class ClassFoundationTests
                 ]));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void BlindsenseDetail_RejectsNonPositiveRange()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new BlindsenseDetail(0, requiresHearing: true));
+    }
+
+    [Fact]
+    public void FeralSensesDetail_RejectsNonPositiveRange()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new FeralSensesDetail(
+                0,
+                negatesUnseenAttackDisadvantage: true));
+    }
+
+    [Fact]
+    public void DivineSenseDetail_RejectsNonPositiveRange()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new DivineSenseDetail(0, recoversOnLongRest: true));
+    }
+
+    [Fact]
+    public void ImprovedDivineSmiteDetail_RejectsDefaultDamageTypeId()
+    {
+        Assert.Throws<ArgumentException>(
+            () => new ImprovedDivineSmiteDetail(
+                new DiceExpression(1, 8),
+                default,
+                requiresMeleeWeapon: true));
+    }
+
+    [Fact]
+    public void PrimalChampionDetail_RejectsNonPositiveIncrease()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new PrimalChampionDetail(
+                [new AbilityId("dnd5e2014.ability.strength")],
+                abilityScoreIncrease: 0,
+                maximumAbilityScore: 24));
+    }
+
+    [Fact]
+    public void PrimalChampionDetail_DefensivelySnapshotsAbilityIds()
+    {
+        var abilityIds = new List<AbilityId>
+        {
+            new("dnd5e2014.ability.strength")
+        };
+
+        var detail = new PrimalChampionDetail(abilityIds, 4, 24);
+
+        abilityIds.Clear();
+
+        Assert.Single(detail.AbilityIds);
     }
 
     [Fact]
@@ -1592,6 +1661,12 @@ public sealed class ClassFoundationTests
         SongOfRestProgressionDetail? songOfRestProgression = null,
         EldritchInvocationsKnownProgressionDetail?
             eldritchInvocationsKnownProgression = null,
+        BlindsenseDetail? blindsense = null,
+        int? reliableTalentMinimumD20Roll = null,
+        FeralSensesDetail? feralSenses = null,
+        DivineSenseDetail? divineSense = null,
+        ImprovedDivineSmiteDetail? improvedDivineSmite = null,
+        PrimalChampionDetail? primalChampion = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -1639,6 +1714,12 @@ public sealed class ClassFoundationTests
             fontOfMagicConversion,
             songOfRestProgression,
             eldritchInvocationsKnownProgression,
+            blindsense,
+            reliableTalentMinimumD20Roll,
+            feralSenses,
+            divineSense,
+            improvedDivineSmite,
+            primalChampion,
             sources ?? [CreateSource()]);
     }
 

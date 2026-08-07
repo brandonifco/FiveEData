@@ -2,19 +2,24 @@ using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.ActionSurge.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
+using FiveEData.Rules.Classes.Blindsense.Serialization;
 using FiveEData.Rules.Classes.BrutalCritical.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead.Serialization;
+using FiveEData.Rules.Classes.DivineSense.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.FastMovement.Serialization;
 using FiveEData.Rules.Classes.FavoredEnemy.Serialization;
+using FiveEData.Rules.Classes.FeralSenses.Serialization;
 using FiveEData.Rules.Classes.FontOfMagic.Serialization;
 using FiveEData.Rules.Classes.Indomitable.Serialization;
+using FiveEData.Rules.Classes.ImprovedDivineSmite.Serialization;
 using FiveEData.Rules.Classes.Ki.Serialization;
 using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
 using FiveEData.Rules.Classes.MartialArts.Serialization;
 using FiveEData.Rules.Classes.MysticArcanum.Serialization;
 using FiveEData.Rules.Classes.NaturalExplorer.Serialization;
+using FiveEData.Rules.Classes.PrimalChampion.Serialization;
 using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SongOfRest.Serialization;
@@ -220,6 +225,24 @@ internal sealed class ClassDefinitionData
         get;
         init;
     }
+
+    [JsonRequired]
+    public BlindsenseDetailData? Blindsense { get; init; }
+
+    [JsonRequired]
+    public int? ReliableTalentMinimumD20Roll { get; init; }
+
+    [JsonRequired]
+    public FeralSensesDetailData? FeralSenses { get; init; }
+
+    [JsonRequired]
+    public DivineSenseDetailData? DivineSense { get; init; }
+
+    [JsonRequired]
+    public ImprovedDivineSmiteDetailData? ImprovedDivineSmite { get; init; }
+
+    [JsonRequired]
+    public PrimalChampionDetailData? PrimalChampion { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

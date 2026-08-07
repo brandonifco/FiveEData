@@ -130,6 +130,28 @@ internal static class ClassCatalogIntegrityValidator
                     }
                 }
             }
+
+            if (@class.ImprovedDivineSmite is { } improvedDivineSmite &&
+                !damageTypeIds.Contains(improvedDivineSmite.DamageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{improvedDivineSmite.DamageTypeId}' in its Improved " +
+                    "Divine Smite.");
+            }
+
+            if (@class.PrimalChampion is { } primalChampion)
+            {
+                foreach (AbilityId abilityId in primalChampion.AbilityIds)
+                {
+                    if (!abilityIds.Contains(abilityId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing ability " +
+                            $"'{abilityId}' in its Primal Champion.");
+                    }
+                }
+            }
         }
 
         foreach (
