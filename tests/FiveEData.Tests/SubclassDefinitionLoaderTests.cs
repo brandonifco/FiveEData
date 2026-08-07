@@ -40,6 +40,10 @@ public sealed class SubclassDefinitionLoaderTests
           "hurlThroughHell": null,
           "wrathOfTheStorm": null,
           "thunderboltStrike": null,
+          "shadowArtsKiCost": null,
+          "quiveringPalmKiCost": null,
+          "draconicPresenceSorceryPointCost": null,
+          "bendLuck": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -106,6 +110,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -168,6 +176,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -226,6 +238,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -296,6 +312,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -369,6 +389,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -452,6 +476,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -481,6 +509,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": []
                   }
                 ]
@@ -507,6 +539,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": []
                   }
                 ]
@@ -534,6 +570,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": []
                   }
                 ]
@@ -561,6 +601,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": []
                   }
                 ]
@@ -588,6 +632,10 @@ public sealed class SubclassDefinitionLoaderTests
                     "hurlThroughHell": null,
                     "wrathOfTheStorm": null,
                     "thunderboltStrike": null,
+                    "shadowArtsKiCost": null,
+                    "quiveringPalmKiCost": null,
+                    "draconicPresenceSorceryPointCost": null,
+                    "bendLuck": null,
                     "sources": null
                   }
                 ]

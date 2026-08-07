@@ -1,6 +1,7 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Classes.ThunderboltStrike;
 using FiveEData.Rules.Classes.ShadowStep;
@@ -91,6 +92,10 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -107,6 +112,10 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -438,6 +447,13 @@ public sealed class SubclassFoundationTests
     }
 
     [Fact]
+    public void BendLuckDetail_RejectsNonPositiveSorceryPointCost()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new BendLuckDetail(0, new DiceExpression(1, 4)));
+    }
+
+    [Fact]
     public void Validator_RejectsImprovedCriticalProgressionWithNoGrants()
     {
         SubclassDefinition subclass = Create(
@@ -666,6 +682,10 @@ public sealed class SubclassFoundationTests
         HurlThroughHellDetail? hurlThroughHell = null,
         WrathOfTheStormDetail? wrathOfTheStorm = null,
         ThunderboltStrikeDetail? thunderboltStrike = null,
+        int? shadowArtsKiCost = null,
+        int? quiveringPalmKiCost = null,
+        int? draconicPresenceSorceryPointCost = null,
+        BendLuckDetail? bendLuck = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -690,6 +710,10 @@ public sealed class SubclassFoundationTests
             hurlThroughHell,
             wrathOfTheStorm,
             thunderboltStrike,
+            shadowArtsKiCost,
+            quiveringPalmKiCost,
+            draconicPresenceSorceryPointCost,
+            bendLuck,
             sources ?? [CreateSource()]);
     }
 

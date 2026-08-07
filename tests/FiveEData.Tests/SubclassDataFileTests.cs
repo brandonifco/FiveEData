@@ -1,6 +1,7 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Classes.ThunderboltStrike;
 using FiveEData.Rules.Classes.ShadowStep;
@@ -2218,6 +2219,71 @@ public sealed class SubclassDataFileTests
                 .OrderBy(grant => grant.CharacterLevel)
                 .Last()
                 .MinimumRoll);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSubclassFixedResourceCosts()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.Equal(
+            2,
+            GetSubclass(subclasses, "dnd5e2014.subclass.way-of-shadow")
+                .ShadowArtsKiCost);
+        Assert.Equal(
+            3,
+            GetSubclass(
+                subclasses,
+                "dnd5e2014.subclass.way-of-the-open-hand")
+                .QuiveringPalmKiCost);
+        Assert.Equal(
+            5,
+            GetSubclass(subclasses, "dnd5e2014.subclass.draconic-bloodline")
+                .DraconicPresenceSorceryPointCost);
+
+        BendLuckDetail bendLuck =
+            GetSubclass(subclasses, "dnd5e2014.subclass.wild-magic").BendLuck
+            ?? throw new InvalidOperationException(
+                "Expected Wild Magic to have Bend Luck.");
+        Assert.Equal(2, bendLuck.SorceryPointCost);
+        Assert.Equal(1, bendLuck.Die.Count);
+        Assert.Equal(4, bendLuck.Die.Sides);
+    }
+
+    // Quivering Palm is a Way of the Open Hand feature, not a Monk class
+    // feature: the Monk table's 17th-level row reads "Monastic Tradition
+    // feature", and the class LevelFeatures list has no entry for it. Its ki
+    // cost therefore lives on the subclass.
+    [Fact]
+    public void CanonicalFile_QuiveringPalmBelongsToWayOfTheOpenHand()
+    {
+        SubclassDefinition openHand = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.way-of-the-open-hand");
+
+        Assert.Contains(
+            openHand.LevelFeatures,
+            feature => feature.Level == 17 &&
+                feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.quivering-palm");
+        Assert.Equal(3, openHand.QuiveringPalmKiCost);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedSubclassResourceCosts()
+    {
+        SubclassCatalog catalog = Dnd5e2014Ruleset.Instance.Subclasses;
+
+        Assert.Equal(
+            2,
+            catalog.Get(new SubclassId("dnd5e2014.subclass.way-of-shadow"))
+                .ShadowArtsKiCost);
+        Assert.Equal(
+            4,
+            (catalog.Get(new SubclassId("dnd5e2014.subclass.wild-magic"))
+                .BendLuck
+                ?? throw new InvalidOperationException(
+                    "Expected Wild Magic to have Bend Luck.")).Die.Sides);
     }
 
     private static SubclassDefinition GetSubclass(
