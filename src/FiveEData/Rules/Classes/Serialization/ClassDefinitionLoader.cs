@@ -8,6 +8,8 @@ using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.BrutalCritical.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
+using FiveEData.Rules.Classes.DestroyUndead;
+using FiveEData.Rules.Classes.DestroyUndead.Serialization;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown.Serialization;
 using FiveEData.Rules.Classes.ExtraAttack;
@@ -270,6 +272,13 @@ internal static class ClassDefinitionLoader
                     channelDivinityProgressionData)
                 : null;
 
+        DestroyUndeadProgressionDetail? destroyUndeadProgression =
+            data.DestroyUndeadProgression is
+                { } destroyUndeadProgressionData
+                ? DestroyUndeadProgressionDetailDataMapper.Map(
+                    destroyUndeadProgressionData)
+                : null;
+
         MysticArcanumProgressionDetail? mysticArcanumProgression =
             data.MysticArcanumProgression is
                 { } mysticArcanumProgressionData
@@ -329,6 +338,7 @@ internal static class ClassDefinitionLoader
             auraOfCourage,
             bardicInspirationProgression,
             channelDivinityProgression,
+            destroyUndeadProgression,
             mysticArcanumProgression,
             fontOfMagicConversion,
             songOfRestProgression,

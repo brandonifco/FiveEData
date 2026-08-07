@@ -4,6 +4,7 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FastMovement;
 using FiveEData.Rules.Classes.FontOfMagic;
@@ -1003,6 +1004,113 @@ public sealed class ClassDataFileTests
                 .OrderBy(grant => grant.CharacterLevel)
                 .Select(grant => (grant.CharacterLevel, grant.UsesPerRest)));
         Assert.True(channelDivinityProgression.RecoversOnShortRest);
+
+        DestroyUndeadProgressionDetail destroyUndeadProgression =
+            cleric.DestroyUndeadProgression
+            ?? throw new InvalidOperationException(
+                "Expected Cleric to have a Destroy Undead progression.");
+        Assert.Equal(
+            [(5, 0.5), (8, 1.0), (11, 2.0), (14, 3.0), (17, 4.0)],
+            destroyUndeadProgression.ThresholdsByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.MaxChallengeRating)));
+    }
+
+    // The Destroy Undead table's first row is CR 1/2, which is why the
+    // threshold is a double rather than an int. Wild Shape's
+    // MaxChallengeRating is the same type for the same reason.
+    [Fact]
+    public void CanonicalFile_ClericDestroyUndeadStartsAtFractionalChallengeRating()
+    {
+        ClassDefinition cleric =
+            GetClass(LoadClasses(), "dnd5e2014.class.cleric");
+
+        DestroyUndeadProgressionDetail destroyUndeadProgression =
+            cleric.DestroyUndeadProgression
+            ?? throw new InvalidOperationException(
+                "Expected Cleric to have a Destroy Undead progression.");
+
+        DestroyUndeadThresholdGrant first = destroyUndeadProgression
+            .ThresholdsByLevel
+            .OrderBy(grant => grant.CharacterLevel)
+            .First();
+
+        Assert.Equal(5, first.CharacterLevel);
+        Assert.Equal(0.5, first.MaxChallengeRating);
+    }
+
+    // Unlike Monk's Martial Arts, the Cleric table's Features column names
+    // Destroy Undead at every level its threshold rises — "Destroy Undead
+    // (CR 1/2)" at 5th through "(CR 4)" at 17th — so the two lists agree here
+    // and LevelFeatures carries all five. The table decides, every time.
+    [Fact]
+    public void CanonicalFile_ClericGrantsDestroyUndeadAtEveryThresholdLevel()
+    {
+        ClassDefinition cleric =
+            GetClass(LoadClasses(), "dnd5e2014.class.cleric");
+
+        int[] featureLevels = cleric.LevelFeatures
+            .Where(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.destroy-undead")
+            .Select(feature => feature.Level)
+            .OrderBy(level => level)
+            .ToArray();
+
+        DestroyUndeadProgressionDetail destroyUndeadProgression =
+            cleric.DestroyUndeadProgression
+            ?? throw new InvalidOperationException(
+                "Expected Cleric to have a Destroy Undead progression.");
+
+        int[] thresholdLevels = destroyUndeadProgression.ThresholdsByLevel
+            .Select(grant => grant.CharacterLevel)
+            .OrderBy(level => level)
+            .ToArray();
+
+        Assert.Equal([5, 8, 11, 14, 17], featureLevels);
+        Assert.Equal(featureLevels, thresholdLevels);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonClericClassDeclaresNoDestroyUndeadProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.DestroyUndeadProgression);
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedClericDestroyUndeadProgression()
+    {
+        ClassDefinition cleric =
+            Dnd5e2014Ruleset.Instance.Classes.Get(
+                new ClassId("dnd5e2014.class.cleric"));
+
+        DestroyUndeadProgressionDetail destroyUndeadProgression =
+            cleric.DestroyUndeadProgression
+            ?? throw new InvalidOperationException(
+                "Expected Cleric to have a Destroy Undead progression.");
+        Assert.Equal(
+            [(5, 0.5), (8, 1.0), (11, 2.0), (14, 3.0), (17, 4.0)],
+            destroyUndeadProgression.ThresholdsByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant =>
+                        (grant.CharacterLevel, grant.MaxChallengeRating)));
     }
 
     [Fact]
