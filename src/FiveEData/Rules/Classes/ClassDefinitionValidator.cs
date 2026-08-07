@@ -3,11 +3,13 @@ using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
@@ -180,6 +182,19 @@ internal static class ClassDefinitionValidator
             ValidateSongOfRestProgression(songOfRestProgression, errors);
         }
 
+        if (@class.MartialArtsProgression is { } martialArtsProgression)
+        {
+            ValidateMartialArtsProgression(martialArtsProgression, errors);
+        }
+
+        if (@class.UnarmoredMovementProgression is
+            { } unarmoredMovementProgression)
+        {
+            ValidateUnarmoredMovementProgression(
+                unarmoredMovementProgression,
+                errors);
+        }
+
         if (@class.EldritchInvocationsKnownProgression is
             { } eldritchInvocationsKnownProgression)
         {
@@ -193,6 +208,95 @@ internal static class ClassDefinitionValidator
         }
 
         return errors;
+    }
+
+    private static void ValidateMartialArtsProgression(
+        MartialArtsProgressionDetail martialArtsProgression,
+        ICollection<string> errors)
+    {
+        if (martialArtsProgression.DieByLevel.Count == 0)
+        {
+            errors.Add(
+                "Martial Arts progression must grant at least one die " +
+                "increase.");
+        }
+
+        var seenCounts = new HashSet<int>();
+        var seenLevels = new HashSet<int>();
+        int? previousSides = null;
+
+        foreach (
+            MartialArtsDieGrant grant
+            in martialArtsProgression.DieByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            seenCounts.Add(grant.Die.Count);
+
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Martial Arts die character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousSides is { } previous && grant.Die.Sides <= previous)
+            {
+                errors.Add(
+                    "Martial Arts die at level " +
+                    $"{grant.CharacterLevel} must use a larger die than " +
+                    "the value at the previous grant level.");
+            }
+
+            previousSides = grant.Die.Sides;
+        }
+
+        if (seenCounts.Count > 1)
+        {
+            errors.Add(
+                "Martial Arts progression must grant the same number of " +
+                "dice at every grant level.");
+        }
+    }
+
+    private static void ValidateUnarmoredMovementProgression(
+        UnarmoredMovementProgressionDetail unarmoredMovementProgression,
+        ICollection<string> errors)
+    {
+        if (unarmoredMovementProgression.SpeedBonusByLevel.Count == 0)
+        {
+            errors.Add(
+                "Unarmored Movement progression must grant at least one " +
+                "speed bonus.");
+        }
+
+        var seenLevels = new HashSet<int>();
+        int? previousBonus = null;
+
+        foreach (
+            UnarmoredMovementSpeedBonusGrant grant
+            in unarmoredMovementProgression.SpeedBonusByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Unarmored Movement speed bonus character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousBonus is { } previous &&
+                grant.SpeedBonusFeet <= previous)
+            {
+                errors.Add(
+                    "Unarmored Movement speed bonus at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousBonus = grant.SpeedBonusFeet;
+        }
     }
 
     private static void ValidateSongOfRestProgression(

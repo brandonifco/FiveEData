@@ -46,6 +46,8 @@ public sealed class ClassDefinitionLoaderTests
           "rageProgression": null,
           "sneakAttackProgression": null,
           "kiProgression": null,
+          "martialArtsProgression": null,
+          "unarmoredMovementProgression": null,
           "sorceryPointsProgression": null,
           "wildShapeProgression": null,
           "auraOfProtection": null,
@@ -174,6 +176,8 @@ public sealed class ClassDefinitionLoaderTests
                       "requiresFinesseOrRangedWeapon": true
                     },
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
                     "auraOfProtection": null,
@@ -276,6 +280,8 @@ public sealed class ClassDefinitionLoaderTests
                       ],
                       "recoversOnShortRest": true
                     },
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": {
                       "pointsByLevel": [
                         { "characterLevel": 2, "points": 2 },
@@ -315,6 +321,112 @@ public sealed class ClassDefinitionLoaderTests
     }
 
     [Fact]
+    public void ValidDefinition_LoadsMartialArtsAndUnarmoredMovementProgressions()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.dexterity"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.strength",
+                      "dnd5e2014.ability.dexterity"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "rageProgression": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "martialArtsProgression": {
+                      "dieByLevel": [
+                        {
+                          "characterLevel": 1,
+                          "die": { "count": 1, "sides": 4 }
+                        },
+                        {
+                          "characterLevel": 5,
+                          "die": { "count": 1, "sides": 6 }
+                        }
+                      ],
+                      "canUseDexterityForAttackAndDamage": true,
+                      "grantsBonusActionUnarmedStrike": true,
+                      "requiresNotWearingArmor": true,
+                      "requiresNotWieldingShield": false
+                    },
+                    "unarmoredMovementProgression": {
+                      "speedBonusByLevel": [
+                        { "characterLevel": 2, "speedBonusFeet": 10 },
+                        { "characterLevel": 6, "speedBonusFeet": 15 }
+                      ],
+                      "requiresNotWearingArmor": true,
+                      "requiresNotWieldingShield": false
+                    },
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.NotNull(@class.MartialArtsProgression);
+        Assert.Equal(2, @class.MartialArtsProgression!.DieByLevel.Count);
+        Assert.Equal(1, @class.MartialArtsProgression.DieByLevel[0].Die.Count);
+        Assert.Equal(4, @class.MartialArtsProgression.DieByLevel[0].Die.Sides);
+        Assert.Equal(5, @class.MartialArtsProgression.DieByLevel[1].CharacterLevel);
+        Assert.Equal(6, @class.MartialArtsProgression.DieByLevel[1].Die.Sides);
+        Assert.True(
+            @class.MartialArtsProgression.CanUseDexterityForAttackAndDamage);
+        Assert.True(
+            @class.MartialArtsProgression.GrantsBonusActionUnarmedStrike);
+        Assert.True(@class.MartialArtsProgression.RequiresNotWearingArmor);
+        Assert.False(@class.MartialArtsProgression.RequiresNotWieldingShield);
+
+        Assert.NotNull(@class.UnarmoredMovementProgression);
+        Assert.Equal(
+            2,
+            @class.UnarmoredMovementProgression!.SpeedBonusByLevel.Count);
+        Assert.Equal(
+            10,
+            @class.UnarmoredMovementProgression.SpeedBonusByLevel[0]
+                .SpeedBonusFeet);
+        Assert.Equal(
+            6,
+            @class.UnarmoredMovementProgression.SpeedBonusByLevel[1]
+                .CharacterLevel);
+        Assert.True(
+            @class.UnarmoredMovementProgression.RequiresNotWearingArmor);
+        Assert.False(
+            @class.UnarmoredMovementProgression.RequiresNotWieldingShield);
+    }
+
+    [Fact]
     public void ValidDefinition_LoadsWildShapeProgression()
     {
         ClassDefinition @class = Assert.Single(
@@ -344,6 +456,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": {
                       "formLimitsByLevel": [
@@ -428,6 +542,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
                     "auraOfProtection": {
@@ -512,6 +628,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
                     "auraOfProtection": null,
@@ -592,6 +710,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
                     "auraOfProtection": null,
@@ -664,6 +784,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
                     "auraOfProtection": null,
@@ -736,6 +858,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
                     "auraOfProtection": null,
@@ -806,6 +930,8 @@ public sealed class ClassDefinitionLoaderTests
                     "rageProgression": null,
                     "sneakAttackProgression": null,
                     "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
                     "sorceryPointsProgression": null,
                     "wildShapeProgression": null,
                     "auraOfProtection": null,

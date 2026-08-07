@@ -7,11 +7,13 @@ using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Ki;
+using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
@@ -146,6 +148,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -581,6 +585,180 @@ public sealed class ClassFoundationTests
     }
 
     [Fact]
+    public void Validator_RejectsMartialArtsProgressionWithNoDieGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            martialArtsProgression: new MartialArtsProgressionDetail(
+                [],
+                canUseDexterityForAttackAndDamage: true,
+                grantsBonusActionUnarmedStrike: true,
+                requiresNotWearingArmor: true,
+                requiresNotWieldingShield: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Martial Arts progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsMartialArtsProgressionWithNonIncreasingDieSize()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            martialArtsProgression: new MartialArtsProgressionDetail(
+                [
+                    new MartialArtsDieGrant(1, new DiceExpression(1, 6)),
+                    new MartialArtsDieGrant(5, new DiceExpression(1, 4))
+                ],
+                canUseDexterityForAttackAndDamage: true,
+                grantsBonusActionUnarmedStrike: true,
+                requiresNotWearingArmor: true,
+                requiresNotWieldingShield: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must use a larger die",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsMartialArtsProgressionWithMixedDieCounts()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            martialArtsProgression: new MartialArtsProgressionDetail(
+                [
+                    new MartialArtsDieGrant(1, new DiceExpression(1, 4)),
+                    new MartialArtsDieGrant(5, new DiceExpression(2, 6))
+                ],
+                canUseDexterityForAttackAndDamage: true,
+                grantsBonusActionUnarmedStrike: true,
+                requiresNotWearingArmor: true,
+                requiresNotWieldingShield: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "same number of dice",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsUnarmoredMovementProgressionWithNoSpeedBonusGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            unarmoredMovementProgression:
+                new UnarmoredMovementProgressionDetail(
+                    [],
+                    requiresNotWearingArmor: true,
+                    requiresNotWieldingShield: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Unarmored Movement progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsUnarmoredMovementProgressionWithNonIncreasingSpeedBonus()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            unarmoredMovementProgression:
+                new UnarmoredMovementProgressionDetail(
+                    [
+                        new UnarmoredMovementSpeedBonusGrant(2, 15),
+                        new UnarmoredMovementSpeedBonusGrant(6, 10)
+                    ],
+                    requiresNotWearingArmor: true,
+                    requiresNotWieldingShield: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsUnarmoredMovementProgressionWithDuplicateLevels()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            unarmoredMovementProgression:
+                new UnarmoredMovementProgressionDetail(
+                    [
+                        new UnarmoredMovementSpeedBonusGrant(2, 10),
+                        new UnarmoredMovementSpeedBonusGrant(2, 15)
+                    ],
+                    requiresNotWearingArmor: true,
+                    requiresNotWieldingShield: true));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "is duplicated",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedMartialArtsAndUnarmoredMovementProgressions()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            martialArtsProgression: new MartialArtsProgressionDetail(
+                [
+                    new MartialArtsDieGrant(1, new DiceExpression(1, 4)),
+                    new MartialArtsDieGrant(5, new DiceExpression(1, 6)),
+                    new MartialArtsDieGrant(11, new DiceExpression(1, 8)),
+                    new MartialArtsDieGrant(17, new DiceExpression(1, 10))
+                ],
+                canUseDexterityForAttackAndDamage: true,
+                grantsBonusActionUnarmedStrike: true,
+                requiresNotWearingArmor: true,
+                requiresNotWieldingShield: true),
+            unarmoredMovementProgression:
+                new UnarmoredMovementProgressionDetail(
+                    [
+                        new UnarmoredMovementSpeedBonusGrant(2, 10),
+                        new UnarmoredMovementSpeedBonusGrant(6, 15),
+                        new UnarmoredMovementSpeedBonusGrant(10, 20),
+                        new UnarmoredMovementSpeedBonusGrant(14, 25),
+                        new UnarmoredMovementSpeedBonusGrant(18, 30)
+                    ],
+                    requiresNotWearingArmor: true,
+                    requiresNotWieldingShield: true));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void MartialArtsDieGrant_RejectsOutOfRangeCharacterLevel()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new MartialArtsDieGrant(21, new DiceExpression(1, 4)));
+    }
+
+    [Fact]
+    public void UnarmoredMovementSpeedBonusGrant_RejectsNonPositiveSpeedBonus()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new UnarmoredMovementSpeedBonusGrant(2, 0));
+    }
+
+    [Fact]
     public void Validator_RejectsSongOfRestProgressionWithNoDieGrants()
     {
         ClassDefinition @class = Create(
@@ -974,6 +1152,9 @@ public sealed class ClassFoundationTests
         RageProgressionDetail? rageProgression = null,
         SneakAttackProgressionDetail? sneakAttackProgression = null,
         KiProgressionDetail? kiProgression = null,
+        MartialArtsProgressionDetail? martialArtsProgression = null,
+        UnarmoredMovementProgressionDetail? unarmoredMovementProgression
+            = null,
         SorceryPointsProgressionDetail? sorceryPointsProgression = null,
         WildShapeProgressionDetail? wildShapeProgression = null,
         AuraOfProtectionDetail? auraOfProtection = null,
@@ -1013,6 +1194,8 @@ public sealed class ClassFoundationTests
             rageProgression,
             sneakAttackProgression,
             kiProgression,
+            martialArtsProgression,
+            unarmoredMovementProgression,
             sorceryPointsProgression,
             wildShapeProgression,
             auraOfProtection,
