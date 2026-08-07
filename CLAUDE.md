@@ -39,13 +39,13 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2156 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2164 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips and all 62 first-level spells are built.
-Second level is in progress: 15 of its 59 spells (A–C, Aid through Crown of
-Madness) are built; levels 3–9 are not started.**
+Second level is in progress: 29 of its 59 spells (A–H, Aid through Hold
+Person) are built; levels 3–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -85,6 +85,11 @@ Each batch drove schema additions from real content, never anticipation:
   unbounded amount, so it carries neither amount nor unit and is never
   concentration or "up to". The validator enforces exactly one of the three
   kinds.
+- **2nd D–H:** the `Line` area shape (Gust of Wind's 60-foot line) — which
+  this file had expected Lightning Bolt to bring at third level, a reminder
+  that the *first* spell to need a shape is rarely the memorable one. Find
+  Steed's 10-minute casting time is the first whose amount is not 1; the
+  field already allowed it, so no schema change was needed.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -105,13 +110,13 @@ prose ("which you take when you or a creature within 60 feet of you falls");
 only the unit is data, consistent with never storing rules text.
 
 **Still omitted until content needs them:** area shapes beyond
-`Cone`/`Radius`/`Cube` (Lightning Bolt's line), and any casting time whose
-amount is not 1.
+`Cone`/`Radius`/`Cube`/`Line` — the PHB also uses a cylinder (Flame Strike)
+and a wall, neither of which a built spell has reached yet.
 
 **`AvailableToClassIds` comes from the Chapter 11 class spell lists
 (pp.207–210), never from the spell description** — the description never
-names its classes. Thunderwave reaches four classes, the Paladin smites
-exactly one; both are read off those list pages. Those four pages are laid
+names its classes. Hold Person reaches six classes, the widest membership
+built so far; the Paladin smites reach exactly one. Those four pages are laid
 out in **four narrow columns**, not the two the description pages use — read
 them as quadrant crops or a column's continuation gets missed. The 2nd-level
 union of all eight class lists is **59 spells**; the per-class counts are

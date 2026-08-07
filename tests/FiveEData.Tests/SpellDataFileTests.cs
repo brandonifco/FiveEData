@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(104, LoadCanonical().Count);
+        Assert.Equal(118, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -19,7 +19,7 @@ public sealed class SpellDataFileTests
             62,
             LoadCanonical().Count(spell => spell.Level == 1));
         Assert.Equal(
-            15,
+            29,
             LoadCanonical().Count(spell => spell.Level == 2));
     }
 
@@ -27,14 +27,14 @@ public sealed class SpellDataFileTests
     public void CanonicalFile_ContainsOnlyCantripsThroughSecondLevelForNow()
     {
         // Levels 3-9 are not built yet. First level is complete; second
-        // level is partial - only the A-C batch of its 59 spells is here.
+        // level is partial - the A-C and D-H batches of its 59 spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 2));
     }
 
     [Fact]
-    public void SecondLevelContainsExactlyTheBuiltAThroughCBatch()
+    public void SecondLevelContainsExactlyTheBuiltAThroughHBatches()
     {
         Assert.Equal(
             [
@@ -52,7 +52,21 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.cloud-of-daggers",
                 "dnd5e2014.spell.continual-flame",
                 "dnd5e2014.spell.cordon-of-arrows",
-                "dnd5e2014.spell.crown-of-madness"
+                "dnd5e2014.spell.crown-of-madness",
+                "dnd5e2014.spell.darkness",
+                "dnd5e2014.spell.darkvision",
+                "dnd5e2014.spell.detect-thoughts",
+                "dnd5e2014.spell.enhance-ability",
+                "dnd5e2014.spell.enlarge-reduce",
+                "dnd5e2014.spell.enthrall",
+                "dnd5e2014.spell.find-steed",
+                "dnd5e2014.spell.find-traps",
+                "dnd5e2014.spell.flame-blade",
+                "dnd5e2014.spell.flaming-sphere",
+                "dnd5e2014.spell.gentle-repose",
+                "dnd5e2014.spell.gust-of-wind",
+                "dnd5e2014.spell.heat-metal",
+                "dnd5e2014.spell.hold-person"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 2)
@@ -66,6 +80,11 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.blur", "Blur", "illusion", 219)]
     [InlineData("dnd5e2014.spell.cloud-of-daggers", "Cloud of Daggers", "conjuration", 222)]
     [InlineData("dnd5e2014.spell.crown-of-madness", "Crown of Madness", "enchantment", 229)]
+    [InlineData("dnd5e2014.spell.darkvision", "Darkvision", "transmutation", 230)]
+    [InlineData("dnd5e2014.spell.enthrall", "Enthrall", "enchantment", 238)]
+    [InlineData("dnd5e2014.spell.flaming-sphere", "Flaming Sphere", "conjuration", 242)]
+    [InlineData("dnd5e2014.spell.gentle-repose", "Gentle Repose", "necromancy", 245)]
+    [InlineData("dnd5e2014.spell.hold-person", "Hold Person", "enchantment", 251)]
     public void SecondLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -275,6 +294,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
                 "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
                 "dnd5e2014.spell.purify-food-and-drink",
@@ -301,6 +321,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.arms-of-hadar",
                 "dnd5e2014.spell.burning-hands",
                 "dnd5e2014.spell.color-spray",
+                "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.thunderwave"
             ],
             areas.Select(spell => spell.Id.Value));
@@ -482,16 +503,75 @@ public sealed class SpellDataFileTests
     }
 
     [Fact]
-    public void IllusoryScriptIsTheOnlyDayLongDurationSoFar()
+    public void DayLongDurationsAreIllusoryScriptAndGentleRepose()
+    {
+        SpellDefinition[] days = LoadCanonical()
+            .Where(spell => spell.Duration.Unit == SpellDurationUnit.Day)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
+
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.gentle-repose",
+                "dnd5e2014.spell.illusory-script"
+            ],
+            days.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            days,
+            spell =>
+            {
+                Assert.Equal(10, spell.Duration.Amount);
+                Assert.False(spell.Duration.RequiresConcentration);
+            });
+    }
+
+    // Gust of Wind drove the Line area shape, which CLAUDE.md had expected
+    // Lightning Bolt to bring at third level. It is the only line so far.
+    [Fact]
+    public void GustOfWindIsTheOnlyLineAreaSoFar()
     {
         SpellDefinition only = Assert.Single(
             LoadCanonical()
                 .Where(spell =>
-                    spell.Duration.Unit == SpellDurationUnit.Day));
+                    spell.Range.AreaShape == SpellAreaShape.Line));
 
-        Assert.Equal("dnd5e2014.spell.illusory-script", only.Id.Value);
-        Assert.Equal(10, only.Duration.Amount);
-        Assert.False(only.Duration.RequiresConcentration);
+        Assert.Equal("dnd5e2014.spell.gust-of-wind", only.Id.Value);
+        Assert.Equal(SpellRangeKind.Self, only.Range.Kind);
+        Assert.Equal(60, only.Range.AreaSizeFeet);
+    }
+
+    // Find Steed's "10 minutes" is the first casting time whose amount is
+    // not 1 - the field always allowed it, but no built spell exercised it.
+    [Fact]
+    public void FindSteedIsTheOnlyCastingTimeWhoseAmountIsNotOne()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell => spell.CastingTime.Amount != 1));
+
+        Assert.Equal("dnd5e2014.spell.find-steed", only.Id.Value);
+        Assert.Equal(10, only.CastingTime.Amount);
+        Assert.Equal(SpellCastingTimeUnit.Minute, only.CastingTime.Unit);
+    }
+
+    // Hold Person reaches six classes, the widest membership in the book so
+    // far - three more than Thunderwave's four at first level.
+    [Fact]
+    public void HoldPersonIsAvailableToSixClasses()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.class.bard",
+                "dnd5e2014.class.cleric",
+                "dnd5e2014.class.druid",
+                "dnd5e2014.class.sorcerer",
+                "dnd5e2014.class.warlock",
+                "dnd5e2014.class.wizard"
+            ],
+            Get("dnd5e2014.spell.hold-person").AvailableToClassIds
+                .Select(id => id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
     }
 
     [Fact]
