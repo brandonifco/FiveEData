@@ -1,10 +1,15 @@
+using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DivineStrike;
+using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Equipment.Armor;
 
 namespace FiveEData.Tests;
 
@@ -588,6 +593,54 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(collegeOfLore.Sources);
         Assert.Equal(54, source.Page);
+
+        MagicalSecretsProgressionDetail magicalSecretsProgression =
+            collegeOfLore.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected College of Lore to have a Magical Secrets " +
+                "progression.");
+        Assert.Equal(
+            [(6, 2)],
+            magicalSecretsProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
+        Assert.False(magicalSecretsProgression.CountsAgainstSpellsKnown);
+    }
+
+    // Additional Magical Secrets reuses the Bard's own MagicalSecrets shape,
+    // and CountsAgainstSpellsKnown is exactly what separates them: the
+    // subclass spells "don't count against the number of bard spells you
+    // know", while the class feature's are included in the Spells Known
+    // column. Same type, opposite value.
+    [Fact]
+    public void CanonicalFile_CollegeOfLoreMagicalSecretsDoNotCountAgainstSpellsKnown()
+    {
+        SubclassDefinition collegeOfLore = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.college-of-lore");
+
+        MagicalSecretsProgressionDetail subclassProgression =
+            collegeOfLore.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected College of Lore to have a Magical Secrets " +
+                "progression.");
+
+        ClassDefinition bard = ClassDefinitionLoader
+            .LoadFromFile(
+                Path.Combine(
+                    FindRepositoryRoot(),
+                    "Data",
+                    "dnd5e2014",
+                    "classes.json"))
+            .Single(@class => @class.Id.Value == "dnd5e2014.class.bard");
+
+        MagicalSecretsProgressionDetail classProgression =
+            bard.MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Magical Secrets progression.");
+
+        Assert.False(subclassProgression.CountsAgainstSpellsKnown);
+        Assert.True(classProgression.CountsAgainstSpellsKnown);
     }
 
     [Fact]
@@ -697,6 +750,56 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(divination.Sources);
         Assert.Equal(116, source.Page);
+
+        PortentProgressionDetail portentProgression =
+            divination.PortentProgression
+            ?? throw new InvalidOperationException(
+                "Expected School of Divination to have a Portent " +
+                "progression.");
+        Assert.Equal(
+            [(2, 2), (14, 3)],
+            portentProgression.ForetellingRollsByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.ForetellingRolls)));
+        Assert.True(portentProgression.OncePerTurn);
+        Assert.True(portentProgression.RecoversOnLongRest);
+    }
+
+    // Portent and Greater Portent are two separately cited features that
+    // drive one resource: Greater Portent's whole mechanical content is "you
+    // roll three d20s for your Portent feature, rather than two". The 14th
+    // level row therefore comes from Greater Portent, and both RuleIds stay
+    // in LevelFeatures.
+    [Fact]
+    public void CanonicalFile_GreaterPortentSuppliesTheFourteenthLevelPortentRow()
+    {
+        SubclassDefinition divination = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-divination");
+
+        PortentProgressionDetail portentProgression =
+            divination.PortentProgression
+            ?? throw new InvalidOperationException(
+                "Expected School of Divination to have a Portent " +
+                "progression.");
+
+        int portentLevel = divination.LevelFeatures
+            .Single(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.portent")
+            .Level;
+        int greaterPortentLevel = divination.LevelFeatures
+            .Single(
+                feature => feature.FeatureRuleId.Value ==
+                    "dnd5e2014.class-rule.greater-portent")
+            .Level;
+
+        Assert.Equal(
+            [portentLevel, greaterPortentLevel],
+            portentProgression.ForetellingRollsByLevel
+                .Select(grant => grant.CharacterLevel)
+                .OrderBy(level => level));
     }
 
     [Fact]
@@ -1624,6 +1727,41 @@ public sealed class SubclassDataFileTests
 
         var source = Assert.Single(draconicBloodline.Sources);
         Assert.Equal(102, source.Page);
+
+        DraconicResilienceDetail draconicResilience =
+            draconicBloodline.DraconicResilience
+            ?? throw new InvalidOperationException(
+                "Expected Draconic Bloodline to have Draconic Resilience.");
+        Assert.Equal(1, draconicResilience.HitPointBonusPerLevel);
+        Assert.Equal(
+            13,
+            draconicResilience.UnarmoredArmorClass.BaseArmorClass);
+        Assert.True(
+            draconicResilience.UnarmoredArmorClass
+                .IncludesDexterityModifier);
+        Assert.Null(
+            draconicResilience.UnarmoredArmorClass
+                .MaximumDexterityModifier);
+    }
+
+    // Draconic Resilience's unarmored AC reuses ArmorClassFormula rather than
+    // minting a base/dex pair, the same type the Armor catalog already uses.
+    // Its hit point bonus is the Hill Dwarf HitPointBonusPerLevel shape.
+    [Fact]
+    public void CanonicalFile_DraconicResilienceReusesTheArmorClassFormulaShape()
+    {
+        SubclassDefinition draconicBloodline = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.draconic-bloodline");
+
+        DraconicResilienceDetail draconicResilience =
+            draconicBloodline.DraconicResilience
+            ?? throw new InvalidOperationException(
+                "Expected Draconic Bloodline to have Draconic Resilience.");
+
+        Assert.Equal(
+            new ArmorClassFormula(13, includesDexterityModifier: true),
+            draconicResilience.UnarmoredArmorClass);
     }
 
     [Fact]
@@ -1809,6 +1947,77 @@ public sealed class SubclassDataFileTests
             discipleOfTheElements.MaxKiPointsPerSpellByLevel
                 .OrderBy(grant => grant.CharacterLevel)
                 .Select(grant => (grant.CharacterLevel, grant.MaxKiPoints)));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.subclass.college-of-lore")]
+    [InlineData("dnd5e2014.subclass.school-of-divination")]
+    [InlineData("dnd5e2014.subclass.draconic-bloodline")]
+    public void CanonicalFile_QuantizedSubclassFeaturesAreExclusiveToTheirSubclass(
+        string subclassId)
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        SubclassDefinition owner = GetSubclass(subclasses, subclassId);
+
+        bool ownerDeclaresExactlyOne =
+            new bool[]
+            {
+                owner.MagicalSecretsProgression is not null,
+                owner.PortentProgression is not null,
+                owner.DraconicResilience is not null
+            }.Count(declared => declared) == 1;
+
+        Assert.True(ownerDeclaresExactlyOne);
+
+        foreach (SubclassDefinition other in subclasses
+            .Where(subclass => subclass.Id.Value != subclassId))
+        {
+            if (other.Id.Value is "dnd5e2014.subclass.college-of-lore"
+                or "dnd5e2014.subclass.school-of-divination"
+                or "dnd5e2014.subclass.draconic-bloodline")
+            {
+                continue;
+            }
+
+            Assert.Null(other.MagicalSecretsProgression);
+            Assert.Null(other.PortentProgression);
+            Assert.Null(other.DraconicResilience);
+        }
+    }
+
+    [Fact]
+    public void Ruleset_ExposesTheEmbeddedQuantizedSubclassFeatures()
+    {
+        SubclassCatalog catalog = Dnd5e2014Ruleset.Instance.Subclasses;
+
+        PortentProgressionDetail portentProgression =
+            catalog.Get(new SubclassId("dnd5e2014.subclass.school-of-divination"))
+                .PortentProgression
+            ?? throw new InvalidOperationException(
+                "Expected School of Divination to have a Portent " +
+                "progression.");
+        Assert.Equal(
+            [(2, 2), (14, 3)],
+            portentProgression.ForetellingRollsByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(
+                    grant => (grant.CharacterLevel, grant.ForetellingRolls)));
+
+        DraconicResilienceDetail draconicResilience =
+            catalog.Get(new SubclassId("dnd5e2014.subclass.draconic-bloodline"))
+                .DraconicResilience
+            ?? throw new InvalidOperationException(
+                "Expected Draconic Bloodline to have Draconic Resilience.");
+        Assert.Equal(1, draconicResilience.HitPointBonusPerLevel);
+
+        MagicalSecretsProgressionDetail magicalSecretsProgression =
+            catalog.Get(new SubclassId("dnd5e2014.subclass.college-of-lore"))
+                .MagicalSecretsProgression
+            ?? throw new InvalidOperationException(
+                "Expected College of Lore to have a Magical Secrets " +
+                "progression.");
+        Assert.False(magicalSecretsProgression.CountsAgainstSpellsKnown);
     }
 
     private static SubclassDefinition GetSubclass(

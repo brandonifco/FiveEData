@@ -4,8 +4,12 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
+using FiveEData.Rules.Classes.DraconicResilience;
 using FiveEData.Rules.Classes.DivineStrike;
+using FiveEData.Rules.Classes.MagicalSecrets;
+using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -73,6 +77,9 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -89,6 +96,9 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -411,6 +421,104 @@ public sealed class SubclassFoundationTests
             () => new SubclassCatalog([subclass]));
     }
 
+    [Fact]
+    public void Validator_RejectsPortentProgressionWithNoGrants()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            portentProgression: new PortentProgressionDetail(
+                [],
+                oncePerTurn: true,
+                recoversOnLongRest: true));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error =>
+                error.Contains(
+                    "Portent progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsPortentProgressionWithNonIncreasingRolls()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            portentProgression: new PortentProgressionDetail(
+                [
+                    new PortentRollGrant(2, 3),
+                    new PortentRollGrant(14, 2)
+                ],
+                oncePerTurn: true,
+                recoversOnLongRest: true));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error =>
+                error.Contains(
+                    "must be greater than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsSubclassMagicalSecretsProgressionWithNoGrants()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            magicalSecretsProgression: new MagicalSecretsProgressionDetail(
+                [],
+                countsAgainstSpellsKnown: false));
+
+        Assert.Contains(
+            SubclassDefinitionValidator.Validate(subclass),
+            error =>
+                error.Contains(
+                    "Magical Secrets progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedQuantizedSubclassFeatures()
+    {
+        SubclassDefinition subclass = Create(
+            "dnd5e2014.subclass.test",
+            magicalSecretsProgression: new MagicalSecretsProgressionDetail(
+                [new MagicalSecretsChoiceGrant(6, 2)],
+                countsAgainstSpellsKnown: false),
+            portentProgression: new PortentProgressionDetail(
+                [
+                    new PortentRollGrant(2, 2),
+                    new PortentRollGrant(14, 3)
+                ],
+                oncePerTurn: true,
+                recoversOnLongRest: true),
+            draconicResilience: new DraconicResilienceDetail(
+                hitPointBonusPerLevel: 1,
+                unarmoredArmorClass: new ArmorClassFormula(
+                    13,
+                    includesDexterityModifier: true)));
+
+        Assert.Empty(SubclassDefinitionValidator.Validate(subclass));
+    }
+
+    [Fact]
+    public void PortentRollGrant_RejectsNonPositiveForetellingRolls()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new PortentRollGrant(2, 0));
+    }
+
+    [Fact]
+    public void DraconicResilienceDetail_RejectsNonPositiveHitPointBonus()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new DraconicResilienceDetail(
+                hitPointBonusPerLevel: 0,
+                unarmoredArmorClass: new ArmorClassFormula(
+                    13,
+                    includesDexterityModifier: true)));
+    }
+
     private static SubclassDefinition Create(
         string id,
         string name = "Test",
@@ -427,6 +535,9 @@ public sealed class SubclassFoundationTests
             null,
         DiscipleOfTheElementsProgressionDetail?
             discipleOfTheElementsProgression = null,
+        MagicalSecretsProgressionDetail? magicalSecretsProgression = null,
+        PortentProgressionDetail? portentProgression = null,
+        DraconicResilienceDetail? draconicResilience = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -443,6 +554,9 @@ public sealed class SubclassFoundationTests
             auraOfWarding,
             combatSuperiorityProgression,
             discipleOfTheElementsProgression,
+            magicalSecretsProgression,
+            portentProgression,
+            draconicResilience,
             sources ?? [CreateSource()]);
     }
 
