@@ -58,6 +58,7 @@ public sealed class ClassDefinitionLoaderTests
           "auraOfCourage": null,
           "bardicInspirationProgression": null,
           "channelDivinityProgression": null,
+          "destroyUndeadProgression": null,
           "mysticArcanumProgression": null,
           "fontOfMagicConversion": null,
           "songOfRestProgression": null,
@@ -192,6 +193,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -306,6 +308,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -330,6 +333,87 @@ public sealed class ClassDefinitionLoaderTests
         Assert.Equal(2, @class.SorceryPointsProgression!.PointsByLevel.Count);
         Assert.Equal(3, @class.SorceryPointsProgression.PointsByLevel[1].Points);
         Assert.False(@class.SorceryPointsProgression.RecoversOnShortRest);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsDestroyUndeadProgression()
+    {
+        ClassDefinition @class = Assert.Single(
+            ClassDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.class.test",
+                    "name": "Test",
+                    "hitDieSides": 8,
+                    "primaryAbilityIds": ["dnd5e2014.ability.wisdom"],
+                    "requiresAllPrimaryAbilities": false,
+                    "savingThrowProficiencyIds": [
+                      "dnd5e2014.ability.wisdom",
+                      "dnd5e2014.ability.charisma"
+                    ],
+                    "armorProficiencyCategories": [],
+                    "proficientWithShields": false,
+                    "weaponProficiencyCategories": [],
+                    "weaponProficiencyIds": [],
+                    "skillChoiceCount": 0,
+                    "skillChoiceOptionIds": [],
+                    "levelFeatures": [],
+                    "spellSlotProgressionId": null,
+                    "spellcastingAbilityId": null,
+                    "extraAttackProgressionId": null,
+                    "actionSurgeProgression": null,
+                    "indomitableProgression": null,
+                    "rageProgression": null,
+                    "brutalCriticalProgression": null,
+                    "fastMovement": null,
+                    "sneakAttackProgression": null,
+                    "kiProgression": null,
+                    "martialArtsProgression": null,
+                    "unarmoredMovementProgression": null,
+                    "sorceryPointsProgression": null,
+                    "wildShapeProgression": null,
+                    "auraOfProtection": null,
+                    "auraOfCourage": null,
+                    "bardicInspirationProgression": null,
+                    "channelDivinityProgression": null,
+                    "destroyUndeadProgression": {
+                      "thresholdsByLevel": [
+                        { "characterLevel": 5, "maxChallengeRating": 0.5 },
+                        { "characterLevel": 8, "maxChallengeRating": 1 }
+                      ]
+                    },
+                    "mysticArcanumProgression": null,
+                    "fontOfMagicConversion": null,
+                    "songOfRestProgression": null,
+                    "eldritchInvocationsKnownProgression": null,
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.NotNull(@class.DestroyUndeadProgression);
+        Assert.Equal(
+            2,
+            @class.DestroyUndeadProgression!.ThresholdsByLevel.Count);
+        Assert.Equal(
+            5,
+            @class.DestroyUndeadProgression.ThresholdsByLevel[0]
+                .CharacterLevel);
+        Assert.Equal(
+            0.5,
+            @class.DestroyUndeadProgression.ThresholdsByLevel[0]
+                .MaxChallengeRating);
+        Assert.Equal(
+            1,
+            @class.DestroyUndeadProgression.ThresholdsByLevel[1]
+                .MaxChallengeRating);
     }
 
     [Fact]
@@ -387,6 +471,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -472,6 +557,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -570,6 +656,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -675,6 +762,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -763,6 +851,7 @@ public sealed class ClassDefinitionLoaderTests
                     },
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -851,6 +940,7 @@ public sealed class ClassDefinitionLoaderTests
                       "durationMinutes": 10
                     },
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -930,6 +1020,7 @@ public sealed class ClassDefinitionLoaderTests
                       ],
                       "recoversOnShortRest": true
                     },
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": null,
@@ -1002,6 +1093,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": {
                       "arcanumByLevel": [
                         { "characterLevel": 11, "spellLevel": 6 },
@@ -1080,6 +1172,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": {
                       "slotCostByLevel": [
@@ -1156,6 +1249,7 @@ public sealed class ClassDefinitionLoaderTests
                     "auraOfCourage": null,
                     "bardicInspirationProgression": null,
                     "channelDivinityProgression": null,
+                    "destroyUndeadProgression": null,
                     "mysticArcanumProgression": null,
                     "fontOfMagicConversion": null,
                     "songOfRestProgression": {

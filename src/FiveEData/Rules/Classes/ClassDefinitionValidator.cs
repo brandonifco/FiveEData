@@ -2,6 +2,7 @@ using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.FontOfMagic;
 using FiveEData.Rules.Classes.Indomitable;
@@ -195,6 +196,12 @@ internal static class ClassDefinitionValidator
                         grant => (grant.CharacterLevel, grant.UsesPerRest)),
                 "Channel Divinity uses",
                 errors);
+        }
+
+        if (@class.DestroyUndeadProgression is
+            { } destroyUndeadProgression)
+        {
+            ValidateDestroyUndeadProgression(destroyUndeadProgression, errors);
         }
 
         if (@class.MysticArcanumProgression is { } mysticArcanumProgression)
@@ -469,6 +476,46 @@ internal static class ClassDefinitionValidator
             errors.Add(
                 "Bardic Inspiration progression must grant the same " +
                 "number of dice at every grant level.");
+        }
+    }
+
+    private static void ValidateDestroyUndeadProgression(
+        DestroyUndeadProgressionDetail destroyUndeadProgression,
+        ICollection<string> errors)
+    {
+        if (destroyUndeadProgression.ThresholdsByLevel.Count == 0)
+        {
+            errors.Add(
+                "Destroy Undead progression must grant at least one " +
+                "threshold.");
+        }
+
+        var seenLevels = new HashSet<int>();
+        double? previousMaxChallengeRating = null;
+
+        foreach (
+            DestroyUndeadThresholdGrant grant
+            in destroyUndeadProgression.ThresholdsByLevel
+                .OrderBy(grant => grant.CharacterLevel))
+        {
+            if (!seenLevels.Add(grant.CharacterLevel))
+            {
+                errors.Add(
+                    "Destroy Undead threshold character level " +
+                    $"{grant.CharacterLevel} is duplicated.");
+                continue;
+            }
+
+            if (previousMaxChallengeRating is { } previous &&
+                grant.MaxChallengeRating <= previous)
+            {
+                errors.Add(
+                    "Destroy Undead max challenge rating at level " +
+                    $"{grant.CharacterLevel} must be greater than the " +
+                    "value at the previous grant level.");
+            }
+
+            previousMaxChallengeRating = grant.MaxChallengeRating;
         }
     }
 

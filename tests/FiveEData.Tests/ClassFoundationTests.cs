@@ -5,6 +5,7 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.ChannelDivinity;
+using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
@@ -152,6 +153,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -590,6 +592,62 @@ public sealed class ClassFoundationTests
                 ]));
 
         Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void Validator_RejectsDestroyUndeadProgressionWithNoThresholds()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            destroyUndeadProgression: new DestroyUndeadProgressionDetail([]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Destroy Undead progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsDestroyUndeadProgressionWithNonIncreasingChallengeRating()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            destroyUndeadProgression: new DestroyUndeadProgressionDetail(
+                [
+                    new DestroyUndeadThresholdGrant(5, 1),
+                    new DestroyUndeadThresholdGrant(8, 0.5)
+                ]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than the value at the previous grant",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_AcceptsWellFormedDestroyUndeadProgression()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            destroyUndeadProgression: new DestroyUndeadProgressionDetail(
+                [
+                    new DestroyUndeadThresholdGrant(5, 0.5),
+                    new DestroyUndeadThresholdGrant(8, 1),
+                    new DestroyUndeadThresholdGrant(11, 2)
+                ]));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void DestroyUndeadThresholdGrant_RejectsNonPositiveChallengeRating()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new DestroyUndeadThresholdGrant(5, 0));
     }
 
     [Fact]
@@ -1363,6 +1421,7 @@ public sealed class ClassFoundationTests
         BardicInspirationProgressionDetail? bardicInspirationProgression =
             null,
         ChannelDivinityProgressionDetail? channelDivinityProgression = null,
+        DestroyUndeadProgressionDetail? destroyUndeadProgression = null,
         MysticArcanumProgressionDetail? mysticArcanumProgression = null,
         FontOfMagicConversionDetail? fontOfMagicConversion = null,
         SongOfRestProgressionDetail? songOfRestProgression = null,
@@ -1407,6 +1466,7 @@ public sealed class ClassFoundationTests
             auraOfCourage,
             bardicInspirationProgression,
             channelDivinityProgression,
+            destroyUndeadProgression,
             mysticArcanumProgression,
             fontOfMagicConversion,
             songOfRestProgression,

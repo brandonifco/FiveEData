@@ -3,6 +3,7 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.BrutalCritical;
+using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FastMovement;
@@ -61,6 +62,7 @@ public sealed class ClassDefinition
         AuraOfCourageDetail? auraOfCourage,
         BardicInspirationProgressionDetail? bardicInspirationProgression,
         ChannelDivinityProgressionDetail? channelDivinityProgression,
+        DestroyUndeadProgressionDetail? destroyUndeadProgression,
         MysticArcanumProgressionDetail? mysticArcanumProgression,
         FontOfMagicConversionDetail? fontOfMagicConversion,
         SongOfRestProgressionDetail? songOfRestProgression,
@@ -112,6 +114,7 @@ public sealed class ClassDefinition
         AuraOfCourage = auraOfCourage;
         BardicInspirationProgression = bardicInspirationProgression;
         ChannelDivinityProgression = channelDivinityProgression;
+        DestroyUndeadProgression = destroyUndeadProgression;
         MysticArcanumProgression = mysticArcanumProgression;
         FontOfMagicConversion = fontOfMagicConversion;
         SongOfRestProgression = songOfRestProgression;
@@ -169,6 +172,9 @@ public sealed class ClassDefinition
     {
         get;
     }
+
+    public DestroyUndeadProgressionDetail? DestroyUndeadProgression { get; }
+
     public MysticArcanumProgressionDetail? MysticArcanumProgression
     {
         get;

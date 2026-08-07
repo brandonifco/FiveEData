@@ -155,6 +155,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -365,6 +366,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -663,6 +665,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -885,6 +888,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -1092,6 +1096,7 @@
       "durationMinutes": 10
     },
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": {
@@ -1226,6 +1231,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -1290,6 +1296,22 @@
       },
       {
         "level": 8,
+        "featureRuleId": "dnd5e2014.class-rule.destroy-undead"
+      },
+      {
+        "level": 11,
+        "featureRuleId": "dnd5e2014.class-rule.destroy-undead"
+      },
+      {
+        "level": 14,
+        "featureRuleId": "dnd5e2014.class-rule.destroy-undead"
+      },
+      {
+        "level": 17,
+        "featureRuleId": "dnd5e2014.class-rule.destroy-undead"
+      },
+      {
+        "level": 8,
         "featureRuleId": "dnd5e2014.class-rule.ability-score-improvement"
       },
       {
@@ -1346,6 +1368,30 @@
         }
       ],
       "recoversOnShortRest": true
+    },
+    "destroyUndeadProgression": {
+      "thresholdsByLevel": [
+        {
+          "characterLevel": 5,
+          "maxChallengeRating": 0.5
+        },
+        {
+          "characterLevel": 8,
+          "maxChallengeRating": 1
+        },
+        {
+          "characterLevel": 11,
+          "maxChallengeRating": 2
+        },
+        {
+          "characterLevel": 14,
+          "maxChallengeRating": 3
+        },
+        {
+          "characterLevel": 17,
+          "maxChallengeRating": 4
+        }
+      ]
     },
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
@@ -1465,6 +1511,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": {
       "arcanumByLevel": [
         {
@@ -1668,6 +1715,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -1818,6 +1866,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -1974,6 +2023,7 @@
     },
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
@@ -2165,6 +2215,7 @@
     "auraOfCourage": null,
     "bardicInspirationProgression": null,
     "channelDivinityProgression": null,
+    "destroyUndeadProgression": null,
     "mysticArcanumProgression": null,
     "fontOfMagicConversion": {
       "slotCostByLevel": [
