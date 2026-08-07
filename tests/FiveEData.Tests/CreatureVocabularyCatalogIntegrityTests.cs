@@ -491,6 +491,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
-            backgrounds: []);
+            backgrounds: [],
+            magicSchools: []);
     }
 }

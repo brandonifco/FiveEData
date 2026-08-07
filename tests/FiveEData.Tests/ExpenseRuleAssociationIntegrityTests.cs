@@ -244,6 +244,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
-            backgrounds: []);
+            backgrounds: [],
+            magicSchools: []);
     }
 }

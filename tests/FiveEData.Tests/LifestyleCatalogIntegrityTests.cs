@@ -170,6 +170,7 @@ public sealed class LifestyleCatalogIntegrityTests
             channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
-            backgrounds: []);
+            backgrounds: [],
+            magicSchools: []);
     }
 }

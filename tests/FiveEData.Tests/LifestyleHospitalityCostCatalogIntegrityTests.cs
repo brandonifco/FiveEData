@@ -252,6 +252,7 @@ public sealed class
             channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
-            backgrounds: []);
+            backgrounds: [],
+            magicSchools: []);
     }
 }

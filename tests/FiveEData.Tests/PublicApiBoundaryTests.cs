@@ -41,6 +41,18 @@ using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 using FiveEData.Rules.Equipment.Tools.Serialization;
+using FiveEData.Rules.Spells.MagicSchools;
+using FiveEData.Rules.Spells.MagicSchools.Serialization;
+using FiveEData.Rules.Classes.Metamagic;
+using FiveEData.Rules.Classes.Metamagic.Serialization;
+using FiveEData.Rules.Classes.BattleMasterManeuvers;
+using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
+using FiveEData.Rules.Classes.EldritchInvocations;
+using FiveEData.Rules.Classes.EldritchInvocations.Serialization;
+using FiveEData.Rules.Classes.ElementalDisciplines;
+using FiveEData.Rules.Classes.ElementalDisciplines.Serialization;
+using FiveEData.Rules.Classes.ChannelDivinityOptions;
+using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
 
 namespace FiveEData.Tests;
 
@@ -127,6 +139,24 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(BackgroundDefinitionLoader).IsPublic);
         Assert.False(typeof(BackgroundDefinitionValidator).IsPublic);
         Assert.False(typeof(BackgroundCatalogIntegrityValidator).IsPublic);
+        Assert.False(typeof(MagicSchoolDefinitionLoader).IsPublic);
+        Assert.False(typeof(MagicSchoolDefinitionValidator).IsPublic);
+        Assert.False(typeof(MetamagicOptionDefinitionLoader).IsPublic);
+        Assert.False(typeof(MetamagicOptionDefinitionValidator).IsPublic);
+        Assert.False(
+            typeof(BattleMasterManeuverDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(BattleMasterManeuverDefinitionValidator).IsPublic);
+        Assert.False(typeof(EldritchInvocationDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(EldritchInvocationDefinitionValidator).IsPublic);
+        Assert.False(typeof(ElementalDisciplineDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(ElementalDisciplineDefinitionValidator).IsPublic);
+        Assert.False(
+            typeof(ChannelDivinityOptionDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(ChannelDivinityOptionDefinitionValidator).IsPublic);
     }
 
     [Fact]

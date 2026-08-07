@@ -493,7 +493,8 @@ public sealed class
             channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
-            backgrounds: []);
+            backgrounds: [],
+            magicSchools: []);
     }
 
     private static string DataPath(string fileName)

@@ -170,6 +170,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             channelDivinityOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
-            backgrounds: []);
+            backgrounds: [],
+            magicSchools: []);
     }
 }
