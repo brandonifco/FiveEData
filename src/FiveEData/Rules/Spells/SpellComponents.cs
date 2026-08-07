@@ -7,7 +7,8 @@ public readonly record struct SpellComponents
         bool somatic,
         bool material,
         string? materialDescription,
-        int? materialCostGoldPieces = null)
+        int? materialCostGoldPieces = null,
+        bool materialIsConsumed = false)
     {
         if (!verbal && !somatic && !material)
         {
@@ -39,6 +40,14 @@ public readonly record struct SpellComponents
                     "a material cost.",
                     nameof(materialCostGoldPieces));
             }
+
+            if (materialIsConsumed)
+            {
+                throw new ArgumentException(
+                    "A spell without a material component cannot consume " +
+                    "one.",
+                    nameof(materialIsConsumed));
+            }
         }
 
         if (materialCostGoldPieces is <= 0)
@@ -55,6 +64,7 @@ public readonly record struct SpellComponents
         Material = material;
         MaterialDescription = materialDescription;
         MaterialCostGoldPieces = materialCostGoldPieces;
+        MaterialIsConsumed = materialIsConsumed;
     }
 
     public bool Verbal { get; }
@@ -68,4 +78,11 @@ public readonly record struct SpellComponents
     /// the component carries no stated cost.
     /// </summary>
     public int? MaterialCostGoldPieces { get; }
+
+    /// <summary>
+    /// True when the PHB states the spell consumes its material component,
+    /// as in Find Familiar's charcoal and incense "that must be consumed
+    /// by fire".
+    /// </summary>
+    public bool MaterialIsConsumed { get; }
 }

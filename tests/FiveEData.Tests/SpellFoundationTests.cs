@@ -118,6 +118,14 @@ public sealed class SpellFoundationTests
     }
 
     [Fact]
+    public void Components_RejectConsumedWithoutMaterial()
+    {
+        Assert.Throws<ArgumentException>(
+            () => new SpellComponents(
+                true, true, false, null, null, materialIsConsumed: true));
+    }
+
+    [Fact]
     public void Components_CarryStatedMaterialCost()
     {
         var components =

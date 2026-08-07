@@ -21,7 +21,8 @@ public sealed class SpellDefinitionLoaderTests
                 "components": {
                   "verbal": true, "somatic": true,
                   "material": false, "materialDescription": null,
-                  "materialCostGoldPieces": null
+                  "materialCostGoldPieces": null,
+                  "materialIsConsumed": false
                 },
                 "duration": {
                   "isInstantaneous": true, "requiresConcentration": false,
