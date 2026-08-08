@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(184, LoadCanonical().Count);
+        Assert.Equal(198, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -22,17 +22,14 @@ public sealed class SpellDataFileTests
             59,
             LoadCanonical().Count(spell => spell.Level == 2));
         Assert.Equal(
-            36,
+            50,
             LoadCanonical().Count(spell => spell.Level == 3));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsThroughThirdLevelForNow()
     {
-        // Levels 4-9 are not built yet. Levels 0-2 are complete; level 3 is
-        // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-C, D-H, and L-P batches, 36 of the PHB's 50
-        // third-level spells.
+        // Levels 4-9 are not built yet. Levels 0-3 are all complete.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 3));
@@ -247,10 +244,12 @@ public sealed class SpellDataFileTests
     }
 
     // The class spell list appendix (pp.207-210) gives a 3rd-level union of
-    // 50 spells across the 8 classes. This pins the A-C, D-H, and L-P
-    // batches; the R-W batch will complete the list at 50.
+    // 50 spells across the 8 classes, built across four alphabetical
+    // batches (A-C, D-H, L-P, R-W) - the same closure convention as
+    // FirstLevelContainsExactlyThePhbsSixtyTwoSpells and
+    // SecondLevelContainsExactlyThePhbsFiftyNineSpells.
     [Fact]
-    public void ThirdLevelSpellIdsBuiltSoFar()
+    public void ThirdLevelContainsExactlyThePhbsFiftySpells()
     {
         Assert.Equal(
             [
@@ -289,12 +288,49 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.phantom-steed",
                 "dnd5e2014.spell.plant-growth",
-                "dnd5e2014.spell.protection-from-energy"
+                "dnd5e2014.spell.protection-from-energy",
+                "dnd5e2014.spell.remove-curse",
+                "dnd5e2014.spell.revivify",
+                "dnd5e2014.spell.sending",
+                "dnd5e2014.spell.sleet-storm",
+                "dnd5e2014.spell.slow",
+                "dnd5e2014.spell.speak-with-dead",
+                "dnd5e2014.spell.speak-with-plants",
+                "dnd5e2014.spell.spirit-guardians",
+                "dnd5e2014.spell.stinking-cloud",
+                "dnd5e2014.spell.tongues",
+                "dnd5e2014.spell.vampiric-touch",
+                "dnd5e2014.spell.water-breathing",
+                "dnd5e2014.spell.water-walk",
+                "dnd5e2014.spell.wind-wall"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 3)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Read off the eight class spell lists on pp.207-210, whose 3rd-level
+    // sections hold 16/20/13/10/5/20/12/29 entries; their union is 50.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 16)]
+    [InlineData("dnd5e2014.class.cleric", 20)]
+    [InlineData("dnd5e2014.class.druid", 13)]
+    [InlineData("dnd5e2014.class.paladin", 10)]
+    [InlineData("dnd5e2014.class.ranger", 5)]
+    [InlineData("dnd5e2014.class.sorcerer", 20)]
+    [InlineData("dnd5e2014.class.warlock", 12)]
+    [InlineData("dnd5e2014.class.wizard", 29)]
+    public void ClassThirdLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 3
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
     }
 
     [Theory]
@@ -316,6 +352,12 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.nondetection", "Nondetection", "abjuration", 263)]
     [InlineData("dnd5e2014.spell.phantom-steed", "Phantom Steed", "illusion", 266)]
     [InlineData("dnd5e2014.spell.protection-from-energy", "Protection from Energy", "abjuration", 270)]
+    [InlineData("dnd5e2014.spell.revivify", "Revivify", "conjuration", 272)]
+    [InlineData("dnd5e2014.spell.sending", "Sending", "evocation", 274)]
+    [InlineData("dnd5e2014.spell.spirit-guardians", "Spirit Guardians", "conjuration", 278)]
+    [InlineData("dnd5e2014.spell.tongues", "Tongues", "divination", 283)]
+    [InlineData("dnd5e2014.spell.vampiric-touch", "Vampiric Touch", "necromancy", 285)]
+    [InlineData("dnd5e2014.spell.wind-wall", "Wind Wall", "evocation", 288)]
     public void ThirdLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -393,6 +435,24 @@ public sealed class SpellDataFileTests
         Assert.Equal("dnd5e2014.spell.leomunds-tiny-hut", only.Id.Value);
         Assert.Equal(SpellRangeKind.Self, only.Range.Kind);
         Assert.Equal(10, only.Range.AreaSizeFeet);
+    }
+
+    // Sending prints "Range: Unlimited" - no distance in feet at all,
+    // distinct from a large bounded Distance. Telepathy (8th level, not yet
+    // built) uses the same word, so this is a real PHB range category, not
+    // a one-off.
+    [Fact]
+    public void SendingIsTheOnlyUnlimitedRangeSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell =>
+                    spell.Range.Kind == SpellRangeKind.Unlimited));
+
+        Assert.Equal("dnd5e2014.spell.sending", only.Id.Value);
+        Assert.Null(only.Range.DistanceFeet);
+        Assert.Null(only.Range.AreaShape);
+        Assert.Null(only.Range.AreaSizeFeet);
     }
 
     [Fact]
@@ -535,7 +595,9 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.silence",
                 "dnd5e2014.spell.speak-with-animals",
                 "dnd5e2014.spell.tensers-floating-disk",
-                "dnd5e2014.spell.unseen-servant"
+                "dnd5e2014.spell.unseen-servant",
+                "dnd5e2014.spell.water-breathing",
+                "dnd5e2014.spell.water-walk"
             ],
             LoadCanonical()
                 .Where(spell => spell.IsRitual)
@@ -562,6 +624,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.leomunds-tiny-hut",
                 "dnd5e2014.spell.lightning-bolt",
+                "dnd5e2014.spell.speak-with-plants",
+                "dnd5e2014.spell.spirit-guardians",
                 "dnd5e2014.spell.thunderwave"
             ],
             areas.Select(spell => spell.Id.Value));
@@ -611,6 +675,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.magic-circle",
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.nondetection",
+                "dnd5e2014.spell.revivify",
                 "dnd5e2014.spell.warding-bond"
             ],
             LoadCanonical()
@@ -882,9 +947,9 @@ public sealed class SpellDataFileTests
     }
 
     // Verbal and material with no somatic component is the rarest of the
-    // six V/S/M combinations the built set uses - four spells across three
-    // levels. Pinned because a reader scanning components is prone to
-    // assume material implies somatic.
+    // six V/S/M combinations the built set uses - five spells across four
+    // levels, Tongues joining at third. Pinned because a reader scanning
+    // components is prone to assume material implies somatic.
     [Fact]
     public void VerbalAndMaterialWithoutSomaticIsTheRarestCombination()
     {
@@ -893,7 +958,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.darkness",
                 "dnd5e2014.spell.feather-fall",
                 "dnd5e2014.spell.light",
-                "dnd5e2014.spell.suggestion"
+                "dnd5e2014.spell.suggestion",
+                "dnd5e2014.spell.tongues"
             ],
             LoadCanonical()
                 .Where(spell => spell.Components.Verbal

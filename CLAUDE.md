@@ -39,14 +39,13 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2208 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2223 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
-`SpellDefinition`. **All 27 cantrips, all 62 first-level and all 59
-second-level spells are built, plus the first 36 of the PHB's 50
-third-level spells (batches A–C, D–H, and L–P) — 184 in total. Only the
-R–W batch of level 3 remains; levels 4–9 are not started.**
+`SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
+second-level, and all 50 third-level spells are built — 198 in total.
+Levels 4–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -64,13 +63,11 @@ concentration** — Prestidigitation is "Up to 1 hour" with no concentration,
 while concentration is always an "up to" duration.
 
 **Every level is added in alphabetical batches** — 62 first-level spells over
-~38 pages was too much to read reliably in one pass, and second level's 59 was
-no better. Four batches each time. `SpellDataFileTests` pins the exact built
-closure, so a partial level is asserted rather than implied. **Keep batching
-for levels 3–9.** Third level's batches are smaller than before (~12–13 vs.
-~15–16) for tighter per-batch accuracy: the PHB's class spell list appendix
-(pp.207–210) gives a **50-spell union** across the 8 classes, split A–C/D–H/
-L–P/R–W.
+~38 pages was too much to read reliably in one pass, second level's 59 was no
+better, and third level's 50 (split A–C/D–H/L–P/R–W, ~12–13 per batch for
+tighter accuracy than the first two levels' ~15–16) confirmed the pattern a
+third time. `SpellDataFileTests` pins the exact built closure, so a partial
+level is asserted rather than implied. **Keep batching for levels 4–9.**
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -131,6 +128,16 @@ Each batch drove schema additions from real content, never anticipation:
   second spell needs the same shape; one data point doesn't justify a new
   mechanism field. Lightning Bolt also became the second `Line` area,
   after Gust of Wind.
+- **3rd R–W (closing the level):** one addition. Sending prints **"Range:
+  Unlimited"** — no distance at all, not a large bounded `Distance`.
+  `SpellRangeKind` gained an `Unlimited` member and `SpellRange.Unlimited()`
+  factory, the same "self/touch/distance" enumeration shape extended by one
+  case; Telepathy (8th level, unbuilt) uses the same word, confirming it's
+  a real PHB category and not a one-off worth declining. Tongues is V+M
+  with no S, joining the rarest V/S/M combination (5 spells across 4
+  levels now). Third level is closed at exactly 50 — the class-list
+  appendix union predicted this count before any R–W spell was read, and
+  it held.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the

@@ -6630,6 +6630,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.remove-curse",
+    "name": "Remove Curse",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 271,
+        "section": "Chapter 11: Spells — Spell Descriptions — Remove Curse"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.resistance",
     "name": "Resistance",
     "level": 0,
@@ -6670,6 +6716,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 272,
         "section": "Chapter 11: Spells — Spell Descriptions — Resistance"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.revivify",
+    "name": "Revivify",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "diamonds worth 300 gp, which the spell consumes",
+      "materialCostGoldPieces": 300,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 272,
+        "section": "Chapter 11: Spells — Spell Descriptions — Revivify"
       }
     ]
   },
@@ -6931,6 +7021,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 274,
         "section": "Chapter 11: Spells — Spell Descriptions — See Invisibility"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.sending",
+    "name": "Sending",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Unlimited",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a short piece of fine copper wire",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 274,
+        "section": "Chapter 11: Spells — Spell Descriptions — Sending"
       }
     ]
   },
@@ -7291,6 +7426,95 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.sleet-storm",
+    "name": "Sleet Storm",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of dust and a few drops of water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 276,
+        "section": "Chapter 11: Spells — Spell Descriptions — Sleet Storm"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.slow",
+    "name": "Slow",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a drop of molasses",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 277,
+        "section": "Chapter 11: Spells — Spell Descriptions — Slow"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.spare-the-dying",
     "name": "Spare the Dying",
     "level": 0,
@@ -7375,6 +7599,94 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 277,
         "section": "Chapter 11: Spells — Spell Descriptions — Speak with Animals"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.speak-with-dead",
+    "name": "Speak with Dead",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "burning incense",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 277,
+        "section": "Chapter 11: Spells — Spell Descriptions — Speak with Dead"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.speak-with-plants",
+    "name": "Speak with Plants",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 277,
+        "section": "Chapter 11: Spells — Spell Descriptions — Speak with Plants"
       }
     ]
   },
@@ -7468,6 +7780,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.spirit-guardians",
+    "name": "Spirit Guardians",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 15
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a holy symbol",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 278,
+        "section": "Chapter 11: Spells — Spell Descriptions — Spirit Guardians"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.spiritual-weapon",
     "name": "Spiritual Weapon",
     "level": 2,
@@ -7507,6 +7862,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 278,
         "section": "Chapter 11: Spells — Spell Descriptions — Spiritual Weapon"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.stinking-cloud",
+    "name": "Stinking Cloud",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a rotten egg or several skunk cabbage leaves",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 278,
+        "section": "Chapter 11: Spells — Spell Descriptions — Stinking Cloud"
       }
     ]
   },
@@ -7819,6 +8219,53 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.tongues",
+    "name": "Tongues",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": true,
+      "materialDescription": "a small clay model of a ziggurat",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 283,
+        "section": "Chapter 11: Spells — Spell Descriptions — Tongues"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.true-strike",
     "name": "True Strike",
     "level": 0,
@@ -7910,6 +8357,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.vampiric-touch",
+    "name": "Vampiric Touch",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 285,
+        "section": "Chapter 11: Spells — Spell Descriptions — Vampiric Touch"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.vicious-mockery",
     "name": "Vicious Mockery",
     "level": 0,
@@ -7996,6 +8487,96 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.water-breathing",
+    "name": "Water Breathing",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a short reed or piece of straw",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 287,
+        "section": "Chapter 11: Spells — Spell Descriptions — Water Breathing"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.water-walk",
+    "name": "Water Walk",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a piece of cork",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 287,
+        "section": "Chapter 11: Spells — Spell Descriptions — Water Walk"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.web",
     "name": "Web",
     "level": 2,
@@ -8036,6 +8617,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 287,
         "section": "Chapter 11: Spells — Spell Descriptions — Web"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.wind-wall",
+    "name": "Wind Wall",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a tiny fan and a feather of exotic origin",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 288,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wind Wall"
       }
     ]
   },
