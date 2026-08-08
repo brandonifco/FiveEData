@@ -39,13 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2260 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2269 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, and all 35 fourth-level spells are
-built — 233 in total. Levels 5–9 are not started.**
+built, plus the first 11 of the PHB's 42 fifth-level spells (batch A–C) —
+244 in total. The rest of level 5 (C–G, G–P, R–W) and all of levels 6–9
+are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -67,12 +69,14 @@ while concentration is always an "up to" duration.
 better, and third level's 50 (split A–C/D–H/L–P/R–W, ~12–13 per batch for
 tighter accuracy than the first two levels' ~15–16) confirmed the pattern a
 third time. `SpellDataFileTests` pins the exact built closure, so a partial
-level is asserted rather than implied. **Keep batching for levels 5–9.**
-Per-level union counts keep dropping as the levels climb — 62/59/50 for
-1st–3rd, **35 at 4th** — because Paladin, Ranger, and Warlock's Pact Magic
-all stop contributing once their lists cap out (5th-level spells for all
-three), shrinking the union from 8 contributing class lists toward the full
-casters only.
+level is asserted rather than implied. **Keep batching for levels 6–9.**
+Per-level union counts are **not monotonically declining**: 62/59/50 for
+1st–3rd, 35 at 4th, back up to **42 at 5th** — Paladin, Ranger, and
+Warlock's Pact Magic all still contribute at 5th level, since that's
+exactly where their lists cap out, not before it. The decline should
+resume at 6th, where those three classes stop contributing entirely.
+Verify the real count each level rather than assuming the trend — this
+file has been wrong about a "declining" pattern before.
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -168,6 +172,13 @@ Each batch drove schema additions from real content, never anticipation:
   second-level widest membership. Fourth level closed at exactly 35 — the
   class-list appendix union predicted this before any L–W spell was read,
   the same way third level's did.
+- **5th A–C:** nothing — the seventh schema-quiet batch. Awaken's casting
+  time is **"8 hours,"** the first Hour-unit casting time whose amount
+  isn't 1 (Find Familiar and Glyph of Warding are both flat 1 hour);
+  `SpellCastingTime` already allows any amount, so no change was needed —
+  the same non-event as Find Steed's 10-minute amount at first level.
+  Antilife Shell and Circle of Power reuse `SpellAreaShape.Radius`, and
+  Cone of Cold reuses `Cone`, both already-established shapes.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -215,9 +226,12 @@ ever replaced). The Wizard figure was first recorded as 28 and corrected to
 to miss one line on; re-verify a list against the image again before
 trusting a count carried over from an earlier batch. The 4th-level union is
 **35 spells**; the per-class counts are Bard 8, Cleric 8, Druid 16, Paladin
-6, Ranger 5, Sorcerer 10, Warlock 4, Wizard 23 — the first level where
-Paladin, Ranger, and Warlock's lists (all capped at or below 5th-level
-spells) stop widening the union as much as the full casters do.
+6, Ranger 5, Sorcerer 10, Warlock 4, Wizard 23. The 5th-level union is
+**42 spells**; the per-class counts are Bard 16, Cleric 13, Druid 14,
+Paladin 6, Ranger 4, Sorcerer 11, Warlock 4, Wizard 23 — every list grew
+or held from 4th to 5th (this is each class's *last* level before
+Paladin/Ranger/Warlock's lists stop entirely), which is why the union rose
+instead of continuing to fall.
 
 **A duration unit does not imply a duration shape.** Shield and True Strike
 are both 1 round, but Shield's is flat while True Strike's is concentration

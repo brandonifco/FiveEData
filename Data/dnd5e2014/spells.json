@@ -310,6 +310,94 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.animate-objects",
+    "name": "Animate Objects",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 213,
+        "section": "Chapter 11: Spells — Spell Descriptions — Animate Objects"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.antilife-shell",
+    "name": "Antilife Shell",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 213,
+        "section": "Chapter 11: Spells — Spell Descriptions — Antilife Shell"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.arcane-eye",
     "name": "Arcane Eye",
     "level": 4,
@@ -654,6 +742,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.awaken",
+    "name": "Awaken",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "an agate worth at least 1,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 216,
+        "section": "Chapter 11: Spells — Spell Descriptions — Awaken"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.bane",
     "name": "Bane",
     "level": 1,
@@ -694,6 +826,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 216,
         "section": "Chapter 11: Spells — Spell Descriptions — Bane"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.banishing-smite",
+    "name": "Banishing Smite",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 216,
+        "section": "Chapter 11: Spells — Spell Descriptions — Banishing Smite"
       }
     ]
   },
@@ -917,6 +1092,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 218,
         "section": "Chapter 11: Spells — Spell Descriptions — Bestow Curse"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.bigbys-hand",
+    "name": "Bigby's Hand",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "an eggshell and a snakeskin glove",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 218,
+        "section": "Chapter 11: Spells — Spell Descriptions — Bigby's Hand"
       }
     ]
   },
@@ -1544,6 +1762,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.circle-of-power",
+    "name": "Circle of Power",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 221,
+        "section": "Chapter 11: Spells — Spell Descriptions — Circle of Power"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.clairvoyance",
     "name": "Clairvoyance",
     "level": 3,
@@ -1636,6 +1897,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.cloudkill",
+    "name": "Cloudkill",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 222,
+        "section": "Chapter 11: Spells — Spell Descriptions — Cloudkill"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.color-spray",
     "name": "Color Spray",
     "level": 1,
@@ -1720,6 +2025,93 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 223,
         "section": "Chapter 11: Spells — Spell Descriptions — Command"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.commune",
+    "name": "Commune",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "incense and a vial of holy or unholy water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 223,
+        "section": "Chapter 11: Spells — Spell Descriptions — Commune"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.commune-with-nature",
+    "name": "Commune with Nature",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 224,
+        "section": "Chapter 11: Spells — Spell Descriptions — Commune with Nature"
       }
     ]
   },
@@ -1856,6 +2248,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.cone-of-cold",
+    "name": "Cone of Cold",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Cone",
+      "areaSizeFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small crystal or glass cone",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 224,
+        "section": "Chapter 11: Spells — Spell Descriptions — Cone of Cold"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.confusion",
     "name": "Confusion",
     "level": 4,
@@ -1985,6 +2421,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 225,
         "section": "Chapter 11: Spells — Spell Descriptions — Conjure Barrage"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.conjure-elemental",
+    "name": "Conjure Elemental",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "burning incense for air, soft clay for earth, sulfur and phosphorus for fire, or water and sand for water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 225,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Elemental"
       }
     ]
   },
