@@ -58,6 +58,9 @@ public readonly record struct SpellRange
     public static SpellRange Unlimited() =>
         new(SpellRangeKind.Unlimited, null, null, null);
 
+    public static SpellRange Special() =>
+        new(SpellRangeKind.Special, null, null, null);
+
     public static SpellRange Distance(int feet)
     {
         if (feet <= 0)

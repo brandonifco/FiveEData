@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(244, LoadCanonical().Count);
+        Assert.Equal(254, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -28,7 +28,7 @@ public sealed class SpellDataFileTests
             35,
             LoadCanonical().Count(spell => spell.Level == 4));
         Assert.Equal(
-            11,
+            21,
             LoadCanonical().Count(spell => spell.Level == 5));
     }
 
@@ -37,7 +37,8 @@ public sealed class SpellDataFileTests
     {
         // Levels 6-9 are not built yet. Levels 0-4 are complete; level 5 is
         // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds only the A-C batch, 11 of the PHB's 42 fifth-level spells.
+        // holds the A-C and C-G batches, 21 of the PHB's 42 fifth-level
+        // spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 5));
@@ -457,7 +458,8 @@ public sealed class SpellDataFileTests
     // The class spell list appendix (pp.207-210) gives a 5th-level union of
     // 42 spells across the 8 classes - up from 4th level's 35, so the
     // per-level decline (62/59/50/35) isn't monotonic. This pins the A-C
-    // batch; later batches will extend the list until all 42 are built.
+    // and C-G batches; later batches will extend the list until all 42 are
+    // built.
     [Fact]
     public void FifthLevelSpellIdsBuiltSoFar()
     {
@@ -473,7 +475,17 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.commune",
                 "dnd5e2014.spell.commune-with-nature",
                 "dnd5e2014.spell.cone-of-cold",
-                "dnd5e2014.spell.conjure-elemental"
+                "dnd5e2014.spell.conjure-elemental",
+                "dnd5e2014.spell.conjure-volley",
+                "dnd5e2014.spell.contact-other-plane",
+                "dnd5e2014.spell.contagion",
+                "dnd5e2014.spell.creation",
+                "dnd5e2014.spell.destructive-wave",
+                "dnd5e2014.spell.dispel-evil-and-good",
+                "dnd5e2014.spell.dominate-person",
+                "dnd5e2014.spell.dream",
+                "dnd5e2014.spell.flame-strike",
+                "dnd5e2014.spell.geas"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 5)
@@ -490,6 +502,16 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.commune", "Commune", "divination", 223)]
     [InlineData("dnd5e2014.spell.commune-with-nature", "Commune with Nature", "divination", 224)]
     [InlineData("dnd5e2014.spell.conjure-elemental", "Conjure Elemental", "conjuration", 225)]
+    [InlineData("dnd5e2014.spell.conjure-volley", "Conjure Volley", "conjuration", 226)]
+    [InlineData("dnd5e2014.spell.contact-other-plane", "Contact Other Plane", "divination", 226)]
+    [InlineData("dnd5e2014.spell.contagion", "Contagion", "necromancy", 227)]
+    [InlineData("dnd5e2014.spell.creation", "Creation", "illusion", 229)]
+    [InlineData("dnd5e2014.spell.destructive-wave", "Destructive Wave", "evocation", 231)]
+    [InlineData("dnd5e2014.spell.dispel-evil-and-good", "Dispel Evil and Good", "abjuration", 233)]
+    [InlineData("dnd5e2014.spell.dominate-person", "Dominate Person", "enchantment", 235)]
+    [InlineData("dnd5e2014.spell.dream", "Dream", "illusion", 236)]
+    [InlineData("dnd5e2014.spell.flame-strike", "Flame Strike", "evocation", 242)]
+    [InlineData("dnd5e2014.spell.geas", "Geas", "enchantment", 244)]
     public void FifthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -504,6 +526,59 @@ public sealed class SpellDataFileTests
             $"dnd5e2014.magic-school.{expectedSchool}",
             spell.SchoolId.Value);
         Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Creation prints "Duration: Special" - the actual duration is a
+    // lookup table keyed by the material created (1 day for vegetable
+    // matter down to 1 minute for adamantine or mithral), which stays in
+    // the citation. SpellDuration.IsSpecial carries no amount/unit of its
+    // own, the same shape IsUntilDispelled already established.
+    [Fact]
+    public void CreationIsTheOnlySpecialDurationSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical().Where(spell => spell.Duration.IsSpecial));
+
+        Assert.Equal("dnd5e2014.spell.creation", only.Id.Value);
+        Assert.False(only.Duration.IsInstantaneous);
+        Assert.False(only.Duration.IsUntilDispelled);
+        Assert.Null(only.Duration.Amount);
+        Assert.Null(only.Duration.Unit);
+    }
+
+    // Dream prints "Range: Special" - the target must be on the same
+    // plane of existence as the caster, a conditional rule that stays in
+    // the citation. SpellRangeKind.Special mirrors Unlimited's shape (no
+    // distance, no area).
+    [Fact]
+    public void DreamIsTheOnlySpecialRangeSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell => spell.Range.Kind == SpellRangeKind.Special));
+
+        Assert.Equal("dnd5e2014.spell.dream", only.Id.Value);
+        Assert.Null(only.Range.DistanceFeet);
+        Assert.Null(only.Range.AreaShape);
+    }
+
+    // The Paladin spell list appendix (p.209) prints this spell's name as
+    // "Destructive Smite" - plausible company for six other Paladin
+    // "___ Smite" spells already built (Banishing, Blinding, Searing,
+    // Staggering, Thunderous, Wrathful), but the spell's own description
+    // page (p.231) unambiguously headers it "Destructive Wave", matching
+    // the spell's real published name. The description page wins, the
+    // same "errata and body prose beat printing artifacts" rule that
+    // corrected the Dwarf's throwing hammer.
+    [Fact]
+    public void DestructiveWaveIsNamedFromItsDescriptionNotTheAppendix()
+    {
+        SpellDefinition spell = Get("dnd5e2014.spell.destructive-wave");
+
+        Assert.Equal("Destructive Wave", spell.Name);
+        Assert.Contains(
+            "dnd5e2014.class.paladin",
+            spell.AvailableToClassIds.Select(id => id.Value));
     }
 
     [Theory]
@@ -797,6 +872,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.commune",
                 "dnd5e2014.spell.commune-with-nature",
                 "dnd5e2014.spell.comprehend-languages",
+                "dnd5e2014.spell.contact-other-plane",
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
                 "dnd5e2014.spell.divination",
@@ -844,6 +920,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.color-spray",
                 "dnd5e2014.spell.cone-of-cold",
                 "dnd5e2014.spell.conjure-barrage",
+                "dnd5e2014.spell.destructive-wave",
                 "dnd5e2014.spell.fear",
                 "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.leomunds-tiny-hut",
@@ -1050,8 +1127,11 @@ public sealed class SpellDataFileTests
                 .OrderBy(id => id, StringComparer.Ordinal));
     }
 
+    // Illusory Script and Gentle Repose share the same 10-day span; Geas
+    // (30 days) and Contagion (7 days) broke the "always 10" pattern at
+    // fifth level.
     [Fact]
-    public void DayLongDurationsAreIllusoryScriptAndGentleRepose()
+    public void DayLongDurationsCoverThreeDistinctSpans()
     {
         SpellDefinition[] days = LoadCanonical()
             .Where(spell => spell.Duration.Unit == SpellDurationUnit.Day)
@@ -1060,6 +1140,8 @@ public sealed class SpellDataFileTests
 
         Assert.Equal(
             [
+                "dnd5e2014.spell.contagion",
+                "dnd5e2014.spell.geas",
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.illusory-script"
             ],
@@ -1067,11 +1149,12 @@ public sealed class SpellDataFileTests
 
         Assert.All(
             days,
-            spell =>
-            {
-                Assert.Equal(10, spell.Duration.Amount);
-                Assert.False(spell.Duration.RequiresConcentration);
-            });
+            spell => Assert.False(spell.Duration.RequiresConcentration));
+
+        Assert.Equal(7, Get("dnd5e2014.spell.contagion").Duration.Amount);
+        Assert.Equal(30, Get("dnd5e2014.spell.geas").Duration.Amount);
+        Assert.Equal(10, Get("dnd5e2014.spell.gentle-repose").Duration.Amount);
+        Assert.Equal(10, Get("dnd5e2014.spell.illusory-script").Duration.Amount);
     }
 
     // Gust of Wind drove the Line area shape at second level; Lightning

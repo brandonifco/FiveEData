@@ -25,6 +25,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -69,6 +70,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -113,6 +115,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -157,6 +160,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -201,6 +205,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 24,
@@ -246,6 +251,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 24,
@@ -291,6 +297,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -335,6 +342,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -380,6 +388,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -423,6 +432,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -466,6 +476,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": true,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -509,6 +520,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -552,6 +564,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -595,6 +608,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -638,6 +652,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -681,6 +696,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -724,6 +740,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -767,6 +784,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -811,6 +829,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -855,6 +874,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -898,6 +918,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -945,6 +966,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -989,6 +1011,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1032,6 +1055,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1076,6 +1100,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1121,6 +1146,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1164,6 +1190,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -1210,6 +1237,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1254,6 +1282,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -1300,6 +1329,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1343,6 +1373,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -1389,6 +1420,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -1433,6 +1465,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1477,6 +1510,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1520,6 +1554,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -1564,6 +1599,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -1607,6 +1643,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1651,6 +1688,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -1698,6 +1736,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -1743,6 +1782,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -1787,6 +1827,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -1830,6 +1871,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -1876,6 +1918,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -1922,6 +1965,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -1966,6 +2010,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -2010,6 +2055,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -2054,6 +2100,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -2097,6 +2144,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2141,6 +2189,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2184,6 +2233,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -2230,6 +2280,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2273,6 +2324,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2317,6 +2369,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2363,6 +2416,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2407,6 +2461,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2450,6 +2505,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2494,6 +2550,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2509,6 +2566,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 226,
         "section": "Chapter 11: Spells — Spell Descriptions — Conjure Minor Elementals"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.conjure-volley",
+    "name": "Conjure Volley",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "one piece of ammunition or one thrown weapon",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 226,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Volley"
       }
     ]
   },
@@ -2538,6 +2639,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2553,6 +2655,96 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 226,
         "section": "Chapter 11: Spells — Spell Descriptions — Conjure Woodland Beings"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.contact-other-plane",
+    "name": "Contact Other Plane",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 226,
+        "section": "Chapter 11: Spells — Spell Descriptions — Contact Other Plane"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.contagion",
+    "name": "Contagion",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 7,
+      "unit": "Day"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 227,
+        "section": "Chapter 11: Spells — Spell Descriptions — Contagion"
       }
     ]
   },
@@ -2582,6 +2774,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": true,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2626,6 +2819,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -2671,6 +2865,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -2714,6 +2909,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2759,6 +2955,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2803,6 +3000,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2818,6 +3016,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 229,
         "section": "Chapter 11: Spells — Spell Descriptions — Create or Destroy Water"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.creation",
+    "name": "Creation",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a tiny piece of matter of the same type of the item you plan to create",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 229,
+        "section": "Chapter 11: Spells — Spell Descriptions — Creation"
       }
     ]
   },
@@ -2847,6 +3090,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2893,6 +3137,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -2936,6 +3181,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -2983,6 +3229,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3028,6 +3275,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -3073,6 +3321,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -3119,6 +3368,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -3166,6 +3416,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -3181,6 +3432,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 230,
         "section": "Chapter 11: Spells — Spell Descriptions — Death Ward"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.destructive-wave",
+    "name": "Destructive Wave",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 231,
+        "section": "Chapter 11: Spells — Spell Descriptions — Destructive Wave"
       }
     ]
   },
@@ -3210,6 +3505,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -3254,6 +3550,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -3303,6 +3600,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -3349,6 +3647,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3394,6 +3693,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -3440,6 +3740,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -3456,6 +3757,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 233,
         "section": "Chapter 11: Spells — Spell Descriptions — Disguise Self"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.dispel-evil-and-good",
+    "name": "Dispel Evil and Good",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "holy water or powdered silver and iron",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 233,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dispel Evil and Good"
       }
     ]
   },
@@ -3485,6 +3831,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -3534,6 +3881,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -3577,6 +3925,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -3620,6 +3969,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3663,6 +4013,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3678,6 +4029,98 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 234,
         "section": "Chapter 11: Spells — Spell Descriptions — Dominate Beast"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.dominate-person",
+    "name": "Dominate Person",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 235,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dominate Person"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.dream",
+    "name": "Dream",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Special",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a handful of sand, a dab of ink, and a writing quill plucked from a sleeping bird",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 236,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dream"
       }
     ]
   },
@@ -3707,6 +4150,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -3750,6 +4194,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -3793,6 +4238,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3836,6 +4282,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3882,6 +4329,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3926,6 +4374,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -3969,6 +4418,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4012,6 +4462,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -4056,6 +4507,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4099,6 +4551,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -4144,6 +4597,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -4187,6 +4641,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4231,6 +4686,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -4275,6 +4731,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4321,6 +4778,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -4366,6 +4824,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -4412,6 +4871,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -4455,6 +4915,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -4498,6 +4959,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -4543,6 +5005,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -4587,6 +5050,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
@@ -4630,6 +5094,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -4674,6 +5139,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -4688,6 +5154,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 242,
         "section": "Chapter 11: Spells — Spell Descriptions — Flame Blade"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.flame-strike",
+    "name": "Flame Strike",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "pinch of sulfur",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 242,
+        "section": "Chapter 11: Spells — Spell Descriptions — Flame Strike"
       }
     ]
   },
@@ -4717,6 +5227,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4761,6 +5272,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -4806,6 +5318,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4852,6 +5365,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -4898,6 +5412,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4944,6 +5459,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -4960,6 +5476,54 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 244,
         "section": "Chapter 11: Spells — Spell Descriptions — Gaseous Form"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.geas",
+    "name": "Geas",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 30,
+      "unit": "Day"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 244,
+        "section": "Chapter 11: Spells — Spell Descriptions — Geas"
       }
     ]
   },
@@ -4989,6 +5553,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
@@ -5033,6 +5598,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -5076,6 +5642,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": true,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -5121,6 +5688,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -5165,6 +5733,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5209,6 +5778,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -5252,6 +5822,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5297,6 +5868,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -5340,6 +5912,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5384,6 +5957,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -5427,6 +6001,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5472,6 +6047,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5515,6 +6091,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 24,
@@ -5561,6 +6138,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5605,6 +6183,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -5650,6 +6229,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5694,6 +6274,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -5737,6 +6318,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5781,6 +6363,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5824,6 +6407,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5872,6 +6456,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5915,6 +6500,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -5958,6 +6544,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -6004,6 +6591,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6049,6 +6637,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6093,6 +6682,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
@@ -6138,6 +6728,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6181,6 +6772,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -6227,6 +6819,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -6273,6 +6866,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6318,6 +6912,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6361,6 +6956,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -6405,6 +7001,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6452,6 +7049,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -6496,6 +7094,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -6542,6 +7141,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -6585,6 +7185,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6629,6 +7230,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6674,6 +7276,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -6722,6 +7325,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -6770,6 +7374,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -6816,6 +7421,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -6860,6 +7466,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -6906,6 +7513,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -6952,6 +7560,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -6996,6 +7605,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": true,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -7040,6 +7650,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -7084,6 +7695,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -7130,6 +7742,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -7173,6 +7786,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -7217,6 +7831,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -7260,6 +7875,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -7307,6 +7923,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -7352,6 +7969,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -7398,6 +8016,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -7443,6 +8062,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -7488,6 +8108,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -7531,6 +8152,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -7574,6 +8196,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 24,
@@ -7617,6 +8240,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 8,
@@ -7662,6 +8286,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 24,
@@ -7705,6 +8330,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -7748,6 +8374,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -7792,6 +8419,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -7837,6 +8465,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -7880,6 +8509,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -7923,6 +8553,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -7967,6 +8598,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8013,6 +8645,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -8059,6 +8692,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8102,6 +8736,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": true,
       "amount": 1,
@@ -8148,6 +8783,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
@@ -8191,6 +8827,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -8237,6 +8874,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -8283,6 +8921,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -8329,6 +8968,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8374,6 +9014,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -8418,6 +9059,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8462,6 +9104,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8506,6 +9149,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8552,6 +9196,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -8596,6 +9241,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8640,6 +9286,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -8683,6 +9330,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8726,6 +9374,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -8769,6 +9418,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8813,6 +9463,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -8856,6 +9507,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -8901,6 +9553,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -8946,6 +9599,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -8992,6 +9646,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -9036,6 +9691,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -9080,6 +9736,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -9123,6 +9780,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -9167,6 +9825,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -9212,6 +9871,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -9257,6 +9917,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -9302,6 +9963,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -9347,6 +10009,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -9391,6 +10054,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -9434,6 +10098,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
@@ -9479,6 +10144,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
@@ -9523,6 +10189,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
@@ -9567,6 +10234,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -9612,6 +10280,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -9656,6 +10325,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 10,
@@ -9699,6 +10369,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -9742,6 +10413,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -9785,6 +10457,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -9830,6 +10503,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -9875,6 +10549,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -9921,6 +10596,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 8,
@@ -9967,6 +10643,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10011,6 +10688,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -10054,6 +10732,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": true,
       "amount": 1,
@@ -10097,6 +10776,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -10140,6 +10820,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10183,6 +10864,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -10229,6 +10911,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -10276,6 +10959,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10322,6 +11006,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -10367,6 +11052,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10411,6 +11097,7 @@
     "duration": {
       "isInstantaneous": true,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": null,
@@ -10454,6 +11141,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10499,6 +11187,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -10542,6 +11231,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 24,
@@ -10587,6 +11277,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 1,
@@ -10632,6 +11323,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10676,6 +11368,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10719,6 +11412,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10764,6 +11458,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": true,
       "isUpTo": true,
       "amount": 1,
@@ -10807,6 +11502,7 @@
     "duration": {
       "isInstantaneous": false,
       "isUntilDispelled": false,
+      "isSpecial": false,
       "requiresConcentration": false,
       "isUpTo": false,
       "amount": 10,
