@@ -39,14 +39,13 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2241 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2260 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
-second-level, and all 50 third-level spells are built, plus the first 24
-of the PHB's 35 fourth-level spells (batches A–D and D–I) — 222 in total.
-Only the L–W batch of level 4 remains; levels 5–9 are not started.**
+second-level, all 50 third-level, and all 35 fourth-level spells are
+built — 233 in total. Levels 5–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -158,6 +157,17 @@ Each batch drove schema additions from real content, never anticipation:
   caught by the same `sorted?` check every batch runs before the gate, not
   by a human reviewer. The check exists precisely for this: verify it after
   every batch, not just when something looks off.
+- **4th L–W (closing the level):** one decline. Leomund's Secret Chest
+  prints **two separately-costed material items** in one description — a
+  5,000 gp chest and a 50 gp replica, both required — not one figure or a
+  per-item cost like Warding Bond's. No single number represents "the"
+  cost, so `MaterialCostGoldPieces` stays null rather than picking one of
+  the two figures: the same partial-decline shape Plant Growth's compound
+  casting time used at third level, now the second instance of the same
+  pattern. Locate Creature reaches six classes, matching Hold Person's
+  second-level widest membership. Fourth level closed at exactly 35 — the
+  class-list appendix union predicted this before any L–W spell was read,
+  the same way third level's did.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the

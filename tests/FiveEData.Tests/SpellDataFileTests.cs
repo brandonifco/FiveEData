@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(222, LoadCanonical().Count);
+        Assert.Equal(233, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -25,17 +25,14 @@ public sealed class SpellDataFileTests
             50,
             LoadCanonical().Count(spell => spell.Level == 3));
         Assert.Equal(
-            24,
+            35,
             LoadCanonical().Count(spell => spell.Level == 4));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsThroughFourthLevelForNow()
     {
-        // Levels 5-9 are not built yet. Levels 0-3 are complete; level 4 is
-        // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-D and D-I batches, 24 of the PHB's 35 fourth-level
-        // spells.
+        // Levels 5-9 are not built yet. Levels 0-4 are all complete.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 4));
@@ -340,12 +337,12 @@ public sealed class SpellDataFileTests
     }
 
     // The class spell list appendix (pp.207-210) gives a 4th-level union of
-    // 35 spells across the 8 classes - down from 3rd level's 50, the trend
-    // continuing as half-casters (Paladin, Ranger) and Warlock's Pact Magic
-    // approach their 5th-level cap. This pins the A-D and D-I batches; the
-    // L-W batch will complete the list at 35.
+    // 35 spells across the 8 classes, built across three alphabetical
+    // batches (A-D, D-I, L-W) - down from 3rd level's 50, the trend driven
+    // by half-casters (Paladin, Ranger) and Warlock's Pact Magic
+    // approaching their 5th-level cap.
     [Fact]
-    public void FourthLevelSpellIdsBuiltSoFar()
+    public void FourthLevelContainsExactlyThePhbsThirtyFiveSpells()
     {
         Assert.Equal(
             [
@@ -372,11 +369,83 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.greater-invisibility",
                 "dnd5e2014.spell.guardian-of-faith",
                 "dnd5e2014.spell.hallucinatory-terrain",
-                "dnd5e2014.spell.ice-storm"
+                "dnd5e2014.spell.ice-storm",
+                "dnd5e2014.spell.leomunds-secret-chest",
+                "dnd5e2014.spell.locate-creature",
+                "dnd5e2014.spell.mordenkainens-faithful-hound",
+                "dnd5e2014.spell.mordenkainens-private-sanctum",
+                "dnd5e2014.spell.otilukes-resilient-sphere",
+                "dnd5e2014.spell.phantasmal-killer",
+                "dnd5e2014.spell.polymorph",
+                "dnd5e2014.spell.staggering-smite",
+                "dnd5e2014.spell.stone-shape",
+                "dnd5e2014.spell.stoneskin",
+                "dnd5e2014.spell.wall-of-fire"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 4)
                 .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Read off the eight class spell lists on pp.207-210, whose 4th-level
+    // sections hold 8/8/16/6/5/10/4/23 entries; their union is 35.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 8)]
+    [InlineData("dnd5e2014.class.cleric", 8)]
+    [InlineData("dnd5e2014.class.druid", 16)]
+    [InlineData("dnd5e2014.class.paladin", 6)]
+    [InlineData("dnd5e2014.class.ranger", 5)]
+    [InlineData("dnd5e2014.class.sorcerer", 10)]
+    [InlineData("dnd5e2014.class.warlock", 4)]
+    [InlineData("dnd5e2014.class.wizard", 23)]
+    public void ClassFourthLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 4
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
+    }
+
+    // Leomund's Secret Chest prints two separately-costed material items in
+    // one description - the 5,000 gp chest and its 50 gp replica - rather
+    // than one figure or a per-item cost like Warding Bond's. No single
+    // number represents "the" cost, so MaterialCostGoldPieces is declined
+    // (left null) rather than picking one of the two figures, the same
+    // partial-decline shape Plant Growth's compound casting time used.
+    [Fact]
+    public void LeomundsSecretChestDeclinesItsTwoPartMaterialCost()
+    {
+        SpellComponents components =
+            Get("dnd5e2014.spell.leomunds-secret-chest").Components;
+
+        Assert.True(components.Material);
+        Assert.Null(components.MaterialCostGoldPieces);
+        Assert.False(components.MaterialIsConsumed);
+        Assert.Contains("5,000 gp", components.MaterialDescription!);
+        Assert.Contains("50 gp", components.MaterialDescription!);
+    }
+
+    // Locate Creature reaches six classes, the widest 4th-level membership
+    // in the book - matching Hold Person's six at second level.
+    [Fact]
+    public void LocateCreatureIsAvailableToSixClasses()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.class.bard",
+                "dnd5e2014.class.cleric",
+                "dnd5e2014.class.druid",
+                "dnd5e2014.class.paladin",
+                "dnd5e2014.class.ranger",
+                "dnd5e2014.class.wizard"
+            ],
+            Get("dnd5e2014.spell.locate-creature").AvailableToClassIds
+                .Select(id => id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
     }
 
@@ -398,6 +467,15 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.guardian-of-faith", "Guardian of Faith", "conjuration", 246)]
     [InlineData("dnd5e2014.spell.hallucinatory-terrain", "Hallucinatory Terrain", "illusion", 249)]
     [InlineData("dnd5e2014.spell.ice-storm", "Ice Storm", "evocation", 252)]
+    [InlineData("dnd5e2014.spell.leomunds-secret-chest", "Leomund's Secret Chest", "conjuration", 254)]
+    [InlineData("dnd5e2014.spell.locate-creature", "Locate Creature", "divination", 256)]
+    [InlineData("dnd5e2014.spell.mordenkainens-faithful-hound", "Mordenkainen's Faithful Hound", "conjuration", 261)]
+    [InlineData("dnd5e2014.spell.otilukes-resilient-sphere", "Otiluke's Resilient Sphere", "evocation", 265)]
+    [InlineData("dnd5e2014.spell.phantasmal-killer", "Phantasmal Killer", "illusion", 266)]
+    [InlineData("dnd5e2014.spell.polymorph", "Polymorph", "transmutation", 266)]
+    [InlineData("dnd5e2014.spell.staggering-smite", "Staggering Smite", "evocation", 278)]
+    [InlineData("dnd5e2014.spell.stoneskin", "Stoneskin", "abjuration", 278)]
+    [InlineData("dnd5e2014.spell.wall-of-fire", "Wall of Fire", "evocation", 285)]
     public void FourthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -761,6 +839,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.revivify",
+                "dnd5e2014.spell.stoneskin",
                 "dnd5e2014.spell.warding-bond"
             ],
             LoadCanonical()
@@ -979,6 +1058,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.fabricate",
                 "dnd5e2014.spell.find-steed",
                 "dnd5e2014.spell.hallucinatory-terrain",
+                "dnd5e2014.spell.mordenkainens-private-sanctum",
                 "dnd5e2014.spell.prayer-of-healing"
             ],
             slow.Select(spell => spell.Id.Value));
