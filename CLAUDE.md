@@ -39,14 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2313 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2324 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, all 35 fourth-level, and all 42
-fifth-level spells are built — 275 in total. Levels 6–9 are not
-started.**
+fifth-level spells are built, plus the first 10 of the PHB's 31
+sixth-level spells (batch A–E) — 285 in total. The rest of level 6 (F–M,
+M–W) and all of levels 7–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -68,14 +69,16 @@ while concentration is always an "up to" duration.
 better, and third level's 50 (split A–C/D–H/L–P/R–W, ~12–13 per batch for
 tighter accuracy than the first two levels' ~15–16) confirmed the pattern a
 third time. `SpellDataFileTests` pins the exact built closure, so a partial
-level is asserted rather than implied. **Keep batching for levels 6–9.**
+level is asserted rather than implied. **Keep batching for levels 7–9.**
 Per-level union counts are **not monotonically declining**: 62/59/50 for
-1st–3rd, 35 at 4th, back up to **42 at 5th** — Paladin, Ranger, and
-Warlock's Pact Magic all still contribute at 5th level, since that's
-exactly where their lists cap out, not before it. The decline should
-resume at 6th, where those three classes stop contributing entirely.
-Verify the real count each level rather than assuming the trend — this
-file has been wrong about a "declining" pattern before.
+1st–3rd, 35 at 4th, back up to 42 at 5th, down to **31 at 6th**. Paladin
+and Ranger's lists really do stop entirely at 6th, as expected — but
+Warlock's Pact Magic *slots* cap at 5th level while the class's own spell
+list keeps going through 9th, for spells eligible as a Mystic Arcanum
+(one higher-level spell known and cast once per day with no matching
+slot). The file's earlier claim that all three classes would drop out
+together at 6th was wrong for Warlock specifically; verify the real
+count each level rather than assuming the trend.
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -225,8 +228,17 @@ Each batch drove schema additions from real content, never anticipation:
   closed at exactly 42 — the class-list appendix union predicted this
   before any R–W spell was read, matching third and fourth level's same
   pattern. **All five levels 1–5 are now complete: 275 spells total.**
-
-**Material cost and consumption are independent fields, and all four
+- **6th A–E:** one correction, no schema change. Drawmij's Instant
+  Summons is the first "Until dispelled" spell whose material cost isn't
+  paired with stated consumption — the PHB says a fresh sapphire is
+  needed each casting but never uses the word "consumes," so
+  `MaterialIsConsumed` stays `false` even though every prior
+  until-dispelled spell (Arcane Lock, Continual Flame, Glyph of Warding,
+  Hallow, Magic Mouth) was both costed *and* consumed. Contingency's
+  10-day duration rejoins the existing 10-day group (Gentle Repose,
+  Illusory Script) rather than adding a fourth span. Create Undead's
+  "150 gp black onyx stone for each corpse" stores 150, not a
+  multiplied total, the same per-item convention Warding Bond set.
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
 same at 100 gp, Illusory Script and Find Familiar both, and Protection from
 Evil and Good consumed with no stated cost. **Three** PHB phrasings carry a
@@ -275,9 +287,18 @@ trusting a count carried over from an earlier batch. The 4th-level union is
 6, Ranger 5, Sorcerer 10, Warlock 4, Wizard 23. The 5th-level union is
 **42 spells**; the per-class counts are Bard 16, Cleric 13, Druid 14,
 Paladin 6, Ranger 4, Sorcerer 11, Warlock 4, Wizard 23 — every list grew
-or held from 4th to 5th (this is each class's *last* level before
-Paladin/Ranger/Warlock's lists stop entirely), which is why the union rose
-instead of continuing to fall.
+or held from 4th to 5th, since it's Paladin and Ranger's *last* level
+before their lists stop entirely, which is why the union rose instead of
+continuing to fall. The 6th-level union is **31 spells**; the per-class
+counts are Bard 7, Cleric 10, Druid 9, Paladin 0, Ranger 0, Sorcerer 10,
+Warlock 8, Wizard 17. Paladin and Ranger drop to zero as expected, but
+**Warlock does not** — its 8 sixth-level entries are spells eligible for
+Mystic Arcanum (a feature that grants one 6th–9th-level spell known, cast
+once per day with no spell slot), even though Pact Magic's actual slots
+never exceed 5th level. Read this distinction again at 7th–9th: Warlock's
+per-level counts there come from the same Mystic Arcanum eligibility, not
+from slots, and should keep shrinking (one eligible spell learned per
+level from 11th to 17th) rather than tracking the full-caster pattern.
 
 **A duration unit does not imply a duration shape.** Shield and True Strike
 are both 1 round, but Shield's is flat while True Strike's is concentration

@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(275, LoadCanonical().Count);
+        Assert.Equal(285, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -30,15 +30,20 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             42,
             LoadCanonical().Count(spell => spell.Level == 5));
+        Assert.Equal(
+            10,
+            LoadCanonical().Count(spell => spell.Level == 6));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughFifthLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughSixthLevelForNow()
     {
-        // Levels 6-9 are not built yet. Levels 0-5 are all complete.
+        // Levels 7-9 are not built yet. Levels 0-5 are complete; level 6 is
+        // being added in alphabetical batches (see CLAUDE.md) and currently
+        // holds only the A-E batch, 10 of the PHB's 31 sixth-level spells.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 5));
+            spell => Assert.InRange(spell.Level, 0, 6));
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 2nd-level
@@ -178,12 +183,14 @@ public sealed class SpellDataFileTests
     // Glyph of Warding join them - both print "Until dispelled or
     // triggered", which maps to the same flag since it carries no span
     // either. Hallow is a plain "Until dispelled" with no trigger clause.
-    // All five are costed *and* consumed - so far the two facts have never
-    // come apart on an "until dispelled" spell - and Continual Flame
-    // carries a third PHB cost phrasing, "ruby dust worth 50 gp", with no
-    // "at least".
+    // All six are costed, and Continual Flame carries a third PHB cost
+    // phrasing, "ruby dust worth 50 gp", with no "at least". Drawmij's
+    // Instant Summons breaks the "always consumed" pattern the first five
+    // held: the PHB never uses the word "consumes" for its sapphire, only
+    // that a fresh one is needed each casting, so MaterialIsConsumed stays
+    // false rather than being inferred from that implication.
     [Fact]
-    public void UntilDispelledSpellsAreCostedAndConsumed()
+    public void UntilDispelledSpellsAreAllCostedButNotAllConsumed()
     {
         SpellDefinition[] dispelled = LoadCanonical()
             .Where(spell => spell.Duration.IsUntilDispelled)
@@ -194,6 +201,7 @@ public sealed class SpellDataFileTests
             [
                 "dnd5e2014.spell.arcane-lock",
                 "dnd5e2014.spell.continual-flame",
+                "dnd5e2014.spell.drawmijs-instant-summons",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.hallow",
                 "dnd5e2014.spell.magic-mouth"
@@ -207,7 +215,6 @@ public sealed class SpellDataFileTests
                 Assert.False(spell.Duration.IsInstantaneous);
                 Assert.Null(spell.Duration.Amount);
                 Assert.Null(spell.Duration.Unit);
-                Assert.True(spell.Components.MaterialIsConsumed);
                 Assert.NotNull(spell.Components.MaterialCostGoldPieces);
             });
 
@@ -227,6 +234,13 @@ public sealed class SpellDataFileTests
             50,
             Get("dnd5e2014.spell.continual-flame")
                 .Components.MaterialCostGoldPieces);
+        Assert.Equal(
+            1000,
+            Get("dnd5e2014.spell.drawmijs-instant-summons")
+                .Components.MaterialCostGoldPieces);
+        Assert.False(
+            Get("dnd5e2014.spell.drawmijs-instant-summons")
+                .Components.MaterialIsConsumed);
     }
 
     // Aid's 8 hours, Animal Messenger's 24 and Cordon of Arrows' 8 are flat
@@ -539,6 +553,64 @@ public sealed class SpellDataFileTests
                 .Count(spell => spell.Level == 5
                     && spell.AvailableToClassIds
                         .Any(id => id.Value == classId)));
+    }
+
+    // The class spell list appendix (pp.207-210) gives a 6th-level union of
+    // 31 spells across the 8 classes - down from 5th level's 42, as
+    // predicted: Paladin and Ranger's lists stop entirely at 5th. Warlock's
+    // Pact Magic slots also cap at 5th level, but the class's own spell
+    // list keeps going through 9th (for Mystic Arcanum, which grants one
+    // higher-level spell known without a matching slot) - a correction to
+    // this file's earlier assumption that all three classes would drop out
+    // together. This pins the A-E batch; later batches will extend the
+    // list until all 31 are built.
+    [Fact]
+    public void SixthLevelSpellIdsBuiltSoFar()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.arcane-gate",
+                "dnd5e2014.spell.blade-barrier",
+                "dnd5e2014.spell.chain-lightning",
+                "dnd5e2014.spell.circle-of-death",
+                "dnd5e2014.spell.conjure-fey",
+                "dnd5e2014.spell.contingency",
+                "dnd5e2014.spell.create-undead",
+                "dnd5e2014.spell.disintegrate",
+                "dnd5e2014.spell.drawmijs-instant-summons",
+                "dnd5e2014.spell.eyebite"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 6)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.arcane-gate", "Arcane Gate", "conjuration", 214)]
+    [InlineData("dnd5e2014.spell.blade-barrier", "Blade Barrier", "evocation", 218)]
+    [InlineData("dnd5e2014.spell.chain-lightning", "Chain Lightning", "evocation", 221)]
+    [InlineData("dnd5e2014.spell.circle-of-death", "Circle of Death", "necromancy", 221)]
+    [InlineData("dnd5e2014.spell.conjure-fey", "Conjure Fey", "conjuration", 226)]
+    [InlineData("dnd5e2014.spell.contingency", "Contingency", "evocation", 227)]
+    [InlineData("dnd5e2014.spell.create-undead", "Create Undead", "necromancy", 229)]
+    [InlineData("dnd5e2014.spell.disintegrate", "Disintegrate", "transmutation", 233)]
+    [InlineData("dnd5e2014.spell.drawmijs-instant-summons", "Drawmij's Instant Summons", "conjuration", 235)]
+    [InlineData("dnd5e2014.spell.eyebite", "Eyebite", "necromancy", 238)]
+    public void SixthLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(6, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
     }
 
     [Theory]
@@ -963,6 +1035,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
                 "dnd5e2014.spell.divination",
+                "dnd5e2014.spell.drawmijs-instant-summons",
                 "dnd5e2014.spell.feign-death",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.gentle-repose",
@@ -1056,9 +1129,13 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.augury",
                 "dnd5e2014.spell.awaken",
                 "dnd5e2014.spell.chromatic-orb",
+                "dnd5e2014.spell.circle-of-death",
                 "dnd5e2014.spell.clairvoyance",
+                "dnd5e2014.spell.contingency",
                 "dnd5e2014.spell.continual-flame",
+                "dnd5e2014.spell.create-undead",
                 "dnd5e2014.spell.divination",
+                "dnd5e2014.spell.drawmijs-instant-summons",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.greater-restoration",
@@ -1224,7 +1301,8 @@ public sealed class SpellDataFileTests
 
     // Illusory Script and Gentle Repose share the same 10-day span; Geas
     // (30 days) and Contagion (7 days) broke the "always 10" pattern at
-    // fifth level.
+    // fifth level. Contingency (10 days) rejoins the 10-day group at
+    // sixth.
     [Fact]
     public void DayLongDurationsCoverThreeDistinctSpans()
     {
@@ -1236,6 +1314,7 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.contagion",
+                "dnd5e2014.spell.contingency",
                 "dnd5e2014.spell.geas",
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.illusory-script"
@@ -1247,6 +1326,7 @@ public sealed class SpellDataFileTests
             spell => Assert.False(spell.Duration.RequiresConcentration));
 
         Assert.Equal(7, Get("dnd5e2014.spell.contagion").Duration.Amount);
+        Assert.Equal(10, Get("dnd5e2014.spell.contingency").Duration.Amount);
         Assert.Equal(30, Get("dnd5e2014.spell.geas").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.gentle-repose").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.illusory-script").Duration.Amount);
@@ -1299,6 +1379,7 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.clairvoyance",
+                "dnd5e2014.spell.contingency",
                 "dnd5e2014.spell.fabricate",
                 "dnd5e2014.spell.find-steed",
                 "dnd5e2014.spell.hallucinatory-terrain",
