@@ -39,14 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2194 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2199 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level and all 59
-second-level spells are built, plus the first 13 of the PHB's 50
-third-level spells (batch A–C) — 161 in total. The rest of level 3 and all
-of levels 4–9 are not started.**
+second-level spells are built, plus the first 25 of the PHB's 50
+third-level spells (batches A–C and D–H) — 173 in total. The rest of level
+3 (L–P and R–W) and all of levels 4–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -110,6 +110,13 @@ Each batch drove schema additions from real content, never anticipation:
   non-"up to" **1 minute** — the same flat-vs-concentration distinction
   Shield/True Strike already pinned at the Round unit, now shown at Minute
   too; no schema change needed since the shape already allows it.
+- **3rd D–H:** nothing either — the fourth schema-quiet batch. Glyph of
+  Warding's "Until dispelled or triggered" maps to the existing
+  `IsUntilDispelled` flag, the same call already made for Magic Mouth; no
+  new duration kind needed for a second termination condition. A re-read of
+  the class spell list appendix while placing Hypnotic Pattern caught a
+  column-boundary miss from the A–C batch: Wizard's 3rd-level count is 29,
+  not the 28 first recorded below — the per-class figures are corrected.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -149,10 +156,13 @@ union of all eight class lists is **59 spells**; the per-class counts are
 Bard 22, Cleric 17, Druid 18, Paladin 8, Ranger 13, Sorcerer 24, Warlock 12,
 Wizard 34. The 3rd-level union is **50 spells**; the per-class counts are
 Bard 16, Cleric 20, Druid 13, Paladin 10, Ranger 5, Sorcerer 20, Warlock 12,
-Wizard 28 — read off the same pp.207–210 appendix, whose PDF page number is
+Wizard 29 — read off the same pp.207–210 appendix, whose PDF page number is
 the printed page number **plus one** in the current
 `~/Downloads/Player's Handbook.pdf` (verify this offset again if the PDF is
-ever replaced).
+ever replaced). The Wizard figure was first recorded as 28 and corrected to
+29 during the D–H batch — a four-column class list page is genuinely easy
+to miss one line on; re-verify a list against the image again before
+trusting a count carried over from an earlier batch.
 
 **A duration unit does not imply a duration shape.** Shield and True Strike
 are both 1 round, but Shield's is flat while True Strike's is concentration

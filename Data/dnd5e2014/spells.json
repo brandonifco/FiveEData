@@ -2170,6 +2170,53 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.daylight",
+    "name": "Daylight",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.sorcerer"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 230,
+        "section": "Chapter 11: Spells — Spell Descriptions — Daylight"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.detect-evil-and-good",
     "name": "Detect Evil and Good",
     "level": 1,
@@ -2399,6 +2446,55 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.dispel-magic",
+    "name": "Dispel Magic",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 234,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dispel Magic"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.dissonant-whispers",
     "name": "Dissonant Whispers",
     "level": 1,
@@ -2567,6 +2663,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 237,
         "section": "Chapter 11: Spells — Spell Descriptions — Eldritch Blast"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.elemental-weapon",
+    "name": "Elemental Weapon",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 237,
+        "section": "Chapter 11: Spells — Spell Descriptions — Elemental Weapon"
       }
     ]
   },
@@ -2924,6 +3063,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.fear",
+    "name": "Fear",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Cone",
+      "areaSizeFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a white feather or the heart of a hen",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 239,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fear"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.feather-fall",
     "name": "Feather Fall",
     "level": 1,
@@ -2965,6 +3150,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 239,
         "section": "Chapter 11: Spells — Spell Descriptions — Feather Fall"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.feign-death",
+    "name": "Feign Death",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of graveyard dirt",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 240,
+        "section": "Chapter 11: Spells — Spell Descriptions — Feign Death"
       }
     ]
   },
@@ -3144,6 +3375,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.fireball",
+    "name": "Fireball",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a tiny ball of bat guano and sulfur",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 241,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fireball"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.flame-blade",
     "name": "Flame Blade",
     "level": 2,
@@ -3227,6 +3502,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 242,
         "section": "Chapter 11: Spells — Spell Descriptions — Flaming Sphere"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.fly",
+    "name": "Fly",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a wing feather from any bird",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 243,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fly"
       }
     ]
   },
@@ -3323,6 +3643,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.gaseous-form",
+    "name": "Gaseous Form",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of gauze and a wisp of smoke",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 244,
+        "section": "Chapter 11: Spells — Spell Descriptions — Gaseous Form"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.gentle-repose",
     "name": "Gentle Repose",
     "level": 2,
@@ -3363,6 +3728,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 245,
         "section": "Chapter 11: Spells — Spell Descriptions — Gentle Repose"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.glyph-of-warding",
+    "name": "Glyph of Warding",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "incense and powdered diamond worth at least 200 gp, which the spell consumes",
+      "materialCostGoldPieces": 200,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 245,
+        "section": "Chapter 11: Spells — Spell Descriptions — Glyph of Warding"
       }
     ]
   },
@@ -3625,6 +4035,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 249,
         "section": "Chapter 11: Spells — Spell Descriptions — Hail of Thorns"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.haste",
+    "name": "Haste",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a shaving of licorice root",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 250,
+        "section": "Chapter 11: Spells — Spell Descriptions — Haste"
       }
     ]
   },
@@ -3896,6 +4350,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.hunger-of-hadar",
+    "name": "Hunger of Hadar",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pickled octopus tentacle",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 251,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hunger of Hadar"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.hunters-mark",
     "name": "Hunter's Mark",
     "level": 1,
@@ -3935,6 +4432,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 251,
         "section": "Chapter 11: Spells — Spell Descriptions — Hunter's Mark"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hypnotic-pattern",
+    "name": "Hypnotic Pattern",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a glowing stick of incense or a crystal vial filled with phosphorescent material",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 252,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hypnotic Pattern"
       }
     ]
   },
