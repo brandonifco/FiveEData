@@ -310,6 +310,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.arcane-eye",
+    "name": "Arcane Eye",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of bat fur",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 214,
+        "section": "Chapter 11: Spells — Spell Descriptions — Arcane Eye"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.arcane-lock",
     "name": "Arcane Lock",
     "level": 2,
@@ -482,6 +525,92 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.aura-of-life",
+    "name": "Aura of Life",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 216,
+        "section": "Chapter 11: Spells — Spell Descriptions — Aura of Life"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.aura-of-purity",
+    "name": "Aura of Purity",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 216,
+        "section": "Chapter 11: Spells — Spell Descriptions — Aura of Purity"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.aura-of-vitality",
     "name": "Aura of Vitality",
     "level": 3,
@@ -565,6 +694,53 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 216,
         "section": "Chapter 11: Spells — Spell Descriptions — Bane"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.banishment",
+    "name": "Banishment",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "an item distasteful to the target",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 218,
+        "section": "Chapter 11: Spells — Spell Descriptions — Banishment"
       }
     ]
   },
@@ -831,6 +1007,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 219,
         "section": "Chapter 11: Spells — Spell Descriptions — Bless"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.blight",
+    "name": "Blight",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 219,
+        "section": "Chapter 11: Spells — Spell Descriptions — Blight"
       }
     ]
   },
@@ -1591,6 +1813,95 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.compulsion",
+    "name": "Compulsion",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 224,
+        "section": "Chapter 11: Spells — Spell Descriptions — Compulsion"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.confusion",
+    "name": "Confusion",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "three nut shells",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 224,
+        "section": "Chapter 11: Spells — Spell Descriptions — Confusion"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.conjure-animals",
     "name": "Conjure Animals",
     "level": 3,
@@ -1678,6 +1989,94 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.conjure-minor-elementals",
+    "name": "Conjure Minor Elementals",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 226,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Minor Elementals"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.conjure-woodland-beings",
+    "name": "Conjure Woodland Beings",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "one holly berry per creature summoned",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 226,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Woodland Beings"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.continual-flame",
     "name": "Continual Flame",
     "level": 2,
@@ -1718,6 +2117,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 227,
         "section": "Chapter 11: Spells — Spell Descriptions — Continual Flame"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.control-water",
+    "name": "Control Water",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 300,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a drop of water and a pinch of dust",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 227,
+        "section": "Chapter 11: Spells — Spell Descriptions — Control Water"
       }
     ]
   },
@@ -2217,6 +2661,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.death-ward",
+    "name": "Death Ward",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 230,
+        "section": "Chapter 11: Spells — Spell Descriptions — Death Ward"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.detect-evil-and-good",
     "name": "Detect Evil and Good",
     "level": 1,
@@ -2397,6 +2885,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 231,
         "section": "Chapter 11: Spells — Spell Descriptions — Detect Thoughts"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.dimension-door",
+    "name": "Dimension Door",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 500,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 233,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dimension Door"
       }
     ]
   },

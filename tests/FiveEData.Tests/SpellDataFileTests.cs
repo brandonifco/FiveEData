@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(198, LoadCanonical().Count);
+        Assert.Equal(210, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -24,15 +24,20 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             50,
             LoadCanonical().Count(spell => spell.Level == 3));
+        Assert.Equal(
+            12,
+            LoadCanonical().Count(spell => spell.Level == 4));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughThirdLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughFourthLevelForNow()
     {
-        // Levels 4-9 are not built yet. Levels 0-3 are all complete.
+        // Levels 5-9 are not built yet. Levels 0-3 are complete; level 4 is
+        // being added in alphabetical batches (see CLAUDE.md) and currently
+        // holds the A-D batch, 12 of the PHB's 35 fourth-level spells.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 3));
+            spell => Assert.InRange(spell.Level, 0, 4));
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 2nd-level
@@ -333,6 +338,61 @@ public sealed class SpellDataFileTests
                         .Any(id => id.Value == classId)));
     }
 
+    // The class spell list appendix (pp.207-210) gives a 4th-level union of
+    // 35 spells across the 8 classes - down from 3rd level's 50, the trend
+    // continuing as half-casters (Paladin, Ranger) and Warlock's Pact Magic
+    // approach their 5th-level cap. This pins the A-D batch; later batches
+    // will extend the list until all 35 are built.
+    [Fact]
+    public void FourthLevelSpellIdsBuiltSoFar()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.arcane-eye",
+                "dnd5e2014.spell.aura-of-life",
+                "dnd5e2014.spell.aura-of-purity",
+                "dnd5e2014.spell.banishment",
+                "dnd5e2014.spell.blight",
+                "dnd5e2014.spell.compulsion",
+                "dnd5e2014.spell.confusion",
+                "dnd5e2014.spell.conjure-minor-elementals",
+                "dnd5e2014.spell.conjure-woodland-beings",
+                "dnd5e2014.spell.control-water",
+                "dnd5e2014.spell.death-ward",
+                "dnd5e2014.spell.dimension-door"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 4)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.arcane-eye", "Arcane Eye", "divination", 214)]
+    [InlineData("dnd5e2014.spell.aura-of-life", "Aura of Life", "abjuration", 216)]
+    [InlineData("dnd5e2014.spell.banishment", "Banishment", "abjuration", 218)]
+    [InlineData("dnd5e2014.spell.blight", "Blight", "necromancy", 219)]
+    [InlineData("dnd5e2014.spell.confusion", "Confusion", "enchantment", 224)]
+    [InlineData("dnd5e2014.spell.conjure-woodland-beings", "Conjure Woodland Beings", "conjuration", 226)]
+    [InlineData("dnd5e2014.spell.control-water", "Control Water", "transmutation", 227)]
+    [InlineData("dnd5e2014.spell.death-ward", "Death Ward", "abjuration", 230)]
+    [InlineData("dnd5e2014.spell.dimension-door", "Dimension Door", "conjuration", 233)]
+    public void FourthLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(4, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
     [Theory]
     [InlineData("dnd5e2014.spell.animate-dead", "Animate Dead", "necromancy", 212)]
     [InlineData("dnd5e2014.spell.aura-of-vitality", "Aura of Vitality", "evocation", 216)]
@@ -616,6 +676,8 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.arms-of-hadar",
+                "dnd5e2014.spell.aura-of-life",
+                "dnd5e2014.spell.aura-of-purity",
                 "dnd5e2014.spell.aura-of-vitality",
                 "dnd5e2014.spell.burning-hands",
                 "dnd5e2014.spell.color-spray",

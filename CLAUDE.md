@@ -39,13 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2223 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2233 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
-second-level, and all 50 third-level spells are built — 198 in total.
-Levels 4–9 are not started.**
+second-level, and all 50 third-level spells are built, plus the first 12
+of the PHB's 35 fourth-level spells (batch A–D) — 210 in total. The rest
+of level 4 (D–I and L–W) and all of levels 5–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -67,7 +68,12 @@ while concentration is always an "up to" duration.
 better, and third level's 50 (split A–C/D–H/L–P/R–W, ~12–13 per batch for
 tighter accuracy than the first two levels' ~15–16) confirmed the pattern a
 third time. `SpellDataFileTests` pins the exact built closure, so a partial
-level is asserted rather than implied. **Keep batching for levels 4–9.**
+level is asserted rather than implied. **Keep batching for levels 5–9.**
+Per-level union counts keep dropping as the levels climb — 62/59/50 for
+1st–3rd, **35 at 4th** — because Paladin, Ranger, and Warlock's Pact Magic
+all stop contributing once their lists cap out (5th-level spells for all
+three), shrinking the union from 8 contributing class lists toward the full
+casters only.
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -138,6 +144,11 @@ Each batch drove schema additions from real content, never anticipation:
   levels now). Third level is closed at exactly 50 — the class-list
   appendix union predicted this count before any R–W spell was read, and
   it held.
+- **4th A–D:** nothing — the fifth schema-quiet batch. Dimension Door is
+  Verbal-only, but that combination already existed (26 spells now); no new
+  fact, so it earns no pinning test. Aura of Life and Aura of Purity reuse
+  `SpellAreaShape.Radius` at 30 feet, the same shape Aura of Vitality
+  already established.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -183,7 +194,11 @@ the printed page number **plus one** in the current
 ever replaced). The Wizard figure was first recorded as 28 and corrected to
 29 during the D–H batch — a four-column class list page is genuinely easy
 to miss one line on; re-verify a list against the image again before
-trusting a count carried over from an earlier batch.
+trusting a count carried over from an earlier batch. The 4th-level union is
+**35 spells**; the per-class counts are Bard 8, Cleric 8, Druid 16, Paladin
+6, Ranger 5, Sorcerer 10, Warlock 4, Wizard 23 — the first level where
+Paladin, Ranger, and Warlock's lists (all capped at or below 5th-level
+spells) stop widening the union as much as the full casters do.
 
 **A duration unit does not imply a duration shape.** Shield and True Strike
 are both 1 round, but Shield's is flat while True Strike's is concentration
