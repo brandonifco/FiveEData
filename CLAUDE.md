@@ -39,15 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2324 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2332 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, all 35 fourth-level, and all 42
-fifth-level spells are built, plus the first 10 of the PHB's 31
-sixth-level spells (batch A–E) — 285 in total. The rest of level 6 (F–M,
-M–W) and all of levels 7–9 are not started.**
+fifth-level spells are built, plus the first 20 of the PHB's 31
+sixth-level spells (batches A–E and F–M) — 295 in total. Only the M–W
+batch of level 6 remains; levels 7–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -239,6 +239,17 @@ Each batch drove schema additions from real content, never anticipation:
   Illusory Script) rather than adding a fourth span. Create Undead's
   "150 gp black onyx stone for each corpse" stores 150, not a
   multiplied total, the same per-item convention Warding Bond set.
+- **6th F–M:** nothing structurally new, but two independent facts
+  finally break apart on the same feature. Find the Path is the first
+  Day-unit duration that requires concentration ("Concentration, up to
+  1 day"), while Forbiddance stays a flat "1 day" — the same
+  unit-doesn't-imply-shape distinction Shield/True Strike already pin at
+  the Round unit. Magic Jar is the second "Until dispelled" spell (after
+  Drawmij's Instant Summons) that's costed without being stated as
+  consumed. Mass Suggestion (V+M, no S) is the seventh spell on that
+  combination.
+
+**Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
 same at 100 gp, Illusory Script and Find Familiar both, and Protection from
 Evil and Good consumed with no stated cost. **Three** PHB phrasings carry a

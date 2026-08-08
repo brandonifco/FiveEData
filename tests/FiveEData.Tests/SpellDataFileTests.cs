@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(285, LoadCanonical().Count);
+        Assert.Equal(295, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -31,7 +31,7 @@ public sealed class SpellDataFileTests
             42,
             LoadCanonical().Count(spell => spell.Level == 5));
         Assert.Equal(
-            10,
+            20,
             LoadCanonical().Count(spell => spell.Level == 6));
     }
 
@@ -40,7 +40,8 @@ public sealed class SpellDataFileTests
     {
         // Levels 7-9 are not built yet. Levels 0-5 are complete; level 6 is
         // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds only the A-E batch, 10 of the PHB's 31 sixth-level spells.
+        // holds the A-E and F-M batches, 20 of the PHB's 31 sixth-level
+        // spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 6));
@@ -183,12 +184,13 @@ public sealed class SpellDataFileTests
     // Glyph of Warding join them - both print "Until dispelled or
     // triggered", which maps to the same flag since it carries no span
     // either. Hallow is a plain "Until dispelled" with no trigger clause.
-    // All six are costed, and Continual Flame carries a third PHB cost
+    // All seven are costed, and Continual Flame carries a third PHB cost
     // phrasing, "ruby dust worth 50 gp", with no "at least". Drawmij's
-    // Instant Summons breaks the "always consumed" pattern the first five
-    // held: the PHB never uses the word "consumes" for its sapphire, only
-    // that a fresh one is needed each casting, so MaterialIsConsumed stays
-    // false rather than being inferred from that implication.
+    // Instant Summons and Magic Jar both break the "always consumed"
+    // pattern the first five held: neither spell's material description
+    // uses the word "consumes" (a fresh sapphire is needed each casting
+    // for one; the other's container is never described as used up), so
+    // MaterialIsConsumed stays false for both rather than being inferred.
     [Fact]
     public void UntilDispelledSpellsAreAllCostedButNotAllConsumed()
     {
@@ -204,6 +206,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.drawmijs-instant-summons",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.hallow",
+                "dnd5e2014.spell.magic-jar",
                 "dnd5e2014.spell.magic-mouth"
             ],
             dispelled.Select(spell => spell.Id.Value));
@@ -240,6 +243,13 @@ public sealed class SpellDataFileTests
                 .Components.MaterialCostGoldPieces);
         Assert.False(
             Get("dnd5e2014.spell.drawmijs-instant-summons")
+                .Components.MaterialIsConsumed);
+        Assert.Equal(
+            500,
+            Get("dnd5e2014.spell.magic-jar")
+                .Components.MaterialCostGoldPieces);
+        Assert.False(
+            Get("dnd5e2014.spell.magic-jar")
                 .Components.MaterialIsConsumed);
     }
 
@@ -562,8 +572,8 @@ public sealed class SpellDataFileTests
     // list keeps going through 9th (for Mystic Arcanum, which grants one
     // higher-level spell known without a matching slot) - a correction to
     // this file's earlier assumption that all three classes would drop out
-    // together. This pins the A-E batch; later batches will extend the
-    // list until all 31 are built.
+    // together. This pins the A-E and F-M batches; the M-W batch will
+    // complete the list at 31.
     [Fact]
     public void SixthLevelSpellIdsBuiltSoFar()
     {
@@ -578,7 +588,17 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.create-undead",
                 "dnd5e2014.spell.disintegrate",
                 "dnd5e2014.spell.drawmijs-instant-summons",
-                "dnd5e2014.spell.eyebite"
+                "dnd5e2014.spell.eyebite",
+                "dnd5e2014.spell.find-the-path",
+                "dnd5e2014.spell.flesh-to-stone",
+                "dnd5e2014.spell.forbiddance",
+                "dnd5e2014.spell.globe-of-invulnerability",
+                "dnd5e2014.spell.guards-and-wards",
+                "dnd5e2014.spell.harm",
+                "dnd5e2014.spell.heal",
+                "dnd5e2014.spell.heroes-feast",
+                "dnd5e2014.spell.magic-jar",
+                "dnd5e2014.spell.mass-suggestion"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 6)
@@ -597,6 +617,14 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.disintegrate", "Disintegrate", "transmutation", 233)]
     [InlineData("dnd5e2014.spell.drawmijs-instant-summons", "Drawmij's Instant Summons", "conjuration", 235)]
     [InlineData("dnd5e2014.spell.eyebite", "Eyebite", "necromancy", 238)]
+    [InlineData("dnd5e2014.spell.find-the-path", "Find the Path", "divination", 240)]
+    [InlineData("dnd5e2014.spell.flesh-to-stone", "Flesh to Stone", "transmutation", 243)]
+    [InlineData("dnd5e2014.spell.forbiddance", "Forbiddance", "abjuration", 243)]
+    [InlineData("dnd5e2014.spell.globe-of-invulnerability", "Globe of Invulnerability", "abjuration", 245)]
+    [InlineData("dnd5e2014.spell.guards-and-wards", "Guards and Wards", "abjuration", 248)]
+    [InlineData("dnd5e2014.spell.heroes-feast", "Heroes' Feast", "conjuration", 250)]
+    [InlineData("dnd5e2014.spell.magic-jar", "Magic Jar", "necromancy", 257)]
+    [InlineData("dnd5e2014.spell.mass-suggestion", "Mass Suggestion", "enchantment", 258)]
     public void SixthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -1038,6 +1066,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.drawmijs-instant-summons",
                 "dnd5e2014.spell.feign-death",
                 "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.forbiddance",
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
@@ -1083,6 +1112,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.conjure-barrage",
                 "dnd5e2014.spell.destructive-wave",
                 "dnd5e2014.spell.fear",
+                "dnd5e2014.spell.globe-of-invulnerability",
                 "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.leomunds-tiny-hut",
                 "dnd5e2014.spell.lightning-bolt",
@@ -1137,12 +1167,17 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.divination",
                 "dnd5e2014.spell.drawmijs-instant-summons",
                 "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.find-the-path",
+                "dnd5e2014.spell.forbiddance",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.greater-restoration",
+                "dnd5e2014.spell.guards-and-wards",
                 "dnd5e2014.spell.hallow",
+                "dnd5e2014.spell.heroes-feast",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
                 "dnd5e2014.spell.magic-circle",
+                "dnd5e2014.spell.magic-jar",
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.planar-binding",
@@ -1302,7 +1337,12 @@ public sealed class SpellDataFileTests
     // Illusory Script and Gentle Repose share the same 10-day span; Geas
     // (30 days) and Contagion (7 days) broke the "always 10" pattern at
     // fifth level. Contingency (10 days) rejoins the 10-day group at
-    // sixth.
+    // sixth. Find the Path is the first Day-unit duration that requires
+    // concentration ("Concentration, up to 1 day") rather than being a
+    // flat span - the same distinction Shield/True Strike already pin at
+    // the Round unit, now shown at Day too; Forbiddance stays flat at 1
+    // day, so the two facts (unit vs. concentration) are independent here
+    // as well.
     [Fact]
     public void DayLongDurationsCoverThreeDistinctSpans()
     {
@@ -1315,21 +1355,31 @@ public sealed class SpellDataFileTests
             [
                 "dnd5e2014.spell.contagion",
                 "dnd5e2014.spell.contingency",
+                "dnd5e2014.spell.find-the-path",
+                "dnd5e2014.spell.forbiddance",
                 "dnd5e2014.spell.geas",
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.illusory-script"
             ],
             days.Select(spell => spell.Id.Value));
 
-        Assert.All(
-            days,
-            spell => Assert.False(spell.Duration.RequiresConcentration));
-
         Assert.Equal(7, Get("dnd5e2014.spell.contagion").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.contingency").Duration.Amount);
         Assert.Equal(30, Get("dnd5e2014.spell.geas").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.gentle-repose").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.illusory-script").Duration.Amount);
+
+        SpellDuration findThePath = Get("dnd5e2014.spell.find-the-path")
+            .Duration;
+        Assert.Equal(1, findThePath.Amount);
+        Assert.True(findThePath.RequiresConcentration);
+        Assert.True(findThePath.IsUpTo);
+
+        SpellDuration forbiddance = Get("dnd5e2014.spell.forbiddance")
+            .Duration;
+        Assert.Equal(1, forbiddance.Amount);
+        Assert.False(forbiddance.RequiresConcentration);
+        Assert.False(forbiddance.IsUpTo);
     }
 
     // Gust of Wind drove the Line area shape at second level; Lightning
@@ -1382,7 +1432,10 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.contingency",
                 "dnd5e2014.spell.fabricate",
                 "dnd5e2014.spell.find-steed",
+                "dnd5e2014.spell.forbiddance",
+                "dnd5e2014.spell.guards-and-wards",
                 "dnd5e2014.spell.hallucinatory-terrain",
+                "dnd5e2014.spell.heroes-feast",
                 "dnd5e2014.spell.legend-lore",
                 "dnd5e2014.spell.mordenkainens-private-sanctum",
                 "dnd5e2014.spell.prayer-of-healing",
@@ -1434,10 +1487,10 @@ public sealed class SpellDataFileTests
     }
 
     // Verbal and material with no somatic component is the rarest of the
-    // six V/S/M combinations the built set uses - six spells across five
-    // levels, Tongues joining at third and Teleportation Circle at fifth.
-    // Pinned because a reader scanning components is prone to assume
-    // material implies somatic.
+    // six V/S/M combinations the built set uses - seven spells across six
+    // levels, Tongues joining at third, Teleportation Circle at fifth, and
+    // Mass Suggestion at sixth. Pinned because a reader scanning
+    // components is prone to assume material implies somatic.
     [Fact]
     public void VerbalAndMaterialWithoutSomaticIsTheRarestCombination()
     {
@@ -1446,6 +1499,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.darkness",
                 "dnd5e2014.spell.feather-fall",
                 "dnd5e2014.spell.light",
+                "dnd5e2014.spell.mass-suggestion",
                 "dnd5e2014.spell.suggestion",
                 "dnd5e2014.spell.teleportation-circle",
                 "dnd5e2014.spell.tongues"
