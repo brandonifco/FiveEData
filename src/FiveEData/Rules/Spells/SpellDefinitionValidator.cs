@@ -98,11 +98,18 @@ internal static class SpellDefinitionValidator
     {
         SpellDuration duration = definition.Duration;
 
-        if (duration.IsInstantaneous && duration.IsUntilDispelled)
+        int exclusiveKindCount = new[]
+        {
+            duration.IsInstantaneous,
+            duration.IsUntilDispelled,
+            duration.IsSpecial
+        }.Count(isKind => isKind);
+
+        if (exclusiveKindCount > 1)
         {
             errors.Add(
-                "A spell duration must not be both instantaneous and " +
-                "until dispelled.");
+                "A spell duration must be at most one of instantaneous, " +
+                "until dispelled, or special.");
             return;
         }
 
@@ -119,6 +126,25 @@ internal static class SpellDefinitionValidator
             {
                 errors.Add(
                     "An \"until dispelled\" spell must not require " +
+                    "concentration or be an \"up to\" duration.");
+            }
+
+            return;
+        }
+
+        if (duration.IsSpecial)
+        {
+            if (duration.Amount is not null || duration.Unit is not null)
+            {
+                errors.Add(
+                    "A \"special\" duration spell must not specify a " +
+                    "duration amount or unit.");
+            }
+
+            if (duration.RequiresConcentration || duration.IsUpTo)
+            {
+                errors.Add(
+                    "A \"special\" duration spell must not require " +
                     "concentration or be an \"up to\" duration.");
             }
 

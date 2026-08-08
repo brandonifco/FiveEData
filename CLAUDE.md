@@ -39,15 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2269 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2285 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, and all 35 fourth-level spells are
-built, plus the first 11 of the PHB's 42 fifth-level spells (batch A–C) —
-244 in total. The rest of level 5 (C–G, G–P, R–W) and all of levels 6–9
-are not started.**
+built, plus the first 21 of the PHB's 42 fifth-level spells (batches A–C
+and C–G) — 254 in total. The rest of level 5 (G–P, R–W) and all of levels
+6–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -179,6 +179,32 @@ Each batch drove schema additions from real content, never anticipation:
   the same non-event as Find Steed's 10-minute amount at first level.
   Antilife Shell and Circle of Power reuse `SpellAreaShape.Radius`, and
   Cone of Cold reuses `Cone`, both already-established shapes.
+- **5th C–G:** the busiest batch since first level. Creation prints
+  **"Duration: Special"** (the real duration is a table keyed by the
+  material created, 1 day down to 1 minute) and Dream prints **"Range:
+  Special"** (reach is "same plane of existence as the target," a
+  conditional rule, not a distance). Both got a proper flag —
+  `SpellDuration.IsSpecial` and `SpellRangeKind.Special` — rather than a
+  per-spell hack, the same "carries no amount/unit of its own" shape
+  `IsUntilDispelled` already established; the validator now caps
+  Instantaneous/UntilDispelled/Special at one true flag instead of two.
+  **Adding `IsSpecial` as `[JsonRequired]` meant every one of the 244
+  already-built spells needed the field added to stay loadable** — done
+  as one scripted pass over the data file (insert `"isSpecial": false`
+  after every `"isUntilDispelled"` key), verified byte-for-byte afterward
+  to touch nothing else. This is the standing cost of a required field on
+  a domain with this many entries; expect it again for the next
+  compound-fact discovery. Contagion and Geas also use the `Day` duration
+  unit (7 and 30 days), breaking `DayLongDurationsAreIllusoryScriptAnd
+  GentleRepose`'s "always 10" assumption.
+  **The Paladin spell list appendix prints "Destructive Smite," but the
+  spell's own description page headers it "Destructive Wave"** — its real
+  published name, and a plausible appendix slip given the Paladin list's
+  six other "___ Smite" spells already built. The description page wins,
+  same "errata and prose beat printing artifacts" rule as the Dwarf's
+  throwing hammer; pinned by
+  `DestructiveWaveIsNamedFromItsDescriptionNotTheAppendix` so a future
+  pass doesn't "helpfully" rename it back.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -387,6 +413,11 @@ entries. Non-canonical extension IDs (outside `dnd5e2014.*`) are exempt.
   Improvement row that the feature's own text explicitly names — the prose
   wins, pinned by
   `PreservesWarlockAbilityScoreImprovementAtStandardLevelsDespiteTableOmission`.
+  This extends to a spell's own *name*: the Paladin class spell list
+  appendix prints "Destructive Smite," but the spell's own description
+  page headers it "Destructive Wave" — its real published name. The
+  appendix is a summary list; the description page is the primary source,
+  same as prose beating a table.
 
 ## Content modeling rules
 

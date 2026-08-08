@@ -137,6 +137,7 @@ internal static class SpellDefinitionLoader
             SpellRangeKind.Self => SpellRange.Self(),
             SpellRangeKind.Touch => SpellRange.Touch(),
             SpellRangeKind.Unlimited => SpellRange.Unlimited(),
+            SpellRangeKind.Special => SpellRange.Special(),
             _ => SpellRange.Distance(
                 data.DistanceFeet
                 ?? throw Missing("range distance")),
@@ -162,16 +163,19 @@ internal static class SpellDefinitionLoader
         bool isUntilDispelled =
             data.IsUntilDispelled
             ?? throw Missing("duration until-dispelled flag");
+        bool isSpecial =
+            data.IsSpecial ?? throw Missing("duration special flag");
         bool requiresConcentration =
             data.RequiresConcentration
             ?? throw Missing("duration concentration flag");
         bool isUpTo = data.IsUpTo ?? throw Missing("duration up-to flag");
 
-        if (isInstantaneous && isUntilDispelled)
+        if (new[] { isInstantaneous, isUntilDispelled, isSpecial }
+            .Count(isKind => isKind) > 1)
         {
             throw new ArgumentException(
-                "Spell duration cannot be both instantaneous and until " +
-                "dispelled.",
+                "Spell duration must be at most one of instantaneous, " +
+                "until dispelled, or special.",
                 "data");
         }
 
@@ -183,6 +187,11 @@ internal static class SpellDefinitionLoader
         if (isUntilDispelled)
         {
             return SpellDuration.UntilDispelled();
+        }
+
+        if (isSpecial)
+        {
+            return SpellDuration.Special();
         }
 
         int amount = data.Amount ?? throw Missing("duration amount");

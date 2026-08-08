@@ -26,6 +26,7 @@ public sealed class SpellDefinitionLoaderTests
                 },
                 "duration": {
                   "isInstantaneous": true, "isUntilDispelled": false,
+                  "isSpecial": false,
                   "requiresConcentration": false,
                   "isUpTo": false, "amount": null, "unit": null
                 },
@@ -162,5 +163,53 @@ public sealed class SpellDefinitionLoaderTests
                     "\"isUntilDispelled\": false",
                     "\"isUntilDispelled\": true",
                     StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void SpecialDuration_LoadsWithNoAmountOrUnit()
+    {
+        string json = ValidJson
+            .Replace(
+                "\"isInstantaneous\": true, \"isUntilDispelled\": false",
+                "\"isInstantaneous\": false, \"isUntilDispelled\": false",
+                StringComparison.Ordinal)
+            .Replace(
+                "\"isSpecial\": false,",
+                "\"isSpecial\": true,",
+                StringComparison.Ordinal);
+
+        SpellDefinition definition = Assert.Single(
+            SpellDefinitionLoader.LoadFromJson(json));
+
+        Assert.True(definition.Duration.IsSpecial);
+        Assert.False(definition.Duration.IsInstantaneous);
+        Assert.False(definition.Duration.IsUntilDispelled);
+        Assert.Null(definition.Duration.Amount);
+        Assert.Null(definition.Duration.Unit);
+    }
+
+    [Fact]
+    public void DurationThatIsBothInstantaneousAndSpecial_IsRejected()
+    {
+        Assert.ThrowsAny<Exception>(
+            () => SpellDefinitionLoader.LoadFromJson(
+                ValidJson.Replace(
+                    "\"isSpecial\": false,",
+                    "\"isSpecial\": true,",
+                    StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void SpecialRange_LoadsWithNoDistance()
+    {
+        SpellDefinition definition = Assert.Single(
+            SpellDefinitionLoader.LoadFromJson(
+                ValidJson.Replace(
+                    "\"kind\": \"Distance\", \"distanceFeet\": 30,",
+                    "\"kind\": \"Special\", \"distanceFeet\": null,",
+                    StringComparison.Ordinal)));
+
+        Assert.Equal(SpellRangeKind.Special, definition.Range.Kind);
+        Assert.Null(definition.Range.DistanceFeet);
     }
 }

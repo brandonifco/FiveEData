@@ -5,6 +5,7 @@ public readonly record struct SpellDuration
     private SpellDuration(
         bool isInstantaneous,
         bool isUntilDispelled,
+        bool isSpecial,
         bool requiresConcentration,
         bool isUpTo,
         int? amount,
@@ -12,6 +13,7 @@ public readonly record struct SpellDuration
     {
         IsInstantaneous = isInstantaneous;
         IsUntilDispelled = isUntilDispelled;
+        IsSpecial = isSpecial;
         RequiresConcentration = requiresConcentration;
         IsUpTo = isUpTo;
         Amount = amount;
@@ -29,6 +31,15 @@ public readonly record struct SpellDuration
     public bool IsUntilDispelled { get; }
 
     /// <summary>
+    /// True for the PHB's "Duration: Special" header value, as in
+    /// Creation, where the actual duration is a lookup table keyed by the
+    /// material created (1 day to 1 minute) that lives entirely in the
+    /// citation. Like <see cref="IsUntilDispelled"/>, it carries no
+    /// amount/unit of its own.
+    /// </summary>
+    public bool IsSpecial { get; }
+
+    /// <summary>
     /// True when the duration is the maximum the caster may sustain rather
     /// than a fixed span — the PHB's "up to" wording. Always true for a
     /// concentration duration, and independently true for a dismissible
@@ -43,10 +54,13 @@ public readonly record struct SpellDuration
     public SpellDurationUnit? Unit { get; }
 
     public static SpellDuration Instantaneous() =>
-        new(true, false, false, false, null, null);
+        new(true, false, false, false, false, null, null);
 
     public static SpellDuration UntilDispelled() =>
-        new(false, true, false, false, null, null);
+        new(false, true, false, false, false, null, null);
+
+    public static SpellDuration Special() =>
+        new(false, false, true, false, false, null, null);
 
     public static SpellDuration Fixed(int amount, SpellDurationUnit unit) =>
         Timed(amount, unit, isUpTo: false, requiresConcentration: false);
@@ -82,6 +96,7 @@ public readonly record struct SpellDuration
         }
 
         return new SpellDuration(
+            false,
             false,
             false,
             requiresConcentration,
