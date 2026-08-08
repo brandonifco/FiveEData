@@ -39,12 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2185 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2194 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level and all 59
-second-level spells are built — 148 in total. Levels 3–9 are not started.**
+second-level spells are built, plus the first 13 of the PHB's 50
+third-level spells (batch A–C) — 161 in total. The rest of level 3 and all
+of levels 4–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -65,7 +67,10 @@ while concentration is always an "up to" duration.
 ~38 pages was too much to read reliably in one pass, and second level's 59 was
 no better. Four batches each time. `SpellDataFileTests` pins the exact built
 closure, so a partial level is asserted rather than implied. **Keep batching
-for levels 3–9.**
+for levels 3–9.** Third level's batches are smaller than before (~12–13 vs.
+~15–16) for tighter per-batch accuracy: the PHB's class spell list appendix
+(pp.207–210) gives a **50-spell union** across the 8 classes, split A–C/D–H/
+L–P/R–W.
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -96,6 +101,15 @@ Each batch drove schema additions from real content, never anticipation:
 - **2nd R–Z:** nothing either. Two consecutive schema-quiet batches closed
   second level; treat the shape as settled and expect level 3 to add at
   most an area shape or two.
+- **3rd A–C:** nothing either — the third schema-quiet batch in a row.
+  Clairvoyance's range is printed as "1 mile", the first PHB range not
+  stated in feet; `SpellRange.DistanceFeet` has no separate unit (unlike
+  casting time and duration), so it's canonicalized to 5,280 — a unit
+  conversion, not a derived total like Warding Bond's per-item cost, so it
+  doesn't trip the "store what's printed" rule. Blink's duration is a flat,
+  non-"up to" **1 minute** — the same flat-vs-concentration distinction
+  Shield/True Strike already pinned at the Round unit, now shown at Minute
+  too; no schema change needed since the shape already allows it.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -133,7 +147,12 @@ out in **four narrow columns**, not the two the description pages use — read
 them as quadrant crops or a column's continuation gets missed. The 2nd-level
 union of all eight class lists is **59 spells**; the per-class counts are
 Bard 22, Cleric 17, Druid 18, Paladin 8, Ranger 13, Sorcerer 24, Warlock 12,
-Wizard 34.
+Wizard 34. The 3rd-level union is **50 spells**; the per-class counts are
+Bard 16, Cleric 20, Druid 13, Paladin 10, Ranger 5, Sorcerer 20, Warlock 12,
+Wizard 28 — read off the same pp.207–210 appendix, whose PDF page number is
+the printed page number **plus one** in the current
+`~/Downloads/Player's Handbook.pdf` (verify this offset again if the PDF is
+ever replaced).
 
 **A duration unit does not imply a duration shape.** Shield and True Strike
 are both 1 round, but Shield's is flat while True Strike's is concentration

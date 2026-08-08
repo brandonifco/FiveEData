@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(148, LoadCanonical().Count);
+        Assert.Equal(161, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -21,15 +21,20 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             59,
             LoadCanonical().Count(spell => spell.Level == 2));
+        Assert.Equal(
+            13,
+            LoadCanonical().Count(spell => spell.Level == 3));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughSecondLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughThirdLevelForNow()
     {
-        // Levels 3-9 are not built yet. Levels 0-2 are all complete.
+        // Levels 4-9 are not built yet. Levels 0-2 are complete; level 3 is
+        // being added in alphabetical batches (see CLAUDE.md) and currently
+        // holds only the A-C batch, 13 of the PHB's 50 third-level spells.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 2));
+            spell => Assert.InRange(spell.Level, 0, 3));
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 2nd-level
@@ -233,6 +238,85 @@ public sealed class SpellDataFileTests
             .Duration.Amount);
     }
 
+    // The class spell list appendix (pp.207-210) gives a 3rd-level union of
+    // 50 spells across the 8 classes. This pins the A-C batch only; later
+    // batches will extend the list until all 50 are built.
+    [Fact]
+    public void ThirdLevelSpellIdsBuiltSoFarAreTheACBatch()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.animate-dead",
+                "dnd5e2014.spell.aura-of-vitality",
+                "dnd5e2014.spell.beacon-of-hope",
+                "dnd5e2014.spell.bestow-curse",
+                "dnd5e2014.spell.blinding-smite",
+                "dnd5e2014.spell.blink",
+                "dnd5e2014.spell.call-lightning",
+                "dnd5e2014.spell.clairvoyance",
+                "dnd5e2014.spell.conjure-animals",
+                "dnd5e2014.spell.conjure-barrage",
+                "dnd5e2014.spell.counterspell",
+                "dnd5e2014.spell.create-food-and-water",
+                "dnd5e2014.spell.crusaders-mantle"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 3)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.animate-dead", "Animate Dead", "necromancy", 212)]
+    [InlineData("dnd5e2014.spell.aura-of-vitality", "Aura of Vitality", "evocation", 216)]
+    [InlineData("dnd5e2014.spell.clairvoyance", "Clairvoyance", "divination", 222)]
+    [InlineData("dnd5e2014.spell.conjure-barrage", "Conjure Barrage", "conjuration", 225)]
+    [InlineData("dnd5e2014.spell.counterspell", "Counterspell", "abjuration", 228)]
+    [InlineData("dnd5e2014.spell.crusaders-mantle", "Crusader's Mantle", "evocation", 230)]
+    public void ThirdLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(3, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Blink is the first Minute-unit duration that is flat rather than "up
+    // to" or concentration - the same distinction Shield/True Strike pin at
+    // the Round unit, now shown at Minute too.
+    [Fact]
+    public void BlinksMinuteDurationIsFlatNotUpToOrConcentration()
+    {
+        SpellDuration blink = Get("dnd5e2014.spell.blink").Duration;
+
+        Assert.Equal(SpellDurationUnit.Minute, blink.Unit);
+        Assert.Equal(1, blink.Amount);
+        Assert.False(blink.RequiresConcentration);
+        Assert.False(blink.IsUpTo);
+    }
+
+    // Clairvoyance is the first spell whose PHB range is stated in miles
+    // rather than feet. SpellRange has no separate unit - DistanceFeet is
+    // always feet-denominated - so "1 mile" is canonicalized to 5,280 feet,
+    // the same kind of unit canonicalization already applied elsewhere
+    // (gold pieces, hit points), not a derived total like Warding Bond's
+    // per-item cost.
+    [Fact]
+    public void ClairvoyanceRangeIsOneMileCanonicalizedToFeet()
+    {
+        Assert.Equal(
+            5280,
+            Get("dnd5e2014.spell.clairvoyance").Range.DistanceFeet);
+    }
+
     [Fact]
     public void FirstLevelContainsExactlyThePhbsSixtyTwoSpells()
     {
@@ -388,8 +472,10 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.arms-of-hadar",
+                "dnd5e2014.spell.aura-of-vitality",
                 "dnd5e2014.spell.burning-hands",
                 "dnd5e2014.spell.color-spray",
+                "dnd5e2014.spell.conjure-barrage",
                 "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.thunderwave"
             ],
@@ -425,6 +511,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.arcane-lock",
                 "dnd5e2014.spell.augury",
                 "dnd5e2014.spell.chromatic-orb",
+                "dnd5e2014.spell.clairvoyance",
                 "dnd5e2014.spell.continual-flame",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.identify",
@@ -456,11 +543,15 @@ public sealed class SpellDataFileTests
         Assert.True(familiar.MaterialIsConsumed);
     }
 
+    // Counterspell joins the three 1st/2nd-level reaction spells at 3rd
+    // level; it is also the first reaction spell with no verbal component
+    // (Somatic only).
     [Fact]
-    public void ReactionSpellsAreFeatherFallHellishRebukeAndShield()
+    public void ReactionSpellsAreCounterspellFeatherFallHellishRebukeAndShield()
     {
         Assert.Equal(
             [
+                "dnd5e2014.spell.counterspell",
                 "dnd5e2014.spell.feather-fall",
                 "dnd5e2014.spell.hellish-rebuke",
                 "dnd5e2014.spell.shield"
@@ -614,9 +705,10 @@ public sealed class SpellDataFileTests
 
     // Find Steed's "10 minutes" was the first casting time whose amount is
     // not 1 - the field always allowed it, but no built spell exercised it.
-    // Prayer of Healing is the second, and both are 10 minutes.
+    // Prayer of Healing and Clairvoyance are the second and third, and all
+    // three are 10 minutes.
     [Fact]
-    public void CastingTimesWhoseAmountIsNotOneAreBothTenMinutes()
+    public void CastingTimesWhoseAmountIsNotOneAreAllTenMinutes()
     {
         SpellDefinition[] slow = LoadCanonical()
             .Where(spell => spell.CastingTime.Amount != 1)
@@ -625,6 +717,7 @@ public sealed class SpellDataFileTests
 
         Assert.Equal(
             [
+                "dnd5e2014.spell.clairvoyance",
                 "dnd5e2014.spell.find-steed",
                 "dnd5e2014.spell.prayer-of-healing"
             ],
