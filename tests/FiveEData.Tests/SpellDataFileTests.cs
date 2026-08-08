@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(161, LoadCanonical().Count);
+        Assert.Equal(173, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -22,7 +22,7 @@ public sealed class SpellDataFileTests
             59,
             LoadCanonical().Count(spell => spell.Level == 2));
         Assert.Equal(
-            13,
+            25,
             LoadCanonical().Count(spell => spell.Level == 3));
     }
 
@@ -31,7 +31,8 @@ public sealed class SpellDataFileTests
     {
         // Levels 4-9 are not built yet. Levels 0-2 are complete; level 3 is
         // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds only the A-C batch, 13 of the PHB's 50 third-level spells.
+        // holds the A-C and D-H batches, 25 of the PHB's 50 third-level
+        // spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 3));
@@ -170,11 +171,13 @@ public sealed class SpellDataFileTests
     }
 
     // Arcane Lock and Continual Flame drove the "until dispelled" duration,
-    // the first that is neither instantaneous nor a span; Magic Mouth joins
-    // them. All three are costed *and* consumed - so far the two facts have
-    // never come apart on an "until dispelled" spell - and Continual Flame
-    // carries a third PHB cost phrasing, "ruby dust worth 50 gp", with no
-    // "at least".
+    // the first that is neither instantaneous nor a span; Magic Mouth and
+    // Glyph of Warding join them - both print "Until dispelled or
+    // triggered", which maps to the same flag since it carries no span
+    // either. All four are costed *and* consumed - so far the two facts
+    // have never come apart on an "until dispelled" spell - and Continual
+    // Flame carries a third PHB cost phrasing, "ruby dust worth 50 gp",
+    // with no "at least".
     [Fact]
     public void UntilDispelledSpellsAreCostedAndConsumed()
     {
@@ -187,6 +190,7 @@ public sealed class SpellDataFileTests
             [
                 "dnd5e2014.spell.arcane-lock",
                 "dnd5e2014.spell.continual-flame",
+                "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.magic-mouth"
             ],
             dispelled.Select(spell => spell.Id.Value));
@@ -205,6 +209,10 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             25,
             Get("dnd5e2014.spell.arcane-lock")
+                .Components.MaterialCostGoldPieces);
+        Assert.Equal(
+            200,
+            Get("dnd5e2014.spell.glyph-of-warding")
                 .Components.MaterialCostGoldPieces);
         Assert.Equal(
             50,
@@ -239,10 +247,10 @@ public sealed class SpellDataFileTests
     }
 
     // The class spell list appendix (pp.207-210) gives a 3rd-level union of
-    // 50 spells across the 8 classes. This pins the A-C batch only; later
-    // batches will extend the list until all 50 are built.
+    // 50 spells across the 8 classes. This pins the A-C and D-H batches;
+    // later batches will extend the list until all 50 are built.
     [Fact]
-    public void ThirdLevelSpellIdsBuiltSoFarAreTheACBatch()
+    public void ThirdLevelSpellIdsBuiltSoFar()
     {
         Assert.Equal(
             [
@@ -258,7 +266,19 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.conjure-barrage",
                 "dnd5e2014.spell.counterspell",
                 "dnd5e2014.spell.create-food-and-water",
-                "dnd5e2014.spell.crusaders-mantle"
+                "dnd5e2014.spell.crusaders-mantle",
+                "dnd5e2014.spell.daylight",
+                "dnd5e2014.spell.dispel-magic",
+                "dnd5e2014.spell.elemental-weapon",
+                "dnd5e2014.spell.fear",
+                "dnd5e2014.spell.feign-death",
+                "dnd5e2014.spell.fireball",
+                "dnd5e2014.spell.fly",
+                "dnd5e2014.spell.gaseous-form",
+                "dnd5e2014.spell.glyph-of-warding",
+                "dnd5e2014.spell.haste",
+                "dnd5e2014.spell.hunger-of-hadar",
+                "dnd5e2014.spell.hypnotic-pattern"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 3)
@@ -273,6 +293,11 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.conjure-barrage", "Conjure Barrage", "conjuration", 225)]
     [InlineData("dnd5e2014.spell.counterspell", "Counterspell", "abjuration", 228)]
     [InlineData("dnd5e2014.spell.crusaders-mantle", "Crusader's Mantle", "evocation", 230)]
+    [InlineData("dnd5e2014.spell.dispel-magic", "Dispel Magic", "abjuration", 234)]
+    [InlineData("dnd5e2014.spell.fireball", "Fireball", "evocation", 241)]
+    [InlineData("dnd5e2014.spell.glyph-of-warding", "Glyph of Warding", "abjuration", 245)]
+    [InlineData("dnd5e2014.spell.hunger-of-hadar", "Hunger of Hadar", "conjuration", 251)]
+    [InlineData("dnd5e2014.spell.hypnotic-pattern", "Hypnotic Pattern", "illusion", 252)]
     public void ThirdLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -443,6 +468,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.comprehend-languages",
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
+                "dnd5e2014.spell.feign-death",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.identify",
@@ -476,6 +502,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.burning-hands",
                 "dnd5e2014.spell.color-spray",
                 "dnd5e2014.spell.conjure-barrage",
+                "dnd5e2014.spell.fear",
                 "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.thunderwave"
             ],
@@ -514,6 +541,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.clairvoyance",
                 "dnd5e2014.spell.continual-flame",
                 "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
                 "dnd5e2014.spell.magic-mouth",
@@ -794,16 +822,27 @@ public sealed class SpellDataFileTests
                 .OrderBy(id => id, StringComparer.Ordinal));
     }
 
+    // Find Familiar was the only Hour-long casting time until Glyph of
+    // Warding joined it at third level; Find Familiar is a ritual and
+    // Glyph of Warding isn't, so the two facts stay independent.
     [Fact]
-    public void FindFamiliarIsTheOnlyHourLongCastingSoFar()
+    public void HourLongCastingTimesAreFindFamiliarAndGlyphOfWarding()
     {
-        SpellDefinition only = Assert.Single(
-            LoadCanonical()
-                .Where(spell => spell.CastingTime.Unit
-                    == SpellCastingTimeUnit.Hour));
+        SpellDefinition[] hourLong = LoadCanonical()
+            .Where(spell => spell.CastingTime.Unit
+                == SpellCastingTimeUnit.Hour)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
 
-        Assert.Equal("dnd5e2014.spell.find-familiar", only.Id.Value);
-        Assert.True(only.IsRitual);
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.find-familiar",
+                "dnd5e2014.spell.glyph-of-warding"
+            ],
+            hourLong.Select(spell => spell.Id.Value));
+
+        Assert.True(Get("dnd5e2014.spell.find-familiar").IsRitual);
+        Assert.False(Get("dnd5e2014.spell.glyph-of-warding").IsRitual);
     }
 
     [Fact]
