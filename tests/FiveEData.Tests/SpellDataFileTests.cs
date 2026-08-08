@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(254, LoadCanonical().Count);
+        Assert.Equal(264, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -28,7 +28,7 @@ public sealed class SpellDataFileTests
             35,
             LoadCanonical().Count(spell => spell.Level == 4));
         Assert.Equal(
-            21,
+            31,
             LoadCanonical().Count(spell => spell.Level == 5));
     }
 
@@ -37,8 +37,8 @@ public sealed class SpellDataFileTests
     {
         // Levels 6-9 are not built yet. Levels 0-4 are complete; level 5 is
         // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-C and C-G batches, 21 of the PHB's 42 fifth-level
-        // spells.
+        // holds the A-C, C-G, and G-P batches, 31 of the PHB's 42
+        // fifth-level spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 5));
@@ -180,10 +180,11 @@ public sealed class SpellDataFileTests
     // the first that is neither instantaneous nor a span; Magic Mouth and
     // Glyph of Warding join them - both print "Until dispelled or
     // triggered", which maps to the same flag since it carries no span
-    // either. All four are costed *and* consumed - so far the two facts
-    // have never come apart on an "until dispelled" spell - and Continual
-    // Flame carries a third PHB cost phrasing, "ruby dust worth 50 gp",
-    // with no "at least".
+    // either. Hallow is a plain "Until dispelled" with no trigger clause.
+    // All five are costed *and* consumed - so far the two facts have never
+    // come apart on an "until dispelled" spell - and Continual Flame
+    // carries a third PHB cost phrasing, "ruby dust worth 50 gp", with no
+    // "at least".
     [Fact]
     public void UntilDispelledSpellsAreCostedAndConsumed()
     {
@@ -197,6 +198,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.arcane-lock",
                 "dnd5e2014.spell.continual-flame",
                 "dnd5e2014.spell.glyph-of-warding",
+                "dnd5e2014.spell.hallow",
                 "dnd5e2014.spell.magic-mouth"
             ],
             dispelled.Select(spell => spell.Id.Value));
@@ -219,6 +221,10 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             200,
             Get("dnd5e2014.spell.glyph-of-warding")
+                .Components.MaterialCostGoldPieces);
+        Assert.Equal(
+            1000,
+            Get("dnd5e2014.spell.hallow")
                 .Components.MaterialCostGoldPieces);
         Assert.Equal(
             50,
@@ -457,9 +463,8 @@ public sealed class SpellDataFileTests
 
     // The class spell list appendix (pp.207-210) gives a 5th-level union of
     // 42 spells across the 8 classes - up from 4th level's 35, so the
-    // per-level decline (62/59/50/35) isn't monotonic. This pins the A-C
-    // and C-G batches; later batches will extend the list until all 42 are
-    // built.
+    // per-level decline (62/59/50/35) isn't monotonic. This pins the A-C,
+    // C-G, and G-P batches; the R-W batch will complete the list at 42.
     [Fact]
     public void FifthLevelSpellIdsBuiltSoFar()
     {
@@ -485,7 +490,17 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.dominate-person",
                 "dnd5e2014.spell.dream",
                 "dnd5e2014.spell.flame-strike",
-                "dnd5e2014.spell.geas"
+                "dnd5e2014.spell.geas",
+                "dnd5e2014.spell.greater-restoration",
+                "dnd5e2014.spell.hallow",
+                "dnd5e2014.spell.hold-monster",
+                "dnd5e2014.spell.insect-plague",
+                "dnd5e2014.spell.legend-lore",
+                "dnd5e2014.spell.mass-cure-wounds",
+                "dnd5e2014.spell.mislead",
+                "dnd5e2014.spell.modify-memory",
+                "dnd5e2014.spell.passwall",
+                "dnd5e2014.spell.planar-binding"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 5)
@@ -512,6 +527,16 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.dream", "Dream", "illusion", 236)]
     [InlineData("dnd5e2014.spell.flame-strike", "Flame Strike", "evocation", 242)]
     [InlineData("dnd5e2014.spell.geas", "Geas", "enchantment", 244)]
+    [InlineData("dnd5e2014.spell.greater-restoration", "Greater Restoration", "abjuration", 246)]
+    [InlineData("dnd5e2014.spell.hallow", "Hallow", "evocation", 249)]
+    [InlineData("dnd5e2014.spell.hold-monster", "Hold Monster", "enchantment", 251)]
+    [InlineData("dnd5e2014.spell.insect-plague", "Insect Plague", "conjuration", 254)]
+    [InlineData("dnd5e2014.spell.legend-lore", "Legend Lore", "divination", 254)]
+    [InlineData("dnd5e2014.spell.mass-cure-wounds", "Mass Cure Wounds", "conjuration", 258)]
+    [InlineData("dnd5e2014.spell.mislead", "Mislead", "illusion", 260)]
+    [InlineData("dnd5e2014.spell.modify-memory", "Modify Memory", "enchantment", 261)]
+    [InlineData("dnd5e2014.spell.passwall", "Passwall", "transmutation", 264)]
+    [InlineData("dnd5e2014.spell.planar-binding", "Planar Binding", "abjuration", 265)]
     public void FifthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -579,6 +604,26 @@ public sealed class SpellDataFileTests
         Assert.Contains(
             "dnd5e2014.class.paladin",
             spell.AvailableToClassIds.Select(id => id.Value));
+    }
+
+    // Legend Lore is the second spell (after Leomund's Secret Chest) whose
+    // material component bundles two separately-costed items - incense at
+    // 250 gp and four ivory strips at 50 gp each - with no single figure
+    // that represents "the" cost. MaterialCostGoldPieces stays declined
+    // (null) rather than picking one; MaterialIsConsumed is true because
+    // the PHB explicitly states the incense (part of the bundle) is
+    // consumed, even though the ivory strips aren't.
+    [Fact]
+    public void LegendLoreDeclinesItsTwoPartMaterialCost()
+    {
+        SpellComponents components =
+            Get("dnd5e2014.spell.legend-lore").Components;
+
+        Assert.True(components.Material);
+        Assert.Null(components.MaterialCostGoldPieces);
+        Assert.True(components.MaterialIsConsumed);
+        Assert.Contains("250 gp", components.MaterialDescription!);
+        Assert.Contains("50 gp each", components.MaterialDescription!);
     }
 
     [Theory]
@@ -973,11 +1018,14 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.divination",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.glyph-of-warding",
+                "dnd5e2014.spell.greater-restoration",
+                "dnd5e2014.spell.hallow",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
                 "dnd5e2014.spell.magic-circle",
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.nondetection",
+                "dnd5e2014.spell.planar-binding",
                 "dnd5e2014.spell.revivify",
                 "dnd5e2014.spell.stoneskin",
                 "dnd5e2014.spell.warding-bond"
@@ -1189,9 +1237,9 @@ public sealed class SpellDataFileTests
 
     // Find Steed's "10 minutes" was the first casting time whose amount is
     // not 1 - the field always allowed it, but no built spell exercised it.
-    // Every Minute-unit one built since is 10 minutes too; Awaken's "8
-    // hours" (a different unit) is pinned separately by
-    // HourLongCastingTimesAreFindFamiliarGlyphOfWardingAndAwaken.
+    // Every Minute-unit one built since is 10 minutes too; the Hour-unit
+    // amounts (Awaken, Hallow, Planar Binding) are pinned separately by
+    // HourLongCastingTimesSpanFiveSpellsAndThreeAmounts.
     [Fact]
     public void NonOneMinuteCastingTimesAreAllTenMinutes()
     {
@@ -1207,6 +1255,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.fabricate",
                 "dnd5e2014.spell.find-steed",
                 "dnd5e2014.spell.hallucinatory-terrain",
+                "dnd5e2014.spell.legend-lore",
                 "dnd5e2014.spell.mordenkainens-private-sanctum",
                 "dnd5e2014.spell.prayer-of-healing"
             ],
@@ -1281,9 +1330,10 @@ public sealed class SpellDataFileTests
     // Find Familiar was the only Hour-long casting time until Glyph of
     // Warding joined it at third level; Find Familiar is a ritual and
     // Glyph of Warding isn't, so the two facts stay independent. Awaken's
-    // "8 hours" is the first Hour-unit casting time whose amount isn't 1.
+    // "8 hours" is the first Hour-unit casting time whose amount isn't 1;
+    // Hallow (24) and Planar Binding (1) followed.
     [Fact]
-    public void HourLongCastingTimesAreFindFamiliarGlyphOfWardingAndAwaken()
+    public void HourLongCastingTimesSpanFiveSpellsAndThreeAmounts()
     {
         SpellDefinition[] hourLong = LoadCanonical()
             .Where(spell => spell.CastingTime.Unit
@@ -1295,7 +1345,9 @@ public sealed class SpellDataFileTests
             [
                 "dnd5e2014.spell.awaken",
                 "dnd5e2014.spell.find-familiar",
-                "dnd5e2014.spell.glyph-of-warding"
+                "dnd5e2014.spell.glyph-of-warding",
+                "dnd5e2014.spell.hallow",
+                "dnd5e2014.spell.planar-binding"
             ],
             hourLong.Select(spell => spell.Id.Value));
 
@@ -1303,6 +1355,10 @@ public sealed class SpellDataFileTests
         Assert.False(Get("dnd5e2014.spell.glyph-of-warding").IsRitual);
         Assert.False(Get("dnd5e2014.spell.awaken").IsRitual);
         Assert.Equal(8, Get("dnd5e2014.spell.awaken").CastingTime.Amount);
+        Assert.Equal(24, Get("dnd5e2014.spell.hallow").CastingTime.Amount);
+        Assert.Equal(
+            1,
+            Get("dnd5e2014.spell.planar-binding").CastingTime.Amount);
     }
 
     [Fact]

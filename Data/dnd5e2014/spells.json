@@ -5843,6 +5843,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.greater-restoration",
+    "name": "Greater Restoration",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "diamond dust worth at least 100 gp, which the spell consumes",
+      "materialCostGoldPieces": 100,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 246,
+        "section": "Chapter 11: Spells — Spell Descriptions — Greater Restoration"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.guardian-of-faith",
     "name": "Guardian of Faith",
     "level": 4,
@@ -6062,6 +6108,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 249,
         "section": "Chapter 11: Spells — Spell Descriptions — Hail of Thorns"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hallow",
+    "name": "Hallow",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "herbs, oils, and incense worth at least 1,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 249,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hallow"
       }
     ]
   },
@@ -6378,6 +6468,53 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 251,
         "section": "Chapter 11: Spells — Spell Descriptions — Hex"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hold-monster",
+    "name": "Hold Monster",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small, straight piece of iron",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 251,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hold Monster"
       }
     ]
   },
@@ -6747,6 +6884,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.insect-plague",
+    "name": "Insect Plague",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 300,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a few grains of sugar, some kernels of grain, and a smear of fat",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 254,
+        "section": "Chapter 11: Spells — Spell Descriptions — Insect Plague"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.invisibility",
     "name": "Invisibility",
     "level": 2,
@@ -6883,6 +7066,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 254,
         "section": "Chapter 11: Spells — Spell Descriptions — Knock"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.legend-lore",
+    "name": "Legend Lore",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "incense worth at least 250 gp, which the spell consumes, and four ivory strips worth at least 50 gp each",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 254,
+        "section": "Chapter 11: Spells — Spell Descriptions — Legend Lore"
       }
     ]
   },
@@ -7717,6 +7946,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.mass-cure-wounds",
+    "name": "Mass Cure Wounds",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 258,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mass Cure Wounds"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.mass-healing-word",
     "name": "Mass Healing Word",
     "level": 3,
@@ -8037,6 +8312,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.mislead",
+    "name": "Mislead",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 260,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mislead"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.misty-step",
     "name": "Misty Step",
     "level": 2,
@@ -8079,6 +8399,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 260,
         "section": "Chapter 11: Spells — Spell Descriptions — Misty Step"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.modify-memory",
+    "name": "Modify Memory",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 261,
+        "section": "Chapter 11: Spells — Spell Descriptions — Modify Memory"
       }
     ]
   },
@@ -8394,6 +8759,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.passwall",
+    "name": "Passwall",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of sesame seeds",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 264,
+        "section": "Chapter 11: Spells — Spell Descriptions — Passwall"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.phantasmal-force",
     "name": "Phantasmal Force",
     "level": 2,
@@ -8524,6 +8933,53 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 266,
         "section": "Chapter 11: Spells — Spell Descriptions — Phantom Steed"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.planar-binding",
+    "name": "Planar Binding",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a jewel worth at least 1,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 265,
+        "section": "Chapter 11: Spells — Spell Descriptions — Planar Binding"
       }
     ]
   },
