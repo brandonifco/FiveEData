@@ -5813,6 +5813,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.leomunds-secret-chest",
+    "name": "Leomund's Secret Chest",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "an exquisite chest, 3 feet by 2 feet by 2 feet, constructed from rare materials worth at least 5,000 gp, and a Tiny replica made from the same materials worth at least 50 gp",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 254,
+        "section": "Chapter 11: Spells — Spell Descriptions — Leomund's Secret Chest"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.leomunds-tiny-hut",
     "name": "Leomund's Tiny Hut",
     "level": 3,
@@ -6122,6 +6165,54 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 256,
         "section": "Chapter 11: Spells — Spell Descriptions — Locate Animals or Plants"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.locate-creature",
+    "name": "Locate Creature",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of fur from a bloodhound",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.paladin",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 256,
+        "section": "Chapter 11: Spells — Spell Descriptions — Locate Creature"
       }
     ]
   },
@@ -6935,6 +7026,92 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.mordenkainens-faithful-hound",
+    "name": "Mordenkainen's Faithful Hound",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a tiny silver whistle, a piece of bone, and a thread",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 261,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mordenkainen's Faithful Hound"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.mordenkainens-private-sanctum",
+    "name": "Mordenkainen's Private Sanctum",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a thin sheet of lead, a piece of opaque glass, a wad of cotton or cloth, and powdered chrysolite",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 262,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mordenkainen's Private Sanctum"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.nondetection",
     "name": "Nondetection",
     "level": 3,
@@ -7019,6 +7196,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 263,
         "section": "Chapter 11: Spells — Spell Descriptions — Nystul's Magic Aura"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.otilukes-resilient-sphere",
+    "name": "Otiluke's Resilient Sphere",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a hemispherical piece of clear crystal and a matching hemispherical piece of gum arabic",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 265,
+        "section": "Chapter 11: Spells — Spell Descriptions — Otiluke's Resilient Sphere"
       }
     ]
   },
@@ -7108,6 +7328,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 264,
         "section": "Chapter 11: Spells — Spell Descriptions — Phantasmal Force"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.phantasmal-killer",
+    "name": "Phantasmal Killer",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 266,
+        "section": "Chapter 11: Spells — Spell Descriptions — Phantasmal Killer"
       }
     ]
   },
@@ -7241,6 +7504,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 266,
         "section": "Chapter 11: Spells — Spell Descriptions — Poison Spray"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.polymorph",
+    "name": "Polymorph",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a caterpillar cocoon",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 266,
+        "section": "Chapter 11: Spells — Spell Descriptions — Polymorph"
       }
     ]
   },
@@ -8928,6 +9237,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.staggering-smite",
+    "name": "Staggering Smite",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 278,
+        "section": "Chapter 11: Spells — Spell Descriptions — Staggering Smite"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.stinking-cloud",
     "name": "Stinking Cloud",
     "level": 3,
@@ -8969,6 +9321,97 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 278,
         "section": "Chapter 11: Spells — Spell Descriptions — Stinking Cloud"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.stone-shape",
+    "name": "Stone Shape",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "soft clay, which must be worked into roughly the desired shape of the stone object",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 278,
+        "section": "Chapter 11: Spells — Spell Descriptions — Stone Shape"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.stoneskin",
+    "name": "Stoneskin",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "diamond dust worth 100 gp, which the spell consumes",
+      "materialCostGoldPieces": 100,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 278,
+        "section": "Chapter 11: Spells — Spell Descriptions — Stoneskin"
       }
     ]
   },
@@ -9502,6 +9945,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 285,
         "section": "Chapter 11: Spells — Spell Descriptions — Vicious Mockery"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.wall-of-fire",
+    "name": "Wall of Fire",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small piece of phosphorus",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 285,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wall of Fire"
       }
     ]
   },
