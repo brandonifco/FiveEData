@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(233, LoadCanonical().Count);
+        Assert.Equal(244, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -27,15 +27,20 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             35,
             LoadCanonical().Count(spell => spell.Level == 4));
+        Assert.Equal(
+            11,
+            LoadCanonical().Count(spell => spell.Level == 5));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughFourthLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughFifthLevelForNow()
     {
-        // Levels 5-9 are not built yet. Levels 0-4 are all complete.
+        // Levels 6-9 are not built yet. Levels 0-4 are complete; level 5 is
+        // being added in alphabetical batches (see CLAUDE.md) and currently
+        // holds only the A-C batch, 11 of the PHB's 42 fifth-level spells.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 4));
+            spell => Assert.InRange(spell.Level, 0, 5));
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 2nd-level
@@ -449,6 +454,58 @@ public sealed class SpellDataFileTests
                 .OrderBy(id => id, StringComparer.Ordinal));
     }
 
+    // The class spell list appendix (pp.207-210) gives a 5th-level union of
+    // 42 spells across the 8 classes - up from 4th level's 35, so the
+    // per-level decline (62/59/50/35) isn't monotonic. This pins the A-C
+    // batch; later batches will extend the list until all 42 are built.
+    [Fact]
+    public void FifthLevelSpellIdsBuiltSoFar()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.animate-objects",
+                "dnd5e2014.spell.antilife-shell",
+                "dnd5e2014.spell.awaken",
+                "dnd5e2014.spell.banishing-smite",
+                "dnd5e2014.spell.bigbys-hand",
+                "dnd5e2014.spell.circle-of-power",
+                "dnd5e2014.spell.cloudkill",
+                "dnd5e2014.spell.commune",
+                "dnd5e2014.spell.commune-with-nature",
+                "dnd5e2014.spell.cone-of-cold",
+                "dnd5e2014.spell.conjure-elemental"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 5)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.animate-objects", "Animate Objects", "transmutation", 213)]
+    [InlineData("dnd5e2014.spell.awaken", "Awaken", "transmutation", 216)]
+    [InlineData("dnd5e2014.spell.bigbys-hand", "Bigby's Hand", "evocation", 218)]
+    [InlineData("dnd5e2014.spell.circle-of-power", "Circle of Power", "abjuration", 221)]
+    [InlineData("dnd5e2014.spell.cloudkill", "Cloudkill", "conjuration", 222)]
+    [InlineData("dnd5e2014.spell.commune", "Commune", "divination", 223)]
+    [InlineData("dnd5e2014.spell.commune-with-nature", "Commune with Nature", "divination", 224)]
+    [InlineData("dnd5e2014.spell.conjure-elemental", "Conjure Elemental", "conjuration", 225)]
+    public void FifthLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(5, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
     [Theory]
     [InlineData("dnd5e2014.spell.arcane-eye", "Arcane Eye", "divination", 214)]
     [InlineData("dnd5e2014.spell.aura-of-life", "Aura of Life", "abjuration", 216)]
@@ -737,6 +794,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.animal-messenger",
                 "dnd5e2014.spell.augury",
                 "dnd5e2014.spell.beast-sense",
+                "dnd5e2014.spell.commune",
+                "dnd5e2014.spell.commune-with-nature",
                 "dnd5e2014.spell.comprehend-languages",
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
@@ -775,12 +834,15 @@ public sealed class SpellDataFileTests
 
         Assert.Equal(
             [
+                "dnd5e2014.spell.antilife-shell",
                 "dnd5e2014.spell.arms-of-hadar",
                 "dnd5e2014.spell.aura-of-life",
                 "dnd5e2014.spell.aura-of-purity",
                 "dnd5e2014.spell.aura-of-vitality",
                 "dnd5e2014.spell.burning-hands",
+                "dnd5e2014.spell.circle-of-power",
                 "dnd5e2014.spell.color-spray",
+                "dnd5e2014.spell.cone-of-cold",
                 "dnd5e2014.spell.conjure-barrage",
                 "dnd5e2014.spell.fear",
                 "dnd5e2014.spell.gust-of-wind",
@@ -827,6 +889,7 @@ public sealed class SpellDataFileTests
             [
                 "dnd5e2014.spell.arcane-lock",
                 "dnd5e2014.spell.augury",
+                "dnd5e2014.spell.awaken",
                 "dnd5e2014.spell.chromatic-orb",
                 "dnd5e2014.spell.clairvoyance",
                 "dnd5e2014.spell.continual-flame",
@@ -1043,12 +1106,15 @@ public sealed class SpellDataFileTests
 
     // Find Steed's "10 minutes" was the first casting time whose amount is
     // not 1 - the field always allowed it, but no built spell exercised it.
-    // Every one built since is 10 minutes too.
+    // Every Minute-unit one built since is 10 minutes too; Awaken's "8
+    // hours" (a different unit) is pinned separately by
+    // HourLongCastingTimesAreFindFamiliarGlyphOfWardingAndAwaken.
     [Fact]
-    public void CastingTimesWhoseAmountIsNotOneAreAllTenMinutes()
+    public void NonOneMinuteCastingTimesAreAllTenMinutes()
     {
         SpellDefinition[] slow = LoadCanonical()
-            .Where(spell => spell.CastingTime.Amount != 1)
+            .Where(spell => spell.CastingTime.Amount != 1
+                && spell.CastingTime.Unit == SpellCastingTimeUnit.Minute)
             .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
             .ToArray();
 
@@ -1065,13 +1131,7 @@ public sealed class SpellDataFileTests
 
         Assert.All(
             slow,
-            spell =>
-            {
-                Assert.Equal(10, spell.CastingTime.Amount);
-                Assert.Equal(
-                    SpellCastingTimeUnit.Minute,
-                    spell.CastingTime.Unit);
-            });
+            spell => Assert.Equal(10, spell.CastingTime.Amount));
     }
 
     // Hold Person reaches six classes, the widest membership in the book so
@@ -1137,9 +1197,10 @@ public sealed class SpellDataFileTests
 
     // Find Familiar was the only Hour-long casting time until Glyph of
     // Warding joined it at third level; Find Familiar is a ritual and
-    // Glyph of Warding isn't, so the two facts stay independent.
+    // Glyph of Warding isn't, so the two facts stay independent. Awaken's
+    // "8 hours" is the first Hour-unit casting time whose amount isn't 1.
     [Fact]
-    public void HourLongCastingTimesAreFindFamiliarAndGlyphOfWarding()
+    public void HourLongCastingTimesAreFindFamiliarGlyphOfWardingAndAwaken()
     {
         SpellDefinition[] hourLong = LoadCanonical()
             .Where(spell => spell.CastingTime.Unit
@@ -1149,6 +1210,7 @@ public sealed class SpellDataFileTests
 
         Assert.Equal(
             [
+                "dnd5e2014.spell.awaken",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.glyph-of-warding"
             ],
@@ -1156,6 +1218,8 @@ public sealed class SpellDataFileTests
 
         Assert.True(Get("dnd5e2014.spell.find-familiar").IsRitual);
         Assert.False(Get("dnd5e2014.spell.glyph-of-warding").IsRitual);
+        Assert.False(Get("dnd5e2014.spell.awaken").IsRitual);
+        Assert.Equal(8, Get("dnd5e2014.spell.awaken").CastingTime.Amount);
     }
 
     [Fact]
