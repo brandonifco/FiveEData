@@ -3072,6 +3072,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.divination",
+    "name": "Divination",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "incense and a sacrificial offering appropriate to your religion, together worth at least 25 gp, which the spell consumes",
+      "materialCostGoldPieces": 25,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 234,
+        "section": "Chapter 11: Spells — Spell Descriptions — Divination"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.divine-favor",
     "name": "Divine Favor",
     "level": 1,
@@ -3111,6 +3154,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 234,
         "section": "Chapter 11: Spells — Spell Descriptions — Divine Favor"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.dominate-beast",
+    "name": "Dominate Beast",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 234,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dominate Beast"
       }
     ]
   },
@@ -3464,6 +3551,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.evards-black-tentacles",
+    "name": "Evard's Black Tentacles",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a piece of tentacle from a giant octopus or a giant squid",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 238,
+        "section": "Chapter 11: Spells — Spell Descriptions — Evard's Black Tentacles"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.expeditious-retreat",
     "name": "Expeditious Retreat",
     "level": 1,
@@ -3505,6 +3635,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 238,
         "section": "Chapter 11: Spells — Spell Descriptions — Expeditious Retreat"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.fabricate",
+    "name": "Fabricate",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 239,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fabricate"
       }
     ]
   },
@@ -3909,6 +4082,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.fire-shield",
+    "name": "Fire Shield",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of phosphorus or a firefly",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 242,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fire Shield"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.fireball",
     "name": "Fireball",
     "level": 3,
@@ -4131,6 +4347,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.freedom-of-movement",
+    "name": "Freedom of Movement",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a leather strap, bound around the arm or a similar appendage",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 244,
+        "section": "Chapter 11: Spells — Spell Descriptions — Freedom of Movement"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.friends",
     "name": "Friends",
     "level": 0,
@@ -4266,6 +4528,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.giant-insect",
+    "name": "Giant Insect",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 245,
+        "section": "Chapter 11: Spells — Spell Descriptions — Giant Insect"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.glyph-of-warding",
     "name": "Glyph of Warding",
     "level": 3,
@@ -4355,6 +4660,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.grasping-vine",
+    "name": "Grasping Vine",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 246,
+        "section": "Chapter 11: Spells — Spell Descriptions — Grasping Vine"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.grease",
     "name": "Grease",
     "level": 1,
@@ -4394,6 +4743,94 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 246,
         "section": "Chapter 11: Spells — Spell Descriptions — Grease"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.greater-invisibility",
+    "name": "Greater Invisibility",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 246,
+        "section": "Chapter 11: Spells — Spell Descriptions — Greater Invisibility"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.guardian-of-faith",
+    "name": "Guardian of Faith",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 246,
+        "section": "Chapter 11: Spells — Spell Descriptions — Guardian of Faith"
       }
     ]
   },
@@ -4569,6 +5006,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 249,
         "section": "Chapter 11: Spells — Spell Descriptions — Hail of Thorns"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.hallucinatory-terrain",
+    "name": "Hallucinatory Terrain",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 300,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a stone, a twig, and a bit of green plant",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 249,
+        "section": "Chapter 11: Spells — Spell Descriptions — Hallucinatory Terrain"
       }
     ]
   },
@@ -5012,6 +5495,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 252,
         "section": "Chapter 11: Spells — Spell Descriptions — Hypnotic Pattern"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.ice-storm",
+    "name": "Ice Storm",
+    "level": 4,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 300,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of dust and a few drops of water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 252,
+        "section": "Chapter 11: Spells — Spell Descriptions — Ice Storm"
       }
     ]
   },

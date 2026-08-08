@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(210, LoadCanonical().Count);
+        Assert.Equal(222, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -25,7 +25,7 @@ public sealed class SpellDataFileTests
             50,
             LoadCanonical().Count(spell => spell.Level == 3));
         Assert.Equal(
-            12,
+            24,
             LoadCanonical().Count(spell => spell.Level == 4));
     }
 
@@ -34,7 +34,8 @@ public sealed class SpellDataFileTests
     {
         // Levels 5-9 are not built yet. Levels 0-3 are complete; level 4 is
         // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-D batch, 12 of the PHB's 35 fourth-level spells.
+        // holds the A-D and D-I batches, 24 of the PHB's 35 fourth-level
+        // spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 4));
@@ -341,8 +342,8 @@ public sealed class SpellDataFileTests
     // The class spell list appendix (pp.207-210) gives a 4th-level union of
     // 35 spells across the 8 classes - down from 3rd level's 50, the trend
     // continuing as half-casters (Paladin, Ranger) and Warlock's Pact Magic
-    // approach their 5th-level cap. This pins the A-D batch; later batches
-    // will extend the list until all 35 are built.
+    // approach their 5th-level cap. This pins the A-D and D-I batches; the
+    // L-W batch will complete the list at 35.
     [Fact]
     public void FourthLevelSpellIdsBuiltSoFar()
     {
@@ -359,7 +360,19 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.conjure-woodland-beings",
                 "dnd5e2014.spell.control-water",
                 "dnd5e2014.spell.death-ward",
-                "dnd5e2014.spell.dimension-door"
+                "dnd5e2014.spell.dimension-door",
+                "dnd5e2014.spell.divination",
+                "dnd5e2014.spell.dominate-beast",
+                "dnd5e2014.spell.evards-black-tentacles",
+                "dnd5e2014.spell.fabricate",
+                "dnd5e2014.spell.fire-shield",
+                "dnd5e2014.spell.freedom-of-movement",
+                "dnd5e2014.spell.giant-insect",
+                "dnd5e2014.spell.grasping-vine",
+                "dnd5e2014.spell.greater-invisibility",
+                "dnd5e2014.spell.guardian-of-faith",
+                "dnd5e2014.spell.hallucinatory-terrain",
+                "dnd5e2014.spell.ice-storm"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 4)
@@ -377,6 +390,14 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.control-water", "Control Water", "transmutation", 227)]
     [InlineData("dnd5e2014.spell.death-ward", "Death Ward", "abjuration", 230)]
     [InlineData("dnd5e2014.spell.dimension-door", "Dimension Door", "conjuration", 233)]
+    [InlineData("dnd5e2014.spell.divination", "Divination", "divination", 234)]
+    [InlineData("dnd5e2014.spell.evards-black-tentacles", "Evard's Black Tentacles", "conjuration", 238)]
+    [InlineData("dnd5e2014.spell.fabricate", "Fabricate", "transmutation", 239)]
+    [InlineData("dnd5e2014.spell.fire-shield", "Fire Shield", "evocation", 242)]
+    [InlineData("dnd5e2014.spell.giant-insect", "Giant Insect", "transmutation", 245)]
+    [InlineData("dnd5e2014.spell.guardian-of-faith", "Guardian of Faith", "conjuration", 246)]
+    [InlineData("dnd5e2014.spell.hallucinatory-terrain", "Hallucinatory Terrain", "illusion", 249)]
+    [InlineData("dnd5e2014.spell.ice-storm", "Ice Storm", "evocation", 252)]
     public void FourthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -641,6 +662,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.comprehend-languages",
                 "dnd5e2014.spell.detect-magic",
                 "dnd5e2014.spell.detect-poison-and-disease",
+                "dnd5e2014.spell.divination",
                 "dnd5e2014.spell.feign-death",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.gentle-repose",
@@ -730,6 +752,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.chromatic-orb",
                 "dnd5e2014.spell.clairvoyance",
                 "dnd5e2014.spell.continual-flame",
+                "dnd5e2014.spell.divination",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.identify",
@@ -941,8 +964,7 @@ public sealed class SpellDataFileTests
 
     // Find Steed's "10 minutes" was the first casting time whose amount is
     // not 1 - the field always allowed it, but no built spell exercised it.
-    // Prayer of Healing and Clairvoyance are the second and third, and all
-    // three are 10 minutes.
+    // Every one built since is 10 minutes too.
     [Fact]
     public void CastingTimesWhoseAmountIsNotOneAreAllTenMinutes()
     {
@@ -954,7 +976,9 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.clairvoyance",
+                "dnd5e2014.spell.fabricate",
                 "dnd5e2014.spell.find-steed",
+                "dnd5e2014.spell.hallucinatory-terrain",
                 "dnd5e2014.spell.prayer-of-healing"
             ],
             slow.Select(spell => spell.Id.Value));
