@@ -266,6 +266,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.animate-dead",
+    "name": "Animate Dead",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a drop of blood, a piece of flesh, and a pinch of bone dust",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 212,
+        "section": "Chapter 11: Spells — Spell Descriptions — Animate Dead"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.arcane-lock",
     "name": "Arcane Lock",
     "level": 2,
@@ -438,6 +482,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.aura-of-vitality",
+    "name": "Aura of Vitality",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 216,
+        "section": "Chapter 11: Spells — Spell Descriptions — Aura of Vitality"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.bane",
     "name": "Bane",
     "level": 1,
@@ -526,6 +613,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.beacon-of-hope",
+    "name": "Beacon of Hope",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 217,
+        "section": "Chapter 11: Spells — Spell Descriptions — Beacon of Hope"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.beast-sense",
     "name": "Beast Sense",
     "level": 2,
@@ -566,6 +696,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 217,
         "section": "Chapter 11: Spells — Spell Descriptions — Beast Sense"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.bestow-curse",
+    "name": "Bestow Curse",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 218,
+        "section": "Chapter 11: Spells — Spell Descriptions — Bestow Curse"
       }
     ]
   },
@@ -660,6 +835,49 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.blinding-smite",
+    "name": "Blinding Smite",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 219,
+        "section": "Chapter 11: Spells — Spell Descriptions — Blinding Smite"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.blindness-deafness",
     "name": "Blindness/Deafness",
     "level": 2,
@@ -702,6 +920,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 219,
         "section": "Chapter 11: Spells — Spell Descriptions — Blindness/Deafness"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.blink",
+    "name": "Blink",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 219,
+        "section": "Chapter 11: Spells — Spell Descriptions — Blink"
       }
     ]
   },
@@ -833,6 +1095,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 220,
         "section": "Chapter 11: Spells — Spell Descriptions — Burning Hands"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.call-lightning",
+    "name": "Call Lightning",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 220,
+        "section": "Chapter 11: Spells — Spell Descriptions — Call Lightning"
       }
     ]
   },
@@ -1013,6 +1318,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 221,
         "section": "Chapter 11: Spells — Spell Descriptions — Chromatic Orb"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.clairvoyance",
+    "name": "Clairvoyance",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 5280,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a focus worth at least 100 gp, either a jeweled horn for hearing or a glass eye for seeing",
+      "materialCostGoldPieces": 100,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 222,
+        "section": "Chapter 11: Spells — Spell Descriptions — Clairvoyance"
       }
     ]
   },
@@ -1240,6 +1591,93 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.conjure-animals",
+    "name": "Conjure Animals",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 225,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Animals"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.conjure-barrage",
+    "name": "Conjure Barrage",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Cone",
+      "areaSizeFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "one piece of ammunition or a thrown weapon",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 225,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Barrage"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.continual-flame",
     "name": "Continual Flame",
     "level": 2,
@@ -1323,6 +1761,95 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 228,
         "section": "Chapter 11: Spells — Spell Descriptions — Cordon of Arrows"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.counterspell",
+    "name": "Counterspell",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Reaction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 228,
+        "section": "Chapter 11: Spells — Spell Descriptions — Counterspell"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.create-food-and-water",
+    "name": "Create Food and Water",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 229,
+        "section": "Chapter 11: Spells — Spell Descriptions — Create Food and Water"
       }
     ]
   },
@@ -1413,6 +1940,49 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 229,
         "section": "Chapter 11: Spells — Spell Descriptions — Crown of Madness"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.crusaders-mantle",
+    "name": "Crusader's Mantle",
+    "level": 3,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 230,
+        "section": "Chapter 11: Spells — Spell Descriptions — Crusader's Mantle"
       }
     ]
   },
