@@ -39,15 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2285 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2296 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, and all 35 fourth-level spells are
-built, plus the first 21 of the PHB's 42 fifth-level spells (batches A–C
-and C–G) — 254 in total. The rest of level 5 (G–P, R–W) and all of levels
-6–9 are not started.**
+built, plus the first 31 of the PHB's 42 fifth-level spells (batches A–C,
+C–G, and G–P) — 264 in total. Only the R–W batch of level 5 remains;
+levels 6–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -205,6 +205,19 @@ Each batch drove schema additions from real content, never anticipation:
   throwing hammer; pinned by
   `DestructiveWaveIsNamedFromItsDescriptionNotTheAppendix` so a future
   pass doesn't "helpfully" rename it back.
+- **5th G–P:** nothing new structurally, but two recurring-pattern
+  confirmations. Legend Lore is the **second** spell (after Leomund's
+  Secret Chest) with a two-item material bundle and no single cost figure
+  — incense at 250 gp, four ivory strips at 50 gp each — declined the same
+  way, `MaterialCostGoldPieces` null; unlike Leomund's Secret Chest, one
+  item's consumption *is* stated ("which the spell consumes" on the
+  incense), so `MaterialIsConsumed` is `true` even though the field can't
+  represent "only one of the two items." Hallow is a plain **"Until
+  dispelled"** with no trigger clause (unlike Magic Mouth/Glyph of
+  Warding's "or triggered"), the fifth spell on that flag and still
+  costed-and-consumed. Hallow (24) and Planar Binding (1) also extend the
+  Hour-unit casting times past Awaken's 8, so the "amount 1" default is
+  now the minority among Hour-unit spells (2 of 5).
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
