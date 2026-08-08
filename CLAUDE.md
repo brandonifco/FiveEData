@@ -39,14 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2233 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2241 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
-second-level, and all 50 third-level spells are built, plus the first 12
-of the PHB's 35 fourth-level spells (batch A–D) — 210 in total. The rest
-of level 4 (D–I and L–W) and all of levels 5–9 are not started.**
+second-level, and all 50 third-level spells are built, plus the first 24
+of the PHB's 35 fourth-level spells (batches A–D and D–I) — 222 in total.
+Only the L–W batch of level 4 remains; levels 5–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -149,6 +149,15 @@ Each batch drove schema additions from real content, never anticipation:
   fact, so it earns no pinning test. Aura of Life and Aura of Purity reuse
   `SpellAreaShape.Radius` at 30 feet, the same shape Aura of Vitality
   already established.
+- **4th D–I:** nothing — the sixth schema-quiet batch in a row. Fabricate
+  and Hallucinatory Terrain both join the existing "10 minutes" casting-time
+  group, no longer a rarity (5 spells now). **This batch's insertion pass
+  caught its own mistake twice**: Divination and Grasping Vine were each
+  first inserted after the wrong alphabetical neighbor (`Divine Favor` and
+  `Grease` respectively, both a plausible-looking but incorrect anchor) —
+  caught by the same `sorted?` check every batch runs before the gate, not
+  by a human reviewer. The check exists precisely for this: verify it after
+  every batch, not just when something looks off.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
