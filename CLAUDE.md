@@ -39,15 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2296 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2313 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
-second-level, all 50 third-level, and all 35 fourth-level spells are
-built, plus the first 31 of the PHB's 42 fifth-level spells (batches A–C,
-C–G, and G–P) — 264 in total. Only the R–W batch of level 5 remains;
-levels 6–9 are not started.**
+second-level, all 50 third-level, all 35 fourth-level, and all 42
+fifth-level spells are built — 275 in total. Levels 6–9 are not
+started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -218,6 +217,14 @@ Each batch drove schema additions from real content, never anticipation:
   costed-and-consumed. Hallow (24) and Planar Binding (1) also extend the
   Hour-unit casting times past Awaken's 8, so the "amount 1" default is
   now the minority among Hour-unit spells (2 of 5).
+- **5th R–W (closing the level):** nothing — the eighth schema-quiet
+  batch. Teleportation Circle is V+M with no S, the sixth spell on that
+  combination and the first non-cantrip/non-1st-level one since Tongues.
+  Raise Dead and Reincarnate both add a third and fourth Hour-unit
+  casting-time amount of 1, alongside Planar Binding's. Fifth level
+  closed at exactly 42 — the class-list appendix union predicted this
+  before any R–W spell was read, matching third and fourth level's same
+  pattern. **All five levels 1–5 are now complete: 275 spells total.**
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
