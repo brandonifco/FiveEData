@@ -9445,6 +9445,96 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.raise-dead",
+    "name": "Raise Dead",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a diamond worth at least 500 gp, which the spell consumes",
+      "materialCostGoldPieces": 500,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.paladin"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 270,
+        "section": "Chapter 11: Spells — Spell Descriptions — Raise Dead"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.rarys-telepathic-bond",
+    "name": "Rary's Telepathic Bond",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "pieces of eggshell from two different kinds of creatures",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 270,
+        "section": "Chapter 11: Spells — Spell Descriptions — Rary's Telepathic Bond"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.ray-of-enfeeblement",
     "name": "Ray of Enfeeblement",
     "level": 2,
@@ -9576,6 +9666,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 271,
         "section": "Chapter 11: Spells — Spell Descriptions — Ray of Sickness"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.reincarnate",
+    "name": "Reincarnate",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "rare oils and unguents worth at least 1,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 271,
+        "section": "Chapter 11: Spells — Spell Descriptions — Reincarnate"
       }
     ]
   },
@@ -9894,6 +10028,54 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.scrying",
+    "name": "Scrying",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 273,
+        "section": "Chapter 11: Spells — Spell Descriptions — Scrying"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.searing-smite",
     "name": "Searing Smite",
     "level": 1,
@@ -9980,6 +10162,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 274,
         "section": "Chapter 11: Spells — Spell Descriptions — See Invisibility"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.seeming",
+    "name": "Seeming",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 274,
+        "section": "Chapter 11: Spells — Spell Descriptions — Seeming"
       }
     ]
   },
@@ -11074,6 +11302,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.swift-quiver",
+    "name": "Swift Quiver",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a quiver containing at least one piece of ammunition",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 279,
+        "section": "Chapter 11: Spells — Spell Descriptions — Swift Quiver"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.tashas-hideous-laughter",
     "name": "Tasha's Hideous Laughter",
     "level": 1,
@@ -11115,6 +11387,97 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 280,
         "section": "Chapter 11: Spells — Spell Descriptions — Tasha's Hideous Laughter"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.telekinesis",
+    "name": "Telekinesis",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 280,
+        "section": "Chapter 11: Spells — Spell Descriptions — Telekinesis"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.teleportation-circle",
+    "name": "Teleportation Circle",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": true,
+      "materialDescription": "rare chalks and inks infused with precious gems worth 50 gp, which the spell consumes",
+      "materialCostGoldPieces": 50,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 282,
+        "section": "Chapter 11: Spells — Spell Descriptions — Teleportation Circle"
       }
     ]
   },
@@ -11390,6 +11753,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.tree-stride",
+    "name": "Tree Stride",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.ranger"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 283,
+        "section": "Chapter 11: Spells — Spell Descriptions — Tree Stride"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.true-strike",
     "name": "True Strike",
     "level": 0,
@@ -11614,6 +12022,96 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 285,
         "section": "Chapter 11: Spells — Spell Descriptions — Wall of Fire"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.wall-of-force",
+    "name": "Wall of Force",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of powder made by crushing a clear gemstone",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 285,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wall of Force"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.wall-of-stone",
+    "name": "Wall of Stone",
+    "level": 5,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small block of granite",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 287,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wall of Stone"
       }
     ]
   },

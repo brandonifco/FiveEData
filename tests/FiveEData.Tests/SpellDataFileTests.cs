@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(264, LoadCanonical().Count);
+        Assert.Equal(275, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -28,17 +28,14 @@ public sealed class SpellDataFileTests
             35,
             LoadCanonical().Count(spell => spell.Level == 4));
         Assert.Equal(
-            31,
+            42,
             LoadCanonical().Count(spell => spell.Level == 5));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsThroughFifthLevelForNow()
     {
-        // Levels 6-9 are not built yet. Levels 0-4 are complete; level 5 is
-        // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-C, C-G, and G-P batches, 31 of the PHB's 42
-        // fifth-level spells.
+        // Levels 6-9 are not built yet. Levels 0-5 are all complete.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 5));
@@ -462,11 +459,13 @@ public sealed class SpellDataFileTests
     }
 
     // The class spell list appendix (pp.207-210) gives a 5th-level union of
-    // 42 spells across the 8 classes - up from 4th level's 35, so the
-    // per-level decline (62/59/50/35) isn't monotonic. This pins the A-C,
-    // C-G, and G-P batches; the R-W batch will complete the list at 42.
+    // 42 spells across the 8 classes, built across four alphabetical
+    // batches (A-C, C-G, G-P, R-W) - up from 4th level's 35, so the
+    // per-level decline (62/59/50/35) isn't monotonic. Every list grew or
+    // held from 4th to 5th, since that's each class's last level before
+    // Paladin/Ranger/Warlock's lists stop entirely.
     [Fact]
-    public void FifthLevelSpellIdsBuiltSoFar()
+    public void FifthLevelContainsExactlyThePhbsFortyTwoSpells()
     {
         Assert.Equal(
             [
@@ -500,12 +499,46 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.mislead",
                 "dnd5e2014.spell.modify-memory",
                 "dnd5e2014.spell.passwall",
-                "dnd5e2014.spell.planar-binding"
+                "dnd5e2014.spell.planar-binding",
+                "dnd5e2014.spell.raise-dead",
+                "dnd5e2014.spell.rarys-telepathic-bond",
+                "dnd5e2014.spell.reincarnate",
+                "dnd5e2014.spell.scrying",
+                "dnd5e2014.spell.seeming",
+                "dnd5e2014.spell.swift-quiver",
+                "dnd5e2014.spell.telekinesis",
+                "dnd5e2014.spell.teleportation-circle",
+                "dnd5e2014.spell.tree-stride",
+                "dnd5e2014.spell.wall-of-force",
+                "dnd5e2014.spell.wall-of-stone"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 5)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Read off the eight class spell lists on pp.207-210, whose 5th-level
+    // sections hold 16/13/14/6/4/11/4/23 entries; their union is 42.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 16)]
+    [InlineData("dnd5e2014.class.cleric", 13)]
+    [InlineData("dnd5e2014.class.druid", 14)]
+    [InlineData("dnd5e2014.class.paladin", 6)]
+    [InlineData("dnd5e2014.class.ranger", 4)]
+    [InlineData("dnd5e2014.class.sorcerer", 11)]
+    [InlineData("dnd5e2014.class.warlock", 4)]
+    [InlineData("dnd5e2014.class.wizard", 23)]
+    public void ClassFifthLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 5
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
     }
 
     [Theory]
@@ -537,6 +570,15 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.modify-memory", "Modify Memory", "enchantment", 261)]
     [InlineData("dnd5e2014.spell.passwall", "Passwall", "transmutation", 264)]
     [InlineData("dnd5e2014.spell.planar-binding", "Planar Binding", "abjuration", 265)]
+    [InlineData("dnd5e2014.spell.raise-dead", "Raise Dead", "necromancy", 270)]
+    [InlineData("dnd5e2014.spell.rarys-telepathic-bond", "Rary's Telepathic Bond", "divination", 270)]
+    [InlineData("dnd5e2014.spell.reincarnate", "Reincarnate", "transmutation", 271)]
+    [InlineData("dnd5e2014.spell.scrying", "Scrying", "divination", 273)]
+    [InlineData("dnd5e2014.spell.swift-quiver", "Swift Quiver", "transmutation", 279)]
+    [InlineData("dnd5e2014.spell.telekinesis", "Telekinesis", "transmutation", 280)]
+    [InlineData("dnd5e2014.spell.tree-stride", "Tree Stride", "conjuration", 283)]
+    [InlineData("dnd5e2014.spell.wall-of-force", "Wall of Force", "evocation", 285)]
+    [InlineData("dnd5e2014.spell.wall-of-stone", "Wall of Stone", "evocation", 287)]
     public void FifthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -932,6 +974,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.meld-into-stone",
                 "dnd5e2014.spell.phantom-steed",
                 "dnd5e2014.spell.purify-food-and-drink",
+                "dnd5e2014.spell.rarys-telepathic-bond",
                 "dnd5e2014.spell.silence",
                 "dnd5e2014.spell.speak-with-animals",
                 "dnd5e2014.spell.tensers-floating-disk",
@@ -1026,8 +1069,12 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.planar-binding",
+                "dnd5e2014.spell.raise-dead",
+                "dnd5e2014.spell.reincarnate",
                 "dnd5e2014.spell.revivify",
+                "dnd5e2014.spell.scrying",
                 "dnd5e2014.spell.stoneskin",
+                "dnd5e2014.spell.teleportation-circle",
                 "dnd5e2014.spell.warding-bond"
             ],
             LoadCanonical()
@@ -1239,7 +1286,7 @@ public sealed class SpellDataFileTests
     // not 1 - the field always allowed it, but no built spell exercised it.
     // Every Minute-unit one built since is 10 minutes too; the Hour-unit
     // amounts (Awaken, Hallow, Planar Binding) are pinned separately by
-    // HourLongCastingTimesSpanFiveSpellsAndThreeAmounts.
+    // HourLongCastingTimesSpanSevenSpellsAndThreeAmounts.
     [Fact]
     public void NonOneMinuteCastingTimesAreAllTenMinutes()
     {
@@ -1257,7 +1304,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.hallucinatory-terrain",
                 "dnd5e2014.spell.legend-lore",
                 "dnd5e2014.spell.mordenkainens-private-sanctum",
-                "dnd5e2014.spell.prayer-of-healing"
+                "dnd5e2014.spell.prayer-of-healing",
+                "dnd5e2014.spell.scrying"
             ],
             slow.Select(spell => spell.Id.Value));
 
@@ -1305,9 +1353,10 @@ public sealed class SpellDataFileTests
     }
 
     // Verbal and material with no somatic component is the rarest of the
-    // six V/S/M combinations the built set uses - five spells across four
-    // levels, Tongues joining at third. Pinned because a reader scanning
-    // components is prone to assume material implies somatic.
+    // six V/S/M combinations the built set uses - six spells across five
+    // levels, Tongues joining at third and Teleportation Circle at fifth.
+    // Pinned because a reader scanning components is prone to assume
+    // material implies somatic.
     [Fact]
     public void VerbalAndMaterialWithoutSomaticIsTheRarestCombination()
     {
@@ -1317,6 +1366,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.feather-fall",
                 "dnd5e2014.spell.light",
                 "dnd5e2014.spell.suggestion",
+                "dnd5e2014.spell.teleportation-circle",
                 "dnd5e2014.spell.tongues"
             ],
             LoadCanonical()
@@ -1331,9 +1381,10 @@ public sealed class SpellDataFileTests
     // Warding joined it at third level; Find Familiar is a ritual and
     // Glyph of Warding isn't, so the two facts stay independent. Awaken's
     // "8 hours" is the first Hour-unit casting time whose amount isn't 1;
-    // Hallow (24) and Planar Binding (1) followed.
+    // Hallow (24) and Planar Binding (1) followed, and Raise Dead and
+    // Reincarnate (both 1) closed out fifth level's Hour-unit spells.
     [Fact]
-    public void HourLongCastingTimesSpanFiveSpellsAndThreeAmounts()
+    public void HourLongCastingTimesSpanSevenSpellsAndThreeAmounts()
     {
         SpellDefinition[] hourLong = LoadCanonical()
             .Where(spell => spell.CastingTime.Unit
@@ -1347,7 +1398,9 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.hallow",
-                "dnd5e2014.spell.planar-binding"
+                "dnd5e2014.spell.planar-binding",
+                "dnd5e2014.spell.raise-dead",
+                "dnd5e2014.spell.reincarnate"
             ],
             hourLong.Select(spell => spell.Id.Value));
 
