@@ -451,6 +451,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.arcane-gate",
+    "name": "Arcane Gate",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 500,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 214,
+        "section": "Chapter 11: Spells — Spell Descriptions — Arcane Gate"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.arcane-lock",
     "name": "Arcane Lock",
     "level": 2,
@@ -1165,6 +1211,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.blade-barrier",
+    "name": "Blade Barrier",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 218,
+        "section": "Chapter 11: Spells — Spell Descriptions — Blade Barrier"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.blade-ward",
     "name": "Blade Ward",
     "level": 0,
@@ -1663,6 +1753,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.chain-lightning",
+    "name": "Chain Lightning",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of fur; a piece of amber, glass, or a crystal rod; and three silver pins",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 221,
+        "section": "Chapter 11: Spells — Spell Descriptions — Chain Lightning"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.charm-person",
     "name": "Charm Person",
     "level": 1,
@@ -1798,6 +1933,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 221,
         "section": "Chapter 11: Spells — Spell Descriptions — Chromatic Orb"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.circle-of-death",
+    "name": "Circle of Death",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "the powder of a crushed black pearl worth at least 500 gp",
+      "materialCostGoldPieces": 500,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 221,
+        "section": "Chapter 11: Spells — Spell Descriptions — Circle of Death"
       }
     ]
   },
@@ -2525,6 +2706,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.conjure-fey",
+    "name": "Conjure Fey",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 226,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Fey"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.conjure-minor-elementals",
     "name": "Conjure Minor Elementals",
     "level": 4,
@@ -2745,6 +2972,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 227,
         "section": "Chapter 11: Spells — Spell Descriptions — Contagion"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.contingency",
+    "name": "Contingency",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a statuette of yourself carved from ivory and decorated with gems worth at least 1,500 gp",
+      "materialCostGoldPieces": 1500,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Day"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 227,
+        "section": "Chapter 11: Spells — Spell Descriptions — Contingency"
       }
     ]
   },
@@ -3016,6 +3287,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 229,
         "section": "Chapter 11: Spells — Spell Descriptions — Create or Destroy Water"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.create-undead",
+    "name": "Create Undead",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "one clay pot filled with grave dirt, one clay pot filled with brackish water, and one 150 gp black onyx stone for each corpse",
+      "materialCostGoldPieces": 150,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 229,
+        "section": "Chapter 11: Spells — Spell Descriptions — Create Undead"
       }
     ]
   },
@@ -3761,6 +4078,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.disintegrate",
+    "name": "Disintegrate",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a lodestone and a pinch of dust",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 233,
+        "section": "Chapter 11: Spells — Spell Descriptions — Disintegrate"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.dispel-evil-and-good",
     "name": "Dispel Evil and Good",
     "level": 5,
@@ -4075,6 +4437,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 235,
         "section": "Chapter 11: Spells — Spell Descriptions — Dominate Person"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.drawmijs-instant-summons",
+    "name": "Drawmij's Instant Summons",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a sapphire worth 1,000 gp",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 235,
+        "section": "Chapter 11: Spells — Spell Descriptions — Drawmij's Instant Summons"
       }
     ]
   },
@@ -4568,6 +4974,53 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 238,
         "section": "Chapter 11: Spells — Spell Descriptions — Expeditious Retreat"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.eyebite",
+    "name": "Eyebite",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 238,
+        "section": "Chapter 11: Spells — Spell Descriptions — Eyebite"
       }
     ]
   },
