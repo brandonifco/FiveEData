@@ -5387,6 +5387,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.find-the-path",
+    "name": "Find the Path",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a set of divinatory tools—such as bones, ivory sticks, cards, teeth, or carved runes—worth 100 gp and an object from the location you wish to find",
+      "materialCostGoldPieces": 100,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Day"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 240,
+        "section": "Chapter 11: Spells — Spell Descriptions — Find the Path"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.find-traps",
     "name": "Find Traps",
     "level": 2,
@@ -5700,6 +5746,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.flesh-to-stone",
+    "name": "Flesh to Stone",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of lime, water, and earth",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 243,
+        "section": "Chapter 11: Spells — Spell Descriptions — Flesh to Stone"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.fly",
     "name": "Fly",
     "level": 3,
@@ -5789,6 +5880,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 243,
         "section": "Chapter 11: Spells — Spell Descriptions — Fog Cloud"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.forbiddance",
+    "name": "Forbiddance",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a sprinkling of holy water, rare incense, and powdered ruby worth at least 1,000 gp",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Day"
+    },
+    "isRitual": true,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 243,
+        "section": "Chapter 11: Spells — Spell Descriptions — Forbiddance"
       }
     ]
   },
@@ -6066,6 +6201,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 245,
         "section": "Chapter 11: Spells — Spell Descriptions — Giant Insect"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.globe-of-invulnerability",
+    "name": "Globe of Invulnerability",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a glass or crystal bead that shatters when the spell ends",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 245,
+        "section": "Chapter 11: Spells — Spell Descriptions — Globe of Invulnerability"
       }
     ]
   },
@@ -6386,6 +6566,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.guards-and-wards",
+    "name": "Guards and Wards",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "burning incense, a small measure of brimstone and oil, a knotted string, a small amount of umber hulk blood, and a small silver rod worth at least 10 gp",
+      "materialCostGoldPieces": 10,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 248,
+        "section": "Chapter 11: Spells — Spell Descriptions — Guards and Wards"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.guidance",
     "name": "Guidance",
     "level": 0,
@@ -6656,6 +6881,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.harm",
+    "name": "Harm",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 249,
+        "section": "Chapter 11: Spells — Spell Descriptions — Harm"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.haste",
     "name": "Haste",
     "level": 3,
@@ -6697,6 +6966,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 250,
         "section": "Chapter 11: Spells — Spell Descriptions — Haste"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.heal",
+    "name": "Heal",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 250,
+        "section": "Chapter 11: Spells — Spell Descriptions — Heal"
       }
     ]
   },
@@ -6832,6 +7146,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 250,
         "section": "Chapter 11: Spells — Spell Descriptions — Hellish Rebuke"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.heroes-feast",
+    "name": "Heroes' Feast",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a gem-encrusted bowl worth at least 1,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 250,
+        "section": "Chapter 11: Spells — Spell Descriptions — Heroes' Feast"
       }
     ]
   },
@@ -8217,6 +8576,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.magic-jar",
+    "name": "Magic Jar",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a gem, crystal, reliquary, or some other ornamental container worth at least 500 gp",
+      "materialCostGoldPieces": 500,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 257,
+        "section": "Chapter 11: Spells — Spell Descriptions — Magic Jar"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.magic-missile",
     "name": "Magic Missile",
     "level": 1,
@@ -8485,6 +8888,53 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 258,
         "section": "Chapter 11: Spells — Spell Descriptions — Mass Healing Word"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.mass-suggestion",
+    "name": "Mass Suggestion",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": true,
+      "materialDescription": "a snake's tongue and either a bit of honeycomb or a drop of sweet oil",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 258,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mass Suggestion"
       }
     ]
   },
