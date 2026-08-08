@@ -39,14 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2199 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2208 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level and all 59
-second-level spells are built, plus the first 25 of the PHB's 50
-third-level spells (batches A–C and D–H) — 173 in total. The rest of level
-3 (L–P and R–W) and all of levels 4–9 are not started.**
+second-level spells are built, plus the first 36 of the PHB's 50
+third-level spells (batches A–C, D–H, and L–P) — 184 in total. Only the
+R–W batch of level 3 remains; levels 4–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -117,6 +117,20 @@ Each batch drove schema additions from real content, never anticipation:
   the class spell list appendix while placing Hypnotic Pattern caught a
   column-boundary miss from the A–C batch: Wizard's 3rd-level count is 29,
   not the 28 first recorded below — the per-class figures are corrected.
+- **3rd L–P:** two additions. `SpellAreaShape.Hemisphere` for Leomund's
+  Tiny Hut's "Self (10-foot-radius hemisphere)" — geometrically distinct
+  from a full-sphere `Radius` aura, so it earns its own value rather than
+  reusing one. And a genuinely new problem: Plant Growth prints **"Casting
+  Time: 1 action or 8 hours,"** two alternative casting times that produce
+  different effects (an instant local burst vs. a slower, wider blessing).
+  `SpellCastingTime` has no shape for "either/or." Declined rather than
+  extended: the field stores the 1-action primary value, and the 8-hour
+  alternate mode — which changes the spell's *effect*, not just its speed —
+  stays in the citation, the same "content this project doesn't model as
+  its own domain" line Rock Gnome's Tinker sits on. Revisit only if a
+  second spell needs the same shape; one data point doesn't justify a new
+  mechanism field. Lightning Bolt also became the second `Line` area,
+  after Gust of Wind.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -143,8 +157,8 @@ prose ("which you take when you or a creature within 60 feet of you falls");
 only the unit is data, consistent with never storing rules text.
 
 **Still omitted until content needs them:** area shapes beyond
-`Cone`/`Radius`/`Cube`/`Line` — the PHB also uses a cylinder (Flame Strike)
-and a wall, neither of which a built spell has reached yet.
+`Cone`/`Radius`/`Cube`/`Line`/`Hemisphere` — the PHB also uses a cylinder
+(Flame Strike) and a wall, neither of which a built spell has reached yet.
 
 **`AvailableToClassIds` comes from the Chapter 11 class spell lists
 (pp.207–210), never from the spell description** — the description never

@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(173, LoadCanonical().Count);
+        Assert.Equal(184, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -22,7 +22,7 @@ public sealed class SpellDataFileTests
             59,
             LoadCanonical().Count(spell => spell.Level == 2));
         Assert.Equal(
-            25,
+            36,
             LoadCanonical().Count(spell => spell.Level == 3));
     }
 
@@ -31,8 +31,8 @@ public sealed class SpellDataFileTests
     {
         // Levels 4-9 are not built yet. Levels 0-2 are complete; level 3 is
         // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-C and D-H batches, 25 of the PHB's 50 third-level
-        // spells.
+        // holds the A-C, D-H, and L-P batches, 36 of the PHB's 50
+        // third-level spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 3));
@@ -247,8 +247,8 @@ public sealed class SpellDataFileTests
     }
 
     // The class spell list appendix (pp.207-210) gives a 3rd-level union of
-    // 50 spells across the 8 classes. This pins the A-C and D-H batches;
-    // later batches will extend the list until all 50 are built.
+    // 50 spells across the 8 classes. This pins the A-C, D-H, and L-P
+    // batches; the R-W batch will complete the list at 50.
     [Fact]
     public void ThirdLevelSpellIdsBuiltSoFar()
     {
@@ -278,7 +278,18 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.haste",
                 "dnd5e2014.spell.hunger-of-hadar",
-                "dnd5e2014.spell.hypnotic-pattern"
+                "dnd5e2014.spell.hypnotic-pattern",
+                "dnd5e2014.spell.leomunds-tiny-hut",
+                "dnd5e2014.spell.lightning-arrow",
+                "dnd5e2014.spell.lightning-bolt",
+                "dnd5e2014.spell.magic-circle",
+                "dnd5e2014.spell.major-image",
+                "dnd5e2014.spell.mass-healing-word",
+                "dnd5e2014.spell.meld-into-stone",
+                "dnd5e2014.spell.nondetection",
+                "dnd5e2014.spell.phantom-steed",
+                "dnd5e2014.spell.plant-growth",
+                "dnd5e2014.spell.protection-from-energy"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 3)
@@ -298,6 +309,13 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.glyph-of-warding", "Glyph of Warding", "abjuration", 245)]
     [InlineData("dnd5e2014.spell.hunger-of-hadar", "Hunger of Hadar", "conjuration", 251)]
     [InlineData("dnd5e2014.spell.hypnotic-pattern", "Hypnotic Pattern", "illusion", 252)]
+    [InlineData("dnd5e2014.spell.leomunds-tiny-hut", "Leomund's Tiny Hut", "evocation", 255)]
+    [InlineData("dnd5e2014.spell.lightning-bolt", "Lightning Bolt", "evocation", 255)]
+    [InlineData("dnd5e2014.spell.magic-circle", "Magic Circle", "abjuration", 256)]
+    [InlineData("dnd5e2014.spell.meld-into-stone", "Meld into Stone", "transmutation", 259)]
+    [InlineData("dnd5e2014.spell.nondetection", "Nondetection", "abjuration", 263)]
+    [InlineData("dnd5e2014.spell.phantom-steed", "Phantom Steed", "illusion", 266)]
+    [InlineData("dnd5e2014.spell.protection-from-energy", "Protection from Energy", "abjuration", 270)]
     public void ThirdLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -340,6 +358,41 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             5280,
             Get("dnd5e2014.spell.clairvoyance").Range.DistanceFeet);
+    }
+
+    // Plant Growth prints "Casting Time: 1 action or 8 hours" - the first
+    // header with two alternative casting times, each producing a
+    // different effect (an instant local burst vs. a slower, wider
+    // blessing). CastingTime stores the 1-action primary value; the 8-hour
+    // long-form mode is a compound alternative that changes the spell's
+    // effect, so it stays in the citation, the same "content this project
+    // doesn't model as its own domain" line Rock Gnome's Tinker sits on -
+    // not a schema gap to fill later.
+    [Fact]
+    public void PlantGrowthStoresOnlyTheOneActionPrimaryCastingTime()
+    {
+        SpellCastingTime castingTime =
+            Get("dnd5e2014.spell.plant-growth").CastingTime;
+
+        Assert.Equal(1, castingTime.Amount);
+        Assert.Equal(SpellCastingTimeUnit.Action, castingTime.Unit);
+    }
+
+    // Leomund's Tiny Hut prints "Self (10-foot-radius hemisphere)" - a
+    // physical dome, geometrically distinct from a full-sphere Radius aura
+    // like Aura of Vitality's. It earns its own SpellAreaShape value rather
+    // than reusing Radius.
+    [Fact]
+    public void LeomundsTinyHutIsTheOnlyHemisphereAreaSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell =>
+                    spell.Range.AreaShape == SpellAreaShape.Hemisphere));
+
+        Assert.Equal("dnd5e2014.spell.leomunds-tiny-hut", only.Id.Value);
+        Assert.Equal(SpellRangeKind.Self, only.Range.Kind);
+        Assert.Equal(10, only.Range.AreaSizeFeet);
     }
 
     [Fact]
@@ -473,8 +526,11 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
+                "dnd5e2014.spell.leomunds-tiny-hut",
                 "dnd5e2014.spell.locate-animals-or-plants",
                 "dnd5e2014.spell.magic-mouth",
+                "dnd5e2014.spell.meld-into-stone",
+                "dnd5e2014.spell.phantom-steed",
                 "dnd5e2014.spell.purify-food-and-drink",
                 "dnd5e2014.spell.silence",
                 "dnd5e2014.spell.speak-with-animals",
@@ -504,6 +560,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.conjure-barrage",
                 "dnd5e2014.spell.fear",
                 "dnd5e2014.spell.gust-of-wind",
+                "dnd5e2014.spell.leomunds-tiny-hut",
+                "dnd5e2014.spell.lightning-bolt",
                 "dnd5e2014.spell.thunderwave"
             ],
             areas.Select(spell => spell.Id.Value));
@@ -525,6 +583,12 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             15,
             Get("dnd5e2014.spell.burning-hands").Range.AreaSizeFeet);
+        Assert.Equal(
+            SpellAreaShape.Hemisphere,
+            Get("dnd5e2014.spell.leomunds-tiny-hut").Range.AreaShape);
+        Assert.Equal(
+            SpellAreaShape.Line,
+            Get("dnd5e2014.spell.lightning-bolt").Range.AreaShape);
     }
 
     [Fact]
@@ -544,7 +608,9 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
+                "dnd5e2014.spell.magic-circle",
                 "dnd5e2014.spell.magic-mouth",
+                "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.warding-bond"
             ],
             LoadCanonical()
@@ -716,19 +782,34 @@ public sealed class SpellDataFileTests
             });
     }
 
-    // Gust of Wind drove the Line area shape, which CLAUDE.md had expected
-    // Lightning Bolt to bring at third level. It is the only line so far.
+    // Gust of Wind drove the Line area shape at second level; Lightning
+    // Bolt brought the second and, so far, longest example (100 feet vs.
+    // Gust of Wind's 60).
     [Fact]
-    public void GustOfWindIsTheOnlyLineAreaSoFar()
+    public void LineAreasAreGustOfWindAndLightningBolt()
     {
-        SpellDefinition only = Assert.Single(
-            LoadCanonical()
-                .Where(spell =>
-                    spell.Range.AreaShape == SpellAreaShape.Line));
+        SpellDefinition[] lines = LoadCanonical()
+            .Where(spell => spell.Range.AreaShape == SpellAreaShape.Line)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
 
-        Assert.Equal("dnd5e2014.spell.gust-of-wind", only.Id.Value);
-        Assert.Equal(SpellRangeKind.Self, only.Range.Kind);
-        Assert.Equal(60, only.Range.AreaSizeFeet);
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.gust-of-wind",
+                "dnd5e2014.spell.lightning-bolt"
+            ],
+            lines.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            lines,
+            spell => Assert.Equal(SpellRangeKind.Self, spell.Range.Kind));
+
+        Assert.Equal(
+            60,
+            Get("dnd5e2014.spell.gust-of-wind").Range.AreaSizeFeet);
+        Assert.Equal(
+            100,
+            Get("dnd5e2014.spell.lightning-bolt").Range.AreaSizeFeet);
     }
 
     // Find Steed's "10 minutes" was the first casting time whose amount is
