@@ -136,6 +136,7 @@ internal static class SpellDefinitionLoader
         {
             SpellRangeKind.Self => SpellRange.Self(),
             SpellRangeKind.Touch => SpellRange.Touch(),
+            SpellRangeKind.Unlimited => SpellRange.Unlimited(),
             _ => SpellRange.Distance(
                 data.DistanceFeet
                 ?? throw Missing("range distance")),
