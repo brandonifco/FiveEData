@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(336, LoadCanonical().Count);
+        Assert.Equal(345, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -37,17 +37,18 @@ public sealed class SpellDataFileTests
             20,
             LoadCanonical().Count(spell => spell.Level == 7));
         Assert.Equal(
-            9,
+            18,
             LoadCanonical().Count(spell => spell.Level == 8));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsThroughEighthLevelForNow()
     {
-        // Level 9 is not built yet. Levels 0-7 are complete. Level 8 is
-        // being added in alphabetical batches (see CLAUDE.md) and
-        // currently holds the A-F batch, 9 of the PHB's 19 eighth-level
-        // spells.
+        // Level 9 is not built yet. Levels 0-7 are complete. Level 8 holds
+        // 18 of the PHB's 19 eighth-level spells - Trap the Soul has no
+        // findable description page in this printing (see
+        // EighthLevelSpellIdsBuiltSoFar) and stays unbuilt until a
+        // different source can supply it.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 8));
@@ -849,8 +850,19 @@ public sealed class SpellDataFileTests
 
     // The class spell list appendix (pp.207-210) gives an 8th-level union
     // of 19 spells across the 8 classes - down from 7th level's 20.
-    // Paladin and Ranger stay at zero. This A-F batch is half the level;
-    // the G-T batch will complete it.
+    // Paladin and Ranger stay at zero. The G-T batch built the rest of
+    // the level except one: Trap the Soul is on the Wizard list (p.212)
+    // but this printing's Spell Descriptions section has no entry for it
+    // anywhere in its correct alphabetical position (verified against
+    // high-resolution page images across the entire T range, p.279-285 -
+    // the text runs continuously from Transport via Plants into Tree
+    // Stride with no gap). Per the project's citation rules, a header
+    // block is never invented without a page to read it from, so Trap
+    // the Soul stays unbuilt until a different PHB scan/printing can
+    // supply the missing page. This level is 18 of the PHB's 19 eighth-
+    // level spells, not a closed level - do not "helpfully" round this
+    // up or assume the gap has been resolved without re-checking the
+    // source.
     [Fact]
     public void EighthLevelSpellIdsBuiltSoFar()
     {
@@ -864,12 +876,48 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.demiplane",
                 "dnd5e2014.spell.dominate-monster",
                 "dnd5e2014.spell.earthquake",
-                "dnd5e2014.spell.feeblemind"
+                "dnd5e2014.spell.feeblemind",
+                "dnd5e2014.spell.glibness",
+                "dnd5e2014.spell.holy-aura",
+                "dnd5e2014.spell.incendiary-cloud",
+                "dnd5e2014.spell.maze",
+                "dnd5e2014.spell.mind-blank",
+                "dnd5e2014.spell.power-word-stun",
+                "dnd5e2014.spell.sunburst",
+                "dnd5e2014.spell.telepathy",
+                "dnd5e2014.spell.tsunami"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 8)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Read off the eight class spell lists on pp.207-210, whose 8th-level
+    // sections hold 5/4/7/0/0/5/5/14 entries. The Wizard figure here (13)
+    // is one short of the appendix's real 14, because Trap the Soul has
+    // no findable description page in this printing - see the comment on
+    // EighthLevelSpellIdsBuiltSoFar. Fix this InlineData to 14 only once
+    // Trap the Soul is actually built, not before.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 5)]
+    [InlineData("dnd5e2014.class.cleric", 4)]
+    [InlineData("dnd5e2014.class.druid", 7)]
+    [InlineData("dnd5e2014.class.paladin", 0)]
+    [InlineData("dnd5e2014.class.ranger", 0)]
+    [InlineData("dnd5e2014.class.sorcerer", 5)]
+    [InlineData("dnd5e2014.class.warlock", 5)]
+    [InlineData("dnd5e2014.class.wizard", 13)]
+    public void ClassEighthLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 8
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
     }
 
     [Theory]
@@ -882,6 +930,15 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.dominate-monster", "Dominate Monster", "enchantment", 235)]
     [InlineData("dnd5e2014.spell.earthquake", "Earthquake", "evocation", 236)]
     [InlineData("dnd5e2014.spell.feeblemind", "Feeblemind", "enchantment", 239)]
+    [InlineData("dnd5e2014.spell.glibness", "Glibness", "transmutation", 245)]
+    [InlineData("dnd5e2014.spell.holy-aura", "Holy Aura", "abjuration", 251)]
+    [InlineData("dnd5e2014.spell.incendiary-cloud", "Incendiary Cloud", "conjuration", 253)]
+    [InlineData("dnd5e2014.spell.maze", "Maze", "conjuration", 258)]
+    [InlineData("dnd5e2014.spell.mind-blank", "Mind Blank", "abjuration", 259)]
+    [InlineData("dnd5e2014.spell.power-word-stun", "Power Word Stun", "enchantment", 267)]
+    [InlineData("dnd5e2014.spell.sunburst", "Sunburst", "evocation", 279)]
+    [InlineData("dnd5e2014.spell.telepathy", "Telepathy", "evocation", 281)]
+    [InlineData("dnd5e2014.spell.tsunami", "Tsunami", "conjuration", 284)]
     public void EighthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -933,16 +990,27 @@ public sealed class SpellDataFileTests
     // shape as Dream's Special. SpellRangeKind gained a Sight member and
     // SpellRange.Sight() factory, the same "self/touch/distance" enum
     // extended by one case that Unlimited and Special already did.
+    // Tsunami joins it at 8th level, confirming Sight is a real recurring
+    // PHB range category rather than a one-off.
     [Fact]
-    public void MirageArcaneIsTheOnlySightRangedSpellSoFar()
+    public void SightRangesAreMirageArcaneAndTsunami()
     {
-        SpellDefinition only = Assert.Single(
-            LoadCanonical()
-                .Where(spell => spell.Range.Kind == SpellRangeKind.Sight));
+        SpellDefinition[] sight = LoadCanonical()
+            .Where(spell => spell.Range.Kind == SpellRangeKind.Sight)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
 
-        Assert.Equal("dnd5e2014.spell.mirage-arcane", only.Id.Value);
-        Assert.Null(only.Range.DistanceFeet);
-        Assert.Null(only.Range.AreaShape);
+        Assert.Equal(
+            ["dnd5e2014.spell.mirage-arcane", "dnd5e2014.spell.tsunami"],
+            sight.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            sight,
+            spell =>
+            {
+                Assert.Null(spell.Range.DistanceFeet);
+                Assert.Null(spell.Range.AreaShape);
+            });
     }
 
     // Etherealness prints a flat "Up to 8 hours" with no concentration -
@@ -1256,21 +1324,28 @@ public sealed class SpellDataFileTests
     }
 
     // Sending prints "Range: Unlimited" - no distance in feet at all,
-    // distinct from a large bounded Distance. Telepathy (8th level, not yet
-    // built) uses the same word, so this is a real PHB range category, not
-    // a one-off.
+    // distinct from a large bounded Distance. Telepathy joins it at 8th
+    // level, confirming this is a real PHB range category, not a one-off.
     [Fact]
-    public void SendingIsTheOnlyUnlimitedRangeSoFar()
+    public void UnlimitedRangesAreSendingAndTelepathy()
     {
-        SpellDefinition only = Assert.Single(
-            LoadCanonical()
-                .Where(spell =>
-                    spell.Range.Kind == SpellRangeKind.Unlimited));
+        SpellDefinition[] unlimited = LoadCanonical()
+            .Where(spell => spell.Range.Kind == SpellRangeKind.Unlimited)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
 
-        Assert.Equal("dnd5e2014.spell.sending", only.Id.Value);
-        Assert.Null(only.Range.DistanceFeet);
-        Assert.Null(only.Range.AreaShape);
-        Assert.Null(only.Range.AreaSizeFeet);
+        Assert.Equal(
+            ["dnd5e2014.spell.sending", "dnd5e2014.spell.telepathy"],
+            unlimited.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            unlimited,
+            spell =>
+            {
+                Assert.Null(spell.Range.DistanceFeet);
+                Assert.Null(spell.Range.AreaShape);
+                Assert.Null(spell.Range.AreaSizeFeet);
+            });
     }
 
     [Fact]
@@ -1519,6 +1594,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.guards-and-wards",
                 "dnd5e2014.spell.hallow",
                 "dnd5e2014.spell.heroes-feast",
+                "dnd5e2014.spell.holy-aura",
                 "dnd5e2014.spell.identify",
                 "dnd5e2014.spell.illusory-script",
                 "dnd5e2014.spell.magic-circle",
@@ -1621,6 +1697,22 @@ public sealed class SpellDataFileTests
         Assert.Equal(SpellDurationUnit.Round, trueStrike.Unit);
         Assert.True(trueStrike.RequiresConcentration);
         Assert.True(trueStrike.IsUpTo);
+    }
+
+    // Every Round-unit duration before Tsunami was a flat amount of 1
+    // (Shield, True Strike). Tsunami's "Concentration, up to 6 rounds" is
+    // the first Round-unit amount greater than 1 - the field already
+    // allowed it, the same non-event as Find Steed's 10-minute casting
+    // time at first level.
+    [Fact]
+    public void TsunamiIsTheFirstRoundDurationLongerThanOne()
+    {
+        SpellDuration tsunami = Get("dnd5e2014.spell.tsunami").Duration;
+
+        Assert.Equal(SpellDurationUnit.Round, tsunami.Unit);
+        Assert.Equal(6, tsunami.Amount);
+        Assert.True(tsunami.RequiresConcentration);
+        Assert.True(tsunami.IsUpTo);
     }
 
     // The four Paladin smites are the only 1st-level spells available to
