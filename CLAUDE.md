@@ -37,9 +37,9 @@ Built and complete:
   "Quantized mechanics: the remaining tail"
 - Spells — `MagicSchools` (the 8 schools, a closed official set, cited to
   the p.203 sidebar) and `SpellDefinition`. **All 27 cantrips and all
-  spells of every level 1 through 9 are built, with one deliberate,
-  documented exception — 361 of the PHB's 362 spells.** See "Spells: the
-  Trap the Soul gap" below before assuming this is 362 for 362.
+  spells of every level 1 through 9 are built — 361 spells, the complete
+  real set.** See "Spells: the Trap the Soul appendix error" below for
+  why 361 is the correct final count, not 362.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -49,19 +49,28 @@ under "Quantized mechanics" before assuming a feature exposes real numbers.
 
 Gate as of the last merge: Debug+Release build 0 warnings, **2444 tests**.
 
-## Spells: the Trap the Soul gap
+## Spells: the Trap the Soul appendix error
 
-**One eighth-level spell, Trap the Soul, is a genuine, documented gap —
-not a to-do.** It's on the Wizard class list (p.212) but
-`~/Downloads/Player's Handbook.pdf` has no description page for it
-anywhere in its correct alphabetical position: the text runs
-continuously from Transport via Plants into Tree Stride with no gap,
-verified against high-resolution renders of every page from p.279
-through p.285 (the entire T range) plus a full-text search of the whole
-book. Per the citation rules below, a header block is never invented
-without a page to read it from. Revisit only if a different PHB
-scan/printing becomes available — don't fill this in from memory, and
-don't round level 8's count up to 19 without re-verifying the source.
+**"Trap the Soul" is not a real spell in this PHB printing — it was
+never supposed to be part of the Spell Descriptions section, which is
+why no description page exists for it.** It's confirmed *not findable*
+anywhere in its correct alphabetical position in
+`~/Downloads/Player's Handbook.pdf`: the text runs continuously from
+Transport via Plants into Tree Stride with no gap, verified against
+high-resolution renders of every page from p.279 through p.285 (the
+entire T range) plus a full-text search of the whole book. Its only
+appearance anywhere in the book is the Wizard class list on p.212 —
+that appendix entry is itself the error, a leftover or misprint that
+was never backed by an actual spell entry. This is the same "the
+appendix is a summary list, not the primary source" rule that already
+corrected Destructive Wave's name and the Warlock ability-score-
+improvement table — here the appendix doesn't just get a detail wrong,
+it names a spell that doesn't exist at all. **Treat this as settled,
+not as a pending gap**: 8th level's real PHB count is 18, not 19, and
+Wizard's real 8th-level count is 13, not 14 — both already reflected in
+`SpellDataFileTests`. Do not build Trap the Soul from memory or from a
+different source, and do not treat a future PDF that happens to include
+it as corrective; this printing's absence is correct.
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -88,7 +97,10 @@ the pattern at a smaller scale — two batches of ~8–10 each, since those
 levels are much smaller than 1st–6th.
 Per-level union counts are **not monotonically declining**: 62/59/50 for
 1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th, 20 at 7th,
-19 at 8th, then 16 at 9th**. Paladin and Ranger's lists really do stop entirely at 6th, as
+18 at 8th, then 16 at 9th** — the 8th-level appendix union naively reads
+as 19, but one of its entries (Trap the Soul, Wizard) is an appendix
+error with no real spell behind it; see "Spells: the Trap the Soul
+appendix error". Paladin and Ranger's lists really do stop entirely at 6th, as
 expected — but Warlock's Pact Magic *slots* cap at 5th level while the
 class's own spell list keeps going through 9th, for spells eligible as a
 Mystic Arcanum (one higher-level spell known and cast once per day with
@@ -335,9 +347,11 @@ Each batch drove schema additions from real content, never anticipation:
   already established. Demiplane is Somatic-only — no verbal, no
   material — the first non-cantrip spell on that combination (True
   Strike is the only cantrip on it).
-- **8th G–T:** nine of the ten remaining spells, closing the level at 18
-  of 19 — **Trap the Soul is the one gap; see the "Not started" note
-  above, this is not an oversight to silently fix.** Telepathy's "Range:
+- **8th G–T:** nine of the ten remaining spells, completing the level's
+  real content at 18 — **Trap the Soul, the tenth name on the Wizard
+  class list, is a PHB appendix error with no backing spell; see
+  "Spells: the Trap the Soul appendix error" above. This is not an
+  oversight to silently fix.** Telepathy's "Range:
   Unlimited" confirms Sending's range category is real and recurring,
   not a one-off, the same confirmation pattern as Mirage Arcane and
   Tsunami both landing on "Range: Sight" (Tsunami is the second, closing
@@ -373,9 +387,10 @@ Each batch drove schema additions from real content, never anticipation:
   than expended) but not stated as consumed — the "costed, not consumed"
   quadrant Chromatic Orb already established, still showing up at the
   very top of the level range. **All 16 of the PHB's ninth-level spells
-  are now built. Every PHB spell level, 0 through 9, has at least one
-  built spell, and every level except 8th (missing only Trap the Soul)
-  is fully built: 361 spells total.**
+  are now built. Every PHB spell level, 0 through 9, is now fully
+  built: 361 spells total — the complete real set, since Trap the
+  Soul was never a real spell to begin with (see "Spells: the Trap the
+  Soul appendix error").**
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
