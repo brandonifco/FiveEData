@@ -1,7 +1,10 @@
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Spells.MagicSchools;
 
 namespace FiveEData.Rules.Spells.Serialization;
@@ -105,8 +108,53 @@ internal static class SpellDefinitionLoader
             MapComponents(componentsData),
             MapDuration(durationData),
             data.IsRitual ?? throw Missing("ritual flag"),
+            data.DamageEffect is { } damageEffectData
+                ? MapDamageEffect(damageEffectData)
+                : null,
             classIdValues.Select(value => new ClassId(value)).ToArray(),
             sourceData.Select(SourceReferenceDataMapper.Map).ToArray());
+    }
+
+    private static SpellDamageEffect MapDamageEffect(
+        SpellDamageEffectData data)
+    {
+        var damageTypeId = new DamageTypeId(
+            data.DamageTypeId ?? throw Missing("damage effect damage type"));
+
+        SpellAttackRollType? attackRollType =
+            data.AttackRollType is { } attackRollTypeValue
+                ? ParseEnum<SpellAttackRollType>(
+                    attackRollTypeValue,
+                    "damage effect attack roll type")
+                : null;
+
+        AbilityId? savingThrowAbilityId =
+            data.SavingThrowAbilityId is { } savingThrowAbilityIdValue
+                ? new AbilityId(savingThrowAbilityIdValue)
+                : null;
+
+        SpellDamageTierGrantData[] tierData =
+            data.DamageByCharacterLevel
+            ?? throw Missing("damage effect tiers");
+
+        return new SpellDamageEffect(
+            damageTypeId,
+            attackRollType,
+            savingThrowAbilityId,
+            tierData.Select(MapDamageTier).ToArray());
+    }
+
+    private static SpellDamageTierGrant MapDamageTier(
+        SpellDamageTierGrantData data)
+    {
+        int characterLevel =
+            data.CharacterLevel ?? throw Missing("damage tier character level");
+        DiceExpressionData damageData =
+            data.Damage ?? throw Missing("damage tier damage");
+
+        return new SpellDamageTierGrant(
+            characterLevel,
+            new DiceExpression(damageData.Count, damageData.Sides));
     }
 
     private static SpellCastingTime MapCastingTime(

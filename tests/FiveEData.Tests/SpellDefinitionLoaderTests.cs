@@ -31,6 +31,7 @@ public sealed class SpellDefinitionLoaderTests
                   "isUpTo": false, "amount": null, "unit": null
                 },
                 "isRitual": false,
+                "damageEffect": null,
                 "availableToClassIds": ["dnd5e2014.class.wizard"],
                 "sources": [{
                   "documentId": "extension.source.test",
@@ -197,6 +198,82 @@ public sealed class SpellDefinitionLoaderTests
                     "\"isSpecial\": false,",
                     "\"isSpecial\": true,",
                     StringComparison.Ordinal)));
+    }
+
+    [Fact]
+    public void DamageEffect_LoadsWithAttackRoll()
+    {
+        string json = ValidJson.Replace(
+            "\"damageEffect\": null,",
+            """
+            "damageEffect": {
+              "damageTypeId": "dnd5e2014.damage-type.fire",
+              "attackRollType": "Ranged",
+              "savingThrowAbilityId": null,
+              "damageByCharacterLevel": [
+                { "characterLevel": 1, "damage": { "count": 1, "sides": 10 } },
+                { "characterLevel": 5, "damage": { "count": 2, "sides": 10 } }
+              ]
+            },
+            """,
+            StringComparison.Ordinal);
+
+        SpellDefinition definition =
+            Assert.Single(SpellDefinitionLoader.LoadFromJson(json));
+
+        Assert.NotNull(definition.DamageEffect);
+        Assert.Equal(
+            SpellAttackRollType.Ranged,
+            definition.DamageEffect!.AttackRollType);
+        Assert.Null(definition.DamageEffect.SavingThrowAbilityId);
+        Assert.Equal(2, definition.DamageEffect.DamageByCharacterLevel.Count);
+    }
+
+    [Fact]
+    public void DamageEffect_LoadsWithSavingThrow()
+    {
+        string json = ValidJson.Replace(
+            "\"damageEffect\": null,",
+            """
+            "damageEffect": {
+              "damageTypeId": "dnd5e2014.damage-type.acid",
+              "attackRollType": null,
+              "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+              "damageByCharacterLevel": [
+                { "characterLevel": 1, "damage": { "count": 1, "sides": 6 } }
+              ]
+            },
+            """,
+            StringComparison.Ordinal);
+
+        SpellDefinition definition =
+            Assert.Single(SpellDefinitionLoader.LoadFromJson(json));
+
+        Assert.Null(definition.DamageEffect!.AttackRollType);
+        Assert.Equal(
+            "dnd5e2014.ability.dexterity",
+            definition.DamageEffect.SavingThrowAbilityId!.Value.Value);
+    }
+
+    [Fact]
+    public void DamageEffectWithBothAttackRollAndSavingThrow_IsRejected()
+    {
+        string json = ValidJson.Replace(
+            "\"damageEffect\": null,",
+            """
+            "damageEffect": {
+              "damageTypeId": "dnd5e2014.damage-type.acid",
+              "attackRollType": "Ranged",
+              "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+              "damageByCharacterLevel": [
+                { "characterLevel": 1, "damage": { "count": 1, "sides": 6 } }
+              ]
+            },
+            """,
+            StringComparison.Ordinal);
+
+        Assert.ThrowsAny<Exception>(
+            () => SpellDefinitionLoader.LoadFromJson(json));
     }
 
     [Fact]

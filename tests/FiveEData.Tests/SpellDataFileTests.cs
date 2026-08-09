@@ -2373,6 +2373,103 @@ public sealed class SpellDataFileTests
             catalog.All.Select(spell => spell.Id.Value));
     }
 
+    // 11 of the 27 cantrips deal damage directly; the other 16 are utility
+    // or buff effects (or, like Light and Minor Illusion, gate a
+    // conditional save/check that isn't this project's "damage dice, save
+    // DC/ability, condition applied" scope) and carry no SpellDamageEffect.
+    [Fact]
+    public void ElevenCantripsHaveADamageEffect()
+    {
+        Assert.Equal(
+            11,
+            LoadCanonical()
+                .Count(spell => spell.IsCantrip && spell.DamageEffect is not null));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.blade-ward")]
+    [InlineData("dnd5e2014.spell.dancing-lights")]
+    [InlineData("dnd5e2014.spell.druidcraft")]
+    [InlineData("dnd5e2014.spell.friends")]
+    [InlineData("dnd5e2014.spell.guidance")]
+    [InlineData("dnd5e2014.spell.light")]
+    [InlineData("dnd5e2014.spell.mage-hand")]
+    [InlineData("dnd5e2014.spell.mending")]
+    [InlineData("dnd5e2014.spell.message")]
+    [InlineData("dnd5e2014.spell.minor-illusion")]
+    [InlineData("dnd5e2014.spell.prestidigitation")]
+    [InlineData("dnd5e2014.spell.resistance")]
+    [InlineData("dnd5e2014.spell.shillelagh")]
+    [InlineData("dnd5e2014.spell.spare-the-dying")]
+    [InlineData("dnd5e2014.spell.thaumaturgy")]
+    [InlineData("dnd5e2014.spell.true-strike")]
+    public void UtilityAndBuffCantrip_HasNoDamageEffect(string id)
+    {
+        Assert.Null(Get(id).DamageEffect);
+    }
+
+    // Every damage cantrip except Eldritch Blast increases its damage die
+    // count by one at 5th, 11th, and 17th character level (p.201,
+    // "Cantrips"); Eldritch Blast stays a flat 1d10 and instead gains
+    // extra beams at those levels, a targeting-multiplicity fact this pass
+    // declines to model (see CLAUDE.md).
+    [Theory]
+    [InlineData("dnd5e2014.spell.acid-splash", "acid", null, "dexterity", 6)]
+    [InlineData("dnd5e2014.spell.chill-touch", "necrotic", "Ranged", null, 8)]
+    [InlineData("dnd5e2014.spell.fire-bolt", "fire", "Ranged", null, 10)]
+    [InlineData("dnd5e2014.spell.poison-spray", "poison", null, "constitution", 12)]
+    [InlineData("dnd5e2014.spell.produce-flame", "fire", "Ranged", null, 8)]
+    [InlineData("dnd5e2014.spell.ray-of-frost", "cold", "Ranged", null, 8)]
+    [InlineData("dnd5e2014.spell.sacred-flame", "radiant", null, "dexterity", 8)]
+    [InlineData("dnd5e2014.spell.shocking-grasp", "lightning", "Melee", null, 8)]
+    [InlineData("dnd5e2014.spell.thorn-whip", "piercing", "Melee", null, 6)]
+    [InlineData("dnd5e2014.spell.vicious-mockery", "psychic", null, "wisdom", 4)]
+    public void ScalingDamageCantrip_HasExpectedFourTierProgression(
+        string id,
+        string expectedDamageType,
+        string? expectedAttackRollType,
+        string? expectedSavingThrowAbility,
+        int expectedDieSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId.Value);
+        Assert.Equal(
+            expectedAttackRollType,
+            effect.AttackRollType?.ToString());
+        Assert.Equal(
+            expectedSavingThrowAbility is null
+                ? null
+                : $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId?.Value);
+
+        Assert.Equal(
+            [(1, 1), (5, 2), (11, 3), (17, 4)],
+            effect.DamageByCharacterLevel
+                .Select(tier => (tier.CharacterLevel, tier.Damage.Count)));
+        Assert.All(
+            effect.DamageByCharacterLevel,
+            tier => Assert.Equal(expectedDieSides, tier.Damage.Sides));
+    }
+
+    [Fact]
+    public void EldritchBlastDealsAFlatOneD10RegardlessOfCharacterLevel()
+    {
+        SpellDamageEffect effect =
+            Get("dnd5e2014.spell.eldritch-blast").DamageEffect!;
+
+        Assert.Equal("dnd5e2014.damage-type.force", effect.DamageTypeId.Value);
+        Assert.Equal(SpellAttackRollType.Ranged, effect.AttackRollType);
+        Assert.Null(effect.SavingThrowAbilityId);
+
+        SpellDamageTierGrant tier = Assert.Single(effect.DamageByCharacterLevel);
+        Assert.Equal(1, tier.CharacterLevel);
+        Assert.Equal(1, tier.Damage.Count);
+        Assert.Equal(10, tier.Damage.Sides);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);

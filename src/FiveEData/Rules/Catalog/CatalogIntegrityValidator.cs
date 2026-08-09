@@ -240,6 +240,25 @@ internal static class CatalogIntegrityValidator
                         $"{owner} references missing class '{classId}'.");
                 }
             }
+
+            if (spell.DamageEffect is { } damageEffect)
+            {
+                if (!damageTypeIds.Contains(damageEffect.DamageTypeId))
+                {
+                    errors.Add(
+                        $"{owner} references missing damage type " +
+                        $"'{damageEffect.DamageTypeId}'.");
+                }
+
+                if (damageEffect.SavingThrowAbilityId is
+                        { } savingThrowAbilityId &&
+                    !abilityIds.Contains(savingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{savingThrowAbilityId}'.");
+                }
+            }
         }
 
         foreach (

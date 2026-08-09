@@ -1,6 +1,9 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
 
@@ -298,6 +301,135 @@ public sealed class SpellFoundationTests
             () => catalog.Get(new SpellId("dnd5e2014.spell.missing")));
     }
 
+    [Fact]
+    public void DamageEffect_RejectsBothAttackRollAndSavingThrow()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            SpellAttackRollType.Ranged,
+            new AbilityId("dnd5e2014.ability.dexterity"),
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))]));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsNeitherAttackRollNorSavingThrow()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            attackRollType: null,
+            savingThrowAbilityId: null,
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))]));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsEmptyDamageTiers()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            damageByCharacterLevel: []));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsFirstTierNotAtLevelOne()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            [new SpellDamageTierGrant(5, new DiceExpression(1, 6))]));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsNonAscendingCharacterLevels()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            [
+                new SpellDamageTierGrant(1, new DiceExpression(1, 6)),
+                new SpellDamageTierGrant(1, new DiceExpression(2, 6))
+            ]));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsChangingDieSizeAcrossTiers()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            [
+                new SpellDamageTierGrant(1, new DiceExpression(1, 6)),
+                new SpellDamageTierGrant(5, new DiceExpression(2, 8))
+            ]));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsNonIncreasingDieCountAcrossTiers()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            [
+                new SpellDamageTierGrant(1, new DiceExpression(2, 6)),
+                new SpellDamageTierGrant(5, new DiceExpression(2, 6))
+            ]));
+    }
+
+    // Eldritch Blast is flat 1d10 at every level (it scales by adding
+    // beams instead), so a single-tier progression must be valid.
+    [Fact]
+    public void DamageEffect_AcceptsSingleFlatTier()
+    {
+        var effect = new SpellDamageEffect(
+            new DamageTypeId("dnd5e2014.damage-type.force"),
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 10))]);
+
+        Assert.Single(effect.DamageByCharacterLevel);
+    }
+
+    [Fact]
+    public void DamageEffect_AcceptsFourTierProgression()
+    {
+        var effect = new SpellDamageEffect(
+            AcidDamageType(),
+            attackRollType: null,
+            new AbilityId("dnd5e2014.ability.dexterity"),
+            [
+                new SpellDamageTierGrant(1, new DiceExpression(1, 6)),
+                new SpellDamageTierGrant(5, new DiceExpression(2, 6)),
+                new SpellDamageTierGrant(11, new DiceExpression(3, 6)),
+                new SpellDamageTierGrant(17, new DiceExpression(4, 6))
+            ]);
+
+        Assert.Equal(4, effect.DamageByCharacterLevel.Count);
+        Assert.Null(effect.AttackRollType);
+        Assert.Equal(
+            "dnd5e2014.ability.dexterity",
+            effect.SavingThrowAbilityId!.Value.Value);
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(21)]
+    public void DamageTierGrant_RejectsCharacterLevelOutsideOneThroughTwenty(
+        int characterLevel)
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new SpellDamageTierGrant(
+                characterLevel,
+                new DiceExpression(1, 6)));
+    }
+
+    private static DamageTypeId AcidDamageType() =>
+        new("dnd5e2014.damage-type.acid");
+
     private static SpellDefinition Create(
         string id = "dnd5e2014.spell.acid-splash",
         int level = 0,
@@ -315,6 +447,7 @@ public sealed class SpellFoundationTests
             new SpellComponents(true, true, false, null),
             SpellDuration.Instantaneous(),
             isRitual,
+            damageEffect: null,
             classes ?? [new ClassId("dnd5e2014.class.wizard")],
             sources ?? [TestSource()]);
     }

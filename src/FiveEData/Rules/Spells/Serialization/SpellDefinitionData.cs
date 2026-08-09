@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
+using FiveEData.Rules.Common.Serialization;
 
 namespace FiveEData.Rules.Spells.Serialization;
 
@@ -33,10 +34,37 @@ internal sealed class SpellDefinitionData
     public bool? IsRitual { get; init; }
 
     [JsonRequired]
+    public SpellDamageEffectData? DamageEffect { get; init; }
+
+    [JsonRequired]
     public string[]? AvailableToClassIds { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
+}
+
+internal sealed class SpellDamageEffectData
+{
+    [JsonRequired]
+    public string? DamageTypeId { get; init; }
+
+    [JsonRequired]
+    public string? AttackRollType { get; init; }
+
+    [JsonRequired]
+    public string? SavingThrowAbilityId { get; init; }
+
+    [JsonRequired]
+    public SpellDamageTierGrantData[]? DamageByCharacterLevel { get; init; }
+}
+
+internal sealed class SpellDamageTierGrantData
+{
+    [JsonRequired]
+    public int? CharacterLevel { get; init; }
+
+    [JsonRequired]
+    public DiceExpressionData? Damage { get; init; }
 }
 
 internal sealed class SpellCastingTimeData
