@@ -2014,7 +2014,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.lightning",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 10 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
@@ -3110,7 +3118,19 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": null,
+      "choosableDamageTypeIds": [
+        "dnd5e2014.damage-type.bludgeoning",
+        "dnd5e2014.damage-type.piercing",
+        "dnd5e2014.damage-type.slashing"
+      ],
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
@@ -6183,7 +6203,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.frightened"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -6791,7 +6814,15 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 8, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -9052,7 +9083,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.charmed", "dnd5e2014.condition.incapacitated"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -9918,7 +9952,15 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.lightning",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 8, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -14795,7 +14837,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.prone"],
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -15172,7 +15217,18 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": null,
+      "choosableDamageTypeIds": [
+        "dnd5e2014.damage-type.radiant",
+        "dnd5e2014.damage-type.necrotic"
+      ],
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
@@ -16735,7 +16791,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Melee",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
@@ -17383,7 +17447,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.bludgeoning",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.strength",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"

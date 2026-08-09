@@ -52,8 +52,13 @@ Built and complete:
   save, a flat leveled-spell base damage, and named-condition effects).
   **2nd-level spells too** — 7 of the 59 have a `SpellDamageEffect`, 3 have
   a `SpellConditionEffect`, no schema changes needed this time. See
-  "Game-backend quantization: 2nd-level spell effects". Levels 3–9 don't
-  have effect data yet.
+  "Game-backend quantization: 2nd-level spell effects". **3rd-level
+  spells too** — 7 of the 50 have a `SpellDamageEffect` (two of them,
+  Conjure Barrage and Spirit Guardians, are the second and third spells
+  after Chromatic Orb to use a choosable damage type), 3 have a
+  `SpellConditionEffect`; no schema changes needed. See "Game-backend
+  quantization: 3rd-level spell effects". Levels 4–9 don't have effect
+  data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -99,10 +104,12 @@ half-damage flag, a choosable damage type, or a named-condition effect).
 "Game-backend quantization: 2nd-level spell effects" for why (the shapes
 1st level already built covered everything 2nd level's real content
 needed) and for a newly-confirmed recurring decline (automatic zone/
-trigger damage with no attack roll or saving throw at all). Levels 3–9
-are the remaining piece of gap 1, not yet started.
+trigger damage with no attack roll or saving throw at all). **3rd-level
+spell effects are done too, still zero schema changes** — see
+"Game-backend quantization: 3rd-level spell effects". Levels 4–9 are the
+remaining piece of gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2789 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2803 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1608,6 +1615,63 @@ fit, but Blindness/Deafness is the only spell across the 148 spells with
 effect data built so far (27 cantrips + 62 1st-level + 59 2nd-level)
 that needs it — declined per the same one-data-point rule, not because
 the shape wouldn't work.
+
+## Game-backend quantization: 3rd-level spell effects
+
+The fourth slice of gap 1. All 50 3rd-level spells classified against
+the shapes already established — **zero schema changes needed**, the
+second level in a row where 1st level's shapes covered everything. 7
+spells get a `SpellDamageEffect` (Call Lightning, Conjure Barrage,
+Fireball, Lightning Bolt, Spirit Guardians, Vampiric Touch, Wind Wall),
+3 get a `SpellConditionEffect` (Fear → `frightened`, Hypnotic Pattern →
+`charmed` + `incapacitated` together, Sleet Storm → `prone`), and 40
+get neither.
+
+**Conjure Barrage and Spirit Guardians are the second and third spells
+to use `ChoosableDamageTypeIds`, after Chromatic Orb at 1st level** —
+Conjure Barrage picks from bludgeoning/piercing/slashing (matching the
+weapon that created it), Spirit Guardians from radiant/necrotic. Two
+more real instances confirm the choosable-type shape is a recurring
+PHB pattern, not a one-off Chromatic Orb needed alone.
+
+**Wind Wall is the first damage spell built whose saving throw is
+Strength** — every prior saving-throw damage spell (cantrips through
+3rd level) used Dexterity, Constitution, or Wisdom; nothing about the
+schema assumed a specific ability, but this is the first real spell to
+exercise Strength in that slot.
+
+**Two more weapon-attack-rider spells confirm that decline pattern
+again: Blinding Smite and Lightning Arrow.** Both buff a weapon attack
+that hasn't happened yet rather than resolving their own attack or save
+— the same reasoning that declined Ensnaring Strike, Hail of Thorns,
+Searing Smite, Thunderous Smite, and Wrathful Smite at 1st level.
+Lightning Arrow is the most elaborate of the group (the triggering
+weapon attack deals 4d8 lightning instead of its normal damage, *and*
+a separate Dexterity save against nearby creatures deals 2d8 more), but
+the core reason for declining is unchanged: the spell's own effect never
+resolves independently of a weapon attack this project already models
+through `WeaponDefinition`.
+
+**Hunger of Hadar and Glyph of Warding are both declined as compound/
+multi-mode mechanics, the same call already made for Sanctuary and
+Color Spray.** Hunger of Hadar deals automatic cold damage with no roll
+at all *and* separately gates acid damage behind a Dexterity save —
+two different damage-resolution mechanics on one spell, which no single
+`SpellDamageEffect` can represent since the type is built around
+exactly one resolution mechanic per instance. Glyph of Warding's
+explosive-runes mode has real damage-and-save numbers, but the spell
+also has an entirely different spell-glyph mode with no numbers at all,
+and which mode applies is chosen at cast time — modeling only one mode
+would misrepresent the spell as always working that way.
+
+**Stinking Cloud's incapacitating effect is declined, not modeled as
+`poisoned`.** Its saving-throw failure causes the creature to spend its
+action "retching and reeling" — a real, specific mechanical consequence,
+but not language that names the `poisoned` condition the way Ray of
+Sickness or Web's text names theirs. Modeling it as `poisoned` would be
+inferring a condition tag the spell's own words don't use; better to
+leave the mechanic in the citation than assert a citation this project
+can't back with the printed text.
 
 ## Test conventions
 
