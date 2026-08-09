@@ -763,6 +763,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.astral-projection",
+    "name": "Astral Projection",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "for each creature you affect with this spell, you must provide one jacinth worth at least 1,000 gp and one ornately carved bar of silver worth at least 100 gp, all of which the spell consumes",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": true,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 215,
+        "section": "Chapter 11: Spells — Spell Descriptions — Astral Projection"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.augury",
     "name": "Augury",
     "level": 2,
@@ -6655,6 +6701,53 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.foresight",
+    "name": "Foresight",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a hummingbird feather",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 244,
+        "section": "Chapter 11: Spells — Spell Descriptions — Foresight"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.freedom-of-movement",
     "name": "Freedom of Movement",
     "level": 4,
@@ -6791,6 +6884,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 244,
         "section": "Chapter 11: Spells — Spell Descriptions — Gaseous Form"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.gate",
+    "name": "Gate",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a diamond worth at least 5,000 gp",
+      "materialCostGoldPieces": 5000,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 244,
+        "section": "Chapter 11: Spells — Spell Descriptions — Gate"
       }
     ]
   },
@@ -8468,6 +8607,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.imprisonment",
+    "name": "Imprisonment",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a vellum depiction or a carved statuette in the likeness of the target, and a special component that varies according to the version of the spell you choose, worth at least 500 gp per Hit Die of the target",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 252,
+        "section": "Chapter 11: Spells — Spell Descriptions — Imprisonment"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.incendiary-cloud",
     "name": "Incendiary Cloud",
     "level": 8,
@@ -9709,6 +9893,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.mass-heal",
+    "name": "Mass Heal",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 258,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mass Heal"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.mass-healing-word",
     "name": "Mass Healing Word",
     "level": 3,
@@ -10023,6 +10251,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 259,
         "section": "Chapter 11: Spells — Spell Descriptions — Message"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.meteor-swarm",
+    "name": "Meteor Swarm",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 5280,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 258,
+        "section": "Chapter 11: Spells — Spell Descriptions — Meteor Swarm"
       }
     ]
   },
@@ -11335,6 +11608,97 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 266,
         "section": "Chapter 11: Spells — Spell Descriptions — Polymorph"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.power-word-heal",
+    "name": "Power Word Heal",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 266,
+        "section": "Chapter 11: Spells — Spell Descriptions — Power Word Heal"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.power-word-kill",
+    "name": "Power Word Kill",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 266,
+        "section": "Chapter 11: Spells — Spell Descriptions — Power Word Kill"
       }
     ]
   },

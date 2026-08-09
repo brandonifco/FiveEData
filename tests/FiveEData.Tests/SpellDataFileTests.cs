@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(345, LoadCanonical().Count);
+        Assert.Equal(353, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -39,19 +39,24 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             18,
             LoadCanonical().Count(spell => spell.Level == 8));
+        Assert.Equal(
+            8,
+            LoadCanonical().Count(spell => spell.Level == 9));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughEighthLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughNinthLevelForNow()
     {
-        // Level 9 is not built yet. Levels 0-7 are complete. Level 8 holds
-        // 18 of the PHB's 19 eighth-level spells - Trap the Soul has no
-        // findable description page in this printing (see
-        // EighthLevelSpellIdsBuiltSoFar) and stays unbuilt until a
-        // different source can supply it.
+        // Levels 0-7 are complete. Level 8 holds 18 of the PHB's 19
+        // eighth-level spells - Trap the Soul has no findable description
+        // page in this printing (see EighthLevelSpellIdsBuiltSoFar) and
+        // stays unbuilt until a different source can supply it. Level 9
+        // is being added in alphabetical batches (see CLAUDE.md) and
+        // currently holds the A-P batch, 8 of the PHB's 16 ninth-level
+        // spells.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 8));
+            spell => Assert.InRange(spell.Level, 0, 9));
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 2nd-level
@@ -194,16 +199,22 @@ public sealed class SpellDataFileTests
     // Programmed Illusion joins them too, still costed and still not
     // stated as consumed. Sequester and Simulacrum (both plain "Until
     // dispelled") and Symbol ("Until dispelled or triggered") join at
-    // seventh level, all three both costed and consumed. All eleven are
-    // costed, and Continual Flame carries a third PHB cost phrasing, "ruby
-    // dust worth 50 gp", with no "at least". Drawmij's Instant Summons and
-    // Magic Jar both break the "always consumed" pattern the first five
-    // held: neither spell's material description uses the word "consumes"
-    // (a fresh sapphire is needed each casting for one; the other's
-    // container is never described as used up), so MaterialIsConsumed
-    // stays false for both rather than being inferred.
+    // seventh level, all three both costed and consumed. Continual Flame
+    // carries a third PHB cost phrasing, "ruby dust worth 50 gp", with no
+    // "at least". Drawmij's Instant Summons and Magic Jar both break the
+    // "always consumed" pattern the first five held: neither spell's
+    // material description uses the word "consumes" (a fresh sapphire is
+    // needed each casting for one; the other's container is never
+    // described as used up), so MaterialIsConsumed stays false for both
+    // rather than being inferred. Imprisonment (9th level) breaks the
+    // "always costed" pattern the first eleven held: its cost is printed
+    // as "500 gp per Hit Die of the target", a formula rather than a
+    // flat figure, so MaterialCostGoldPieces stays null (declined) per
+    // the "store what's printed, not derived" rule - the same shape
+    // Clone's two-part bundle uses, just triggered by a formula instead
+    // of multiple items.
     [Fact]
-    public void UntilDispelledSpellsAreAllCostedButNotAllConsumed()
+    public void UntilDispelledSpellsAreMostlyCostedButNotAllConsumed()
     {
         SpellDefinition[] dispelled = LoadCanonical()
             .Where(spell => spell.Duration.IsUntilDispelled)
@@ -217,6 +228,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.drawmijs-instant-summons",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.hallow",
+                "dnd5e2014.spell.imprisonment",
                 "dnd5e2014.spell.magic-jar",
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.programmed-illusion",
@@ -233,8 +245,11 @@ public sealed class SpellDataFileTests
                 Assert.False(spell.Duration.IsInstantaneous);
                 Assert.Null(spell.Duration.Amount);
                 Assert.Null(spell.Duration.Unit);
-                Assert.NotNull(spell.Components.MaterialCostGoldPieces);
             });
+
+        Assert.Null(
+            Get("dnd5e2014.spell.imprisonment")
+                .Components.MaterialCostGoldPieces);
 
         Assert.Equal(
             25,
@@ -985,6 +1000,82 @@ public sealed class SpellDataFileTests
         Assert.False(components.Material);
     }
 
+    // The class spell list appendix (pp.207-210) gives a 9th-level union
+    // of 16 spells across the 8 classes - down from 8th level's 19.
+    // Paladin and Ranger stay at zero. This A-P batch is half the level;
+    // the P-W batch will complete it.
+    [Fact]
+    public void NinthLevelSpellIdsBuiltSoFar()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.astral-projection",
+                "dnd5e2014.spell.foresight",
+                "dnd5e2014.spell.gate",
+                "dnd5e2014.spell.imprisonment",
+                "dnd5e2014.spell.mass-heal",
+                "dnd5e2014.spell.meteor-swarm",
+                "dnd5e2014.spell.power-word-heal",
+                "dnd5e2014.spell.power-word-kill"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 9)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.astral-projection", "Astral Projection", "necromancy", 215)]
+    [InlineData("dnd5e2014.spell.foresight", "Foresight", "divination", 244)]
+    [InlineData("dnd5e2014.spell.gate", "Gate", "conjuration", 244)]
+    [InlineData("dnd5e2014.spell.imprisonment", "Imprisonment", "abjuration", 252)]
+    [InlineData("dnd5e2014.spell.mass-heal", "Mass Heal", "conjuration", 258)]
+    [InlineData("dnd5e2014.spell.meteor-swarm", "Meteor Swarm", "evocation", 258)]
+    [InlineData("dnd5e2014.spell.power-word-heal", "Power Word Heal", "evocation", 266)]
+    [InlineData("dnd5e2014.spell.power-word-kill", "Power Word Kill", "enchantment", 266)]
+    public void NinthLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(9, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Astral Projection's material bundle is costed per creature affected
+    // ("for each creature you affect... one jacinth worth at least 1,000
+    // gp and one ornately carved bar of silver worth at least 100 gp"),
+    // combining Clone's two-item shape with a multiplier the field can't
+    // represent either. MaterialCostGoldPieces stays null (declined);
+    // unlike Clone, the whole bundle is explicitly consumed.
+    [Fact]
+    public void AstralProjectionDeclinesItsPerCreatureMaterialCost()
+    {
+        SpellComponents components =
+            Get("dnd5e2014.spell.astral-projection").Components;
+
+        Assert.Null(components.MaterialCostGoldPieces);
+        Assert.True(components.MaterialIsConsumed);
+    }
+
+    // Meteor Swarm prints "Range: 1 mile" - the third range printed in
+    // miles rather than feet (after Clairvoyance and Project Image),
+    // canonicalized to 5,280 feet by the same unit-conversion rule.
+    [Fact]
+    public void MeteorSwarmRangeIsCanonicalizedFromMiles()
+    {
+        Assert.Equal(
+            5280,
+            Get("dnd5e2014.spell.meteor-swarm").Range.DistanceFeet);
+    }
+
     // Mirage Arcane prints "Range: Sight" - reach is whatever the caster
     // can see, not a bounded distance and not the same conditional-rule
     // shape as Dream's Special. SpellRangeKind gained a Sight member and
@@ -1107,18 +1198,33 @@ public sealed class SpellDataFileTests
     // lookup table keyed by the material created (1 day for vegetable
     // matter down to 1 minute for adamantine or mithral), which stays in
     // the citation. SpellDuration.IsSpecial carries no amount/unit of its
-    // own, the same shape IsUntilDispelled already established.
+    // own, the same shape IsUntilDispelled already established. Astral
+    // Projection joins it at 9th level - its "Special" duration is that
+    // the spell lasts until dismissed or ended by one of several stated
+    // conditions (dispel magic, 0 hit points, a severed silver cord),
+    // again a compound rule left in the citation rather than an
+    // amount/unit.
     [Fact]
-    public void CreationIsTheOnlySpecialDurationSoFar()
+    public void SpecialDurationsAreCreationAndAstralProjection()
     {
-        SpellDefinition only = Assert.Single(
-            LoadCanonical().Where(spell => spell.Duration.IsSpecial));
+        SpellDefinition[] special = LoadCanonical()
+            .Where(spell => spell.Duration.IsSpecial)
+            .OrderBy(spell => spell.Id.Value, StringComparer.Ordinal)
+            .ToArray();
 
-        Assert.Equal("dnd5e2014.spell.creation", only.Id.Value);
-        Assert.False(only.Duration.IsInstantaneous);
-        Assert.False(only.Duration.IsUntilDispelled);
-        Assert.Null(only.Duration.Amount);
-        Assert.Null(only.Duration.Unit);
+        Assert.Equal(
+            ["dnd5e2014.spell.astral-projection", "dnd5e2014.spell.creation"],
+            special.Select(spell => spell.Id.Value));
+
+        Assert.All(
+            special,
+            spell =>
+            {
+                Assert.False(spell.Duration.IsInstantaneous);
+                Assert.False(spell.Duration.IsUntilDispelled);
+                Assert.Null(spell.Duration.Amount);
+                Assert.Null(spell.Duration.Unit);
+            });
     }
 
     // Dream prints "Range: Special" - the target must be on the same
@@ -1589,6 +1695,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.find-the-path",
                 "dnd5e2014.spell.forbiddance",
                 "dnd5e2014.spell.forcecage",
+                "dnd5e2014.spell.gate",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.greater-restoration",
                 "dnd5e2014.spell.guards-and-wards",
@@ -1990,9 +2097,9 @@ public sealed class SpellDataFileTests
     // Reincarnate (both 1) closed out fifth level's Hour-unit spells.
     // Resurrection (1 hour) and Simulacrum (12 hours, a fourth amount)
     // join at seventh; Antipathy/Sympathy and Clone (both 1 hour) join at
-    // eighth.
+    // eighth; Astral Projection (1 hour) joins at ninth.
     [Fact]
-    public void HourLongCastingTimesSpanElevenSpellsAndFourAmounts()
+    public void HourLongCastingTimesSpanTwelveSpellsAndFourAmounts()
     {
         SpellDefinition[] hourLong = LoadCanonical()
             .Where(spell => spell.CastingTime.Unit
@@ -2003,6 +2110,7 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.antipathy-sympathy",
+                "dnd5e2014.spell.astral-projection",
                 "dnd5e2014.spell.awaken",
                 "dnd5e2014.spell.clone",
                 "dnd5e2014.spell.find-familiar",

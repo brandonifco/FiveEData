@@ -39,7 +39,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2416 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2427 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
@@ -47,7 +47,8 @@ Gate as of the last merge: Debug+Release build 0 warnings, **2416 tests**.
 second-level, all 50 third-level, all 35 fourth-level, all 42
 fifth-level, all 32 sixth-level, and all 20 seventh-level spells are
 built, plus 18 of the PHB's 19 eighth-level spells (batches A–F and
-G–T) — 345 in total. Level 9 is not started.**
+G–T) and the first 8 of the PHB's 16 ninth-level spells (batch A–P) —
+353 in total. Only the P–W batch of level 9 remains.**
 
 **One eighth-level spell, Trap the Soul, is a genuine, documented gap —
 not a to-do.** It's on the Wizard class list (p.212) but
@@ -86,17 +87,19 @@ level is asserted rather than implied. **Keep batching for levels 7–9** —
 per-batch split yet, since the level itself is much smaller than 1st–6th.
 Per-level union counts are **not monotonically declining**: 62/59/50 for
 1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th, 20 at 7th,
-then 19 at 8th**. Paladin and Ranger's lists really do stop entirely at 6th, as
+19 at 8th, then 16 at 9th**. Paladin and Ranger's lists really do stop entirely at 6th, as
 expected — but Warlock's Pact Magic *slots* cap at 5th level while the
 class's own spell list keeps going through 9th, for spells eligible as a
 Mystic Arcanum (one higher-level spell known and cast once per day with
 no matching slot). The file's earlier claim that all three classes would
 drop out together at 6th was wrong for Warlock specifically; verify the
 real count each level rather than assuming the trend. Warlock's 7th-level
-count (4) is smaller than 6th's (8), but 8th's (5) ticks back up —
-confirming the hedge was right: Mystic Arcanum eligibility doesn't shrink
-monotonically the way a slot count would, so check 9th on its own merits
-too rather than extrapolating from 6th–8th's up-down-up.
+count (4) is smaller than 6th's (8), but 8th's (5) ticks back up, and
+9th's (5, tying 8th) holds rather than either climbing or shrinking
+further — confirming the hedge was right: Mystic Arcanum eligibility
+tracks which spells are worth learning at each level, not a shrinking
+slot count, so the four-level run (8/4/5/5) has no single trend to
+extrapolate from.
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -343,6 +346,24 @@ Each batch drove schema additions from real content, never anticipation:
   field already allowed it, the same non-event as Find Steed's 10-minute
   casting time. Holy Aura's material is costed (1,000 gp) but not stated
   as consumed.
+- **9th A–P (starting level 9):** one addition, one new decline shape.
+  Astral Projection prints **"Duration: Special"**, the second spell on
+  that flag after Creation — its "special" is a compound end-condition
+  rule (dismissal, dispel magic, 0 hit points, or a severed silver cord),
+  the same "leave the compound rule in the citation" call Creation's
+  table already made. Astral Projection's material is also costed **per
+  creature affected** ("for each creature you affect... one jacinth
+  worth at least 1,000 gp and one ornately carved bar of silver worth at
+  least 100 gp") — Clone's two-item shape plus a multiplier neither
+  field can represent, so `MaterialCostGoldPieces` stays null. A second,
+  more novel decline: **Imprisonment breaks the "until dispelled is
+  always costed" pattern** eleven prior spells held — its cost is
+  printed as "500 gp per Hit Die of the target," a formula rather than a
+  flat figure, so it declines the same way Clone and Astral Projection
+  do, just triggered by a formula instead of a multi-item bundle or a
+  multiplier. Meteor Swarm's "Range: 1 mile" is the third range printed
+  in miles (after Clairvoyance, Project Image), canonicalized to 5,280
+  feet by the same rule.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
