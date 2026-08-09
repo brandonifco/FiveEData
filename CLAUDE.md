@@ -18,9 +18,6 @@ a game.
 **Nothing in progress, nothing queued. Ask the user for the next priority
 before starting new work.**
 
-**Nothing in progress, nothing queued. Ask the user for the next priority
-before starting new work.**
-
 Built and complete:
 
 - Equipment (weapons, armor, shields, adventuring gear, tools, mounts,
@@ -34,7 +31,9 @@ Built and complete:
 - Quantized mechanics — the second pass (see that section). **Complete
   against its own enumerated list, not against a sweep** — a later sweep of
   all 305 `class-rule` entries found a real tail it never listed; see
-  "Quantized mechanics: the remaining tail"
+  "Quantized mechanics: the remaining tail". Cantrips Known and Spells Known
+  progressions (the follow-up flagged during the spell slot pass) are also
+  built; see "Quantized mechanics: cantrips known and spells known"
 - Spells — `MagicSchools` (the 8 schools, a closed official set, cited to
   the p.203 sidebar) and `SpellDefinition`. **All 27 cantrips and all
   spells of every level 1 through 9 are built — 361 spells, the complete
@@ -47,7 +46,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2444 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2482 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -463,12 +462,16 @@ are both 1 round, but Shield's is flat while True Strike's is concentration
 and "up to". Pinned by
 `ShieldsRoundDurationIsFlatWhileTrueStrikesIsUpTo`.
 
-Not started: magic items, and combat/adventuring rule prose beyond the
-existing citation index. Still deferred and unmodeled: per-class
-cantrips-known and spells-known tables (identified during the spell slot
-pass as a separate authoring job; they need no spell domain to exist). Feats (and by extension Variant Human) are out
-of scope — not part of the free 2014 SRD this project's provenance model is
-built around.
+Not started: combat/adventuring rule prose beyond the existing citation
+index, and per-class spellbook-learned-spells counts (Wizard's 2/level +
+starting 6 — a different mechanic from Spells Known, see "Quantized
+mechanics: cantrips known and spells known"). **Magic items are explicitly
+out of scope**: they're 2014 DMG content (Chapter 7: Treasure), not PHB —
+confirmed again 2026-08-09 when asked to build them, since this project's
+scope is the PHB specifically. Revisit only if the project's scope statement
+itself is deliberately widened to include the DMG, not as a one-off
+exception. Feats (and by extension Variant Human) are out of scope — not
+part of the free 2014 SRD this project's provenance model is built around.
 
 Phases are tracked in commit history (`git log --oneline`), not a planning
 doc. The full build-by-build reasoning trail for Races/Classes/Backgrounds
@@ -767,7 +770,7 @@ rather than trusting it.
   Martial Arts, Unarmored Movement, Sorcery Points, Wild Shape, Bardic
   Inspiration, Song of Rest, Magical Secrets, Channel Divinity uses, Destroy
   Undead, Mystic Arcanum, Font of Magic conversion, Aura of Protection, Aura
-  of Courage, Eldritch Invocations known.
+  of Courage, Eldritch Invocations known, Cantrips Known, Spells Known.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding,
   Additional Magical Secrets (the same `MagicalSecretsProgressionDetail` the
@@ -1015,6 +1018,47 @@ errors. The race pass found `CanonicalFile_OnlyWoodElfOverridesSpeed` had
 been **silently failing since the original Races commit** — Wood Elf's 35-foot
 speed override was never populated even though the field and the test both
 existed. "The test exists" and "the test passes" are different claims.
+
+## Quantized mechanics: cantrips known and spells known
+
+The deferred follow-up job flagged during the spell slot pass — closed, no
+sweep needed since the two fields only ever apply to the 8 casting classes.
+`CantripsKnownProgressionDetail` and `SpellsKnownProgressionDetail` are
+independent embedded value objects on `ClassDefinition` (own
+`Rules/Classes/CantripsKnown`/`SpellsKnown` folders, no catalog, mapped by a
+`*DataMapper`, validated through the existing `ValidatePointsProgression`
+helper) — same shape as Sorcery Points, not a new mechanism.
+
+**Cantrips Known and Spells Known are mutually exclusive with "prepares from
+the full list," and don't always co-occur with each other.** Six classes
+have a Cantrips Known table column: Bard, Cleric, Druid, Sorcerer, Warlock,
+Wizard — every class that gets cantrips at all, including three (Cleric,
+Druid, Wizard) that prepare their leveled spells and have no Spells Known
+count. Four classes have a Spells Known column: Bard, Ranger, Sorcerer,
+Warlock. Ranger has Spells Known but no Cantrips Known (rangers get no PHB
+cantrips). Wizard has Cantrips Known but no Spells Known (spells are learned
+into a spellbook, a count this project doesn't model — see "Not started"
+below). Paladin, the other half-caster, has neither: no cantrips, and it
+prepares from its full list like Cleric/Druid. Cantrips Known breakpoints are
+identical across all six classes' shape (three rows, at 1st/4th/10th level)
+but not identical in value — Sorcerer starts at 4, Cleric/Wizard at 3,
+Bard/Druid/Warlock at 2.
+
+**Spells Known tables plateau — they are not strictly increasing at every
+listed row the way Sorcery Points or Ki are.** Bard repeats a value three
+separate times (11th=12th, 15th=16th, 18th=19th=20th all hold at 22);
+Sorcerer and Warlock each repeat at multiple points too.
+`ValidatePointsProgression` requires strictly ascending values between
+consecutive grants, so a plateau level is simply omitted from
+`SpellsKnownByLevel` — the same sparse, breakpoints-only convention Rage and
+Extra Attack already established for milestone-driven tables, now shown on
+a table whose breakpoints don't fall on a clean pattern. Verify every
+plateau against the rendered table image directly; skimming a
+low-resolution render mis-groups adjacent equal values easily. Ranger's
+Spells Known starts at 2nd level, not 1st — rangers gain no
+spellcasting at all until 2nd level, so `SpellsKnownByLevel`'s first grant is
+`(2, 2)`, the same "progression doesn't have to start at level 1" shape
+Sorcery Points' 2nd-level start already established.
 
 ## Test conventions
 

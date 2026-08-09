@@ -8,6 +8,8 @@ using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.Blindsense.Serialization;
 using FiveEData.Rules.Classes.BrutalCritical;
 using FiveEData.Rules.Classes.BrutalCritical.Serialization;
+using FiveEData.Rules.Classes.CantripsKnown;
+using FiveEData.Rules.Classes.CantripsKnown.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead;
@@ -52,6 +54,8 @@ using FiveEData.Rules.Classes.SongOfRest.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.SpellsKnown;
+using FiveEData.Rules.Classes.SpellsKnown.Serialization;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.UnarmoredMovement.Serialization;
 using FiveEData.Rules.Classes.WildShape;
@@ -345,6 +349,19 @@ internal static class ClassDefinitionLoader
                         eldritchInvocationsKnownProgressionData)
                     : null;
 
+        CantripsKnownProgressionDetail? cantripsKnownProgression =
+            data.CantripsKnownProgression is
+                { } cantripsKnownProgressionData
+                ? CantripsKnownProgressionDetailDataMapper.Map(
+                    cantripsKnownProgressionData)
+                : null;
+
+        SpellsKnownProgressionDetail? spellsKnownProgression =
+            data.SpellsKnownProgression is { } spellsKnownProgressionData
+                ? SpellsKnownProgressionDetailDataMapper.Map(
+                    spellsKnownProgressionData)
+                : null;
+
         BlindsenseDetail? blindsense =
             data.Blindsense is { } blindsenseData
                 ? BlindsenseDetailDataMapper.Map(blindsenseData)
@@ -416,6 +433,8 @@ internal static class ClassDefinitionLoader
             fontOfMagicConversion,
             songOfRestProgression,
             eldritchInvocationsKnownProgression,
+            cantripsKnownProgression,
+            spellsKnownProgression,
             blindsense,
             data.ReliableTalentMinimumD20Roll,
             feralSenses,
