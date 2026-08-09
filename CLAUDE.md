@@ -39,15 +39,14 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2332 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2354 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
-second-level, all 50 third-level, all 35 fourth-level, and all 42
-fifth-level spells are built, plus the first 20 of the PHB's 31
-sixth-level spells (batches A–E and F–M) — 295 in total. Only the M–W
-batch of level 6 remains; levels 7–9 are not started.**
+second-level, all 50 third-level, all 35 fourth-level, all 42
+fifth-level, and all 32 sixth-level spells are built — 307 in total,
+levels 0–6 complete. Levels 7–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -71,7 +70,7 @@ tighter accuracy than the first two levels' ~15–16) confirmed the pattern a
 third time. `SpellDataFileTests` pins the exact built closure, so a partial
 level is asserted rather than implied. **Keep batching for levels 7–9.**
 Per-level union counts are **not monotonically declining**: 62/59/50 for
-1st–3rd, 35 at 4th, back up to 42 at 5th, down to **31 at 6th**. Paladin
+1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th**. Paladin
 and Ranger's lists really do stop entirely at 6th, as expected — but
 Warlock's Pact Magic *slots* cap at 5th level while the class's own spell
 list keeps going through 9th, for spells eligible as a Mystic Arcanum
@@ -248,6 +247,28 @@ Each batch drove schema additions from real content, never anticipation:
   Drawmij's Instant Summons) that's costed without being stated as
   consumed. Mass Suggestion (V+M, no S) is the seventh spell on that
   combination.
+- **6th M–W (closing the level):** one addition, one correction, and one
+  missed spell. Sunbeam's **"Self (60-foot line)"** is the third `Line`
+  area after Gust of Wind and Lightning Bolt, and the first outside
+  cantrip/1st/2nd level — no schema change needed, the shape already
+  allowed it. Otto's Irresistible Dance and Word of Recall are both
+  Verbal-only, joining True Strike/Vicious Mockery/Wrathful Smite on that
+  rare combination. Programmed Illusion is the second "Until dispelled"
+  spell that's costed without being stated as consumed (after Magic Jar).
+  **Wall of Thorns was missed entirely on the first read-through** of this
+  batch — it never made the initial per-page description pass even though
+  it's on the Druid class list — and surfaced only because
+  `ClassSixthLevelListHasExpectedSize`'s Druid count failed at 8 instead
+  of 9 after the other ten spells were added. The PHB's real 6th-level
+  count is 32, not the 31 this file previously stated; the class-list
+  union math never actually promised the built-spell count would match a
+  number carried over from before any M–W spell was read. **A second,
+  unrelated error surfaced in the same pass:** Conjure Fey (built in the
+  A-E batch) was tagged available to Wizard, but the Wizard class list on
+  p.212 doesn't include it — only Druid and Warlock do. Fixed in the same
+  commit, per the standing rule to fix an error where it's found rather
+  than filing it separately. **All 32 of the PHB's sixth-level spells are
+  now built: 307 spells total, levels 0–6 complete.**
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
@@ -300,9 +321,13 @@ trusting a count carried over from an earlier batch. The 4th-level union is
 Paladin 6, Ranger 4, Sorcerer 11, Warlock 4, Wizard 23 — every list grew
 or held from 4th to 5th, since it's Paladin and Ranger's *last* level
 before their lists stop entirely, which is why the union rose instead of
-continuing to fall. The 6th-level union is **31 spells**; the per-class
+continuing to fall. The 6th-level union is **32 spells**; the per-class
 counts are Bard 7, Cleric 10, Druid 9, Paladin 0, Ranger 0, Sorcerer 10,
-Warlock 8, Wizard 17. Paladin and Ranger drop to zero as expected, but
+Warlock 8, Wizard 20 — the Wizard figure was first recorded as 17 (a
+four-column class list page split its 6th-level entries across a column
+boundary, the same kind of miss the 3rd-level Wizard count made) and
+corrected once the M–W batch's own read of the page caught it. Paladin
+and Ranger drop to zero as expected, but
 **Warlock does not** — its 8 sixth-level entries are spells eligible for
 Mystic Arcanum (a feature that grants one 6th–9th-level spell known, cast
 once per day with no spell slot), even though Pact Magic's actual slots
