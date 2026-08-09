@@ -10520,6 +10520,54 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.plane-shift",
+    "name": "Plane Shift",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a forked, metal rod worth at least 250 gp, attuned to a particular plane of existence",
+      "materialCostGoldPieces": 250,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 266,
+        "section": "Chapter 11: Spells — Spell Descriptions — Plane Shift"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.plant-growth",
     "name": "Plant Growth",
     "level": 3,
@@ -10750,6 +10798,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.prismatic-spray",
+    "name": "Prismatic Spray",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Cone",
+      "areaSizeFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 267,
+        "section": "Chapter 11: Spells — Spell Descriptions — Prismatic Spray"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.produce-flame",
     "name": "Produce Flame",
     "level": 0,
@@ -10835,6 +10928,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 269,
         "section": "Chapter 11: Spells — Spell Descriptions — Programmed Illusion"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.project-image",
+    "name": "Project Image",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 2640000,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small replica of you made from materials worth at least 5 gp",
+      "materialCostGoldPieces": 5,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Day"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 270,
+        "section": "Chapter 11: Spells — Spell Descriptions — Project Image"
       }
     ]
   },
@@ -11251,6 +11389,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.regenerate",
+    "name": "Regenerate",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a prayer wheel and holy water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 271,
+        "section": "Chapter 11: Spells — Spell Descriptions — Regenerate"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.reincarnate",
     "name": "Reincarnate",
     "level": 5,
@@ -11383,6 +11567,97 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 272,
         "section": "Chapter 11: Spells — Spell Descriptions — Resistance"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.resurrection",
+    "name": "Resurrection",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a diamond worth at least 1,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 272,
+        "section": "Chapter 11: Spells — Spell Descriptions — Resurrection"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.reverse-gravity",
+    "name": "Reverse Gravity",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 100,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a lodestone and iron filings",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 272,
+        "section": "Chapter 11: Spells — Spell Descriptions — Reverse Gravity"
       }
     ]
   },
@@ -11839,6 +12114,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.sequester",
+    "name": "Sequester",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a powder composed of diamond, emerald, ruby, and sapphire dust worth at least 5,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 5000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 274,
+        "section": "Chapter 11: Spells — Spell Descriptions — Sequester"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.shatter",
     "name": "Shatter",
     "level": 2,
@@ -12153,6 +12472,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 276,
         "section": "Chapter 11: Spells — Spell Descriptions — Silent Image"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.simulacrum",
+    "name": "Simulacrum",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 12,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "snow or ice in quantities sufficient to made a life-size copy of the duplicated creature; some hair, fingernail clippings, or other piece of that creature's body placed inside the snow or ice; and powdered ruby worth 1,500 gp, sprinkled over the duplicate and consumed by the spell",
+      "materialCostGoldPieces": 1500,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 276,
+        "section": "Chapter 11: Spells — Spell Descriptions — Simulacrum"
       }
     ]
   },
@@ -12973,6 +13336,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.symbol",
+    "name": "Symbol",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "mercury, phosphorus, and powdered diamond and opal with a total value of at least 1,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 1000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 280,
+        "section": "Chapter 11: Spells — Spell Descriptions — Symbol"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.tashas-hideous-laughter",
     "name": "Tasha's Hideous Laughter",
     "level": 1,
@@ -13059,6 +13468,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 280,
         "section": "Chapter 11: Spells — Spell Descriptions — Telekinesis"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.teleport",
+    "name": "Teleport",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 281,
+        "section": "Chapter 11: Spells — Spell Descriptions — Teleport"
       }
     ]
   },

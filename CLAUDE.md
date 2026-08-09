@@ -39,15 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2368 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2386 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, all 35 fourth-level, all 42
-fifth-level, and all 32 sixth-level spells are built, plus the first 10
-of the PHB's 20 seventh-level spells (batch A–M) — 317 in total. Only
-the P–T batch of level 7 remains; levels 8–9 are not started.**
+fifth-level, all 32 sixth-level, and all 20 seventh-level spells are
+built — 327 in total, levels 0–7 complete. Levels 8–9 are not
+started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -290,6 +290,23 @@ Each batch drove schema additions from real content, never anticipation:
   gp is stored directly, the same convention Warding Bond set. Etherealness
   reaches five classes (Bard, Cleric, Sorcerer, Warlock, Wizard), the
   widest membership since Hold Person's six at second level.
+- **7th P–T (closing the level):** two new Hour-unit casting times.
+  Resurrection is a flat 1 hour, rejoining the existing amount-1 group;
+  Simulacrum's **12 hours** is a fourth distinct Hour-unit amount (after
+  1, 8, and 24). Plane Shift, Project Image, Resurrection, Sequester,
+  Simulacrum, and Symbol add six more entries to the costed-materials
+  list, and Sequester/Simulacrum/Symbol are all "Until dispelled" and
+  both costed and consumed — Symbol's is technically "Until dispelled or
+  triggered," the same trigger-clause shape Magic Mouth/Glyph of Warding
+  already established. Prismatic Spray is the fourth `Cone` area (Self,
+  60 feet), after Burning Hands, Color Spray, and Cone of Cold. Project
+  Image prints **"Range: 500 miles"** — the second range printed in miles
+  rather than feet (after Clairvoyance's 1 mile), canonicalized to
+  2,640,000 feet by the same unit-conversion rule. **All 20 of the PHB's
+  seventh-level spells are now built: 327 spells total, levels 0–7
+  complete.**
+
+**Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
 same at 100 gp, Illusory Script and Find Familiar both, and Protection from
 Evil and Good consumed with no stated cost. **Three** PHB phrasings carry a
