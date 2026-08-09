@@ -357,7 +357,8 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             extraAttackProgressions: [],
             backgrounds: [],
             magicSchools: [],
-            spells: []);
+            spells: [],
+            combatActions: []);
     }
 
     private static string DataPath(string fileName)

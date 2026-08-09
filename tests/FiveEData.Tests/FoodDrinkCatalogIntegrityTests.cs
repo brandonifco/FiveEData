@@ -172,6 +172,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             extraAttackProgressions: [],
             backgrounds: [],
             magicSchools: [],
-            spells: []);
+            spells: [],
+            combatActions: []);
     }
 }

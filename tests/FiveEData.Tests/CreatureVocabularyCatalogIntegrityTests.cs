@@ -493,6 +493,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             extraAttackProgressions: [],
             backgrounds: [],
             magicSchools: [],
-            spells: []);
+            spells: [],
+            combatActions: []);
     }
 }

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "dnd5e2014.combat-action.attack",
+    "name": "Attack",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 192,
+        "section": "Chapter 9: Combat — Actions in Combat — Attack"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.cast-a-spell",
+    "name": "Cast a Spell",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 192,
+        "section": "Chapter 9: Combat — Actions in Combat — Cast a Spell"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.dash",
+    "name": "Dash",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 192,
+        "section": "Chapter 9: Combat — Actions in Combat — Dash"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.disengage",
+    "name": "Disengage",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 192,
+        "section": "Chapter 9: Combat — Actions in Combat — Disengage"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.dodge",
+    "name": "Dodge",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 192,
+        "section": "Chapter 9: Combat — Actions in Combat — Dodge"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.help",
+    "name": "Help",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 192,
+        "section": "Chapter 9: Combat — Actions in Combat — Help"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.hide",
+    "name": "Hide",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 192,
+        "section": "Chapter 9: Combat — Actions in Combat — Hide"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.ready",
+    "name": "Ready",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 193,
+        "section": "Chapter 9: Combat — Actions in Combat — Ready"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.search",
+    "name": "Search",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 193,
+        "section": "Chapter 9: Combat — Actions in Combat — Search"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.combat-action.use-an-object",
+    "name": "Use an Object",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 193,
+        "section": "Chapter 9: Combat — Actions in Combat — Use an Object"
+      }
+    ]
+  }
+]

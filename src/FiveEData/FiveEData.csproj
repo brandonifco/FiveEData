@@ -165,6 +165,9 @@
     <EmbeddedResource
       Include="../../Data/dnd5e2014/rules/background-rule.json"
       LogicalName="FiveEData.Data.dnd5e2014.rules.background-rule.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/combat-actions.json"
+      LogicalName="FiveEData.Data.dnd5e2014.combat-actions.json" />
   </ItemGroup>
 
 </Project>
