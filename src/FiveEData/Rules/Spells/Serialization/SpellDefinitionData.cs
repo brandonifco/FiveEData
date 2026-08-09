@@ -37,6 +37,9 @@ internal sealed class SpellDefinitionData
     public SpellDamageEffectData? DamageEffect { get; init; }
 
     [JsonRequired]
+    public SpellConditionEffectData? ConditionEffect { get; init; }
+
+    [JsonRequired]
     public string[]? AvailableToClassIds { get; init; }
 
     [JsonRequired]
@@ -49,13 +52,22 @@ internal sealed class SpellDamageEffectData
     public string? DamageTypeId { get; init; }
 
     [JsonRequired]
+    public string[]? ChoosableDamageTypeIds { get; init; }
+
+    [JsonRequired]
     public string? AttackRollType { get; init; }
 
     [JsonRequired]
     public string? SavingThrowAbilityId { get; init; }
 
     [JsonRequired]
+    public bool? HalfDamageOnSuccessfulSave { get; init; }
+
+    [JsonRequired]
     public SpellDamageTierGrantData[]? DamageByCharacterLevel { get; init; }
+
+    [JsonRequired]
+    public DiceExpressionData? BaseDamage { get; init; }
 }
 
 internal sealed class SpellDamageTierGrantData
@@ -65,6 +77,15 @@ internal sealed class SpellDamageTierGrantData
 
     [JsonRequired]
     public DiceExpressionData? Damage { get; init; }
+}
+
+internal sealed class SpellConditionEffectData
+{
+    [JsonRequired]
+    public string[]? ConditionIds { get; init; }
+
+    [JsonRequired]
+    public string? SavingThrowAbilityId { get; init; }
 }
 
 internal sealed class SpellCastingTimeData

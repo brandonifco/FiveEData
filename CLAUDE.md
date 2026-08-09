@@ -44,8 +44,13 @@ Built and complete:
   type, and the character-level damage-die progression) where the PHB
   actually gives them one — 11 of the 27; the other 16 are utility/buff
   cantrips with no `SpellDamageEffect`. See "Game-backend quantization:
-  Spell cantrip effects" below. Levels 1–9 don't have effect data yet —
-  cantrips proved the shape first, same as the header-block build did.
+  Spell cantrip effects" below. **1st-level spells now carry the same kind
+  of effect data** — 10 of the 62 have a `SpellDamageEffect` and 6 have a
+  new `SpellConditionEffect` (one, Ray of Sickness, has both); see
+  "Game-backend quantization: 1st-level spell effects" for the schema
+  extensions this level required (choosable damage types, half-damage-on-
+  save, a flat leveled-spell base damage, and named-condition effects).
+  Levels 2–9 don't have effect data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -83,10 +88,13 @@ one Definition" shape every other domain already uses, not a new DSL —
 see "Game-backend quantization: Conditions" for why that shape held up
 even at 26 fields. Cantrip damage effects (the first slice of gap 1)
 followed the same discipline again — see "Game-backend quantization:
-Spell cantrip effects". Non-cantrip spell effect data (levels 1–9) is the
-remaining piece of gap 1, not yet started.
+Spell cantrip effects". **1st-level spell effects are done too** — see
+"Game-backend quantization: 1st-level spell effects" for the real schema
+growth that level required (cantrips alone never needed a saving-throw
+half-damage flag, a choosable damage type, or a named-condition effect).
+Levels 2–9 are the remaining piece of gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2736 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2773 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1415,6 +1423,116 @@ pass, not carried over from the original header-block build** — the same
 "verify every remembered fact against the actual text, repeatedly" rule
 the Quantized mechanics tail section already established, applied here to
 a second pass over already-built content rather than new content.
+
+## Game-backend quantization: 1st-level spell effects
+
+The second slice of gap 1, extending cantrip damage effects to a real
+leveled-spell level. All 62 1st-level spells were re-read from the
+rendered page images. 10 have a `SpellDamageEffect`, 6 have a new
+`SpellConditionEffect`, one (Ray of Sickness) has both, and 47 have
+neither. This pass grew `SpellDamageEffect` and added
+`SpellConditionEffect` because cantrips alone hadn't shown enough real
+content to justify the shapes — the same "verify against real content,
+don't build ahead of it" discipline the whole project follows.
+
+**A leveled spell's saving throw takes half damage on success; a
+cantrip's takes none.** Every 1st-level save-based damage spell (Arms of
+Hadar, Burning Hands, Dissonant Whispers, Hellish Rebuke, Thunderwave)
+prints "half as much damage on a successful one" — none of the 11 damage
+cantrips built earlier ever had this line, so the field didn't exist yet.
+`HalfDamageOnSuccessfulSave` is a plain bool, constructor-enforced to
+`false` whenever there's no saving throw at all (an attack-roll effect
+can't have "half on save" by definition).
+
+**A leveled spell's damage doesn't scale by character level — cantrips'
+`DamageByCharacterLevel` doesn't apply, so a second shape,
+`BaseDamage: DiceExpression?`, sits beside it.** The two are mutually
+exclusive (constructor-enforced), not a shared "amount" field with a
+kind flag: a cantrip's damage-die count climbing at 5th/11th/17th
+character level and a leveled spell's flat damage at its own printed
+level are different facts on different axes, and forcing one shape onto
+both would have meant lying about what "character level 1" means for a
+spell whose damage never depends on character level. The leveled spell's
+own "At Higher Levels" spell-slot-upcast scaling — the real analog of a
+cantrip's scaling — stays in the citation, the same linear-in-slot-level
+formula call already made for Preserve Life, Radiance of the Dawn, and
+every other scaling formula this project declines to expand.
+
+**Chromatic Orb needed a choosable damage type, so `DamageTypeId` became
+nullable and gained a sibling `ChoosableDamageTypeIds`.** "You choose
+acid, cold, fire, lightning, poison, or thunder" is a real, closed list,
+the same `FixedDamageTypeId`/`ChoosableDamageTypeIds` shape
+`DivineStrikeProgressionDetail` already established for the same "fixed
+type or list of choosable types" fact. Constructor-enforced: exactly one
+of the two populated, and the choosable list must not be empty when
+present.
+
+**`SpellConditionEffect` is a new, independent nullable field on
+`SpellDefinition` (`ConditionEffect`), not folded into
+`SpellDamageEffect`.** A spell's condition-imposing mechanic (Charm
+Person's Wisdom save into `charmed`) and its damage mechanic are
+genuinely separate facts that can co-occur — Ray of Sickness deals damage
+via a ranged spell attack and *separately* poisons on a failed
+Constitution save decoupled from that attack roll — so a spell can carry
+`DamageEffect`, `ConditionEffect`, both, or neither, the same
+"independent nullable mechanism fields side by side" shape the project
+already uses elsewhere. The type itself is
+`ConditionIds: IReadOnlyList<ConditionId>` (non-empty, no duplicates) +
+`SavingThrowAbilityId: AbilityId` (required, not nullable — see below).
+Tasha's Hideous Laughter is the reason `ConditionIds` is a list, not a
+singular field: one failed save imposes both `prone` and
+`incapacitated` together.
+
+**`SavingThrowAbilityId` on `SpellConditionEffect` is required, not
+nullable, and Sleep is the reason it stays that way.** Every
+condition-imposing spell found across all 62 has a save gating the
+condition — except Sleep, whose hit-point-pool targeting ("roll 5d8...
+starting with the creature with the lowest current hit points...") has
+no saving throw anywhere in its text. Rather than relaxing the field to
+accommodate one outlier, Sleep is declined the same way Color Spray's
+hit-point-pool blinding was declined at cantrip level: a unique,
+non-recurring compound mechanic, not a reason to weaken a field every
+other real spell needs.
+
+**Magic Missile is declined, not modeled, despite dealing real damage.**
+It auto-hits with no attack roll and no saving throw at all ("You don't
+need to make an attack roll"), which the schema doesn't represent (every
+`SpellDamageEffect` built so far resolves via exactly one of the two);
+and its "1d4 + 1 force damage" per dart needs a flat modifier
+`DiceExpression` has never carried, since every dice fact built anywhere
+in this project so far has been pure `Xd Y` with no added constant. Both
+gaps are real, but Magic Missile is the only 1st-level spell that needs
+either one, so it's declined rather than bending two established types
+for a single spell — the same "one data point doesn't justify a new
+mechanism field" call Plant Growth's compound casting time already made.
+Revisit if a second auto-hit or flat-modifier spell turns up at a later
+level.
+
+**Weapon-attack-rider spells are declined as a group, the same call
+Shillelagh made at cantrip level.** Ensnaring Strike, Hail of Thorns,
+Searing Smite, Thunderous Smite, and Wrathful Smite are all a bonus
+action that buffs your *next weapon attack* rather than being an
+independent spell attack or save in their own right — the spell doesn't
+resolve anything itself until a separate weapon attack (already modeled
+via `WeaponDefinition`) lands. None of the five get a `SpellDamageEffect`.
+
+**Per-spell secondary riders stay in the citation, unquantized — same
+rule as cantrips, now confirmed at a second level.** Arms of Hadar's
+no-reactions clause, Dissonant Whispers' forced movement, Guiding Bolt's
+advantage-on-next-attack, Hellish Rebuke and Witch Bolt's status as
+reaction/recurring-tick spells, Ray of Sickness's poisoned duration,
+Tasha's Hideous Laughter's repeatable end-of-turn save — all individually
+heterogeneous, all declined, all in the citation. Witch Bolt's "deal 1d12
+automatically each turn" follow-up damage is declined the same way; only
+the spell's own initial-hit `SpellDamageEffect` is captured.
+
+**Bane, Command, Compelled Duel, Divine Favor, Hex, and Hunter's Mark are
+all saving-throw or no-save spells with zero damage or condition of their
+own** — pure debuffs, behavioral compulsions, or weapon-attack-damage
+riders (Divine Favor and Hex both buff a *later* weapon hit, the same
+"rider, not the spell's own effect" reasoning that declined the five
+smite-style spells above, just without the bonus-action setup). None
+carry either mechanism field.
 
 ## Test conventions
 

@@ -3,6 +3,7 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
@@ -306,9 +307,12 @@ public sealed class SpellFoundationTests
     {
         Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
             AcidDamageType(),
+            choosableDamageTypeIds: null,
             SpellAttackRollType.Ranged,
             new AbilityId("dnd5e2014.ability.dexterity"),
-            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))]));
+            halfDamageOnSuccessfulSave: false,
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))],
+            baseDamage: null));
     }
 
     [Fact]
@@ -316,19 +320,90 @@ public sealed class SpellFoundationTests
     {
         Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
             AcidDamageType(),
+            choosableDamageTypeIds: null,
             attackRollType: null,
             savingThrowAbilityId: null,
-            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))]));
+            halfDamageOnSuccessfulSave: false,
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))],
+            baseDamage: null));
     }
 
     [Fact]
-    public void DamageEffect_RejectsEmptyDamageTiers()
+    public void DamageEffect_RejectsBothFixedAndChoosableDamageType()
     {
         Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
             AcidDamageType(),
+            [AcidDamageType()],
             SpellAttackRollType.Ranged,
             savingThrowAbilityId: null,
-            damageByCharacterLevel: []));
+            halfDamageOnSuccessfulSave: false,
+            damageByCharacterLevel: null,
+            new DiceExpression(3, 8)));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsNeitherFixedNorChoosableDamageType()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            damageTypeId: null,
+            choosableDamageTypeIds: null,
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
+            damageByCharacterLevel: null,
+            new DiceExpression(3, 8)));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsEmptyChoosableDamageTypes()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            damageTypeId: null,
+            choosableDamageTypeIds: [],
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
+            damageByCharacterLevel: null,
+            new DiceExpression(3, 8)));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsHalfDamageOnSaveWithoutASavingThrow()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            choosableDamageTypeIds: null,
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: true,
+            damageByCharacterLevel: null,
+            new DiceExpression(3, 8)));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsBothTiersAndBaseDamage()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            choosableDamageTypeIds: null,
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))],
+            new DiceExpression(3, 8)));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsNeitherTiersNorBaseDamage()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            choosableDamageTypeIds: null,
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
+            damageByCharacterLevel: null,
+            baseDamage: null));
     }
 
     [Fact]
@@ -336,9 +411,12 @@ public sealed class SpellFoundationTests
     {
         Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
             AcidDamageType(),
+            choosableDamageTypeIds: null,
             SpellAttackRollType.Ranged,
             savingThrowAbilityId: null,
-            [new SpellDamageTierGrant(5, new DiceExpression(1, 6))]));
+            halfDamageOnSuccessfulSave: false,
+            [new SpellDamageTierGrant(5, new DiceExpression(1, 6))],
+            baseDamage: null));
     }
 
     [Fact]
@@ -346,12 +424,15 @@ public sealed class SpellFoundationTests
     {
         Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
             AcidDamageType(),
+            choosableDamageTypeIds: null,
             SpellAttackRollType.Ranged,
             savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
             [
                 new SpellDamageTierGrant(1, new DiceExpression(1, 6)),
                 new SpellDamageTierGrant(1, new DiceExpression(2, 6))
-            ]));
+            ],
+            baseDamage: null));
     }
 
     [Fact]
@@ -359,12 +440,15 @@ public sealed class SpellFoundationTests
     {
         Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
             AcidDamageType(),
+            choosableDamageTypeIds: null,
             SpellAttackRollType.Ranged,
             savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
             [
                 new SpellDamageTierGrant(1, new DiceExpression(1, 6)),
                 new SpellDamageTierGrant(5, new DiceExpression(2, 8))
-            ]));
+            ],
+            baseDamage: null));
     }
 
     [Fact]
@@ -372,12 +456,15 @@ public sealed class SpellFoundationTests
     {
         Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
             AcidDamageType(),
+            choosableDamageTypeIds: null,
             SpellAttackRollType.Ranged,
             savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
             [
                 new SpellDamageTierGrant(1, new DiceExpression(2, 6)),
                 new SpellDamageTierGrant(5, new DiceExpression(2, 6))
-            ]));
+            ],
+            baseDamage: null));
     }
 
     // Eldritch Blast is flat 1d10 at every level (it scales by adding
@@ -387,9 +474,12 @@ public sealed class SpellFoundationTests
     {
         var effect = new SpellDamageEffect(
             new DamageTypeId("dnd5e2014.damage-type.force"),
+            choosableDamageTypeIds: null,
             SpellAttackRollType.Ranged,
             savingThrowAbilityId: null,
-            [new SpellDamageTierGrant(1, new DiceExpression(1, 10))]);
+            halfDamageOnSuccessfulSave: false,
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 10))],
+            baseDamage: null);
 
         Assert.Single(effect.DamageByCharacterLevel);
     }
@@ -399,20 +489,60 @@ public sealed class SpellFoundationTests
     {
         var effect = new SpellDamageEffect(
             AcidDamageType(),
+            choosableDamageTypeIds: null,
             attackRollType: null,
             new AbilityId("dnd5e2014.ability.dexterity"),
+            halfDamageOnSuccessfulSave: false,
             [
                 new SpellDamageTierGrant(1, new DiceExpression(1, 6)),
                 new SpellDamageTierGrant(5, new DiceExpression(2, 6)),
                 new SpellDamageTierGrant(11, new DiceExpression(3, 6)),
                 new SpellDamageTierGrant(17, new DiceExpression(4, 6))
-            ]);
+            ],
+            baseDamage: null);
 
         Assert.Equal(4, effect.DamageByCharacterLevel.Count);
         Assert.Null(effect.AttackRollType);
         Assert.Equal(
             "dnd5e2014.ability.dexterity",
             effect.SavingThrowAbilityId!.Value.Value);
+    }
+
+    // Chromatic Orb: the caster picks the damage type at cast time from a
+    // fixed list, rather than the spell always dealing one type.
+    [Fact]
+    public void DamageEffect_AcceptsChoosableDamageTypes()
+    {
+        var effect = new SpellDamageEffect(
+            damageTypeId: null,
+            [AcidDamageType(), new DamageTypeId("dnd5e2014.damage-type.fire")],
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
+            damageByCharacterLevel: null,
+            new DiceExpression(3, 8));
+
+        Assert.Null(effect.DamageTypeId);
+        Assert.Equal(2, effect.ChoosableDamageTypeIds!.Count);
+    }
+
+    // Arms of Hadar: a leveled spell's save-based damage effect is halved,
+    // not negated, on a successful save — unlike a cantrip's save.
+    [Fact]
+    public void DamageEffect_AcceptsHalfDamageOnSuccessfulSave()
+    {
+        var effect = new SpellDamageEffect(
+            new DamageTypeId("dnd5e2014.damage-type.necrotic"),
+            choosableDamageTypeIds: null,
+            attackRollType: null,
+            new AbilityId("dnd5e2014.ability.strength"),
+            halfDamageOnSuccessfulSave: true,
+            damageByCharacterLevel: null,
+            new DiceExpression(2, 6));
+
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(2, effect.BaseDamage!.Value.Count);
+        Assert.Empty(effect.DamageByCharacterLevel);
     }
 
     [Theory]
@@ -425,6 +555,39 @@ public sealed class SpellFoundationTests
             () => new SpellDamageTierGrant(
                 characterLevel,
                 new DiceExpression(1, 6)));
+    }
+
+    [Fact]
+    public void ConditionEffect_RejectsEmptyConditionList()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellConditionEffect(
+            [],
+            new AbilityId("dnd5e2014.ability.wisdom")));
+    }
+
+    [Fact]
+    public void ConditionEffect_RejectsRepeatedCondition()
+    {
+        var charmed = new ConditionId("dnd5e2014.condition.charmed");
+
+        Assert.Throws<ArgumentException>(() => new SpellConditionEffect(
+            [charmed, charmed],
+            new AbilityId("dnd5e2014.ability.wisdom")));
+    }
+
+    // Tasha's Hideous Laughter imposes both Prone and Incapacitated on one
+    // failed save.
+    [Fact]
+    public void ConditionEffect_AcceptsMultipleConditions()
+    {
+        var effect = new SpellConditionEffect(
+            [
+                new ConditionId("dnd5e2014.condition.prone"),
+                new ConditionId("dnd5e2014.condition.incapacitated")
+            ],
+            new AbilityId("dnd5e2014.ability.wisdom"));
+
+        Assert.Equal(2, effect.ConditionIds.Count);
     }
 
     private static DamageTypeId AcidDamageType() =>
@@ -448,6 +611,7 @@ public sealed class SpellFoundationTests
             SpellDuration.Instantaneous(),
             isRitual,
             damageEffect: null,
+            conditionEffect: null,
             classes ?? [new ClassId("dnd5e2014.class.wizard")],
             sources ?? [TestSource()]);
     }

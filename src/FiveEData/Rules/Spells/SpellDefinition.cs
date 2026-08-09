@@ -17,6 +17,7 @@ public sealed class SpellDefinition
         SpellDuration duration,
         bool isRitual,
         SpellDamageEffect? damageEffect,
+        SpellConditionEffect? conditionEffect,
         IEnumerable<ClassId> availableToClassIds,
         IEnumerable<SourceReference> sources)
     {
@@ -34,6 +35,7 @@ public sealed class SpellDefinition
         Duration = duration;
         IsRitual = isRitual;
         DamageEffect = damageEffect;
+        ConditionEffect = conditionEffect;
         AvailableToClassIds =
             Array.AsReadOnly(availableToClassIds.ToArray());
         Sources = Array.AsReadOnly(sources.ToArray());
@@ -65,6 +67,14 @@ public sealed class SpellDefinition
     /// buff cantrips.
     /// </summary>
     public SpellDamageEffect? DamageEffect { get; }
+
+    /// <summary>
+    /// The named Appendix A condition(s) the spell imposes on a failed
+    /// saving throw, independent of any <see cref="DamageEffect"/> — Ray
+    /// of Sickness carries both. Null for a spell with no condition effect
+    /// of its own.
+    /// </summary>
+    public SpellConditionEffect? ConditionEffect { get; }
 
     public IReadOnlyList<ClassId> AvailableToClassIds { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
