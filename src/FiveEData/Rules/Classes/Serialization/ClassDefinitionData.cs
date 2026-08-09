@@ -4,6 +4,7 @@ using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BardicInspiration.Serialization;
 using FiveEData.Rules.Classes.Blindsense.Serialization;
 using FiveEData.Rules.Classes.BrutalCritical.Serialization;
+using FiveEData.Rules.Classes.CantripsKnown.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinity.Serialization;
 using FiveEData.Rules.Classes.DestroyUndead.Serialization;
 using FiveEData.Rules.Classes.DivineSense.Serialization;
@@ -25,6 +26,7 @@ using FiveEData.Rules.Classes.Rage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SongOfRest.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
+using FiveEData.Rules.Classes.SpellsKnown.Serialization;
 using FiveEData.Rules.Classes.UnarmoredMovement.Serialization;
 using FiveEData.Rules.Classes.WildShape.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -222,6 +224,20 @@ internal sealed class ClassDefinitionData
     [JsonRequired]
     public EldritchInvocationsKnownProgressionDetailData?
         EldritchInvocationsKnownProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public CantripsKnownProgressionDetailData? CantripsKnownProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public SpellsKnownProgressionDetailData? SpellsKnownProgression
     {
         get;
         init;

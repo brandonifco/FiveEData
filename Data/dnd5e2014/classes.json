@@ -163,6 +163,8 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": null,
+    "spellsKnownProgression": null,
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -388,6 +390,8 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": null,
+    "spellsKnownProgression": null,
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -708,6 +712,8 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": null,
+    "spellsKnownProgression": null,
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -949,6 +955,8 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": null,
+    "spellsKnownProgression": null,
     "blindsense": {
       "rangeFeet": 10,
       "requiresHearing": true
@@ -1221,6 +1229,90 @@
       ]
     },
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": {
+      "cantripsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "cantripsKnown": 2
+        },
+        {
+          "characterLevel": 4,
+          "cantripsKnown": 3
+        },
+        {
+          "characterLevel": 10,
+          "cantripsKnown": 4
+        }
+      ]
+    },
+    "spellsKnownProgression": {
+      "spellsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "spellsKnown": 4
+        },
+        {
+          "characterLevel": 2,
+          "spellsKnown": 5
+        },
+        {
+          "characterLevel": 3,
+          "spellsKnown": 6
+        },
+        {
+          "characterLevel": 4,
+          "spellsKnown": 7
+        },
+        {
+          "characterLevel": 5,
+          "spellsKnown": 8
+        },
+        {
+          "characterLevel": 6,
+          "spellsKnown": 9
+        },
+        {
+          "characterLevel": 7,
+          "spellsKnown": 10
+        },
+        {
+          "characterLevel": 8,
+          "spellsKnown": 11
+        },
+        {
+          "characterLevel": 9,
+          "spellsKnown": 12
+        },
+        {
+          "characterLevel": 10,
+          "spellsKnown": 14
+        },
+        {
+          "characterLevel": 11,
+          "spellsKnown": 15
+        },
+        {
+          "characterLevel": 13,
+          "spellsKnown": 16
+        },
+        {
+          "characterLevel": 14,
+          "spellsKnown": 18
+        },
+        {
+          "characterLevel": 15,
+          "spellsKnown": 19
+        },
+        {
+          "characterLevel": 17,
+          "spellsKnown": 20
+        },
+        {
+          "characterLevel": 18,
+          "spellsKnown": 22
+        }
+      ]
+    },
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -1339,6 +1431,23 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": {
+      "cantripsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "cantripsKnown": 3
+        },
+        {
+          "characterLevel": 4,
+          "cantripsKnown": 4
+        },
+        {
+          "characterLevel": 10,
+          "cantripsKnown": 5
+        }
+      ]
+    },
+    "spellsKnownProgression": null,
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -1514,6 +1623,23 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": {
+      "cantripsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "cantripsKnown": 3
+        },
+        {
+          "characterLevel": 4,
+          "cantripsKnown": 4
+        },
+        {
+          "characterLevel": 10,
+          "cantripsKnown": 5
+        }
+      ]
+    },
+    "spellsKnownProgression": null,
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -1698,6 +1824,82 @@
         }
       ]
     },
+    "cantripsKnownProgression": {
+      "cantripsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "cantripsKnown": 2
+        },
+        {
+          "characterLevel": 4,
+          "cantripsKnown": 3
+        },
+        {
+          "characterLevel": 10,
+          "cantripsKnown": 4
+        }
+      ]
+    },
+    "spellsKnownProgression": {
+      "spellsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "spellsKnown": 2
+        },
+        {
+          "characterLevel": 2,
+          "spellsKnown": 3
+        },
+        {
+          "characterLevel": 3,
+          "spellsKnown": 4
+        },
+        {
+          "characterLevel": 4,
+          "spellsKnown": 5
+        },
+        {
+          "characterLevel": 5,
+          "spellsKnown": 6
+        },
+        {
+          "characterLevel": 6,
+          "spellsKnown": 7
+        },
+        {
+          "characterLevel": 7,
+          "spellsKnown": 8
+        },
+        {
+          "characterLevel": 8,
+          "spellsKnown": 9
+        },
+        {
+          "characterLevel": 9,
+          "spellsKnown": 10
+        },
+        {
+          "characterLevel": 11,
+          "spellsKnown": 11
+        },
+        {
+          "characterLevel": 13,
+          "spellsKnown": 12
+        },
+        {
+          "characterLevel": 15,
+          "spellsKnown": 13
+        },
+        {
+          "characterLevel": 17,
+          "spellsKnown": 14
+        },
+        {
+          "characterLevel": 19,
+          "spellsKnown": 15
+        }
+      ]
+    },
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -1865,6 +2067,23 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": {
+      "cantripsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "cantripsKnown": 2
+        },
+        {
+          "characterLevel": 4,
+          "cantripsKnown": 3
+        },
+        {
+          "characterLevel": 10,
+          "cantripsKnown": 4
+        }
+      ]
+    },
+    "spellsKnownProgression": null,
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -2061,6 +2280,51 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": null,
+    "spellsKnownProgression": {
+      "spellsKnownByLevel": [
+        {
+          "characterLevel": 2,
+          "spellsKnown": 2
+        },
+        {
+          "characterLevel": 3,
+          "spellsKnown": 3
+        },
+        {
+          "characterLevel": 5,
+          "spellsKnown": 4
+        },
+        {
+          "characterLevel": 7,
+          "spellsKnown": 5
+        },
+        {
+          "characterLevel": 9,
+          "spellsKnown": 6
+        },
+        {
+          "characterLevel": 11,
+          "spellsKnown": 7
+        },
+        {
+          "characterLevel": 13,
+          "spellsKnown": 8
+        },
+        {
+          "characterLevel": 15,
+          "spellsKnown": 9
+        },
+        {
+          "characterLevel": 17,
+          "spellsKnown": 10
+        },
+        {
+          "characterLevel": 19,
+          "spellsKnown": 11
+        }
+      ]
+    },
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": {
@@ -2235,6 +2499,8 @@
     "fontOfMagicConversion": null,
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": null,
+    "spellsKnownProgression": null,
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,
@@ -2474,6 +2740,82 @@
     },
     "songOfRestProgression": null,
     "eldritchInvocationsKnownProgression": null,
+    "cantripsKnownProgression": {
+      "cantripsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "cantripsKnown": 4
+        },
+        {
+          "characterLevel": 4,
+          "cantripsKnown": 5
+        },
+        {
+          "characterLevel": 10,
+          "cantripsKnown": 6
+        }
+      ]
+    },
+    "spellsKnownProgression": {
+      "spellsKnownByLevel": [
+        {
+          "characterLevel": 1,
+          "spellsKnown": 2
+        },
+        {
+          "characterLevel": 2,
+          "spellsKnown": 3
+        },
+        {
+          "characterLevel": 3,
+          "spellsKnown": 4
+        },
+        {
+          "characterLevel": 4,
+          "spellsKnown": 5
+        },
+        {
+          "characterLevel": 5,
+          "spellsKnown": 6
+        },
+        {
+          "characterLevel": 6,
+          "spellsKnown": 7
+        },
+        {
+          "characterLevel": 7,
+          "spellsKnown": 8
+        },
+        {
+          "characterLevel": 8,
+          "spellsKnown": 9
+        },
+        {
+          "characterLevel": 9,
+          "spellsKnown": 10
+        },
+        {
+          "characterLevel": 10,
+          "spellsKnown": 11
+        },
+        {
+          "characterLevel": 11,
+          "spellsKnown": 12
+        },
+        {
+          "characterLevel": 13,
+          "spellsKnown": 13
+        },
+        {
+          "characterLevel": 15,
+          "spellsKnown": 14
+        },
+        {
+          "characterLevel": 17,
+          "spellsKnown": 15
+        }
+      ]
+    },
     "blindsense": null,
     "reliableTalentMinimumD20Roll": null,
     "feralSenses": null,

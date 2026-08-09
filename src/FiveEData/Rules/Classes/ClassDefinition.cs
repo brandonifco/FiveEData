@@ -4,6 +4,7 @@ using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.BrutalCritical;
+using FiveEData.Rules.Classes.CantripsKnown;
 using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.DivineSense;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
@@ -26,6 +27,7 @@ using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.SpellsKnown;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
@@ -80,6 +82,8 @@ public sealed class ClassDefinition
         SongOfRestProgressionDetail? songOfRestProgression,
         EldritchInvocationsKnownProgressionDetail?
             eldritchInvocationsKnownProgression,
+        CantripsKnownProgressionDetail? cantripsKnownProgression,
+        SpellsKnownProgressionDetail? spellsKnownProgression,
         BlindsenseDetail? blindsense,
         int? reliableTalentMinimumD20Roll,
         FeralSensesDetail? feralSenses,
@@ -146,6 +150,8 @@ public sealed class ClassDefinition
         SongOfRestProgression = songOfRestProgression;
         EldritchInvocationsKnownProgression =
             eldritchInvocationsKnownProgression;
+        CantripsKnownProgression = cantripsKnownProgression;
+        SpellsKnownProgression = spellsKnownProgression;
         Blindsense = blindsense;
         ReliableTalentMinimumD20Roll = reliableTalentMinimumD20Roll;
         FeralSenses = feralSenses;
@@ -236,6 +242,10 @@ public sealed class ClassDefinition
     public EldritchInvocationsKnownProgressionDetail?
         EldritchInvocationsKnownProgression
     { get; }
+
+    public CantripsKnownProgressionDetail? CantripsKnownProgression { get; }
+
+    public SpellsKnownProgressionDetail? SpellsKnownProgression { get; }
 
     public BlindsenseDetail? Blindsense { get; }
 

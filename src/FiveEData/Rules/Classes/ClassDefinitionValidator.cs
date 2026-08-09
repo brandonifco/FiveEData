@@ -1,6 +1,7 @@
 using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
+using FiveEData.Rules.Classes.CantripsKnown;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
@@ -16,6 +17,7 @@ using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.SpellsKnown;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
@@ -284,6 +286,26 @@ internal static class ClassDefinitionValidator
                         grant =>
                             (grant.CharacterLevel, grant.InvocationsKnown)),
                 "Eldritch Invocations known",
+                errors);
+        }
+
+        if (@class.CantripsKnownProgression is { } cantripsKnownProgression)
+        {
+            ValidatePointsProgression(
+                cantripsKnownProgression.CantripsKnownByLevel
+                    .Select(
+                        grant => (grant.CharacterLevel, grant.CantripsKnown)),
+                "Cantrips known",
+                errors);
+        }
+
+        if (@class.SpellsKnownProgression is { } spellsKnownProgression)
+        {
+            ValidatePointsProgression(
+                spellsKnownProgression.SpellsKnownByLevel
+                    .Select(
+                        grant => (grant.CharacterLevel, grant.SpellsKnown)),
+                "Spells known",
                 errors);
         }
 

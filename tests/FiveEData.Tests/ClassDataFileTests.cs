@@ -9,6 +9,7 @@ using FiveEData.Rules.Classes.DivineSense;
 using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
+using FiveEData.Rules.Classes.CantripsKnown;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
@@ -26,6 +27,7 @@ using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
+using FiveEData.Rules.Classes.SpellsKnown;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
@@ -810,6 +812,30 @@ public sealed class ClassDataFileTests
                 .OrderBy(grant => grant.CharacterLevel)
                 .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
         Assert.True(magicalSecretsProgression.CountsAgainstSpellsKnown);
+
+        CantripsKnownProgressionDetail cantripsKnownProgression =
+            bard.CantripsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Cantrips Known progression.");
+        Assert.Equal(
+            [(1, 2), (4, 3), (10, 4)],
+            cantripsKnownProgression.CantripsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.CantripsKnown)));
+
+        SpellsKnownProgressionDetail spellsKnownProgression =
+            bard.SpellsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Bard to have a Spells Known progression.");
+        Assert.Equal(
+            [
+                (1, 4), (2, 5), (3, 6), (4, 7), (5, 8), (6, 9), (7, 10),
+                (8, 11), (9, 12), (10, 14), (11, 15), (13, 16), (14, 18),
+                (15, 19), (17, 20), (18, 22)
+            ],
+            spellsKnownProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
     }
 
     // The Bard's own Magical Secrets spells "are included in the number in
@@ -1019,6 +1045,18 @@ public sealed class ClassDataFileTests
             source.DocumentId.Value);
         Assert.Equal(113, source.Page);
         Assert.Equal("Chapter 3: Classes", source.Section);
+
+        CantripsKnownProgressionDetail cantripsKnownProgression =
+            wizard.CantripsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Wizard to have a Cantrips Known progression.");
+        Assert.Equal(
+            [(1, 3), (4, 4), (10, 5)],
+            cantripsKnownProgression.CantripsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.CantripsKnown)));
+
+        Assert.Null(wizard.SpellsKnownProgression);
     }
 
     [Fact]
@@ -1129,6 +1167,18 @@ public sealed class ClassDataFileTests
                 .Select(
                     grant =>
                         (grant.CharacterLevel, grant.MaxChallengeRating)));
+
+        CantripsKnownProgressionDetail cantripsKnownProgression =
+            cleric.CantripsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Cleric to have a Cantrips Known progression.");
+        Assert.Equal(
+            [(1, 3), (4, 4), (10, 5)],
+            cantripsKnownProgression.CantripsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.CantripsKnown)));
+
+        Assert.Null(cleric.SpellsKnownProgression);
     }
 
     // The Destroy Undead table's first row is CR 1/2, which is why the
@@ -1335,6 +1385,30 @@ public sealed class ClassDataFileTests
                 .Select(
                     grant =>
                         (grant.CharacterLevel, grant.InvocationsKnown)));
+
+        CantripsKnownProgressionDetail cantripsKnownProgression =
+            warlock.CantripsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Warlock to have a Cantrips Known progression.");
+        Assert.Equal(
+            [(1, 2), (4, 3), (10, 4)],
+            cantripsKnownProgression.CantripsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.CantripsKnown)));
+
+        SpellsKnownProgressionDetail spellsKnownProgression =
+            warlock.SpellsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Warlock to have a Spells Known progression.");
+        Assert.Equal(
+            [
+                (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8),
+                (8, 9), (9, 10), (11, 11), (13, 12), (15, 13), (17, 14),
+                (19, 15)
+            ],
+            spellsKnownProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
     }
 
     [Fact]
@@ -1352,6 +1426,66 @@ public sealed class ClassDataFileTests
 
             Assert.Null(@class.EldritchInvocationsKnownProgression);
         }
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_CasterClassDeclaresACantripsKnownProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.NotNull(@class.CantripsKnownProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    public void CanonicalFile_NonCantripCasterClassDeclaresNoCantripsKnownProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.CantripsKnownProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    public void CanonicalFile_KnownCasterClassDeclaresASpellsKnownProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.NotNull(@class.SpellsKnownProgression);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.wizard")]
+    public void CanonicalFile_NonKnownCasterClassDeclaresNoSpellsKnownProgression(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.SpellsKnownProgression);
     }
 
     [Fact]
@@ -1479,6 +1613,18 @@ public sealed class ClassDataFileTests
 
         Assert.Equal(2, wildShapeProgression.UsesPerRest);
         Assert.True(wildShapeProgression.RecoversOnShortRest);
+
+        CantripsKnownProgressionDetail cantripsKnownProgression =
+            druid.CantripsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Druid to have a Cantrips Known progression.");
+        Assert.Equal(
+            [(1, 2), (4, 3), (10, 4)],
+            cantripsKnownProgression.CantripsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.CantripsKnown)));
+
+        Assert.Null(druid.SpellsKnownProgression);
     }
 
     [Fact]
@@ -1601,6 +1747,21 @@ public sealed class ClassDataFileTests
                 .Select(
                     grant =>
                         (grant.CharacterLevel, grant.FavoredTerrainsKnown)));
+
+        Assert.Null(ranger.CantripsKnownProgression);
+
+        SpellsKnownProgressionDetail spellsKnownProgression =
+            ranger.SpellsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Ranger to have a Spells Known progression.");
+        Assert.Equal(
+            [
+                (2, 2), (3, 3), (5, 4), (7, 5), (9, 6), (11, 7), (13, 8),
+                (15, 9), (17, 10), (19, 11)
+            ],
+            spellsKnownProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
     }
 
     // Both counts are cumulative totals, not per-level increments: a 14th
@@ -1949,6 +2110,30 @@ public sealed class ClassDataFileTests
                 .Select(
                     grant =>
                         (grant.SpellSlotLevel, grant.SorceryPointCost)));
+
+        CantripsKnownProgressionDetail cantripsKnownProgression =
+            sorcerer.CantripsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Sorcerer to have a Cantrips Known progression.");
+        Assert.Equal(
+            [(1, 4), (4, 5), (10, 6)],
+            cantripsKnownProgression.CantripsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.CantripsKnown)));
+
+        SpellsKnownProgressionDetail spellsKnownProgression =
+            sorcerer.SpellsKnownProgression
+            ?? throw new InvalidOperationException(
+                "Expected Sorcerer to have a Spells Known progression.");
+        Assert.Equal(
+            [
+                (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8),
+                (8, 9), (9, 10), (10, 11), (11, 12), (13, 13), (15, 14),
+                (17, 15)
+            ],
+            spellsKnownProgression.SpellsKnownByLevel
+                .OrderBy(grant => grant.CharacterLevel)
+                .Select(grant => (grant.CharacterLevel, grant.SpellsKnown)));
     }
 
     [Fact]

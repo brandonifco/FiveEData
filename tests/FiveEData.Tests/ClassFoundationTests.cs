@@ -10,6 +10,7 @@ using FiveEData.Rules.Classes.DivineSense;
 using FiveEData.Rules.Classes.Blindsense;
 using FiveEData.Rules.Classes.BardicInspiration;
 using FiveEData.Rules.Classes.BrutalCritical;
+using FiveEData.Rules.Classes.CantripsKnown;
 using FiveEData.Rules.Classes.ChannelDivinity;
 using FiveEData.Rules.Classes.DestroyUndead;
 using FiveEData.Rules.Classes.EldritchInvocationsKnown;
@@ -28,6 +29,7 @@ using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.SpellsKnown;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Common;
@@ -162,6 +164,8 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -450,6 +454,74 @@ public sealed class ClassFoundationTests
                     new SorceryPointsGrant(3, 3)
                 ],
                 false));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsCantripsKnownProgressionWithNoGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            cantripsKnownProgression: new CantripsKnownProgressionDetail([]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Cantrips known progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsCantripsKnownProgressionWithNonIncreasingCounts()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            cantripsKnownProgression: new CantripsKnownProgressionDetail(
+                [
+                    new CantripsKnownGrant(1, 2),
+                    new CantripsKnownGrant(4, 2)
+                ]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "must be greater than",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsSpellsKnownProgressionWithNoGrants()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            spellsKnownProgression: new SpellsKnownProgressionDetail([]));
+
+        Assert.Contains(
+            ClassDefinitionValidator.Validate(@class),
+            error =>
+                error.Contains(
+                    "Spells known progression must grant",
+                    StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validator_RejectsSpellsKnownProgressionWithNonIncreasingCounts()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            spellsKnownProgression: new SpellsKnownProgressionDetail(
+                [
+                    new SpellsKnownGrant(1, 2),
+                    new SpellsKnownGrant(2, 2)
+                ]));
 
         Assert.Contains(
             ClassDefinitionValidator.Validate(@class),
@@ -1677,6 +1749,8 @@ public sealed class ClassFoundationTests
         SongOfRestProgressionDetail? songOfRestProgression = null,
         EldritchInvocationsKnownProgressionDetail?
             eldritchInvocationsKnownProgression = null,
+        CantripsKnownProgressionDetail? cantripsKnownProgression = null,
+        SpellsKnownProgressionDetail? spellsKnownProgression = null,
         BlindsenseDetail? blindsense = null,
         int? reliableTalentMinimumD20Roll = null,
         FeralSensesDetail? feralSenses = null,
@@ -1735,6 +1809,8 @@ public sealed class ClassFoundationTests
             fontOfMagicConversion,
             songOfRestProgression,
             eldritchInvocationsKnownProgression,
+            cantripsKnownProgression,
+            spellsKnownProgression,
             blindsense,
             reliableTalentMinimumD20Roll,
             feralSenses,
