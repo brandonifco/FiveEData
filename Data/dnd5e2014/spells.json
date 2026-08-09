@@ -11886,6 +11886,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.prismatic-wall",
+    "name": "Prismatic Wall",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 267,
+        "section": "Chapter 11: Spells — Spell Descriptions — Prismatic Wall"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.produce-flame",
     "name": "Produce Flame",
     "level": 0,
@@ -13201,6 +13245,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.shapechange",
+    "name": "Shapechange",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a jade circlet worth at least 1,500 gp, which you must place on your head before you cast the spell",
+      "materialCostGoldPieces": 1500,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 274,
+        "section": "Chapter 11: Spells — Spell Descriptions — Shapechange"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.shatter",
     "name": "Shatter",
     "level": 2,
@@ -14242,6 +14331,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.storm-of-vengeance",
+    "name": "Storm of Vengeance",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Sight",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 279,
+        "section": "Chapter 11: Spells — Spell Descriptions — Storm of Vengeance"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.suggestion",
     "name": "Suggestion",
     "level": 2,
@@ -14920,6 +15053,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.time-stop",
+    "name": "Time Stop",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 283,
+        "section": "Chapter 11: Spells — Spell Descriptions — Time Stop"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.tongues",
     "name": "Tongues",
     "level": 3,
@@ -15053,6 +15231,97 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 283,
         "section": "Chapter 11: Spells — Spell Descriptions — Tree Stride"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.true-polymorph",
+    "name": "True Polymorph",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a drop of mercury, a dollop of gum arabic, and a wisp of smoke",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 283,
+        "section": "Chapter 11: Spells — Spell Descriptions — True Polymorph"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.true-resurrection",
+    "name": "True Resurrection",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a sprinkle of holy water and diamonds worth at least 25,000 gp, which the spell consumes",
+      "materialCostGoldPieces": 25000,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 284,
+        "section": "Chapter 11: Spells — Spell Descriptions — True Resurrection"
       }
     ]
   },
@@ -15736,6 +16005,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.weird",
+    "name": "Weird",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 288,
+        "section": "Chapter 11: Spells — Spell Descriptions — Weird"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.wind-walk",
     "name": "Wind Walk",
     "level": 6,
@@ -15820,6 +16133,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 288,
         "section": "Chapter 11: Spells — Spell Descriptions — Wind Wall"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.wish",
+    "name": "Wish",
+    "level": 9,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 288,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wish"
       }
     ]
   },
