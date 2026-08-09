@@ -2740,8 +2740,7 @@
     "isRitual": false,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
-      "dnd5e2014.class.warlock",
-      "dnd5e2014.class.wizard"
+      "dnd5e2014.class.warlock"
     ],
     "sources": [
       {
@@ -9483,6 +9482,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.move-earth",
+    "name": "Move Earth",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "an iron blade and a small bag containing a mixture of soils—clay, loam, and sand",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 2,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 263,
+        "section": "Chapter 11: Spells — Spell Descriptions — Move Earth"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.nondetection",
     "name": "Nondetection",
     "level": 3,
@@ -9573,6 +9618,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.otilukes-freezing-sphere",
+    "name": "Otiluke's Freezing Sphere",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 300,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small crystal sphere",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 263,
+        "section": "Chapter 11: Spells — Spell Descriptions — Otiluke's Freezing Sphere"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.otilukes-resilient-sphere",
     "name": "Otiluke's Resilient Sphere",
     "level": 4,
@@ -9613,6 +9702,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 265,
         "section": "Chapter 11: Spells — Spell Descriptions — Otiluke's Resilient Sphere"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.ottos-irresistible-dance",
+    "name": "Otto's Irresistible Dance",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 264,
+        "section": "Chapter 11: Spells — Spell Descriptions — Otto's Irresistible Dance"
       }
     ]
   },
@@ -9836,6 +9970,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 266,
         "section": "Chapter 11: Spells — Spell Descriptions — Phantom Steed"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.planar-ally",
+    "name": "Planar Ally",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 265,
+        "section": "Chapter 11: Spells — Spell Descriptions — Planar Ally"
       }
     ]
   },
@@ -10157,6 +10335,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 269,
         "section": "Chapter 11: Spells — Spell Descriptions — Produce Flame"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.programmed-illusion",
+    "name": "Programmed Illusion",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a bit of fleece and jade dust worth at least 25 gp",
+      "materialCostGoldPieces": 25,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": true,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 269,
+        "section": "Chapter 11: Spells — Spell Descriptions — Programmed Illusion"
       }
     ]
   },
@@ -12205,6 +12428,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.sunbeam",
+    "name": "Sunbeam",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Line",
+      "areaSizeFeet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a magnifying glass",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 279,
+        "section": "Chapter 11: Spells — Spell Descriptions — Sunbeam"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.swift-quiver",
     "name": "Swift Quiver",
     "level": 5,
@@ -12656,6 +12925,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.transport-via-plants",
+    "name": "Transport via Plants",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 10,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Round"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 283,
+        "section": "Chapter 11: Spells — Spell Descriptions — Transport via Plants"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.tree-stride",
     "name": "Tree Stride",
     "level": 5,
@@ -12697,6 +13010,54 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 283,
         "section": "Chapter 11: Spells — Spell Descriptions — Tree Stride"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.true-seeing",
+    "name": "True Seeing",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.divination",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "an ointment for the eyes that costs 25 gp; is made from mushroom powder, saffron, and fat; and is consumed by the spell",
+      "materialCostGoldPieces": 25,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 284,
+        "section": "Chapter 11: Spells — Spell Descriptions — True Seeing"
       }
     ]
   },
@@ -12973,6 +13334,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.wall-of-ice",
+    "name": "Wall of Ice",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a small piece of quartz",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 285,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wall of Ice"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.wall-of-stone",
     "name": "Wall of Stone",
     "level": 5,
@@ -13015,6 +13420,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 287,
         "section": "Chapter 11: Spells — Spell Descriptions — Wall of Stone"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.wall-of-thorns",
+    "name": "Wall of Thorns",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 120,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a handful of thorns",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 287,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wall of Thorns"
       }
     ]
   },
@@ -13200,6 +13649,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.wind-walk",
+    "name": "Wind Walk",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "fire and holy water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 288,
+        "section": "Chapter 11: Spells — Spell Descriptions — Wind Walk"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.wind-wall",
     "name": "Wind Wall",
     "level": 3,
@@ -13286,6 +13779,50 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 289,
         "section": "Chapter 11: Spells — Spell Descriptions — Witch Bolt"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.word-of-recall",
+    "name": "Word of Recall",
+    "level": 6,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 5,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 289,
+        "section": "Chapter 11: Spells — Spell Descriptions — Word of Recall"
       }
     ]
   },

@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(295, LoadCanonical().Count);
+        Assert.Equal(307, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -31,17 +31,15 @@ public sealed class SpellDataFileTests
             42,
             LoadCanonical().Count(spell => spell.Level == 5));
         Assert.Equal(
-            20,
+            32,
             LoadCanonical().Count(spell => spell.Level == 6));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsThroughSixthLevelForNow()
     {
-        // Levels 7-9 are not built yet. Levels 0-5 are complete; level 6 is
-        // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-E and F-M batches, 20 of the PHB's 31 sixth-level
-        // spells.
+        // Levels 7-9 are not built yet. Levels 0-6 are complete: the M-W
+        // batch closed level 6 at all 31 of the PHB's sixth-level spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 6));
@@ -184,13 +182,15 @@ public sealed class SpellDataFileTests
     // Glyph of Warding join them - both print "Until dispelled or
     // triggered", which maps to the same flag since it carries no span
     // either. Hallow is a plain "Until dispelled" with no trigger clause.
-    // All seven are costed, and Continual Flame carries a third PHB cost
-    // phrasing, "ruby dust worth 50 gp", with no "at least". Drawmij's
-    // Instant Summons and Magic Jar both break the "always consumed"
-    // pattern the first five held: neither spell's material description
-    // uses the word "consumes" (a fresh sapphire is needed each casting
-    // for one; the other's container is never described as used up), so
-    // MaterialIsConsumed stays false for both rather than being inferred.
+    // Programmed Illusion joins them too, still costed and still not
+    // stated as consumed. All eight are costed, and Continual Flame
+    // carries a third PHB cost phrasing, "ruby dust worth 50 gp", with no
+    // "at least". Drawmij's Instant Summons and Magic Jar both break the
+    // "always consumed" pattern the first five held: neither spell's
+    // material description uses the word "consumes" (a fresh sapphire is
+    // needed each casting for one; the other's container is never
+    // described as used up), so MaterialIsConsumed stays false for both
+    // rather than being inferred.
     [Fact]
     public void UntilDispelledSpellsAreAllCostedButNotAllConsumed()
     {
@@ -207,7 +207,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.hallow",
                 "dnd5e2014.spell.magic-jar",
-                "dnd5e2014.spell.magic-mouth"
+                "dnd5e2014.spell.magic-mouth",
+                "dnd5e2014.spell.programmed-illusion"
             ],
             dispelled.Select(spell => spell.Id.Value));
 
@@ -250,6 +251,13 @@ public sealed class SpellDataFileTests
                 .Components.MaterialCostGoldPieces);
         Assert.False(
             Get("dnd5e2014.spell.magic-jar")
+                .Components.MaterialIsConsumed);
+        Assert.Equal(
+            25,
+            Get("dnd5e2014.spell.programmed-illusion")
+                .Components.MaterialCostGoldPieces);
+        Assert.False(
+            Get("dnd5e2014.spell.programmed-illusion")
                 .Components.MaterialIsConsumed);
     }
 
@@ -566,16 +574,21 @@ public sealed class SpellDataFileTests
     }
 
     // The class spell list appendix (pp.207-210) gives a 6th-level union of
-    // 31 spells across the 8 classes - down from 5th level's 42, as
+    // 32 spells across the 8 classes - down from 5th level's 42, as
     // predicted: Paladin and Ranger's lists stop entirely at 5th. Warlock's
     // Pact Magic slots also cap at 5th level, but the class's own spell
     // list keeps going through 9th (for Mystic Arcanum, which grants one
     // higher-level spell known without a matching slot) - a correction to
     // this file's earlier assumption that all three classes would drop out
-    // together. This pins the A-E and F-M batches; the M-W batch will
-    // complete the list at 31.
+    // together. Built across three alphabetical batches (A-E, F-M, M-W).
+    // Wall of Thorns was missed on the first pass through the M-W batch -
+    // it was read directly off the class list appendix (Druid's list) but
+    // dropped from the initial page-by-page description pass, caught only
+    // when the Druid class-count theory below failed at 8 instead of 9.
+    // The PHB's actual count is 32, not the 31 this file previously
+    // recorded.
     [Fact]
-    public void SixthLevelSpellIdsBuiltSoFar()
+    public void SixthLevelContainsExactlyThePhbsThirtyTwoSpells()
     {
         Assert.Equal(
             [
@@ -598,12 +611,59 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.heal",
                 "dnd5e2014.spell.heroes-feast",
                 "dnd5e2014.spell.magic-jar",
-                "dnd5e2014.spell.mass-suggestion"
+                "dnd5e2014.spell.mass-suggestion",
+                "dnd5e2014.spell.move-earth",
+                "dnd5e2014.spell.otilukes-freezing-sphere",
+                "dnd5e2014.spell.ottos-irresistible-dance",
+                "dnd5e2014.spell.planar-ally",
+                "dnd5e2014.spell.programmed-illusion",
+                "dnd5e2014.spell.sunbeam",
+                "dnd5e2014.spell.transport-via-plants",
+                "dnd5e2014.spell.true-seeing",
+                "dnd5e2014.spell.wall-of-ice",
+                "dnd5e2014.spell.wall-of-thorns",
+                "dnd5e2014.spell.wind-walk",
+                "dnd5e2014.spell.word-of-recall"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 6)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Read off the eight class spell lists on pp.207-210, whose 6th-level
+    // sections hold 7/10/9/0/0/10/8/20 entries, summing to 74 across
+    // classes but a union of only 32 spells, since most 6th-level spells
+    // appear on more than one class's list. The Wizard figure was first
+    // recorded as 17 during the F-M batch and corrected
+    // to 20 here - a four-column class list page split Wizard's 6th-level
+    // entries across a column boundary (Programmed Illusion at the bottom
+    // of one column, Sunbeam/True Seeing/Wall of Ice at the top of the
+    // next), the same kind of miss the 3rd-level Wizard count made. A
+    // second pre-existing error surfaced alongside it: Conjure Fey (built
+    // in the A-E batch) was tagged available to Wizard, but the Wizard
+    // list on p.212 doesn't include it - only Druid and Warlock do. Fixed
+    // in the same commit that added Wall of Thorns, per the standing rule
+    // to fix an error where it's found.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 7)]
+    [InlineData("dnd5e2014.class.cleric", 10)]
+    [InlineData("dnd5e2014.class.druid", 9)]
+    [InlineData("dnd5e2014.class.paladin", 0)]
+    [InlineData("dnd5e2014.class.ranger", 0)]
+    [InlineData("dnd5e2014.class.sorcerer", 10)]
+    [InlineData("dnd5e2014.class.warlock", 8)]
+    [InlineData("dnd5e2014.class.wizard", 20)]
+    public void ClassSixthLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 6
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
     }
 
     [Theory]
@@ -622,9 +682,23 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.forbiddance", "Forbiddance", "abjuration", 243)]
     [InlineData("dnd5e2014.spell.globe-of-invulnerability", "Globe of Invulnerability", "abjuration", 245)]
     [InlineData("dnd5e2014.spell.guards-and-wards", "Guards and Wards", "abjuration", 248)]
+    [InlineData("dnd5e2014.spell.harm", "Harm", "necromancy", 249)]
+    [InlineData("dnd5e2014.spell.heal", "Heal", "evocation", 250)]
     [InlineData("dnd5e2014.spell.heroes-feast", "Heroes' Feast", "conjuration", 250)]
     [InlineData("dnd5e2014.spell.magic-jar", "Magic Jar", "necromancy", 257)]
     [InlineData("dnd5e2014.spell.mass-suggestion", "Mass Suggestion", "enchantment", 258)]
+    [InlineData("dnd5e2014.spell.move-earth", "Move Earth", "transmutation", 263)]
+    [InlineData("dnd5e2014.spell.otilukes-freezing-sphere", "Otiluke's Freezing Sphere", "evocation", 263)]
+    [InlineData("dnd5e2014.spell.ottos-irresistible-dance", "Otto's Irresistible Dance", "enchantment", 264)]
+    [InlineData("dnd5e2014.spell.planar-ally", "Planar Ally", "conjuration", 265)]
+    [InlineData("dnd5e2014.spell.programmed-illusion", "Programmed Illusion", "illusion", 269)]
+    [InlineData("dnd5e2014.spell.sunbeam", "Sunbeam", "evocation", 279)]
+    [InlineData("dnd5e2014.spell.transport-via-plants", "Transport via Plants", "conjuration", 283)]
+    [InlineData("dnd5e2014.spell.true-seeing", "True Seeing", "divination", 284)]
+    [InlineData("dnd5e2014.spell.wall-of-ice", "Wall of Ice", "evocation", 285)]
+    [InlineData("dnd5e2014.spell.wall-of-thorns", "Wall of Thorns", "conjuration", 287)]
+    [InlineData("dnd5e2014.spell.wind-walk", "Wind Walk", "transmutation", 288)]
+    [InlineData("dnd5e2014.spell.word-of-recall", "Word of Recall", "conjuration", 289)]
     public void SixthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -1118,6 +1192,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.lightning-bolt",
                 "dnd5e2014.spell.speak-with-plants",
                 "dnd5e2014.spell.spirit-guardians",
+                "dnd5e2014.spell.sunbeam",
                 "dnd5e2014.spell.thunderwave"
             ],
             areas.Select(spell => spell.Id.Value));
@@ -1181,12 +1256,14 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.magic-mouth",
                 "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.planar-binding",
+                "dnd5e2014.spell.programmed-illusion",
                 "dnd5e2014.spell.raise-dead",
                 "dnd5e2014.spell.reincarnate",
                 "dnd5e2014.spell.revivify",
                 "dnd5e2014.spell.scrying",
                 "dnd5e2014.spell.stoneskin",
                 "dnd5e2014.spell.teleportation-circle",
+                "dnd5e2014.spell.true-seeing",
                 "dnd5e2014.spell.warding-bond"
             ],
             LoadCanonical()
@@ -1383,10 +1460,11 @@ public sealed class SpellDataFileTests
     }
 
     // Gust of Wind drove the Line area shape at second level; Lightning
-    // Bolt brought the second and, so far, longest example (100 feet vs.
-    // Gust of Wind's 60).
+    // Bolt brought the second, longest example (100 feet vs. Gust of
+    // Wind's 60); Sunbeam is the third and, at 6th level, the first
+    // outside cantrip/1st/2nd level, matching Gust of Wind's 60 feet.
     [Fact]
-    public void LineAreasAreGustOfWindAndLightningBolt()
+    public void LineAreasAreGustOfWindLightningBoltAndSunbeam()
     {
         SpellDefinition[] lines = LoadCanonical()
             .Where(spell => spell.Range.AreaShape == SpellAreaShape.Line)
@@ -1396,7 +1474,8 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.gust-of-wind",
-                "dnd5e2014.spell.lightning-bolt"
+                "dnd5e2014.spell.lightning-bolt",
+                "dnd5e2014.spell.sunbeam"
             ],
             lines.Select(spell => spell.Id.Value));
 
@@ -1410,6 +1489,9 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             100,
             Get("dnd5e2014.spell.lightning-bolt").Range.AreaSizeFeet);
+        Assert.Equal(
+            60,
+            Get("dnd5e2014.spell.sunbeam").Range.AreaSizeFeet);
     }
 
     // Find Steed's "10 minutes" was the first casting time whose amount is
@@ -1438,6 +1520,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.heroes-feast",
                 "dnd5e2014.spell.legend-lore",
                 "dnd5e2014.spell.mordenkainens-private-sanctum",
+                "dnd5e2014.spell.planar-ally",
                 "dnd5e2014.spell.prayer-of-healing",
                 "dnd5e2014.spell.scrying"
             ],
