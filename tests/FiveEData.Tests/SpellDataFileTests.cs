@@ -2909,6 +2909,132 @@ public sealed class SpellDataFileTests
         Assert.Null(Get(id).DamageEffect);
     }
 
+    // 3 of the 35 4th-level spells deal damage directly; 3 impose a named
+    // condition; Evard's Black Tentacles is both, the first spell built
+    // where the same failed saving throw gates both facts at once.
+    [Fact]
+    public void ThreeFourthLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 4 && spell.DamageEffect is not null));
+    }
+
+    [Fact]
+    public void ThreeFourthLevelSpellsHaveAConditionEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 4 && spell.ConditionEffect is not null));
+    }
+
+    [Fact]
+    public void BlightDealsHalfNecroticDamageOnASuccessfulConstitutionSave()
+    {
+        SpellDamageEffect effect = Get("dnd5e2014.spell.blight").DamageEffect!;
+
+        Assert.Equal(
+            "dnd5e2014.damage-type.necrotic",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(8, effect.BaseDamage!.Value.Count);
+        Assert.Equal(8, effect.BaseDamage.Value.Sides);
+    }
+
+    [Fact]
+    public void WallOfFireDealsHalfFireDamageOnASuccessfulDexteritySave()
+    {
+        SpellDamageEffect effect = Get("dnd5e2014.spell.wall-of-fire").DamageEffect!;
+
+        Assert.Equal(
+            "dnd5e2014.damage-type.fire",
+            effect.DamageTypeId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(5, effect.BaseDamage!.Value.Count);
+        Assert.Equal(8, effect.BaseDamage.Value.Sides);
+    }
+
+    // Evard's Black Tentacles: a failed Dexterity save deals bludgeoning
+    // damage with no half-on-success clause (matching Cordon of Arrows'
+    // shape, not the more common half-damage pattern) *and* separately
+    // restrains the creature - DamageEffect and ConditionEffect populated
+    // together, gated by the same saving throw.
+    [Fact]
+    public void EvardsBlackTentaclesDealsDamageAndRestrainsOnTheSameFailedSave()
+    {
+        SpellDefinition spell = Get("dnd5e2014.spell.evards-black-tentacles");
+
+        SpellDamageEffect damageEffect = spell.DamageEffect!;
+        Assert.Equal(
+            "dnd5e2014.damage-type.bludgeoning",
+            damageEffect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.dexterity",
+            damageEffect.SavingThrowAbilityId!.Value.Value);
+        Assert.False(damageEffect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(3, damageEffect.BaseDamage!.Value.Count);
+        Assert.Equal(6, damageEffect.BaseDamage.Value.Sides);
+
+        SpellConditionEffect conditionEffect = spell.ConditionEffect!;
+        Assert.Equal(
+            "dnd5e2014.ability.dexterity",
+            conditionEffect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.restrained",
+            Assert.Single(conditionEffect.ConditionIds).Value);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.dominate-beast", "wisdom", "charmed")]
+    [InlineData("dnd5e2014.spell.phantasmal-killer", "wisdom", "frightened")]
+    public void SingleConditionEffectSpell_HasExpectedConditionAndSave(
+        string id,
+        string expectedSavingThrowAbility,
+        string expectedCondition)
+    {
+        SpellConditionEffect effect = Get(id).ConditionEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            $"dnd5e2014.condition.{expectedCondition}",
+            Assert.Single(effect.ConditionIds).Value);
+    }
+
+    // Phantasmal Killer's frightened condition comes from its initial
+    // Wisdom save, but its psychic damage is gated by a separate save the
+    // target repeats every turn - a recurring-save rider declined the
+    // same way Witch Bolt's per-turn tick damage was declined.
+    [Fact]
+    public void PhantasmalKillerHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.phantasmal-killer").DamageEffect);
+    }
+
+    // Guardian of Faith's 20 radiant damage is a flat number, not a dice
+    // expression - DiceExpression has no shape for a non-dice flat
+    // integer, so the spell is declined rather than forcing one in.
+    [Fact]
+    public void GuardianOfFaithHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.guardian-of-faith").DamageEffect);
+    }
+
+    // Ice Storm deals two damage types simultaneously (bludgeoning and
+    // cold, both always apply) rather than one fixed type or a choice of
+    // one - a shape SpellDamageEffect doesn't represent, so it's declined.
+    [Fact]
+    public void IceStormHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.ice-storm").DamageEffect);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);

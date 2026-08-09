@@ -57,8 +57,13 @@ Built and complete:
   Conjure Barrage and Spirit Guardians, are the second and third spells
   after Chromatic Orb to use a choosable damage type), 3 have a
   `SpellConditionEffect`; no schema changes needed. See "Game-backend
-  quantization: 3rd-level spell effects". Levels 4–9 don't have effect
-  data yet.
+  quantization: 3rd-level spell effects". **4th-level spells too** — 3 of
+  the 35 have a `SpellDamageEffect`, 3 have a `SpellConditionEffect`, and
+  Evard's Black Tentacles is the first spell built with both from the
+  *same* failed save. See "Game-backend quantization: 4th-level spell
+  effects" for two new one-off declines this level's content needed (a
+  flat non-dice damage number, and a spell dealing two damage types at
+  once). Levels 5–9 don't have effect data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -106,10 +111,15 @@ half-damage flag, a choosable damage type, or a named-condition effect).
 needed) and for a newly-confirmed recurring decline (automatic zone/
 trigger damage with no attack roll or saving throw at all). **3rd-level
 spell effects are done too, still zero schema changes** — see
-"Game-backend quantization: 3rd-level spell effects". Levels 4–9 are the
-remaining piece of gap 1, not yet started.
+"Game-backend quantization: 3rd-level spell effects". **4th-level spell
+effects are done too** — see "Game-backend quantization: 4th-level spell
+effects" for Evard's Black Tentacles (the first spell whose
+`DamageEffect` and `ConditionEffect` share one failed save) and two new
+one-off declines (Guardian of Faith's flat non-dice damage, Ice Storm's
+two-simultaneous-damage-types). Levels 5–9 are the remaining piece of
+gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2803 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2813 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1672,6 +1682,75 @@ Sickness or Web's text names theirs. Modeling it as `poisoned` would be
 inferring a condition tag the spell's own words don't use; better to
 leave the mechanic in the citation than assert a citation this project
 can't back with the printed text.
+
+## Game-backend quantization: 4th-level spell effects
+
+The fifth slice of gap 1, and the first level where a spell needed both
+mechanism fields populated at once. 3 of the 35 4th-level spells get a
+`SpellDamageEffect` (Blight, Evard's Black Tentacles, Wall of Fire), 3
+get a `SpellConditionEffect` (Dominate Beast → `charmed`, Evard's Black
+Tentacles → `restrained`, Phantasmal Killer → `frightened`), and 30 get
+neither.
+
+**Evard's Black Tentacles is the first spell where `DamageEffect` and
+`ConditionEffect` are gated by the *same* saving throw**, not two
+independent ones the way Ray of Sickness's attack-roll damage and
+separate Constitution-save poison were. The schema doesn't need to
+express "these two facts share one roll" — each field already carries
+its own `SavingThrowAbilityId` independently, and here they simply
+happen to match (both Dexterity), which is exactly what the PHB text
+describes: one failed save triggers both the 3d6 bludgeoning damage and
+the restrained condition together. Like Cordon of Arrows, its damage has
+no half-on-a-successful-save clause — success negates the damage and the
+restrain both.
+
+**Phantasmal Killer splits cleanly into a captured condition and a
+declined damage rider.** Its initial Wisdom save gates `frightened`
+directly, so that's captured as a `SpellConditionEffect`. But the
+psychic damage isn't part of that same resolution — the target repeats
+a Wisdom save every subsequent turn, and only a failure on *that*
+recurring save deals 4d10 psychic damage. This is the same
+recurring-save-rider shape Witch Bolt's per-turn tick and Tasha's
+Hideous Laughter's repeatable end-of-turn save already declined; only
+the fact gated by the spell's initial cast is captured.
+
+**Two genuinely new one-off shapes surfaced this level, and both are
+declined rather than extended into the schema:**
+
+- **Guardian of Faith deals a flat 20 radiant damage, not a dice
+  expression.** Every damage fact captured anywhere in this project so
+  far — cantrips through 4th level — has been `DiceExpression` (`XdY`).
+  A bare integer has no representation in `BaseDamage: DiceExpression?`,
+  and one spell isn't reason enough to add a parallel flat-damage field.
+  Declined; revisit if a second flat-damage spell appears.
+- **Ice Storm deals two damage types at once, not one fixed type or a
+  choice of one.** `DamageTypeId`/`ChoosableDamageTypeIds` both assume
+  exactly one type applies per casting (a fixed type, or the caster
+  picks one from a list) — Ice Storm's 2d8 bludgeoning *and* 4d6 cold
+  always both apply together, a third shape neither field represents.
+  Declined for the same reason; the two established shapes cover
+  "always this one type" and "caster picks one," not "always both."
+
+**Banishment and Dimension Door are both declined as compound/
+conditional mechanics, extending the Sanctuary/Color Spray/Hunger of
+Hadar precedent.** Banishment's Charisma save leads to one of two
+different outcomes depending on the target's home plane (incapacitated
+in a demiplane vs. banished home with no incapacitation at all) — which
+branch applies isn't a fact about the spell, it's conditional on the
+target. Dimension Door's 4d6 force damage only triggers on the specific
+edge case of teleporting into an occupied space; the spell's normal
+case deals no damage at all, so capturing the edge case as if it were
+the spell's effect would misrepresent the common case.
+
+**Mordenkainen's Faithful Hound and Otiluke's Resilient Sphere are
+declined for two different, already-established reasons.** The hound's
+bite is a summoned creature acting on its own initiative over multiple
+turns, the same "the summoned creature's actions aren't the spell's own
+effect" reasoning that already declined Animate Dead and every
+conjure-a-creature spell. Otiluke's Resilient Sphere traps a creature
+in a sphere, but the PHB's own word for this is "enclosed," never
+"restrained" — the same discipline Stinking Cloud's decline already
+established: don't infer a condition tag the text doesn't use.
 
 ## Test conventions
 
