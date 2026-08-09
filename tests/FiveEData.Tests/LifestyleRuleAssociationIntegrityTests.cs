@@ -285,6 +285,7 @@ public sealed class
             extraAttackProgressions: [],
             backgrounds: [],
             magicSchools: [],
-            spells: []);
+            spells: [],
+            combatActions: []);
     }
 }

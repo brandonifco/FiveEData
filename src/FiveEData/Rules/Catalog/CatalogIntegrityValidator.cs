@@ -1,6 +1,7 @@
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
@@ -699,6 +700,17 @@ internal static class CatalogIntegrityValidator
                         $"Armor usage rules reference missing rule '{ruleId}'.");
                 }
             }
+        }
+
+        foreach (
+            CombatActionDefinition combatAction
+            in definitions.CombatActions)
+        {
+            ValidateSources(
+                $"Combat action '{combatAction.Id}'",
+                combatAction.Sources,
+                sourceIds,
+                errors);
         }
 
         return errors;

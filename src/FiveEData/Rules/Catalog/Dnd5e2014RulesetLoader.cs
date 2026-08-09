@@ -1,4 +1,6 @@
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Combat.CombatActions;
+using FiveEData.Rules.Combat.CombatActions.Serialization;
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Spells.Serialization;
@@ -235,6 +237,9 @@ internal static class Dnd5e2014RulesetLoader
     private const string ClassRuleResource =
         "FiveEData.Data.dnd5e2014.rules.class-rule.json";
 
+    private const string CombatActionsResource =
+        "FiveEData.Data.dnd5e2014.combat-actions.json";
+
     private const string BackgroundRuleResource =
         "FiveEData.Data.dnd5e2014.rules.background-rule.json";
 
@@ -447,6 +452,10 @@ internal static class Dnd5e2014RulesetLoader
                     EmbeddedDataReader.ReadRequiredText(BackgroundRuleResource)
                 ]);
 
+        IReadOnlyList<CombatActionDefinition> combatActions =
+            CombatActionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(CombatActionsResource));
+
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons,
             ammunition: ammunition,
@@ -506,7 +515,8 @@ internal static class Dnd5e2014RulesetLoader
             channelDivinityOptions: channelDivinityOptions,
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
-            backgrounds: backgrounds);
+            backgrounds: backgrounds,
+            combatActions: combatActions);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -565,6 +575,7 @@ internal static class Dnd5e2014RulesetLoader
             extraAttackProgressions:
                 new ExtraAttackProgressionCatalog(extraAttackProgressions),
             backgrounds: new BackgroundCatalog(backgrounds),
+            combatActions: new CombatActionCatalog(combatActions),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

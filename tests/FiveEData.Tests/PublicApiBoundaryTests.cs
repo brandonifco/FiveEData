@@ -45,6 +45,8 @@ using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.Serialization;
 using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Spells.MagicSchools.Serialization;
+using FiveEData.Rules.Combat.CombatActions;
+using FiveEData.Rules.Combat.CombatActions.Serialization;
 using FiveEData.Rules.Classes.Metamagic;
 using FiveEData.Rules.Classes.Metamagic.Serialization;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
@@ -143,6 +145,8 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(BackgroundCatalogIntegrityValidator).IsPublic);
         Assert.False(typeof(MagicSchoolDefinitionLoader).IsPublic);
         Assert.False(typeof(MagicSchoolDefinitionValidator).IsPublic);
+        Assert.False(typeof(CombatActionDefinitionLoader).IsPublic);
+        Assert.False(typeof(CombatActionDefinitionValidator).IsPublic);
         Assert.False(typeof(SpellDefinitionLoader).IsPublic);
         Assert.False(typeof(SpellDefinitionValidator).IsPublic);
         Assert.False(typeof(MetamagicOptionDefinitionLoader).IsPublic);

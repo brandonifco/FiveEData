@@ -40,6 +40,11 @@ Built and complete:
   spells of every level 1 through 9 are built — 361 spells, the complete
   real set.** See "Spells: the Trap the Soul appendix error" below for
   why 361 is the correct final count, not 362.
+- Combat/adventuring rules — **just started, one slice of many.**
+  `CombatActions` (the 10 named actions from PHB Chapter 9's "Actions in
+  Combat" section, a closed official set) is built; see "Combat/adventuring
+  rules: scoping and the Actions in Combat catalog" for the full scope
+  inventory and what's still unbuilt.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -47,7 +52,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2496 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2532 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -463,8 +468,9 @@ are both 1 round, but Shield's is flat while True Strike's is concentration
 and "up to". Pinned by
 `ShieldsRoundDurationIsFlatWhileTrueStrikesIsUpTo`.
 
-Not started: combat/adventuring rule prose beyond the existing citation
-index. **Magic items are explicitly
+Not started: most of combat/adventuring rule prose — see "Combat/adventuring
+rules: scoping and the Actions in Combat catalog" for the full inventory and
+which slice (Actions in Combat) is actually built. **Magic items are explicitly
 out of scope**: they're 2014 DMG content (Chapter 7: Treasure), not PHB —
 confirmed again 2026-08-09 when asked to build them, since this project's
 scope is the PHB specifically. Revisit only if the project's scope statement
@@ -1081,6 +1087,72 @@ copy a found spell into the book (2 hours + 50 gp per spell level) or
 duplicate your own book (1 hour + 10 gp per spell level) are linear-in-level
 formulas and stay in the citation, the same call already made for Preserve
 Life and Radiance of the Dawn.
+
+## Combat/adventuring rules: scoping and the Actions in Combat catalog
+
+The first work against the last item on the deferred list. **This is a big
+domain and was scoped, not built wholesale** — read the actual PHB table of
+contents for Chapter 8 (Adventuring, p.181) and Chapter 9 (Combat, p.189)
+before assuming what's in scope:
+
+- **Chapter 8: Adventuring** — Time, Movement, The Environment, Social
+  Interaction, Resting, Between Adventures.
+- **Chapter 9: Combat** — The Order of Combat, Movement and Position,
+  Actions in Combat, Making an Attack, Cover, Damage and Healing, Mounted
+  Combat, Underwater Combat.
+
+Most of this is DM-adjudicated prose or a linear-in-level formula (falling
+damage, jump distance, attack rolls, breath-holding) — the same "belongs in
+the citation" line Preserve Life and Radiance of the Dawn already draw. A
+handful of sections are genuinely **closed, named sets** worth their own
+catalog, the same shape Conditions/Magic Schools/Alignments already use.
+Five were identified as candidates, ranked by cleanliness:
+
+| Candidate | Entries | Status |
+| --- | --- | --- |
+| Actions in Combat | Attack, Cast a Spell, Dash, Disengage, Dodge, Help, Hide, Ready, Search, Use an Object (10) | **Built** |
+| Cover | Half, Three-Quarters, Total (3) | Not built |
+| Travel Pace | Fast, Normal, Slow (3) | Not built |
+| Resting | Short Rest, Long Rest (2) | Not built |
+| Between Adventures | Crafting, Practicing a Profession, Recuperating, Research, Training (~5) | Not built |
+
+Everything else in Chapters 8–9 stays fully unbuilt — no catalog, no bare
+`RuleId` citation index yet either, since nothing in the codebase currently
+needs to reference it. **Re-scope before picking up the next candidate**
+rather than assuming this table is still accurate; a candidate might turn
+out to have a real number to quantize (Cover's AC/Dex-save bonuses) or might
+decline the same way Pact Boon and Indomitable Might did once the actual
+page is read closely.
+
+**`CombatActions` is a plain closed-vocabulary catalog** — `Id`/`Name`/
+`Sources` only, no mechanical payload, the exact `MagicSchoolDefinition`
+shape (not `SpellDefinition`'s richer header-block shape, since none of the
+10 actions carries a fact worth a shared field: Dash's extra movement is
+just "equals your speed," not an independent number). Cited to **p.192**
+for the first seven (Attack, Cast a Spell, Dash, Disengage, Dodge, Help,
+Hide) and **p.193** for the last three (Ready, Search, Use an Object) —
+the two-column layout puts Attack through Hide on the first page and the
+remaining three plus "Making an Attack" on the next. Section string is
+`"Chapter 9: Combat — Actions in Combat — {Name}"`, matching Magic Schools'
+per-entry section-suffix convention.
+
+**This is the first domain that isn't a sibling of Equipment/Expenses/
+Creatures/Classes/Races/Backgrounds/Spells** — it lives at `Rules/Combat/
+CombatActions/`, a new top-level domain, with its catalog wrapper at
+`Rules/Catalog/CombatActionCatalog.cs` like every other catalog. Wiring a
+brand-new closed-set domain touches five places beyond its own five-piece
+folder: `RulesetDefinitionSet` (raw definitions, appended as the new last
+constructor parameter), `Dnd5e2014RulesetLoader` (embedded-resource
+constant + `Load()` call + threading through both the `RulesetDefinitionSet`
+and `Dnd5e2014Ruleset` constructor calls), `Dnd5e2014Ruleset` itself (the
+public catalog property), `CatalogIntegrityValidator` (one `ValidateSources`
+loop — no cross-domain reference checks needed here, since nothing yet
+references a `CombatActionId`), and the `.csproj` embedded-resource entry.
+Ten pre-existing tests across `CatalogIntegrityTests.cs` and sibling
+`*CatalogIntegrityTests.cs`/`*RuleAssociationIntegrityTests.cs` files
+construct `RulesetDefinitionSet` directly with named arguments and needed
+`combatActions: []` added — expect the same fan-out for the next new
+top-level domain.
 
 ## Test conventions
 

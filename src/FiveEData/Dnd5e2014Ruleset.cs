@@ -46,6 +46,7 @@ public sealed class Dnd5e2014Ruleset
         BackgroundCatalog backgrounds,
         MagicSchoolCatalog magicSchools,
         SpellCatalog spells,
+        CombatActionCatalog combatActions,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -80,6 +81,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(backgrounds);
         ArgumentNullException.ThrowIfNull(magicSchools);
         ArgumentNullException.ThrowIfNull(spells);
+        ArgumentNullException.ThrowIfNull(combatActions);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -114,6 +116,7 @@ public sealed class Dnd5e2014Ruleset
         Backgrounds = backgrounds;
         MagicSchools = magicSchools;
         Spells = spells;
+        CombatActions = combatActions;
         Sources = sources;
         Rules = rules;
     }
@@ -156,6 +159,7 @@ public sealed class Dnd5e2014Ruleset
     public BackgroundCatalog Backgrounds { get; }
     public MagicSchoolCatalog MagicSchools { get; }
     public SpellCatalog Spells { get; }
+    public CombatActionCatalog CombatActions { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

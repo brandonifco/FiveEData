@@ -1361,7 +1361,8 @@ public sealed class CatalogIntegrityTests
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: [],
             magicSchools: [],
-            spells: []);
+            spells: [],
+            combatActions: []);
     }
 
     private static ToolDefinition CreateTool(

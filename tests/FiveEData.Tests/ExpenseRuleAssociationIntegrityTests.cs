@@ -246,6 +246,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             extraAttackProgressions: [],
             backgrounds: [],
             magicSchools: [],
-            spells: []);
+            spells: [],
+            combatActions: []);
     }
 }

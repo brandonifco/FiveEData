@@ -320,6 +320,7 @@ public sealed class MundaneServiceCatalogIntegrityTests
             extraAttackProgressions: [],
             backgrounds: [],
             magicSchools: [],
-            spells: []);
+            spells: [],
+            combatActions: []);
     }
 }
