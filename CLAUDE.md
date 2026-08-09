@@ -39,14 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2354 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2368 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, all 35 fourth-level, all 42
-fifth-level, and all 32 sixth-level spells are built — 307 in total,
-levels 0–6 complete. Levels 7–9 are not started.**
+fifth-level, and all 32 sixth-level spells are built, plus the first 10
+of the PHB's 20 seventh-level spells (batch A–M) — 317 in total. Only
+the P–T batch of level 7 remains; levels 8–9 are not started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -68,16 +69,21 @@ while concentration is always an "up to" duration.
 better, and third level's 50 (split A–C/D–H/L–P/R–W, ~12–13 per batch for
 tighter accuracy than the first two levels' ~15–16) confirmed the pattern a
 third time. `SpellDataFileTests` pins the exact built closure, so a partial
-level is asserted rather than implied. **Keep batching for levels 7–9.**
+level is asserted rather than implied. **Keep batching for levels 7–9** —
+7th's 20 spells split into two batches of 10 (A–M, P–T), the smallest
+per-batch split yet, since the level itself is much smaller than 1st–6th.
 Per-level union counts are **not monotonically declining**: 62/59/50 for
-1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th**. Paladin
-and Ranger's lists really do stop entirely at 6th, as expected — but
-Warlock's Pact Magic *slots* cap at 5th level while the class's own spell
-list keeps going through 9th, for spells eligible as a Mystic Arcanum
-(one higher-level spell known and cast once per day with no matching
-slot). The file's earlier claim that all three classes would drop out
-together at 6th was wrong for Warlock specifically; verify the real
-count each level rather than assuming the trend.
+1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th, then 20 at
+7th**. Paladin and Ranger's lists really do stop entirely at 6th, as
+expected — but Warlock's Pact Magic *slots* cap at 5th level while the
+class's own spell list keeps going through 9th, for spells eligible as a
+Mystic Arcanum (one higher-level spell known and cast once per day with
+no matching slot). The file's earlier claim that all three classes would
+drop out together at 6th was wrong for Warlock specifically; verify the
+real count each level rather than assuming the trend. Warlock's 7th-level
+count (4) is smaller than 6th's (8), consistent with Mystic Arcanum
+eligibility rather than a slot count — check 8th and 9th again rather
+than assuming a monotonic shrink.
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -269,8 +275,21 @@ Each batch drove schema additions from real content, never anticipation:
   commit, per the standing rule to fix an error where it's found rather
   than filing it separately. **All 32 of the PHB's sixth-level spells are
   now built: 307 spells total, levels 0–6 complete.**
-
-**Material cost and consumption are independent fields, and all four
+- **7th A–M (starting level 7):** one schema addition. Mirage Arcane
+  prints **"Range: Sight"** — reach is whatever the caster can see, not a
+  bounded distance and not the same conditional-rule shape as Dream's
+  Special. `SpellRangeKind` gained a `Sight` member and
+  `SpellRange.Sight()` factory, the same "self/touch/distance" enumeration
+  shape Unlimited and Special already extended. Etherealness is a flat
+  **"Up to 8 hours" with no concentration** — the same unit-doesn't-imply-
+  shape distinction Prestidigitation already pins at the Hour unit, now
+  shown on a non-cantrip. Mordenkainen's Magnificent Mansion is the third
+  spell (after Warding Bond and Legend Lore) with a per-item material
+  cost — three items "each item worth at least 5 gp" — but unlike Legend
+  Lore's two different figures, all three share one cost, so the printed 5
+  gp is stored directly, the same convention Warding Bond set. Etherealness
+  reaches five classes (Bard, Cleric, Sorcerer, Warlock, Wizard), the
+  widest membership since Hold Person's six at second level.
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
 same at 100 gp, Illusory Script and Find Familiar both, and Protection from
 Evil and Good consumed with no stated cost. **Three** PHB phrasings carry a

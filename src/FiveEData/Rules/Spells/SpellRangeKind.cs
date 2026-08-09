@@ -17,5 +17,11 @@ public enum SpellRangeKind
     /// actual reach is a conditional rule (same plane of existence as the
     /// target) that lives in the citation rather than a distance.
     /// </summary>
-    Special
+    Special,
+
+    /// <summary>
+    /// The PHB's "Range: Sight" header value, as in Mirage Arcane - reach
+    /// is whatever the caster can see, not a bounded distance.
+    /// </summary>
+    Sight
 }

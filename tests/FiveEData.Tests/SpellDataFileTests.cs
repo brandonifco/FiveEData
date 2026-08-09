@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(307, LoadCanonical().Count);
+        Assert.Equal(317, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -33,16 +33,20 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             32,
             LoadCanonical().Count(spell => spell.Level == 6));
+        Assert.Equal(
+            10,
+            LoadCanonical().Count(spell => spell.Level == 7));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughSixthLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughSeventhLevelForNow()
     {
-        // Levels 7-9 are not built yet. Levels 0-6 are complete: the M-W
-        // batch closed level 6 at all 31 of the PHB's sixth-level spells.
+        // Levels 8-9 are not built yet. Levels 0-6 are complete. Level 7 is
+        // being added in alphabetical batches (see CLAUDE.md) and currently
+        // holds the A-M batch, 10 of the PHB's 20 seventh-level spells.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 6));
+            spell => Assert.InRange(spell.Level, 0, 7));
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 2nd-level
@@ -715,6 +719,116 @@ public sealed class SpellDataFileTests
         Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
     }
 
+    // The class spell list appendix (pp.207-210) gives a 7th-level union
+    // of 20 spells across the 8 classes - down from 6th level's 32, since
+    // Bard/Cleric/Druid/Sorcerer/Warlock/Wizard lists all shrink at once
+    // (Paladin and Ranger stayed at zero from 6th). The per-class counts
+    // are Bard 10, Cleric 8, Druid 5, Paladin 0, Ranger 0, Sorcerer 8,
+    // Warlock 4, Wizard 15 - pinned once the level closes, the same as
+    // 6th level's ClassSixthLevelListHasExpectedSize. This A-M batch is
+    // half the level; the P-T batch will complete it.
+    [Fact]
+    public void SeventhLevelSpellIdsBuiltSoFar()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.conjure-celestial",
+                "dnd5e2014.spell.delayed-blast-fireball",
+                "dnd5e2014.spell.divine-word",
+                "dnd5e2014.spell.etherealness",
+                "dnd5e2014.spell.finger-of-death",
+                "dnd5e2014.spell.fire-storm",
+                "dnd5e2014.spell.forcecage",
+                "dnd5e2014.spell.mirage-arcane",
+                "dnd5e2014.spell.mordenkainens-magnificent-mansion",
+                "dnd5e2014.spell.mordenkainens-sword"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 7)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.conjure-celestial", "Conjure Celestial", "conjuration", 225)]
+    [InlineData("dnd5e2014.spell.delayed-blast-fireball", "Delayed Blast Fireball", "evocation", 230)]
+    [InlineData("dnd5e2014.spell.divine-word", "Divine Word", "evocation", 234)]
+    [InlineData("dnd5e2014.spell.etherealness", "Etherealness", "transmutation", 238)]
+    [InlineData("dnd5e2014.spell.finger-of-death", "Finger of Death", "necromancy", 241)]
+    [InlineData("dnd5e2014.spell.fire-storm", "Fire Storm", "evocation", 242)]
+    [InlineData("dnd5e2014.spell.forcecage", "Forcecage", "evocation", 243)]
+    [InlineData("dnd5e2014.spell.mirage-arcane", "Mirage Arcane", "illusion", 260)]
+    [InlineData("dnd5e2014.spell.mordenkainens-magnificent-mansion", "Mordenkainen's Magnificent Mansion", "conjuration", 261)]
+    [InlineData("dnd5e2014.spell.mordenkainens-sword", "Mordenkainen's Sword", "evocation", 262)]
+    public void SeventhLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(7, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Mirage Arcane prints "Range: Sight" - reach is whatever the caster
+    // can see, not a bounded distance and not the same conditional-rule
+    // shape as Dream's Special. SpellRangeKind gained a Sight member and
+    // SpellRange.Sight() factory, the same "self/touch/distance" enum
+    // extended by one case that Unlimited and Special already did.
+    [Fact]
+    public void MirageArcaneIsTheOnlySightRangedSpellSoFar()
+    {
+        SpellDefinition only = Assert.Single(
+            LoadCanonical()
+                .Where(spell => spell.Range.Kind == SpellRangeKind.Sight));
+
+        Assert.Equal("dnd5e2014.spell.mirage-arcane", only.Id.Value);
+        Assert.Null(only.Range.DistanceFeet);
+        Assert.Null(only.Range.AreaShape);
+    }
+
+    // Etherealness prints a flat "Up to 8 hours" with no concentration -
+    // the same unit-doesn't-imply-shape distinction Prestidigitation
+    // already pins at the Hour unit (Prestidigitation is "up to" with no
+    // concentration too), now shown on a non-cantrip.
+    [Fact]
+    public void EtherealnessIsUpToWithoutConcentration()
+    {
+        SpellDuration duration = Get("dnd5e2014.spell.etherealness").Duration;
+
+        Assert.True(duration.IsUpTo);
+        Assert.False(duration.RequiresConcentration);
+        Assert.Equal(8, duration.Amount);
+        Assert.Equal(SpellDurationUnit.Hour, duration.Unit);
+    }
+
+    // Mordenkainen's Magnificent Mansion is the third spell (after
+    // Warding Bond and Legend Lore) whose material cost is per item
+    // rather than total - three items "each item worth at least 5 gp".
+    // Unlike Legend Lore's two differently-costed items, all three items
+    // here share one figure, so the printed 5 gp is stored directly,
+    // same convention as Warding Bond.
+    [Fact]
+    public void MordenkainensMagnificentMansionStoresThePrintedPerItemCost()
+    {
+        SpellComponents components =
+            Get("dnd5e2014.spell.mordenkainens-magnificent-mansion")
+                .Components;
+
+        Assert.Equal(5, components.MaterialCostGoldPieces);
+        Assert.False(components.MaterialIsConsumed);
+        Assert.Contains(
+            "each item",
+            components.MaterialDescription!,
+            StringComparison.Ordinal);
+    }
+
     [Theory]
     [InlineData("dnd5e2014.spell.animate-objects", "Animate Objects", "transmutation", 213)]
     [InlineData("dnd5e2014.spell.awaken", "Awaken", "transmutation", 216)]
@@ -1244,6 +1358,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.find-the-path",
                 "dnd5e2014.spell.forbiddance",
+                "dnd5e2014.spell.forcecage",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.greater-restoration",
                 "dnd5e2014.spell.guards-and-wards",
@@ -1254,6 +1369,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.magic-circle",
                 "dnd5e2014.spell.magic-jar",
                 "dnd5e2014.spell.magic-mouth",
+                "dnd5e2014.spell.mordenkainens-magnificent-mansion",
+                "dnd5e2014.spell.mordenkainens-sword",
                 "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.planar-binding",
                 "dnd5e2014.spell.programmed-illusion",
@@ -1414,12 +1531,12 @@ public sealed class SpellDataFileTests
     // Illusory Script and Gentle Repose share the same 10-day span; Geas
     // (30 days) and Contagion (7 days) broke the "always 10" pattern at
     // fifth level. Contingency (10 days) rejoins the 10-day group at
-    // sixth. Find the Path is the first Day-unit duration that requires
-    // concentration ("Concentration, up to 1 day") rather than being a
-    // flat span - the same distinction Shield/True Strike already pin at
-    // the Round unit, now shown at Day too; Forbiddance stays flat at 1
-    // day, so the two facts (unit vs. concentration) are independent here
-    // as well.
+    // sixth, and Mirage Arcane joins it at seventh. Find the Path is the
+    // first Day-unit duration that requires concentration
+    // ("Concentration, up to 1 day") rather than being a flat span - the
+    // same distinction Shield/True Strike already pin at the Round unit,
+    // now shown at Day too; Forbiddance stays flat at 1 day, so the two
+    // facts (unit vs. concentration) are independent here as well.
     [Fact]
     public void DayLongDurationsCoverThreeDistinctSpans()
     {
@@ -1436,7 +1553,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.forbiddance",
                 "dnd5e2014.spell.geas",
                 "dnd5e2014.spell.gentle-repose",
-                "dnd5e2014.spell.illusory-script"
+                "dnd5e2014.spell.illusory-script",
+                "dnd5e2014.spell.mirage-arcane"
             ],
             days.Select(spell => spell.Id.Value));
 
@@ -1445,6 +1563,7 @@ public sealed class SpellDataFileTests
         Assert.Equal(30, Get("dnd5e2014.spell.geas").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.gentle-repose").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.illusory-script").Duration.Amount);
+        Assert.Equal(10, Get("dnd5e2014.spell.mirage-arcane").Duration.Amount);
 
         SpellDuration findThePath = Get("dnd5e2014.spell.find-the-path")
             .Duration;
@@ -1519,6 +1638,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.hallucinatory-terrain",
                 "dnd5e2014.spell.heroes-feast",
                 "dnd5e2014.spell.legend-lore",
+                "dnd5e2014.spell.mirage-arcane",
                 "dnd5e2014.spell.mordenkainens-private-sanctum",
                 "dnd5e2014.spell.planar-ally",
                 "dnd5e2014.spell.prayer-of-healing",

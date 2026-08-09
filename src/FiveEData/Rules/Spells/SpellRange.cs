@@ -61,6 +61,9 @@ public readonly record struct SpellRange
     public static SpellRange Special() =>
         new(SpellRangeKind.Special, null, null, null);
 
+    public static SpellRange Sight() =>
+        new(SpellRangeKind.Sight, null, null, null);
+
     public static SpellRange Distance(int feet)
     {
         if (feet <= 0)
