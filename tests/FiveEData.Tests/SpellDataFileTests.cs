@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(327, LoadCanonical().Count);
+        Assert.Equal(336, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -36,17 +36,21 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             20,
             LoadCanonical().Count(spell => spell.Level == 7));
+        Assert.Equal(
+            9,
+            LoadCanonical().Count(spell => spell.Level == 8));
     }
 
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughSeventhLevelForNow()
+    public void CanonicalFile_ContainsOnlyCantripsThroughEighthLevelForNow()
     {
-        // Levels 8-9 are not built yet. Levels 0-7 are complete: the P-T
-        // batch closed level 7 at all 20 of the PHB's seventh-level
+        // Level 9 is not built yet. Levels 0-7 are complete. Level 8 is
+        // being added in alphabetical batches (see CLAUDE.md) and
+        // currently holds the A-F batch, 9 of the PHB's 19 eighth-level
         // spells.
         Assert.All(
             LoadCanonical(),
-            spell => Assert.InRange(spell.Level, 0, 7));
+            spell => Assert.InRange(spell.Level, 0, 8));
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 2nd-level
@@ -843,6 +847,87 @@ public sealed class SpellDataFileTests
         Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
     }
 
+    // The class spell list appendix (pp.207-210) gives an 8th-level union
+    // of 19 spells across the 8 classes - down from 7th level's 20.
+    // Paladin and Ranger stay at zero. This A-F batch is half the level;
+    // the G-T batch will complete it.
+    [Fact]
+    public void EighthLevelSpellIdsBuiltSoFar()
+    {
+        Assert.Equal(
+            [
+                "dnd5e2014.spell.animal-shapes",
+                "dnd5e2014.spell.antimagic-field",
+                "dnd5e2014.spell.antipathy-sympathy",
+                "dnd5e2014.spell.clone",
+                "dnd5e2014.spell.control-weather",
+                "dnd5e2014.spell.demiplane",
+                "dnd5e2014.spell.dominate-monster",
+                "dnd5e2014.spell.earthquake",
+                "dnd5e2014.spell.feeblemind"
+            ],
+            LoadCanonical()
+                .Where(spell => spell.Level == 8)
+                .Select(spell => spell.Id.Value)
+                .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.animal-shapes", "Animal Shapes", "transmutation", 212)]
+    [InlineData("dnd5e2014.spell.antimagic-field", "Antimagic Field", "abjuration", 213)]
+    [InlineData("dnd5e2014.spell.antipathy-sympathy", "Antipathy/Sympathy", "enchantment", 214)]
+    [InlineData("dnd5e2014.spell.clone", "Clone", "necromancy", 222)]
+    [InlineData("dnd5e2014.spell.control-weather", "Control Weather", "transmutation", 228)]
+    [InlineData("dnd5e2014.spell.demiplane", "Demiplane", "conjuration", 231)]
+    [InlineData("dnd5e2014.spell.dominate-monster", "Dominate Monster", "enchantment", 235)]
+    [InlineData("dnd5e2014.spell.earthquake", "Earthquake", "evocation", 236)]
+    [InlineData("dnd5e2014.spell.feeblemind", "Feeblemind", "enchantment", 239)]
+    public void EighthLevelSpell_HasExpectedNameSchoolAndPage(
+        string id,
+        string expectedName,
+        string expectedSchool,
+        int expectedPage)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Equal(8, spell.Level);
+        Assert.Equal(expectedName, spell.Name);
+        Assert.Equal(
+            $"dnd5e2014.magic-school.{expectedSchool}",
+            spell.SchoolId.Value);
+        Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Clone's material bundle has two separately-costed items - a 1,000
+    // gp diamond and a 2,000 gp vessel - with no single figure that
+    // represents "the" cost, the same partial-decline shape Legend Lore
+    // and Leomund's Secret Chest already used. Unlike Leomund's Secret
+    // Chest (where neither item's consumption is stated), Clone's flesh
+    // component is explicitly consumed, so MaterialIsConsumed is true
+    // even though the field can't represent "only one of the two items."
+    [Fact]
+    public void CloneDeclinesItsTwoPartMaterialCost()
+    {
+        SpellComponents components = Get("dnd5e2014.spell.clone").Components;
+
+        Assert.Null(components.MaterialCostGoldPieces);
+        Assert.True(components.MaterialIsConsumed);
+    }
+
+    // Demiplane is Somatic-only - no verbal, no material - the first
+    // non-cantrip spell on that combination (True Strike is the only
+    // cantrip on it).
+    [Fact]
+    public void DemiplaneIsSomaticOnly()
+    {
+        SpellComponents components =
+            Get("dnd5e2014.spell.demiplane").Components;
+
+        Assert.False(components.Verbal);
+        Assert.True(components.Somatic);
+        Assert.False(components.Material);
+    }
+
     // Mirage Arcane prints "Range: Sight" - reach is whatever the caster
     // can see, not a bounded distance and not the same conditional-rule
     // shape as Dream's Special. SpellRangeKind gained a Sight member and
@@ -1356,6 +1441,7 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             [
                 "dnd5e2014.spell.antilife-shell",
+                "dnd5e2014.spell.antimagic-field",
                 "dnd5e2014.spell.arms-of-hadar",
                 "dnd5e2014.spell.aura-of-life",
                 "dnd5e2014.spell.aura-of-purity",
@@ -1365,6 +1451,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.color-spray",
                 "dnd5e2014.spell.cone-of-cold",
                 "dnd5e2014.spell.conjure-barrage",
+                "dnd5e2014.spell.control-weather",
                 "dnd5e2014.spell.destructive-wave",
                 "dnd5e2014.spell.fear",
                 "dnd5e2014.spell.globe-of-invulnerability",
@@ -1623,6 +1710,7 @@ public sealed class SpellDataFileTests
 
         Assert.Equal(
             [
+                "dnd5e2014.spell.antipathy-sympathy",
                 "dnd5e2014.spell.contagion",
                 "dnd5e2014.spell.contingency",
                 "dnd5e2014.spell.find-the-path",
@@ -1635,6 +1723,9 @@ public sealed class SpellDataFileTests
             ],
             days.Select(spell => spell.Id.Value));
 
+        Assert.Equal(
+            10,
+            Get("dnd5e2014.spell.antipathy-sympathy").Duration.Amount);
         Assert.Equal(7, Get("dnd5e2014.spell.contagion").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.contingency").Duration.Amount);
         Assert.Equal(30, Get("dnd5e2014.spell.geas").Duration.Amount);
@@ -1714,6 +1805,7 @@ public sealed class SpellDataFileTests
             [
                 "dnd5e2014.spell.clairvoyance",
                 "dnd5e2014.spell.contingency",
+                "dnd5e2014.spell.control-weather",
                 "dnd5e2014.spell.fabricate",
                 "dnd5e2014.spell.find-steed",
                 "dnd5e2014.spell.forbiddance",
@@ -1805,9 +1897,10 @@ public sealed class SpellDataFileTests
     // Hallow (24) and Planar Binding (1) followed, and Raise Dead and
     // Reincarnate (both 1) closed out fifth level's Hour-unit spells.
     // Resurrection (1 hour) and Simulacrum (12 hours, a fourth amount)
-    // join at seventh.
+    // join at seventh; Antipathy/Sympathy and Clone (both 1 hour) join at
+    // eighth.
     [Fact]
-    public void HourLongCastingTimesSpanNineSpellsAndFourAmounts()
+    public void HourLongCastingTimesSpanElevenSpellsAndFourAmounts()
     {
         SpellDefinition[] hourLong = LoadCanonical()
             .Where(spell => spell.CastingTime.Unit
@@ -1817,7 +1910,9 @@ public sealed class SpellDataFileTests
 
         Assert.Equal(
             [
+                "dnd5e2014.spell.antipathy-sympathy",
                 "dnd5e2014.spell.awaken",
+                "dnd5e2014.spell.clone",
                 "dnd5e2014.spell.find-familiar",
                 "dnd5e2014.spell.glyph-of-warding",
                 "dnd5e2014.spell.hallow",
