@@ -387,9 +387,36 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         string name)
     {
         return new ConditionDefinition(
-            new ConditionId(id),
-            name,
-            [CreateSource()]);
+            id: new ConditionId(id),
+            name: name,
+            preventsActionsAndReactions: false,
+            preventsMovement: false,
+            onlyMovementOptionIsToCrawl: false,
+            speedBecomesZero: false,
+            ignoresBonusesToSpeed: false,
+            speechRestriction: default,
+            unawareOfSurroundings: false,
+            automaticallyFailsStrengthAndDexteritySavingThrows: false,
+            dexteritySavingThrowsHaveDisadvantage: false,
+            automaticallyFailsAbilityChecksRequiringSight: false,
+            automaticallyFailsAbilityChecksRequiringHearing: false,
+            ownAbilityChecksHaveDisadvantage: false,
+            attackRollsAgainstTheCreature: default,
+            theCreaturesOwnAttackRolls: default,
+            anyHitIsACriticalHitIfAttackerIsWithinFiveFeet: false,
+            requiresSourceInLineOfSightForRollEffects: false,
+            cannotWillinglyMoveCloserToSource: false,
+            cannotAttackOrTargetSourceWithHarmfulEffects: false,
+            sourceHasAdvantageOnSocialAbilityChecksAgainstTheCreature:
+                false,
+            endsIfSourceCreatureIsIncapacitated: false,
+            resistantToAllDamage: false,
+            immuneToPoisonAndDisease: false,
+            weightMultiplier: null,
+            dropsHeldItemsAndFallsProne: false,
+            heavilyObscuredForHidingPurposes: false,
+            exhaustionEffect: null,
+            sources: [CreateSource()]);
     }
 
     private static DamageTypeDefinition CreateDamageType(

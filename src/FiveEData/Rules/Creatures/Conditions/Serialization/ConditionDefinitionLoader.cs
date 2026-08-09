@@ -98,9 +98,73 @@ internal static class ConditionDefinitionLoader
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
 
+        ExhaustionEffectDetail? exhaustionEffect =
+            data.ExhaustionEffect is { } exhaustionEffectData
+                ? MapExhaustionEffect(exhaustionEffectData)
+                : null;
+
         return new ConditionDefinition(
-            id,
-            name,
-            sources);
+            id: id,
+            name: name,
+            preventsActionsAndReactions:
+                data.PreventsActionsAndReactions,
+            preventsMovement: data.PreventsMovement,
+            onlyMovementOptionIsToCrawl:
+                data.OnlyMovementOptionIsToCrawl,
+            speedBecomesZero: data.SpeedBecomesZero,
+            ignoresBonusesToSpeed: data.IgnoresBonusesToSpeed,
+            speechRestriction: data.SpeechRestriction,
+            unawareOfSurroundings: data.UnawareOfSurroundings,
+            automaticallyFailsStrengthAndDexteritySavingThrows:
+                data.AutomaticallyFailsStrengthAndDexteritySavingThrows,
+            dexteritySavingThrowsHaveDisadvantage:
+                data.DexteritySavingThrowsHaveDisadvantage,
+            automaticallyFailsAbilityChecksRequiringSight:
+                data.AutomaticallyFailsAbilityChecksRequiringSight,
+            automaticallyFailsAbilityChecksRequiringHearing:
+                data.AutomaticallyFailsAbilityChecksRequiringHearing,
+            ownAbilityChecksHaveDisadvantage:
+                data.OwnAbilityChecksHaveDisadvantage,
+            attackRollsAgainstTheCreature:
+                data.AttackRollsAgainstTheCreature,
+            theCreaturesOwnAttackRolls: data.TheCreaturesOwnAttackRolls,
+            anyHitIsACriticalHitIfAttackerIsWithinFiveFeet:
+                data.AnyHitIsACriticalHitIfAttackerIsWithinFiveFeet,
+            requiresSourceInLineOfSightForRollEffects:
+                data.RequiresSourceInLineOfSightForRollEffects,
+            cannotWillinglyMoveCloserToSource:
+                data.CannotWillinglyMoveCloserToSource,
+            cannotAttackOrTargetSourceWithHarmfulEffects:
+                data.CannotAttackOrTargetSourceWithHarmfulEffects,
+            sourceHasAdvantageOnSocialAbilityChecksAgainstTheCreature:
+                data
+                    .SourceHasAdvantageOnSocialAbilityChecksAgainstTheCreature,
+            endsIfSourceCreatureIsIncapacitated:
+                data.EndsIfSourceCreatureIsIncapacitated,
+            resistantToAllDamage: data.ResistantToAllDamage,
+            immuneToPoisonAndDisease: data.ImmuneToPoisonAndDisease,
+            weightMultiplier: data.WeightMultiplier,
+            dropsHeldItemsAndFallsProne: data.DropsHeldItemsAndFallsProne,
+            heavilyObscuredForHidingPurposes:
+                data.HeavilyObscuredForHidingPurposes,
+            exhaustionEffect: exhaustionEffect,
+            sources: sources);
+    }
+
+    private static ExhaustionEffectDetail MapExhaustionEffect(
+        ExhaustionEffectDetailData data)
+    {
+        ArgumentNullException.ThrowIfNull(data);
+
+        ExhaustionLevelEffect[] levelEffects =
+            data.LevelEffects
+            ?? throw new ArgumentException(
+                "Exhaustion effect level effects are required.",
+                nameof(data));
+
+        return new ExhaustionEffectDetail(
+            levelEffects,
+            data.RecoversOneLevelPerLongRest,
+            data.RecoveryRequiresFoodAndDrink);
     }
 }

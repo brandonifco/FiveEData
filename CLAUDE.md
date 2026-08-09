@@ -48,6 +48,9 @@ Built and complete:
   Resting, and Downtime Activities" — everything else in PHB Chapters 8–9
   stays unbuilt by design (DM-adjudicated prose or linear-in-level
   formulas), not a gap to fill later.
+- Conditions — **all 15 PHB conditions (Appendix A) now carry full
+  mechanical payloads**, not just `Id`/`Name`/`Sources`. See "Game-backend
+  quantization: Conditions" below.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -55,7 +58,26 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2675 tests**.
+**A second, larger initiative started 2026-08-09: making the catalog
+directly useful for a game backend**, not just citation-complete. An
+audit found three real gaps, ranked by size: (1) Spells have zero effect
+data — no damage dice, save DC/ability, or condition applied, only the
+header block; (2) Conditions carried zero mechanical payload; (3) most
+class/subclass/race/background feature *text* is unquantized prose
+(Metamagic effects, maneuver secondary effects, invocation benefits).
+Conditions (gap 2) went first — smallest, and a dependency for the other
+two, since spell/feature effects constantly reference named conditions.
+Spells (gap 1) are next, cantrips first; feature-effect prose (gap 3) is
+last. **This deliberately reverses two lines stated below as settled
+architecture**: "no generic effect DSL" and "Spells are not a modeled
+domain" (the latter was already stale — `SpellId`/`SpellDefinition` exist
+as a real domain; only the *effect* stayed unmodeled). The reversal is
+narrower than it sounds: Conditions used the *same* "many typed fields on
+one Definition" shape every other domain already uses, not a new DSL —
+see "Game-backend quantization: Conditions" for why that shape held up
+even at 26 fields.
+
+Gate as of the last merge: Debug+Release build 0 warnings, **2694 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1228,6 +1250,80 @@ the only one of the four with a cross-domain reference
 (`SavingThrowAbilityId` against the ability catalog), validated in
 `CatalogIntegrityValidator` the same way Battle Master maneuvers already
 validate their own saving-throw ability.
+
+## Game-backend quantization: Conditions
+
+The first slice of the game-backend initiative described in "Current
+state" above. `ConditionDefinition` went from `Id`/`Name`/`Sources` (a
+bare closed-vocabulary entry, same shape as `CombatActionDefinition`) to
+26 additional fields capturing every mechanical bullet point in PHB
+Appendix A (pp.290–292) for all 15 conditions. Existing citations didn't
+change — same IDs, same page/section — this was purely additive.
+
+**The shape is still "many typed fields on one Definition," the same
+precedent `ClassDefinition` (40+ fields) already set — not a new DSL.**
+What makes Conditions look different is density: unlike most Definitions,
+where a handful of fields populate per instance, several conditions
+populate 6–8 of the 26 fields simultaneously (Unconscious is the densest).
+That ruled out the "several mechanism fields, validator enforces exactly
+one populated" shape `FightingStyleDefinition`/`DivineStrike` use — these
+facts aren't alternative representations of one mechanic, they're
+independent facts that legitimately co-occur, so no "exactly one
+populated" constraint was added.
+
+**Two shared value types moved to reusable locations, since both are
+core D&D vocabulary certain to recur once Spells/Features get their own
+quantization pass:**
+
+- `RollModifier` (`None`/`Advantage`/`Disadvantage`) lives in
+  `Rules/Common/`, not under Conditions, since advantage/disadvantage is
+  the single most-referenced mechanic in the whole ruleset.
+- `SpeechRestriction` (`None`/`CanOnlySpeakFalteringly`/`CannotSpeak`) and
+  `ExhaustionLevelEffect` stay under `Rules/Creatures/Conditions/`, since
+  neither generalizes beyond conditions the way advantage/disadvantage
+  does.
+
+**Exhaustion is structurally different from the other 14 and gets its own
+nested `ExhaustionEffectDetail`** (`LevelEffects` — exactly 6, one per
+level, self-validated in the constructor since a wrong count is a data
+error, not a "some campaigns differ" case — plus
+`RecoversOneLevelPerLongRest` and `RecoveryRequiresFoodAndDrink`). Every
+other condition has this field `null`. The six level effects are
+cumulative in play ("suffers the effect of its current level as well as
+all lower levels" — p.291), but the stored list holds each level's
+*incremental* new effect exactly as the PHB table prints it; resolving
+cumulative effects at a given level is a consuming engine's job, not this
+library's.
+
+**One fact was deliberately declined, matching the project's existing
+"compound conditional" line.** Prone's attack-roll-against text is
+range-conditional — advantage within 5 feet, disadvantage beyond — not a
+flat `RollModifier` value the way every other condition's is. Rather than
+inventing a distance-conditional shape for one condition,
+`AttackRollsAgainstTheCreature` stays `None` for Prone and the real rule
+stays in the citation, the same "content this project doesn't model as
+its own domain" call Plant Growth's compound casting time and Prone's
+own "ends if grappler is incapacitated"-style entailments already made.
+
+**`PreventsActionsAndReactions` is set directly on every condition that
+includes it, not resolved through a reference.** Paralyzed, Petrified,
+Stunned, and Unconscious all say "is incapacitated (see the condition)" —
+rather than modeling that as a reference to the `incapacitated` condition
+a consumer would have to resolve, the flag is set `true` directly on all
+five conditions (including Incapacitated itself). This matches the
+project's standing preference for flattening a derived/compound fact into
+direct data over requiring a lookup chain (the same reasoning Warding
+Bond's per-item cost already established).
+
+**Constructing a `ConditionDefinition` now uses named arguments at every
+call site — loader, tests, everywhere** — a deliberate, reasoned
+deviation from this codebase's usual positional-constructor-call style.
+Every other multi-field constructor in this project mixes types
+(`DiceExpression`, `AbilityId`, `int?`, ...), so a transposed positional
+argument usually fails to compile. Here, ~20 of the 26 new parameters are
+plain `bool`, so a transposition would silently compile and silently
+corrupt data. Named arguments are the correct trade against this
+codebase's normal terseness, not a style inconsistency to "fix" later.
 
 ## Test conventions
 
