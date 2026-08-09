@@ -272,6 +272,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.animal-shapes",
+    "name": "Animal Shapes",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 212,
+        "section": "Chapter 11: Spells — Spell Descriptions — Animal Shapes"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.animate-dead",
     "name": "Animate Dead",
     "level": 3,
@@ -403,6 +447,96 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 213,
         "section": "Chapter 11: Spells — Spell Descriptions — Antilife Shell"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.antimagic-field",
+    "name": "Antimagic Field",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.abjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of powdered iron or iron filings",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 213,
+        "section": "Chapter 11: Spells — Spell Descriptions — Antimagic Field"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.antipathy-sympathy",
+    "name": "Antipathy/Sympathy",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "either a lump of alum soaked in vinegar for the antipathy effect or a drop of honey for the sympathy effect",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Day"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 214,
+        "section": "Chapter 11: Spells — Spell Descriptions — Antipathy/Sympathy"
       }
     ]
   },
@@ -2074,6 +2208,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.clone",
+    "name": "Clone",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "range": {
+      "kind": "Touch",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a diamond worth at least 1,000 gp and at least 1 cubic inch of flesh of the creature that is to be cloned, which the spell consumes, and a vessel worth at least 2,000 gp that has a sealable lid and is large enough to hold a Medium creature, such as a huge urn, coffin, mud-filled cyst in the ground, or crystal container filled with salt water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": true
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 222,
+        "section": "Chapter 11: Spells — Spell Descriptions — Clone"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.cloud-of-daggers",
     "name": "Cloud of Daggers",
     "level": 2,
@@ -3154,6 +3332,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.control-weather",
+    "name": "Control Weather",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": "Radius",
+      "areaSizeFeet": 26400
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "burning incense and bits of earth and wood mixed in water",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 228,
+        "section": "Chapter 11: Spells — Spell Descriptions — Control Weather"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.cordon-of-arrows",
     "name": "Cordon of Arrows",
     "level": 2,
@@ -3837,6 +4061,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 230,
         "section": "Chapter 11: Spells — Spell Descriptions — Delayed Blast Fireball"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.demiplane",
+    "name": "Demiplane",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 231,
+        "section": "Chapter 11: Spells — Spell Descriptions — Demiplane"
       }
     ]
   },
@@ -4527,6 +4796,53 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.dominate-monster",
+    "name": "Dominate Monster",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 235,
+        "section": "Chapter 11: Spells — Spell Descriptions — Dominate Monster"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.dominate-person",
     "name": "Dominate Person",
     "level": 5,
@@ -4703,6 +5019,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 236,
         "section": "Chapter 11: Spells — Spell Descriptions — Druidcraft"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.earthquake",
+    "name": "Earthquake",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 500,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a pinch of dirt, a piece of rock, and a lump of clay",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 236,
+        "section": "Chapter 11: Spells — Spell Descriptions — Earthquake"
       }
     ]
   },
@@ -5428,6 +5790,53 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 239,
         "section": "Chapter 11: Spells — Spell Descriptions — Feather Fall"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.feeblemind",
+    "name": "Feeblemind",
+    "level": 8,
+    "schoolId": "dnd5e2014.magic-school.enchantment",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a handful of clay, crystal, glass, or mineral spheres",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 239,
+        "section": "Chapter 11: Spells — Spell Descriptions — Feeblemind"
       }
     ]
   },

@@ -39,14 +39,15 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2386 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2398 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, all 35 fourth-level, all 42
 fifth-level, all 32 sixth-level, and all 20 seventh-level spells are
-built — 327 in total, levels 0–7 complete. Levels 8–9 are not
+built, plus the first 9 of the PHB's 19 eighth-level spells (batch A–F)
+— 336 in total. Only the G–T batch of level 8 remains; level 9 is not
 started.**
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
@@ -73,17 +74,18 @@ level is asserted rather than implied. **Keep batching for levels 7–9** —
 7th's 20 spells split into two batches of 10 (A–M, P–T), the smallest
 per-batch split yet, since the level itself is much smaller than 1st–6th.
 Per-level union counts are **not monotonically declining**: 62/59/50 for
-1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th, then 20 at
-7th**. Paladin and Ranger's lists really do stop entirely at 6th, as
+1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th, 20 at 7th,
+then 19 at 8th**. Paladin and Ranger's lists really do stop entirely at 6th, as
 expected — but Warlock's Pact Magic *slots* cap at 5th level while the
 class's own spell list keeps going through 9th, for spells eligible as a
 Mystic Arcanum (one higher-level spell known and cast once per day with
 no matching slot). The file's earlier claim that all three classes would
 drop out together at 6th was wrong for Warlock specifically; verify the
 real count each level rather than assuming the trend. Warlock's 7th-level
-count (4) is smaller than 6th's (8), consistent with Mystic Arcanum
-eligibility rather than a slot count — check 8th and 9th again rather
-than assuming a monotonic shrink.
+count (4) is smaller than 6th's (8), but 8th's (5) ticks back up —
+confirming the hedge was right: Mystic Arcanum eligibility doesn't shrink
+monotonically the way a slot count would, so check 9th on its own merits
+too rather than extrapolating from 6th–8th's up-down-up.
 
 Each batch drove schema additions from real content, never anticipation:
 
@@ -305,6 +307,19 @@ Each batch drove schema additions from real content, never anticipation:
   2,640,000 feet by the same unit-conversion rule. **All 20 of the PHB's
   seventh-level spells are now built: 327 spells total, levels 0–7
   complete.**
+- **8th A–F (starting level 8):** no schema additions, but two recurring-
+  pattern confirmations and one new component combination. Clone is the
+  third spell (after Warding Bond's per-item cost and Legend Lore/
+  Leomund's Secret Chest's two-item decline) with a two-part material
+  bundle — a 1,000 gp diamond and a 2,000 gp vessel — so
+  `MaterialCostGoldPieces` stays declined; its consumed flesh component
+  still makes `MaterialIsConsumed` true, the same partial shape Legend
+  Lore already used. Control Weather's **"Self (5-mile radius)"** is the
+  first area size printed in miles rather than feet, canonicalized to
+  26,400 by the same unit-conversion rule Clairvoyance and Project Image
+  already established. Demiplane is Somatic-only — no verbal, no
+  material — the first non-cantrip spell on that combination (True
+  Strike is the only cantrip on it).
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
