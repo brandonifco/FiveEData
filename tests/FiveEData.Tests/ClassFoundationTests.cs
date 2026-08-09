@@ -32,6 +32,7 @@ using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.SpellsKnown;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
+using FiveEData.Rules.Classes.WizardSpellbook;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -164,6 +165,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -1156,6 +1158,36 @@ public sealed class ClassFoundationTests
     }
 
     [Fact]
+    public void Validator_AcceptsWellFormedWizardSpellbook()
+    {
+        ClassDefinition @class = Create(
+            "dnd5e2014.class.test",
+            wizardSpellbook: new WizardSpellbookDetail(
+                startingSpellCount: 6,
+                spellsAddedPerLevelAfterFirst: 2));
+
+        Assert.Empty(ClassDefinitionValidator.Validate(@class));
+    }
+
+    [Fact]
+    public void WizardSpellbookDetail_RejectsNonPositiveStartingSpellCount()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new WizardSpellbookDetail(
+                startingSpellCount: 0,
+                spellsAddedPerLevelAfterFirst: 2));
+    }
+
+    [Fact]
+    public void WizardSpellbookDetail_RejectsNonPositiveSpellsAddedPerLevelAfterFirst()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(
+            () => new WizardSpellbookDetail(
+                startingSpellCount: 6,
+                spellsAddedPerLevelAfterFirst: 0));
+    }
+
+    [Fact]
     public void Validator_RejectsMartialArtsProgressionWithNoDieGrants()
     {
         ClassDefinition @class = Create(
@@ -1751,6 +1783,7 @@ public sealed class ClassFoundationTests
             eldritchInvocationsKnownProgression = null,
         CantripsKnownProgressionDetail? cantripsKnownProgression = null,
         SpellsKnownProgressionDetail? spellsKnownProgression = null,
+        WizardSpellbookDetail? wizardSpellbook = null,
         BlindsenseDetail? blindsense = null,
         int? reliableTalentMinimumD20Roll = null,
         FeralSensesDetail? feralSenses = null,
@@ -1811,6 +1844,7 @@ public sealed class ClassFoundationTests
             eldritchInvocationsKnownProgression,
             cantripsKnownProgression,
             spellsKnownProgression,
+            wizardSpellbook,
             blindsense,
             reliableTalentMinimumD20Roll,
             feralSenses,

@@ -60,6 +60,8 @@ using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.UnarmoredMovement.Serialization;
 using FiveEData.Rules.Classes.WildShape;
 using FiveEData.Rules.Classes.WildShape.Serialization;
+using FiveEData.Rules.Classes.WizardSpellbook;
+using FiveEData.Rules.Classes.WizardSpellbook.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -362,6 +364,11 @@ internal static class ClassDefinitionLoader
                     spellsKnownProgressionData)
                 : null;
 
+        WizardSpellbookDetail? wizardSpellbook =
+            data.WizardSpellbook is { } wizardSpellbookData
+                ? WizardSpellbookDetailDataMapper.Map(wizardSpellbookData)
+                : null;
+
         BlindsenseDetail? blindsense =
             data.Blindsense is { } blindsenseData
                 ? BlindsenseDetailDataMapper.Map(blindsenseData)
@@ -435,6 +442,7 @@ internal static class ClassDefinitionLoader
             eldritchInvocationsKnownProgression,
             cantripsKnownProgression,
             spellsKnownProgression,
+            wizardSpellbook,
             blindsense,
             data.ReliableTalentMinimumD20Roll,
             feralSenses,
