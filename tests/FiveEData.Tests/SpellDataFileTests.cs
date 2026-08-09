@@ -2763,6 +2763,152 @@ public sealed class SpellDataFileTests
         Assert.Null(Get(id).DamageEffect);
     }
 
+    // 7 of the 50 3rd-level spells deal damage directly.
+    [Fact]
+    public void SevenThirdLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            7,
+            LoadCanonical()
+                .Count(spell => spell.Level == 3 && spell.DamageEffect is not null));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.call-lightning", "lightning", "dexterity", 3, 10)]
+    [InlineData("dnd5e2014.spell.fireball", "fire", "dexterity", 8, 6)]
+    [InlineData("dnd5e2014.spell.lightning-bolt", "lightning", "dexterity", 8, 6)]
+    [InlineData("dnd5e2014.spell.wind-wall", "bludgeoning", "strength", 3, 8)]
+    public void ThirdLevelSavingThrowDamageSpell_DealsHalfDamageOnSuccessfulSave(
+        string id,
+        string expectedDamageType,
+        string expectedSavingThrowAbility,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Null(effect.AttackRollType);
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    [Fact]
+    public void VampiricTouchDealsMeleeAttackDamageWithNoSave()
+    {
+        SpellDamageEffect effect = Get("dnd5e2014.spell.vampiric-touch").DamageEffect!;
+
+        Assert.Equal(
+            "dnd5e2014.damage-type.necrotic",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(SpellAttackRollType.Melee, effect.AttackRollType);
+        Assert.Null(effect.SavingThrowAbilityId);
+        Assert.Equal(3, effect.BaseDamage!.Value.Count);
+        Assert.Equal(6, effect.BaseDamage.Value.Sides);
+    }
+
+    // Conjure Barrage (bludgeoning/piercing/slashing) and Spirit Guardians
+    // (radiant/necrotic) are the two 3rd-level spells where the caster
+    // chooses the damage type, the same choosable shape Chromatic Orb
+    // established at 1st level.
+    [Theory]
+    [InlineData(
+        "dnd5e2014.spell.conjure-barrage",
+        new[] { "bludgeoning", "piercing", "slashing" },
+        "dexterity",
+        3,
+        8)]
+    [InlineData(
+        "dnd5e2014.spell.spirit-guardians",
+        new[] { "radiant", "necrotic" },
+        "wisdom",
+        3,
+        8)]
+    public void ChoosableDamageTypeSpell_HasExpectedTypesAndDamage(
+        string id,
+        string[] expectedDamageTypes,
+        string expectedSavingThrowAbility,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Null(effect.DamageTypeId);
+        Assert.Equal(
+            expectedDamageTypes.Select(type => $"dnd5e2014.damage-type.{type}"),
+            effect.ChoosableDamageTypeIds!.Select(damageTypeId => damageTypeId.Value));
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    // 3 of the 50 3rd-level spells impose a named Appendix A condition.
+    [Fact]
+    public void ThreeThirdLevelSpellsHaveAConditionEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 3 && spell.ConditionEffect is not null));
+    }
+
+    [Fact]
+    public void FearImposesFrightenedOnAFailedWisdomSave()
+    {
+        SpellConditionEffect effect = Get("dnd5e2014.spell.fear").ConditionEffect!;
+
+        Assert.Equal("dnd5e2014.ability.wisdom", effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.frightened",
+            Assert.Single(effect.ConditionIds).Value);
+    }
+
+    // Hypnotic Pattern is the second 3rd-level-or-lower spell (after
+    // Tasha's Hideous Laughter at 1st level) whose failed save imposes two
+    // conditions together rather than one.
+    [Fact]
+    public void HypnoticPatternImposesCharmedAndIncapacitatedTogether()
+    {
+        SpellConditionEffect effect =
+            Get("dnd5e2014.spell.hypnotic-pattern").ConditionEffect!;
+
+        Assert.Equal("dnd5e2014.ability.wisdom", effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            ["dnd5e2014.condition.charmed", "dnd5e2014.condition.incapacitated"],
+            effect.ConditionIds.Select(id => id.Value));
+    }
+
+    [Fact]
+    public void SleetStormKnocksProneOnAFailedDexteritySave()
+    {
+        SpellConditionEffect effect = Get("dnd5e2014.spell.sleet-storm").ConditionEffect!;
+
+        Assert.Equal("dnd5e2014.ability.dexterity", effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.prone",
+            Assert.Single(effect.ConditionIds).Value);
+    }
+
+    // Weapon-attack-rider spells stay declined at every level built so
+    // far — Blinding Smite and Lightning Arrow both buff a *later* weapon
+    // attack rather than resolving their own attack or save.
+    [Theory]
+    [InlineData("dnd5e2014.spell.blinding-smite")]
+    [InlineData("dnd5e2014.spell.lightning-arrow")]
+    public void ThirdLevelWeaponAttackRiderSpell_HasNoDamageEffect(string id)
+    {
+        Assert.Null(Get(id).DamageEffect);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);
