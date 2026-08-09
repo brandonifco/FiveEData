@@ -18,6 +18,9 @@ a game.
 **Nothing in progress, nothing queued. Ask the user for the next priority
 before starting new work.**
 
+**Nothing in progress, nothing queued. Ask the user for the next priority
+before starting new work.**
+
 Built and complete:
 
 - Equipment (weapons, armor, shields, adventuring gear, tools, mounts,
@@ -32,6 +35,11 @@ Built and complete:
   against its own enumerated list, not against a sweep** — a later sweep of
   all 305 `class-rule` entries found a real tail it never listed; see
   "Quantized mechanics: the remaining tail"
+- Spells — `MagicSchools` (the 8 schools, a closed official set, cited to
+  the p.203 sidebar) and `SpellDefinition`. **All 27 cantrips and all
+  spells of every level 1 through 9 are built, with one deliberate,
+  documented exception — 361 of the PHB's 362 spells.** See "Spells: the
+  Trap the Soul gap" below before assuming this is 362 for 362.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -39,16 +47,9 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2427 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2444 tests**.
 
-**In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
-(the 8 schools, a closed official set, cited to the p.203 sidebar) and
-`SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
-second-level, all 50 third-level, all 35 fourth-level, all 42
-fifth-level, all 32 sixth-level, and all 20 seventh-level spells are
-built, plus 18 of the PHB's 19 eighth-level spells (batches A–F and
-G–T) and the first 8 of the PHB's 16 ninth-level spells (batch A–P) —
-353 in total. Only the P–W batch of level 9 remains.**
+## Spells: the Trap the Soul gap
 
 **One eighth-level spell, Trap the Soul, is a genuine, documented gap —
 not a to-do.** It's on the Wizard class list (p.212) but
@@ -77,14 +78,14 @@ instantaneous, "up to", and concentration. **"Up to" is not a synonym for
 concentration** — Prestidigitation is "Up to 1 hour" with no concentration,
 while concentration is always an "up to" duration.
 
-**Every level is added in alphabetical batches** — 62 first-level spells over
+**Every level was added in alphabetical batches** — 62 first-level spells over
 ~38 pages was too much to read reliably in one pass, second level's 59 was no
 better, and third level's 50 (split A–C/D–H/L–P/R–W, ~12–13 per batch for
 tighter accuracy than the first two levels' ~15–16) confirmed the pattern a
 third time. `SpellDataFileTests` pins the exact built closure, so a partial
-level is asserted rather than implied. **Keep batching for levels 7–9** —
-7th's 20 spells split into two batches of 10 (A–M, P–T), the smallest
-per-batch split yet, since the level itself is much smaller than 1st–6th.
+level was asserted rather than implied while in progress. Levels 7–9 kept
+the pattern at a smaller scale — two batches of ~8–10 each, since those
+levels are much smaller than 1st–6th.
 Per-level union counts are **not monotonically declining**: 62/59/50 for
 1st–3rd, 35 at 4th, back up to 42 at 5th, down to **32 at 6th, 20 at 7th,
 19 at 8th, then 16 at 9th**. Paladin and Ranger's lists really do stop entirely at 6th, as
@@ -364,6 +365,17 @@ Each batch drove schema additions from real content, never anticipation:
   multiplier. Meteor Swarm's "Range: 1 mile" is the third range printed
   in miles (after Clairvoyance, Project Image), canonicalized to 5,280
   feet by the same rule.
+- **9th P–W (closing the level, and the Spells domain's level coverage):**
+  no schema additions. Storm of Vengeance's "Range: Sight" is the third
+  spell on that category (after Mirage Arcane and Tsunami), closing out
+  the pattern predicted when Mirage Arcane was built at 7th level.
+  Shapechange's material is costed (1,500 gp jade circlet, worn rather
+  than expended) but not stated as consumed — the "costed, not consumed"
+  quadrant Chromatic Orb already established, still showing up at the
+  very top of the level range. **All 16 of the PHB's ninth-level spells
+  are now built. Every PHB spell level, 0 through 9, has at least one
+  built spell, and every level except 8th (missing only Trap the Soul)
+  is fully built: 361 spells total.**
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the

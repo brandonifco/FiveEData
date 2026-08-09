@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(353, LoadCanonical().Count);
+        Assert.Equal(361, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -40,20 +40,18 @@ public sealed class SpellDataFileTests
             18,
             LoadCanonical().Count(spell => spell.Level == 8));
         Assert.Equal(
-            8,
+            16,
             LoadCanonical().Count(spell => spell.Level == 9));
     }
 
+    // The Spells domain now spans every PHB level, 0 through 9, with one
+    // deliberate, documented exception: Trap the Soul (8th level) has no
+    // findable description page in this printing (see
+    // EighthLevelSpellIdsBuiltSoFar) and stays unbuilt until a different
+    // source can supply it. 361 of the PHB's 362 spells are built.
     [Fact]
-    public void CanonicalFile_ContainsOnlyCantripsThroughNinthLevelForNow()
+    public void CanonicalFile_SpansEveryLevelExceptTheDocumentedTrapTheSoulGap()
     {
-        // Levels 0-7 are complete. Level 8 holds 18 of the PHB's 19
-        // eighth-level spells - Trap the Soul has no findable description
-        // page in this printing (see EighthLevelSpellIdsBuiltSoFar) and
-        // stays unbuilt until a different source can supply it. Level 9
-        // is being added in alphabetical batches (see CLAUDE.md) and
-        // currently holds the A-P batch, 8 of the PHB's 16 ninth-level
-        // spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 9));
@@ -1002,10 +1000,13 @@ public sealed class SpellDataFileTests
 
     // The class spell list appendix (pp.207-210) gives a 9th-level union
     // of 16 spells across the 8 classes - down from 8th level's 19.
-    // Paladin and Ranger stay at zero. This A-P batch is half the level;
-    // the P-W batch will complete it.
+    // Paladin and Ranger stay at zero. Built across two alphabetical
+    // batches (A-P, P-W). This closes the Spells domain's level coverage:
+    // every PHB spell level (0-9) now has at least one built spell, and
+    // every level except 8th (missing only Trap the Soul) is fully
+    // built.
     [Fact]
-    public void NinthLevelSpellIdsBuiltSoFar()
+    public void NinthLevelContainsExactlyThePhbsSixteenSpells()
     {
         Assert.Equal(
             [
@@ -1016,12 +1017,43 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.mass-heal",
                 "dnd5e2014.spell.meteor-swarm",
                 "dnd5e2014.spell.power-word-heal",
-                "dnd5e2014.spell.power-word-kill"
+                "dnd5e2014.spell.power-word-kill",
+                "dnd5e2014.spell.prismatic-wall",
+                "dnd5e2014.spell.shapechange",
+                "dnd5e2014.spell.storm-of-vengeance",
+                "dnd5e2014.spell.time-stop",
+                "dnd5e2014.spell.true-polymorph",
+                "dnd5e2014.spell.true-resurrection",
+                "dnd5e2014.spell.weird",
+                "dnd5e2014.spell.wish"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 9)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Read off the eight class spell lists on pp.207-210, whose 9th-level
+    // sections hold 4/4/4/5/5/12/0/0 entries; their union is 16.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 4)]
+    [InlineData("dnd5e2014.class.cleric", 4)]
+    [InlineData("dnd5e2014.class.druid", 4)]
+    [InlineData("dnd5e2014.class.paladin", 0)]
+    [InlineData("dnd5e2014.class.ranger", 0)]
+    [InlineData("dnd5e2014.class.sorcerer", 5)]
+    [InlineData("dnd5e2014.class.warlock", 5)]
+    [InlineData("dnd5e2014.class.wizard", 12)]
+    public void ClassNinthLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 9
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
     }
 
     [Theory]
@@ -1033,6 +1065,14 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.meteor-swarm", "Meteor Swarm", "evocation", 258)]
     [InlineData("dnd5e2014.spell.power-word-heal", "Power Word Heal", "evocation", 266)]
     [InlineData("dnd5e2014.spell.power-word-kill", "Power Word Kill", "enchantment", 266)]
+    [InlineData("dnd5e2014.spell.prismatic-wall", "Prismatic Wall", "abjuration", 267)]
+    [InlineData("dnd5e2014.spell.shapechange", "Shapechange", "transmutation", 274)]
+    [InlineData("dnd5e2014.spell.storm-of-vengeance", "Storm of Vengeance", "conjuration", 279)]
+    [InlineData("dnd5e2014.spell.time-stop", "Time Stop", "transmutation", 283)]
+    [InlineData("dnd5e2014.spell.true-polymorph", "True Polymorph", "transmutation", 283)]
+    [InlineData("dnd5e2014.spell.true-resurrection", "True Resurrection", "necromancy", 284)]
+    [InlineData("dnd5e2014.spell.weird", "Weird", "illusion", 288)]
+    [InlineData("dnd5e2014.spell.wish", "Wish", "conjuration", 288)]
     public void NinthLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -1047,6 +1087,18 @@ public sealed class SpellDataFileTests
             $"dnd5e2014.magic-school.{expectedSchool}",
             spell.SchoolId.Value);
         Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
+    }
+
+    // Shapechange's material is costed (1,500 gp jade circlet) but not
+    // stated as consumed - you wear it, you don't use it up.
+    [Fact]
+    public void ShapechangeIsCostedButNotConsumed()
+    {
+        SpellComponents components =
+            Get("dnd5e2014.spell.shapechange").Components;
+
+        Assert.Equal(1500, components.MaterialCostGoldPieces);
+        Assert.False(components.MaterialIsConsumed);
     }
 
     // Astral Projection's material bundle is costed per creature affected
@@ -1081,10 +1133,11 @@ public sealed class SpellDataFileTests
     // shape as Dream's Special. SpellRangeKind gained a Sight member and
     // SpellRange.Sight() factory, the same "self/touch/distance" enum
     // extended by one case that Unlimited and Special already did.
-    // Tsunami joins it at 8th level, confirming Sight is a real recurring
-    // PHB range category rather than a one-off.
+    // Tsunami joins it at 8th level and Storm of Vengeance at 9th,
+    // confirming Sight is a real recurring PHB range category rather
+    // than a one-off.
     [Fact]
-    public void SightRangesAreMirageArcaneAndTsunami()
+    public void SightRangesAreMirageArcaneStormOfVengeanceAndTsunami()
     {
         SpellDefinition[] sight = LoadCanonical()
             .Where(spell => spell.Range.Kind == SpellRangeKind.Sight)
@@ -1092,7 +1145,11 @@ public sealed class SpellDataFileTests
             .ToArray();
 
         Assert.Equal(
-            ["dnd5e2014.spell.mirage-arcane", "dnd5e2014.spell.tsunami"],
+            [
+                "dnd5e2014.spell.mirage-arcane",
+                "dnd5e2014.spell.storm-of-vengeance",
+                "dnd5e2014.spell.tsunami"
+            ],
             sight.Select(spell => spell.Id.Value));
 
         Assert.All(
@@ -1720,10 +1777,12 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.revivify",
                 "dnd5e2014.spell.scrying",
                 "dnd5e2014.spell.sequester",
+                "dnd5e2014.spell.shapechange",
                 "dnd5e2014.spell.simulacrum",
                 "dnd5e2014.spell.stoneskin",
                 "dnd5e2014.spell.symbol",
                 "dnd5e2014.spell.teleportation-circle",
+                "dnd5e2014.spell.true-resurrection",
                 "dnd5e2014.spell.true-seeing",
                 "dnd5e2014.spell.warding-bond"
             ],
@@ -2097,9 +2156,10 @@ public sealed class SpellDataFileTests
     // Reincarnate (both 1) closed out fifth level's Hour-unit spells.
     // Resurrection (1 hour) and Simulacrum (12 hours, a fourth amount)
     // join at seventh; Antipathy/Sympathy and Clone (both 1 hour) join at
-    // eighth; Astral Projection (1 hour) joins at ninth.
+    // eighth; Astral Projection and True Resurrection (both 1 hour) join
+    // at ninth.
     [Fact]
-    public void HourLongCastingTimesSpanTwelveSpellsAndFourAmounts()
+    public void HourLongCastingTimesSpanThirteenSpellsAndFourAmounts()
     {
         SpellDefinition[] hourLong = LoadCanonical()
             .Where(spell => spell.CastingTime.Unit
@@ -2120,7 +2180,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.raise-dead",
                 "dnd5e2014.spell.reincarnate",
                 "dnd5e2014.spell.resurrection",
-                "dnd5e2014.spell.simulacrum"
+                "dnd5e2014.spell.simulacrum",
+                "dnd5e2014.spell.true-resurrection"
             ],
             hourLong.Select(spell => spell.Id.Value));
 
