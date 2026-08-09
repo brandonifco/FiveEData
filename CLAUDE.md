@@ -39,16 +39,27 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2398 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2416 tests**.
 
 **In progress: the Spells domain.** `Rules/Spells/` holds `MagicSchools`
 (the 8 schools, a closed official set, cited to the p.203 sidebar) and
 `SpellDefinition`. **All 27 cantrips, all 62 first-level, all 59
 second-level, all 50 third-level, all 35 fourth-level, all 42
 fifth-level, all 32 sixth-level, and all 20 seventh-level spells are
-built, plus the first 9 of the PHB's 19 eighth-level spells (batch A–F)
-— 336 in total. Only the G–T batch of level 8 remains; level 9 is not
-started.**
+built, plus 18 of the PHB's 19 eighth-level spells (batches A–F and
+G–T) — 345 in total. Level 9 is not started.**
+
+**One eighth-level spell, Trap the Soul, is a genuine, documented gap —
+not a to-do.** It's on the Wizard class list (p.212) but
+`~/Downloads/Player's Handbook.pdf` has no description page for it
+anywhere in its correct alphabetical position: the text runs
+continuously from Transport via Plants into Tree Stride with no gap,
+verified against high-resolution renders of every page from p.279
+through p.285 (the entire T range) plus a full-text search of the whole
+book. Per the citation rules below, a header block is never invented
+without a page to read it from. Revisit only if a different PHB
+scan/printing becomes available — don't fill this in from memory, and
+don't round level 8's count up to 19 without re-verifying the source.
 
 Per p.202 ("Casting a Spell"), a spell entry's header block is *name, level,
 school, casting time, range, components, duration* — that's what
@@ -320,6 +331,18 @@ Each batch drove schema additions from real content, never anticipation:
   already established. Demiplane is Somatic-only — no verbal, no
   material — the first non-cantrip spell on that combination (True
   Strike is the only cantrip on it).
+- **8th G–T:** nine of the ten remaining spells, closing the level at 18
+  of 19 — **Trap the Soul is the one gap; see the "Not started" note
+  above, this is not an oversight to silently fix.** Telepathy's "Range:
+  Unlimited" confirms Sending's range category is real and recurring,
+  not a one-off, the same confirmation pattern as Mirage Arcane and
+  Tsunami both landing on "Range: Sight" (Tsunami is the second, closing
+  the loop this file predicted when Mirage Arcane was built at 7th).
+  Tsunami's "Concentration, up to 6 rounds" is also the first Round-unit
+  duration whose amount isn't 1 (Shield and True Strike are both 1) — the
+  field already allowed it, the same non-event as Find Steed's 10-minute
+  casting time. Holy Aura's material is costed (1,000 gp) but not stated
+  as consumed.
 
 **Material cost and consumption are independent fields, and all four
 combinations now exist** — Chromatic Orb costed-not-consumed, Identify the
