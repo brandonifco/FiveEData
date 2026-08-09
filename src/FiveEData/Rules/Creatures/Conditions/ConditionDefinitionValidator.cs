@@ -19,6 +19,12 @@ internal static class ConditionDefinitionValidator
             errors.Add("Condition name must not be empty.");
         }
 
+        if (definition.WeightMultiplier is <= 0)
+        {
+            errors.Add(
+                "Condition weight multiplier must be greater than zero.");
+        }
+
         if (definition.Sources.Count == 0)
         {
             errors.Add(
