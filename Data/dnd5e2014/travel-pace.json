@@ -1,0 +1,50 @@
+[
+  {
+    "id": "dnd5e2014.travel-pace.fast",
+    "name": "Fast",
+    "feetPerMinute": 400,
+    "milesPerHour": 4,
+    "milesPerDay": 30,
+    "passiveWisdomPerceptionPenalty": 5,
+    "allowsStealth": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 182,
+        "section": "Chapter 8: Adventuring — Movement — Travel Pace"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.travel-pace.normal",
+    "name": "Normal",
+    "feetPerMinute": 300,
+    "milesPerHour": 3,
+    "milesPerDay": 24,
+    "passiveWisdomPerceptionPenalty": null,
+    "allowsStealth": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 182,
+        "section": "Chapter 8: Adventuring — Movement — Travel Pace"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.travel-pace.slow",
+    "name": "Slow",
+    "feetPerMinute": 200,
+    "milesPerHour": 2,
+    "milesPerDay": 18,
+    "passiveWisdomPerceptionPenalty": null,
+    "allowsStealth": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 182,
+        "section": "Chapter 8: Adventuring — Movement — Travel Pace"
+      }
+    ]
+  }
+]

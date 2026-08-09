@@ -1,6 +1,14 @@
+using FiveEData.Rules.Adventuring.DowntimeActivities;
+using FiveEData.Rules.Adventuring.DowntimeActivities.Serialization;
+using FiveEData.Rules.Adventuring.Resting;
+using FiveEData.Rules.Adventuring.Resting.Serialization;
+using FiveEData.Rules.Adventuring.TravelPace;
+using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.CombatActions.Serialization;
+using FiveEData.Rules.Combat.Cover;
+using FiveEData.Rules.Combat.Cover.Serialization;
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Spells.Serialization;
@@ -240,6 +248,18 @@ internal static class Dnd5e2014RulesetLoader
     private const string CombatActionsResource =
         "FiveEData.Data.dnd5e2014.combat-actions.json";
 
+    private const string CoverResource =
+        "FiveEData.Data.dnd5e2014.cover.json";
+
+    private const string TravelPacesResource =
+        "FiveEData.Data.dnd5e2014.travel-pace.json";
+
+    private const string RestTypesResource =
+        "FiveEData.Data.dnd5e2014.rest-types.json";
+
+    private const string DowntimeActivitiesResource =
+        "FiveEData.Data.dnd5e2014.downtime-activities.json";
+
     private const string BackgroundRuleResource =
         "FiveEData.Data.dnd5e2014.rules.background-rule.json";
 
@@ -456,6 +476,23 @@ internal static class Dnd5e2014RulesetLoader
             CombatActionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(CombatActionsResource));
 
+        IReadOnlyList<CoverDefinition> cover =
+            CoverDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(CoverResource));
+
+        IReadOnlyList<TravelPaceDefinition> travelPaces =
+            TravelPaceDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(TravelPacesResource));
+
+        IReadOnlyList<RestTypeDefinition> restTypes =
+            RestTypeDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(RestTypesResource));
+
+        IReadOnlyList<DowntimeActivityDefinition> downtimeActivities =
+            DowntimeActivityDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    DowntimeActivitiesResource));
+
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons,
             ammunition: ammunition,
@@ -516,7 +553,11 @@ internal static class Dnd5e2014RulesetLoader
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds,
-            combatActions: combatActions);
+            combatActions: combatActions,
+            cover: cover,
+            travelPaces: travelPaces,
+            restTypes: restTypes,
+            downtimeActivities: downtimeActivities);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -576,6 +617,11 @@ internal static class Dnd5e2014RulesetLoader
                 new ExtraAttackProgressionCatalog(extraAttackProgressions),
             backgrounds: new BackgroundCatalog(backgrounds),
             combatActions: new CombatActionCatalog(combatActions),
+            cover: new CoverCatalog(cover),
+            travelPaces: new TravelPaceCatalog(travelPaces),
+            restTypes: new RestTypeCatalog(restTypes),
+            downtimeActivities:
+                new DowntimeActivityCatalog(downtimeActivities),
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

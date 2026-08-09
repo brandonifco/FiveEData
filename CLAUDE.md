@@ -40,11 +40,14 @@ Built and complete:
   spells of every level 1 through 9 are built — 361 spells, the complete
   real set.** See "Spells: the Trap the Soul appendix error" below for
   why 361 is the correct final count, not 362.
-- Combat/adventuring rules — **just started, one slice of many.**
-  `CombatActions` (the 10 named actions from PHB Chapter 9's "Actions in
-  Combat" section, a closed official set) is built; see "Combat/adventuring
-  rules: scoping and the Actions in Combat catalog" for the full scope
-  inventory and what's still unbuilt.
+- Combat/adventuring rules — **all five scoped catalogs are built.**
+  `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
+  (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
+  activities). See "Combat/adventuring rules: scoping and the Actions in
+  Combat catalog" and "Combat/adventuring rules: Cover, Travel Pace,
+  Resting, and Downtime Activities" — everything else in PHB Chapters 8–9
+  stays unbuilt by design (DM-adjudicated prose or linear-in-level
+  formulas), not a gap to fill later.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -52,7 +55,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2532 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2675 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -468,9 +471,11 @@ are both 1 round, but Shield's is flat while True Strike's is concentration
 and "up to". Pinned by
 `ShieldsRoundDurationIsFlatWhileTrueStrikesIsUpTo`.
 
-Not started: most of combat/adventuring rule prose — see "Combat/adventuring
-rules: scoping and the Actions in Combat catalog" for the full inventory and
-which slice (Actions in Combat) is actually built. **Magic items are explicitly
+Not started: everything in PHB Chapters 8–9 outside the five scoped
+catalogs (Actions in Combat, Cover, Travel Pace, Resting, Downtime
+Activities) — by design, not a gap. See "Combat/adventuring rules:
+scoping and the Actions in Combat catalog" for the full inventory.
+**Magic items are explicitly
 out of scope**: they're 2014 DMG content (Chapter 7: Treasure), not PHB —
 confirmed again 2026-08-09 when asked to build them, since this project's
 scope is the PHB specifically. Revisit only if the project's scope statement
@@ -1111,18 +1116,18 @@ Five were identified as candidates, ranked by cleanliness:
 | Candidate | Entries | Status |
 | --- | --- | --- |
 | Actions in Combat | Attack, Cast a Spell, Dash, Disengage, Dodge, Help, Hide, Ready, Search, Use an Object (10) | **Built** |
-| Cover | Half, Three-Quarters, Total (3) | Not built |
-| Travel Pace | Fast, Normal, Slow (3) | Not built |
-| Resting | Short Rest, Long Rest (2) | Not built |
-| Between Adventures | Crafting, Practicing a Profession, Recuperating, Research, Training (~5) | Not built |
+| Cover | Half, Three-Quarters, Total (3) | **Built** |
+| Travel Pace | Fast, Normal, Slow (3) | **Built** |
+| Resting | Short Rest, Long Rest (2) | **Built** |
+| Between Adventures (Downtime Activities) | Crafting, Practicing a Profession, Recuperating, Researching, Training (5) | **Built** |
 
+**All five candidates are now built — this table is closed, not a queue.**
 Everything else in Chapters 8–9 stays fully unbuilt — no catalog, no bare
-`RuleId` citation index yet either, since nothing in the codebase currently
-needs to reference it. **Re-scope before picking up the next candidate**
-rather than assuming this table is still accurate; a candidate might turn
-out to have a real number to quantize (Cover's AC/Dex-save bonuses) or might
-decline the same way Pact Boon and Indomitable Might did once the actual
-page is read closely.
+`RuleId` citation index either, since nothing in the codebase currently
+needs to reference it. If a sixth candidate ever gets proposed, re-scope
+from the actual page images rather than trusting this table blindly; a
+past scoping pass already found real numbers in places a first skim would
+have called DM-adjudicated prose (Cover's AC/Dex-save bonuses).
 
 **`CombatActions` is a plain closed-vocabulary catalog** — `Id`/`Name`/
 `Sources` only, no mechanical payload, the exact `MagicSchoolDefinition`
@@ -1153,6 +1158,76 @@ Ten pre-existing tests across `CatalogIntegrityTests.cs` and sibling
 construct `RulesetDefinitionSet` directly with named arguments and needed
 `combatActions: []` added — expect the same fan-out for the next new
 top-level domain.
+
+## Combat/adventuring rules: Cover, Travel Pace, Resting, and Downtime Activities
+
+The other four catalogs from the scoping table above, built in one pass
+immediately after Actions in Combat. **Unlike Actions in Combat, none of
+these four share Magic Schools' bare `Id`/`Name`/`Sources` shape** — every
+one carries real typed fields, because every one of these sections actually
+prints numbers, not just named prose blocks.
+
+**Two live under a new `Rules/Adventuring/` top-level domain, not
+`Rules/Combat/`** — `TravelPace`, `Resting`, and `DowntimeActivities` are
+Chapter 8 (Adventuring) content; `Cover` joins `CombatActions` under
+`Rules/Combat/` since it's Chapter 9. Splitting by PHB chapter rather than
+dumping everything under one `Rules/Combat/` mirrors how `Rules/Spells` and
+`Rules/Classes` already stay separate top-level domains despite spells
+being cast by classes.
+
+**`CoverDefinition`** (p.196, 3 entries) has two independent nullable bonus
+fields (`ArmorClassBonus`, `DexteritySavingThrowBonus`) plus a
+`PreventsBeingTargeted` bool — Half and Three-Quarters populate the
+bonuses (+2/+2 and +5/+5) and leave the bool false; Total cover flips the
+bool and leaves both bonuses null. The two bonus fields are always numerically
+identical for a given degree in this printing, but they're still modeled
+as two fields rather than one shared value — the PHB states them as two
+separate mechanical benefits (AC *and* Dexterity saves) that happen to
+share a number here, not one fact printed once.
+
+**`TravelPaceDefinition`** (p.182, 3 entries) is the first domain with three
+parallel distance fields (`FeetPerMinute`/`MilesPerHour`/`MilesPerDay`) plus
+an independent `PassiveWisdomPerceptionPenalty` (int?, only Fast: 5) and
+`AllowsStealth` (bool, only Slow) — two unrelated effects on the same table
+column ("Effect"), so they get two unrelated fields rather than one shared
+"effect" enum.
+
+**`RestTypeDefinition`** (p.186, 2 entries) — `MinimumDurationHours` (1 for
+Short, 8 for Long), `CooldownHours` (int?, only Long: 24 — "can't benefit
+from more than one long rest in a 24-hour period"), and
+`MinimumHitPointsToBenefit` (int?, only Long: 1). **The Hit Dice regained on
+a long rest ("half of the character's total number of them") is declined,
+not quantized** — it's a formula relative to a value this project already
+models elsewhere (total Hit Dice, driven by class level), the same
+linear-in-level-formula line Preserve Life and Radiance of the Dawn already
+draw, even though the multiplier itself (one-half) is a flat constant.
+
+**`DowntimeActivityDefinition`** (p.187, 5 entries) uses the Channel
+Divinity Options shape — several independent nullable scalars
+(`RequiredDays`, `CostPerDayGoldPieces`, `SavingThrowAbilityId`,
+`SavingThrowDC`, `MarketValueProgressPerDayGoldPieces`), validated so a
+saving-throw ability and its DC are both present or both absent together.
+Crafting only populates `MarketValueProgressPerDayGoldPieces` (5) — its
+"raw materials cost half the market value" is declined the same way Long
+Rest's Hit Dice fraction is, a ratio applied to a value the player chooses
+per-attempt, not a flat fact. Recuperating populates `RequiredDays` (3) and
+the saving throw pair (Constitution, DC 15). Researching and Training both
+populate `CostPerDayGoldPieces` (1); only Training also has a fixed
+`RequiredDays` (250) — Researching's duration is explicitly DM-determined,
+so it stays null rather than guessing a placeholder. **Practicing a
+Profession declines every field** — its outcome is which Lifestyle tier you
+qualify for (modest/comfortable/wealthy, gated on org membership or
+Performance proficiency), not a number — and still gets a full catalog
+entry, the same "declined but still enumerated" precedent Pact Boon set.
+
+All four reuse the exact wiring fan-out `CombatActions` established
+(`RulesetDefinitionSet` → `Dnd5e2014RulesetLoader` → `Dnd5e2014Ruleset` →
+`CatalogIntegrityValidator` → `.csproj`), done together in one pass since
+by this point the fan-out shape was already known. `DowntimeActivities` is
+the only one of the four with a cross-domain reference
+(`SavingThrowAbilityId` against the ability catalog), validated in
+`CatalogIntegrityValidator` the same way Battle Master maneuvers already
+validate their own saving-throw ability.
 
 ## Test conventions
 

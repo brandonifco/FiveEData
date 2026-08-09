@@ -1,0 +1,82 @@
+[
+  {
+    "id": "dnd5e2014.downtime-activity.crafting",
+    "name": "Crafting",
+    "requiredDays": null,
+    "costPerDayGoldPieces": null,
+    "savingThrowAbilityId": null,
+    "savingThrowDC": null,
+    "marketValueProgressPerDayGoldPieces": 5,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 187,
+        "section": "Chapter 8: Adventuring — Between Adventures — Downtime Activities — Crafting"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.downtime-activity.practicing-a-profession",
+    "name": "Practicing a Profession",
+    "requiredDays": null,
+    "costPerDayGoldPieces": null,
+    "savingThrowAbilityId": null,
+    "savingThrowDC": null,
+    "marketValueProgressPerDayGoldPieces": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 187,
+        "section": "Chapter 8: Adventuring — Between Adventures — Downtime Activities — Practicing a Profession"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.downtime-activity.recuperating",
+    "name": "Recuperating",
+    "requiredDays": 3,
+    "costPerDayGoldPieces": null,
+    "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+    "savingThrowDC": 15,
+    "marketValueProgressPerDayGoldPieces": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 187,
+        "section": "Chapter 8: Adventuring — Between Adventures — Downtime Activities — Recuperating"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.downtime-activity.researching",
+    "name": "Researching",
+    "requiredDays": null,
+    "costPerDayGoldPieces": 1,
+    "savingThrowAbilityId": null,
+    "savingThrowDC": null,
+    "marketValueProgressPerDayGoldPieces": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 187,
+        "section": "Chapter 8: Adventuring — Between Adventures — Downtime Activities — Researching"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.downtime-activity.training",
+    "name": "Training",
+    "requiredDays": 250,
+    "costPerDayGoldPieces": 1,
+    "savingThrowAbilityId": null,
+    "savingThrowDC": null,
+    "marketValueProgressPerDayGoldPieces": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 187,
+        "section": "Chapter 8: Adventuring — Between Adventures — Downtime Activities — Training"
+      }
+    ]
+  }
+]

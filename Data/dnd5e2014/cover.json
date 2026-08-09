@@ -1,0 +1,44 @@
+[
+  {
+    "id": "dnd5e2014.cover.half",
+    "name": "Half Cover",
+    "armorClassBonus": 2,
+    "dexteritySavingThrowBonus": 2,
+    "preventsBeingTargeted": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Cover — Half Cover"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.cover.three-quarters",
+    "name": "Three-Quarters Cover",
+    "armorClassBonus": 5,
+    "dexteritySavingThrowBonus": 5,
+    "preventsBeingTargeted": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Cover — Three-Quarters Cover"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.cover.total",
+    "name": "Total Cover",
+    "armorClassBonus": null,
+    "dexteritySavingThrowBonus": null,
+    "preventsBeingTargeted": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 196,
+        "section": "Chapter 9: Combat — Cover — Total Cover"
+      }
+    ]
+  }
+]

@@ -247,6 +247,10 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             backgrounds: [],
             magicSchools: [],
             spells: [],
-            combatActions: []);
+            combatActions: [],
+            cover: [],
+            travelPaces: [],
+            restTypes: [],
+            downtimeActivities: []);
     }
 }
