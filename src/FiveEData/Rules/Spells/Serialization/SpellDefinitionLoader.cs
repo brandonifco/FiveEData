@@ -138,6 +138,7 @@ internal static class SpellDefinitionLoader
             SpellRangeKind.Touch => SpellRange.Touch(),
             SpellRangeKind.Unlimited => SpellRange.Unlimited(),
             SpellRangeKind.Special => SpellRange.Special(),
+            SpellRangeKind.Sight => SpellRange.Sight(),
             _ => SpellRange.Distance(
                 data.DistanceFeet
                 ?? throw Missing("range distance")),

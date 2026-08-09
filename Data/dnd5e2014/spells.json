@@ -2661,6 +2661,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.conjure-celestial",
+    "name": "Conjure Celestial",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 90,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 225,
+        "section": "Chapter 11: Spells — Spell Descriptions — Conjure Celestial"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.conjure-elemental",
     "name": "Conjure Elemental",
     "level": 5,
@@ -3752,6 +3796,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.delayed-blast-fireball",
+    "name": "Delayed Blast Fireball",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a tiny ball of bat guano and sulfur",
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 230,
+        "section": "Chapter 11: Spells — Spell Descriptions — Delayed Blast Fireball"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.destructive-wave",
     "name": "Destructive Wave",
     "level": 5,
@@ -4349,6 +4438,50 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.divine-word",
+    "name": "Divine Word",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "BonusAction"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 30,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 234,
+        "section": "Chapter 11: Spells — Spell Descriptions — Divine Word"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.dominate-beast",
     "name": "Dominate Beast",
     "level": 4,
@@ -4883,6 +5016,54 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 238,
         "section": "Chapter 11: Spells — Spell Descriptions — Enthrall"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.etherealness",
+    "name": "Etherealness",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.transmutation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Self",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": true,
+      "amount": 8,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 238,
+        "section": "Chapter 11: Spells — Spell Descriptions — Etherealness"
       }
     ]
   },
@@ -5478,6 +5659,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.finger-of-death",
+    "name": "Finger of Death",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.necromancy",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.sorcerer",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 241,
+        "section": "Chapter 11: Spells — Spell Descriptions — Finger of Death"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.fire-bolt",
     "name": "Fire Bolt",
     "level": 0,
@@ -5563,6 +5790,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 242,
         "section": "Chapter 11: Spells — Spell Descriptions — Fire Shield"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.fire-storm",
+    "name": "Fire Storm",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 150,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": true,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": null,
+      "unit": null
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.cleric",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.sorcerer"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 242,
+        "section": "Chapter 11: Spells — Spell Descriptions — Fire Storm"
       }
     ]
   },
@@ -5923,6 +6196,52 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 243,
         "section": "Chapter 11: Spells — Spell Descriptions — Forbiddance"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.forcecage",
+    "name": "Forcecage",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 100,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "ruby dust worth 1,500 gp",
+      "materialCostGoldPieces": 1500,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 1,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.warlock",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 243,
+        "section": "Chapter 11: Spells — Spell Descriptions — Forcecage"
       }
     ]
   },
@@ -9168,6 +9487,52 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.mirage-arcane",
+    "name": "Mirage Arcane",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.illusion",
+    "castingTime": {
+      "amount": 10,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Sight",
+      "distanceFeet": null,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": false,
+      "materialDescription": null,
+      "materialCostGoldPieces": null,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 10,
+      "unit": "Day"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.druid",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 260,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mirage Arcane"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.mirror-image",
     "name": "Mirror Image",
     "level": 2,
@@ -9438,6 +9803,51 @@
     ]
   },
   {
+    "id": "dnd5e2014.spell.mordenkainens-magnificent-mansion",
+    "name": "Mordenkainen's Magnificent Mansion",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.conjuration",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 300,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a miniature portal carved from ivory, a small piece of polished marble, and a tiny silver spoon, each item worth at least 5 gp",
+      "materialCostGoldPieces": 5,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": false,
+      "isUpTo": false,
+      "amount": 24,
+      "unit": "Hour"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 261,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mordenkainen's Magnificent Mansion"
+      }
+    ]
+  },
+  {
     "id": "dnd5e2014.spell.mordenkainens-private-sanctum",
     "name": "Mordenkainen's Private Sanctum",
     "level": 4,
@@ -9478,6 +9888,51 @@
         "documentId": "dnd5e2014.source.phb-first-printing",
         "page": 262,
         "section": "Chapter 11: Spells — Spell Descriptions — Mordenkainen's Private Sanctum"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.spell.mordenkainens-sword",
+    "name": "Mordenkainen's Sword",
+    "level": 7,
+    "schoolId": "dnd5e2014.magic-school.evocation",
+    "castingTime": {
+      "amount": 1,
+      "unit": "Action"
+    },
+    "range": {
+      "kind": "Distance",
+      "distanceFeet": 60,
+      "areaShape": null,
+      "areaSizeFeet": null
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": true,
+      "materialDescription": "a miniature platinum sword with a grip and pommel of copper and zinc, worth 250 gp",
+      "materialCostGoldPieces": 250,
+      "materialIsConsumed": false
+    },
+    "duration": {
+      "isInstantaneous": false,
+      "isUntilDispelled": false,
+      "isSpecial": false,
+      "requiresConcentration": true,
+      "isUpTo": true,
+      "amount": 1,
+      "unit": "Minute"
+    },
+    "isRitual": false,
+    "availableToClassIds": [
+      "dnd5e2014.class.bard",
+      "dnd5e2014.class.wizard"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 262,
+        "section": "Chapter 11: Spells — Spell Descriptions — Mordenkainen's Sword"
       }
     ]
   },
