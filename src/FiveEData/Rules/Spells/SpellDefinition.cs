@@ -16,6 +16,7 @@ public sealed class SpellDefinition
         SpellComponents components,
         SpellDuration duration,
         bool isRitual,
+        SpellDamageEffect? damageEffect,
         IEnumerable<ClassId> availableToClassIds,
         IEnumerable<SourceReference> sources)
     {
@@ -32,6 +33,7 @@ public sealed class SpellDefinition
         Components = components;
         Duration = duration;
         IsRitual = isRitual;
+        DamageEffect = damageEffect;
         AvailableToClassIds =
             Array.AsReadOnly(availableToClassIds.ToArray());
         Sources = Array.AsReadOnly(sources.ToArray());
@@ -55,6 +57,15 @@ public sealed class SpellDefinition
     /// casting time. No cantrip is a ritual.
     /// </summary>
     public bool IsRitual { get; }
+
+    /// <summary>
+    /// The spell's own damage-resolution mechanic, when it deals damage
+    /// directly (an attack roll or a saving throw, plus the damage dice).
+    /// Null for a spell with no damage effect of its own — most utility and
+    /// buff cantrips.
+    /// </summary>
+    public SpellDamageEffect? DamageEffect { get; }
+
     public IReadOnlyList<ClassId> AvailableToClassIds { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 

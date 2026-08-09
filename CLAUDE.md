@@ -39,7 +39,13 @@ Built and complete:
   the p.203 sidebar) and `SpellDefinition`. **All 27 cantrips and all
   spells of every level 1 through 9 are built — 361 spells, the complete
   real set.** See "Spells: the Trap the Soul appendix error" below for
-  why 361 is the correct final count, not 362.
+  why 361 is the correct final count, not 362. **All 27 cantrips now also
+  carry real damage-effect data** (attack roll or saving throw, damage
+  type, and the character-level damage-die progression) where the PHB
+  actually gives them one — 11 of the 27; the other 16 are utility/buff
+  cantrips with no `SpellDamageEffect`. See "Game-backend quantization:
+  Spell cantrip effects" below. Levels 1–9 don't have effect data yet —
+  cantrips proved the shape first, same as the header-block build did.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -75,9 +81,12 @@ as a real domain; only the *effect* stayed unmodeled). The reversal is
 narrower than it sounds: Conditions used the *same* "many typed fields on
 one Definition" shape every other domain already uses, not a new DSL —
 see "Game-backend quantization: Conditions" for why that shape held up
-even at 26 fields.
+even at 26 fields. Cantrip damage effects (the first slice of gap 1)
+followed the same discipline again — see "Game-backend quantization:
+Spell cantrip effects". Non-cantrip spell effect data (levels 1–9) is the
+remaining piece of gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2694 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2736 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1324,6 +1333,88 @@ argument usually fails to compile. Here, ~20 of the 26 new parameters are
 plain `bool`, so a transposition would silently compile and silently
 corrupt data. Named arguments are the correct trade against this
 codebase's normal terseness, not a style inconsistency to "fix" later.
+
+## Game-backend quantization: Spell cantrip effects
+
+The first slice of gap 1 (Spells have zero effect data). Cantrips were
+chosen to prove the shape for the same reason they proved the header-block
+shape originally: a complete, closed, small set. `SpellDefinition` gained
+one new nullable field, `DamageEffect` (type `SpellDamageEffect`, under
+`Rules/Spells/`), populated on the 11 of 27 cantrips that actually deal
+damage on their own. The other 16 — utility and buff cantrips — carry
+`DamageEffect: null`; existing header-block data and citations didn't
+change.
+
+**`SpellDamageEffect` follows the Battle Master maneuver / Divine Strike
+precedent, not the Conditions precedent.** Unlike Conditions' "several
+independent facts that legitimately co-occur," a spell's damage-resolution
+mechanic is genuinely alternative — PHB p.202 ("Attack Rolls and Saving
+Throws") splits every damaging spell into "make an attack roll" *or*
+"target makes a saving throw," never both. So `AttackRollType`
+(`SpellAttackRollType?`: `Melee`/`Ranged`) and `SavingThrowAbilityId`
+(`AbilityId?`) are mutually exclusive, validated as "exactly one populated"
+in the constructor itself (matching `SpellComponents`/`SpellDuration`'s
+self-validating style, not a `SpellDefinitionValidator` method — the
+closer precedent here is `DivineStrikeProgressionDetail`, an embedded
+value object with a public constructor that validates its own invariants,
+not a top-level `Definition` with an internal one).
+
+**The character-level damage-tier list (`DamageByCharacterLevel`, a new
+`SpellDamageTierGrant` record: `CharacterLevel` + `DiceExpression`) reuses
+`DivineStrikeDamageGrant`'s exact shape but as its own Spells-domain type**
+— each domain owns its progression grant type even when the shape is
+identical, the same call `CantripsKnownProgressionDetail`/
+`SpellsKnownProgressionDetail` already made as two separate types. Every
+PHB damage cantrip states its own breakpoints explicitly in its
+description text ("increases by 1d6 when you reach 5th level (2d6), 11th
+level (3d6), and 17th level (4d6)"), so the table is expanded from the
+spell's own prose, not derived from the general p.201 "Cantrips" rule.
+The constructor enforces: at least one tier, the first at character level
+1, strictly ascending character levels, a constant die size across every
+tier, and a strictly increasing die count — the same "expand formulas into
+tables" discipline `DivineStrikeDamageGrant` and Circle Forms already
+established.
+
+**Eldritch Blast is the one damage cantrip whose damage doesn't scale by
+die count at all — it stays flat 1d10 and gains extra beams instead** (2
+at 5th, 3 at 11th, 4 at 17th, each a separate attack roll). A single-tier
+`DamageByCharacterLevel` (just character level 1) represents this
+correctly with no schema change — the ascending-tier validation is
+trivially satisfied by one entry. **Beam count itself is declined, not
+modeled**: it's a targeting-multiplicity fact, not one of the three the
+initiative's audit named (damage dice, save DC/ability, condition
+applied), and no other PHB cantrip shares the shape, so it stays in the
+citation rather than earning a bespoke field for one spell.
+
+**Every per-spell secondary rider stays in the citation, unquantized** —
+Chill Touch's no-healing clause, its bonus disadvantage against undead,
+Shocking Grasp's advantage-vs-metal-armor and no-reactions clauses, Ray of
+Frost's speed reduction, Sacred Flame's cover-ignoring clause, Thorn
+Whip's pull, Vicious Mockery's disadvantage-on-next-attack. This is the
+same call already made for Battle Master maneuvers' secondary effects and
+Metamagic's 8 spell effects: individually heterogeneous, no shared shape,
+so modeling them means a bespoke type per spell or the DSL this project
+rejects. The three facts this pass does capture (damage type, attack-roll-
+or-save, damage dice) are exactly the ones the initiative's audit named as
+the real gap; everything else is scope creep against that audit.
+
+**Two cantrips carry a saving throw that isn't a damage effect, and both
+are declined for the same "not this pass's scope" reason.** Light's
+conditional Dexterity save ("if you target an object held or worn by a
+hostile creature") only triggers on a specific targeting choice, the same
+range/context-conditional shape Prone's attack-roll text already declined
+for Conditions — no `SpellDamageEffect` fits a save with no damage behind
+it anyway. Minor Illusion's "Intelligence (Investigation) check against
+your spell save DC" is an ability check, not a saving throw, and belongs
+to a different, unbuilt mechanic (opposed checks against a DC) entirely.
+Guidance and Resistance's 1d4 bonus-to-a-roll buffs were also declined —
+real numbers, but buffs, not damage, and outside what the audit asked for.
+
+**All 27 cantrips were re-read from the rendered page images for this
+pass, not carried over from the original header-block build** — the same
+"verify every remembered fact against the actual text, repeatedly" rule
+the Quantized mechanics tail section already established, applied here to
+a second pass over already-built content rather than new content.
 
 ## Test conventions
 
