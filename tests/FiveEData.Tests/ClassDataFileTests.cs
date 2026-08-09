@@ -30,6 +30,7 @@ using FiveEData.Rules.Classes.SorceryPoints;
 using FiveEData.Rules.Classes.SpellsKnown;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
+using FiveEData.Rules.Classes.WizardSpellbook;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Equipment.Armor;
@@ -1057,6 +1058,33 @@ public sealed class ClassDataFileTests
                 .Select(grant => (grant.CharacterLevel, grant.CantripsKnown)));
 
         Assert.Null(wizard.SpellsKnownProgression);
+
+        WizardSpellbookDetail wizardSpellbook =
+            wizard.WizardSpellbook
+            ?? throw new InvalidOperationException(
+                "Expected Wizard to have a spellbook detail.");
+        Assert.Equal(6, wizardSpellbook.StartingSpellCount);
+        Assert.Equal(2, wizardSpellbook.SpellsAddedPerLevelAfterFirst);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.class.barbarian")]
+    [InlineData("dnd5e2014.class.bard")]
+    [InlineData("dnd5e2014.class.cleric")]
+    [InlineData("dnd5e2014.class.druid")]
+    [InlineData("dnd5e2014.class.fighter")]
+    [InlineData("dnd5e2014.class.monk")]
+    [InlineData("dnd5e2014.class.paladin")]
+    [InlineData("dnd5e2014.class.ranger")]
+    [InlineData("dnd5e2014.class.rogue")]
+    [InlineData("dnd5e2014.class.sorcerer")]
+    [InlineData("dnd5e2014.class.warlock")]
+    public void CanonicalFile_NonWizardClassDeclaresNoWizardSpellbook(
+        string classId)
+    {
+        ClassDefinition @class = GetClass(LoadClasses(), classId);
+
+        Assert.Null(@class.WizardSpellbook);
     }
 
     [Fact]

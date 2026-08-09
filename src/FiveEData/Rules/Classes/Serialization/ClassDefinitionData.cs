@@ -29,6 +29,7 @@ using FiveEData.Rules.Classes.SorceryPoints.Serialization;
 using FiveEData.Rules.Classes.SpellsKnown.Serialization;
 using FiveEData.Rules.Classes.UnarmoredMovement.Serialization;
 using FiveEData.Rules.Classes.WildShape.Serialization;
+using FiveEData.Rules.Classes.WizardSpellbook.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment.Armor;
@@ -238,6 +239,13 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public SpellsKnownProgressionDetailData? SpellsKnownProgression
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public WizardSpellbookDetailData? WizardSpellbook
     {
         get;
         init;

@@ -30,6 +30,7 @@ using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.SpellsKnown;
 using FiveEData.Rules.Classes.UnarmoredMovement;
 using FiveEData.Rules.Classes.WildShape;
+using FiveEData.Rules.Classes.WizardSpellbook;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
@@ -84,6 +85,7 @@ public sealed class ClassDefinition
             eldritchInvocationsKnownProgression,
         CantripsKnownProgressionDetail? cantripsKnownProgression,
         SpellsKnownProgressionDetail? spellsKnownProgression,
+        WizardSpellbookDetail? wizardSpellbook,
         BlindsenseDetail? blindsense,
         int? reliableTalentMinimumD20Roll,
         FeralSensesDetail? feralSenses,
@@ -152,6 +154,7 @@ public sealed class ClassDefinition
             eldritchInvocationsKnownProgression;
         CantripsKnownProgression = cantripsKnownProgression;
         SpellsKnownProgression = spellsKnownProgression;
+        WizardSpellbook = wizardSpellbook;
         Blindsense = blindsense;
         ReliableTalentMinimumD20Roll = reliableTalentMinimumD20Roll;
         FeralSenses = feralSenses;
@@ -246,6 +249,8 @@ public sealed class ClassDefinition
     public CantripsKnownProgressionDetail? CantripsKnownProgression { get; }
 
     public SpellsKnownProgressionDetail? SpellsKnownProgression { get; }
+
+    public WizardSpellbookDetail? WizardSpellbook { get; }
 
     public BlindsenseDetail? Blindsense { get; }
 

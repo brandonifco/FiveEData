@@ -31,9 +31,10 @@ Built and complete:
 - Quantized mechanics — the second pass (see that section). **Complete
   against its own enumerated list, not against a sweep** — a later sweep of
   all 305 `class-rule` entries found a real tail it never listed; see
-  "Quantized mechanics: the remaining tail". Cantrips Known and Spells Known
-  progressions (the follow-up flagged during the spell slot pass) are also
-  built; see "Quantized mechanics: cantrips known and spells known"
+  "Quantized mechanics: the remaining tail". Cantrips Known, Spells Known,
+  and the Wizard spellbook (the follow-ups flagged during the spell slot
+  pass) are also built; see "Quantized mechanics: cantrips known, spells
+  known, and the Wizard spellbook"
 - Spells — `MagicSchools` (the 8 schools, a closed official set, cited to
   the p.203 sidebar) and `SpellDefinition`. **All 27 cantrips and all
   spells of every level 1 through 9 are built — 361 spells, the complete
@@ -46,7 +47,7 @@ citation with no mechanical payload — the quantized pass covered leveled
 numbers and choice-point options, not every feature. Check the inventory
 under "Quantized mechanics" before assuming a feature exposes real numbers.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2482 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2496 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -463,9 +464,7 @@ and "up to". Pinned by
 `ShieldsRoundDurationIsFlatWhileTrueStrikesIsUpTo`.
 
 Not started: combat/adventuring rule prose beyond the existing citation
-index, and per-class spellbook-learned-spells counts (Wizard's 2/level +
-starting 6 — a different mechanic from Spells Known, see "Quantized
-mechanics: cantrips known and spells known"). **Magic items are explicitly
+index. **Magic items are explicitly
 out of scope**: they're 2014 DMG content (Chapter 7: Treasure), not PHB —
 confirmed again 2026-08-09 when asked to build them, since this project's
 scope is the PHB specifically. Revisit only if the project's scope statement
@@ -770,7 +769,8 @@ rather than trusting it.
   Martial Arts, Unarmored Movement, Sorcery Points, Wild Shape, Bardic
   Inspiration, Song of Rest, Magical Secrets, Channel Divinity uses, Destroy
   Undead, Mystic Arcanum, Font of Magic conversion, Aura of Protection, Aura
-  of Courage, Eldritch Invocations known, Cantrips Known, Spells Known.
+  of Courage, Eldritch Invocations known, Cantrips Known, Spells Known,
+  Wizard Spellbook.
 - **Embedded on `SubclassDefinition`:** Divine Strike, Circle Forms, Combat
   Superiority, Disciple of the Elements, Aura of Devotion, Aura of Warding,
   Additional Magical Secrets (the same `MagicalSecretsProgressionDetail` the
@@ -1019,7 +1019,7 @@ been **silently failing since the original Races commit** — Wood Elf's 35-foot
 speed override was never populated even though the field and the test both
 existed. "The test exists" and "the test passes" are different claims.
 
-## Quantized mechanics: cantrips known and spells known
+## Quantized mechanics: cantrips known, spells known, and the Wizard spellbook
 
 The deferred follow-up job flagged during the spell slot pass — closed, no
 sweep needed since the two fields only ever apply to the 8 casting classes.
@@ -1036,9 +1036,10 @@ Wizard — every class that gets cantrips at all, including three (Cleric,
 Druid, Wizard) that prepare their leveled spells and have no Spells Known
 count. Four classes have a Spells Known column: Bard, Ranger, Sorcerer,
 Warlock. Ranger has Spells Known but no Cantrips Known (rangers get no PHB
-cantrips). Wizard has Cantrips Known but no Spells Known (spells are learned
-into a spellbook, a count this project doesn't model — see "Not started"
-below). Paladin, the other half-caster, has neither: no cantrips, and it
+cantrips). Wizard has Cantrips Known but no Spells Known — spells are
+learned into a spellbook instead, a different mechanic with its own detail
+type (`WizardSpellbookDetail`, below). Paladin, the other half-caster, has
+neither: no cantrips, and it
 prepares from its full list like Cleric/Druid. Cantrips Known breakpoints are
 identical across all six classes' shape (three rows, at 1st/4th/10th level)
 but not identical in value — Sorcerer starts at 4, Cleric/Wizard at 3,
@@ -1059,6 +1060,27 @@ Spells Known starts at 2nd level, not 1st — rangers gain no
 spellcasting at all until 2nd level, so `SpellsKnownByLevel`'s first grant is
 `(2, 2)`, the same "progression doesn't have to start at level 1" shape
 Sorcery Points' 2nd-level start already established.
+
+**The Wizard's spellbook is a flat rate, not a leveled table, because the
+PHB never prints it as one.** Unlike Cantrips Known/Spells Known, "Spellbook"
+and "Learning Spells of 1st Level and Higher" are prose paragraphs, not a
+Wizard-table column — p.114: "At 1st level, you have a spellbook containing
+six 1st-level wizard spells of your choice," and "Each time you gain a
+wizard level, you can add two wizard spells of your choice to your
+spellbook." `WizardSpellbookDetail` is therefore a flat two-scalar value
+object (`StartingSpellCount`, `SpellsAddedPerLevelAfterFirst`), the same
+`FastMovementDetail` shape — no per-level grant list, no
+`ValidatePointsProgression` call, since there's no table row per level to
+encode. **`SpellsAddedPerLevelAfterFirst` reads "gain a level" as excluding
+1st level itself** — you don't "gain" your starting level, you begin at it,
+so the +2 growth starts at 2nd level (6 at 1st, +2 every level through
+20th, for 44 total at 20th). This is the standard/intended reading, not an
+official errata correction; the field name spells out the exclusion so a
+future reader can't apply it at level 1 by mistake. The variable costs to
+copy a found spell into the book (2 hours + 50 gp per spell level) or
+duplicate your own book (1 hour + 10 gp per spell level) are linear-in-level
+formulas and stay in the citation, the same call already made for Preserve
+Life and Radiance of the Dawn.
 
 ## Test conventions
 
