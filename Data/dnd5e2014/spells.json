@@ -3719,7 +3719,15 @@
       "unit": "Hour"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.piercing",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 1, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
@@ -4003,7 +4011,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.charmed"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -6827,7 +6838,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Melee",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
@@ -6919,7 +6938,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 2, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
@@ -8833,7 +8860,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.paralyzed"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -10797,7 +10827,15 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.acid",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Ranged",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 4, "sides": 4 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
@@ -11322,7 +11360,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.radiant",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 2, "sides": 10 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
@@ -13889,7 +13935,15 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Ranged",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 2, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -14269,7 +14323,15 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.thunder",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
@@ -17180,7 +17242,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.restrained"],
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"

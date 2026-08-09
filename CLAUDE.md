@@ -50,7 +50,10 @@ Built and complete:
   "Game-backend quantization: 1st-level spell effects" for the schema
   extensions this level required (choosable damage types, half-damage-on-
   save, a flat leveled-spell base damage, and named-condition effects).
-  Levels 2–9 don't have effect data yet.
+  **2nd-level spells too** — 7 of the 59 have a `SpellDamageEffect`, 3 have
+  a `SpellConditionEffect`, no schema changes needed this time. See
+  "Game-backend quantization: 2nd-level spell effects". Levels 3–9 don't
+  have effect data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -92,9 +95,14 @@ Spell cantrip effects". **1st-level spell effects are done too** — see
 "Game-backend quantization: 1st-level spell effects" for the real schema
 growth that level required (cantrips alone never needed a saving-throw
 half-damage flag, a choosable damage type, or a named-condition effect).
-Levels 2–9 are the remaining piece of gap 1, not yet started.
+**2nd-level spell effects are done too, with zero schema changes** — see
+"Game-backend quantization: 2nd-level spell effects" for why (the shapes
+1st level already built covered everything 2nd level's real content
+needed) and for a newly-confirmed recurring decline (automatic zone/
+trigger damage with no attack roll or saving throw at all). Levels 3–9
+are the remaining piece of gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2773 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2789 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1533,6 +1541,73 @@ riders (Divine Favor and Hex both buff a *later* weapon hit, the same
 "rider, not the spell's own effect" reasoning that declined the five
 smite-style spells above, just without the bonus-action setup). None
 carry either mechanism field.
+
+## Game-backend quantization: 2nd-level spell effects
+
+The third slice of gap 1. All 59 2nd-level spells were classified against
+the shapes 1st level already established — **no schema change was
+needed this time**, the first level of the effect-data pass where the
+existing fields covered every real fact found. 7 spells get a
+`SpellDamageEffect` (Cordon of Arrows, Flame Blade, Flaming Sphere,
+Melf's Acid Arrow, Moonbeam, Scorching Ray, Shatter), 3 get a
+`SpellConditionEffect` (Crown of Madness → `charmed`, Hold Person →
+`paralyzed`, Web → `restrained`), and 49 get neither.
+
+**Cordon of Arrows confirms `HalfDamageOnSuccessfulSave` is read per
+spell, not inferred from "has a saving throw."** Its Dexterity save
+prints no "half as much damage on a successful one" clause — a failed
+save takes 1d6 piercing, a successful one takes none — the first
+1st-level-schema field this pass exercised in its `false` state on a
+real saving-throw spell rather than only ever seeing `true`.
+
+**A third recurring decline confirmed: automatic zone/trigger damage
+with no attack roll or saving throw at all.** Cloud of Daggers (4d4
+slashing on entering its area), Heat Metal (2d8 fire the instant the
+object is touched, no roll of any kind), and Spike Growth (2d4 piercing
+per 5 feet moved through the area) all deal damage as an automatic
+consequence of position or contact, never through the "make an attack
+roll" or "target makes a saving throw" split `SpellDamageEffect` models.
+This is the same shape Magic Missile declined at 1st level for a
+different reason (its auto-hit was a *targeted* dart with no roll);
+these three are environmental/hazard damage instead, but the underlying
+gap is identical — the schema has no field for "no roll of any kind."
+Three real instances across two levels is enough to note as a confirmed
+pattern, not yet enough to justify a schema change per the standing "one
+data point doesn't justify a new mechanism field" rule — revisit if a
+future level's density of these grows large enough to be worth a
+dedicated `AutomaticDamage` shape instead of a per-spell decline.
+
+**Spiritual Weapon is declined for the same reason every "dice + ability
+modifier" spell has been declined project-wide.** Its melee spell attack
+deals "1d8 + your spellcasting ability modifier" force damage — the die
+is clean, but the total also depends on a modifier this project has
+never stored (Cure Wounds, Healing Word, and every other "Xd Y + ability
+modifier" heal were declined the same way before this initiative even
+started, since the modifier isn't a fact about the spell, it's a fact
+about the caster).
+
+**Melf's Acid Arrow and Scorching Ray both capture only the clean base
+fact and decline the rest, the same "per-spell secondary rider" call as
+Witch Bolt's recurring tick.** Melf's Acid Arrow's initial 4d4 acid hit
+is captured; its follow-up 2d4 at the end of the target's next turn, and
+its unusual "half damage even on a miss" clause, stay in the citation —
+no field exists for damage-on-a-miss anywhere in this schema, and one
+spell isn't reason enough to add one. Scorching Ray's per-ray 2d6 fire
+is captured; the "three separate rays, each its own attack roll" fact is
+declined the same way Eldritch Blast's beam count was declined at
+cantrip level — a targeting-multiplicity fact, not a damage-amount fact.
+
+**Blindness/Deafness is declined despite being a clean, otherwise
+single-condition spell**, because the condition itself is a caster's
+choice between two ("the target is either blinded or deafened — your
+choice"), and `SpellConditionEffect.ConditionIds` today means "all of
+these are imposed together" (Tasha's Hideous Laughter's AND semantics),
+not "one of these, chooser's pick." A choosable-condition shape mirroring
+`SpellDamageEffect`'s `DamageTypeId`/`ChoosableDamageTypeIds` split would
+fit, but Blindness/Deafness is the only spell across the 148 spells with
+effect data built so far (27 cantrips + 62 1st-level + 59 2nd-level)
+that needs it — declined per the same one-data-point rule, not because
+the shape wouldn't work.
 
 ## Test conventions
 
