@@ -2640,6 +2640,129 @@ public sealed class SpellDataFileTests
         Assert.Null(Get(id).DamageEffect);
     }
 
+    // 7 of the 59 2nd-level spells deal damage directly.
+    [Fact]
+    public void SevenSecondLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            7,
+            LoadCanonical()
+                .Count(spell => spell.Level == 2 && spell.DamageEffect is not null));
+    }
+
+    [Theory]
+    [InlineData(
+        "dnd5e2014.spell.cordon-of-arrows", "piercing", null, "dexterity",
+        false, 1, 6)]
+    [InlineData(
+        "dnd5e2014.spell.flaming-sphere", "fire", null, "dexterity",
+        true, 2, 6)]
+    [InlineData(
+        "dnd5e2014.spell.moonbeam", "radiant", null, "constitution",
+        true, 2, 10)]
+    [InlineData(
+        "dnd5e2014.spell.shatter", "thunder", null, "constitution",
+        true, 3, 8)]
+    public void SavingThrowDamageSpell_HasExpectedHalfDamageFlag(
+        string id,
+        string expectedDamageType,
+        string? expectedAttackRollType,
+        string expectedSavingThrowAbility,
+        bool expectedHalfDamageOnSave,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(expectedAttackRollType, effect.AttackRollType?.ToString());
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.Equal(expectedHalfDamageOnSave, effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    // Cordon of Arrows is the first save-based damage spell built whose
+    // text prints no "half as much damage on a successful one" line —
+    // HalfDamageOnSuccessfulSave is read per spell, never assumed true
+    // just because a saving throw is present.
+    [Fact]
+    public void CordonOfArrowsDealsNoHalfDamageOnSuccessfulSave()
+    {
+        Assert.False(
+            Get("dnd5e2014.spell.cordon-of-arrows")
+                .DamageEffect!.HalfDamageOnSuccessfulSave);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.flame-blade", "fire", "Melee", 3, 6)]
+    [InlineData("dnd5e2014.spell.melfs-acid-arrow", "acid", "Ranged", 4, 4)]
+    [InlineData("dnd5e2014.spell.scorching-ray", "fire", "Ranged", 2, 6)]
+    public void AttackRollDamageSpell_HasExpectedBaseDamage(
+        string id,
+        string expectedDamageType,
+        string expectedAttackRollType,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(expectedAttackRollType, effect.AttackRollType.ToString());
+        Assert.Null(effect.SavingThrowAbilityId);
+        Assert.False(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    // 3 of the 59 2nd-level spells impose a named Appendix A condition.
+    [Fact]
+    public void ThreeSecondLevelSpellsHaveAConditionEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 2 && spell.ConditionEffect is not null));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.crown-of-madness", "wisdom", "charmed")]
+    [InlineData("dnd5e2014.spell.hold-person", "wisdom", "paralyzed")]
+    [InlineData("dnd5e2014.spell.web", "dexterity", "restrained")]
+    public void ConditionEffectSpell_HasExpectedConditionAndSave(
+        string id,
+        string expectedSavingThrowAbility,
+        string expectedCondition)
+    {
+        SpellConditionEffect effect = Get(id).ConditionEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            $"dnd5e2014.condition.{expectedCondition}",
+            Assert.Single(effect.ConditionIds).Value);
+    }
+
+    // Cloud of Daggers and Heat Metal's initial contact damage are
+    // automatic zone/trigger damage with no attack roll or saving throw at
+    // all — the same auto-hit shape Magic Missile declined at 1st level,
+    // now confirmed recurring rather than a one-off. See CLAUDE.md.
+    [Theory]
+    [InlineData("dnd5e2014.spell.cloud-of-daggers")]
+    [InlineData("dnd5e2014.spell.heat-metal")]
+    [InlineData("dnd5e2014.spell.spike-growth")]
+    public void AutomaticZoneDamageSpell_HasNoDamageEffect(string id)
+    {
+        Assert.Null(Get(id).DamageEffect);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);
