@@ -1675,7 +1675,15 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 8, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
@@ -5192,7 +5200,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.charmed"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer"
@@ -5919,8 +5930,19 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
-    "conditionEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.bludgeoning",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 6 }
+    },
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.restrained"],
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -12065,7 +12087,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.frightened"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -16929,7 +16954,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 5, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
