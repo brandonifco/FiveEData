@@ -11,7 +11,7 @@ public sealed class SpellDataFileTests
     [Fact]
     public void CanonicalFile_ContainsExactBuiltSpellClosure()
     {
-        Assert.Equal(317, LoadCanonical().Count);
+        Assert.Equal(327, LoadCanonical().Count);
         Assert.Equal(
             27,
             LoadCanonical().Count(spell => spell.Level == 0));
@@ -34,16 +34,16 @@ public sealed class SpellDataFileTests
             32,
             LoadCanonical().Count(spell => spell.Level == 6));
         Assert.Equal(
-            10,
+            20,
             LoadCanonical().Count(spell => spell.Level == 7));
     }
 
     [Fact]
     public void CanonicalFile_ContainsOnlyCantripsThroughSeventhLevelForNow()
     {
-        // Levels 8-9 are not built yet. Levels 0-6 are complete. Level 7 is
-        // being added in alphabetical batches (see CLAUDE.md) and currently
-        // holds the A-M batch, 10 of the PHB's 20 seventh-level spells.
+        // Levels 8-9 are not built yet. Levels 0-7 are complete: the P-T
+        // batch closed level 7 at all 20 of the PHB's seventh-level
+        // spells.
         Assert.All(
             LoadCanonical(),
             spell => Assert.InRange(spell.Level, 0, 7));
@@ -187,14 +187,16 @@ public sealed class SpellDataFileTests
     // triggered", which maps to the same flag since it carries no span
     // either. Hallow is a plain "Until dispelled" with no trigger clause.
     // Programmed Illusion joins them too, still costed and still not
-    // stated as consumed. All eight are costed, and Continual Flame
-    // carries a third PHB cost phrasing, "ruby dust worth 50 gp", with no
-    // "at least". Drawmij's Instant Summons and Magic Jar both break the
-    // "always consumed" pattern the first five held: neither spell's
-    // material description uses the word "consumes" (a fresh sapphire is
-    // needed each casting for one; the other's container is never
-    // described as used up), so MaterialIsConsumed stays false for both
-    // rather than being inferred.
+    // stated as consumed. Sequester and Simulacrum (both plain "Until
+    // dispelled") and Symbol ("Until dispelled or triggered") join at
+    // seventh level, all three both costed and consumed. All eleven are
+    // costed, and Continual Flame carries a third PHB cost phrasing, "ruby
+    // dust worth 50 gp", with no "at least". Drawmij's Instant Summons and
+    // Magic Jar both break the "always consumed" pattern the first five
+    // held: neither spell's material description uses the word "consumes"
+    // (a fresh sapphire is needed each casting for one; the other's
+    // container is never described as used up), so MaterialIsConsumed
+    // stays false for both rather than being inferred.
     [Fact]
     public void UntilDispelledSpellsAreAllCostedButNotAllConsumed()
     {
@@ -212,7 +214,10 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.hallow",
                 "dnd5e2014.spell.magic-jar",
                 "dnd5e2014.spell.magic-mouth",
-                "dnd5e2014.spell.programmed-illusion"
+                "dnd5e2014.spell.programmed-illusion",
+                "dnd5e2014.spell.sequester",
+                "dnd5e2014.spell.simulacrum",
+                "dnd5e2014.spell.symbol"
             ],
             dispelled.Select(spell => spell.Id.Value));
 
@@ -263,6 +268,24 @@ public sealed class SpellDataFileTests
         Assert.False(
             Get("dnd5e2014.spell.programmed-illusion")
                 .Components.MaterialIsConsumed);
+        Assert.Equal(
+            5000,
+            Get("dnd5e2014.spell.sequester")
+                .Components.MaterialCostGoldPieces);
+        Assert.True(
+            Get("dnd5e2014.spell.sequester").Components.MaterialIsConsumed);
+        Assert.Equal(
+            1500,
+            Get("dnd5e2014.spell.simulacrum")
+                .Components.MaterialCostGoldPieces);
+        Assert.True(
+            Get("dnd5e2014.spell.simulacrum").Components.MaterialIsConsumed);
+        Assert.Equal(
+            1000,
+            Get("dnd5e2014.spell.symbol")
+                .Components.MaterialCostGoldPieces);
+        Assert.True(
+            Get("dnd5e2014.spell.symbol").Components.MaterialIsConsumed);
     }
 
     // Aid's 8 hours, Animal Messenger's 24 and Cordon of Arrows' 8 are flat
@@ -722,13 +745,10 @@ public sealed class SpellDataFileTests
     // The class spell list appendix (pp.207-210) gives a 7th-level union
     // of 20 spells across the 8 classes - down from 6th level's 32, since
     // Bard/Cleric/Druid/Sorcerer/Warlock/Wizard lists all shrink at once
-    // (Paladin and Ranger stayed at zero from 6th). The per-class counts
-    // are Bard 10, Cleric 8, Druid 5, Paladin 0, Ranger 0, Sorcerer 8,
-    // Warlock 4, Wizard 15 - pinned once the level closes, the same as
-    // 6th level's ClassSixthLevelListHasExpectedSize. This A-M batch is
-    // half the level; the P-T batch will complete it.
+    // (Paladin and Ranger stayed at zero from 6th). Built across two
+    // alphabetical batches (A-M, P-T).
     [Fact]
-    public void SeventhLevelSpellIdsBuiltSoFar()
+    public void SeventhLevelContainsExactlyThePhbsTwentySpells()
     {
         Assert.Equal(
             [
@@ -741,12 +761,49 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.forcecage",
                 "dnd5e2014.spell.mirage-arcane",
                 "dnd5e2014.spell.mordenkainens-magnificent-mansion",
-                "dnd5e2014.spell.mordenkainens-sword"
+                "dnd5e2014.spell.mordenkainens-sword",
+                "dnd5e2014.spell.plane-shift",
+                "dnd5e2014.spell.prismatic-spray",
+                "dnd5e2014.spell.project-image",
+                "dnd5e2014.spell.regenerate",
+                "dnd5e2014.spell.resurrection",
+                "dnd5e2014.spell.reverse-gravity",
+                "dnd5e2014.spell.sequester",
+                "dnd5e2014.spell.simulacrum",
+                "dnd5e2014.spell.symbol",
+                "dnd5e2014.spell.teleport"
             ],
             LoadCanonical()
                 .Where(spell => spell.Level == 7)
                 .Select(spell => spell.Id.Value)
                 .OrderBy(id => id, StringComparer.Ordinal));
+    }
+
+    // Read off the eight class spell lists on pp.207-210, whose 7th-level
+    // sections hold 10/8/5/0/0/8/4/15 entries; their union is 20. Paladin
+    // and Ranger stay at zero (their lists stopped at 5th). Warlock's
+    // count (4) is smaller than 6th's (8), consistent with Mystic Arcanum
+    // eligibility rather than Pact Magic slots, which never reach this
+    // high.
+    [Theory]
+    [InlineData("dnd5e2014.class.bard", 10)]
+    [InlineData("dnd5e2014.class.cleric", 8)]
+    [InlineData("dnd5e2014.class.druid", 5)]
+    [InlineData("dnd5e2014.class.paladin", 0)]
+    [InlineData("dnd5e2014.class.ranger", 0)]
+    [InlineData("dnd5e2014.class.sorcerer", 8)]
+    [InlineData("dnd5e2014.class.warlock", 4)]
+    [InlineData("dnd5e2014.class.wizard", 15)]
+    public void ClassSeventhLevelListHasExpectedSize(
+        string classId,
+        int expectedCount)
+    {
+        Assert.Equal(
+            expectedCount,
+            LoadCanonical()
+                .Count(spell => spell.Level == 7
+                    && spell.AvailableToClassIds
+                        .Any(id => id.Value == classId)));
     }
 
     [Theory]
@@ -760,6 +817,16 @@ public sealed class SpellDataFileTests
     [InlineData("dnd5e2014.spell.mirage-arcane", "Mirage Arcane", "illusion", 260)]
     [InlineData("dnd5e2014.spell.mordenkainens-magnificent-mansion", "Mordenkainen's Magnificent Mansion", "conjuration", 261)]
     [InlineData("dnd5e2014.spell.mordenkainens-sword", "Mordenkainen's Sword", "evocation", 262)]
+    [InlineData("dnd5e2014.spell.plane-shift", "Plane Shift", "conjuration", 266)]
+    [InlineData("dnd5e2014.spell.prismatic-spray", "Prismatic Spray", "evocation", 267)]
+    [InlineData("dnd5e2014.spell.project-image", "Project Image", "illusion", 270)]
+    [InlineData("dnd5e2014.spell.regenerate", "Regenerate", "transmutation", 271)]
+    [InlineData("dnd5e2014.spell.resurrection", "Resurrection", "necromancy", 272)]
+    [InlineData("dnd5e2014.spell.reverse-gravity", "Reverse Gravity", "transmutation", 272)]
+    [InlineData("dnd5e2014.spell.sequester", "Sequester", "transmutation", 274)]
+    [InlineData("dnd5e2014.spell.simulacrum", "Simulacrum", "illusion", 276)]
+    [InlineData("dnd5e2014.spell.symbol", "Symbol", "abjuration", 280)]
+    [InlineData("dnd5e2014.spell.teleport", "Teleport", "conjuration", 281)]
     public void SeventhLevelSpell_HasExpectedNameSchoolAndPage(
         string id,
         string expectedName,
@@ -1304,6 +1371,7 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.gust-of-wind",
                 "dnd5e2014.spell.leomunds-tiny-hut",
                 "dnd5e2014.spell.lightning-bolt",
+                "dnd5e2014.spell.prismatic-spray",
                 "dnd5e2014.spell.speak-with-plants",
                 "dnd5e2014.spell.spirit-guardians",
                 "dnd5e2014.spell.sunbeam",
@@ -1373,12 +1441,18 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.mordenkainens-sword",
                 "dnd5e2014.spell.nondetection",
                 "dnd5e2014.spell.planar-binding",
+                "dnd5e2014.spell.plane-shift",
                 "dnd5e2014.spell.programmed-illusion",
+                "dnd5e2014.spell.project-image",
                 "dnd5e2014.spell.raise-dead",
                 "dnd5e2014.spell.reincarnate",
+                "dnd5e2014.spell.resurrection",
                 "dnd5e2014.spell.revivify",
                 "dnd5e2014.spell.scrying",
+                "dnd5e2014.spell.sequester",
+                "dnd5e2014.spell.simulacrum",
                 "dnd5e2014.spell.stoneskin",
+                "dnd5e2014.spell.symbol",
                 "dnd5e2014.spell.teleportation-circle",
                 "dnd5e2014.spell.true-seeing",
                 "dnd5e2014.spell.warding-bond"
@@ -1536,7 +1610,9 @@ public sealed class SpellDataFileTests
     // ("Concentration, up to 1 day") rather than being a flat span - the
     // same distinction Shield/True Strike already pin at the Round unit,
     // now shown at Day too; Forbiddance stays flat at 1 day, so the two
-    // facts (unit vs. concentration) are independent here as well.
+    // facts (unit vs. concentration) are independent here as well. Project
+    // Image is the second concentration Day-unit duration, also "up to 1
+    // day".
     [Fact]
     public void DayLongDurationsCoverThreeDistinctSpans()
     {
@@ -1554,7 +1630,8 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.geas",
                 "dnd5e2014.spell.gentle-repose",
                 "dnd5e2014.spell.illusory-script",
-                "dnd5e2014.spell.mirage-arcane"
+                "dnd5e2014.spell.mirage-arcane",
+                "dnd5e2014.spell.project-image"
             ],
             days.Select(spell => spell.Id.Value));
 
@@ -1564,6 +1641,12 @@ public sealed class SpellDataFileTests
         Assert.Equal(10, Get("dnd5e2014.spell.gentle-repose").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.illusory-script").Duration.Amount);
         Assert.Equal(10, Get("dnd5e2014.spell.mirage-arcane").Duration.Amount);
+
+        SpellDuration projectImage = Get("dnd5e2014.spell.project-image")
+            .Duration;
+        Assert.Equal(1, projectImage.Amount);
+        Assert.True(projectImage.RequiresConcentration);
+        Assert.True(projectImage.IsUpTo);
 
         SpellDuration findThePath = Get("dnd5e2014.spell.find-the-path")
             .Duration;
@@ -1721,8 +1804,10 @@ public sealed class SpellDataFileTests
     // "8 hours" is the first Hour-unit casting time whose amount isn't 1;
     // Hallow (24) and Planar Binding (1) followed, and Raise Dead and
     // Reincarnate (both 1) closed out fifth level's Hour-unit spells.
+    // Resurrection (1 hour) and Simulacrum (12 hours, a fourth amount)
+    // join at seventh.
     [Fact]
-    public void HourLongCastingTimesSpanSevenSpellsAndThreeAmounts()
+    public void HourLongCastingTimesSpanNineSpellsAndFourAmounts()
     {
         SpellDefinition[] hourLong = LoadCanonical()
             .Where(spell => spell.CastingTime.Unit
@@ -1738,7 +1823,9 @@ public sealed class SpellDataFileTests
                 "dnd5e2014.spell.hallow",
                 "dnd5e2014.spell.planar-binding",
                 "dnd5e2014.spell.raise-dead",
-                "dnd5e2014.spell.reincarnate"
+                "dnd5e2014.spell.reincarnate",
+                "dnd5e2014.spell.resurrection",
+                "dnd5e2014.spell.simulacrum"
             ],
             hourLong.Select(spell => spell.Id.Value));
 
@@ -1750,6 +1837,9 @@ public sealed class SpellDataFileTests
         Assert.Equal(
             1,
             Get("dnd5e2014.spell.planar-binding").CastingTime.Amount);
+        Assert.Equal(
+            12,
+            Get("dnd5e2014.spell.simulacrum").CastingTime.Amount);
     }
 
     [Fact]
