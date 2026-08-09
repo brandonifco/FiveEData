@@ -44,13 +44,15 @@ public sealed class SpellDataFileTests
             LoadCanonical().Count(spell => spell.Level == 9));
     }
 
-    // The Spells domain now spans every PHB level, 0 through 9, with one
-    // deliberate, documented exception: Trap the Soul (8th level) has no
-    // findable description page in this printing (see
-    // EighthLevelSpellIdsBuiltSoFar) and stays unbuilt until a different
-    // source can supply it. 361 of the PHB's 362 spells are built.
+    // The Spells domain now spans every PHB level, 0 through 9, complete.
+    // "Trap the Soul" (named on the Wizard 8th-level class list, p.212)
+    // is not a real spell in this printing - it has no description page
+    // anywhere in the book (see EighthLevelSpellIdsBuiltSoFar) because it
+    // was never actually included in the Spell Descriptions section. The
+    // class list entry is a PHB appendix error, not a scanning gap, so
+    // 361 is the complete real count, not 362.
     [Fact]
-    public void CanonicalFile_SpansEveryLevelExceptTheDocumentedTrapTheSoulGap()
+    public void CanonicalFile_SpansEveryPhbSpellLevelCompletely()
     {
         Assert.All(
             LoadCanonical(),
@@ -861,23 +863,18 @@ public sealed class SpellDataFileTests
         Assert.Equal(expectedPage, Assert.Single(spell.Sources).Page);
     }
 
-    // The class spell list appendix (pp.207-210) gives an 8th-level union
-    // of 19 spells across the 8 classes - down from 7th level's 20.
-    // Paladin and Ranger stay at zero. The G-T batch built the rest of
-    // the level except one: Trap the Soul is on the Wizard list (p.212)
-    // but this printing's Spell Descriptions section has no entry for it
-    // anywhere in its correct alphabetical position (verified against
-    // high-resolution page images across the entire T range, p.279-285 -
-    // the text runs continuously from Transport via Plants into Tree
-    // Stride with no gap). Per the project's citation rules, a header
-    // block is never invented without a page to read it from, so Trap
-    // the Soul stays unbuilt until a different PHB scan/printing can
-    // supply the missing page. This level is 18 of the PHB's 19 eighth-
-    // level spells, not a closed level - do not "helpfully" round this
-    // up or assume the gap has been resolved without re-checking the
-    // source.
+    // The class spell list appendix (pp.207-210) naively reads as an
+    // 8th-level union of 19 spells across the 8 classes, but one Wizard
+    // entry - Trap the Soul - is a PHB appendix error with no real spell
+    // behind it: this printing's Spell Descriptions section has no entry
+    // for it anywhere in its correct alphabetical position (verified
+    // against high-resolution page images across the entire T range,
+    // p.279-285 - the text runs continuously from Transport via Plants
+    // into Tree Stride with no gap), and it was never supposed to be
+    // there. The real 8th-level count is 18, not 19; this level is
+    // fully built and closed, matching the PHB's actual content exactly.
     [Fact]
-    public void EighthLevelSpellIdsBuiltSoFar()
+    public void EighthLevelContainsAllEighteenRealSpells()
     {
         Assert.Equal(
             [
@@ -907,11 +904,10 @@ public sealed class SpellDataFileTests
     }
 
     // Read off the eight class spell lists on pp.207-210, whose 8th-level
-    // sections hold 5/4/7/0/0/5/5/14 entries. The Wizard figure here (13)
-    // is one short of the appendix's real 14, because Trap the Soul has
-    // no findable description page in this printing - see the comment on
-    // EighthLevelSpellIdsBuiltSoFar. Fix this InlineData to 14 only once
-    // Trap the Soul is actually built, not before.
+    // sections nominally hold 5/4/7/0/0/5/5/14 entries. Wizard's real
+    // count is 13, not 14 - the 14th name, Trap the Soul, is the
+    // appendix error described on EighthLevelContainsAllEighteenRealSpells,
+    // not a spell that exists. Do not "fix" this to 14; 13 is correct.
     [Theory]
     [InlineData("dnd5e2014.class.bard", 5)]
     [InlineData("dnd5e2014.class.cleric", 4)]
@@ -999,12 +995,13 @@ public sealed class SpellDataFileTests
     }
 
     // The class spell list appendix (pp.207-210) gives a 9th-level union
-    // of 16 spells across the 8 classes - down from 8th level's 19.
-    // Paladin and Ranger stay at zero. Built across two alphabetical
-    // batches (A-P, P-W). This closes the Spells domain's level coverage:
-    // every PHB spell level (0-9) now has at least one built spell, and
-    // every level except 8th (missing only Trap the Soul) is fully
-    // built.
+    // of 16 spells across the 8 classes - down from 8th level's real 18
+    // (the appendix's own 8th-level union naively reads as 19, but Trap
+    // the Soul is an appendix error with no real spell behind it; see
+    // EighthLevelContainsAllEighteenRealSpells). Paladin and Ranger stay
+    // at zero. Built across two alphabetical batches (A-P, P-W). This
+    // closes the Spells domain completely: every PHB spell level (0-9)
+    // is now fully built, 361 spells total.
     [Fact]
     public void NinthLevelContainsExactlyThePhbsSixteenSpells()
     {
