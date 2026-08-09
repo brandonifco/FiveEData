@@ -32,6 +32,7 @@ public sealed class SpellDefinitionLoaderTests
                 },
                 "isRitual": false,
                 "damageEffect": null,
+                "conditionEffect": null,
                 "availableToClassIds": ["dnd5e2014.class.wizard"],
                 "sources": [{
                   "documentId": "extension.source.test",
@@ -208,12 +209,15 @@ public sealed class SpellDefinitionLoaderTests
             """
             "damageEffect": {
               "damageTypeId": "dnd5e2014.damage-type.fire",
+              "choosableDamageTypeIds": null,
               "attackRollType": "Ranged",
               "savingThrowAbilityId": null,
+              "halfDamageOnSuccessfulSave": false,
               "damageByCharacterLevel": [
                 { "characterLevel": 1, "damage": { "count": 1, "sides": 10 } },
                 { "characterLevel": 5, "damage": { "count": 2, "sides": 10 } }
-              ]
+              ],
+              "baseDamage": null
             },
             """,
             StringComparison.Ordinal);
@@ -237,11 +241,14 @@ public sealed class SpellDefinitionLoaderTests
             """
             "damageEffect": {
               "damageTypeId": "dnd5e2014.damage-type.acid",
+              "choosableDamageTypeIds": null,
               "attackRollType": null,
               "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+              "halfDamageOnSuccessfulSave": false,
               "damageByCharacterLevel": [
                 { "characterLevel": 1, "damage": { "count": 1, "sides": 6 } }
-              ]
+              ],
+              "baseDamage": null
             },
             """,
             StringComparison.Ordinal);
@@ -263,17 +270,100 @@ public sealed class SpellDefinitionLoaderTests
             """
             "damageEffect": {
               "damageTypeId": "dnd5e2014.damage-type.acid",
+              "choosableDamageTypeIds": null,
               "attackRollType": "Ranged",
               "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+              "halfDamageOnSuccessfulSave": false,
               "damageByCharacterLevel": [
                 { "characterLevel": 1, "damage": { "count": 1, "sides": 6 } }
-              ]
+              ],
+              "baseDamage": null
             },
             """,
             StringComparison.Ordinal);
 
         Assert.ThrowsAny<Exception>(
             () => SpellDefinitionLoader.LoadFromJson(json));
+    }
+
+    [Fact]
+    public void DamageEffect_LoadsWithChoosableDamageTypesAndBaseDamage()
+    {
+        string json = ValidJson.Replace(
+            "\"damageEffect\": null,",
+            """
+            "damageEffect": {
+              "damageTypeId": null,
+              "choosableDamageTypeIds": [
+                "dnd5e2014.damage-type.acid", "dnd5e2014.damage-type.fire"
+              ],
+              "attackRollType": "Ranged",
+              "savingThrowAbilityId": null,
+              "halfDamageOnSuccessfulSave": false,
+              "damageByCharacterLevel": null,
+              "baseDamage": { "count": 3, "sides": 8 }
+            },
+            """,
+            StringComparison.Ordinal);
+
+        SpellDefinition definition =
+            Assert.Single(SpellDefinitionLoader.LoadFromJson(json));
+
+        Assert.Null(definition.DamageEffect!.DamageTypeId);
+        Assert.Equal(
+            2,
+            definition.DamageEffect.ChoosableDamageTypeIds!.Count);
+        Assert.Equal(3, definition.DamageEffect.BaseDamage!.Value.Count);
+        Assert.Empty(definition.DamageEffect.DamageByCharacterLevel);
+    }
+
+    [Fact]
+    public void DamageEffect_LoadsWithHalfDamageOnSuccessfulSave()
+    {
+        string json = ValidJson.Replace(
+            "\"damageEffect\": null,",
+            """
+            "damageEffect": {
+              "damageTypeId": "dnd5e2014.damage-type.fire",
+              "choosableDamageTypeIds": null,
+              "attackRollType": null,
+              "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+              "halfDamageOnSuccessfulSave": true,
+              "damageByCharacterLevel": null,
+              "baseDamage": { "count": 3, "sides": 6 }
+            },
+            """,
+            StringComparison.Ordinal);
+
+        SpellDefinition definition =
+            Assert.Single(SpellDefinitionLoader.LoadFromJson(json));
+
+        Assert.True(definition.DamageEffect!.HalfDamageOnSuccessfulSave);
+    }
+
+    [Fact]
+    public void ConditionEffect_Loads()
+    {
+        string json = ValidJson.Replace(
+            "\"conditionEffect\": null,",
+            """
+            "conditionEffect": {
+              "conditionIds": ["dnd5e2014.condition.charmed"],
+              "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+            },
+            """,
+            StringComparison.Ordinal);
+
+        SpellDefinition definition =
+            Assert.Single(SpellDefinitionLoader.LoadFromJson(json));
+
+        Assert.NotNull(definition.ConditionEffect);
+        Assert.Equal(
+            "dnd5e2014.condition.charmed",
+            Assert.Single(definition.ConditionEffect!.ConditionIds).Value);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            definition.ConditionEffect.SavingThrowAbilityId.Value);
     }
 
     [Fact]

@@ -4,6 +4,7 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Spells.MagicSchools;
 
@@ -111,6 +112,9 @@ internal static class SpellDefinitionLoader
             data.DamageEffect is { } damageEffectData
                 ? MapDamageEffect(damageEffectData)
                 : null,
+            data.ConditionEffect is { } conditionEffectData
+                ? MapConditionEffect(conditionEffectData)
+                : null,
             classIdValues.Select(value => new ClassId(value)).ToArray(),
             sourceData.Select(SourceReferenceDataMapper.Map).ToArray());
     }
@@ -118,8 +122,14 @@ internal static class SpellDefinitionLoader
     private static SpellDamageEffect MapDamageEffect(
         SpellDamageEffectData data)
     {
-        var damageTypeId = new DamageTypeId(
-            data.DamageTypeId ?? throw Missing("damage effect damage type"));
+        DamageTypeId? damageTypeId = data.DamageTypeId is { } damageTypeIdValue
+            ? new DamageTypeId(damageTypeIdValue)
+            : null;
+
+        IEnumerable<DamageTypeId>? choosableDamageTypeIds =
+            data.ChoosableDamageTypeIds?
+                .Select(value => new DamageTypeId(value))
+                .ToArray();
 
         SpellAttackRollType? attackRollType =
             data.AttackRollType is { } attackRollTypeValue
@@ -133,15 +143,42 @@ internal static class SpellDefinitionLoader
                 ? new AbilityId(savingThrowAbilityIdValue)
                 : null;
 
-        SpellDamageTierGrantData[] tierData =
-            data.DamageByCharacterLevel
-            ?? throw Missing("damage effect tiers");
+        bool halfDamageOnSuccessfulSave =
+            data.HalfDamageOnSuccessfulSave
+            ?? throw Missing("damage effect half-damage-on-save flag");
+
+        SpellDamageTierGrantData[]? tierData = data.DamageByCharacterLevel;
+
+        IEnumerable<SpellDamageTierGrant>? damageByCharacterLevel =
+            tierData?.Select(MapDamageTier).ToArray();
+
+        DiceExpression? baseDamage = data.BaseDamage is { } baseDamageData
+            ? new DiceExpression(baseDamageData.Count, baseDamageData.Sides)
+            : null;
 
         return new SpellDamageEffect(
             damageTypeId,
+            choosableDamageTypeIds,
             attackRollType,
             savingThrowAbilityId,
-            tierData.Select(MapDamageTier).ToArray());
+            halfDamageOnSuccessfulSave,
+            damageByCharacterLevel,
+            baseDamage);
+    }
+
+    private static SpellConditionEffect MapConditionEffect(
+        SpellConditionEffectData data)
+    {
+        string[] conditionIdValues =
+            data.ConditionIds ?? throw Missing("condition effect conditions");
+
+        var savingThrowAbilityId = new AbilityId(
+            data.SavingThrowAbilityId
+            ?? throw Missing("condition effect saving throw ability"));
+
+        return new SpellConditionEffect(
+            conditionIdValues.Select(value => new ConditionId(value)).ToArray(),
+            savingThrowAbilityId);
     }
 
     private static SpellDamageTierGrant MapDamageTier(

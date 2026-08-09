@@ -1,6 +1,7 @@
 using FiveEData;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.Conditions;
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.Serialization;
 
@@ -2435,7 +2436,7 @@ public sealed class SpellDataFileTests
 
         Assert.Equal(
             $"dnd5e2014.damage-type.{expectedDamageType}",
-            effect.DamageTypeId.Value);
+            effect.DamageTypeId!.Value.Value);
         Assert.Equal(
             expectedAttackRollType,
             effect.AttackRollType?.ToString());
@@ -2460,7 +2461,9 @@ public sealed class SpellDataFileTests
         SpellDamageEffect effect =
             Get("dnd5e2014.spell.eldritch-blast").DamageEffect!;
 
-        Assert.Equal("dnd5e2014.damage-type.force", effect.DamageTypeId.Value);
+        Assert.Equal(
+            "dnd5e2014.damage-type.force",
+            effect.DamageTypeId!.Value.Value);
         Assert.Equal(SpellAttackRollType.Ranged, effect.AttackRollType);
         Assert.Null(effect.SavingThrowAbilityId);
 
@@ -2468,6 +2471,173 @@ public sealed class SpellDataFileTests
         Assert.Equal(1, tier.CharacterLevel);
         Assert.Equal(1, tier.Damage.Count);
         Assert.Equal(10, tier.Damage.Sides);
+    }
+
+    // 10 of the 62 1st-level spells deal damage directly, via either an
+    // attack roll or a saving throw (half damage on a successful save,
+    // unlike a cantrip's save) with a flat base damage rather than a
+    // character-level progression — a leveled spell's "At Higher Levels"
+    // spell-slot-upcast scaling stays in the citation.
+    [Fact]
+    public void TenFirstLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            10,
+            LoadCanonical()
+                .Count(spell => spell.Level == 1 && spell.DamageEffect is not null));
+    }
+
+    [Theory]
+    [InlineData(
+        "dnd5e2014.spell.arms-of-hadar", "necrotic", null, "strength", 2, 6)]
+    [InlineData(
+        "dnd5e2014.spell.burning-hands", "fire", null, "dexterity", 3, 6)]
+    [InlineData(
+        "dnd5e2014.spell.dissonant-whispers", "psychic", null, "wisdom", 3, 6)]
+    [InlineData(
+        "dnd5e2014.spell.hellish-rebuke", "fire", null, "dexterity", 2, 10)]
+    [InlineData(
+        "dnd5e2014.spell.thunderwave", "thunder", null, "constitution", 2, 8)]
+    public void SavingThrowDamageSpell_DealsHalfDamageOnSuccessfulSave(
+        string id,
+        string expectedDamageType,
+        string? expectedAttackRollType,
+        string expectedSavingThrowAbility,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(expectedAttackRollType, effect.AttackRollType?.ToString());
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Empty(effect.DamageByCharacterLevel);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.guiding-bolt", "radiant", "Ranged", 4, 6)]
+    [InlineData("dnd5e2014.spell.inflict-wounds", "necrotic", "Melee", 3, 10)]
+    [InlineData("dnd5e2014.spell.ray-of-sickness", "poison", "Ranged", 2, 8)]
+    [InlineData("dnd5e2014.spell.witch-bolt", "lightning", "Ranged", 1, 12)]
+    public void AttackRollDamageSpell_HasNoHalfDamageOnSaveFlag(
+        string id,
+        string expectedDamageType,
+        string expectedAttackRollType,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            expectedAttackRollType,
+            effect.AttackRollType.ToString());
+        Assert.Null(effect.SavingThrowAbilityId);
+        Assert.False(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    // Chromatic Orb is the only 1st-level spell where the caster chooses
+    // the damage type at cast time rather than the spell always dealing
+    // one fixed type.
+    [Fact]
+    public void ChromaticOrbOffersSixChoosableDamageTypes()
+    {
+        SpellDamageEffect effect =
+            Get("dnd5e2014.spell.chromatic-orb").DamageEffect!;
+
+        Assert.Null(effect.DamageTypeId);
+        Assert.Equal(
+            [
+                "dnd5e2014.damage-type.acid",
+                "dnd5e2014.damage-type.cold",
+                "dnd5e2014.damage-type.fire",
+                "dnd5e2014.damage-type.lightning",
+                "dnd5e2014.damage-type.poison",
+                "dnd5e2014.damage-type.thunder"
+            ],
+            effect.ChoosableDamageTypeIds!.Select(id => id.Value));
+        Assert.Equal(SpellAttackRollType.Ranged, effect.AttackRollType);
+        Assert.Equal(3, effect.BaseDamage!.Value.Count);
+        Assert.Equal(8, effect.BaseDamage.Value.Sides);
+    }
+
+    // 6 of the 62 1st-level spells impose a named Appendix A condition on a
+    // failed save. Ray of Sickness is the only one that also has a
+    // DamageEffect — its Constitution save gates the poisoned condition,
+    // independent of the ranged spell attack that deals its damage.
+    [Fact]
+    public void SixFirstLevelSpellsHaveAConditionEffect()
+    {
+        Assert.Equal(
+            6,
+            LoadCanonical()
+                .Count(spell => spell.Level == 1 && spell.ConditionEffect is not null));
+    }
+
+    [Theory]
+    [InlineData(
+        "dnd5e2014.spell.animal-friendship", "wisdom", new[] { "charmed" })]
+    [InlineData(
+        "dnd5e2014.spell.charm-person", "wisdom", new[] { "charmed" })]
+    [InlineData(
+        "dnd5e2014.spell.entangle", "strength", new[] { "restrained" })]
+    [InlineData(
+        "dnd5e2014.spell.grease", "dexterity", new[] { "prone" })]
+    [InlineData(
+        "dnd5e2014.spell.ray-of-sickness", "constitution", new[] { "poisoned" })]
+    [InlineData(
+        "dnd5e2014.spell.tashas-hideous-laughter",
+        "wisdom",
+        new[] { "prone", "incapacitated" })]
+    public void ConditionEffectSpell_HasExpectedConditionsAndSave(
+        string id,
+        string expectedSavingThrowAbility,
+        string[] expectedConditions)
+    {
+        SpellConditionEffect effect = Get(id).ConditionEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            expectedConditions.Select(
+                condition => $"dnd5e2014.condition.{condition}"),
+            effect.ConditionIds.Select(id => id.Value));
+    }
+
+    // Magic Missile auto-hits (no attack roll, no save) and its "1d4 + 1"
+    // per-dart damage needs a flat modifier DiceExpression doesn't carry —
+    // declined rather than forcing the schema to fit one spell. See
+    // CLAUDE.md.
+    [Fact]
+    public void MagicMissileHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.magic-missile").DamageEffect);
+    }
+
+    // Weapon-attack-rider spells (a bonus action buffs your *next weapon
+    // hit*, not an independent spell attack or save) are declined the same
+    // way Shillelagh was at cantrip level.
+    [Theory]
+    [InlineData("dnd5e2014.spell.ensnaring-strike")]
+    [InlineData("dnd5e2014.spell.hail-of-thorns")]
+    [InlineData("dnd5e2014.spell.searing-smite")]
+    [InlineData("dnd5e2014.spell.thunderous-smite")]
+    [InlineData("dnd5e2014.spell.wrathful-smite")]
+    public void WeaponAttackRiderSpell_HasNoDamageEffect(string id)
+    {
+        Assert.Null(Get(id).DamageEffect);
     }
 
     private static SpellDefinition Get(string id)

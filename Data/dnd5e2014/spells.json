@@ -34,8 +34,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.acid",
+      "choosableDamageTypeIds": null,
       "attackRollType": null,
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -65,8 +67,10 @@
             "sides": 6
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -113,6 +117,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -159,6 +164,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger",
       "dnd5e2014.class.wizard"
@@ -205,6 +211,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -251,6 +258,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.charmed"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -298,6 +309,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -345,6 +357,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -390,6 +403,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.wizard"
@@ -436,6 +450,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -483,6 +498,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -528,6 +544,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.wizard"
@@ -574,6 +591,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.wizard"
@@ -620,6 +638,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -665,6 +684,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -712,6 +732,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -757,6 +778,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock"
     ],
@@ -801,7 +823,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.strength",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 2, "sides": 6 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock"
     ],
@@ -847,6 +878,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.warlock",
@@ -894,6 +926,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -939,6 +972,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -984,6 +1018,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -1029,6 +1064,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -1074,6 +1110,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid"
@@ -1120,6 +1157,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric"
@@ -1166,6 +1204,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -1211,6 +1250,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin",
@@ -1260,6 +1300,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -1306,6 +1347,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -1351,6 +1393,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -1397,6 +1440,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -1444,6 +1488,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -1489,6 +1534,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -1534,6 +1580,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -1582,6 +1629,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -1628,6 +1676,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -1676,6 +1725,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -1721,6 +1771,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -1769,6 +1820,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -1815,6 +1867,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -1861,6 +1914,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -1905,7 +1959,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 6 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -1952,6 +2015,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -1997,6 +2061,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric"
@@ -2043,6 +2108,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -2089,6 +2155,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.charmed"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -2139,8 +2209,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
       "attackRollType": "Ranged",
       "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -2170,8 +2242,10 @@
             "sides": 8
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -2218,7 +2292,23 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": null,
+      "choosableDamageTypeIds": [
+        "dnd5e2014.damage-type.acid",
+        "dnd5e2014.damage-type.cold",
+        "dnd5e2014.damage-type.fire",
+        "dnd5e2014.damage-type.lightning",
+        "dnd5e2014.damage-type.poison",
+        "dnd5e2014.damage-type.thunder"
+      ],
+      "attackRollType": "Ranged",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 8 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -2265,6 +2355,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -2312,6 +2403,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -2357,6 +2449,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -2405,6 +2498,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -2450,6 +2544,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -2498,6 +2593,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -2544,6 +2640,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -2590,6 +2687,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -2636,6 +2734,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -2681,6 +2780,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -2727,6 +2827,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -2772,6 +2873,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -2820,6 +2922,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard"
     ],
@@ -2865,6 +2968,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -2911,6 +3015,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -2959,6 +3064,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -3005,6 +3111,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -3050,6 +3157,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -3095,6 +3203,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.wizard"
@@ -3141,6 +3250,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.warlock"
@@ -3187,6 +3297,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.wizard"
@@ -3233,6 +3344,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -3278,6 +3390,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -3324,6 +3437,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
       "dnd5e2014.class.wizard"
@@ -3370,6 +3484,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -3416,6 +3531,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -3461,6 +3577,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.wizard"
@@ -3507,6 +3624,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -3554,6 +3672,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -3601,6 +3720,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -3646,6 +3766,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -3693,6 +3814,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -3739,6 +3861,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -3785,6 +3908,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.warlock",
@@ -3832,6 +3956,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -3878,6 +4003,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -3926,6 +4052,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -3971,6 +4098,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -4020,6 +4148,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -4067,6 +4196,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -4114,6 +4244,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger",
@@ -4162,6 +4293,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -4211,6 +4343,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -4257,6 +4390,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -4303,6 +4437,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
       "dnd5e2014.class.wizard"
@@ -4349,6 +4484,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -4394,6 +4530,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -4440,6 +4577,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -4491,6 +4629,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -4539,6 +4678,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -4586,6 +4726,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -4634,6 +4775,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -4681,6 +4823,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -4727,6 +4870,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -4773,6 +4917,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -4823,7 +4968,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.psychic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 6 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard"
     ],
@@ -4869,6 +5023,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -4914,6 +5069,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -4959,6 +5115,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -5004,6 +5161,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer"
@@ -5050,6 +5208,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -5098,6 +5257,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -5145,6 +5305,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -5190,6 +5351,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.warlock",
@@ -5237,6 +5399,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -5282,6 +5445,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -5330,8 +5494,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.force",
+      "choosableDamageTypeIds": null,
       "attackRollType": "Ranged",
       "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -5340,8 +5506,10 @@
             "sides": 10
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock"
     ],
@@ -5387,6 +5555,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -5432,6 +5601,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -5480,6 +5650,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -5526,6 +5697,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -5571,6 +5743,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.restrained"],
+      "savingThrowAbilityId": "dnd5e2014.ability.strength"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -5616,6 +5792,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.warlock"
@@ -5662,6 +5839,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -5711,6 +5889,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -5756,6 +5935,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -5803,6 +5983,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -5851,6 +6032,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -5896,6 +6078,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid"
@@ -5942,6 +6125,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -5988,6 +6172,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -6036,6 +6221,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -6083,6 +6269,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -6131,6 +6318,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -6179,6 +6367,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -6224,6 +6413,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -6269,6 +6459,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -6316,6 +6507,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -6363,6 +6555,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -6411,8 +6604,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
       "attackRollType": "Ranged",
       "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -6442,8 +6637,10 @@
             "sides": 10
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -6490,6 +6687,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -6535,6 +6733,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -6582,6 +6781,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -6628,6 +6828,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -6673,6 +6874,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -6718,6 +6920,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.wizard"
@@ -6764,6 +6967,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
       "dnd5e2014.class.wizard"
@@ -6810,6 +7014,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -6857,6 +7062,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger",
@@ -6905,6 +7111,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -6950,6 +7157,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.warlock",
@@ -6997,6 +7205,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -7045,6 +7254,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -7093,6 +7303,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -7141,6 +7352,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -7188,6 +7400,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.sorcerer",
@@ -7235,6 +7448,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -7284,6 +7498,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.wizard"
@@ -7330,6 +7545,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -7375,6 +7591,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.warlock"
@@ -7421,6 +7638,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -7467,6 +7685,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -7514,6 +7733,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -7560,6 +7780,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -7606,6 +7827,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.prone"],
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -7651,6 +7876,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -7698,6 +7924,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -7745,6 +7972,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -7790,6 +8018,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -7836,6 +8065,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -7881,7 +8111,16 @@
       "unit": "Round"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.radiant",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Ranged",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 4, "sides": 6 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -7927,6 +8166,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -7974,6 +8214,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -8019,6 +8260,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -8064,6 +8306,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -8112,6 +8355,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -8157,6 +8401,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -8203,6 +8448,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -8249,6 +8495,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -8296,6 +8543,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid"
@@ -8341,7 +8589,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 2, "sides": 10 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock"
     ],
@@ -8387,6 +8644,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -8433,6 +8691,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.paladin"
@@ -8479,6 +8738,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock"
     ],
@@ -8524,6 +8784,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -8572,6 +8833,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -8622,6 +8884,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -8667,6 +8930,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock"
     ],
@@ -8712,6 +8976,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -8757,6 +9022,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -8805,6 +9071,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -8852,6 +9119,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -8898,6 +9166,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.warlock",
@@ -8945,6 +9214,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
       "dnd5e2014.class.wizard"
@@ -8991,6 +9261,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -9036,7 +9307,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Melee",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 3, "sides": 10 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -9082,6 +9362,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -9129,6 +9410,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -9177,6 +9459,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger",
@@ -9225,6 +9508,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -9272,6 +9556,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -9319,6 +9604,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -9364,6 +9650,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -9410,6 +9697,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -9459,6 +9747,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -9505,6 +9794,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -9553,6 +9843,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -9598,6 +9889,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -9644,6 +9936,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -9691,6 +9984,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -9741,6 +10035,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -9791,6 +10086,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -9839,6 +10135,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -9885,6 +10182,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -9933,6 +10231,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin",
@@ -9981,6 +10280,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -10026,6 +10326,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -10072,6 +10373,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -10118,6 +10420,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin",
       "dnd5e2014.class.wizard"
@@ -10164,6 +10467,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -10212,6 +10516,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -10259,6 +10564,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -10304,6 +10610,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -10349,6 +10656,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -10397,6 +10705,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -10442,6 +10751,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -10488,6 +10798,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -10533,6 +10844,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -10582,6 +10894,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -10629,6 +10942,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -10675,6 +10989,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -10721,6 +11036,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -10769,6 +11085,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -10816,6 +11133,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -10863,6 +11181,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -10909,6 +11228,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -10956,6 +11276,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -11002,6 +11323,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -11047,6 +11369,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11092,6 +11415,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -11138,6 +11462,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11183,6 +11508,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -11229,6 +11555,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -11276,6 +11603,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.ranger",
@@ -11323,6 +11651,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11368,6 +11697,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11413,6 +11743,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11458,6 +11789,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -11504,6 +11836,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -11550,6 +11883,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11595,6 +11929,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -11642,6 +11977,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11687,6 +12023,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -11732,6 +12069,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -11777,6 +12115,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -11825,6 +12164,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -11874,6 +12214,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid"
@@ -11921,8 +12262,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.poison",
+      "choosableDamageTypeIds": null,
       "attackRollType": null,
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -11952,8 +12295,10 @@
             "sides": 12
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -12002,6 +12347,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -12050,6 +12396,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard"
     ],
@@ -12095,6 +12442,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -12143,6 +12491,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -12191,6 +12540,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -12236,6 +12586,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -12284,6 +12635,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -12330,6 +12682,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -12376,8 +12729,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
       "attackRollType": "Ranged",
       "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -12407,8 +12762,10 @@
             "sides": 8
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -12454,6 +12811,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -12500,6 +12858,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -12546,6 +12905,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -12594,6 +12954,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin",
@@ -12642,6 +13003,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -12690,6 +13052,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -12737,6 +13100,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -12784,6 +13148,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -12829,6 +13194,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
       "dnd5e2014.class.wizard"
@@ -12876,8 +13242,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.cold",
+      "choosableDamageTypeIds": null,
       "attackRollType": "Ranged",
       "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -12907,8 +13275,10 @@
             "sides": 8
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -12954,7 +13324,19 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.poison",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Ranged",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 2, "sides": 8 }
+    },
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.poisoned"],
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -13001,6 +13383,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -13048,6 +13431,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -13093,6 +13477,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin",
@@ -13141,6 +13526,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -13187,6 +13573,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric"
@@ -13233,6 +13620,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -13280,6 +13668,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -13326,6 +13715,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -13372,8 +13762,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.radiant",
+      "choosableDamageTypeIds": null,
       "attackRollType": null,
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -13403,8 +13795,10 @@
             "sides": 8
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -13450,6 +13844,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -13495,6 +13890,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -13541,6 +13937,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -13590,6 +13987,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -13635,6 +14033,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -13682,6 +14081,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -13729,6 +14129,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -13776,6 +14177,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -13821,6 +14223,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.wizard"
@@ -13867,6 +14270,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -13915,6 +14319,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -13961,6 +14366,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.paladin"
@@ -14007,6 +14413,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -14053,8 +14460,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.lightning",
+      "choosableDamageTypeIds": null,
       "attackRollType": "Melee",
       "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -14084,8 +14493,10 @@
             "sides": 8
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -14132,6 +14543,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -14179,6 +14591,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -14226,6 +14639,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -14271,6 +14685,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -14318,6 +14733,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -14365,6 +14781,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -14411,6 +14828,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -14456,6 +14874,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -14503,6 +14922,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric"
@@ -14549,6 +14969,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid"
@@ -14595,6 +15016,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -14642,6 +15064,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -14688,6 +15111,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -14733,6 +15157,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -14778,6 +15203,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -14823,6 +15249,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -14870,6 +15297,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -14917,6 +15345,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger",
@@ -14965,6 +15394,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -15010,6 +15440,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -15058,6 +15489,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -15105,6 +15537,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -15152,6 +15585,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
     ],
@@ -15197,6 +15631,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -15244,6 +15679,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.prone", "dnd5e2014.condition.incapacitated"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.wizard"
@@ -15290,6 +15729,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -15336,6 +15776,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -15381,6 +15822,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -15428,6 +15870,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -15475,6 +15918,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -15520,6 +15964,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -15566,8 +16011,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.piercing",
+      "choosableDamageTypeIds": null,
       "attackRollType": "Melee",
       "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -15597,8 +16044,10 @@
             "sides": 6
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -15644,6 +16093,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -15688,7 +16138,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.thunder",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 2, "sides": 8 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.druid",
@@ -15737,6 +16196,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -15783,6 +16243,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -15832,6 +16293,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -15877,6 +16339,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.ranger"
@@ -15923,6 +16386,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.warlock",
@@ -15970,6 +16434,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid"
@@ -16016,6 +16481,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",
@@ -16065,6 +16531,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -16113,6 +16580,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -16158,6 +16626,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.warlock",
@@ -16205,6 +16674,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
       "dnd5e2014.class.wizard"
@@ -16252,8 +16722,10 @@
     "isRitual": false,
     "damageEffect": {
       "damageTypeId": "dnd5e2014.damage-type.psychic",
+      "choosableDamageTypeIds": null,
       "attackRollType": null,
       "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+      "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": [
         {
           "characterLevel": 1,
@@ -16283,8 +16755,10 @@
             "sides": 4
           }
         }
-      ]
+      ],
+      "baseDamage": null
     },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard"
     ],
@@ -16330,6 +16804,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -16377,6 +16852,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -16422,6 +16898,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -16467,6 +16944,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -16514,6 +16992,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -16559,6 +17038,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -16604,6 +17084,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -16651,6 +17132,7 @@
     },
     "isRitual": true,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
       "dnd5e2014.class.druid",
@@ -16698,6 +17180,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -16744,6 +17227,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],
@@ -16789,6 +17273,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -16834,6 +17319,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
     ],
@@ -16879,6 +17365,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.wizard"
@@ -16924,7 +17411,16 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.lightning",
+      "choosableDamageTypeIds": null,
+      "attackRollType": "Ranged",
+      "savingThrowAbilityId": null,
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 1, "sides": 12 }
+    },
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
       "dnd5e2014.class.warlock",
@@ -16972,6 +17468,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
     ],
@@ -17017,6 +17514,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -17062,6 +17560,7 @@
     },
     "isRitual": false,
     "damageEffect": null,
+    "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.cleric",

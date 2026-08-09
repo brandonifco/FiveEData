@@ -19,6 +19,7 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races;
@@ -89,6 +90,11 @@ internal static class CatalogIntegrityValidator
 
         HashSet<DamageTypeId> damageTypeIds =
             definitions.CreatureVocabulary.DamageTypes
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        HashSet<ConditionId> conditionIds =
+            definitions.CreatureVocabulary.Conditions
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
@@ -243,20 +249,55 @@ internal static class CatalogIntegrityValidator
 
             if (spell.DamageEffect is { } damageEffect)
             {
-                if (!damageTypeIds.Contains(damageEffect.DamageTypeId))
+                if (damageEffect.DamageTypeId is { } damageTypeId &&
+                    !damageTypeIds.Contains(damageTypeId))
                 {
                     errors.Add(
                         $"{owner} references missing damage type " +
-                        $"'{damageEffect.DamageTypeId}'.");
+                        $"'{damageTypeId}'.");
+                }
+
+                foreach (
+                    DamageTypeId choosableDamageTypeId
+                    in damageEffect.ChoosableDamageTypeIds
+                        ?? Array.Empty<DamageTypeId>())
+                {
+                    if (!damageTypeIds.Contains(choosableDamageTypeId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing damage type " +
+                            $"'{choosableDamageTypeId}'.");
+                    }
                 }
 
                 if (damageEffect.SavingThrowAbilityId is
-                        { } savingThrowAbilityId &&
-                    !abilityIds.Contains(savingThrowAbilityId))
+                        { } damageSavingThrowAbilityId &&
+                    !abilityIds.Contains(damageSavingThrowAbilityId))
                 {
                     errors.Add(
                         $"{owner} references missing ability " +
-                        $"'{savingThrowAbilityId}'.");
+                        $"'{damageSavingThrowAbilityId}'.");
+                }
+            }
+
+            if (spell.ConditionEffect is { } conditionEffect)
+            {
+                foreach (ConditionId conditionId in conditionEffect.ConditionIds)
+                {
+                    if (!conditionIds.Contains(conditionId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing condition " +
+                            $"'{conditionId}'.");
+                    }
+                }
+
+                if (!abilityIds.Contains(
+                        conditionEffect.SavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{conditionEffect.SavingThrowAbilityId}'.");
                 }
             }
         }
