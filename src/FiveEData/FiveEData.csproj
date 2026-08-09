@@ -168,6 +168,18 @@
     <EmbeddedResource
       Include="../../Data/dnd5e2014/combat-actions.json"
       LogicalName="FiveEData.Data.dnd5e2014.combat-actions.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/cover.json"
+      LogicalName="FiveEData.Data.dnd5e2014.cover.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/travel-pace.json"
+      LogicalName="FiveEData.Data.dnd5e2014.travel-pace.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/rest-types.json"
+      LogicalName="FiveEData.Data.dnd5e2014.rest-types.json" />
+    <EmbeddedResource
+      Include="../../Data/dnd5e2014/downtime-activities.json"
+      LogicalName="FiveEData.Data.dnd5e2014.downtime-activities.json" />
   </ItemGroup>
 
 </Project>

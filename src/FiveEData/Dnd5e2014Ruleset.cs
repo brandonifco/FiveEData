@@ -47,6 +47,10 @@ public sealed class Dnd5e2014Ruleset
         MagicSchoolCatalog magicSchools,
         SpellCatalog spells,
         CombatActionCatalog combatActions,
+        CoverCatalog cover,
+        TravelPaceCatalog travelPaces,
+        RestTypeCatalog restTypes,
+        DowntimeActivityCatalog downtimeActivities,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -82,6 +86,10 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(magicSchools);
         ArgumentNullException.ThrowIfNull(spells);
         ArgumentNullException.ThrowIfNull(combatActions);
+        ArgumentNullException.ThrowIfNull(cover);
+        ArgumentNullException.ThrowIfNull(travelPaces);
+        ArgumentNullException.ThrowIfNull(restTypes);
+        ArgumentNullException.ThrowIfNull(downtimeActivities);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -117,6 +125,10 @@ public sealed class Dnd5e2014Ruleset
         MagicSchools = magicSchools;
         Spells = spells;
         CombatActions = combatActions;
+        Cover = cover;
+        TravelPaces = travelPaces;
+        RestTypes = restTypes;
+        DowntimeActivities = downtimeActivities;
         Sources = sources;
         Rules = rules;
     }
@@ -160,6 +172,10 @@ public sealed class Dnd5e2014Ruleset
     public MagicSchoolCatalog MagicSchools { get; }
     public SpellCatalog Spells { get; }
     public CombatActionCatalog CombatActions { get; }
+    public CoverCatalog Cover { get; }
+    public TravelPaceCatalog TravelPaces { get; }
+    public RestTypeCatalog RestTypes { get; }
+    public DowntimeActivityCatalog DowntimeActivities { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

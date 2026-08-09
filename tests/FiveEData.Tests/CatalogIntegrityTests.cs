@@ -1362,7 +1362,11 @@ public sealed class CatalogIntegrityTests
             backgrounds: [],
             magicSchools: [],
             spells: [],
-            combatActions: []);
+            combatActions: [],
+            cover: [],
+            travelPaces: [],
+            restTypes: [],
+            downtimeActivities: []);
     }
 
     private static ToolDefinition CreateTool(

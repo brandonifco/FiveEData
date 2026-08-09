@@ -173,6 +173,10 @@ public sealed class LifestyleCatalogIntegrityTests
             backgrounds: [],
             magicSchools: [],
             spells: [],
-            combatActions: []);
+            combatActions: [],
+            cover: [],
+            travelPaces: [],
+            restTypes: [],
+            downtimeActivities: []);
     }
 }

@@ -286,6 +286,10 @@ public sealed class
             backgrounds: [],
             magicSchools: [],
             spells: [],
-            combatActions: []);
+            combatActions: [],
+            cover: [],
+            travelPaces: [],
+            restTypes: [],
+            downtimeActivities: []);
     }
 }

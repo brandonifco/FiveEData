@@ -1,5 +1,9 @@
+using FiveEData.Rules.Adventuring.DowntimeActivities;
+using FiveEData.Rules.Adventuring.Resting;
+using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Combat.CombatActions;
+using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
@@ -38,7 +42,11 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<BackgroundDefinition> backgrounds,
         IReadOnlyList<MagicSchoolDefinition> magicSchools,
         IReadOnlyList<SpellDefinition> spells,
-        IReadOnlyList<CombatActionDefinition> combatActions)
+        IReadOnlyList<CombatActionDefinition> combatActions,
+        IReadOnlyList<CoverDefinition> cover,
+        IReadOnlyList<TravelPaceDefinition> travelPaces,
+        IReadOnlyList<RestTypeDefinition> restTypes,
+        IReadOnlyList<DowntimeActivityDefinition> downtimeActivities)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(rules);
@@ -59,6 +67,10 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(magicSchools);
         ArgumentNullException.ThrowIfNull(spells);
         ArgumentNullException.ThrowIfNull(combatActions);
+        ArgumentNullException.ThrowIfNull(cover);
+        ArgumentNullException.ThrowIfNull(travelPaces);
+        ArgumentNullException.ThrowIfNull(restTypes);
+        ArgumentNullException.ThrowIfNull(downtimeActivities);
 
         SourceDocuments = sourceDocuments;
         Rules = rules;
@@ -79,6 +91,10 @@ internal sealed class RulesetDefinitionSet
         MagicSchools = magicSchools;
         Spells = spells;
         CombatActions = combatActions;
+        Cover = cover;
+        TravelPaces = travelPaces;
+        RestTypes = restTypes;
+        DowntimeActivities = downtimeActivities;
     }
 
     public IReadOnlyList<SourceDocument> SourceDocuments { get; }
@@ -122,4 +138,10 @@ internal sealed class RulesetDefinitionSet
     public IReadOnlyList<MagicSchoolDefinition> MagicSchools { get; }
     public IReadOnlyList<SpellDefinition> Spells { get; }
     public IReadOnlyList<CombatActionDefinition> CombatActions { get; }
+    public IReadOnlyList<CoverDefinition> Cover { get; }
+    public IReadOnlyList<TravelPaceDefinition> TravelPaces { get; }
+    public IReadOnlyList<RestTypeDefinition> RestTypes { get; }
+
+    public IReadOnlyList<DowntimeActivityDefinition> DowntimeActivities
+    { get; }
 }

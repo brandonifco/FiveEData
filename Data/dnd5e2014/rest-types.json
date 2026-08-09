@@ -1,0 +1,30 @@
+[
+  {
+    "id": "dnd5e2014.rest-type.short-rest",
+    "name": "Short Rest",
+    "minimumDurationHours": 1,
+    "cooldownHours": null,
+    "minimumHitPointsToBenefit": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 186,
+        "section": "Chapter 8: Adventuring — Resting — Short Rest"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.rest-type.long-rest",
+    "name": "Long Rest",
+    "minimumDurationHours": 8,
+    "cooldownHours": 24,
+    "minimumHitPointsToBenefit": 1,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 186,
+        "section": "Chapter 8: Adventuring — Resting — Long Rest"
+      }
+    ]
+  }
+]

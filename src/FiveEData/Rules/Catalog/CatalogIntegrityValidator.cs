@@ -1,7 +1,11 @@
 using FiveEData.Rules.Spells;
 using FiveEData.Rules.Spells.MagicSchools;
+using FiveEData.Rules.Adventuring.DowntimeActivities;
+using FiveEData.Rules.Adventuring.Resting;
+using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Combat.CombatActions;
+using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
@@ -711,6 +715,55 @@ internal static class CatalogIntegrityValidator
                 combatAction.Sources,
                 sourceIds,
                 errors);
+        }
+
+        foreach (CoverDefinition coverEntry in definitions.Cover)
+        {
+            ValidateSources(
+                $"Cover '{coverEntry.Id}'",
+                coverEntry.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (TravelPaceDefinition travelPace in definitions.TravelPaces)
+        {
+            ValidateSources(
+                $"Travel pace '{travelPace.Id}'",
+                travelPace.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (RestTypeDefinition restType in definitions.RestTypes)
+        {
+            ValidateSources(
+                $"Rest type '{restType.Id}'",
+                restType.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            DowntimeActivityDefinition downtimeActivity
+            in definitions.DowntimeActivities)
+        {
+            string owner = $"Downtime activity '{downtimeActivity.Id}'";
+
+            ValidateSources(
+                owner,
+                downtimeActivity.Sources,
+                sourceIds,
+                errors);
+
+            if (downtimeActivity.SavingThrowAbilityId is
+                    { } savingThrowAbilityId &&
+                !abilityIds.Contains(savingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{savingThrowAbilityId}'.");
+            }
         }
 
         return errors;
