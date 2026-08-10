@@ -15,12 +15,14 @@ a game.
 
 ## Current state
 
-**In progress: the last candidate from the 2026-08-10 scoping pass —
-more choice-point catalogs.** Path of the Totem Warrior (9 options) and
-Ranger Hunter (11 options) are **built**; see "Game-backend
-quantization: Totem Warrior options" and "... Ranger Hunter options".
-Still unbuilt: Monk's Open Hand Technique, Wizard's Third Eye, and
-Transmuter's Stone.
+**Nothing in progress. The 2026-08-10 scoping pass is fully closed** —
+its last candidate, more choice-point catalogs, is built: Path of the
+Totem Warrior (9 options), Ranger Hunter (11), Monk's Open Hand
+Technique (3), Wizard's The Third Eye (4), and Transmuter's Stone (4).
+**Ten choice-point catalogs exist now, not five.** See the four
+"Game-backend quantization: ... options" sections below. Every candidate
+from that pass is built or explicitly declined; ask the user whether to
+scope a fresh pass.
 
 The original five choice-point catalogs are closed
 (Metamagic, Battle Master maneuvers, Eldritch Invocations, Elemental
@@ -150,7 +152,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3120 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3210 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -870,7 +872,8 @@ rather than trusting it.
 - **Choice-point catalogs** (standalone, not referenced from a definition):
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
   Elemental Disciplines, Channel Divinity options, Totem Warrior options,
-  Hunter options.
+  Hunter options, Open Hand Technique options, The Third Eye options,
+  Transmuter's Stone options.
 - **Embedded on `ClassDefinition`:** Action Surge, Indomitable, Rage, Brutal
   Critical, Fast Movement, Favored Enemy, Natural Explorer, Sneak Attack, Ki,
   Martial Arts, Unarmored Movement, Sorcery Points, Wild Shape, Bardic
@@ -969,6 +972,9 @@ doesn't otherwise use.
 | Channel Divinity options (16) | 4 independent nullable scalars, later extended |
 | Totem Warrior options (9) | shared rage/armor gates + per-animal one-offs |
 | Hunter options (11) | per-option one-offs across 4 choice points |
+| Open Hand Technique options (3) | save + condition/push/reaction denial |
+| The Third Eye options (4) | three sense ranges + a language bool |
+| Transmuter's Stone options (4) | four unrelated always-on benefits |
 
 A choice point earns a catalog **only if at least one option carries a real
 quantizable fact** — Pact Boon proved the pattern isn't automatic. A "choice
@@ -2555,10 +2561,12 @@ yet:
   Hunter has four (Hunter's Prey, Defensive Tactics, Multiattack,
   Superior Hunter's Defense) — **built**, see "Game-backend
   quantization: Ranger Hunter options"; Monk's Open Hand Technique
-  (3rd level) is
-  a 3-option Flurry of Blows rider; Wizard's The Third Eye (Divination
-  14th) and Transmuter's Stone (Transmutation 6th) are both 4-option
-  utility choices.
+  (3rd level) is a 3-option Flurry of Blows rider; Wizard's The Third
+  Eye (Divination **10th**, not 14th as this bullet originally claimed)
+  and Transmuter's Stone (Transmutation 6th) are both 4-option utility
+  choices — **all three built**, see "Game-backend quantization: Open
+  Hand Technique, The Third Eye, and Transmuter's Stone". **This closes
+  the candidate, and with it the whole 2026-08-10 scoping pass.**
 - **More `GrantedSpellId` candidates** — Drow Magic, Infernal Legacy,
   Natural Illusionist, Thousand Forms, Shapechanger, and both Bonus
   Cantrips. **Built in a later slice**, but *not* by reusing Eldritch
@@ -3281,6 +3289,81 @@ weapon" is declined as a weapon-relative formula. Whirlwind Attack's
 because it is one half of a validator-paired field whose other half
 (Volley's 10 feet) is unambiguously not reach — the pair only means
 anything together.
+
+## Game-backend quantization: Open Hand Technique, The Third Eye, and Transmuter's Stone
+
+The third and final slice of the "more choice-point catalogs"
+candidate, closing it and the whole 2026-08-10 scoping pass. Three
+small catalogs built in one pass because none is big enough to justify
+its own branch — Monk Way of the Open Hand's Open Hand Technique (3
+options, p.79), Wizard Divination's The Third Eye (4, p.116), and
+Wizard Transmutation's Transmuter's Stone (4, p.119) — the same
+"two catalogs in one pass" call Elemental Disciplines and Channel
+Divinity already made.
+
+**Three catalogs, not one, even though two are both Wizard and both are
+"choose one benefit" — and they even share a Darkvision 60 ft option.**
+Their benefit sets are otherwise disjoint and they belong to different
+subclasses, so merging them would produce a wide type where every entry
+populates one field. Shared option *text* is not evidence of a shared
+mechanic; the same reasoning kept Light Domain's and Circle of the
+Land's identically-named Bonus Cantrip apart.
+
+**None of these three carries a `RequiredLevel` field, unlike Totem
+Warrior and Hunter.** Every option within each of these choice points
+sits at a single level (3rd, 10th, 6th respectively), so the level does
+not vary across the catalog and earns no field — the standing "add a
+field only where it actually varies" rule, the same one that kept
+`AvailableToClassIds` off Metamagic. Totem Warrior and Hunter *do* carry
+it because their options span 3/6/14 and 3/7/11/15. **A choice-point
+catalog does not automatically get a level field; check whether the
+level actually varies.**
+
+**Open Hand Technique and Transmuter's Stone print their options as
+unnamed bullet points — the option names in this repo are synthesized,
+not quoted.** Every prior choice-point catalog (Metamagic, maneuvers,
+invocations, disciplines, Channel Divinity, Totem Warrior, Hunter, and
+The Third Eye) took its option names straight from bold headings in the
+book. These two do not have any. Names like "Knock Prone", "Push",
+"Prevent Reactions", "Speed Increase", and "Damage Resistance" are
+descriptive labels chosen here so the options can be addressed at all.
+**Do not "correct" them against the PHB expecting to find them, and do
+not treat them as citable book terms.** The Third Eye's four names
+(Darkvision, Ethereal Sight, Greater Comprehension, See Invisibility)
+*are* printed, so those are quoted exactly.
+
+**The Third Eye's existing p.116 citation is correct and was nearly
+"fixed" into an error.** All four of its options render on p.117, so a
+check that only looked for the option text would conclude the citation
+was off by one. The feature's heading and opening sentence are at the
+bottom of p.116 — and the standing rule cites where a feature's body
+text *starts*, not where its options finish. **Verify the heading, not
+the payload, before rewriting a citation.** It is also a **10th**-level
+feature, not 14th as the scoping pass's bullet claimed — the third
+scoping-note error caught by reading the page (after Skill Versatility's
+race/subrace mix-up and Relentless Rage's class/subclass one).
+
+**`NextTurnDurationTrigger` reaches a fourth consumer**, after Battle
+Master maneuvers, Channel Divinity's Cloak of Shadows, and Intimidating
+Presence: Open Hand Technique's reaction-denial lasts "until the end of
+your next turn." Its promotion to `Rules/Common` keeps paying off.
+
+**Transmuter's Stone's damage resistance is the fifth
+fixed-or-choosable field in the codebase**, after `SpellDamageEffect`'s
+damage types, `ChannelDivinityOptionDefinition`'s saving-throw
+abilities, and `ChoosableConditionIds`. Here only the choosable half
+exists — no option grants a fixed resistance — so there is no paired
+fixed field to sit beside it, and the validator rejects a list of
+exactly one (a "choice" of one is not a choice) while allowing empty for
+the three options that offer no resistance at all.
+
+**`DarkvisionRangeFeet` is duplicated across two catalogs rather than
+shared.** The Third Eye and Transmuter's Stone both grant 60-foot
+darkvision, and `RaceDefinition` has had the same field name for far
+longer. Each domain owns its own field, per the standing rule that a
+shape repeating is not by itself a reason to extract a shared type —
+`CantripsKnownProgressionDetail`/`SpellsKnownProgressionDetail` set that
+precedent.
 
 ## Test conventions
 

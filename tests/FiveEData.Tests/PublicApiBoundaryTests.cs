@@ -65,7 +65,13 @@ using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ElementalDisciplines.Serialization;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.HunterOptions.Serialization;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions.Serialization;
+using FiveEData.Rules.Classes.ThirdEyeOptions;
+using FiveEData.Rules.Classes.ThirdEyeOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
+using FiveEData.Rules.Classes.TransmutersStoneOptions;
+using FiveEData.Rules.Classes.TransmutersStoneOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
@@ -190,6 +196,16 @@ public sealed class PublicApiBoundaryTests
             typeof(TotemWarriorOptionDefinitionValidator).IsPublic);
         Assert.False(typeof(HunterOptionDefinitionLoader).IsPublic);
         Assert.False(typeof(HunterOptionDefinitionValidator).IsPublic);
+        Assert.False(
+            typeof(OpenHandTechniqueOptionDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(OpenHandTechniqueOptionDefinitionValidator).IsPublic);
+        Assert.False(typeof(ThirdEyeOptionDefinitionLoader).IsPublic);
+        Assert.False(typeof(ThirdEyeOptionDefinitionValidator).IsPublic);
+        Assert.False(
+            typeof(TransmutersStoneOptionDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(TransmutersStoneOptionDefinitionValidator).IsPublic);
     }
 
     [Fact]

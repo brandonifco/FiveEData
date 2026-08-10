@@ -10,7 +10,10 @@ using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.HunterOptions;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
+using FiveEData.Rules.Classes.ThirdEyeOptions;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
+using FiveEData.Rules.Classes.TransmutersStoneOptions;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ExtraAttack;
@@ -618,6 +621,85 @@ internal static class CatalogIntegrityValidator
                 errors.Add(
                     $"{owner} references missing ability " +
                     $"'{hunterSavingThrowAbilityId}'.");
+            }
+        }
+
+        foreach (
+            OpenHandTechniqueOptionDefinition openHandTechniqueOption
+            in definitions.OpenHandTechniqueOptions)
+        {
+            string owner =
+                $"Open hand technique option " +
+                $"'{openHandTechniqueOption.Id}'";
+
+            ValidateSources(
+                owner,
+                openHandTechniqueOption.Sources,
+                sourceIds,
+                errors);
+
+            if (openHandTechniqueOption.SavingThrowAbilityId is
+                    { } openHandSavingThrowAbilityId &&
+                !abilityIds.Contains(openHandSavingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{openHandSavingThrowAbilityId}'.");
+            }
+
+            if (openHandTechniqueOption.ImposedConditionId is
+                    { } openHandImposedConditionId &&
+                !conditionIds.Contains(openHandImposedConditionId))
+            {
+                errors.Add(
+                    $"{owner} references missing condition " +
+                    $"'{openHandImposedConditionId}'.");
+            }
+        }
+
+        foreach (
+            ThirdEyeOptionDefinition thirdEyeOption
+            in definitions.ThirdEyeOptions)
+        {
+            ValidateSources(
+                $"Third Eye option '{thirdEyeOption.Id}'",
+                thirdEyeOption.Sources,
+                sourceIds,
+                errors);
+        }
+
+        foreach (
+            TransmutersStoneOptionDefinition transmutersStoneOption
+            in definitions.TransmutersStoneOptions)
+        {
+            string owner =
+                $"Transmuter's stone option '{transmutersStoneOption.Id}'";
+
+            ValidateSources(
+                owner,
+                transmutersStoneOption.Sources,
+                sourceIds,
+                errors);
+
+            if (transmutersStoneOption.SavingThrowProficiencyAbilityId is
+                    { } transmutersStoneAbilityId &&
+                !abilityIds.Contains(transmutersStoneAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{transmutersStoneAbilityId}'.");
+            }
+
+            foreach (
+                DamageTypeId choosableResistedDamageTypeId
+                in transmutersStoneOption.ChoosableResistedDamageTypeIds)
+            {
+                if (!damageTypeIds.Contains(choosableResistedDamageTypeId))
+                {
+                    errors.Add(
+                        $"{owner} references missing damage type " +
+                        $"'{choosableResistedDamageTypeId}'.");
+                }
             }
         }
 

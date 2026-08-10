@@ -21,6 +21,12 @@ using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.HunterOptions.Serialization;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions.Serialization;
+using FiveEData.Rules.Classes.ThirdEyeOptions;
+using FiveEData.Rules.Classes.ThirdEyeOptions.Serialization;
+using FiveEData.Rules.Classes.TransmutersStoneOptions;
+using FiveEData.Rules.Classes.TransmutersStoneOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
 using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions.Serialization;
@@ -161,6 +167,15 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string HunterOptionsResource =
         "FiveEData.Data.dnd5e2014.hunter-options.json";
+
+    private const string OpenHandTechniqueOptionsResource =
+        "FiveEData.Data.dnd5e2014.open-hand-technique-options.json";
+
+    private const string ThirdEyeOptionsResource =
+        "FiveEData.Data.dnd5e2014.third-eye-options.json";
+
+    private const string TransmutersStoneOptionsResource =
+        "FiveEData.Data.dnd5e2014.transmuters-stone-options.json";
 
     private const string SpellSlotProgressionsResource =
         "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
@@ -383,6 +398,18 @@ internal static class Dnd5e2014RulesetLoader
             HunterOptionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(HunterOptionsResource));
 
+        IReadOnlyList<OpenHandTechniqueOptionDefinition> openHandTechniqueOptions =
+            OpenHandTechniqueOptionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(OpenHandTechniqueOptionsResource));
+
+        IReadOnlyList<ThirdEyeOptionDefinition> thirdEyeOptions =
+            ThirdEyeOptionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(ThirdEyeOptionsResource));
+
+        IReadOnlyList<TransmutersStoneOptionDefinition> transmutersStoneOptions =
+            TransmutersStoneOptionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(TransmutersStoneOptionsResource));
+
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
             SpellSlotProgressionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
@@ -571,6 +598,9 @@ internal static class Dnd5e2014RulesetLoader
             channelDivinityOptions: channelDivinityOptions,
             totemWarriorOptions: totemWarriorOptions,
             hunterOptions: hunterOptions,
+            openHandTechniqueOptions: openHandTechniqueOptions,
+            thirdEyeOptions: thirdEyeOptions,
+            transmutersStoneOptions: transmutersStoneOptions,
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds,
@@ -635,6 +665,12 @@ internal static class Dnd5e2014RulesetLoader
             totemWarriorOptions:
                 new TotemWarriorOptionCatalog(totemWarriorOptions),
             hunterOptions: new HunterOptionCatalog(hunterOptions),
+            openHandTechniqueOptions:
+                new OpenHandTechniqueOptionCatalog(openHandTechniqueOptions),
+            thirdEyeOptions:
+                new ThirdEyeOptionCatalog(thirdEyeOptions),
+            transmutersStoneOptions:
+                new TransmutersStoneOptionCatalog(transmutersStoneOptions),
             spellSlotProgressions:
                 new SpellSlotProgressionCatalog(spellSlotProgressions),
             extraAttackProgressions:

@@ -43,6 +43,9 @@ public sealed class Dnd5e2014Ruleset
         ChannelDivinityOptionCatalog channelDivinityOptions,
         TotemWarriorOptionCatalog totemWarriorOptions,
         HunterOptionCatalog hunterOptions,
+        OpenHandTechniqueOptionCatalog openHandTechniqueOptions,
+        ThirdEyeOptionCatalog thirdEyeOptions,
+        TransmutersStoneOptionCatalog transmutersStoneOptions,
         SpellSlotProgressionCatalog spellSlotProgressions,
         ExtraAttackProgressionCatalog extraAttackProgressions,
         BackgroundCatalog backgrounds,
@@ -84,6 +87,9 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(channelDivinityOptions);
         ArgumentNullException.ThrowIfNull(totemWarriorOptions);
         ArgumentNullException.ThrowIfNull(hunterOptions);
+        ArgumentNullException.ThrowIfNull(openHandTechniqueOptions);
+        ArgumentNullException.ThrowIfNull(thirdEyeOptions);
+        ArgumentNullException.ThrowIfNull(transmutersStoneOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -125,6 +131,9 @@ public sealed class Dnd5e2014Ruleset
         ChannelDivinityOptions = channelDivinityOptions;
         TotemWarriorOptions = totemWarriorOptions;
         HunterOptions = hunterOptions;
+        OpenHandTechniqueOptions = openHandTechniqueOptions;
+        ThirdEyeOptions = thirdEyeOptions;
+        TransmutersStoneOptions = transmutersStoneOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -174,6 +183,9 @@ public sealed class Dnd5e2014Ruleset
     public ChannelDivinityOptionCatalog ChannelDivinityOptions { get; }
     public TotemWarriorOptionCatalog TotemWarriorOptions { get; }
     public HunterOptionCatalog HunterOptions { get; }
+    public OpenHandTechniqueOptionCatalog OpenHandTechniqueOptions { get; }
+    public ThirdEyeOptionCatalog ThirdEyeOptions { get; }
+    public TransmutersStoneOptionCatalog TransmutersStoneOptions { get; }
     public SpellSlotProgressionCatalog SpellSlotProgressions { get; }
     public ExtraAttackProgressionCatalog ExtraAttackProgressions { get; }
     public BackgroundCatalog Backgrounds { get; }
