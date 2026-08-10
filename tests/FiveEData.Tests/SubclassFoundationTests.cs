@@ -2,11 +2,19 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.AwakenedMind;
+using FiveEData.Rules.Classes.BeguilingDefenses;
+using FiveEData.Rules.Classes.CreateThrall;
+using FiveEData.Rules.Classes.DarkDelirium;
 using FiveEData.Rules.Classes.DeathStrike;
+using FiveEData.Rules.Classes.EntropicWard;
+using FiveEData.Rules.Classes.FeyPresence;
 using FiveEData.Rules.Classes.Frenzy;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
 using FiveEData.Rules.Classes.IntimidatingPresence;
+using FiveEData.Rules.Classes.MistyEscape;
 using FiveEData.Rules.Classes.SecondStoryWork;
+using FiveEData.Rules.Classes.ThoughtShield;
 using FiveEData.Rules.Creatures.Conditions;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
@@ -115,6 +123,14 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -156,6 +172,14 @@ public sealed class SubclassFoundationTests
             [],
             null,
             [],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -731,6 +755,14 @@ public sealed class SubclassFoundationTests
         InfiltrationExpertiseDetail? infiltrationExpertise = null,
         int? impostorRequiredStudyHours = null,
         DeathStrikeDetail? deathStrike = null,
+        FeyPresenceDetail? feyPresence = null,
+        MistyEscapeDetail? mistyEscape = null,
+        BeguilingDefensesDetail? beguilingDefenses = null,
+        DarkDeliriumDetail? darkDelirium = null,
+        AwakenedMindDetail? awakenedMind = null,
+        EntropicWardDetail? entropicWard = null,
+        ThoughtShieldDetail? thoughtShield = null,
+        CreateThrallDetail? createThrall = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -770,6 +802,14 @@ public sealed class SubclassFoundationTests
             infiltrationExpertise,
             impostorRequiredStudyHours,
             deathStrike,
+            feyPresence,
+            mistyEscape,
+            beguilingDefenses,
+            darkDelirium,
+            awakenedMind,
+            entropicWard,
+            thoughtShield,
+            createThrall,
             sources ?? [CreateSource()]);
     }
 

@@ -2,12 +2,20 @@ using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BendLuck.Serialization;
 using FiveEData.Rules.Classes.Assassinate.Serialization;
+using FiveEData.Rules.Classes.AwakenedMind.Serialization;
+using FiveEData.Rules.Classes.BeguilingDefenses.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
+using FiveEData.Rules.Classes.CreateThrall.Serialization;
+using FiveEData.Rules.Classes.DarkDelirium.Serialization;
 using FiveEData.Rules.Classes.DeathStrike.Serialization;
+using FiveEData.Rules.Classes.EntropicWard.Serialization;
+using FiveEData.Rules.Classes.FeyPresence.Serialization;
 using FiveEData.Rules.Classes.Frenzy.Serialization;
 using FiveEData.Rules.Classes.InfiltrationExpertise.Serialization;
 using FiveEData.Rules.Classes.IntimidatingPresence.Serialization;
+using FiveEData.Rules.Classes.MistyEscape.Serialization;
 using FiveEData.Rules.Classes.SecondStoryWork.Serialization;
+using FiveEData.Rules.Classes.ThoughtShield.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
 using FiveEData.Rules.Classes.DraconicResilience.Serialization;
@@ -168,6 +176,30 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public DeathStrikeDetailData? DeathStrike { get; init; }
+
+    [JsonRequired]
+    public FeyPresenceDetailData? FeyPresence { get; init; }
+
+    [JsonRequired]
+    public MistyEscapeDetailData? MistyEscape { get; init; }
+
+    [JsonRequired]
+    public BeguilingDefensesDetailData? BeguilingDefenses { get; init; }
+
+    [JsonRequired]
+    public DarkDeliriumDetailData? DarkDelirium { get; init; }
+
+    [JsonRequired]
+    public AwakenedMindDetailData? AwakenedMind { get; init; }
+
+    [JsonRequired]
+    public EntropicWardDetailData? EntropicWard { get; init; }
+
+    [JsonRequired]
+    public ThoughtShieldDetailData? ThoughtShield { get; init; }
+
+    [JsonRequired]
+    public CreateThrallDetailData? CreateThrall { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
