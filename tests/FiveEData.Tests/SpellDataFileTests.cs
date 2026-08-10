@@ -3035,6 +3035,141 @@ public sealed class SpellDataFileTests
         Assert.Null(Get("dnd5e2014.spell.ice-storm").DamageEffect);
     }
 
+    // 5 of the 42 5th-level spells deal damage directly; 3 impose a named
+    // condition.
+    [Fact]
+    public void FiveFifthLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            5,
+            LoadCanonical()
+                .Count(spell => spell.Level == 5 && spell.DamageEffect is not null));
+    }
+
+    [Fact]
+    public void ThreeFifthLevelSpellsHaveAConditionEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 5 && spell.ConditionEffect is not null));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.cloudkill", "poison", "constitution", true, 5, 8)]
+    [InlineData("dnd5e2014.spell.cone-of-cold", "cold", "constitution", true, 8, 8)]
+    [InlineData("dnd5e2014.spell.insect-plague", "piercing", "constitution", true, 4, 10)]
+    public void FifthLevelSavingThrowDamageSpell_HasExpectedHalfDamageFlag(
+        string id,
+        string expectedDamageType,
+        string expectedSavingThrowAbility,
+        bool expectedHalfDamageOnSave,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.Equal(expectedHalfDamageOnSave, effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    // Contact Other Plane is the first Intelligence-save damage spell
+    // built, and its save avoids the damage entirely rather than halving
+    // it — the same "no half-on-save clause" shape Cordon of Arrows and
+    // Evard's Black Tentacles already established.
+    [Fact]
+    public void ContactOtherPlaneDealsNoHalfDamageOnSuccessfulIntelligenceSave()
+    {
+        SpellDamageEffect effect = Get("dnd5e2014.spell.contact-other-plane").DamageEffect!;
+
+        Assert.Equal(
+            "dnd5e2014.damage-type.psychic",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.intelligence",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.False(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(6, effect.BaseDamage!.Value.Count);
+        Assert.Equal(6, effect.BaseDamage.Value.Sides);
+    }
+
+    // Conjure Volley is the fourth spell to use ChoosableDamageTypeIds,
+    // matching its ammunition to bludgeoning, piercing, or slashing —
+    // the same choice Conjure Barrage already established at 3rd level.
+    [Fact]
+    public void ConjureVolleyOffersThreeChoosableDamageTypes()
+    {
+        SpellDamageEffect effect = Get("dnd5e2014.spell.conjure-volley").DamageEffect!;
+
+        Assert.Null(effect.DamageTypeId);
+        Assert.Equal(
+            [
+                "dnd5e2014.damage-type.bludgeoning",
+                "dnd5e2014.damage-type.piercing",
+                "dnd5e2014.damage-type.slashing"
+            ],
+            effect.ChoosableDamageTypeIds!.Select(id => id.Value));
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(8, effect.BaseDamage!.Value.Count);
+        Assert.Equal(6, effect.BaseDamage.Value.Sides);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.destructive-wave", "constitution", "prone")]
+    [InlineData("dnd5e2014.spell.dominate-person", "wisdom", "charmed")]
+    [InlineData("dnd5e2014.spell.hold-monster", "wisdom", "paralyzed")]
+    public void FifthLevelConditionEffectSpell_HasExpectedConditionAndSave(
+        string id,
+        string expectedSavingThrowAbility,
+        string expectedCondition)
+    {
+        SpellConditionEffect effect = Get(id).ConditionEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            $"dnd5e2014.condition.{expectedCondition}",
+            Assert.Single(effect.ConditionIds).Value);
+    }
+
+    // Destructive Wave's knocked-prone condition is captured even though
+    // its damage is declined — its 5d6 thunder and 5d6 radiant-or-necrotic
+    // damage are two simultaneous types on one failed save, the same
+    // unrepresentable shape Ice Storm and Flame Strike already declined.
+    // DamageEffect and ConditionEffect are independent fields, so the
+    // clean condition fact doesn't have to be thrown out with the damage.
+    [Fact]
+    public void DestructiveWaveHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.destructive-wave").DamageEffect);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.flame-strike")]
+    public void TwoSimultaneousDamageTypeSpell_HasNoDamageEffect(string id)
+    {
+        Assert.Null(Get(id).DamageEffect);
+    }
+
+    // Telekinesis is declined because its "restrained in your telekinetic
+    // grip" effect resolves through a contested spellcasting-ability
+    // check against the target's Strength saving throw, not the standard
+    // "target rolls a save against your DC" shape SpellConditionEffect
+    // assumes.
+    [Fact]
+    public void TelekinesisHasNoConditionEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.telekinesis").ConditionEffect);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);

@@ -63,7 +63,11 @@ Built and complete:
   *same* failed save. See "Game-backend quantization: 4th-level spell
   effects" for two new one-off declines this level's content needed (a
   flat non-dice damage number, and a spell dealing two damage types at
-  once). Levels 5–9 don't have effect data yet.
+  once). **5th-level spells too** — 5 of the 42 have a `SpellDamageEffect`
+  and 3 have a `SpellConditionEffect`, including Destructive Wave, whose
+  condition (prone) is captured even though its two-simultaneous-type
+  damage isn't. See "Game-backend quantization: 5th-level spell effects".
+  Levels 6–9 don't have effect data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -116,10 +120,15 @@ effects are done too** — see "Game-backend quantization: 4th-level spell
 effects" for Evard's Black Tentacles (the first spell whose
 `DamageEffect` and `ConditionEffect` share one failed save) and two new
 one-off declines (Guardian of Faith's flat non-dice damage, Ice Storm's
-two-simultaneous-damage-types). Levels 5–9 are the remaining piece of
+two-simultaneous-damage-types). **5th-level spell effects are done
+too** — see "Game-backend quantization: 5th-level spell effects" for a
+newly-confirmed recurring pattern: a spell can decline its damage
+(another two-simultaneous-type case, Flame Strike) while still keeping
+a clean condition fact (Destructive Wave's prone), since the two
+mechanism fields are independent. Levels 6–9 are the remaining piece of
 gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2813 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2826 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1751,6 +1760,58 @@ conjure-a-creature spell. Otiluke's Resilient Sphere traps a creature
 in a sphere, but the PHB's own word for this is "enclosed," never
 "restrained" — the same discipline Stinking Cloud's decline already
 established: don't infer a condition tag the text doesn't use.
+
+## Game-backend quantization: 5th-level spell effects
+
+The sixth slice of gap 1. All 42 5th-level spells were classified
+against the shapes already established — **no schema change was
+needed**, the third level in a row. 5 spells get a `SpellDamageEffect`
+(Cloudkill, Cone of Cold, Conjure Volley, Contact Other Plane, Insect
+Plague), 3 get a `SpellConditionEffect` (Destructive Wave → `prone`,
+Dominate Person → `charmed`, Hold Monster → `paralyzed`), and 34 get
+neither.
+
+**Conjure Volley is the fourth spell to use `ChoosableDamageTypeIds`**
+(bludgeoning/piercing/slashing, matching its ammunition), confirming
+Conjure Barrage's 3rd-level pattern rather than being a one-off.
+**Contact Other Plane is the first Intelligence-save damage spell**,
+and like Cordon of Arrows and Evard's Black Tentacles, its save carries
+no half-on-a-successful-save clause — a failed save deals 6d6 psychic
+damage and imposes a bespoke "insane" status, a successful one avoids
+both entirely. The "insane" status itself is declined, not modeled as
+any Appendix A condition, since it isn't one — it's a bespoke
+"can't take actions, can't understand speech, speaks only in
+gibberish" block with no formal condition name attached.
+
+**Destructive Wave confirms `DamageEffect` and `ConditionEffect` really
+are independent, not a package deal.** Its failed save knocks the
+target prone (captured as a `ConditionEffect`) *and* deals 5d6 thunder
+damage plus 5d6 radiant-or-necrotic damage together — the same
+two-simultaneous-damage-types shape Ice Storm declined at 4th level, so
+its `DamageEffect` stays null. The two mechanism fields don't rise or
+fall together: a spell's clean fact is captured even when its messier
+sibling fact on the very same saving throw has to be declined.
+Flame Strike is a second, plainer instance of the same
+two-simultaneous-types decline (4d6 fire and 4d6 radiant, both always
+apply), with no condition to salvage this time.
+
+**Telekinesis is declined for a new reason: its "restrained" effect
+resolves through a contested check, not a standard save.** The target
+doesn't roll its own saving throw against the caster's DC — the caster
+makes a spellcasting-ability check *against* the target's Strength
+saving throw as the opposing roll. `SpellConditionEffect.SavingThrowAbilityId`
+assumes the PHB's ordinary "target makes a saving throw" shape, which
+this spell's contested-roll mechanic isn't; modeling it as an ordinary
+save would misstate how the roll actually works.
+
+**Bigby's Hand and Animate Objects both extend the
+summoned/controllable-construct decline already established by
+Spiritual Weapon and Mordenkainen's Faithful Hound.** Bigby's Hand's
+Clenched Fist option deals a clean 4d8 force damage on a hit, but the
+attack is one of several optional bonus-action effects (grapple, push,
+interpose) for a conjured hand the caster controls turn after turn —
+the same "recurring, optional, not-the-spell's-single-effect" shape
+already declined, not a new one-off worth re-litigating.
 
 ## Test conventions
 

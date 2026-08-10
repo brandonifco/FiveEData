@@ -2608,7 +2608,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.poison",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 5, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -2983,7 +2991,15 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.cold",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 8, "sides": 8 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -3371,7 +3387,19 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": null,
+      "choosableDamageTypeIds": [
+        "dnd5e2014.damage-type.bludgeoning",
+        "dnd5e2014.damage-type.piercing",
+        "dnd5e2014.damage-type.slashing"
+      ],
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 8, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.ranger"
@@ -3464,7 +3492,15 @@
       "unit": "Minute"
     },
     "isRitual": true,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.psychic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.intelligence",
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 6, "sides": 6 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
@@ -4523,7 +4559,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.prone"],
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.paladin"
     ],
@@ -5299,7 +5338,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.charmed"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -8864,7 +8906,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.paralyzed"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.bard",
       "dnd5e2014.class.sorcerer",
@@ -9447,7 +9492,15 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.piercing",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 4, "sides": 10 }
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
