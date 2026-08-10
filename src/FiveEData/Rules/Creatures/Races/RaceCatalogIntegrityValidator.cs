@@ -5,6 +5,8 @@ using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -17,7 +19,9 @@ internal static class RaceCatalogIntegrityValidator
         IReadOnlySet<CreatureSizeId> sizeIds,
         IReadOnlySet<LanguageId> languageIds,
         IReadOnlySet<RuleId> ruleIds,
-        IReadOnlySet<DamageTypeId> damageTypeIds)
+        IReadOnlySet<DamageTypeId> damageTypeIds,
+        IReadOnlySet<WeaponId> weaponIds,
+        IReadOnlySet<SkillId> skillIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(sourceIds);
@@ -26,6 +30,8 @@ internal static class RaceCatalogIntegrityValidator
         ArgumentNullException.ThrowIfNull(languageIds);
         ArgumentNullException.ThrowIfNull(ruleIds);
         ArgumentNullException.ThrowIfNull(damageTypeIds);
+        ArgumentNullException.ThrowIfNull(weaponIds);
+        ArgumentNullException.ThrowIfNull(skillIds);
 
         var errors = new List<string>();
 
@@ -88,6 +94,24 @@ internal static class RaceCatalogIntegrityValidator
                         $"'{damageTypeId}'.");
                 }
             }
+
+            foreach (WeaponId weaponId in race.WeaponProficiencyIds)
+            {
+                if (!weaponIds.Contains(weaponId))
+                {
+                    errors.Add(
+                        $"{owner} references missing weapon " +
+                        $"'{weaponId}'.");
+                }
+            }
+
+            if (race.SkillProficiencyId is { } skillProficiencyId &&
+                !skillIds.Contains(skillProficiencyId))
+            {
+                errors.Add(
+                    $"{owner} references missing skill " +
+                    $"'{skillProficiencyId}'.");
+            }
         }
 
         foreach (
@@ -133,6 +157,16 @@ internal static class RaceCatalogIntegrityValidator
                     errors.Add(
                         $"{owner} references missing damage type " +
                         $"'{damageTypeId}'.");
+                }
+            }
+
+            foreach (WeaponId weaponId in subrace.WeaponProficiencyIds)
+            {
+                if (!weaponIds.Contains(weaponId))
+                {
+                    errors.Add(
+                        $"{owner} references missing weapon " +
+                        $"'{weaponId}'.");
                 }
             }
         }

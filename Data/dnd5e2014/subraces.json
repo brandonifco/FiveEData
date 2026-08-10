@@ -17,6 +17,8 @@
     "darkvisionRangeFeet": null,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": 1,
+    "weaponProficiencyIds": [],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -43,6 +45,11 @@
     "darkvisionRangeFeet": null,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [],
+    "armorProficiencyCategories": [
+      "Light",
+      "Medium"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -70,6 +77,13 @@
     "darkvisionRangeFeet": null,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.longsword",
+      "dnd5e2014.weapon.shortsword",
+      "dnd5e2014.weapon.shortbow",
+      "dnd5e2014.weapon.longbow"
+    ],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -98,6 +112,13 @@
     "darkvisionRangeFeet": null,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.longsword",
+      "dnd5e2014.weapon.shortsword",
+      "dnd5e2014.weapon.shortbow",
+      "dnd5e2014.weapon.longbow"
+    ],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -127,6 +148,12 @@
     "darkvisionRangeFeet": 120,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.rapier",
+      "dnd5e2014.weapon.shortsword",
+      "dnd5e2014.weapon.hand-crossbow"
+    ],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -153,6 +180,8 @@
     "darkvisionRangeFeet": null,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -181,6 +210,8 @@
       "dnd5e2014.damage-type.poison"
     ],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -208,6 +239,8 @@
     "darkvisionRangeFeet": null,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -235,6 +268,8 @@
     "darkvisionRangeFeet": null,
     "resistedDamageTypeIds": [],
     "hitPointBonusPerLevel": null,
+    "weaponProficiencyIds": [],
+    "armorProficiencyCategories": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

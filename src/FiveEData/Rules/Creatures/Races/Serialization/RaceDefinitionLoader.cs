@@ -14,6 +14,8 @@ using FiveEData.Rules.Creatures.Races.SavageAttacks;
 using FiveEData.Rules.Creatures.Races.SavageAttacks.Serialization;
 using FiveEData.Rules.Creatures.Races.BreathWeapon.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
@@ -118,6 +120,11 @@ internal static class RaceDefinitionLoader
                 "Race resisted damage type IDs are required.",
                 nameof(data));
 
+        string[] weaponProficiencyIdValues = data.WeaponProficiencyIds
+            ?? throw new ArgumentException(
+                "Race weapon proficiency IDs are required.",
+                nameof(data));
+
         SourceReferenceData[] sourceData = data.Sources
             ?? throw new ArgumentException(
                 "Race sources are required.",
@@ -139,6 +146,15 @@ internal static class RaceDefinitionLoader
         DamageTypeId[] resistedDamageTypeIds = resistedDamageTypeIdValues
             .Select(value => new DamageTypeId(value))
             .ToArray();
+
+        WeaponId[] weaponProficiencyIds = weaponProficiencyIdValues
+            .Select(value => new WeaponId(value))
+            .ToArray();
+
+        SkillId? skillProficiencyId =
+            data.SkillProficiencyId is { } skillProficiencyIdValue
+                ? new SkillId(skillProficiencyIdValue)
+                : null;
 
         BreathWeaponProgressionDetail? breathWeaponProgression =
             data.BreathWeaponProgression is { } breathWeaponProgressionData
@@ -183,6 +199,9 @@ internal static class RaceDefinitionLoader
             savageAttacks,
             relentlessEndurance,
             lucky,
+            weaponProficiencyIds,
+            skillProficiencyId,
+            data.SkillProficiencyChoiceCount,
             sources);
     }
 

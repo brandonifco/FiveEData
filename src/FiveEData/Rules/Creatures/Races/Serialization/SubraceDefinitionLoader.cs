@@ -3,6 +3,8 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
@@ -102,6 +104,17 @@ internal static class SubraceDefinitionLoader
                 "Subrace resisted damage type IDs are required.",
                 nameof(data));
 
+        string[] weaponProficiencyIdValues = data.WeaponProficiencyIds
+            ?? throw new ArgumentException(
+                "Subrace weapon proficiency IDs are required.",
+                nameof(data));
+
+        ArmorCategory[] armorProficiencyCategories =
+            data.ArmorProficiencyCategories
+            ?? throw new ArgumentException(
+                "Subrace armor proficiency categories are required.",
+                nameof(data));
+
         SourceReferenceData[] sourceData = data.Sources
             ?? throw new ArgumentException(
                 "Subrace sources are required.",
@@ -118,6 +131,10 @@ internal static class SubraceDefinitionLoader
 
         DamageTypeId[] resistedDamageTypeIds = resistedDamageTypeIdValues
             .Select(value => new DamageTypeId(value))
+            .ToArray();
+
+        WeaponId[] weaponProficiencyIds = weaponProficiencyIdValues
+            .Select(value => new WeaponId(value))
             .ToArray();
 
         SourceReference[] sources = sourceData
@@ -139,6 +156,8 @@ internal static class SubraceDefinitionLoader
             data.DarkvisionRangeFeet,
             resistedDamageTypeIds,
             data.HitPointBonusPerLevel,
+            weaponProficiencyIds,
+            armorProficiencyCategories,
             sources);
     }
 }

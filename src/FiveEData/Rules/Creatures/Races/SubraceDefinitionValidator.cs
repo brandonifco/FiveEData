@@ -1,6 +1,8 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -112,6 +114,47 @@ internal static class SubraceDefinitionValidator
             errors.Add(
                 "Subrace hit point bonus per level must be greater than " +
                 "zero when specified.");
+        }
+
+        var seenWeaponProficiencies = new HashSet<WeaponId>();
+
+        foreach (WeaponId weaponId in subrace.WeaponProficiencyIds)
+        {
+            if (string.IsNullOrWhiteSpace(weaponId.Value))
+            {
+                errors.Add(
+                    "Subrace weapon proficiency ID must not be empty.");
+                continue;
+            }
+
+            if (!seenWeaponProficiencies.Add(weaponId))
+            {
+                errors.Add(
+                    $"Subrace weapon proficiency '{weaponId}' is " +
+                    "duplicated.");
+            }
+        }
+
+        var seenArmorProficiencies = new HashSet<ArmorCategory>();
+
+        foreach (
+            ArmorCategory armorCategory
+            in subrace.ArmorProficiencyCategories)
+        {
+            if (!Enum.IsDefined(armorCategory))
+            {
+                errors.Add(
+                    $"Subrace armor proficiency category '{armorCategory}' " +
+                    "must be defined.");
+                continue;
+            }
+
+            if (!seenArmorProficiencies.Add(armorCategory))
+            {
+                errors.Add(
+                    $"Subrace armor proficiency category " +
+                    $"'{armorCategory}' is duplicated.");
+            }
         }
 
         return errors;

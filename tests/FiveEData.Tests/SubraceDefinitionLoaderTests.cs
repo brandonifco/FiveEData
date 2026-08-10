@@ -23,6 +23,8 @@ public sealed class SubraceDefinitionLoaderTests
           "darkvisionRangeFeet": null,
           "resistedDamageTypeIds": [],
           "hitPointBonusPerLevel": null,
+          "weaponProficiencyIds": [],
+          "armorProficiencyCategories": [],
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -74,6 +76,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -123,6 +127,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": [],
                     "unexpected": true
                   }
@@ -149,6 +155,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": []
                   }
                 ]
@@ -172,6 +180,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": []
                   }
                 ]
@@ -195,6 +205,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": []
                   }
                 ]
@@ -219,6 +231,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": []
                   }
                 ]
@@ -243,6 +257,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": []
                   }
                 ]
@@ -267,6 +283,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "darkvisionRangeFeet": null,
                     "resistedDamageTypeIds": [],
                     "hitPointBonusPerLevel": null,
+                    "weaponProficiencyIds": [],
+                    "armorProficiencyCategories": [],
                     "sources": null
                   }
                 ]

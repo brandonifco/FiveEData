@@ -118,6 +118,16 @@ internal static class CatalogIntegrityValidator
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
+        HashSet<SkillId> skillIds =
+            definitions.CreatureVocabulary.Skills
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        HashSet<WeaponId> weaponIds =
+            definitions.Equipment.Weapons
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         errors.AddRange(
             RaceCatalogIntegrityValidator.Validate(
                 definitions.Races,
@@ -126,20 +136,12 @@ internal static class CatalogIntegrityValidator
                 sizeIds,
                 languageIds,
                 ruleIds,
-                damageTypeIds));
-
-        HashSet<SkillId> skillIds =
-            definitions.CreatureVocabulary.Skills
-                .Select(definition => definition.Id)
-                .ToHashSet();
+                damageTypeIds,
+                weaponIds,
+                skillIds));
 
         HashSet<SpellId> spellIds =
             definitions.Spells
-                .Select(definition => definition.Id)
-                .ToHashSet();
-
-        HashSet<WeaponId> weaponIds =
-            definitions.Equipment.Weapons
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
