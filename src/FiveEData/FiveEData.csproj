@@ -70,6 +70,9 @@
       Include="../../Data/dnd5e2014/channel-divinity-options.json"
       LogicalName="FiveEData.Data.dnd5e2014.channel-divinity-options.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/totem-warrior-options.json"
+      LogicalName="FiveEData.Data.dnd5e2014.totem-warrior-options.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/spell-slot-progressions.json"
       LogicalName="FiveEData.Data.dnd5e2014.spell-slot-progressions.json" />
     <EmbeddedResource

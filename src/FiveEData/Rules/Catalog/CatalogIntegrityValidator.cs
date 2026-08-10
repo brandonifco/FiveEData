@@ -9,6 +9,7 @@ using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
+using FiveEData.Rules.Classes.TotemWarriorOptions;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ExtraAttack;
@@ -130,6 +131,11 @@ internal static class CatalogIntegrityValidator
 
         HashSet<SpellId> spellIds =
             definitions.Spells
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        HashSet<TravelPaceId> travelPaceIds =
+            definitions.TravelPaces
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
@@ -513,6 +519,65 @@ internal static class CatalogIntegrityValidator
                         $"{owner} references missing ability " +
                         $"'{choosableSavingThrowAbilityId}'.");
                 }
+            }
+        }
+
+        foreach (
+            TotemWarriorOptionDefinition totemWarriorOption
+            in definitions.TotemWarriorOptions)
+        {
+            string owner =
+                $"Totem warrior option '{totemWarriorOption.Id}'";
+
+            ValidateSources(
+                owner,
+                totemWarriorOption.Sources,
+                sourceIds,
+                errors);
+
+            if (totemWarriorOption.ResistsAllDamageExceptTypeId is
+                    { } resistsAllDamageExceptTypeId &&
+                !damageTypeIds.Contains(resistsAllDamageExceptTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{resistsAllDamageExceptTypeId}'.");
+            }
+
+            if (totemWarriorOption.TracksAtTravelPaceId is
+                    { } tracksAtTravelPaceId &&
+                !travelPaceIds.Contains(tracksAtTravelPaceId))
+            {
+                errors.Add(
+                    $"{owner} references missing travel pace " +
+                    $"'{tracksAtTravelPaceId}'.");
+            }
+
+            if (totemWarriorOption.MovesStealthilyAtTravelPaceId is
+                    { } movesStealthilyAtTravelPaceId &&
+                !travelPaceIds.Contains(movesStealthilyAtTravelPaceId))
+            {
+                errors.Add(
+                    $"{owner} references missing travel pace " +
+                    $"'{movesStealthilyAtTravelPaceId}'.");
+            }
+
+            if (totemWarriorOption.ImposedConditionId is
+                    { } totemWarriorImposedConditionId &&
+                !conditionIds.Contains(totemWarriorImposedConditionId))
+            {
+                errors.Add(
+                    $"{owner} references missing condition " +
+                    $"'{totemWarriorImposedConditionId}'.");
+            }
+
+            if (totemWarriorOption.MaximumTargetSizeId is
+                    { } totemWarriorMaximumTargetSizeId &&
+                !sizeIds.Contains(totemWarriorMaximumTargetSizeId))
+            {
+                errors.Add(
+                    $"{owner} references missing creature size " +
+                    $"'{totemWarriorMaximumTargetSizeId}'.");
             }
         }
 

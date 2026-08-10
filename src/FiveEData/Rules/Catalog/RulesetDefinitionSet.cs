@@ -14,6 +14,7 @@ using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.Metamagic;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.TotemWarriorOptions;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 
@@ -36,6 +37,7 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<ElementalDisciplineDefinition> elementalDisciplines,
         IReadOnlyList<ChannelDivinityOptionDefinition>
             channelDivinityOptions,
+        IReadOnlyList<TotemWarriorOptionDefinition> totemWarriorOptions,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
@@ -61,6 +63,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(eldritchInvocations);
         ArgumentNullException.ThrowIfNull(elementalDisciplines);
         ArgumentNullException.ThrowIfNull(channelDivinityOptions);
+        ArgumentNullException.ThrowIfNull(totemWarriorOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -85,6 +88,7 @@ internal sealed class RulesetDefinitionSet
         EldritchInvocations = eldritchInvocations;
         ElementalDisciplines = elementalDisciplines;
         ChannelDivinityOptions = channelDivinityOptions;
+        TotemWarriorOptions = totemWarriorOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -124,6 +128,9 @@ internal sealed class RulesetDefinitionSet
 
     public IReadOnlyList<ChannelDivinityOptionDefinition>
         ChannelDivinityOptions
+    { get; }
+
+    public IReadOnlyList<TotemWarriorOptionDefinition> TotemWarriorOptions
     { get; }
 
     public IReadOnlyList<SpellSlotProgressionDefinition>

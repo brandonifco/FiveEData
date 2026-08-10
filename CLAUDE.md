@@ -15,7 +15,13 @@ a game.
 
 ## Current state
 
-**Nothing in progress. All five choice-point catalogs are closed**
+**In progress: the last candidate from the 2026-08-10 scoping pass —
+more choice-point catalogs.** Path of the Totem Warrior is **built**
+(9 options; see "Game-backend quantization: Totem Warrior options").
+Still unbuilt: Ranger Hunter, Monk's Open Hand Technique, Wizard's
+Third Eye, and Transmuter's Stone.
+
+The original five choice-point catalogs are closed
 (Metamagic, Battle Master maneuvers, Eldritch Invocations, Elemental
 Disciplines, Channel Divinity — the last now 16 entries, not 10; see
 below). The wider race/subclass/background feature-prose tail was
@@ -34,11 +40,8 @@ Illusionist, Light Domain's Bonus Cantrip, Thousand Forms), and the
 "rich individual features" candidate (~16 features across 6 subclasses,
 built as three PRs by class family — Barbarian/Rogue, Warlock
 Archfey/Great Old One, Wizard Enchantment/Evocation, and Sorcerer
-Draconic Bloodline). **Only one candidate from the 2026-08-10 scoping
-pass remains unstarted: more choice-point catalogs** (Circle of the
-Totem Warrior, Ranger Hunter, Monk's Open Hand Technique, Wizard's
-Third Eye and Transmuter's Stone). Ask the user whether to pick that
-up or scope a fresh pass.
+Draconic Bloodline). The fifth and last candidate — more choice-point
+catalogs — is now **in progress**; see the top of this section.
 
 Built and complete:
 
@@ -146,7 +149,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2989 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3066 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -865,7 +868,7 @@ rather than trusting it.
   `AvailableToClassIds` — cantrips only so far; see "Current state".
 - **Choice-point catalogs** (standalone, not referenced from a definition):
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
-  Elemental Disciplines, Channel Divinity options.
+  Elemental Disciplines, Channel Divinity options, Totem Warrior options.
 - **Embedded on `ClassDefinition`:** Action Surge, Indomitable, Rage, Brutal
   Critical, Fast Movement, Favored Enemy, Natural Explorer, Sneak Attack, Ki,
   Martial Arts, Unarmored Movement, Sorcery Points, Wild Shape, Bardic
@@ -951,7 +954,7 @@ doesn't otherwise use.
   Mystic Arcanum `false` — despite Warlock's own Pact Magic recovering on a
   short rest.
 
-**The six choice-point catalogs**, all resolved — no two share a schema:
+**The choice-point catalogs**, all resolved — no two share a schema:
 
 | Catalog | Shape captured |
 | --- | --- |
@@ -961,7 +964,8 @@ doesn't otherwise use.
 | Battle Master maneuvers (16) | effect target enum + saving-throw ability |
 | Eldritch Invocations (32) | 3 independent, stackable prerequisite facts |
 | Elemental Disciplines (17) | ki cost + minimum level |
-| Channel Divinity options (10) | 4 independent nullable scalars |
+| Channel Divinity options (16) | 4 independent nullable scalars, later extended |
+| Totem Warrior options (9) | shared rage/armor gates + per-animal one-offs |
 
 A choice point earns a catalog **only if at least one option carries a real
 quantizable fact** — Pact Boon proved the pattern isn't automatic. A "choice
@@ -2539,9 +2543,12 @@ of the specific numbers below have been checked against page images
 yet:
 
 - **More choice-point catalogs never built, same shape as Fighting
-  Style/Battle Master maneuvers:** Circle of the Totem Warrior
-  (Barbarian) has three separate Bear/Eagle/Wolf choice points (Totem
-  Spirit 3rd, Aspect of the Beast 6th, Totemic Attunement 14th); Ranger
+  Style/Battle Master maneuvers:** **Path** of the Totem Warrior
+  (Barbarian — this bullet originally said "Circle," which is Druid
+  terminology) has three separate Bear/Eagle/Wolf choice points (Totem
+  Spirit 3rd, Aspect of the Beast 6th, Totemic Attunement 14th) —
+  **built** as one 9-entry catalog, see "Game-backend quantization:
+  Totem Warrior options"; Ranger
   Hunter has four (Hunter's Prey, Defensive Tactics, Multiattack,
   Superior Hunter's Defense); Monk's Open Hand Technique (3rd level) is
   a 3-option Flurry of Blows rider; Wizard's The Third Eye (Divination
@@ -3093,6 +3100,101 @@ Ranger Hunter, Monk's Open Hand Technique, Wizard's Third Eye and
 Transmuter's Stone). Every other candidate from that pass — the
 `GrantedSpellId` tail, the racial proficiency structural gap, and now
 the rich individual features — is built or explicitly declined.
+
+## Game-backend quantization: Totem Warrior options
+
+The first slice of the "more choice-point catalogs" candidate, and the
+sixth choice-point catalog overall. All 9 options — Bear/Eagle/Wolf at
+each of Totem Spirit (3rd), Aspect of the Beast (6th), and Totemic
+Attunement (14th) — verified against the rendered page image at p.50,
+which carries all three choice points in its two columns. The 5 existing
+`class-rule.json` citations for this subclass already said p.50 and were
+correct; no citation error found this pass.
+
+**Three choice points became one 9-entry catalog, not three catalogs of
+3.** They share one subclass, one page, and one option vocabulary
+(the same three animals), and `RequiredLevel` (3/6/14) already
+discriminates which choice point an entry belongs to. This follows
+`ChannelDivinityOptionDefinition`'s precedent of carrying **no grouping
+field** for which subclass an option belongs to — the ID prefix and the
+citation do that work. Split into multiple catalogs only when the
+choice points genuinely differ in option vocabulary, not merely in
+level.
+
+**First-ever cross-domain reference into the Adventuring domain's
+`TravelPace` catalog.** Aspect of the Beast (Wolf) tracks at a fast
+pace and moves stealthily at a normal pace — two `TravelPaceId?` fields
+(`TracksAtTravelPaceId`, `MovesStealthilyAtTravelPaceId`) resolving
+against the catalog that already models exactly those paces, rather
+than storing the pace names as prose. `CatalogIntegrityValidator` gained
+its first `HashSet<TravelPaceId>` to back the check. **When a feature's
+text names a value some other catalog already enumerates, reference the
+catalog** — the same reasoning that made Battle Master's Trip Attack use
+`ConditionId`/`CreatureSizeId` instead of bespoke enums.
+
+**`ResistsAllDamageExceptTypeId` is a new inverted-resistance shape.**
+Totem Spirit (Bear) grants "resistance to all damage except psychic" —
+the complement of `RaceDefinition.ResistedDamageTypeIds`' "these
+specific types" list. Storing the 12 other damage types explicitly
+would have been a derived total, which this project doesn't do (the
+same rule that makes Warding Bond store the printed per-item cost, not
+the multiplied one); one exception ID is what the book prints.
+
+**Totemic Attunement (Wolf) reuses `ImposedConditionId` +
+`MaximumTargetSizeId` — the exact field pair Battle Master's Trip Attack
+and Pushing Attack already established**, now on a third domain, plus
+`ImposedConditionRequiresBonusAction` (validator-paired to require an
+imposed condition). Two features on different classes converging on the
+same "knock a Large or smaller creature prone" shape is why those
+cross-domain references were worth making catalog-backed in the first
+place.
+
+**`RequiresRaging` cleanly partitions the catalog, and the partition is
+load-bearing data, not decoration:** all six Totem Spirit and Totemic
+Attunement options are gated on raging; none of the three Aspect of the
+Beast options are (they are always-on magical benefits). Pinned by
+`AspectOfTheBeastOptions_AreTheOnlyOptionsNotRequiringRage`.
+`RequiresNotWearingHeavyArmor` reuses the name Rage and Fast Movement
+already use, and Totem Spirit (Eagle) is the only option carrying it —
+read the armor gate per feature, never generalized, exactly as the
+Quantized-mechanics tail already requires.
+
+**Three declines, all on established lines:**
+
+- **Totemic Attunement (Bear)'s immunity clause** ("immune if it can't
+  see or hear you or if it can't be frightened") is a compound
+  conditional — the same line Prone's range-conditional attack-roll text
+  already sits on.
+- **Totemic Attunement (Eagle)'s falling clause** ("you fall if you end
+  your turn in the air and nothing else is holding you aloft") is a
+  compound end condition, not a flat fact; only
+  `GrantsFlyingSpeedEqualToWalkingSpeed` is captured.
+- **Spirit Seeker (3rd) and Spirit Walker (10th) are out of scope
+  entirely** — they are flat features, not choice points, so they don't
+  belong in this catalog. Both are also **latent `SpellGrant`
+  candidates that the existing type cannot represent**: they grant
+  *beast sense*/*speak with animals* and *commune with nature* "only as
+  rituals," and `SpellGrantFrequency` has only `AtWill`/`OncePerDay`.
+  Ritual-only casting is a real third frequency axis; add it when a
+  second feature needs it, not for these two alone.
+
+**Aspect of the Beast (Eagle)'s "1 mile" is canonicalized to 5,280 feet**,
+the same unit conversion Clairvoyance, Project Image, and Control
+Weather already established for spell ranges and areas — now shown on a
+class feature. Its paired "as though looking at something no more than
+100 feet away" is stored alongside
+(`ClearSightRangeFeet`/`ClearSightDetailEquivalentRangeFeet`,
+validator-paired present-together-or-neither), matching Sacred Weapon's
+bright/dim light radius pair.
+
+**`CatalogIntegrityTests.PublishedCatalog_HasNoDanglingReferences` now
+loads real travel paces and real totem warrior options.** It previously
+passed `travelPaces: []`, so the new cross-reference would have been
+invisible to it — the exact blind spot the innate-spell-grants slice
+already hit with `spells`/`magicSchools`/`conditions`. A negative test
+(`MissingTotemWarriorTravelPaceReference_IsRejected`) pins that the
+check actually fires. **Check what that test loads before trusting its
+green status to cover a new reference.**
 
 ## Test conventions
 

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "dnd5e2014.totem-warrior-option.totem-spirit-bear",
+    "name": "Totem Spirit: Bear",
+    "requiredLevel": 3,
+    "requiresRaging": true,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": "dnd5e2014.damage-type.psychic",
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.totem-spirit-eagle",
+    "name": "Totem Spirit: Eagle",
+    "requiredLevel": 3,
+    "requiresRaging": true,
+    "requiresNotWearingHeavyArmor": true,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": true,
+    "grantsDashAsBonusAction": true,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.totem-spirit-wolf",
+    "name": "Totem Spirit: Wolf",
+    "requiredLevel": 3,
+    "requiresRaging": true,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": 5,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.aspect-of-the-beast-bear",
+    "name": "Aspect of the Beast: Bear",
+    "requiredLevel": 6,
+    "requiresRaging": false,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": true,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": true,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.aspect-of-the-beast-eagle",
+    "name": "Aspect of the Beast: Eagle",
+    "requiredLevel": 6,
+    "requiresRaging": false,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": 5280,
+    "clearSightDetailEquivalentRangeFeet": 100,
+    "ignoresDimLightPerceptionDisadvantage": true,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.aspect-of-the-beast-wolf",
+    "name": "Aspect of the Beast: Wolf",
+    "requiredLevel": 6,
+    "requiresRaging": false,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": "dnd5e2014.travel-pace.fast",
+    "movesStealthilyAtTravelPaceId": "dnd5e2014.travel-pace.normal",
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.totemic-attunement-bear",
+    "name": "Totemic Attunement: Bear",
+    "requiredLevel": 14,
+    "requiresRaging": true,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": 5,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.totemic-attunement-eagle",
+    "name": "Totemic Attunement: Eagle",
+    "requiredLevel": 14,
+    "requiresRaging": true,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": true,
+    "imposedConditionId": null,
+    "maximumTargetSizeId": null,
+    "imposedConditionRequiresBonusAction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.totem-warrior-option.totemic-attunement-wolf",
+    "name": "Totemic Attunement: Wolf",
+    "requiredLevel": 14,
+    "requiresRaging": true,
+    "requiresNotWearingHeavyArmor": false,
+    "resistsAllDamageExceptTypeId": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "grantsDashAsBonusAction": false,
+    "grantsAlliesAdvantageOnMeleeAttacksWithinFeet": null,
+    "doublesCarryingCapacity": false,
+    "grantsAdvantageOnStrengthChecksToMoveObjects": false,
+    "clearSightRangeFeet": null,
+    "clearSightDetailEquivalentRangeFeet": null,
+    "ignoresDimLightPerceptionDisadvantage": false,
+    "tracksAtTravelPaceId": null,
+    "movesStealthilyAtTravelPaceId": null,
+    "imposesDisadvantageOnAttacksAgainstOthersWithinFeet": null,
+    "grantsFlyingSpeedEqualToWalkingSpeed": false,
+    "imposedConditionId": "dnd5e2014.condition.prone",
+    "maximumTargetSizeId": "dnd5e2014.creature-size.large",
+    "imposedConditionRequiresBonusAction": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 50,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

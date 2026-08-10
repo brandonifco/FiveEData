@@ -63,6 +63,8 @@ using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.EldritchInvocations.Serialization;
 using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ElementalDisciplines.Serialization;
+using FiveEData.Rules.Classes.TotemWarriorOptions;
+using FiveEData.Rules.Classes.TotemWarriorOptions.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
 
@@ -181,6 +183,9 @@ public sealed class PublicApiBoundaryTests
             typeof(ChannelDivinityOptionDefinitionLoader).IsPublic);
         Assert.False(
             typeof(ChannelDivinityOptionDefinitionValidator).IsPublic);
+        Assert.False(typeof(TotemWarriorOptionDefinitionLoader).IsPublic);
+        Assert.False(
+            typeof(TotemWarriorOptionDefinitionValidator).IsPublic);
     }
 
     [Fact]

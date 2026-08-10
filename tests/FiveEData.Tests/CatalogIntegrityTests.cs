@@ -1,4 +1,8 @@
+using FiveEData.Rules.Adventuring.TravelPace;
+using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Classes.TotemWarriorOptions;
+using FiveEData.Rules.Classes.TotemWarriorOptions.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
@@ -198,6 +202,18 @@ public sealed class CatalogIntegrityTests
             ArmorUsageRulesLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "armor-usage.json"));
 
+        IReadOnlyList<TotemWarriorOptionDefinition> totemWarriorOptions =
+            TotemWarriorOptionDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "totem-warrior-options.json"));
+
+        IReadOnlyList<TravelPaceDefinition> travelPaces =
+            TravelPaceDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "travel-pace.json"));
+
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
@@ -228,7 +244,64 @@ public sealed class CatalogIntegrityTests
                     extraAttackProgressions: extraAttackProgressions,
                     spells: spells,
                     magicSchools: magicSchools,
-                    conditions: conditions)));
+                    conditions: conditions,
+                    totemWarriorOptions: totemWarriorOptions,
+                    travelPaces: travelPaces)));
+    }
+
+    [Fact]
+    public void MissingTotemWarriorTravelPaceReference_IsRejected()
+    {
+        IReadOnlyList<SourceDocument> sources =
+        [
+            new SourceDocument(
+                new SourceDocumentId("dnd5e2014.source.phb-first-printing"),
+                "Player's Handbook")
+        ];
+
+        var option = new TotemWarriorOptionDefinition(
+            id: new TotemWarriorOptionId(
+                "dnd5e2014.totem-warrior-option.test"),
+            name: "Test",
+            requiredLevel: 6,
+            requiresRaging: false,
+            requiresNotWearingHeavyArmor: false,
+            resistsAllDamageExceptTypeId: null,
+            imposesDisadvantageOnOpportunityAttacksAgainstYou: false,
+            grantsDashAsBonusAction: false,
+            grantsAlliesAdvantageOnMeleeAttacksWithinFeet: null,
+            doublesCarryingCapacity: false,
+            grantsAdvantageOnStrengthChecksToMoveObjects: false,
+            clearSightRangeFeet: null,
+            clearSightDetailEquivalentRangeFeet: null,
+            ignoresDimLightPerceptionDisadvantage: false,
+            tracksAtTravelPaceId:
+                new TravelPaceId("dnd5e2014.travel-pace.missing"),
+            movesStealthilyAtTravelPaceId: null,
+            imposesDisadvantageOnAttacksAgainstOthersWithinFeet: null,
+            grantsFlyingSpeedEqualToWalkingSpeed: false,
+            imposedConditionId: null,
+            maximumTargetSizeId: null,
+            imposedConditionRequiresBonusAction: false,
+            sources:
+            [
+                new SourceReference(
+                    new SourceDocumentId(
+                        "dnd5e2014.source.phb-first-printing"),
+                    page: 50)
+            ]);
+
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    totemWarriorOptions: [option]));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "missing travel pace",
+                StringComparison.Ordinal));
     }
 
     [Fact]
@@ -1330,7 +1403,10 @@ public sealed class CatalogIntegrityTests
             extraAttackProgressions = null,
         IReadOnlyList<SpellDefinition>? spells = null,
         IReadOnlyList<MagicSchoolDefinition>? magicSchools = null,
-        IReadOnlyList<ConditionDefinition>? conditions = null)
+        IReadOnlyList<ConditionDefinition>? conditions = null,
+        IReadOnlyList<TotemWarriorOptionDefinition>? totemWarriorOptions =
+            null,
+        IReadOnlyList<TravelPaceDefinition>? travelPaces = null)
     {
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
@@ -1381,6 +1457,7 @@ public sealed class CatalogIntegrityTests
             eldritchInvocations: [],
             elementalDisciplines: [],
             channelDivinityOptions: [],
+            totemWarriorOptions: totemWarriorOptions ?? [],
             spellSlotProgressions: spellSlotProgressions ?? [],
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: [],
@@ -1388,7 +1465,7 @@ public sealed class CatalogIntegrityTests
             spells: spells ?? [],
             combatActions: [],
             cover: [],
-            travelPaces: [],
+            travelPaces: travelPaces ?? [],
             restTypes: [],
             downtimeActivities: []);
     }
