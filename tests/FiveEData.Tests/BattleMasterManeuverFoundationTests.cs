@@ -2,6 +2,8 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.Sizes;
 
 namespace FiveEData.Tests;
 
@@ -61,6 +63,27 @@ public sealed class BattleMasterManeuverFoundationTests
     }
 
     [Fact]
+    public void Definition_ExposesImposedConditionAndMaximumTargetSize()
+    {
+        BattleMasterManeuverDefinition definition = Create(
+            "dnd5e2014.battle-master-maneuver.test",
+            "Test",
+            BattleMasterManeuverEffectTarget.DamageRoll,
+            new AbilityId("dnd5e2014.ability.strength"),
+            [CreateSource()],
+            imposedConditionId: new ConditionId("dnd5e2014.condition.prone"),
+            maximumTargetSizeId:
+                new CreatureSizeId("dnd5e2014.creature-size.large"));
+
+        Assert.Equal(
+            "dnd5e2014.condition.prone",
+            definition.ImposedConditionId?.Value);
+        Assert.Equal(
+            "dnd5e2014.creature-size.large",
+            definition.MaximumTargetSizeId?.Value);
+    }
+
+    [Fact]
     public void Validator_RejectsDefaultId()
     {
         BattleMasterManeuverDefinition definition = Create(
@@ -90,6 +113,84 @@ public sealed class BattleMasterManeuverFoundationTests
             error =>
                 error.Contains(
                     "source",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositivePushDistanceFeet()
+    {
+        BattleMasterManeuverDefinition definition = Create(
+            "dnd5e2014.battle-master-maneuver.test",
+            "Test",
+            BattleMasterManeuverEffectTarget.DamageRoll,
+            null,
+            [CreateSource()],
+            pushDistanceFeet: 0);
+
+        Assert.Contains(
+            BattleMasterManeuverDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "push distance",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveReachIncreaseFeet()
+    {
+        BattleMasterManeuverDefinition definition = Create(
+            "dnd5e2014.battle-master-maneuver.test",
+            "Test",
+            BattleMasterManeuverEffectTarget.DamageRoll,
+            null,
+            [CreateSource()],
+            reachIncreaseFeet: 0);
+
+        Assert.Contains(
+            BattleMasterManeuverDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "reach increase",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveSecondaryTargetRangeFeet()
+    {
+        BattleMasterManeuverDefinition definition = Create(
+            "dnd5e2014.battle-master-maneuver.test",
+            "Test",
+            BattleMasterManeuverEffectTarget.DamageRoll,
+            null,
+            [CreateSource()],
+            secondaryTargetRangeFeet: 0);
+
+        Assert.Contains(
+            BattleMasterManeuverDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "secondary target range",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void
+        Validator_RejectsDurationTriggerWithoutABoundedSecondaryEffect()
+    {
+        BattleMasterManeuverDefinition definition = Create(
+            "dnd5e2014.battle-master-maneuver.test",
+            "Test",
+            BattleMasterManeuverEffectTarget.DamageRoll,
+            null,
+            [CreateSource()],
+            secondaryEffectDurationTrigger:
+                BattleMasterManeuverDurationTrigger.EndOfYourNextTurn);
+
+        Assert.Contains(
+            BattleMasterManeuverDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "duration trigger",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -190,14 +291,40 @@ public sealed class BattleMasterManeuverFoundationTests
         string name,
         BattleMasterManeuverEffectTarget effectTarget,
         AbilityId? savingThrowAbilityId,
-        IEnumerable<SourceReference> sources)
+        IEnumerable<SourceReference> sources,
+        ConditionId? imposedConditionId = null,
+        CreatureSizeId? maximumTargetSizeId = null,
+        int? pushDistanceFeet = null,
+        int? reachIncreaseFeet = null,
+        int? secondaryTargetRangeFeet = null,
+        bool forcesDroppedItem = false,
+        bool grantsAdvantageOnNextAttackRoll = false,
+        bool grantsAdvantageToNextAttackAgainstTarget = false,
+        bool imposesDisadvantageOnAttacksAgainstOthers = false,
+        bool allowsAllyReactionMovement = false,
+        BattleMasterManeuverDurationTrigger?
+            secondaryEffectDurationTrigger = null)
     {
         return new BattleMasterManeuverDefinition(
-            id is null ? default : new BattleMasterManeuverId(id),
-            name,
-            effectTarget,
-            savingThrowAbilityId,
-            sources);
+            id: id is null ? default : new BattleMasterManeuverId(id),
+            name: name,
+            effectTarget: effectTarget,
+            savingThrowAbilityId: savingThrowAbilityId,
+            imposedConditionId: imposedConditionId,
+            maximumTargetSizeId: maximumTargetSizeId,
+            pushDistanceFeet: pushDistanceFeet,
+            reachIncreaseFeet: reachIncreaseFeet,
+            secondaryTargetRangeFeet: secondaryTargetRangeFeet,
+            forcesDroppedItem: forcesDroppedItem,
+            grantsAdvantageOnNextAttackRoll:
+                grantsAdvantageOnNextAttackRoll,
+            grantsAdvantageToNextAttackAgainstTarget:
+                grantsAdvantageToNextAttackAgainstTarget,
+            imposesDisadvantageOnAttacksAgainstOthers:
+                imposesDisadvantageOnAttacksAgainstOthers,
+            allowsAllyReactionMovement: allowsAllyReactionMovement,
+            secondaryEffectDurationTrigger: secondaryEffectDurationTrigger,
+            sources: sources);
     }
 
     private static SourceReference CreateSource()
