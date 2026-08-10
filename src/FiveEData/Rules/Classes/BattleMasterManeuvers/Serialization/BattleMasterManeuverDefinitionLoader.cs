@@ -2,6 +2,8 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.Sizes;
 
 namespace FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
 
@@ -104,15 +106,40 @@ internal static class BattleMasterManeuverDefinitionLoader
                 ? new AbilityId(savingThrowAbilityIdValue)
                 : null;
 
+        ConditionId? imposedConditionId =
+            data.ImposedConditionId is { } imposedConditionIdValue
+                ? new ConditionId(imposedConditionIdValue)
+                : null;
+
+        CreatureSizeId? maximumTargetSizeId =
+            data.MaximumTargetSizeId is { } maximumTargetSizeIdValue
+                ? new CreatureSizeId(maximumTargetSizeIdValue)
+                : null;
+
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
 
         return new BattleMasterManeuverDefinition(
-            id,
-            name,
-            data.EffectTarget,
-            savingThrowAbilityId,
-            sources);
+            id: id,
+            name: name,
+            effectTarget: data.EffectTarget,
+            savingThrowAbilityId: savingThrowAbilityId,
+            imposedConditionId: imposedConditionId,
+            maximumTargetSizeId: maximumTargetSizeId,
+            pushDistanceFeet: data.PushDistanceFeet,
+            reachIncreaseFeet: data.ReachIncreaseFeet,
+            secondaryTargetRangeFeet: data.SecondaryTargetRangeFeet,
+            forcesDroppedItem: data.ForcesDroppedItem,
+            grantsAdvantageOnNextAttackRoll:
+                data.GrantsAdvantageOnNextAttackRoll,
+            grantsAdvantageToNextAttackAgainstTarget:
+                data.GrantsAdvantageToNextAttackAgainstTarget,
+            imposesDisadvantageOnAttacksAgainstOthers:
+                data.ImposesDisadvantageOnAttacksAgainstOthers,
+            allowsAllyReactionMovement: data.AllowsAllyReactionMovement,
+            secondaryEffectDurationTrigger:
+                data.SecondaryEffectDurationTrigger,
+            sources: sources);
     }
 }

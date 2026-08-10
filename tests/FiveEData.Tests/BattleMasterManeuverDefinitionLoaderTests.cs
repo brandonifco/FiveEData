@@ -17,6 +17,17 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
                     "name": "Test",
                     "effectTarget": "DamageRoll",
                     "savingThrowAbilityId": null,
+                    "imposedConditionId": null,
+                    "maximumTargetSizeId": null,
+                    "pushDistanceFeet": null,
+                    "reachIncreaseFeet": null,
+                    "secondaryTargetRangeFeet": null,
+                    "forcesDroppedItem": false,
+                    "grantsAdvantageOnNextAttackRoll": false,
+                    "grantsAdvantageToNextAttackAgainstTarget": false,
+                    "imposesDisadvantageOnAttacksAgainstOthers": false,
+                    "allowsAllyReactionMovement": false,
+                    "secondaryEffectDurationTrigger": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -51,6 +62,17 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
                     "name": "Test",
                     "effectTarget": "DamageRoll",
                     "savingThrowAbilityId": "dnd5e2014.ability.strength",
+                    "imposedConditionId": null,
+                    "maximumTargetSizeId": null,
+                    "pushDistanceFeet": null,
+                    "reachIncreaseFeet": null,
+                    "secondaryTargetRangeFeet": null,
+                    "forcesDroppedItem": false,
+                    "grantsAdvantageOnNextAttackRoll": false,
+                    "grantsAdvantageToNextAttackAgainstTarget": false,
+                    "imposesDisadvantageOnAttacksAgainstOthers": false,
+                    "allowsAllyReactionMovement": false,
+                    "secondaryEffectDurationTrigger": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -65,6 +87,59 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
         Assert.Equal(
             "dnd5e2014.ability.strength",
             definition.SavingThrowAbilityId?.Value);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsMechanismFieldsWhenPresent()
+    {
+        BattleMasterManeuverDefinition definition = Assert.Single(
+            BattleMasterManeuverDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.battle-master-maneuver.test",
+                    "name": "Test",
+                    "effectTarget": "DamageRoll",
+                    "savingThrowAbilityId": "dnd5e2014.ability.strength",
+                    "imposedConditionId": "dnd5e2014.condition.prone",
+                    "maximumTargetSizeId": "dnd5e2014.creature-size.large",
+                    "pushDistanceFeet": 15,
+                    "reachIncreaseFeet": 5,
+                    "secondaryTargetRangeFeet": 5,
+                    "forcesDroppedItem": true,
+                    "grantsAdvantageOnNextAttackRoll": true,
+                    "grantsAdvantageToNextAttackAgainstTarget": true,
+                    "imposesDisadvantageOnAttacksAgainstOthers": true,
+                    "allowsAllyReactionMovement": true,
+                    "secondaryEffectDurationTrigger": "EndOfYourNextTurn",
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.Equal(
+            "dnd5e2014.condition.prone",
+            definition.ImposedConditionId?.Value);
+        Assert.Equal(
+            "dnd5e2014.creature-size.large",
+            definition.MaximumTargetSizeId?.Value);
+        Assert.Equal(15, definition.PushDistanceFeet);
+        Assert.Equal(5, definition.ReachIncreaseFeet);
+        Assert.Equal(5, definition.SecondaryTargetRangeFeet);
+        Assert.True(definition.ForcesDroppedItem);
+        Assert.True(definition.GrantsAdvantageOnNextAttackRoll);
+        Assert.True(definition.GrantsAdvantageToNextAttackAgainstTarget);
+        Assert.True(definition.ImposesDisadvantageOnAttacksAgainstOthers);
+        Assert.True(definition.AllowsAllyReactionMovement);
+        Assert.Equal(
+            BattleMasterManeuverDurationTrigger.EndOfYourNextTurn,
+            definition.SecondaryEffectDurationTrigger);
     }
 
     [Fact]
@@ -100,6 +175,17 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
                     "name": "Test",
                     "effectTarget": "DamageRoll",
                     "savingThrowAbilityId": null,
+                    "imposedConditionId": null,
+                    "maximumTargetSizeId": null,
+                    "pushDistanceFeet": null,
+                    "reachIncreaseFeet": null,
+                    "secondaryTargetRangeFeet": null,
+                    "forcesDroppedItem": false,
+                    "grantsAdvantageOnNextAttackRoll": false,
+                    "grantsAdvantageToNextAttackAgainstTarget": false,
+                    "imposesDisadvantageOnAttacksAgainstOthers": false,
+                    "allowsAllyReactionMovement": false,
+                    "secondaryEffectDurationTrigger": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -120,6 +206,17 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
                     "name": "Other",
                     "effectTarget": "DamageRoll",
                     "savingThrowAbilityId": null,
+                    "imposedConditionId": null,
+                    "maximumTargetSizeId": null,
+                    "pushDistanceFeet": null,
+                    "reachIncreaseFeet": null,
+                    "secondaryTargetRangeFeet": null,
+                    "forcesDroppedItem": false,
+                    "grantsAdvantageOnNextAttackRoll": false,
+                    "grantsAdvantageToNextAttackAgainstTarget": false,
+                    "imposesDisadvantageOnAttacksAgainstOthers": false,
+                    "allowsAllyReactionMovement": false,
+                    "secondaryEffectDurationTrigger": null,
                     "sources": []
                   }
                 ]
@@ -137,7 +234,18 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
                     "id": "extension.battle-master-maneuver.test",
                     "name": "Test",
                     "effectTarget": "DamageRoll",
-                    "savingThrowAbilityId": null
+                    "savingThrowAbilityId": null,
+                    "imposedConditionId": null,
+                    "maximumTargetSizeId": null,
+                    "pushDistanceFeet": null,
+                    "reachIncreaseFeet": null,
+                    "secondaryTargetRangeFeet": null,
+                    "forcesDroppedItem": false,
+                    "grantsAdvantageOnNextAttackRoll": false,
+                    "grantsAdvantageToNextAttackAgainstTarget": false,
+                    "imposesDisadvantageOnAttacksAgainstOthers": false,
+                    "allowsAllyReactionMovement": false,
+                    "secondaryEffectDurationTrigger": null
                   }
                 ]
                 """));
@@ -155,6 +263,17 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
                     "name": "Test",
                     "effectTarget": "DamageRoll",
                     "savingThrowAbilityId": null,
+                    "imposedConditionId": null,
+                    "maximumTargetSizeId": null,
+                    "pushDistanceFeet": null,
+                    "reachIncreaseFeet": null,
+                    "secondaryTargetRangeFeet": null,
+                    "forcesDroppedItem": false,
+                    "grantsAdvantageOnNextAttackRoll": false,
+                    "grantsAdvantageToNextAttackAgainstTarget": false,
+                    "imposesDisadvantageOnAttacksAgainstOthers": false,
+                    "allowsAllyReactionMovement": false,
+                    "secondaryEffectDurationTrigger": null,
                     "sources": []
                   }
                 ]
@@ -171,6 +290,17 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
               "name": "Test",
               "effectTarget": "DamageRoll",
               "savingThrowAbilityId": null,
+              "imposedConditionId": null,
+              "maximumTargetSizeId": null,
+              "pushDistanceFeet": null,
+              "reachIncreaseFeet": null,
+              "secondaryTargetRangeFeet": null,
+              "forcesDroppedItem": false,
+              "grantsAdvantageOnNextAttackRoll": false,
+              "grantsAdvantageToNextAttackAgainstTarget": false,
+              "imposesDisadvantageOnAttacksAgainstOthers": false,
+              "allowsAllyReactionMovement": false,
+              "secondaryEffectDurationTrigger": null,
               "sources": [
                 {
                   "documentId": "extension.source.test",

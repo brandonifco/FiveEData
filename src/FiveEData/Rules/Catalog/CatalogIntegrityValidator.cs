@@ -333,6 +333,24 @@ internal static class CatalogIntegrityValidator
                     $"{owner} references missing ability " +
                     $"'{savingThrowAbilityId}'.");
             }
+
+            if (battleMasterManeuver.ImposedConditionId is
+                    { } imposedConditionId &&
+                !conditionIds.Contains(imposedConditionId))
+            {
+                errors.Add(
+                    $"{owner} references missing condition " +
+                    $"'{imposedConditionId}'.");
+            }
+
+            if (battleMasterManeuver.MaximumTargetSizeId is
+                    { } maximumTargetSizeId &&
+                !sizeIds.Contains(maximumTargetSizeId))
+            {
+                errors.Add(
+                    $"{owner} references missing creature size " +
+                    $"'{maximumTargetSizeId}'.");
+            }
         }
 
         foreach (

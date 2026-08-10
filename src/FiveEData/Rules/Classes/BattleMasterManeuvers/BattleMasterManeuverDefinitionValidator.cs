@@ -26,6 +26,51 @@ internal static class BattleMasterManeuverDefinitionValidator
                 "value.");
         }
 
+        if (definition.PushDistanceFeet is { } pushDistanceFeet
+            && pushDistanceFeet <= 0)
+        {
+            errors.Add(
+                "Battle Master maneuver push distance must be greater " +
+                "than zero.");
+        }
+
+        if (definition.ReachIncreaseFeet is { } reachIncreaseFeet
+            && reachIncreaseFeet <= 0)
+        {
+            errors.Add(
+                "Battle Master maneuver reach increase must be greater " +
+                "than zero.");
+        }
+
+        if (definition.SecondaryTargetRangeFeet is
+                { } secondaryTargetRangeFeet &&
+            secondaryTargetRangeFeet <= 0)
+        {
+            errors.Add(
+                "Battle Master maneuver secondary target range must be " +
+                "greater than zero.");
+        }
+
+        if (definition.SecondaryEffectDurationTrigger is not null &&
+            definition.ImposedConditionId is null &&
+            !definition.GrantsAdvantageToNextAttackAgainstTarget &&
+            !definition.ImposesDisadvantageOnAttacksAgainstOthers)
+        {
+            errors.Add(
+                "Battle Master maneuver secondary effect duration " +
+                "trigger requires an imposed condition, a granted " +
+                "advantage against the target, or an imposed " +
+                "disadvantage against others.");
+        }
+
+        if (definition.SecondaryEffectDurationTrigger is { } trigger
+            && !Enum.IsDefined(trigger))
+        {
+            errors.Add(
+                "Battle Master maneuver secondary effect duration " +
+                "trigger must be a defined value.");
+        }
+
         if (definition.Sources.Count == 0)
         {
             errors.Add(

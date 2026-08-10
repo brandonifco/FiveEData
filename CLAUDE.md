@@ -15,10 +15,9 @@ a game.
 
 ## Current state
 
-**Nothing in progress. Gap 3 has two scoped-but-unbuilt candidates queued
-(Battle Master maneuvers, then Eldritch Invocations) — see "Game-backend
-quantization: gap 3 scoping, and Metamagic effects" — but ask the user
-which to start before building either.**
+**Nothing in progress. Gap 3 has one scoped-but-unbuilt candidate queued
+(Eldritch Invocations) — see "Game-backend quantization: gap 3 scoping,
+and Metamagic effects" — but ask the user before building it.**
 
 Built and complete:
 
@@ -66,10 +65,11 @@ Built and complete:
 - Conditions — **all 15 PHB conditions (Appendix A) now carry full
   mechanical payloads**, not just `Id`/`Name`/`Sources`. See "Game-backend
   quantization: Conditions" below.
-- Gap 3 (feature-effect prose) — **scoped and started.** Metamagic (all 8
-  options) is built; Battle Master maneuvers and Eldritch Invocations are
-  scoped but not yet built. See "Game-backend quantization: gap 3 scoping,
-  and Metamagic effects" below.
+- Gap 3 (feature-effect prose) — **scoped and in progress.** Metamagic
+  (all 8 options) and Battle Master maneuvers (all 16) are built;
+  Eldritch Invocations is scoped but not yet built. See "Game-backend
+  quantization: gap 3 scoping, and Metamagic effects" and "Game-backend
+  quantization: Battle Master maneuver effects" below.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -115,7 +115,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2880 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2902 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -2042,7 +2042,7 @@ already established:
 | Candidate | Entries | Status |
 | --- | --- | --- |
 | Metamagic | 8 | **Built** |
-| Battle Master maneuvers | 16 | Scoped, not built |
+| Battle Master maneuvers | 16 | **Built** |
 | Eldritch Invocations | 32 | Scoped, not built |
 
 **Eldritch Invocations is the richest candidate, and needs a new
@@ -2118,6 +2118,85 @@ scoping, not just the effect text** — page 102 already matches where
 against the PDF's real footer, which for this section runs one page
 behind the PDF's own page index); no citation error found this time,
 but the check is run every pass regardless of outcome.
+
+## Game-backend quantization: Battle Master maneuver effects
+
+Gap 3's second slice, built against the ranked candidate list above.
+`BattleMasterManeuverDefinition` already carried `EffectTarget` +
+`SavingThrowAbilityId` from the original Quantized pass; this slice adds
+the secondary effect every maneuver's saving throw actually gates, read
+from p.75. 10 of the 16 maneuvers gained at least one new fact; the
+other 6 (Commander's Strike, Evasive Footwork, Parry, Precision Attack,
+Rally, Riposte) stay exactly as before — either an action-economy
+redirect (who attacks, not a number) or an ability-modifier addition
+already declined project-wide (Parry's "+ your Dexterity modifier",
+Rally's "+ your Charisma modifier", the same reasoning that already
+declined Cure Wounds' and Spiritual Weapon's ability-modifier terms).
+
+**Two new cross-domain references, both reusing existing catalogs
+instead of inventing bespoke types:** `ImposedConditionId: ConditionId?`
+(Menacing Attack → frightened, Trip Attack → prone, both real Appendix A
+condition names the PHB text uses directly — the same "don't infer a
+condition tag the text doesn't use" discipline the Spells effect passes
+already established, satisfied here because both maneuvers say the word)
+and `MaximumTargetSizeId: CreatureSizeId?` (Pushing Attack and Trip
+Attack's shared "if the target is Large or smaller" gate — a real
+mechanical fact, since Huge/Gargantuan creatures are simply immune to
+being pushed or tripped by these maneuvers, not fluff). Both catalogs
+already existed for other reasons (Conditions' gap-2 quantization, the
+creature-size vocabulary), so wiring them in was two more
+`CatalogIntegrityValidator` checks, not new domains.
+
+**A new duration shape: `BattleMasterManeuverDurationTrigger`
+(`EndOfYourNextTurn` / `StartOfYourNextTurn`), independent of
+`SpellDuration`.** Three maneuvers bound their secondary effect to the
+attacker's own next turn, and the PHB uses two distinct phrasings for
+it, not one: Goading Attack and Menacing Attack both read "until the
+end of your next turn," Distracting Strike reads "before the start of
+your next turn" — a shorter window, not the same fact reworded. This
+doesn't fit `SpellDuration` (that type is calendar/real-time: rounds,
+minutes, hours, days, until dispelled) — a combat-turn-relative
+duration is a genuinely different axis, so it got its own small enum
+rather than stretching `SpellDuration` to cover a case it was never
+built for. Kept scoped to Battle Master maneuvers for now, the same
+"never build the general shape by default" discipline `RollModifier`'s
+move to `Rules/Common` didn't get applied to `SpeechRestriction`;
+revisit only if a second domain needs the identical concept. **The
+duration trigger is validator-enforced to never appear without a
+secondary effect it could bound** (`ImposedConditionId`,
+`GrantsAdvantageToNextAttackAgainstTarget`, or
+`ImposesDisadvantageOnAttacksAgainstOthers`), the same paired-field
+discipline `DowntimeActivityDefinition` already established for a
+saving-throw ability and its DC. **The reverse isn't required** — Trip
+Attack's `prone` has no stated expiration in the maneuver's own text
+(Prone ends the normal way, standing up), so a condition can be imposed
+with no duration trigger at all.
+
+**Five more one-off scalars, one per maneuver, no shared shape between
+them:** `ForcesDroppedItem` (Disarming Attack), `ReachIncreaseFeet: 5`
+(Lunging Attack), `PushDistanceFeet: 15` (Pushing Attack, alongside its
+size gate), `SecondaryTargetRangeFeet: 5` (Sweeping Attack — only the
+"within 5 feet of the original target" half of its range clause; the
+"and within your reach" half is a formula relative to the wielder's own
+weapon, already modeled via `WeaponDefinition`, and stays declined the
+same way Parry's ability-modifier addition does), and
+`AllowsAllyReactionMovement` (Maneuvering Attack). **Two facts stay
+declined for reasons already established elsewhere:**
+`GrantsAdvantageOnNextAttackRoll` (Feinting Attack) needed no new
+numeric field at all, just a bool — the "advantage on your next attack
+roll" is self-limiting with no duration to track. And Maneuvering
+Attack's "move up to half its speed" is declined outright, not
+partially captured — it's a formula relative to a value this project
+already models elsewhere (the ally's own speed), the exact same
+reasoning that declined the Long Rest's "half your total Hit Dice";
+only the boolean fact that the reaction movement exists at all is
+captured, not the fraction.
+
+**All 16 citations were re-verified against the page images while
+building this slice** — page 74 already matches where "COMMANDER'S
+STRIKE" through "TRIP ATTACK" actually start (the PDF's real footer for
+this section, like Metamagic's, runs one page behind the PDF's own page
+index); no citation error found.
 
 ## Test conventions
 
