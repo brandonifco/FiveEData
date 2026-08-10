@@ -68,6 +68,85 @@ public sealed class MetamagicOptionDataFileTests
         Assert.Equal("Twinned Spell", definition.Name);
         Assert.Null(definition.FixedSorceryPointCost);
         Assert.True(definition.CostEqualsSpellLevelWithCantripMinimum);
+        Assert.True(definition.TargetsSecondCreatureInRange);
+    }
+
+    [Fact]
+    public void CarefulSpell_ProtectsCreatureCountUpToSpellcastingModifier()
+    {
+        MetamagicOptionDefinition definition =
+            Get("dnd5e2014.metamagic-option.careful-spell");
+
+        Assert.True(
+            definition.ProtectsCreatureCountUpToSpellcastingModifier);
+        Assert.False(definition.DoublesRange);
+        Assert.Null(definition.TouchRangeBecomesFeet);
+        Assert.False(
+            definition.RerollsDiceCountUpToSpellcastingModifier);
+        Assert.Null(definition.DoublesDurationMaxHours);
+        Assert.False(definition.GrantsDisadvantageOnFirstSavingThrow);
+        Assert.False(definition.ChangesCastingTimeToBonusAction);
+        Assert.False(definition.RemovesVerbalAndSomaticComponents);
+        Assert.False(definition.TargetsSecondCreatureInRange);
+    }
+
+    [Fact]
+    public void DistantSpell_DoublesRangeAndSetsTouchRangeToThirtyFeet()
+    {
+        MetamagicOptionDefinition definition =
+            Get("dnd5e2014.metamagic-option.distant-spell");
+
+        Assert.True(definition.DoublesRange);
+        Assert.Equal(30, definition.TouchRangeBecomesFeet);
+        Assert.False(
+            definition.ProtectsCreatureCountUpToSpellcastingModifier);
+    }
+
+    [Fact]
+    public void EmpoweredSpell_RerollsDiceCountUpToSpellcastingModifier()
+    {
+        MetamagicOptionDefinition definition =
+            Get("dnd5e2014.metamagic-option.empowered-spell");
+
+        Assert.True(
+            definition.RerollsDiceCountUpToSpellcastingModifier);
+        Assert.False(definition.DoublesRange);
+    }
+
+    [Fact]
+    public void ExtendedSpell_DoublesDurationToAMaximumOfTwentyFourHours()
+    {
+        MetamagicOptionDefinition definition =
+            Get("dnd5e2014.metamagic-option.extended-spell");
+
+        Assert.Equal(24, definition.DoublesDurationMaxHours);
+    }
+
+    [Fact]
+    public void HeightenedSpell_GrantsDisadvantageOnFirstSavingThrow()
+    {
+        MetamagicOptionDefinition definition =
+            Get("dnd5e2014.metamagic-option.heightened-spell");
+
+        Assert.True(definition.GrantsDisadvantageOnFirstSavingThrow);
+    }
+
+    [Fact]
+    public void QuickenedSpell_ChangesCastingTimeToBonusAction()
+    {
+        MetamagicOptionDefinition definition =
+            Get("dnd5e2014.metamagic-option.quickened-spell");
+
+        Assert.True(definition.ChangesCastingTimeToBonusAction);
+    }
+
+    [Fact]
+    public void SubtleSpell_RemovesVerbalAndSomaticComponents()
+    {
+        MetamagicOptionDefinition definition =
+            Get("dnd5e2014.metamagic-option.subtle-spell");
+
+        Assert.True(definition.RemovesVerbalAndSomaticComponents);
     }
 
     [Fact]

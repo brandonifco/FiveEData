@@ -45,6 +45,22 @@ internal static class MetamagicOptionDefinitionValidator
                 $"representation, but had {costRepresentationCount}.");
         }
 
+        if (definition.TouchRangeBecomesFeet is { } touchRangeFeet
+            && touchRangeFeet <= 0)
+        {
+            errors.Add(
+                "Metamagic option touch range override must be " +
+                "greater than zero.");
+        }
+
+        if (definition.DoublesDurationMaxHours is { } maxHours
+            && maxHours <= 0)
+        {
+            errors.Add(
+                "Metamagic option doubled-duration maximum must be " +
+                "greater than zero.");
+        }
+
         if (definition.Sources.Count == 0)
         {
             errors.Add(
