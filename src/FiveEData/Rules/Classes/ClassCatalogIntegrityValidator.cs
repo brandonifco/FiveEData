@@ -344,6 +344,91 @@ internal static class ClassCatalogIntegrityValidator
                     $"'{deathStrike.SavingThrowAbilityId}' in its Death " +
                     "Strike.");
             }
+
+            if (subclass.FeyPresence is { } feyPresence)
+            {
+                if (!abilityIds.Contains(feyPresence.SavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{feyPresence.SavingThrowAbilityId}' in its Fey " +
+                        "Presence.");
+                }
+
+                foreach (
+                    ConditionId conditionId
+                    in feyPresence.ChoosableConditionIds)
+                {
+                    if (!conditionIds.Contains(conditionId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing condition " +
+                            $"'{conditionId}' in its Fey Presence.");
+                    }
+                }
+            }
+
+            if (subclass.BeguilingDefenses is { } beguilingDefenses)
+            {
+                if (!conditionIds.Contains(
+                        beguilingDefenses.ImmuneConditionId))
+                {
+                    errors.Add(
+                        $"{owner} references missing condition " +
+                        $"'{beguilingDefenses.ImmuneConditionId}' in its " +
+                        "Beguiling Defenses.");
+                }
+
+                if (!abilityIds.Contains(
+                        beguilingDefenses.ReflectionSavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{beguilingDefenses.ReflectionSavingThrowAbilityId}' " +
+                        "in its Beguiling Defenses.");
+                }
+            }
+
+            if (subclass.DarkDelirium is { } darkDelirium)
+            {
+                if (!abilityIds.Contains(darkDelirium.SavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{darkDelirium.SavingThrowAbilityId}' in its " +
+                        "Dark Delirium.");
+                }
+
+                foreach (
+                    ConditionId conditionId
+                    in darkDelirium.ChoosableConditionIds)
+                {
+                    if (!conditionIds.Contains(conditionId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing condition " +
+                            $"'{conditionId}' in its Dark Delirium.");
+                    }
+                }
+            }
+
+            if (subclass.ThoughtShield is { } thoughtShield &&
+                !damageTypeIds.Contains(thoughtShield.ResistedDamageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{thoughtShield.ResistedDamageTypeId}' in its " +
+                    "Thought Shield.");
+            }
+
+            if (subclass.CreateThrall is { } createThrall &&
+                !conditionIds.Contains(createThrall.ImposedConditionId))
+            {
+                errors.Add(
+                    $"{owner} references missing condition " +
+                    $"'{createThrall.ImposedConditionId}' in its Create " +
+                    "Thrall.");
+            }
         }
 
         return errors;

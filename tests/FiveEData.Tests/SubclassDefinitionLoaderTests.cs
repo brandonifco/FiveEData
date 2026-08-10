@@ -55,6 +55,14 @@ public sealed class SubclassDefinitionLoaderTests
           "infiltrationExpertise": null,
           "impostorRequiredStudyHours": null,
           "deathStrike": null,
+          "feyPresence": null,
+          "mistyEscape": null,
+          "beguilingDefenses": null,
+          "darkDelirium": null,
+          "awakenedMind": null,
+          "entropicWard": null,
+          "thoughtShield": null,
+          "createThrall": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -136,6 +144,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -213,6 +229,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -286,6 +310,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -371,6 +403,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -459,6 +499,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -557,6 +605,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -601,6 +657,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": []
                   }
                 ]
@@ -642,6 +706,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": []
                   }
                 ]
@@ -684,6 +756,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": []
                   }
                 ]
@@ -726,6 +806,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": []
                   }
                 ]
@@ -768,6 +856,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "infiltrationExpertise": null,
                     "impostorRequiredStudyHours": null,
                     "deathStrike": null,
+                    "feyPresence": null,
+                    "mistyEscape": null,
+                    "beguilingDefenses": null,
+                    "darkDelirium": null,
+                    "awakenedMind": null,
+                    "entropicWard": null,
+                    "thoughtShield": null,
+                    "createThrall": null,
                     "sources": null
                   }
                 ]

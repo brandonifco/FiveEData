@@ -1,21 +1,29 @@
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.AwakenedMind;
+using FiveEData.Rules.Classes.BeguilingDefenses;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
+using FiveEData.Rules.Classes.CreateThrall;
+using FiveEData.Rules.Classes.DarkDelirium;
 using FiveEData.Rules.Classes.DeathStrike;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.EntropicWard;
+using FiveEData.Rules.Classes.FeyPresence;
 using FiveEData.Rules.Classes.Frenzy;
 using FiveEData.Rules.Classes.HurlThroughHell;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
 using FiveEData.Rules.Classes.IntimidatingPresence;
+using FiveEData.Rules.Classes.MistyEscape;
 using FiveEData.Rules.Classes.ImprovedCritical;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.ShadowStep;
+using FiveEData.Rules.Classes.ThoughtShield;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.ThunderboltStrike;
 using FiveEData.Rules.Classes.WardingFlare;
@@ -67,6 +75,14 @@ public sealed class SubclassDefinition
         InfiltrationExpertiseDetail? infiltrationExpertise,
         int? impostorRequiredStudyHours,
         DeathStrikeDetail? deathStrike,
+        FeyPresenceDetail? feyPresence,
+        MistyEscapeDetail? mistyEscape,
+        BeguilingDefensesDetail? beguilingDefenses,
+        DarkDeliriumDetail? darkDelirium,
+        AwakenedMindDetail? awakenedMind,
+        EntropicWardDetail? entropicWard,
+        ThoughtShieldDetail? thoughtShield,
+        CreateThrallDetail? createThrall,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -113,6 +129,14 @@ public sealed class SubclassDefinition
         InfiltrationExpertise = infiltrationExpertise;
         ImpostorRequiredStudyHours = impostorRequiredStudyHours;
         DeathStrike = deathStrike;
+        FeyPresence = feyPresence;
+        MistyEscape = mistyEscape;
+        BeguilingDefenses = beguilingDefenses;
+        DarkDelirium = darkDelirium;
+        AwakenedMind = awakenedMind;
+        EntropicWard = entropicWard;
+        ThoughtShield = thoughtShield;
+        CreateThrall = createThrall;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -187,6 +211,22 @@ public sealed class SubclassDefinition
     public int? ImpostorRequiredStudyHours { get; }
 
     public DeathStrikeDetail? DeathStrike { get; }
+
+    public FeyPresenceDetail? FeyPresence { get; }
+
+    public MistyEscapeDetail? MistyEscape { get; }
+
+    public BeguilingDefensesDetail? BeguilingDefenses { get; }
+
+    public DarkDeliriumDetail? DarkDelirium { get; }
+
+    public AwakenedMindDetail? AwakenedMind { get; }
+
+    public EntropicWardDetail? EntropicWard { get; }
+
+    public ThoughtShieldDetail? ThoughtShield { get; }
+
+    public CreateThrallDetail? CreateThrall { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

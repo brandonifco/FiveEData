@@ -2,11 +2,19 @@ using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.AwakenedMind;
+using FiveEData.Rules.Classes.BeguilingDefenses;
+using FiveEData.Rules.Classes.CreateThrall;
+using FiveEData.Rules.Classes.DarkDelirium;
 using FiveEData.Rules.Classes.DeathStrike;
+using FiveEData.Rules.Classes.EntropicWard;
+using FiveEData.Rules.Classes.FeyPresence;
 using FiveEData.Rules.Classes.Frenzy;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
 using FiveEData.Rules.Classes.IntimidatingPresence;
+using FiveEData.Rules.Classes.MistyEscape;
 using FiveEData.Rules.Classes.SecondStoryWork;
+using FiveEData.Rules.Classes.ThoughtShield;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Classes.ThunderboltStrike;
@@ -2523,6 +2531,145 @@ public sealed class SubclassDataFileTests
                 Assert.Null(subclass.ImpostorRequiredStudyHours);
                 Assert.Null(subclass.DeathStrike);
             });
+
+        Assert.All(
+            subclasses.Where(
+                subclass =>
+                    subclass.Id.Value != "dnd5e2014.subclass.the-archfey"),
+            subclass =>
+            {
+                Assert.Null(subclass.FeyPresence);
+                Assert.Null(subclass.MistyEscape);
+                Assert.Null(subclass.BeguilingDefenses);
+                Assert.Null(subclass.DarkDelirium);
+            });
+
+        Assert.All(
+            subclasses.Where(
+                subclass =>
+                    subclass.Id.Value !=
+                    "dnd5e2014.subclass.the-great-old-one"),
+            subclass =>
+            {
+                Assert.Null(subclass.AwakenedMind);
+                Assert.Null(subclass.EntropicWard);
+                Assert.Null(subclass.ThoughtShield);
+                Assert.Null(subclass.CreateThrall);
+            });
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesArchfeyFeatures()
+    {
+        SubclassDefinition archfey = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.the-archfey");
+
+        FeyPresenceDetail feyPresence =
+            archfey.FeyPresence
+            ?? throw new InvalidOperationException(
+                "Expected The Archfey to have Fey Presence.");
+        Assert.Equal(10, feyPresence.AreaSizeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            feyPresence.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            [
+                "dnd5e2014.condition.charmed",
+                "dnd5e2014.condition.frightened"
+            ],
+            feyPresence.ChoosableConditionIds
+                .Select(id => id.Value)
+                .ToArray());
+        Assert.Equal(
+            NextTurnDurationTrigger.EndOfYourNextTurn,
+            feyPresence.ConditionDurationTrigger);
+        Assert.True(feyPresence.RecoversOnShortRest);
+
+        MistyEscapeDetail mistyEscape =
+            archfey.MistyEscape
+            ?? throw new InvalidOperationException(
+                "Expected The Archfey to have Misty Escape.");
+        Assert.Equal(60, mistyEscape.TeleportRangeFeet);
+        Assert.True(mistyEscape.GrantsInvisibility);
+        Assert.True(mistyEscape.RecoversOnShortRest);
+
+        BeguilingDefensesDetail beguilingDefenses =
+            archfey.BeguilingDefenses
+            ?? throw new InvalidOperationException(
+                "Expected The Archfey to have Beguiling Defenses.");
+        Assert.Equal(
+            "dnd5e2014.condition.charmed",
+            beguilingDefenses.ImmuneConditionId.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            beguilingDefenses.ReflectionSavingThrowAbilityId.Value);
+        Assert.Equal(1, beguilingDefenses.ReflectionDurationMinutes);
+
+        DarkDeliriumDetail darkDelirium =
+            archfey.DarkDelirium
+            ?? throw new InvalidOperationException(
+                "Expected The Archfey to have Dark Delirium.");
+        Assert.Equal(60, darkDelirium.RangeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            darkDelirium.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            [
+                "dnd5e2014.condition.charmed",
+                "dnd5e2014.condition.frightened"
+            ],
+            darkDelirium.ChoosableConditionIds
+                .Select(id => id.Value)
+                .ToArray());
+        Assert.Equal(1, darkDelirium.DurationMinutes);
+        Assert.True(darkDelirium.RequiresConcentration);
+        Assert.True(darkDelirium.RecoversOnShortRest);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesGreatOldOneFeatures()
+    {
+        SubclassDefinition greatOldOne = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.the-great-old-one");
+
+        AwakenedMindDetail awakenedMind =
+            greatOldOne.AwakenedMind
+            ?? throw new InvalidOperationException(
+                "Expected The Great Old One to have Awakened Mind.");
+        Assert.Equal(30, awakenedMind.TelepathyRangeFeet);
+
+        EntropicWardDetail entropicWard =
+            greatOldOne.EntropicWard
+            ?? throw new InvalidOperationException(
+                "Expected The Great Old One to have Entropic Ward.");
+        Assert.True(entropicWard.ImposesDisadvantageOnTriggeringAttackRoll);
+        Assert.True(entropicWard.GrantsAdvantageOnNextAttackRollIfMissed);
+        Assert.Equal(
+            NextTurnDurationTrigger.EndOfYourNextTurn,
+            entropicWard.AdvantageDurationTrigger);
+        Assert.True(entropicWard.RecoversOnShortRest);
+
+        ThoughtShieldDetail thoughtShield =
+            greatOldOne.ThoughtShield
+            ?? throw new InvalidOperationException(
+                "Expected The Great Old One to have Thought Shield.");
+        Assert.True(thoughtShield.BlocksTelepathicReading);
+        Assert.Equal(
+            "dnd5e2014.damage-type.psychic",
+            thoughtShield.ResistedDamageTypeId.Value);
+        Assert.True(thoughtShield.ReflectsDamageToAttacker);
+
+        CreateThrallDetail createThrall =
+            greatOldOne.CreateThrall
+            ?? throw new InvalidOperationException(
+                "Expected The Great Old One to have Create Thrall.");
+        Assert.True(createThrall.RequiresIncapacitatedTarget);
+        Assert.Equal(
+            "dnd5e2014.condition.charmed",
+            createThrall.ImposedConditionId.Value);
+        Assert.True(createThrall.GrantsTelepathyWhileOnSamePlane);
     }
 
     private static IReadOnlyList<SubclassDefinition> LoadSubclasses()

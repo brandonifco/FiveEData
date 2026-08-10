@@ -32,11 +32,10 @@ Senses, Skill Versatility), and the innate spell grant tail (`SpellGrant`
 on Race/Subrace/Subclass — Infernal Legacy, Drow Magic, Natural
 Illusionist, Light Domain's Bonus Cantrip, Thousand Forms). The "rich
 individual features" candidate is **~16 features across 6 subclasses,
-split into three PRs by class family** — the Barbarian/Rogue slice is
-built; Warlock (Archfey, Great Old One) and Wizard/Sorcerer
-(Enchantment, Evocation, Draconic Bloodline) remain. Every other
-candidate in the pool is scoped-not-built. Ask the user which to pick
-up next.
+split into three PRs by class family** — Barbarian/Rogue and Warlock
+(Archfey, Great Old One) are built; Wizard/Sorcerer (Enchantment,
+Evocation, Draconic Bloodline) remains. Every other candidate in the
+pool is scoped-not-built. Ask the user which to pick up next.
 
 Built and complete:
 
@@ -2561,10 +2560,11 @@ yet:
   Intimidating Presence), Sorcerer Draconic Bloodline (Elemental
   Affinity), and Rogue (Second-Story Work, Assassinate, Infiltration
   Expertise, Death Strike). **Too big for one change — split into three
-  PRs by class family**; the Barbarian/Rogue one is built (see
+  PRs by class family**; Barbarian/Rogue and Warlock are built (see
   "Game-backend quantization: rich individual features (Barbarian,
-  Rogue)"), and note that Relentless Rage turned out to be a base
-  Barbarian feature, not Berserker's as grouped here.
+  Rogue)" and "... (Warlock)"), and note that Relentless Rage turned
+  out to be a base Barbarian feature, not Berserker's as grouped
+  here.
 
 **One structural gap, bigger than a data-entry slice, was found here
 and built in a later slice:** racial weapon/armor/skill proficiency
@@ -2928,6 +2928,71 @@ the distinction is whether the book prints a number or a formula.
   entire fact *is* the ability modifier with no dice, the same shape
   Agonizing Blast and Lifedrinker already use, rather than the
   declined "dice + modifier" line.
+
+## Game-backend quantization: rich individual features (Warlock)
+
+The second of three PRs splitting the "rich individual features"
+candidate by class family. Warlock's Archfey (Fey Presence, Misty
+Escape, Beguiling Defenses, Dark Delirium) and Great Old One (Awakened
+Mind, Entropic Ward, Thought Shield, Create Thrall), verified against
+rendered page images at pp.109–110. Unlike the Barbarian/Rogue slice,
+every feature's level attribution matched the scoping note exactly (1st,
+6th, 10th, 14th on both patrons) — no misattribution this time.
+
+**`ChoosableConditionIds` is new, added specifically for this slice
+after three prior declines of the same shape** (Blindness/Deafness at
+2nd level, Eyebite, Water Whip's prone-or-pull). Fey Presence and Dark
+Delirium both print "charmed or frightened (your choice)" — a real,
+recurring "caster picks one of several named conditions" fact, the same
+fixed-or-choosable axis `SpellDamageEffect.ChoosableDamageTypeIds` and
+`ChannelDivinityOptionDefinition.ChoosableSavingThrowAbilityIds` already
+use, just applied to conditions instead of damage types or abilities.
+Two real instances in this single slice, on top of three declines
+elsewhere, is what tipped this over the "one data point" bar the prior
+declines never cleared alone — the earlier declines were never wrong,
+they just never had a second real instance to confirm the shape until
+now.
+
+**Eight new detail types, one per feature, following the same
+per-feature-type precedent as the Barbarian/Rogue slice:**
+`FeyPresenceDetail`, `MistyEscapeDetail`, `BeguilingDefensesDetail`,
+`DarkDeliriumDetail`, `AwakenedMindDetail`, `EntropicWardDetail`,
+`ThoughtShieldDetail`, `CreateThrallDetail`.
+
+**Fey Presence and Dark Delirium look like the same mechanic but need
+different shapes, because the book states their durations
+differently.** Fey Presence is "until the end of your next turn" — a
+`NextTurnDurationTrigger`, the same shape Intimidating Presence already
+used. Dark Delirium is "for 1 minute or until your concentration is
+broken" — a real duration plus a concentration flag, which
+`NextTurnDurationTrigger` can't represent. Forcing them into one shared
+type would have lied about one of the two durations.
+
+**Beguiling Defenses reuses `ConditionId`/`AbilityId` as singular
+fields, not the `MindlessRageImmuneConditionIds` list shape from the
+prior PR** — Mindless Rage's list existed because *two* conditions
+apply together (AND); Beguiling Defenses' immunity is to exactly one
+condition (charmed), so a bare `ConditionId ImmuneConditionId` matches
+the project's existing "list only when the count is genuinely
+variable" discipline (the same reasoning `SkillProficiencyId` uses a
+singular field while `SkillProficiencyIds` on `BackgroundDefinition` is
+a list of exactly two).
+
+**Thought Shield's resisted damage type is `DamageTypeId
+ResistedDamageTypeId`, a fixed singular field, not the
+fixed-or-choosable pair** — the PHB states psychic resistance flatly,
+with no caster choice involved (unlike Fiendish Resilience on the same
+page, which *does* let the caster pick a damage type each rest, and
+which stays out of scope for this slice since it belongs to the Fiend,
+not Archfey or Great Old One).
+
+**One decline, matching an established line:** Create Thrall's
+end conditions ("until a *remove curse* spell is cast on it, the
+charmed condition is removed from it, or you use this feature again")
+stay in the citation — the same "multi-path way a condition can end"
+rider already declined for Hold Person and Flesh to Stone. Only the
+clean initial grant (incapacitated target required, imposes charmed,
+grants telepathy while on the same plane) is captured.
 
 ## Test conventions
 

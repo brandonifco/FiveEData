@@ -4,17 +4,33 @@ using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.BendLuck.Serialization;
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Assassinate.Serialization;
+using FiveEData.Rules.Classes.AwakenedMind;
+using FiveEData.Rules.Classes.AwakenedMind.Serialization;
+using FiveEData.Rules.Classes.BeguilingDefenses;
+using FiveEData.Rules.Classes.BeguilingDefenses.Serialization;
 using FiveEData.Rules.Classes.CircleForms;
+using FiveEData.Rules.Classes.CreateThrall;
+using FiveEData.Rules.Classes.CreateThrall.Serialization;
+using FiveEData.Rules.Classes.DarkDelirium;
+using FiveEData.Rules.Classes.DarkDelirium.Serialization;
 using FiveEData.Rules.Classes.DeathStrike;
 using FiveEData.Rules.Classes.DeathStrike.Serialization;
+using FiveEData.Rules.Classes.EntropicWard;
+using FiveEData.Rules.Classes.EntropicWard.Serialization;
+using FiveEData.Rules.Classes.FeyPresence;
+using FiveEData.Rules.Classes.FeyPresence.Serialization;
 using FiveEData.Rules.Classes.Frenzy;
 using FiveEData.Rules.Classes.Frenzy.Serialization;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
 using FiveEData.Rules.Classes.InfiltrationExpertise.Serialization;
 using FiveEData.Rules.Classes.IntimidatingPresence;
 using FiveEData.Rules.Classes.IntimidatingPresence.Serialization;
+using FiveEData.Rules.Classes.MistyEscape;
+using FiveEData.Rules.Classes.MistyEscape.Serialization;
 using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.SecondStoryWork.Serialization;
+using FiveEData.Rules.Classes.ThoughtShield;
+using FiveEData.Rules.Classes.ThoughtShield.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
@@ -304,6 +320,47 @@ internal static class SubclassDefinitionLoader
                 ? DeathStrikeDetailDataMapper.Map(deathStrikeData)
                 : null;
 
+        FeyPresenceDetail? feyPresence =
+            data.FeyPresence is { } feyPresenceData
+                ? FeyPresenceDetailDataMapper.Map(feyPresenceData)
+                : null;
+
+        MistyEscapeDetail? mistyEscape =
+            data.MistyEscape is { } mistyEscapeData
+                ? MistyEscapeDetailDataMapper.Map(mistyEscapeData)
+                : null;
+
+        BeguilingDefensesDetail? beguilingDefenses =
+            data.BeguilingDefenses is { } beguilingDefensesData
+                ? BeguilingDefensesDetailDataMapper.Map(
+                    beguilingDefensesData)
+                : null;
+
+        DarkDeliriumDetail? darkDelirium =
+            data.DarkDelirium is { } darkDeliriumData
+                ? DarkDeliriumDetailDataMapper.Map(darkDeliriumData)
+                : null;
+
+        AwakenedMindDetail? awakenedMind =
+            data.AwakenedMind is { } awakenedMindData
+                ? AwakenedMindDetailDataMapper.Map(awakenedMindData)
+                : null;
+
+        EntropicWardDetail? entropicWard =
+            data.EntropicWard is { } entropicWardData
+                ? EntropicWardDetailDataMapper.Map(entropicWardData)
+                : null;
+
+        ThoughtShieldDetail? thoughtShield =
+            data.ThoughtShield is { } thoughtShieldData
+                ? ThoughtShieldDetailDataMapper.Map(thoughtShieldData)
+                : null;
+
+        CreateThrallDetail? createThrall =
+            data.CreateThrall is { } createThrallData
+                ? CreateThrallDetailDataMapper.Map(createThrallData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -341,6 +398,14 @@ internal static class SubclassDefinitionLoader
             infiltrationExpertise,
             data.ImpostorRequiredStudyHours,
             deathStrike,
+            feyPresence,
+            mistyEscape,
+            beguilingDefenses,
+            darkDelirium,
+            awakenedMind,
+            entropicWard,
+            thoughtShield,
+            createThrall,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }
