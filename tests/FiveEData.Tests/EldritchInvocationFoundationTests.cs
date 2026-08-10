@@ -1,6 +1,9 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Tests;
 
@@ -62,6 +65,30 @@ public sealed class EldritchInvocationFoundationTests
     }
 
     [Fact]
+    public void Definition_ExposesGrantedSpellAndCastingFrequencyWhenPresent()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            grantedSpellId: new SpellId("dnd5e2014.spell.mage-armor"),
+            castingFrequency:
+                EldritchInvocationCastingFrequency.AtWill,
+            waivesMaterialComponents: true);
+
+        Assert.Equal(
+            "dnd5e2014.spell.mage-armor",
+            definition.GrantedSpellId?.Value);
+        Assert.Equal(
+            EldritchInvocationCastingFrequency.AtWill,
+            definition.CastingFrequency);
+        Assert.True(definition.WaivesMaterialComponents);
+    }
+
+    [Fact]
     public void Validator_RejectsDefaultId()
     {
         EldritchInvocationDefinition definition = Create(
@@ -112,6 +139,191 @@ public sealed class EldritchInvocationFoundationTests
             error =>
                 error.Contains(
                     "source",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsGrantedSpellWithoutCastingFrequency()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            grantedSpellId: new SpellId("dnd5e2014.spell.mage-armor"));
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "casting frequency",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsCastingFrequencyWithoutGrantedSpell()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            castingFrequency:
+                EldritchInvocationCastingFrequency.AtWill);
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "casting frequency",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsWaivesMaterialComponentsWithoutGrantedSpell()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            waivesMaterialComponents: true);
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "waive",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void
+        Validator_RejectsExtraDamageTypeWithoutSpellcastingModifierDamage()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            extraDamageTypeId:
+                new DamageTypeId("dnd5e2014.damage-type.necrotic"));
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "extra damage type",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsDuplicateSkillProficiencyIds()
+    {
+        var skillId = new SkillId("dnd5e2014.skill.deception");
+
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            skillProficiencyIds: [skillId, skillId]);
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "duplicates",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveDarknessVisionRangeFeet()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            darknessVisionRangeFeet: 0);
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "darkness vision range",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveTrueSightRangeFeet()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            trueSightRangeFeet: 0);
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "true sight range",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveEldritchBlastRangeFeet()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            eldritchBlastRangeFeet: 0);
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "eldritch blast range",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveEldritchBlastPushDistanceFeet()
+    {
+        EldritchInvocationDefinition definition = Create(
+            "dnd5e2014.eldritch-invocation.test",
+            "Test",
+            requiresEldritchBlastCantrip: false,
+            requiredMinimumLevel: null,
+            requiresPactBoon: null,
+            [CreateSource()],
+            eldritchBlastPushDistanceFeet: 0);
+
+        Assert.Contains(
+            EldritchInvocationDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "eldritch blast push distance",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -215,15 +427,40 @@ public sealed class EldritchInvocationFoundationTests
         bool requiresEldritchBlastCantrip,
         int? requiredMinimumLevel,
         WarlockPactBoon? requiresPactBoon,
-        IEnumerable<SourceReference> sources)
+        IEnumerable<SourceReference> sources,
+        SpellId? grantedSpellId = null,
+        EldritchInvocationCastingFrequency? castingFrequency = null,
+        bool waivesMaterialComponents = false,
+        bool addsSpellcastingModifierToDamage = false,
+        DamageTypeId? extraDamageTypeId = null,
+        IEnumerable<SkillId>? skillProficiencyIds = null,
+        int? darknessVisionRangeFeet = null,
+        int? trueSightRangeFeet = null,
+        int? eldritchBlastRangeFeet = null,
+        int? eldritchBlastPushDistanceFeet = null,
+        bool canReadAllWriting = false,
+        bool grantsSecondPactWeaponAttack = false)
     {
         return new EldritchInvocationDefinition(
-            id is null ? default : new EldritchInvocationId(id),
-            name,
-            requiresEldritchBlastCantrip,
-            requiredMinimumLevel,
-            requiresPactBoon,
-            sources);
+            id: id is null ? default : new EldritchInvocationId(id),
+            name: name,
+            requiresEldritchBlastCantrip: requiresEldritchBlastCantrip,
+            requiredMinimumLevel: requiredMinimumLevel,
+            requiresPactBoon: requiresPactBoon,
+            grantedSpellId: grantedSpellId,
+            castingFrequency: castingFrequency,
+            waivesMaterialComponents: waivesMaterialComponents,
+            addsSpellcastingModifierToDamage:
+                addsSpellcastingModifierToDamage,
+            extraDamageTypeId: extraDamageTypeId,
+            skillProficiencyIds: skillProficiencyIds ?? [],
+            darknessVisionRangeFeet: darknessVisionRangeFeet,
+            trueSightRangeFeet: trueSightRangeFeet,
+            eldritchBlastRangeFeet: eldritchBlastRangeFeet,
+            eldritchBlastPushDistanceFeet: eldritchBlastPushDistanceFeet,
+            canReadAllWriting: canReadAllWriting,
+            grantsSecondPactWeaponAttack: grantsSecondPactWeaponAttack,
+            sources: sources);
     }
 
     private static SourceReference CreateSource()

@@ -1,6 +1,9 @@
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Classes.EldritchInvocations.Serialization;
 
@@ -97,16 +100,51 @@ internal static class EldritchInvocationDefinitionLoader
                 "Eldritch invocation sources are required.",
                 nameof(data));
 
+        SpellId? grantedSpellId =
+            data.GrantedSpellId is { } grantedSpellIdValue
+                ? new SpellId(grantedSpellIdValue)
+                : null;
+
+        DamageTypeId? extraDamageTypeId =
+            data.ExtraDamageTypeId is { } extraDamageTypeIdValue
+                ? new DamageTypeId(extraDamageTypeIdValue)
+                : null;
+
+        SkillId[] skillProficiencyIds =
+            (data.SkillProficiencyIds
+                ?? throw new ArgumentException(
+                    "Eldritch invocation skill proficiencies are " +
+                    "required.",
+                    nameof(data)))
+            .Select(value => new SkillId(value))
+            .ToArray();
+
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
 
         return new EldritchInvocationDefinition(
-            id,
-            name,
-            data.RequiresEldritchBlastCantrip,
-            data.RequiredMinimumLevel,
-            data.RequiresPactBoon,
-            sources);
+            id: id,
+            name: name,
+            requiresEldritchBlastCantrip:
+                data.RequiresEldritchBlastCantrip,
+            requiredMinimumLevel: data.RequiredMinimumLevel,
+            requiresPactBoon: data.RequiresPactBoon,
+            grantedSpellId: grantedSpellId,
+            castingFrequency: data.CastingFrequency,
+            waivesMaterialComponents: data.WaivesMaterialComponents,
+            addsSpellcastingModifierToDamage:
+                data.AddsSpellcastingModifierToDamage,
+            extraDamageTypeId: extraDamageTypeId,
+            skillProficiencyIds: skillProficiencyIds,
+            darknessVisionRangeFeet: data.DarknessVisionRangeFeet,
+            trueSightRangeFeet: data.TrueSightRangeFeet,
+            eldritchBlastRangeFeet: data.EldritchBlastRangeFeet,
+            eldritchBlastPushDistanceFeet:
+                data.EldritchBlastPushDistanceFeet,
+            canReadAllWriting: data.CanReadAllWriting,
+            grantsSecondPactWeaponAttack:
+                data.GrantsSecondPactWeaponAttack,
+            sources: sources);
     }
 }
