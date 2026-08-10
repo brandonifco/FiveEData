@@ -1,0 +1,50 @@
+[
+  {
+    "id": "dnd5e2014.open-hand-technique-option.knock-prone",
+    "name": "Knock Prone",
+    "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+    "imposedConditionId": "dnd5e2014.condition.prone",
+    "pushDistanceFeet": null,
+    "preventsReactions": false,
+    "preventsReactionsUntil": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.open-hand-technique-option.push",
+    "name": "Push",
+    "savingThrowAbilityId": "dnd5e2014.ability.strength",
+    "imposedConditionId": null,
+    "pushDistanceFeet": 15,
+    "preventsReactions": false,
+    "preventsReactionsUntil": null,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.open-hand-technique-option.prevent-reactions",
+    "name": "Prevent Reactions",
+    "savingThrowAbilityId": null,
+    "imposedConditionId": null,
+    "pushDistanceFeet": null,
+    "preventsReactions": true,
+    "preventsReactionsUntil": "EndOfYourNextTurn",
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 79,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "dnd5e2014.third-eye-option.darkvision",
+    "name": "Darkvision",
+    "darkvisionRangeFeet": 60,
+    "etherealSightRangeFeet": null,
+    "seeInvisibilityRangeFeet": null,
+    "canReadAllLanguages": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 116,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.third-eye-option.ethereal-sight",
+    "name": "Ethereal Sight",
+    "darkvisionRangeFeet": null,
+    "etherealSightRangeFeet": 60,
+    "seeInvisibilityRangeFeet": null,
+    "canReadAllLanguages": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 116,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.third-eye-option.greater-comprehension",
+    "name": "Greater Comprehension",
+    "darkvisionRangeFeet": null,
+    "etherealSightRangeFeet": null,
+    "seeInvisibilityRangeFeet": null,
+    "canReadAllLanguages": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 116,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.third-eye-option.see-invisibility",
+    "name": "See Invisibility",
+    "darkvisionRangeFeet": null,
+    "etherealSightRangeFeet": null,
+    "seeInvisibilityRangeFeet": 10,
+    "canReadAllLanguages": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 116,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "dnd5e2014.transmuters-stone-option.darkvision",
+    "name": "Darkvision",
+    "darkvisionRangeFeet": 60,
+    "speedBonusFeet": null,
+    "requiresUnencumbered": false,
+    "savingThrowProficiencyAbilityId": null,
+    "choosableResistedDamageTypeIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 119,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.transmuters-stone-option.speed-increase",
+    "name": "Speed Increase",
+    "darkvisionRangeFeet": null,
+    "speedBonusFeet": 10,
+    "requiresUnencumbered": true,
+    "savingThrowProficiencyAbilityId": null,
+    "choosableResistedDamageTypeIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 119,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.transmuters-stone-option.constitution-saving-throw-proficiency",
+    "name": "Constitution Saving Throw Proficiency",
+    "darkvisionRangeFeet": null,
+    "speedBonusFeet": null,
+    "requiresUnencumbered": false,
+    "savingThrowProficiencyAbilityId": "dnd5e2014.ability.constitution",
+    "choosableResistedDamageTypeIds": [],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 119,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.transmuters-stone-option.damage-resistance",
+    "name": "Damage Resistance",
+    "darkvisionRangeFeet": null,
+    "speedBonusFeet": null,
+    "requiresUnencumbered": false,
+    "savingThrowProficiencyAbilityId": null,
+    "choosableResistedDamageTypeIds": [
+      "dnd5e2014.damage-type.acid",
+      "dnd5e2014.damage-type.cold",
+      "dnd5e2014.damage-type.fire",
+      "dnd5e2014.damage-type.lightning",
+      "dnd5e2014.damage-type.thunder"
+    ],
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 119,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

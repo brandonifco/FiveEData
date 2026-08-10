@@ -3,7 +3,13 @@ using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.HunterOptions.Serialization;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions.Serialization;
+using FiveEData.Rules.Classes.ThirdEyeOptions;
+using FiveEData.Rules.Classes.ThirdEyeOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
+using FiveEData.Rules.Classes.TransmutersStoneOptions;
+using FiveEData.Rules.Classes.TransmutersStoneOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
@@ -224,6 +230,32 @@ public sealed class CatalogIntegrityTests
                     "dnd5e2014",
                     "hunter-options.json"));
 
+        IReadOnlyList<OpenHandTechniqueOptionDefinition>
+            openHandTechniqueOptions =
+                OpenHandTechniqueOptionDefinitionLoader.LoadFromFile(
+                    Path.Combine(
+                        root,
+                        "Data",
+                        "dnd5e2014",
+                        "open-hand-technique-options.json"));
+
+        IReadOnlyList<ThirdEyeOptionDefinition> thirdEyeOptions =
+            ThirdEyeOptionDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "third-eye-options.json"));
+
+        IReadOnlyList<TransmutersStoneOptionDefinition>
+            transmutersStoneOptions =
+                TransmutersStoneOptionDefinitionLoader.LoadFromFile(
+                    Path.Combine(
+                        root,
+                        "Data",
+                        "dnd5e2014",
+                        "transmuters-stone-options.json"));
+
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
@@ -257,7 +289,10 @@ public sealed class CatalogIntegrityTests
                     conditions: conditions,
                     totemWarriorOptions: totemWarriorOptions,
                     travelPaces: travelPaces,
-                    hunterOptions: hunterOptions)));
+                    hunterOptions: hunterOptions,
+                    openHandTechniqueOptions: openHandTechniqueOptions,
+                    thirdEyeOptions: thirdEyeOptions,
+                    transmutersStoneOptions: transmutersStoneOptions)));
     }
 
     [Fact]
@@ -1418,6 +1453,11 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<TotemWarriorOptionDefinition>? totemWarriorOptions =
             null,
         IReadOnlyList<HunterOptionDefinition>? hunterOptions = null,
+        IReadOnlyList<OpenHandTechniqueOptionDefinition>?
+            openHandTechniqueOptions = null,
+        IReadOnlyList<ThirdEyeOptionDefinition>? thirdEyeOptions = null,
+        IReadOnlyList<TransmutersStoneOptionDefinition>?
+            transmutersStoneOptions = null,
         IReadOnlyList<TravelPaceDefinition>? travelPaces = null)
     {
         var equipment = new EquipmentDefinitionSet(
@@ -1471,6 +1511,9 @@ public sealed class CatalogIntegrityTests
             channelDivinityOptions: [],
             totemWarriorOptions: totemWarriorOptions ?? [],
             hunterOptions: hunterOptions ?? [],
+            openHandTechniqueOptions: openHandTechniqueOptions ?? [],
+            thirdEyeOptions: thirdEyeOptions ?? [],
+            transmutersStoneOptions: transmutersStoneOptions ?? [],
             spellSlotProgressions: spellSlotProgressions ?? [],
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: [],

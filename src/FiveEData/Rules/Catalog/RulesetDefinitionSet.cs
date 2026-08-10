@@ -14,8 +14,11 @@ using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.Metamagic;
+using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.ThirdEyeOptions;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
+using FiveEData.Rules.Classes.TransmutersStoneOptions;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 
@@ -40,6 +43,9 @@ internal sealed class RulesetDefinitionSet
             channelDivinityOptions,
         IReadOnlyList<TotemWarriorOptionDefinition> totemWarriorOptions,
         IReadOnlyList<HunterOptionDefinition> hunterOptions,
+        IReadOnlyList<OpenHandTechniqueOptionDefinition> openHandTechniqueOptions,
+        IReadOnlyList<ThirdEyeOptionDefinition> thirdEyeOptions,
+        IReadOnlyList<TransmutersStoneOptionDefinition> transmutersStoneOptions,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
@@ -67,6 +73,9 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(channelDivinityOptions);
         ArgumentNullException.ThrowIfNull(totemWarriorOptions);
         ArgumentNullException.ThrowIfNull(hunterOptions);
+        ArgumentNullException.ThrowIfNull(openHandTechniqueOptions);
+        ArgumentNullException.ThrowIfNull(thirdEyeOptions);
+        ArgumentNullException.ThrowIfNull(transmutersStoneOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -93,6 +102,9 @@ internal sealed class RulesetDefinitionSet
         ChannelDivinityOptions = channelDivinityOptions;
         TotemWarriorOptions = totemWarriorOptions;
         HunterOptions = hunterOptions;
+        OpenHandTechniqueOptions = openHandTechniqueOptions;
+        ThirdEyeOptions = thirdEyeOptions;
+        TransmutersStoneOptions = transmutersStoneOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -138,6 +150,15 @@ internal sealed class RulesetDefinitionSet
     { get; }
 
     public IReadOnlyList<HunterOptionDefinition> HunterOptions { get; }
+
+    public IReadOnlyList<OpenHandTechniqueOptionDefinition> OpenHandTechniqueOptions
+    { get; }
+
+    public IReadOnlyList<ThirdEyeOptionDefinition> ThirdEyeOptions
+    { get; }
+
+    public IReadOnlyList<TransmutersStoneOptionDefinition> TransmutersStoneOptions
+    { get; }
 
     public IReadOnlyList<SpellSlotProgressionDefinition>
         SpellSlotProgressions
