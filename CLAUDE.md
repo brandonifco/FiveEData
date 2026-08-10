@@ -77,8 +77,12 @@ Built and complete:
   Fireball, Finger of Death, Fire Storm), and for the first time since
   the pass began, none have a `SpellConditionEffect` — Divine Word,
   Prismatic Spray, and Symbol are all too compound/multi-mode to model.
-  See "Game-backend quantization: 7th-level spell effects". Levels 8–9
-  don't have effect data yet.
+  See "Game-backend quantization: 7th-level spell effects". **8th-level
+  spells too** — 3 of the 18 have a `SpellDamageEffect`, 3 have a
+  `SpellConditionEffect`, and Sunburst is the third spell (after Evard's
+  Black Tentacles and Sunbeam) whose two effects share one save. See
+  "Game-backend quantization: 8th-level spell effects". Level 9 doesn't
+  have effect data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -147,10 +151,17 @@ Finger of Death is the second `FlatDamageBonus` spell (paired with
 `HalfDamageOnSuccessfulSave`, unlike Disintegrate's "no half" shape),
 and this is the first level with zero `SpellConditionEffect` spells —
 its three condition-shaped candidates (Divine Word, Prismatic Spray,
-Symbol) are all declined as too compound/multi-mode. Levels 8–9 are the
-remaining piece of gap 1, not yet started.
+Symbol) are all declined as too compound/multi-mode. **8th-level spell
+effects are done too** — see "Game-backend quantization: 8th-level
+spell effects". Sunburst is the third spell (after Evard's Black
+Tentacles and Sunbeam) whose `DamageEffect` and `ConditionEffect` share
+one saving throw, and Power Word Stun is the first spell whose
+condition-shaped effect is declined for having *no* save gating its
+initial application at all (an HP-threshold auto-effect, the save only
+ever ends it early). Level 9 is the remaining piece of gap 1, not yet
+started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2853 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2861 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1960,6 +1971,56 @@ unwilling-creature option resolves through a melee spell attack that,
 on a hit, banishes the target to another plane with no damage dealt at
 all, the same "attack roll used for banishment, not damage" shape
 Dispel Evil and Good's dismissal option already declined.
+
+## Game-backend quantization: 8th-level spell effects
+
+The ninth slice of gap 1, still no schema changes needed. 3 of the 18
+8th-level spells get a `SpellDamageEffect` (Incendiary Cloud, Sunburst,
+Tsunami), 3 get a `SpellConditionEffect` (Dominate Monster → `charmed`,
+Earthquake → `prone`, Sunburst → `blinded`), and 13 get neither.
+
+**Sunburst is the third spell to share one saving throw between
+`DamageEffect` and `ConditionEffect`**, after Evard's Black Tentacles
+(4th level) and Sunbeam (6th level) — a failed Constitution save deals
+12d6 radiant damage (half on success) and separately blinds the
+target. Three real instances across three different levels confirms
+this dual-effect shape as a genuine recurring PHB pattern, not a
+coincidence tied to any one spell level.
+
+**Earthquake's knocked-prone effect is captured even though it's a
+per-turn repeating trigger, because each instance is still a clean
+"Dexterity save or prone" fact** — "at the end of each turn you spend
+concentrating on it, each creature on the ground in the area must make
+a Dexterity saving throw. On a failed save, the creature is knocked
+prone." This is different from Cloud of Daggers/Heat Metal/Spike
+Growth's declined automatic-zone-damage shape: those have no roll at
+all, while Earthquake's repeating trigger is still save-gated every
+time, so it fits `SpellConditionEffect` the same way a single-trigger
+spell would.
+
+**Power Word Stun is the first spell whose condition-shaped effect is
+declined for having no saving throw gating its *initial* application at
+all.** "If the target has 150 hit points or fewer, it is stunned.
+Otherwise, the spell has no effect" — an automatic, hit-point-threshold
+gate with no roll of any kind, the condition-effect analog of the
+automatic-damage decline already established for Cloud of Daggers and
+friends. The spell's own Constitution save exists only to *end* the
+stun early each turn, the same "repeat save to end, not to avoid"
+rider already declined for Hold Person/Hold Monster and Flesh to
+Stone — but here there's no qualifying initial save at all for
+`SpellConditionEffect.SavingThrowAbilityId` to point at, so the whole
+effect is declined rather than just the repeat-save rider.
+
+**Antipathy/Sympathy and Feeblemind are both declined, for two
+different reasons already established elsewhere.** Antipathy/Sympathy
+is a compound, mode-dependent effect (its Antipathy and Sympathy modes
+behave oppositely, and only affects creature types the caster
+specifies), the same "too compound/multi-mode" call that declined
+Glyph of Warding, Symbol, and Prismatic Spray. Feeblemind reduces a
+target's Intelligence and Charisma scores to 1 — a real, save-gated
+effect, but a bespoke ability-score reduction rather than any named
+Appendix A condition, the same "don't infer a condition tag the text
+doesn't use" discipline that declined Otto's Irresistible Dance.
 
 ## Test conventions
 

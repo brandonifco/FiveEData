@@ -3402,6 +3402,112 @@ public sealed class SpellDataFileTests
         Assert.Null(Get("dnd5e2014.spell.mordenkainens-sword").DamageEffect);
     }
 
+    // 3 of the 18 8th-level spells deal damage directly; 3 impose a named
+    // condition. Sunburst is the third spell (after Evard's Black
+    // Tentacles and Sunbeam) whose DamageEffect and ConditionEffect share
+    // one saving throw.
+    [Fact]
+    public void ThreeEighthLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 8 && spell.DamageEffect is not null));
+    }
+
+    [Fact]
+    public void ThreeEighthLevelSpellsHaveAConditionEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 8 && spell.ConditionEffect is not null));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.incendiary-cloud", "fire", "dexterity", 10, 8)]
+    [InlineData("dnd5e2014.spell.tsunami", "bludgeoning", "strength", 6, 10)]
+    public void EighthLevelSavingThrowDamageSpell_DealsHalfDamageOnSuccessfulSave(
+        string id,
+        string expectedDamageType,
+        string expectedSavingThrowAbility,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Null(effect.FlatDamageBonus);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    // Sunburst's single failed Constitution save both deals radiant
+    // damage and blinds the target - the third instance of one saving
+    // throw gating both mechanism fields, after Evard's Black Tentacles
+    // and Sunbeam.
+    [Fact]
+    public void SunburstDealsDamageAndBlindsOnTheSameFailedSave()
+    {
+        SpellDefinition spell = Get("dnd5e2014.spell.sunburst");
+
+        SpellDamageEffect damageEffect = spell.DamageEffect!;
+        Assert.Equal(
+            "dnd5e2014.damage-type.radiant",
+            damageEffect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            damageEffect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(damageEffect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(12, damageEffect.BaseDamage!.Value.Count);
+        Assert.Equal(6, damageEffect.BaseDamage.Value.Sides);
+
+        SpellConditionEffect conditionEffect = spell.ConditionEffect!;
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            conditionEffect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.blinded",
+            Assert.Single(conditionEffect.ConditionIds).Value);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.dominate-monster", "wisdom", "charmed")]
+    [InlineData("dnd5e2014.spell.earthquake", "dexterity", "prone")]
+    public void EighthLevelConditionEffectSpell_HasExpectedConditionAndSave(
+        string id,
+        string expectedSavingThrowAbility,
+        string expectedCondition)
+    {
+        SpellConditionEffect effect = Get(id).ConditionEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            $"dnd5e2014.condition.{expectedCondition}",
+            Assert.Single(effect.ConditionIds).Value);
+    }
+
+    // Power Word Stun's initial stun is automatic (gated on the target's
+    // current hit points, not a saving throw) - the Constitution save in
+    // its text only ever ends the effect early, the same "repeat save to
+    // end, not to avoid" rider already declined for Hold Person/Hold
+    // Monster. With no save gating the initial condition,
+    // SpellConditionEffect's required SavingThrowAbilityId has nothing to
+    // point at.
+    [Fact]
+    public void PowerWordStunHasNoConditionEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.power-word-stun").ConditionEffect);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);
