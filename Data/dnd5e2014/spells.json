@@ -4504,7 +4504,16 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 12, "sides": 6 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -6704,7 +6713,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 7, "sides": 8 },
+      "flatDamageBonus": 30
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -6883,7 +6901,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.fire",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 7, "sides": 10 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric",
