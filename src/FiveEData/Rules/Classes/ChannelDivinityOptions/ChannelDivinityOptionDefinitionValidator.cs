@@ -41,6 +41,30 @@ internal static class ChannelDivinityOptionDefinitionValidator
                 "zero.");
         }
 
+        if (definition.ConditionDurationTrigger is not null &&
+            definition.ImposedConditionId is null)
+        {
+            errors.Add(
+                "Channel Divinity option condition duration trigger " +
+                "requires an imposed condition.");
+        }
+
+        if (definition.ConditionDurationTrigger is { } conditionTrigger &&
+            !Enum.IsDefined(conditionTrigger))
+        {
+            errors.Add(
+                "Channel Divinity option condition duration trigger " +
+                "must be a defined value.");
+        }
+
+        if (definition.AutomaticallyFailsGrantedSpellSave &&
+            definition.GrantedSpellId is null)
+        {
+            errors.Add(
+                "Channel Divinity option cannot automatically fail a " +
+                "granted spell's save without a granted spell.");
+        }
+
         if (definition.Sources.Count == 0)
         {
             errors.Add(

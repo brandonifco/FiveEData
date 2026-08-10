@@ -1,6 +1,11 @@
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Classes.ElementalDisciplines.Serialization;
 
@@ -97,15 +102,58 @@ internal static class ElementalDisciplineDefinitionLoader
                 "Elemental discipline sources are required.",
                 nameof(data));
 
+        SpellId? grantedSpellId =
+            data.GrantedSpellId is { } grantedSpellIdValue
+                ? new SpellId(grantedSpellIdValue)
+                : null;
+
+        AbilityId? savingThrowAbilityId =
+            data.SavingThrowAbilityId is { } savingThrowAbilityIdValue
+                ? new AbilityId(savingThrowAbilityIdValue)
+                : null;
+
+        DiceExpression? baseDamage =
+            data.BaseDamage is { } baseDamageData
+                ? new DiceExpression(
+                    baseDamageData.Count,
+                    baseDamageData.Sides)
+                : null;
+
+        DamageTypeId? baseDamageTypeId =
+            data.BaseDamageTypeId is { } baseDamageTypeIdValue
+                ? new DamageTypeId(baseDamageTypeIdValue)
+                : null;
+
+        ConditionId? imposedConditionId =
+            data.ImposedConditionId is { } imposedConditionIdValue
+                ? new ConditionId(imposedConditionIdValue)
+                : null;
+
+        DamageTypeId? changesUnarmedDamageTypeId =
+            data.ChangesUnarmedDamageTypeId is
+                { } changesUnarmedDamageTypeIdValue
+                ? new DamageTypeId(changesUnarmedDamageTypeIdValue)
+                : null;
+
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
 
         return new ElementalDisciplineDefinition(
-            id,
-            name,
-            data.KiPointCost,
-            data.RequiredMinimumLevel,
-            sources);
+            id: id,
+            name: name,
+            kiPointCost: data.KiPointCost,
+            requiredMinimumLevel: data.RequiredMinimumLevel,
+            grantedSpellId: grantedSpellId,
+            savingThrowAbilityId: savingThrowAbilityId,
+            baseDamage: baseDamage,
+            baseDamageTypeId: baseDamageTypeId,
+            halfDamageOnSuccessfulSave: data.HalfDamageOnSuccessfulSave,
+            rangeFeet: data.RangeFeet,
+            pushDistanceFeet: data.PushDistanceFeet,
+            imposedConditionId: imposedConditionId,
+            reachIncreaseFeet: data.ReachIncreaseFeet,
+            changesUnarmedDamageTypeId: changesUnarmedDamageTypeId,
+            sources: sources);
     }
 }

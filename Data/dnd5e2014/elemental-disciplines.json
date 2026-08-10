@@ -4,6 +4,16 @@
     "name": "Breath of Winter",
     "kiPointCost": 6,
     "requiredMinimumLevel": 17,
+    "grantedSpellId": "dnd5e2014.spell.cone-of-cold",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -13,6 +23,16 @@
     "name": "Clench of the North Wind",
     "kiPointCost": 3,
     "requiredMinimumLevel": 6,
+    "grantedSpellId": "dnd5e2014.spell.hold-person",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -22,6 +42,16 @@
     "name": "Elemental Attunement",
     "kiPointCost": null,
     "requiredMinimumLevel": null,
+    "grantedSpellId": null,
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -31,6 +61,16 @@
     "name": "Eternal Mountain Defense",
     "kiPointCost": 5,
     "requiredMinimumLevel": 11,
+    "grantedSpellId": "dnd5e2014.spell.stoneskin",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -40,6 +80,16 @@
     "name": "Fangs of the Fire Snake",
     "kiPointCost": 1,
     "requiredMinimumLevel": null,
+    "grantedSpellId": null,
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": 10,
+    "changesUnarmedDamageTypeId": "dnd5e2014.damage-type.fire",
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -49,6 +99,16 @@
     "name": "Fist of Four Thunders",
     "kiPointCost": 2,
     "requiredMinimumLevel": null,
+    "grantedSpellId": "dnd5e2014.spell.thunderwave",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -58,6 +118,16 @@
     "name": "Fist of Unbroken Air",
     "kiPointCost": 2,
     "requiredMinimumLevel": null,
+    "grantedSpellId": null,
+    "savingThrowAbilityId": "dnd5e2014.ability.strength",
+    "baseDamage": { "count": 3, "sides": 10 },
+    "baseDamageTypeId": "dnd5e2014.damage-type.bludgeoning",
+    "halfDamageOnSuccessfulSave": true,
+    "rangeFeet": 30,
+    "pushDistanceFeet": 20,
+    "imposedConditionId": "dnd5e2014.condition.prone",
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -67,6 +137,16 @@
     "name": "Flames of the Phoenix",
     "kiPointCost": 4,
     "requiredMinimumLevel": 11,
+    "grantedSpellId": "dnd5e2014.spell.fireball",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -76,6 +156,16 @@
     "name": "Gong of the Summit",
     "kiPointCost": 3,
     "requiredMinimumLevel": 6,
+    "grantedSpellId": "dnd5e2014.spell.shatter",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -85,6 +175,16 @@
     "name": "Mist Stance",
     "kiPointCost": 4,
     "requiredMinimumLevel": 11,
+    "grantedSpellId": "dnd5e2014.spell.gaseous-form",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -94,6 +194,16 @@
     "name": "Ride the Wind",
     "kiPointCost": 4,
     "requiredMinimumLevel": 11,
+    "grantedSpellId": "dnd5e2014.spell.fly",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -103,6 +213,16 @@
     "name": "River of Hungry Flame",
     "kiPointCost": 5,
     "requiredMinimumLevel": 17,
+    "grantedSpellId": "dnd5e2014.spell.wall-of-fire",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -112,6 +232,16 @@
     "name": "Rush of the Gale Spirits",
     "kiPointCost": 2,
     "requiredMinimumLevel": null,
+    "grantedSpellId": "dnd5e2014.spell.gust-of-wind",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -121,6 +251,16 @@
     "name": "Shape the Flowing River",
     "kiPointCost": 1,
     "requiredMinimumLevel": null,
+    "grantedSpellId": null,
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -130,6 +270,16 @@
     "name": "Sweeping Cinder Strike",
     "kiPointCost": 2,
     "requiredMinimumLevel": null,
+    "grantedSpellId": "dnd5e2014.spell.burning-hands",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -139,6 +289,16 @@
     "name": "Water Whip",
     "kiPointCost": 2,
     "requiredMinimumLevel": null,
+    "grantedSpellId": null,
+    "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+    "baseDamage": { "count": 3, "sides": 10 },
+    "baseDamageTypeId": "dnd5e2014.damage-type.bludgeoning",
+    "halfDamageOnSuccessfulSave": true,
+    "rangeFeet": 30,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]
@@ -148,6 +308,16 @@
     "name": "Wave of Rolling Earth",
     "kiPointCost": 6,
     "requiredMinimumLevel": 17,
+    "grantedSpellId": "dnd5e2014.spell.wall-of-stone",
+    "savingThrowAbilityId": null,
+    "baseDamage": null,
+    "baseDamageTypeId": null,
+    "halfDamageOnSuccessfulSave": false,
+    "rangeFeet": null,
+    "pushDistanceFeet": null,
+    "imposedConditionId": null,
+    "reachIncreaseFeet": null,
+    "changesUnarmedDamageTypeId": null,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 81, "section": "Chapter 3: Classes" }
     ]

@@ -1,6 +1,11 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes.ElementalDisciplines;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Tests;
 
@@ -59,6 +64,41 @@ public sealed class ElementalDisciplineFoundationTests
     }
 
     [Fact]
+    public void Definition_ExposesDamageEffectFieldsWhenPresent()
+    {
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
+            "Test",
+            kiPointCost: 2,
+            requiredMinimumLevel: null,
+            [CreateSource()],
+            savingThrowAbilityId:
+                new AbilityId("dnd5e2014.ability.strength"),
+            baseDamage: new DiceExpression(3, 10),
+            baseDamageTypeId:
+                new DamageTypeId("dnd5e2014.damage-type.bludgeoning"),
+            halfDamageOnSuccessfulSave: true,
+            rangeFeet: 30,
+            pushDistanceFeet: 20,
+            imposedConditionId:
+                new ConditionId("dnd5e2014.condition.prone"));
+
+        Assert.Equal(
+            "dnd5e2014.ability.strength",
+            definition.SavingThrowAbilityId?.Value);
+        Assert.Equal(new DiceExpression(3, 10), definition.BaseDamage);
+        Assert.Equal(
+            "dnd5e2014.damage-type.bludgeoning",
+            definition.BaseDamageTypeId?.Value);
+        Assert.True(definition.HalfDamageOnSuccessfulSave);
+        Assert.Equal(30, definition.RangeFeet);
+        Assert.Equal(20, definition.PushDistanceFeet);
+        Assert.Equal(
+            "dnd5e2014.condition.prone",
+            definition.ImposedConditionId?.Value);
+    }
+
+    [Fact]
     public void Validator_RejectsDefaultId()
     {
         ElementalDisciplineDefinition definition = Create(
@@ -76,8 +116,8 @@ public sealed class ElementalDisciplineFoundationTests
     [Fact]
     public void Validator_RejectsNonPositiveKiPointCost()
     {
-        var definition = new ElementalDisciplineDefinition(
-            new ElementalDisciplineId("dnd5e2014.elemental-discipline.test"),
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
             "Test",
             kiPointCost: 0,
             requiredMinimumLevel: null,
@@ -88,6 +128,125 @@ public sealed class ElementalDisciplineFoundationTests
             error =>
                 error.Contains(
                     "greater than zero",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsBaseDamageWithoutBaseDamageTypeId()
+    {
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
+            "Test",
+            kiPointCost: 2,
+            requiredMinimumLevel: null,
+            [CreateSource()],
+            baseDamage: new DiceExpression(3, 10));
+
+        Assert.Contains(
+            ElementalDisciplineDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "base damage and a base damage type",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsHalfDamageOnSaveWithoutBaseDamage()
+    {
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
+            "Test",
+            kiPointCost: 2,
+            requiredMinimumLevel: null,
+            [CreateSource()],
+            savingThrowAbilityId:
+                new AbilityId("dnd5e2014.ability.strength"),
+            halfDamageOnSuccessfulSave: true);
+
+        Assert.Contains(
+            ElementalDisciplineDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "without base damage",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsHalfDamageOnSaveWithoutSavingThrow()
+    {
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
+            "Test",
+            kiPointCost: 2,
+            requiredMinimumLevel: null,
+            [CreateSource()],
+            baseDamage: new DiceExpression(3, 10),
+            baseDamageTypeId:
+                new DamageTypeId("dnd5e2014.damage-type.bludgeoning"),
+            halfDamageOnSuccessfulSave: true);
+
+        Assert.Contains(
+            ElementalDisciplineDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "without a saving throw",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveRangeFeet()
+    {
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
+            "Test",
+            kiPointCost: 2,
+            requiredMinimumLevel: null,
+            [CreateSource()],
+            rangeFeet: 0);
+
+        Assert.Contains(
+            ElementalDisciplineDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "range must be greater",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositivePushDistanceFeet()
+    {
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
+            "Test",
+            kiPointCost: 2,
+            requiredMinimumLevel: null,
+            [CreateSource()],
+            pushDistanceFeet: 0);
+
+        Assert.Contains(
+            ElementalDisciplineDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "push distance",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveReachIncreaseFeet()
+    {
+        ElementalDisciplineDefinition definition = Create(
+            "dnd5e2014.elemental-discipline.test",
+            "Test",
+            kiPointCost: 2,
+            requiredMinimumLevel: null,
+            [CreateSource()],
+            reachIncreaseFeet: 0);
+
+        Assert.Contains(
+            ElementalDisciplineDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "reach increase",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -222,14 +381,34 @@ public sealed class ElementalDisciplineFoundationTests
         string name,
         int? kiPointCost,
         int? requiredMinimumLevel,
-        IEnumerable<SourceReference> sources)
+        IEnumerable<SourceReference> sources,
+        SpellId? grantedSpellId = null,
+        AbilityId? savingThrowAbilityId = null,
+        DiceExpression? baseDamage = null,
+        DamageTypeId? baseDamageTypeId = null,
+        bool halfDamageOnSuccessfulSave = false,
+        int? rangeFeet = null,
+        int? pushDistanceFeet = null,
+        ConditionId? imposedConditionId = null,
+        int? reachIncreaseFeet = null,
+        DamageTypeId? changesUnarmedDamageTypeId = null)
     {
         return new ElementalDisciplineDefinition(
-            id is null ? default : new ElementalDisciplineId(id),
-            name,
-            kiPointCost,
-            requiredMinimumLevel,
-            sources);
+            id: id is null ? default : new ElementalDisciplineId(id),
+            name: name,
+            kiPointCost: kiPointCost,
+            requiredMinimumLevel: requiredMinimumLevel,
+            grantedSpellId: grantedSpellId,
+            savingThrowAbilityId: savingThrowAbilityId,
+            baseDamage: baseDamage,
+            baseDamageTypeId: baseDamageTypeId,
+            halfDamageOnSuccessfulSave: halfDamageOnSuccessfulSave,
+            rangeFeet: rangeFeet,
+            pushDistanceFeet: pushDistanceFeet,
+            imposedConditionId: imposedConditionId,
+            reachIncreaseFeet: reachIncreaseFeet,
+            changesUnarmedDamageTypeId: changesUnarmedDamageTypeId,
+            sources: sources);
     }
 
     private static SourceReference CreateSource()

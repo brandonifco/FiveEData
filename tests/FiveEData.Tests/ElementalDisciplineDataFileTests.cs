@@ -118,6 +118,128 @@ public sealed class ElementalDisciplineDataFileTests
         Assert.Null(definition.RequiredMinimumLevel);
     }
 
+    [Theory]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.breath-of-winter",
+        "dnd5e2014.spell.cone-of-cold")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.clench-of-the-north-wind",
+        "dnd5e2014.spell.hold-person")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.eternal-mountain-defense",
+        "dnd5e2014.spell.stoneskin")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.fist-of-four-thunders",
+        "dnd5e2014.spell.thunderwave")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.flames-of-the-phoenix",
+        "dnd5e2014.spell.fireball")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.gong-of-the-summit",
+        "dnd5e2014.spell.shatter")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.mist-stance",
+        "dnd5e2014.spell.gaseous-form")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.ride-the-wind",
+        "dnd5e2014.spell.fly")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.river-of-hungry-flame",
+        "dnd5e2014.spell.wall-of-fire")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.rush-of-the-gale-spirits",
+        "dnd5e2014.spell.gust-of-wind")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.sweeping-cinder-strike",
+        "dnd5e2014.spell.burning-hands")]
+    [InlineData(
+        "dnd5e2014.elemental-discipline.wave-of-rolling-earth",
+        "dnd5e2014.spell.wall-of-stone")]
+    public void SpellGrantingDiscipline_GrantsExpectedSpell(
+        string id,
+        string expectedSpellId)
+    {
+        ElementalDisciplineDefinition definition = Get(id);
+
+        Assert.Equal(expectedSpellId, definition.GrantedSpellId?.Value);
+    }
+
+    [Fact]
+    public void FangsOfTheFireSnake_IncreasesReachAndChangesDamageToFire()
+    {
+        ElementalDisciplineDefinition definition =
+            Get("dnd5e2014.elemental-discipline.fangs-of-the-fire-snake");
+
+        Assert.Equal(10, definition.ReachIncreaseFeet);
+        Assert.Equal(
+            "dnd5e2014.damage-type.fire",
+            definition.ChangesUnarmedDamageTypeId?.Value);
+        Assert.Null(definition.GrantedSpellId);
+    }
+
+    [Fact]
+    public void
+        FistOfUnbrokenAir_DealsBludgeoningDamageAndPushesAndPronesOnFailedSave()
+    {
+        ElementalDisciplineDefinition definition =
+            Get("dnd5e2014.elemental-discipline.fist-of-unbroken-air");
+
+        Assert.Equal(
+            "dnd5e2014.ability.strength",
+            definition.SavingThrowAbilityId?.Value);
+        Assert.Equal(3, definition.BaseDamage?.Count);
+        Assert.Equal(10, definition.BaseDamage?.Sides);
+        Assert.Equal(
+            "dnd5e2014.damage-type.bludgeoning",
+            definition.BaseDamageTypeId?.Value);
+        Assert.True(definition.HalfDamageOnSuccessfulSave);
+        Assert.Equal(30, definition.RangeFeet);
+        Assert.Equal(20, definition.PushDistanceFeet);
+        Assert.Equal(
+            "dnd5e2014.condition.prone",
+            definition.ImposedConditionId?.Value);
+    }
+
+    [Fact]
+    public void WaterWhip_DealsBludgeoningDamageWithNoPushOrCondition()
+    {
+        ElementalDisciplineDefinition definition =
+            Get("dnd5e2014.elemental-discipline.water-whip");
+
+        Assert.Equal(
+            "dnd5e2014.ability.dexterity",
+            definition.SavingThrowAbilityId?.Value);
+        Assert.Equal(3, definition.BaseDamage?.Count);
+        Assert.Equal(10, definition.BaseDamage?.Sides);
+        Assert.Equal(
+            "dnd5e2014.damage-type.bludgeoning",
+            definition.BaseDamageTypeId?.Value);
+        Assert.True(definition.HalfDamageOnSuccessfulSave);
+        Assert.Equal(30, definition.RangeFeet);
+        Assert.Null(definition.PushDistanceFeet);
+        Assert.Null(definition.ImposedConditionId);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.elemental-discipline.elemental-attunement")]
+    [InlineData("dnd5e2014.elemental-discipline.shape-the-flowing-river")]
+    public void CompoundMechanicDisciplines_HaveNoNewMechanismFields(
+        string id)
+    {
+        ElementalDisciplineDefinition definition = Get(id);
+
+        Assert.Null(definition.GrantedSpellId);
+        Assert.Null(definition.SavingThrowAbilityId);
+        Assert.Null(definition.BaseDamage);
+        Assert.Null(definition.BaseDamageTypeId);
+        Assert.False(definition.HalfDamageOnSuccessfulSave);
+        Assert.Null(definition.RangeFeet);
+        Assert.Null(definition.PushDistanceFeet);
+        Assert.Null(definition.ImposedConditionId);
+        Assert.Null(definition.ReachIncreaseFeet);
+        Assert.Null(definition.ChangesUnarmedDamageTypeId);
+    }
+
     [Fact]
     public void AllDisciplines_CitePhbFirstPrintingPageEightyOne()
     {

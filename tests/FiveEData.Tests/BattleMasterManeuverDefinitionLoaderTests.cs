@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
+using FiveEData.Rules.Common;
 
 namespace FiveEData.Tests;
 
@@ -138,7 +139,7 @@ public sealed class BattleMasterManeuverDefinitionLoaderTests
         Assert.True(definition.ImposesDisadvantageOnAttacksAgainstOthers);
         Assert.True(definition.AllowsAllyReactionMovement);
         Assert.Equal(
-            BattleMasterManeuverDurationTrigger.EndOfYourNextTurn,
+            NextTurnDurationTrigger.EndOfYourNextTurn,
             definition.SecondaryEffectDurationTrigger);
     }
 

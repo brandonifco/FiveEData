@@ -1,7 +1,10 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Tests;
 
@@ -89,6 +92,38 @@ public sealed class ChannelDivinityOptionFoundationTests
     }
 
     [Fact]
+    public void Definition_ExposesConditionAndSpellFactsWhenPresent()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            imposedConditionId:
+                new ConditionId("dnd5e2014.condition.invisible"),
+            conditionDurationTrigger:
+                NextTurnDurationTrigger.EndOfYourNextTurn,
+            maximizesDamageRoll: true,
+            grantedSpellId: new SpellId("dnd5e2014.spell.suggestion"),
+            automaticallyFailsGrantedSpellSave: true);
+
+        Assert.Equal(
+            "dnd5e2014.condition.invisible",
+            definition.ImposedConditionId?.Value);
+        Assert.Equal(
+            NextTurnDurationTrigger.EndOfYourNextTurn,
+            definition.ConditionDurationTrigger);
+        Assert.True(definition.MaximizesDamageRoll);
+        Assert.Equal(
+            "dnd5e2014.spell.suggestion",
+            definition.GrantedSpellId?.Value);
+        Assert.True(definition.AutomaticallyFailsGrantedSpellSave);
+    }
+
+    [Fact]
     public void Validator_RejectsDefaultId()
     {
         ChannelDivinityOptionDefinition definition = Create(
@@ -108,9 +143,8 @@ public sealed class ChannelDivinityOptionFoundationTests
     [Fact]
     public void Validator_RejectsNonPositiveRangeFeet()
     {
-        var definition = new ChannelDivinityOptionDefinition(
-            new ChannelDivinityOptionId(
-                "dnd5e2014.channel-divinity-option.test"),
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
             "Test",
             rangeFeet: 0,
             savingThrowAbilityId: null,
@@ -129,9 +163,8 @@ public sealed class ChannelDivinityOptionFoundationTests
     [Fact]
     public void Validator_RejectsNonPositiveDurationMinutes()
     {
-        var definition = new ChannelDivinityOptionDefinition(
-            new ChannelDivinityOptionId(
-                "dnd5e2014.channel-divinity-option.test"),
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
             "Test",
             rangeFeet: null,
             savingThrowAbilityId: null,
@@ -150,9 +183,8 @@ public sealed class ChannelDivinityOptionFoundationTests
     [Fact]
     public void Validator_RejectsNonPositiveRollBonus()
     {
-        var definition = new ChannelDivinityOptionDefinition(
-            new ChannelDivinityOptionId(
-                "dnd5e2014.channel-divinity-option.test"),
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
             "Test",
             rangeFeet: null,
             savingThrowAbilityId: null,
@@ -165,6 +197,51 @@ public sealed class ChannelDivinityOptionFoundationTests
             error =>
                 error.Contains(
                     "greater than zero",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void
+        Validator_RejectsConditionDurationTriggerWithoutImposedCondition()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            conditionDurationTrigger:
+                NextTurnDurationTrigger.EndOfYourNextTurn);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "condition duration trigger",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void
+        Validator_RejectsAutomaticSpellSaveFailureWithoutGrantedSpell()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            automaticallyFailsGrantedSpellSave: true);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "granted spell",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -297,16 +374,27 @@ public sealed class ChannelDivinityOptionFoundationTests
         AbilityId? savingThrowAbilityId,
         int? durationMinutes,
         int? rollBonus,
-        IEnumerable<SourceReference> sources)
+        IEnumerable<SourceReference> sources,
+        ConditionId? imposedConditionId = null,
+        NextTurnDurationTrigger? conditionDurationTrigger = null,
+        bool maximizesDamageRoll = false,
+        SpellId? grantedSpellId = null,
+        bool automaticallyFailsGrantedSpellSave = false)
     {
         return new ChannelDivinityOptionDefinition(
-            id is null ? default : new ChannelDivinityOptionId(id),
-            name,
-            rangeFeet,
-            savingThrowAbilityId,
-            durationMinutes,
-            rollBonus,
-            sources);
+            id: id is null ? default : new ChannelDivinityOptionId(id),
+            name: name,
+            rangeFeet: rangeFeet,
+            savingThrowAbilityId: savingThrowAbilityId,
+            durationMinutes: durationMinutes,
+            rollBonus: rollBonus,
+            imposedConditionId: imposedConditionId,
+            conditionDurationTrigger: conditionDurationTrigger,
+            maximizesDamageRoll: maximizesDamageRoll,
+            grantedSpellId: grantedSpellId,
+            automaticallyFailsGrantedSpellSave:
+                automaticallyFailsGrantedSpellSave,
+            sources: sources);
     }
 
     private static SourceReference CreateSource()

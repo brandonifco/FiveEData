@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance.Serialization;
 
 namespace FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
@@ -48,7 +49,7 @@ internal sealed class BattleMasterManeuverDefinitionData
     public bool AllowsAllyReactionMovement { get; init; }
 
     [JsonRequired]
-    public BattleMasterManeuverDurationTrigger?
+    public NextTurnDurationTrigger?
         SecondaryEffectDurationTrigger
     { get; init; }
 

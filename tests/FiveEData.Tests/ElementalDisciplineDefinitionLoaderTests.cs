@@ -17,6 +17,16 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
                     "name": "Test",
                     "kiPointCost": 3,
                     "requiredMinimumLevel": 6,
+                    "grantedSpellId": null,
+                    "savingThrowAbilityId": null,
+                    "baseDamage": null,
+                    "baseDamageTypeId": null,
+                    "halfDamageOnSuccessfulSave": false,
+                    "rangeFeet": null,
+                    "pushDistanceFeet": null,
+                    "imposedConditionId": null,
+                    "reachIncreaseFeet": null,
+                    "changesUnarmedDamageTypeId": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -49,6 +59,16 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
                     "name": "Test",
                     "kiPointCost": null,
                     "requiredMinimumLevel": null,
+                    "grantedSpellId": null,
+                    "savingThrowAbilityId": null,
+                    "baseDamage": null,
+                    "baseDamageTypeId": null,
+                    "halfDamageOnSuccessfulSave": false,
+                    "rangeFeet": null,
+                    "pushDistanceFeet": null,
+                    "imposedConditionId": null,
+                    "reachIncreaseFeet": null,
+                    "changesUnarmedDamageTypeId": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -62,6 +82,64 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
 
         Assert.Null(definition.KiPointCost);
         Assert.Null(definition.RequiredMinimumLevel);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsMechanismFieldsWhenPresent()
+    {
+        ElementalDisciplineDefinition definition = Assert.Single(
+            ElementalDisciplineDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.elemental-discipline.test",
+                    "name": "Test",
+                    "kiPointCost": 2,
+                    "requiredMinimumLevel": null,
+                    "grantedSpellId": "dnd5e2014.spell.thunderwave",
+                    "savingThrowAbilityId": "dnd5e2014.ability.strength",
+                    "baseDamage": { "count": 3, "sides": 10 },
+                    "baseDamageTypeId":
+                      "dnd5e2014.damage-type.bludgeoning",
+                    "halfDamageOnSuccessfulSave": true,
+                    "rangeFeet": 30,
+                    "pushDistanceFeet": 20,
+                    "imposedConditionId": "dnd5e2014.condition.prone",
+                    "reachIncreaseFeet": 10,
+                    "changesUnarmedDamageTypeId":
+                      "dnd5e2014.damage-type.fire",
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.Equal(
+            "dnd5e2014.spell.thunderwave",
+            definition.GrantedSpellId?.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.strength",
+            definition.SavingThrowAbilityId?.Value);
+        Assert.Equal(3, definition.BaseDamage?.Count);
+        Assert.Equal(10, definition.BaseDamage?.Sides);
+        Assert.Equal(
+            "dnd5e2014.damage-type.bludgeoning",
+            definition.BaseDamageTypeId?.Value);
+        Assert.True(definition.HalfDamageOnSuccessfulSave);
+        Assert.Equal(30, definition.RangeFeet);
+        Assert.Equal(20, definition.PushDistanceFeet);
+        Assert.Equal(
+            "dnd5e2014.condition.prone",
+            definition.ImposedConditionId?.Value);
+        Assert.Equal(10, definition.ReachIncreaseFeet);
+        Assert.Equal(
+            "dnd5e2014.damage-type.fire",
+            definition.ChangesUnarmedDamageTypeId?.Value);
     }
 
     [Fact]
@@ -97,6 +175,16 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
                     "name": "Test",
                     "kiPointCost": 2,
                     "requiredMinimumLevel": null,
+                    "grantedSpellId": null,
+                    "savingThrowAbilityId": null,
+                    "baseDamage": null,
+                    "baseDamageTypeId": null,
+                    "halfDamageOnSuccessfulSave": false,
+                    "rangeFeet": null,
+                    "pushDistanceFeet": null,
+                    "imposedConditionId": null,
+                    "reachIncreaseFeet": null,
+                    "changesUnarmedDamageTypeId": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -117,6 +205,16 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
                     "name": "Other",
                     "kiPointCost": 2,
                     "requiredMinimumLevel": null,
+                    "grantedSpellId": null,
+                    "savingThrowAbilityId": null,
+                    "baseDamage": null,
+                    "baseDamageTypeId": null,
+                    "halfDamageOnSuccessfulSave": false,
+                    "rangeFeet": null,
+                    "pushDistanceFeet": null,
+                    "imposedConditionId": null,
+                    "reachIncreaseFeet": null,
+                    "changesUnarmedDamageTypeId": null,
                     "sources": []
                   }
                 ]
@@ -134,7 +232,17 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
                     "id": "extension.elemental-discipline.test",
                     "name": "Test",
                     "kiPointCost": 2,
-                    "requiredMinimumLevel": null
+                    "requiredMinimumLevel": null,
+                    "grantedSpellId": null,
+                    "savingThrowAbilityId": null,
+                    "baseDamage": null,
+                    "baseDamageTypeId": null,
+                    "halfDamageOnSuccessfulSave": false,
+                    "rangeFeet": null,
+                    "pushDistanceFeet": null,
+                    "imposedConditionId": null,
+                    "reachIncreaseFeet": null,
+                    "changesUnarmedDamageTypeId": null
                   }
                 ]
                 """));
@@ -152,6 +260,16 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
                     "name": "Test",
                     "kiPointCost": 2,
                     "requiredMinimumLevel": null,
+                    "grantedSpellId": null,
+                    "savingThrowAbilityId": null,
+                    "baseDamage": null,
+                    "baseDamageTypeId": null,
+                    "halfDamageOnSuccessfulSave": false,
+                    "rangeFeet": null,
+                    "pushDistanceFeet": null,
+                    "imposedConditionId": null,
+                    "reachIncreaseFeet": null,
+                    "changesUnarmedDamageTypeId": null,
                     "sources": []
                   }
                 ]
@@ -168,6 +286,16 @@ public sealed class ElementalDisciplineDefinitionLoaderTests
               "name": "Test",
               "kiPointCost": 2,
               "requiredMinimumLevel": null,
+              "grantedSpellId": null,
+              "savingThrowAbilityId": null,
+              "baseDamage": null,
+              "baseDamageTypeId": null,
+              "halfDamageOnSuccessfulSave": false,
+              "rangeFeet": null,
+              "pushDistanceFeet": null,
+              "imposedConditionId": null,
+              "reachIncreaseFeet": null,
+              "changesUnarmedDamageTypeId": null,
               "sources": [
                 {
                   "documentId": "extension.source.test",

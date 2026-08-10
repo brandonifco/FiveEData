@@ -15,14 +15,15 @@ a game.
 
 ## Current state
 
-**Nothing in progress. Gap 3's three scoped candidates (Metamagic,
-Battle Master maneuvers, Eldritch Invocations) are all built — see
-"Game-backend quantization: gap 3 scoping, and Metamagic effects."**
-Building Eldritch Invocations surfaced one more real, undone tail —
-Elemental Disciplines and Channel Divinity options still have
-unquantized "cast `<spell>`" prose that could reuse the new
-`GrantedSpellId` shape — but that's a newly-discovered candidate, not
-part of the original scoped table. Ask the user before starting it.
+**Nothing in progress. All known gap-3 candidates are built** — the
+three originally scoped (Metamagic, Battle Master maneuvers, Eldritch
+Invocations) plus the follow-on tail discovered while building Eldritch
+Invocations (Elemental Disciplines, Channel Divinity options). See
+"Game-backend quantization: gap 3 scoping, and Metamagic effects" and
+"Game-backend quantization: Elemental Disciplines and Channel Divinity
+effects." Race/subclass/background feature prose outside these five
+choice-point catalogs remains unquantized and unscoped — ask the user
+before scoping a next slice.
 
 Built and complete:
 
@@ -70,17 +71,17 @@ Built and complete:
 - Conditions — **all 15 PHB conditions (Appendix A) now carry full
   mechanical payloads**, not just `Id`/`Name`/`Sources`. See "Game-backend
   quantization: Conditions" below.
-- Gap 3 (feature-effect prose) — **all three scoped candidates built.**
-  Metamagic (all 8 options), Battle Master maneuvers (all 16), and
-  Eldritch Invocations (all 32) are done. See "Game-backend
-  quantization: gap 3 scoping, and Metamagic effects", "Game-backend
-  quantization: Battle Master maneuver effects", and "Game-backend
-  quantization: Eldritch Invocation effects" below. **This closed the
-  scoped table, not every feature-effect prose in the codebase** —
-  Elemental Disciplines/Channel Divinity's own "cast a spell" prose and
-  all race/subclass/background feature text outside these five
-  choice-point catalogs are still unquantized; see the caveat in
-  "Current state" above.
+- Gap 3 (feature-effect prose) — **all five known candidates built.**
+  Metamagic (all 8 options), Battle Master maneuvers (all 16), Eldritch
+  Invocations (all 32), Elemental Disciplines (all 17), and Channel
+  Divinity options (all 10) are done. See "Game-backend quantization:
+  gap 3 scoping, and Metamagic effects", "Game-backend quantization:
+  Battle Master maneuver effects", "Game-backend quantization: Eldritch
+  Invocation effects", and "Game-backend quantization: Elemental
+  Disciplines and Channel Divinity effects" below. **This closes every
+  candidate found so far, not every feature-effect prose in the
+  codebase** — all race/subclass/background feature text outside these
+  five choice-point catalogs is still unquantized and unscoped.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -126,7 +127,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2945 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2976 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -2068,14 +2069,17 @@ wasn't buildable when the "Spells are not a modeled domain" line in
 since `SpellId`/`SpellDefinition` are a real domain (see the "Current
 state" note on the game-backend initiative reversing that line). See
 "Game-backend quantization: Eldritch Invocation effects" below for the
-full build. **Elemental Disciplines and Channel Divinity options'
-remaining unquantized prose is mostly the same "cast `<spell>`"
-shape** — close them by mirroring the same `SpellId?` field shape onto
-their own definitions (each domain owns its own field per this
-project's standing "don't share a progression/grant type across
-domains" rule — `GrantedSpellId` itself isn't literally reusable),
-not as separate scoping work. Race/subclass/background feature prose
-outside these five choice-point catalogs is a separate, unscoped tail.
+full build. **Elemental Disciplines and Channel Divinity options were
+built next, closing this predicted tail** — see "Game-backend
+quantization: Elemental Disciplines and Channel Divinity effects" for
+the full build, including one further discovery neither prediction
+made: Channel Divinity's Read Thoughts also grants a spell
+(`suggestion`), and reading the real pages surfaced several
+non-spell-grant facts (damage/save/push/condition effects, a
+maximize-damage flag, an imposed-condition-plus-duration-trigger shape)
+that the "mostly cast a spell" prediction undersold. Race/subclass/
+background feature prose outside these five choice-point catalogs is a
+separate, unscoped tail.
 
 **Metamagic (all 8 options, p.102–103) is gap 3's first slice, chosen
 for the same reason cantrips and Conditions were chosen first: smallest
@@ -2344,12 +2348,141 @@ Growth's alternate casting time already sit on.
 while building this slice** — pages 110 and 111 already match where
 each invocation's own name heading starts (the same one-page-behind
 footer offset Metamagic and Battle Master maneuvers both showed); no
-citation error found. **Gap 3's three scoped candidates are now all
-built.** The initiative's remaining tail — Elemental Disciplines/Channel
-Divinity's own "cast a spell" prose, and every class/subclass/race/
-background feature outside these five choice-point catalogs — was never
-part of this scoped table and stays for a future pass to scope in its
-own right.
+citation error found. **Gap 3's three originally scoped candidates were
+all built at this point**; the predicted follow-on tail (Elemental
+Disciplines, Channel Divinity options) was picked up next — see
+"Game-backend quantization: Elemental Disciplines and Channel Divinity
+effects" below. Every class/subclass/race/background feature outside
+these five choice-point catalogs remains unquantized and unscoped.
+
+## Game-backend quantization: Elemental Disciplines and Channel Divinity effects
+
+The predicted follow-on to gap 3's three scoped candidates, built
+immediately after Eldritch Invocations closed them. Both catalogs
+already carried partial quantization from the original Quantized pass
+(`ElementalDisciplineDefinition` had `KiPointCost`/`RequiredMinimumLevel`;
+`ChannelDivinityOptionDefinition` had `RangeFeet`/`SavingThrowAbilityId`/
+`DurationMinutes`/`RollBonus`) — this slice adds each option's actual
+*effect*, the same shift gap 3's other three catalogs made. Both were
+read from rendered page images, not `pdftotext`: Elemental Disciplines'
+17 entries turned out to fit on one single two-column page (p.81, PDF
+index 82); Channel Divinity's 10 span five different pages (pp.59–63,
+one per cleric domain) since each option is that domain's own 2nd-level
+feature, not a grouped list like the other four gap-3 catalogs.
+
+**Elemental Disciplines: 12 of 17 are a clean `GrantedSpellId` grant,
+confirming the prediction — but 3 more are combat techniques with their
+own damage/save/rider facts the prediction didn't anticipate, and 2
+stay fully declined.** The 12 spell grants (Breath of Winter → cone of
+cold, Clench of the North Wind → hold person, Eternal Mountain Defense
+→ stoneskin, Fist of Four Thunders → thunderwave, Flames of the Phoenix
+→ fireball, Gong of the Summit → shatter, Mist Stance → gaseous form,
+Ride the Wind → fly, River of Hungry Flame → wall of fire, Rush of the
+Gale Spirits → gust of wind, Sweeping Cinder Strike → burning hands,
+Wave of Rolling Earth → wall of stone) need no `CastingFrequency`
+companion field the way Eldritch Invocations did — every one is simply
+"spend N ki points to cast `<spell>`," and `KiPointCost` already covers
+the cost, so `GrantedSpellId` stands alone here.
+
+**Fist of Unbroken Air and Water Whip are the same "3d10 bludgeoning,
+save for half" shape confirmed on a second and third instance, reusing
+`SavingThrowAbilityId`/`BaseDamage`/`BaseDamageTypeId`/
+`HalfDamageOnSuccessfulSave`/`RangeFeet` — new fields on
+`ElementalDisciplineDefinition`, not shared with `SpellDamageEffect`,
+per the standing "each domain owns its own type even when the shape is
+identical" rule.** Where the two diverge is where one stays clean and
+the other gets declined: Fist of Unbroken Air's "push up to 20 feet
+away *and* knock prone" is a clean AND, captured as
+`PushDistanceFeet`/`ImposedConditionId` both populated (the existing
+"two independent fields populated together = both apply" convention
+Evard's Black Tentacles and Sunbeam already established for spells).
+Water Whip's "either knock it prone *or* pull it up to 25 feet closer"
+is a genuine OR — a caster's choice this project has no field for
+(`SpellConditionEffect.ConditionIds` only ever meant AND, per
+Blindness/Deafness's decline at 2nd level) — so Water Whip captures
+only its clean damage/save facts and declines the prone-or-pull choice
+entirely, rather than populating fields that would misstate an OR as an
+AND.
+
+**Fangs of the Fire Snake is a weapon-attack rider, not a save-based
+effect, and gets its own pair of one-off fields:** `ReachIncreaseFeet:
+10` and `ChangesUnarmedDamageTypeId: fire`. Its further "spend 1 more ki
+point for an extra 1d10 fire damage" clause stays declined — a single,
+non-recurring conditional-cost rider, the same "one data point doesn't
+justify a new field" call Magic Missile's flat modifier and Chromatic
+Orb's minimum-one clause already made elsewhere.
+
+**Elemental Attunement and Shape the Flowing River stay fully declined,
+both for the established "caster picks from several options, no single
+resolution mechanic" reason** — Elemental Attunement offers four minor
+sensory/utility effects, Shape the Flowing River is a multi-mode
+terrain tool (raise, lower, dig, wall, pillar) bounded only by a shared
+formula ("half the area's largest dimension"). Same call as Symbol and
+Prismatic Spray at the Spells pass.
+
+**Channel Divinity: a new cross-domain grant (`GrantedSpellId` again,
+this time on `ChannelDivinityOptionDefinition`) turned up in a place
+neither the original scoping nor the Eldritch Invocations prediction
+named.** Read Thoughts's text ends with "you can use your action to end
+this effect and cast the *suggestion* spell on the creature without
+expending a spell slot. The target automatically fails its saving
+throw against the spell" — a real spell grant, gated on the option's own
+mind-reading effect already being active rather than framed as
+"at will" or "once per long rest" the way Eldritch Invocations phrases
+its grants. No `CastingFrequency` companion field was added here: unlike
+Eldritch Invocations' repeatable grants, Channel Divinity options are
+already bounded by the class's own Channel Divinity use economy
+(`ChannelDivinityUseGrant`), so a per-option frequency fact would be
+redundant. The one new fact this option's text actually adds —
+`AutomaticallyFailsGrantedSpellSave: bool` — is captured directly.
+
+**A new shared duration shape moved out of Battle Master maneuvers and
+into `Rules/Common`, the second-domain trigger CLAUDE.md's Battle
+Master section explicitly flagged to watch for.** Cloak of Shadows
+("you become invisible until the end of your next turn") needs the
+exact same combat-turn-relative duration Menacing Attack and Goading
+Attack already used. `BattleMasterManeuverDurationTrigger` is now
+`NextTurnDurationTrigger` in `Rules/Common/`, used by both
+`BattleMasterManeuverDefinition.SecondaryEffectDurationTrigger` and the
+new `ChannelDivinityOptionDefinition.ConditionDurationTrigger` — the
+same "a mechanic common enough to show up in a second domain graduates
+to shared vocabulary" reasoning that already moved `RollModifier` to
+`Rules/Common`, now demonstrated for real rather than just predicted.
+Cloak of Shadows also reuses `ImposedConditionId` (invisible) — a field
+this pass added to `ChannelDivinityOptionDefinition` for the first
+time, populated a second time by Charm Animals and Plants (charmed, on
+a failed Wisdom save, no duration trigger since the condition's own
+1-minute-or-damage end condition is already captured via the existing
+`DurationMinutes` field).
+
+**Destructive Wrath needed a field no other gap-3 catalog has: a flat
+"maximize this roll instead of rolling it" flag.** "When you roll
+lightning or thunder damage, you can use your Channel Divinity to deal
+maximum damage, instead of rolling" is genuinely a new mechanism shape
+— not a bonus, not a reroll, a replacement of the roll with its maximum
+— so it earns its own bool, `MaximizesDamageRoll`, rather than being
+forced into `RollBonus` (which adds to a roll, not replaces it).
+
+**Six options needed no new fields at all, confirming the original
+four scalar fields already covered them fully:** Knowledge of the Ages,
+Preserve Life, Radiance of the Dawn, Invoke Duplicity, Guided Strike,
+and War God's Blessing were all re-verified against the rendered page
+images and matched their existing `RangeFeet`/`SavingThrowAbilityId`/
+`DurationMinutes`/`RollBonus` data exactly. Invoke Duplicity's illusion-
+duplicate mechanic (30-foot placement range, 120-foot leash, advantage
+when both caster and illusion flank a target) stays partially declined
+beyond its two already-captured numbers, the same "controllable/
+perceiving" shape already declined for Bigby's Hand and Spiritual
+Weapon.
+
+**All citations were re-verified against the rendered page images while
+building this slice** — Elemental Disciplines' page 81 and Channel
+Divinity's pp.59–63 all matched their existing citations exactly; no
+error found. **This closes every gap-3 candidate identified so far —
+the three originally scoped, plus the two-catalog tail Eldritch
+Invocations' build predicted.** Race/subclass/background feature text
+outside these five choice-point catalogs remains unquantized and is a
+separate, unscoped body of work.
 
 ## Test conventions
 

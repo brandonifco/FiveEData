@@ -34,6 +34,53 @@ internal static class ElementalDisciplineDefinitionValidator
                 "between 1 and 20.");
         }
 
+        bool hasBaseDamage = definition.BaseDamage is not null;
+        bool hasBaseDamageTypeId = definition.BaseDamageTypeId is not null;
+
+        if (hasBaseDamage != hasBaseDamageTypeId)
+        {
+            errors.Add(
+                "Elemental discipline must have base damage and a base " +
+                "damage type together, or neither.");
+        }
+
+        if (definition.HalfDamageOnSuccessfulSave && !hasBaseDamage)
+        {
+            errors.Add(
+                "Elemental discipline cannot have half damage on a " +
+                "successful save without base damage.");
+        }
+
+        if (definition.HalfDamageOnSuccessfulSave &&
+            definition.SavingThrowAbilityId is null)
+        {
+            errors.Add(
+                "Elemental discipline cannot have half damage on a " +
+                "successful save without a saving throw.");
+        }
+
+        if (definition.RangeFeet is { } rangeFeet && rangeFeet <= 0)
+        {
+            errors.Add(
+                "Elemental discipline range must be greater than zero.");
+        }
+
+        if (definition.PushDistanceFeet is { } pushDistanceFeet &&
+            pushDistanceFeet <= 0)
+        {
+            errors.Add(
+                "Elemental discipline push distance must be greater " +
+                "than zero.");
+        }
+
+        if (definition.ReachIncreaseFeet is { } reachIncreaseFeet &&
+            reachIncreaseFeet <= 0)
+        {
+            errors.Add(
+                "Elemental discipline reach increase must be greater " +
+                "than zero.");
+        }
+
         if (definition.Sources.Count == 0)
         {
             errors.Add(

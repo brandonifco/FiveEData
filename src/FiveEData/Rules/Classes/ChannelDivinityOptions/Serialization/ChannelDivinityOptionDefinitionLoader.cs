@@ -2,6 +2,8 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
 
@@ -104,17 +106,33 @@ internal static class ChannelDivinityOptionDefinitionLoader
                 ? new AbilityId(savingThrowAbilityIdValue)
                 : null;
 
+        ConditionId? imposedConditionId =
+            data.ImposedConditionId is { } imposedConditionIdValue
+                ? new ConditionId(imposedConditionIdValue)
+                : null;
+
+        SpellId? grantedSpellId =
+            data.GrantedSpellId is { } grantedSpellIdValue
+                ? new SpellId(grantedSpellIdValue)
+                : null;
+
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
 
         return new ChannelDivinityOptionDefinition(
-            id,
-            name,
-            data.RangeFeet,
-            savingThrowAbilityId,
-            data.DurationMinutes,
-            data.RollBonus,
-            sources);
+            id: id,
+            name: name,
+            rangeFeet: data.RangeFeet,
+            savingThrowAbilityId: savingThrowAbilityId,
+            durationMinutes: data.DurationMinutes,
+            rollBonus: data.RollBonus,
+            imposedConditionId: imposedConditionId,
+            conditionDurationTrigger: data.ConditionDurationTrigger,
+            maximizesDamageRoll: data.MaximizesDamageRoll,
+            grantedSpellId: grantedSpellId,
+            automaticallyFailsGrantedSpellSave:
+                data.AutomaticallyFailsGrantedSpellSave,
+            sources: sources);
     }
 }

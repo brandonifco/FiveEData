@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
+using FiveEData.Rules.Common;
 
 namespace FiveEData.Tests;
 
@@ -19,6 +20,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "savingThrowAbilityId": null,
                     "durationMinutes": null,
                     "rollBonus": null,
+                    "imposedConditionId": null,
+                    "conditionDurationTrigger": null,
+                    "maximizesDamageRoll": false,
+                    "grantedSpellId": null,
+                    "automaticallyFailsGrantedSpellSave": false,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -55,6 +61,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
                     "durationMinutes": 1,
                     "rollBonus": 10,
+                    "imposedConditionId": null,
+                    "conditionDurationTrigger": null,
+                    "maximizesDamageRoll": false,
+                    "grantedSpellId": null,
+                    "automaticallyFailsGrantedSpellSave": false,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -72,6 +83,49 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
             definition.SavingThrowAbilityId?.Value);
         Assert.Equal(1, definition.DurationMinutes);
         Assert.Equal(10, definition.RollBonus);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsMechanismFieldsWhenPresent()
+    {
+        ChannelDivinityOptionDefinition definition = Assert.Single(
+            ChannelDivinityOptionDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.channel-divinity-option.test",
+                    "name": "Test",
+                    "rangeFeet": null,
+                    "savingThrowAbilityId": null,
+                    "durationMinutes": null,
+                    "rollBonus": null,
+                    "imposedConditionId": "dnd5e2014.condition.invisible",
+                    "conditionDurationTrigger": "EndOfYourNextTurn",
+                    "maximizesDamageRoll": true,
+                    "grantedSpellId": "dnd5e2014.spell.suggestion",
+                    "automaticallyFailsGrantedSpellSave": true,
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.Equal(
+            "dnd5e2014.condition.invisible",
+            definition.ImposedConditionId?.Value);
+        Assert.Equal(
+            NextTurnDurationTrigger.EndOfYourNextTurn,
+            definition.ConditionDurationTrigger);
+        Assert.True(definition.MaximizesDamageRoll);
+        Assert.Equal(
+            "dnd5e2014.spell.suggestion",
+            definition.GrantedSpellId?.Value);
+        Assert.True(definition.AutomaticallyFailsGrantedSpellSave);
     }
 
     [Fact]
@@ -110,6 +164,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "savingThrowAbilityId": null,
                     "durationMinutes": null,
                     "rollBonus": null,
+                    "imposedConditionId": null,
+                    "conditionDurationTrigger": null,
+                    "maximizesDamageRoll": false,
+                    "grantedSpellId": null,
+                    "automaticallyFailsGrantedSpellSave": false,
                     "sources": [],
                     "unexpected": true
                   }
@@ -132,6 +191,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "savingThrowAbilityId": null,
                     "durationMinutes": null,
                     "rollBonus": null,
+                    "imposedConditionId": null,
+                    "conditionDurationTrigger": null,
+                    "maximizesDamageRoll": false,
+                    "grantedSpellId": null,
+                    "automaticallyFailsGrantedSpellSave": false,
                     "sources": []
                   }
                 ]
@@ -151,7 +215,12 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "rangeFeet": null,
                     "savingThrowAbilityId": null,
                     "durationMinutes": null,
-                    "rollBonus": null
+                    "rollBonus": null,
+                    "imposedConditionId": null,
+                    "conditionDurationTrigger": null,
+                    "maximizesDamageRoll": false,
+                    "grantedSpellId": null,
+                    "automaticallyFailsGrantedSpellSave": false
                   }
                 ]
                 """));
@@ -171,6 +240,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "savingThrowAbilityId": null,
                     "durationMinutes": null,
                     "rollBonus": null,
+                    "imposedConditionId": null,
+                    "conditionDurationTrigger": null,
+                    "maximizesDamageRoll": false,
+                    "grantedSpellId": null,
+                    "automaticallyFailsGrantedSpellSave": false,
                     "sources": []
                   }
                 ]
@@ -189,6 +263,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
               "savingThrowAbilityId": null,
               "durationMinutes": null,
               "rollBonus": null,
+              "imposedConditionId": null,
+              "conditionDurationTrigger": null,
+              "maximizesDamageRoll": false,
+              "grantedSpellId": null,
+              "automaticallyFailsGrantedSpellSave": false,
               "sources": [
                 {
                   "documentId": "extension.source.test",
