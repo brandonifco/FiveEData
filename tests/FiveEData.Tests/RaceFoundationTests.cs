@@ -115,6 +115,8 @@ public sealed class RaceFoundationTests
             null,
             [],
             null,
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -487,6 +489,8 @@ public sealed class RaceFoundationTests
             skillProficiencyChoiceCount,
             innateSpellGrants ?? [],
             innateSpellcastingAbilityId,
+            [],
+            null,
             sources ?? [CreateSource()]);
     }
 

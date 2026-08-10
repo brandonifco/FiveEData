@@ -12,6 +12,8 @@ using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Spells;
 
+using FiveEData.Rules.Equipment.Tools;
+
 namespace FiveEData.Rules.Classes;
 
 internal static class ClassCatalogIntegrityValidator
@@ -28,12 +30,16 @@ internal static class ClassCatalogIntegrityValidator
         IReadOnlySet<DamageTypeId> damageTypeIds,
         IReadOnlySet<CreatureSizeId> creatureSizeIds,
         IReadOnlySet<SpellId> spellIds,
-        IReadOnlySet<ConditionId> conditionIds)
+        IReadOnlySet<ConditionId> conditionIds,
+        IReadOnlySet<ToolId> toolIds,
+        IReadOnlySet<ToolFamilyId> toolFamilyIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(creatureSizeIds);
         ArgumentNullException.ThrowIfNull(spellIds);
         ArgumentNullException.ThrowIfNull(conditionIds);
+        ArgumentNullException.ThrowIfNull(toolIds);
+        ArgumentNullException.ThrowIfNull(toolFamilyIds);
         ArgumentNullException.ThrowIfNull(sourceIds);
         ArgumentNullException.ThrowIfNull(abilityIds);
         ArgumentNullException.ThrowIfNull(skillIds);
@@ -56,6 +62,40 @@ internal static class ClassCatalogIntegrityValidator
                 .OrderBy(item => item.Id.Value, StringComparer.Ordinal))
         {
             string owner = $"Class '{@class.Id}'";
+
+            foreach (ToolId toolId in @class.ToolProficiencyIds)
+            {
+                if (!toolIds.Contains(toolId))
+                {
+                    errors.Add(
+                        $"{owner} references missing tool " +
+                        $"'{toolId}'.");
+                }
+            }
+
+            if (@class.ToolProficiencyChoice is { } classToolChoice)
+            {
+                foreach (ToolFamilyId familyId in classToolChoice.ToolFamilyIds)
+                {
+                    if (!toolFamilyIds.Contains(familyId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing tool family " +
+                            $"'{familyId}'.");
+                    }
+                }
+
+                foreach (ToolId toolId in classToolChoice.ToolOptionIds)
+                {
+                    if (!toolIds.Contains(toolId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing tool " +
+                            $"'{toolId}'.");
+                    }
+                }
+            }
+
 
             ValidateSources(owner, @class.Sources, sourceIds, errors);
 
@@ -188,6 +228,40 @@ internal static class ClassCatalogIntegrityValidator
                 .OrderBy(item => item.Id.Value, StringComparer.Ordinal))
         {
             string owner = $"Subclass '{subclass.Id}'";
+
+            foreach (ToolId toolId in subclass.ToolProficiencyIds)
+            {
+                if (!toolIds.Contains(toolId))
+                {
+                    errors.Add(
+                        $"{owner} references missing tool " +
+                        $"'{toolId}'.");
+                }
+            }
+
+            if (subclass.ToolProficiencyChoice is { } subclassToolChoice)
+            {
+                foreach (ToolFamilyId familyId in subclassToolChoice.ToolFamilyIds)
+                {
+                    if (!toolFamilyIds.Contains(familyId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing tool family " +
+                            $"'{familyId}'.");
+                    }
+                }
+
+                foreach (ToolId toolId in subclassToolChoice.ToolOptionIds)
+                {
+                    if (!toolIds.Contains(toolId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing tool " +
+                            $"'{toolId}'.");
+                    }
+                }
+            }
+
 
             ValidateSources(owner, subclass.Sources, sourceIds, errors);
 

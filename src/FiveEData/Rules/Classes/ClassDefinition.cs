@@ -37,6 +37,7 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Classes;
@@ -100,6 +101,8 @@ public sealed class ClassDefinition
         int? sorcerousRestorationSorceryPointsRegained,
         AbilityModifierUsesGrant? cleansingTouchUsesPerRest,
         RelentlessRageDetail? relentlessRage,
+        IEnumerable<ToolId> toolProficiencyIds,
+        ToolProficiencyChoice? toolProficiencyChoice,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -109,6 +112,7 @@ public sealed class ClassDefinition
         ArgumentNullException.ThrowIfNull(weaponProficiencyCategories);
         ArgumentNullException.ThrowIfNull(weaponProficiencyIds);
         ArgumentNullException.ThrowIfNull(skillChoiceOptionIds);
+        ArgumentNullException.ThrowIfNull(toolProficiencyIds);
         ArgumentNullException.ThrowIfNull(levelFeatures);
         ArgumentNullException.ThrowIfNull(sources);
 
@@ -172,6 +176,8 @@ public sealed class ClassDefinition
             sorcerousRestorationSorceryPointsRegained;
         CleansingTouchUsesPerRest = cleansingTouchUsesPerRest;
         RelentlessRage = relentlessRage;
+        ToolProficiencyIds = Array.AsReadOnly(toolProficiencyIds.ToArray());
+        ToolProficiencyChoice = toolProficiencyChoice;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -282,6 +288,10 @@ public sealed class ClassDefinition
     public AbilityModifierUsesGrant? CleansingTouchUsesPerRest { get; }
 
     public RelentlessRageDetail? RelentlessRage { get; }
+
+    public IReadOnlyList<ToolId> ToolProficiencyIds { get; }
+
+    public ToolProficiencyChoice? ToolProficiencyChoice { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

@@ -208,6 +208,8 @@ public sealed class ClassFoundationTests
             null,
             null,
             null,
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -1863,6 +1865,8 @@ public sealed class ClassFoundationTests
             sorcerousRestorationSorceryPointsRegained,
             cleansingTouchUsesPerRest,
             relentlessRage,
+            [],
+            null,
             sources ?? [CreateSource()]);
     }
 

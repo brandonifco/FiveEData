@@ -18,6 +18,8 @@ using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Spells;
 
+using FiveEData.Rules.Equipment.Tools;
+
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
 internal static class RaceDefinitionLoader
@@ -198,6 +200,17 @@ internal static class RaceDefinitionLoader
                 ? LuckyDetailDataMapper.Map(luckyData)
                 : null;
 
+        string[] toolProficiencyIdValues = data.ToolProficiencyIds
+            ?? throw new ArgumentException(
+                "Race tool proficiency IDs are required.",
+                nameof(data));
+
+        ToolProficiencyChoice? toolProficiencyChoice =
+            data.ToolProficiencyChoice is { } toolProficiencyChoiceData
+                ? ToolProficiencyChoiceDataMapper.Map(
+                    toolProficiencyChoiceData)
+                : null;
+
         return new RaceDefinition(
             id,
             name,
@@ -220,6 +233,8 @@ internal static class RaceDefinitionLoader
             data.SkillProficiencyChoiceCount,
             innateSpellGrants,
             innateSpellcastingAbilityId,
+            toolProficiencyIdValues.Select(value => new ToolId(value)),
+            toolProficiencyChoice,
             sources);
     }
 

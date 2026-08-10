@@ -10,6 +10,7 @@ using FiveEData.Rules.Creatures.Races.SavageAttacks;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Equipment.Tools;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -37,6 +38,8 @@ public sealed class RaceDefinition
         int? skillProficiencyChoiceCount,
         IEnumerable<SpellGrant> innateSpellGrants,
         AbilityId? innateSpellcastingAbilityId,
+        IEnumerable<ToolId> toolProficiencyIds,
+        ToolProficiencyChoice? toolProficiencyChoice,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -46,6 +49,7 @@ public sealed class RaceDefinition
         ArgumentNullException.ThrowIfNull(resistedDamageTypeIds);
         ArgumentNullException.ThrowIfNull(weaponProficiencyIds);
         ArgumentNullException.ThrowIfNull(innateSpellGrants);
+        ArgumentNullException.ThrowIfNull(toolProficiencyIds);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -73,6 +77,8 @@ public sealed class RaceDefinition
         SkillProficiencyChoiceCount = skillProficiencyChoiceCount;
         InnateSpellGrants = Array.AsReadOnly(innateSpellGrants.ToArray());
         InnateSpellcastingAbilityId = innateSpellcastingAbilityId;
+        ToolProficiencyIds = Array.AsReadOnly(toolProficiencyIds.ToArray());
+        ToolProficiencyChoice = toolProficiencyChoice;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -105,6 +111,10 @@ public sealed class RaceDefinition
     public IReadOnlyList<SpellGrant> InnateSpellGrants { get; }
 
     public AbilityId? InnateSpellcastingAbilityId { get; }
+
+    public IReadOnlyList<ToolId> ToolProficiencyIds { get; }
+
+    public ToolProficiencyChoice? ToolProficiencyChoice { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

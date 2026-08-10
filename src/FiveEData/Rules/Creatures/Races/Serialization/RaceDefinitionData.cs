@@ -82,6 +82,13 @@ internal sealed class RaceDefinitionData
     public string? InnateSpellcastingAbilityId { get; init; }
 
     [JsonRequired]
+    public string[]? ToolProficiencyIds { get; init; }
+
+    [JsonRequired]
+    public ToolProficiencyChoiceData? ToolProficiencyChoice { get; init; }
+
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }
 
