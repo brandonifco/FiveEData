@@ -155,6 +155,16 @@ internal static class ClassCatalogIntegrityValidator
                     }
                 }
             }
+
+            if (@class.CleansingTouchUsesPerRest is
+                    { } cleansingTouchUsesPerRest &&
+                !abilityIds.Contains(cleansingTouchUsesPerRest.AbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{cleansingTouchUsesPerRest.AbilityId}' in its " +
+                    "Cleansing Touch.");
+            }
         }
 
         foreach (
@@ -229,6 +239,15 @@ internal static class ClassCatalogIntegrityValidator
                         $"'{wrathOfTheStorm.SavingThrowAbilityId}' in its " +
                         "Wrath of the Storm.");
                 }
+
+                if (!abilityIds.Contains(
+                        wrathOfTheStorm.UsesPerRest.AbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{wrathOfTheStorm.UsesPerRest.AbilityId}' in " +
+                        "its Wrath of the Storm uses per rest.");
+                }
             }
 
             if (subclass.ThunderboltStrike is { } thunderboltStrike &&
@@ -239,6 +258,24 @@ internal static class ClassCatalogIntegrityValidator
                     $"{owner} references missing creature size " +
                     $"'{thunderboltStrike.MaximumTargetSizeId}' in its " +
                     "Thunderbolt Strike.");
+            }
+
+            if (subclass.WardingFlare is { } wardingFlare &&
+                !abilityIds.Contains(wardingFlare.UsesPerRest.AbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{wardingFlare.UsesPerRest.AbilityId}' in its " +
+                    "Warding Flare.");
+            }
+
+            if (subclass.WarPriestUsesPerRest is { } warPriestUsesPerRest &&
+                !abilityIds.Contains(warPriestUsesPerRest.AbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{warPriestUsesPerRest.AbilityId}' in its War " +
+                    "Priest.");
             }
         }
 

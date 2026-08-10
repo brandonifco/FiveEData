@@ -2861,6 +2861,15 @@ public sealed class ClassDataFileTests
             "dnd5e2014.damage-type.radiant",
             improvedDivineSmite.DamageTypeId.Value);
         Assert.True(improvedDivineSmite.RequiresMeleeWeapon);
+
+        AbilityModifierUsesGrant cleansingTouch =
+            paladin.CleansingTouchUsesPerRest
+            ?? throw new InvalidOperationException(
+                "Expected Paladin to have Cleansing Touch.");
+        Assert.Equal(
+            "dnd5e2014.ability.charisma",
+            cleansingTouch.AbilityId.Value);
+        Assert.True(cleansingTouch.RecoversOnLongRest);
     }
 
     // Blindsense, Feral Senses, and Divine Sense are all "you are aware of

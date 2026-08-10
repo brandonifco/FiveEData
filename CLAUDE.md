@@ -21,8 +21,10 @@ Disciplines, Channel Divinity — the last now 16 entries, not 10; see
 below). The wider race/subclass/background feature-prose tail was
 **scoped** in a systematic pass (2026-08-10) — see "Game-backend
 quantization: scoping the race/subclass/background feature-prose
-tail" — and has a large, ranked candidate pool. One slice (Paladin's 6
-missing Channel Divinity options) is now also **built**; every other
+tail" — and has a large, ranked candidate pool. Two slices are now
+**built**: Paladin's 6 missing Channel Divinity options, and the
+recurring "uses per rest" resource shape (Warding Flare, War Priest,
+Cleansing Touch, plus a retrofit onto Wrath of the Storm). Every other
 candidate in the pool is scoped-not-built. Ask the user which to pick
 up next.
 
@@ -2550,13 +2552,6 @@ yet:
   Intimidating Presence), Sorcerer Draconic Bloodline (Elemental
   Affinity), and Rogue (Second-Story Work, Assassinate, Infiltration
   Expertise, Death Strike).
-- **A recurring "X uses per rest, equal to an ability modifier
-  (minimum one)" resource shape** appears on Warding Flare (Cleric
-  Light), War Priest (Cleric War), and Cleansing Touch (Paladin base)
-  — checked against the codebase and confirmed **not yet captured
-  anywhere, including on the already-"quantized" Wrath of the Storm**
-  (`WrathOfTheStormDetail` has no uses-per-rest field at all). This
-  would be a new field shape, not a reuse of an existing one.
 
 **One genuinely new structural gap, bigger than a data-entry slice:**
 racial weapon/armor/skill proficiency grants (Elf Weapon Training,
@@ -2663,6 +2658,50 @@ carried over from the pre-existing `class-rule.json` framework
 citations** — they matched exactly (pp.86, 87, 88), but the check ran
 regardless of that outcome, the same discipline every prior slice in
 this file followed.
+
+## Game-backend quantization: the "uses per rest" resource shape
+
+The second slice from the scoping pass above: the recurring "a number
+of times equal to your [ability] modifier (a minimum of once)... regain
+all expended uses when you finish a long rest" resource, verified
+against rendered page images at Warding Flare (Cleric Light, p.62),
+War Priest (Cleric War, p.64), Cleansing Touch (Paladin base, p.86),
+and the already-"quantized" Wrath of the Storm (Cleric Tempest, p.63)
+— all four use the identical phrasing.
+
+**New shared type in `Rules/Common`: `AbilityModifierUsesGrant`**
+(`AbilityId` + `RecoversOnLongRest`), the third type promoted there
+after `RollModifier` and `NextTurnDurationTrigger`, and on a stronger
+bar than either: 4 independently-verified real instances of the exact
+same fact, not 2. Unlike those two, this promotion **replaced** an
+existing field rather than only adding one —
+`WrathOfTheStormDetail.RecoversOnLongRest: bool` became
+`UsesPerRest: AbilityModifierUsesGrant`, because the bool alone was
+half the fact (Tempest's ability modifier count was never captured at
+all) and every other feature in this slice needed the same pairing.
+Consistent with `MaxChallengeRating` staying a plain `double` — that
+precedent was about the absence of a reuse case, not a rule against
+ever breaking a shipped field once one exists.
+
+**Three call sites, three different owners, no new catalog** — this
+is a single-class/single-subclass/single-subclass fact set, not a
+cross-class table, so each stays a bare nullable field rather than a
+progression:
+
+- `WardingFlareDetail` (new type, `Rules/Classes/WardingFlare/`) —
+  `TriggerRangeFeet` + `UsesPerRest`, embedded on `SubclassDefinition`
+  (Light Domain only).
+- `SubclassDefinition.WarPriestUsesPerRest: AbilityModifierUsesGrant?`
+  — no wrapper type needed; War Priest carries no fact besides the
+  grant itself (War Domain only).
+- `ClassDefinition.CleansingTouchUsesPerRest: AbilityModifierUsesGrant?`
+  — same bare-field shape, on `ClassDefinition` instead of
+  `SubclassDefinition` since Cleansing Touch is a base Paladin feature,
+  not oath-specific.
+
+All three ability IDs are Wisdom (Light, War) or Charisma (Cleansing
+Touch), validated via `ClassCatalogIntegrityValidator` the same way
+every other cross-domain ability reference is.
 
 ## Test conventions
 

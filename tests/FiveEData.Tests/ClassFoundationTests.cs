@@ -205,6 +205,7 @@ public sealed class ClassFoundationTests
             null,
             null,
             null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -1795,6 +1796,7 @@ public sealed class ClassFoundationTests
         EmptyBodyDetail? emptyBody = null,
         int? perfectSelfKiPointsRegained = null,
         int? sorcerousRestorationSorceryPointsRegained = null,
+        AbilityModifierUsesGrant? cleansingTouchUsesPerRest = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -1856,6 +1858,7 @@ public sealed class ClassFoundationTests
             emptyBody,
             perfectSelfKiPointsRegained,
             sorcerousRestorationSorceryPointsRegained,
+            cleansingTouchUsesPerRest,
             sources ?? [CreateSource()]);
     }
 

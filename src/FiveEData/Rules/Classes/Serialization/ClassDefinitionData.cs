@@ -289,6 +289,13 @@ internal sealed class ClassDefinitionData
     }
 
     [JsonRequired]
+    public AbilityModifierUsesGrantData? CleansingTouchUsesPerRest
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }
 

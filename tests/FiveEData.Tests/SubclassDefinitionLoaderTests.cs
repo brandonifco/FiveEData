@@ -44,6 +44,8 @@ public sealed class SubclassDefinitionLoaderTests
           "quiveringPalmKiCost": null,
           "draconicPresenceSorceryPointCost": null,
           "bendLuck": null,
+          "wardingFlare": null,
+          "warPriestUsesPerRest": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -114,6 +116,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -180,6 +184,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -242,6 +248,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -316,6 +324,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -393,6 +403,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -480,6 +492,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -513,6 +527,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": []
                   }
                 ]
@@ -543,6 +559,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": []
                   }
                 ]
@@ -574,6 +592,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": []
                   }
                 ]
@@ -605,6 +625,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": []
                   }
                 ]
@@ -636,6 +658,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "quiveringPalmKiCost": null,
                     "draconicPresenceSorceryPointCost": null,
                     "bendLuck": null,
+                    "wardingFlare": null,
+                    "warPriestUsesPerRest": null,
                     "sources": null
                   }
                 ]

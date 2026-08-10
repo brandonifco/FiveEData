@@ -11,9 +11,11 @@ using FiveEData.Rules.Classes.MagicalSecrets.Serialization;
 using FiveEData.Rules.Classes.Portent.Serialization;
 using FiveEData.Rules.Classes.ShadowStep.Serialization;
 using FiveEData.Rules.Classes.ThunderboltStrike.Serialization;
+using FiveEData.Rules.Classes.WardingFlare.Serialization;
 using FiveEData.Rules.Classes.WrathOfTheStorm.Serialization;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
+using FiveEData.Rules.Common.Serialization;
 
 namespace FiveEData.Rules.Classes.Serialization;
 
@@ -119,6 +121,12 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public BendLuckDetailData? BendLuck { get; init; }
+
+    [JsonRequired]
+    public WardingFlareDetailData? WardingFlare { get; init; }
+
+    [JsonRequired]
+    public AbilityModifierUsesGrantData? WarPriestUsesPerRest { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

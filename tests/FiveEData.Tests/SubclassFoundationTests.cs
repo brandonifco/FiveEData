@@ -15,6 +15,7 @@ using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Classes.WardingFlare;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Common;
@@ -96,6 +97,8 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -112,6 +115,8 @@ public sealed class SubclassFoundationTests
             default,
             3,
             [],
+            null,
+            null,
             null,
             null,
             null,
@@ -516,7 +521,9 @@ public sealed class SubclassFoundationTests
                 [new DamageTypeId("dnd5e2014.damage-type.lightning")],
                 new AbilityId("dnd5e2014.ability.dexterity"),
                 halfDamageOnSuccessfulSave: true,
-                recoversOnLongRest: true),
+                usesPerRest: new AbilityModifierUsesGrant(
+                    new AbilityId("dnd5e2014.ability.wisdom"),
+                    recoversOnLongRest: true)),
             thunderboltStrike: new ThunderboltStrikeDetail(
                 10,
                 new CreatureSizeId("dnd5e2014.creature-size.large")));
@@ -557,7 +564,9 @@ public sealed class SubclassFoundationTests
                 [],
                 new AbilityId("dnd5e2014.ability.dexterity"),
                 halfDamageOnSuccessfulSave: true,
-                recoversOnLongRest: true));
+                usesPerRest: new AbilityModifierUsesGrant(
+                    new AbilityId("dnd5e2014.ability.wisdom"),
+                    recoversOnLongRest: true)));
     }
 
     [Fact]
@@ -686,6 +695,8 @@ public sealed class SubclassFoundationTests
         int? quiveringPalmKiCost = null,
         int? draconicPresenceSorceryPointCost = null,
         BendLuckDetail? bendLuck = null,
+        WardingFlareDetail? wardingFlare = null,
+        AbilityModifierUsesGrant? warPriestUsesPerRest = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -714,6 +725,8 @@ public sealed class SubclassFoundationTests
             quiveringPalmKiCost,
             draconicPresenceSorceryPointCost,
             bendLuck,
+            wardingFlare,
+            warPriestUsesPerRest,
             sources ?? [CreateSource()]);
     }
 

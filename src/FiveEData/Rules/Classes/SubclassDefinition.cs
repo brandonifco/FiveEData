@@ -12,7 +12,9 @@ using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.ShadowStep;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.ThunderboltStrike;
+using FiveEData.Rules.Classes.WardingFlare;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 
@@ -47,6 +49,8 @@ public sealed class SubclassDefinition
         int? quiveringPalmKiCost,
         int? draconicPresenceSorceryPointCost,
         BendLuckDetail? bendLuck,
+        WardingFlareDetail? wardingFlare,
+        AbilityModifierUsesGrant? warPriestUsesPerRest,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -79,6 +83,8 @@ public sealed class SubclassDefinition
         DraconicPresenceSorceryPointCost =
             draconicPresenceSorceryPointCost;
         BendLuck = bendLuck;
+        WardingFlare = wardingFlare;
+        WarPriestUsesPerRest = warPriestUsesPerRest;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -130,6 +136,10 @@ public sealed class SubclassDefinition
     public int? DraconicPresenceSorceryPointCost { get; }
 
     public BendLuckDetail? BendLuck { get; }
+
+    public WardingFlareDetail? WardingFlare { get; }
+
+    public AbilityModifierUsesGrant? WarPriestUsesPerRest { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }
