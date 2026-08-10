@@ -256,6 +256,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             cover: [],
             travelPaces: [],
             restTypes: [],
-            downtimeActivities: []);
+            downtimeActivities: [],
+            characterAdvancement: TestCharacterAdvancement.Create());
     }
 }

@@ -182,6 +182,7 @@ public sealed class LifestyleCatalogIntegrityTests
             cover: [],
             travelPaces: [],
             restTypes: [],
-            downtimeActivities: []);
+            downtimeActivities: [],
+            characterAdvancement: TestCharacterAdvancement.Create());
     }
 }

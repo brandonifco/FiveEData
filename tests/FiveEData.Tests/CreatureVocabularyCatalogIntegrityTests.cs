@@ -530,6 +530,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             cover: [],
             travelPaces: [],
             restTypes: [],
-            downtimeActivities: []);
+            downtimeActivities: [],
+            characterAdvancement: TestCharacterAdvancement.Create());
     }
 }

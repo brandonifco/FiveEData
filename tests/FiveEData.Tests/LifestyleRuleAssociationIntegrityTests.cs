@@ -295,6 +295,7 @@ public sealed class
             cover: [],
             travelPaces: [],
             restTypes: [],
-            downtimeActivities: []);
+            downtimeActivities: [],
+            characterAdvancement: TestCharacterAdvancement.Create());
     }
 }

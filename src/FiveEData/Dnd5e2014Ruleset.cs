@@ -1,5 +1,6 @@
 using System.Threading;
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Characters.CharacterAdvancement;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
@@ -56,6 +57,7 @@ public sealed class Dnd5e2014Ruleset
         TravelPaceCatalog travelPaces,
         RestTypeCatalog restTypes,
         DowntimeActivityCatalog downtimeActivities,
+        CharacterAdvancementRules characterAdvancement,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -100,6 +102,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(travelPaces);
         ArgumentNullException.ThrowIfNull(restTypes);
         ArgumentNullException.ThrowIfNull(downtimeActivities);
+        ArgumentNullException.ThrowIfNull(characterAdvancement);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -144,6 +147,7 @@ public sealed class Dnd5e2014Ruleset
         TravelPaces = travelPaces;
         RestTypes = restTypes;
         DowntimeActivities = downtimeActivities;
+        CharacterAdvancement = characterAdvancement;
         Sources = sources;
         Rules = rules;
     }
@@ -196,6 +200,7 @@ public sealed class Dnd5e2014Ruleset
     public TravelPaceCatalog TravelPaces { get; }
     public RestTypeCatalog RestTypes { get; }
     public DowntimeActivityCatalog DowntimeActivities { get; }
+    public CharacterAdvancementRules CharacterAdvancement { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

@@ -2,6 +2,7 @@ using FiveEData.Rules.Adventuring.DowntimeActivities;
 using FiveEData.Rules.Adventuring.Resting;
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Characters.CharacterAdvancement;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Spells;
@@ -56,7 +57,8 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<CoverDefinition> cover,
         IReadOnlyList<TravelPaceDefinition> travelPaces,
         IReadOnlyList<RestTypeDefinition> restTypes,
-        IReadOnlyList<DowntimeActivityDefinition> downtimeActivities)
+        IReadOnlyList<DowntimeActivityDefinition> downtimeActivities,
+        CharacterAdvancementRules characterAdvancement)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(rules);
@@ -86,6 +88,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(travelPaces);
         ArgumentNullException.ThrowIfNull(restTypes);
         ArgumentNullException.ThrowIfNull(downtimeActivities);
+        ArgumentNullException.ThrowIfNull(characterAdvancement);
 
         SourceDocuments = sourceDocuments;
         Rules = rules;
@@ -115,6 +118,7 @@ internal sealed class RulesetDefinitionSet
         TravelPaces = travelPaces;
         RestTypes = restTypes;
         DowntimeActivities = downtimeActivities;
+        CharacterAdvancement = characterAdvancement;
     }
 
     public IReadOnlyList<SourceDocument> SourceDocuments { get; }
@@ -178,4 +182,6 @@ internal sealed class RulesetDefinitionSet
 
     public IReadOnlyList<DowntimeActivityDefinition> DowntimeActivities
     { get; }
+
+    public CharacterAdvancementRules CharacterAdvancement { get; }
 }
