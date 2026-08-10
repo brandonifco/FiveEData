@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.AlterMemories;
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.AwakenedMind;
@@ -7,12 +8,20 @@ using FiveEData.Rules.Classes.BeguilingDefenses;
 using FiveEData.Rules.Classes.CreateThrall;
 using FiveEData.Rules.Classes.DarkDelirium;
 using FiveEData.Rules.Classes.DeathStrike;
+using FiveEData.Rules.Classes.DraconicPresence;
+using FiveEData.Rules.Classes.DragonWings;
+using FiveEData.Rules.Classes.ElementalAffinity;
 using FiveEData.Rules.Classes.EntropicWard;
 using FiveEData.Rules.Classes.FeyPresence;
 using FiveEData.Rules.Classes.Frenzy;
+using FiveEData.Rules.Classes.HypnoticGaze;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
+using FiveEData.Rules.Classes.InstinctiveCharm;
 using FiveEData.Rules.Classes.IntimidatingPresence;
 using FiveEData.Rules.Classes.MistyEscape;
+using FiveEData.Rules.Classes.Overchannel;
+using FiveEData.Rules.Classes.PotentCantrip;
+using FiveEData.Rules.Classes.SculptSpells;
 using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.ThoughtShield;
 using FiveEData.Rules.Creatures.Conditions;
@@ -131,6 +140,17 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -172,6 +192,17 @@ public sealed class SubclassFoundationTests
             [],
             null,
             [],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -763,6 +794,17 @@ public sealed class SubclassFoundationTests
         EntropicWardDetail? entropicWard = null,
         ThoughtShieldDetail? thoughtShield = null,
         CreateThrallDetail? createThrall = null,
+        HypnoticGazeDetail? hypnoticGaze = null,
+        InstinctiveCharmDetail? instinctiveCharm = null,
+        bool? splitEnchantmentTargetsSecondCreature = null,
+        AlterMemoriesDetail? alterMemories = null,
+        SculptSpellsDetail? sculptSpells = null,
+        PotentCantripDetail? potentCantrip = null,
+        bool? empoweredEvocationAddsSpellcastingModifierToDamage = null,
+        OverchannelDetail? overchannel = null,
+        ElementalAffinityDetail? elementalAffinity = null,
+        DragonWingsDetail? dragonWings = null,
+        DraconicPresenceDetail? draconicPresence = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -810,6 +852,17 @@ public sealed class SubclassFoundationTests
             entropicWard,
             thoughtShield,
             createThrall,
+            hypnoticGaze,
+            instinctiveCharm,
+            splitEnchantmentTargetsSecondCreature,
+            alterMemories,
+            sculptSpells,
+            potentCantrip,
+            empoweredEvocationAddsSpellcastingModifierToDamage,
+            overchannel,
+            elementalAffinity,
+            dragonWings,
+            draconicPresence,
             sources ?? [CreateSource()]);
     }
 
