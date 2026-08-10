@@ -46,6 +46,7 @@ public sealed class SubclassDefinitionLoaderTests
           "bendLuck": null,
           "wardingFlare": null,
           "warPriestUsesPerRest": null,
+          "innateSpellGrants": [],
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -118,6 +119,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -186,6 +188,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -250,6 +253,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -326,6 +330,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -405,6 +410,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -494,6 +500,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": [],
                     "unexpected": true
                   }
@@ -529,6 +536,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": []
                   }
                 ]
@@ -561,6 +569,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": []
                   }
                 ]
@@ -594,6 +603,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": []
                   }
                 ]
@@ -627,6 +637,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": []
                   }
                 ]
@@ -660,6 +671,7 @@ public sealed class SubclassDefinitionLoaderTests
                     "bendLuck": null,
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
+                    "innateSpellGrants": [],
                     "sources": null
                   }
                 ]

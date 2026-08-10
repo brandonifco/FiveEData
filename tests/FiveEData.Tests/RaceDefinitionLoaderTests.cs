@@ -35,6 +35,8 @@ public sealed class RaceDefinitionLoaderTests
           "weaponProficiencyIds": [],
           "skillProficiencyId": null,
           "skillProficiencyChoiceCount": null,
+          "innateSpellGrants": [],
+          "innateSpellcastingAbilityId": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -81,6 +83,8 @@ public sealed class RaceDefinitionLoaderTests
                     "weaponProficiencyIds": [],
                     "skillProficiencyId": null,
                     "skillProficiencyChoiceCount": null,
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -188,6 +192,8 @@ public sealed class RaceDefinitionLoaderTests
                     "weaponProficiencyIds": [],
                     "skillProficiencyId": null,
                     "skillProficiencyChoiceCount": null,
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -223,6 +229,8 @@ public sealed class RaceDefinitionLoaderTests
                     "weaponProficiencyIds": [],
                     "skillProficiencyId": null,
                     "skillProficiencyChoiceCount": null,
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -255,6 +263,8 @@ public sealed class RaceDefinitionLoaderTests
                     "weaponProficiencyIds": [],
                     "skillProficiencyId": null,
                     "skillProficiencyChoiceCount": null,
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -288,6 +298,8 @@ public sealed class RaceDefinitionLoaderTests
                     "weaponProficiencyIds": [],
                     "skillProficiencyId": null,
                     "skillProficiencyChoiceCount": null,
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -321,6 +333,8 @@ public sealed class RaceDefinitionLoaderTests
                     "weaponProficiencyIds": [],
                     "skillProficiencyId": null,
                     "skillProficiencyChoiceCount": null,
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -354,6 +368,8 @@ public sealed class RaceDefinitionLoaderTests
                     "weaponProficiencyIds": [],
                     "skillProficiencyId": null,
                     "skillProficiencyChoiceCount": null,
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": null
                   }
                 ]

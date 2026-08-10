@@ -25,6 +25,8 @@ public sealed class SubraceDefinitionLoaderTests
           "hitPointBonusPerLevel": null,
           "weaponProficiencyIds": [],
           "armorProficiencyCategories": [],
+          "innateSpellGrants": [],
+          "innateSpellcastingAbilityId": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -78,6 +80,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -129,6 +133,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -157,6 +163,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -182,6 +190,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -207,6 +217,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -233,6 +245,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -259,6 +273,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": []
                   }
                 ]
@@ -285,6 +301,8 @@ public sealed class SubraceDefinitionLoaderTests
                     "hitPointBonusPerLevel": null,
                     "weaponProficiencyIds": [],
                     "armorProficiencyCategories": [],
+                    "innateSpellGrants": [],
+                    "innateSpellcastingAbilityId": null,
                     "sources": null
                   }
                 ]

@@ -129,5 +129,8 @@ internal sealed class SubclassDefinitionData
     public AbilityModifierUsesGrantData? WarPriestUsesPerRest { get; init; }
 
     [JsonRequired]
+    public SpellGrantData[]? InnateSpellGrants { get; init; }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }

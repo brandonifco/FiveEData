@@ -239,6 +239,15 @@ internal static class SubclassDefinitionLoader
                     warPriestUsesPerRestData)
                 : null;
 
+        SpellGrantData[] innateSpellGrantData = data.InnateSpellGrants
+            ?? throw new ArgumentException(
+                "Subclass innate spell grants are required.",
+                nameof(data));
+
+        SpellGrant[] innateSpellGrants = innateSpellGrantData
+            .Select(SpellGrantDataMapper.Map)
+            .ToArray();
+
         return new SubclassDefinition(
             id,
             name,
@@ -267,6 +276,7 @@ internal static class SubclassDefinitionLoader
             bendLuck,
             wardingFlare,
             warPriestUsesPerRest,
+            innateSpellGrants,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

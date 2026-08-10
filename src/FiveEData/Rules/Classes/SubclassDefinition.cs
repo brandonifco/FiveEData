@@ -51,10 +51,12 @@ public sealed class SubclassDefinition
         BendLuckDetail? bendLuck,
         WardingFlareDetail? wardingFlare,
         AbilityModifierUsesGrant? warPriestUsesPerRest,
+        IEnumerable<SpellGrant> innateSpellGrants,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentNullException.ThrowIfNull(levelFeatures);
+        ArgumentNullException.ThrowIfNull(innateSpellGrants);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -85,6 +87,7 @@ public sealed class SubclassDefinition
         BendLuck = bendLuck;
         WardingFlare = wardingFlare;
         WarPriestUsesPerRest = warPriestUsesPerRest;
+        InnateSpellGrants = Array.AsReadOnly(innateSpellGrants.ToArray());
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -140,6 +143,8 @@ public sealed class SubclassDefinition
     public WardingFlareDetail? WardingFlare { get; }
 
     public AbilityModifierUsesGrant? WarPriestUsesPerRest { get; }
+
+    public IReadOnlyList<SpellGrant> InnateSpellGrants { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

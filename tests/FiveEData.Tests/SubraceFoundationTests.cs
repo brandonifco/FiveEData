@@ -93,6 +93,8 @@ public sealed class SubraceFoundationTests
             null,
             [],
             [],
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -116,6 +118,8 @@ public sealed class SubraceFoundationTests
             null,
             [],
             [],
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -331,6 +335,8 @@ public sealed class SubraceFoundationTests
         int? hitPointBonusPerLevel = null,
         IEnumerable<WeaponId>? weaponProficiencyIds = null,
         IEnumerable<ArmorCategory>? armorProficiencyCategories = null,
+        IEnumerable<SpellGrant>? innateSpellGrants = null,
+        AbilityId? innateSpellcastingAbilityId = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubraceDefinition(
@@ -346,6 +352,8 @@ public sealed class SubraceFoundationTests
             hitPointBonusPerLevel,
             weaponProficiencyIds ?? [],
             armorProficiencyCategories ?? [],
+            innateSpellGrants ?? [],
+            innateSpellcastingAbilityId,
             sources ?? [CreateSource()]);
     }
 

@@ -1,4 +1,5 @@
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.BreathWeapon;
 using FiveEData.Rules.Creatures.Races.Lucky;
@@ -123,6 +124,51 @@ public sealed class RaceDataFileTests
         Assert.Equal(
             "dnd5e2014.damage-type.fire",
             Assert.Single(tiefling.ResistedDamageTypeIds).Value);
+    }
+
+    // Infernal Legacy is the only race-level innate spell grant, and the
+    // only grant anywhere that upcasts: hellish rebuke is cast as a
+    // 2nd-level spell, which is why CastAtSpellLevel exists at all.
+    [Fact]
+    public void CanonicalFile_PreservesTieflingInfernalLegacy()
+    {
+        RaceDefinition tiefling =
+            GetRace(LoadRaces(), "dnd5e2014.race.tiefling");
+
+        Assert.Equal(
+            "dnd5e2014.ability.charisma",
+            tiefling.InnateSpellcastingAbilityId?.Value);
+
+        Assert.Equal(
+            [
+                ("dnd5e2014.spell.thaumaturgy", 1, SpellGrantFrequency.AtWill,
+                    (int?)null),
+                ("dnd5e2014.spell.hellish-rebuke", 3,
+                    SpellGrantFrequency.OncePerDay, 2),
+                ("dnd5e2014.spell.darkness", 5,
+                    SpellGrantFrequency.OncePerDay, null)
+            ],
+            tiefling.InnateSpellGrants
+                .Select(grant => (
+                    grant.GrantedSpellId.Value,
+                    grant.MinimumCharacterLevel,
+                    grant.Frequency,
+                    grant.CastAtSpellLevel))
+                .ToArray());
+    }
+
+    [Fact]
+    public void CanonicalFile_InnateSpellGrantsAreExclusiveToTiefling()
+    {
+        IReadOnlyList<RaceDefinition> races = LoadRaces();
+
+        Assert.All(
+            races.Where(race => race.Id.Value != "dnd5e2014.race.tiefling"),
+            race =>
+            {
+                Assert.Empty(race.InnateSpellGrants);
+                Assert.Null(race.InnateSpellcastingAbilityId);
+            });
     }
 
     [Fact]

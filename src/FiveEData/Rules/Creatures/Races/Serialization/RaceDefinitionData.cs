@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
+using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Races.BreathWeapon.Serialization;
 using FiveEData.Rules.Creatures.Races.Lucky.Serialization;
 using FiveEData.Rules.Creatures.Races.RelentlessEndurance.Serialization;
@@ -73,6 +74,12 @@ internal sealed class RaceDefinitionData
 
     [JsonRequired]
     public int? SkillProficiencyChoiceCount { get; init; }
+
+    [JsonRequired]
+    public SpellGrantData[]? InnateSpellGrants { get; init; }
+
+    [JsonRequired]
+    public string? InnateSpellcastingAbilityId { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

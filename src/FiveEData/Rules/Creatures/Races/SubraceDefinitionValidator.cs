@@ -3,6 +3,7 @@ using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -155,6 +156,42 @@ internal static class SubraceDefinitionValidator
                     $"Subrace armor proficiency category " +
                     $"'{armorCategory}' is duplicated.");
             }
+        }
+
+        var seenInnateSpellGrants = new HashSet<SpellId>();
+
+        foreach (SpellGrant grant in subrace.InnateSpellGrants)
+        {
+            if (string.IsNullOrWhiteSpace(grant.GrantedSpellId.Value))
+            {
+                errors.Add(
+                    "Subrace innate spell grant spell ID must not be " +
+                    "empty.");
+                continue;
+            }
+
+            if (!seenInnateSpellGrants.Add(grant.GrantedSpellId))
+            {
+                errors.Add(
+                    "Subrace innate spell grant spell " +
+                    $"'{grant.GrantedSpellId}' is duplicated.");
+            }
+        }
+
+        if (subrace.InnateSpellGrants.Count > 0 &&
+            subrace.InnateSpellcastingAbilityId is null)
+        {
+            errors.Add(
+                "Subrace must define an innate spellcasting ability when " +
+                "it has innate spell grants.");
+        }
+
+        if (subrace.InnateSpellGrants.Count == 0 &&
+            subrace.InnateSpellcastingAbilityId is not null)
+        {
+            errors.Add(
+                "Subrace must not define an innate spellcasting ability " +
+                "without any innate spell grants.");
         }
 
         return errors;

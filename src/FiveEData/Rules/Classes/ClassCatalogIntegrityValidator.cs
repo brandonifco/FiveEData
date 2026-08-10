@@ -9,6 +9,7 @@ using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Classes;
 
@@ -24,10 +25,12 @@ internal static class ClassCatalogIntegrityValidator
         IReadOnlySet<SpellSlotProgressionId> spellSlotProgressionIds,
         IReadOnlySet<ExtraAttackProgressionId> extraAttackProgressionIds,
         IReadOnlySet<DamageTypeId> damageTypeIds,
-        IReadOnlySet<CreatureSizeId> creatureSizeIds)
+        IReadOnlySet<CreatureSizeId> creatureSizeIds,
+        IReadOnlySet<SpellId> spellIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(creatureSizeIds);
+        ArgumentNullException.ThrowIfNull(spellIds);
         ArgumentNullException.ThrowIfNull(sourceIds);
         ArgumentNullException.ThrowIfNull(abilityIds);
         ArgumentNullException.ThrowIfNull(skillIds);
@@ -276,6 +279,16 @@ internal static class ClassCatalogIntegrityValidator
                     $"{owner} references missing ability " +
                     $"'{warPriestUsesPerRest.AbilityId}' in its War " +
                     "Priest.");
+            }
+
+            foreach (SpellGrant grant in subclass.InnateSpellGrants)
+            {
+                if (!spellIds.Contains(grant.GrantedSpellId))
+                {
+                    errors.Add(
+                        $"{owner} references missing spell " +
+                        $"'{grant.GrantedSpellId}'.");
+                }
             }
         }
 

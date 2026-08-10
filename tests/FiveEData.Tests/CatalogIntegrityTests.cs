@@ -11,6 +11,8 @@ using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Abilities.Serialization;
+using FiveEData.Rules.Creatures.Conditions;
+using FiveEData.Rules.Creatures.Conditions.Serialization;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.DamageTypes.Serialization;
 using FiveEData.Rules.Creatures.Languages;
@@ -21,6 +23,10 @@ using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Sizes.Serialization;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Creatures.Skills.Serialization;
+using FiveEData.Rules.Spells;
+using FiveEData.Rules.Spells.MagicSchools;
+using FiveEData.Rules.Spells.MagicSchools.Serialization;
+using FiveEData.Rules.Spells.Serialization;
 using FiveEData.Rules.Equipment;
 using FiveEData.Rules.Equipment.Ammunition;
 using FiveEData.Rules.Equipment.Ammunition.Serialization;
@@ -100,6 +106,18 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<SubclassDefinition> subclasses =
             SubclassDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "subclasses.json"));
+
+        IReadOnlyList<SpellDefinition> spells =
+            SpellDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "spells.json"));
+
+        IReadOnlyList<MagicSchoolDefinition> magicSchools =
+            MagicSchoolDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "magic-schools.json"));
+
+        IReadOnlyList<ConditionDefinition> conditions =
+            ConditionDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "conditions.json"));
 
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
             SpellSlotProgressionDefinitionLoader.LoadFromFile(
@@ -207,7 +225,10 @@ public sealed class CatalogIntegrityTests
                     classes: classes,
                     subclasses: subclasses,
                     spellSlotProgressions: spellSlotProgressions,
-                    extraAttackProgressions: extraAttackProgressions)));
+                    extraAttackProgressions: extraAttackProgressions,
+                    spells: spells,
+                    magicSchools: magicSchools,
+                    conditions: conditions)));
     }
 
     [Fact]
@@ -1306,7 +1327,10 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<SpellSlotProgressionDefinition>?
             spellSlotProgressions = null,
         IReadOnlyList<ExtraAttackProgressionDefinition>?
-            extraAttackProgressions = null)
+            extraAttackProgressions = null,
+        IReadOnlyList<SpellDefinition>? spells = null,
+        IReadOnlyList<MagicSchoolDefinition>? magicSchools = null,
+        IReadOnlyList<ConditionDefinition>? conditions = null)
     {
         var equipment = new EquipmentDefinitionSet(
             weapons: weapons ?? [],
@@ -1341,7 +1365,7 @@ public sealed class CatalogIntegrityTests
                     skills: skills ?? [],
                     languages: languages ?? [],
                     sizes: sizes ?? [],
-                    conditions: [],
+                    conditions: conditions ?? [],
                     damageTypes: damageTypes ?? [],
                     senses: [],
                     alignments: []),
@@ -1360,8 +1384,8 @@ public sealed class CatalogIntegrityTests
             spellSlotProgressions: spellSlotProgressions ?? [],
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: [],
-            magicSchools: [],
-            spells: [],
+            magicSchools: magicSchools ?? [],
+            spells: spells ?? [],
             combatActions: [],
             cover: [],
             travelPaces: [],

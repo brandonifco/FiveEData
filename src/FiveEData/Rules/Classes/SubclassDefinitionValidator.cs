@@ -6,6 +6,7 @@ using FiveEData.Rules.Classes.ImprovedCritical;
 using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Classes;
 
@@ -100,6 +101,26 @@ internal static class SubclassDefinitionValidator
             ValidateImprovedCriticalProgression(
                 improvedCriticalProgression,
                 errors);
+        }
+
+        var seenInnateSpellGrants = new HashSet<SpellId>();
+
+        foreach (SpellGrant grant in subclass.InnateSpellGrants)
+        {
+            if (string.IsNullOrWhiteSpace(grant.GrantedSpellId.Value))
+            {
+                errors.Add(
+                    "Subclass innate spell grant spell ID must not be " +
+                    "empty.");
+                continue;
+            }
+
+            if (!seenInnateSpellGrants.Add(grant.GrantedSpellId))
+            {
+                errors.Add(
+                    "Subclass innate spell grant spell " +
+                    $"'{grant.GrantedSpellId}' is duplicated.");
+            }
         }
 
         return errors;

@@ -19,6 +19,8 @@
     "hitPointBonusPerLevel": 1,
     "weaponProficiencyIds": [],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -50,6 +52,8 @@
       "Light",
       "Medium"
     ],
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -84,6 +88,8 @@
       "dnd5e2014.weapon.longbow"
     ],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -119,6 +125,8 @@
       "dnd5e2014.weapon.longbow"
     ],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -154,6 +162,27 @@
       "dnd5e2014.weapon.hand-crossbow"
     ],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [
+      {
+        "grantedSpellId": "dnd5e2014.spell.dancing-lights",
+        "minimumCharacterLevel": 1,
+        "frequency": "AtWill",
+        "castAtSpellLevel": null
+      },
+      {
+        "grantedSpellId": "dnd5e2014.spell.faerie-fire",
+        "minimumCharacterLevel": 3,
+        "frequency": "OncePerDay",
+        "castAtSpellLevel": null
+      },
+      {
+        "grantedSpellId": "dnd5e2014.spell.darkness",
+        "minimumCharacterLevel": 5,
+        "frequency": "OncePerDay",
+        "castAtSpellLevel": null
+      }
+    ],
+    "innateSpellcastingAbilityId": "dnd5e2014.ability.charisma",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -182,6 +211,8 @@
     "hitPointBonusPerLevel": null,
     "weaponProficiencyIds": [],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -212,6 +243,8 @@
     "hitPointBonusPerLevel": null,
     "weaponProficiencyIds": [],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -241,6 +274,15 @@
     "hitPointBonusPerLevel": null,
     "weaponProficiencyIds": [],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [
+      {
+        "grantedSpellId": "dnd5e2014.spell.minor-illusion",
+        "minimumCharacterLevel": 1,
+        "frequency": "AtWill",
+        "castAtSpellLevel": null
+      }
+    ],
+    "innateSpellcastingAbilityId": "dnd5e2014.ability.intelligence",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -270,6 +312,8 @@
     "hitPointBonusPerLevel": null,
     "weaponProficiencyIds": [],
     "armorProficiencyCategories": [],
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
