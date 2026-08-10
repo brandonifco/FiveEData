@@ -20,9 +20,15 @@ public sealed class ChannelDivinityOptionDefinition
         bool maximizesDamageRoll,
         SpellId? grantedSpellId,
         bool automaticallyFailsGrantedSpellSave,
+        bool addsSpellcastingModifierToAttackRolls,
+        int? brightLightRadiusFeet,
+        int? dimLightRadiusFeet,
+        IEnumerable<AbilityId> choosableSavingThrowAbilityIds,
+        bool grantsAdvantageOnAttackRollsAgainstTarget,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        ArgumentNullException.ThrowIfNull(choosableSavingThrowAbilityIds);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -37,6 +43,14 @@ public sealed class ChannelDivinityOptionDefinition
         GrantedSpellId = grantedSpellId;
         AutomaticallyFailsGrantedSpellSave =
             automaticallyFailsGrantedSpellSave;
+        AddsSpellcastingModifierToAttackRolls =
+            addsSpellcastingModifierToAttackRolls;
+        BrightLightRadiusFeet = brightLightRadiusFeet;
+        DimLightRadiusFeet = dimLightRadiusFeet;
+        ChoosableSavingThrowAbilityIds =
+            Array.AsReadOnly(choosableSavingThrowAbilityIds.ToArray());
+        GrantsAdvantageOnAttackRollsAgainstTarget =
+            grantsAdvantageOnAttackRollsAgainstTarget;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -51,5 +65,10 @@ public sealed class ChannelDivinityOptionDefinition
     public bool MaximizesDamageRoll { get; }
     public SpellId? GrantedSpellId { get; }
     public bool AutomaticallyFailsGrantedSpellSave { get; }
+    public bool AddsSpellcastingModifierToAttackRolls { get; }
+    public int? BrightLightRadiusFeet { get; }
+    public int? DimLightRadiusFeet { get; }
+    public IReadOnlyList<AbilityId> ChoosableSavingThrowAbilityIds { get; }
+    public bool GrantsAdvantageOnAttackRollsAgainstTarget { get; }
     public IReadOnlyList<SourceReference> Sources { get; }
 }

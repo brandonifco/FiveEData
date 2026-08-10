@@ -25,6 +25,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "maximizesDamageRoll": false,
                     "grantedSpellId": null,
                     "automaticallyFailsGrantedSpellSave": false,
+                    "addsSpellcastingModifierToAttackRolls": false,
+                    "brightLightRadiusFeet": null,
+                    "dimLightRadiusFeet": null,
+                    "choosableSavingThrowAbilityIds": [],
+                    "grantsAdvantageOnAttackRollsAgainstTarget": false,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -44,6 +49,7 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
         Assert.Null(definition.SavingThrowAbilityId);
         Assert.Null(definition.DurationMinutes);
         Assert.Null(definition.RollBonus);
+        Assert.Empty(definition.ChoosableSavingThrowAbilityIds);
         Assert.Single(definition.Sources);
     }
 
@@ -66,6 +72,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "maximizesDamageRoll": false,
                     "grantedSpellId": null,
                     "automaticallyFailsGrantedSpellSave": false,
+                    "addsSpellcastingModifierToAttackRolls": false,
+                    "brightLightRadiusFeet": null,
+                    "dimLightRadiusFeet": null,
+                    "choosableSavingThrowAbilityIds": [],
+                    "grantsAdvantageOnAttackRollsAgainstTarget": false,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -110,7 +121,15 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                         "page": 1,
                         "section": "Test section"
                       }
-                    ]
+                    ],
+                    "addsSpellcastingModifierToAttackRolls": true,
+                    "brightLightRadiusFeet": 20,
+                    "dimLightRadiusFeet": 20,
+                    "choosableSavingThrowAbilityIds": [
+                      "dnd5e2014.ability.strength",
+                      "dnd5e2014.ability.dexterity"
+                    ],
+                    "grantsAdvantageOnAttackRollsAgainstTarget": true
                   }
                 ]
                 """));
@@ -126,6 +145,18 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
             "dnd5e2014.spell.suggestion",
             definition.GrantedSpellId?.Value);
         Assert.True(definition.AutomaticallyFailsGrantedSpellSave);
+        Assert.True(definition.AddsSpellcastingModifierToAttackRolls);
+        Assert.Equal(20, definition.BrightLightRadiusFeet);
+        Assert.Equal(20, definition.DimLightRadiusFeet);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.strength",
+                "dnd5e2014.ability.dexterity"
+            ],
+            definition.ChoosableSavingThrowAbilityIds
+                .Select(abilityId => abilityId.Value)
+                .ToArray());
+        Assert.True(definition.GrantsAdvantageOnAttackRollsAgainstTarget);
     }
 
     [Fact]
@@ -169,6 +200,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "maximizesDamageRoll": false,
                     "grantedSpellId": null,
                     "automaticallyFailsGrantedSpellSave": false,
+                    "addsSpellcastingModifierToAttackRolls": false,
+                    "brightLightRadiusFeet": null,
+                    "dimLightRadiusFeet": null,
+                    "choosableSavingThrowAbilityIds": [],
+                    "grantsAdvantageOnAttackRollsAgainstTarget": false,
                     "sources": [],
                     "unexpected": true
                   }
@@ -196,6 +232,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "maximizesDamageRoll": false,
                     "grantedSpellId": null,
                     "automaticallyFailsGrantedSpellSave": false,
+                    "addsSpellcastingModifierToAttackRolls": false,
+                    "brightLightRadiusFeet": null,
+                    "dimLightRadiusFeet": null,
+                    "choosableSavingThrowAbilityIds": [],
+                    "grantsAdvantageOnAttackRollsAgainstTarget": false,
                     "sources": []
                   }
                 ]
@@ -220,7 +261,12 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "conditionDurationTrigger": null,
                     "maximizesDamageRoll": false,
                     "grantedSpellId": null,
-                    "automaticallyFailsGrantedSpellSave": false
+                    "automaticallyFailsGrantedSpellSave": false,
+                    "addsSpellcastingModifierToAttackRolls": false,
+                    "brightLightRadiusFeet": null,
+                    "dimLightRadiusFeet": null,
+                    "choosableSavingThrowAbilityIds": [],
+                    "grantsAdvantageOnAttackRollsAgainstTarget": false
                   }
                 ]
                 """));
@@ -245,6 +291,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
                     "maximizesDamageRoll": false,
                     "grantedSpellId": null,
                     "automaticallyFailsGrantedSpellSave": false,
+                    "addsSpellcastingModifierToAttackRolls": false,
+                    "brightLightRadiusFeet": null,
+                    "dimLightRadiusFeet": null,
+                    "choosableSavingThrowAbilityIds": [],
+                    "grantsAdvantageOnAttackRollsAgainstTarget": false,
                     "sources": []
                   }
                 ]
@@ -268,6 +319,11 @@ public sealed class ChannelDivinityOptionDefinitionLoaderTests
               "maximizesDamageRoll": false,
               "grantedSpellId": null,
               "automaticallyFailsGrantedSpellSave": false,
+              "addsSpellcastingModifierToAttackRolls": false,
+              "brightLightRadiusFeet": null,
+              "dimLightRadiusFeet": null,
+              "choosableSavingThrowAbilityIds": [],
+              "grantsAdvantageOnAttackRollsAgainstTarget": false,
               "sources": [
                 {
                   "documentId": "extension.source.test",

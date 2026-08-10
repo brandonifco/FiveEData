@@ -497,6 +497,18 @@ internal static class CatalogIntegrityValidator
                     $"{owner} references missing spell " +
                     $"'{channelDivinityGrantedSpellId}'.");
             }
+
+            foreach (
+                AbilityId choosableSavingThrowAbilityId
+                in channelDivinityOption.ChoosableSavingThrowAbilityIds)
+            {
+                if (!abilityIds.Contains(choosableSavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{choosableSavingThrowAbilityId}'.");
+                }
+            }
         }
 
         errors.AddRange(

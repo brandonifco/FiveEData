@@ -11,6 +11,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 59, "section": "Chapter 3: Classes" }
     ]
@@ -27,6 +32,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": "dnd5e2014.spell.suggestion",
     "automaticallyFailsGrantedSpellSave": true,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 59, "section": "Chapter 3: Classes" }
     ]
@@ -43,6 +53,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 60, "section": "Chapter 3: Classes" }
     ]
@@ -59,6 +74,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 61, "section": "Chapter 3: Classes" }
     ]
@@ -75,6 +95,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 62, "section": "Chapter 3: Classes" }
     ]
@@ -91,6 +116,11 @@
     "maximizesDamageRoll": true,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 62, "section": "Chapter 3: Classes" }
     ]
@@ -107,6 +137,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
     ]
@@ -123,6 +158,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
     ]
@@ -139,6 +179,11 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
     ]
@@ -155,8 +200,142 @@
     "maximizesDamageRoll": false,
     "grantedSpellId": null,
     "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 63, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.sacred-weapon",
+    "name": "Sacred Weapon",
+    "rangeFeet": null,
+    "savingThrowAbilityId": null,
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "imposedConditionId": null,
+    "conditionDurationTrigger": null,
+    "maximizesDamageRoll": false,
+    "grantedSpellId": null,
+    "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": true,
+    "brightLightRadiusFeet": 20,
+    "dimLightRadiusFeet": 20,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 86, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.turn-the-unholy",
+    "name": "Turn the Unholy",
+    "rangeFeet": 30,
+    "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "imposedConditionId": null,
+    "conditionDurationTrigger": null,
+    "maximizesDamageRoll": false,
+    "grantedSpellId": null,
+    "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 86, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.natures-wrath",
+    "name": "Nature's Wrath",
+    "rangeFeet": 10,
+    "savingThrowAbilityId": null,
+    "durationMinutes": null,
+    "rollBonus": null,
+    "imposedConditionId": "dnd5e2014.condition.restrained",
+    "conditionDurationTrigger": null,
+    "maximizesDamageRoll": false,
+    "grantedSpellId": null,
+    "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [
+      "dnd5e2014.ability.strength",
+      "dnd5e2014.ability.dexterity"
+    ],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 87, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.turn-the-faithless",
+    "name": "Turn the Faithless",
+    "rangeFeet": 30,
+    "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "imposedConditionId": null,
+    "conditionDurationTrigger": null,
+    "maximizesDamageRoll": false,
+    "grantedSpellId": null,
+    "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 87, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.abjure-enemy",
+    "name": "Abjure Enemy",
+    "rangeFeet": 60,
+    "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "imposedConditionId": "dnd5e2014.condition.frightened",
+    "conditionDurationTrigger": null,
+    "maximizesDamageRoll": false,
+    "grantedSpellId": null,
+    "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": false,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 88, "section": "Chapter 3: Classes" }
+    ]
+  },
+  {
+    "id": "dnd5e2014.channel-divinity-option.vow-of-enmity",
+    "name": "Vow of Enmity",
+    "rangeFeet": 10,
+    "savingThrowAbilityId": null,
+    "durationMinutes": 1,
+    "rollBonus": null,
+    "imposedConditionId": null,
+    "conditionDurationTrigger": null,
+    "maximizesDamageRoll": false,
+    "grantedSpellId": null,
+    "automaticallyFailsGrantedSpellSave": false,
+    "addsSpellcastingModifierToAttackRolls": false,
+    "brightLightRadiusFeet": null,
+    "dimLightRadiusFeet": null,
+    "choosableSavingThrowAbilityIds": [],
+    "grantsAdvantageOnAttackRollsAgainstTarget": true,
+    "sources": [
+      { "documentId": "dnd5e2014.source.phb-first-printing", "page": 88, "section": "Chapter 3: Classes" }
     ]
   }
 ]

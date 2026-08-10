@@ -15,15 +15,16 @@ a game.
 
 ## Current state
 
-**Nothing in progress. All known gap-3 candidates are built** — the
-three originally scoped (Metamagic, Battle Master maneuvers, Eldritch
-Invocations) plus the follow-on tail discovered while building Eldritch
-Invocations (Elemental Disciplines, Channel Divinity options). See
-"Game-backend quantization: gap 3 scoping, and Metamagic effects" and
-"Game-backend quantization: Elemental Disciplines and Channel Divinity
-effects." Race/subclass/background feature prose outside these five
-choice-point catalogs remains unquantized and unscoped — ask the user
-before scoping a next slice.
+**Nothing in progress. All five choice-point catalogs are closed**
+(Metamagic, Battle Master maneuvers, Eldritch Invocations, Elemental
+Disciplines, Channel Divinity — the last now 16 entries, not 10; see
+below). The wider race/subclass/background feature-prose tail was
+**scoped** in a systematic pass (2026-08-10) — see "Game-backend
+quantization: scoping the race/subclass/background feature-prose
+tail" — and has a large, ranked candidate pool. One slice (Paladin's 6
+missing Channel Divinity options) is now also **built**; every other
+candidate in the pool is scoped-not-built. Ask the user which to pick
+up next.
 
 Built and complete:
 
@@ -71,17 +72,21 @@ Built and complete:
 - Conditions — **all 15 PHB conditions (Appendix A) now carry full
   mechanical payloads**, not just `Id`/`Name`/`Sources`. See "Game-backend
   quantization: Conditions" below.
-- Gap 3 (feature-effect prose) — **all five known candidates built.**
-  Metamagic (all 8 options), Battle Master maneuvers (all 16), Eldritch
-  Invocations (all 32), Elemental Disciplines (all 17), and Channel
-  Divinity options (all 10) are done. See "Game-backend quantization:
-  gap 3 scoping, and Metamagic effects", "Game-backend quantization:
-  Battle Master maneuver effects", "Game-backend quantization: Eldritch
-  Invocation effects", and "Game-backend quantization: Elemental
-  Disciplines and Channel Divinity effects" below. **This closes every
-  candidate found so far, not every feature-effect prose in the
-  codebase** — all race/subclass/background feature text outside these
-  five choice-point catalogs is still unquantized and unscoped.
+- Gap 3 (feature-effect prose) — **all five choice-point catalogs
+  built.** Metamagic (all 8 options), Battle Master maneuvers (all 16),
+  Eldritch Invocations (all 32), Elemental Disciplines (all 17), and
+  Channel Divinity options (**16**, not 10 — the original catalog only
+  covered the 7 Cleric domains; Paladin's 3 oaths add 6 more) are done.
+  See "Game-backend quantization: gap 3 scoping, and Metamagic
+  effects", "Game-backend quantization: Battle Master maneuver
+  effects", "Game-backend quantization: Eldritch Invocation effects",
+  "Game-backend quantization: Elemental Disciplines and Channel
+  Divinity effects", and "Game-backend quantization: scoping the
+  race/subclass/background feature-prose tail" below. **This closes
+  the five choice-point catalogs, not every feature-effect prose in
+  the codebase** — a large, ranked pool of individual race/subclass/
+  background features (outside these five catalogs) is scoped but
+  mostly unbuilt; see the scoping section for the full list.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -127,7 +132,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2976 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2989 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -2478,11 +2483,186 @@ Weapon.
 **All citations were re-verified against the rendered page images while
 building this slice** — Elemental Disciplines' page 81 and Channel
 Divinity's pp.59–63 all matched their existing citations exactly; no
-error found. **This closes every gap-3 candidate identified so far —
-the three originally scoped, plus the two-catalog tail Eldritch
-Invocations' build predicted.** Race/subclass/background feature text
-outside these five choice-point catalogs remains unquantized and is a
-separate, unscoped body of work.
+error found. **This closed the two-catalog tail Eldritch Invocations'
+build predicted, completing all five choice-point catalogs** — but see
+the next section: Channel Divinity itself turned out to be
+undercounted, and the wider race/subclass/background feature-prose
+tail got its own real scoping pass next.
+
+## Game-backend quantization: scoping the race/subclass/background feature-prose tail
+
+Gap 3's audit line ("most class/subclass/race/background feature text
+is unquantized prose") was never actually turned into a ranked
+candidate table the way Combat/Adventuring and the five choice-point
+catalogs were — it just got read as "build the five obvious choice-point
+catalogs" and stopped there. This pass (2026-08-10) did the table:
+extracted all 355 `RuleId`s across `class-rule.json` (305),
+`race-rule.json` (37), and `background-rule.json` (13), cross-referenced
+every one against everything this file already documents as quantized
+or declined, and triaged the genuinely-never-assessed remainder against
+real D&D 5e domain knowledge (not yet page-image-verified except where
+noted as built below — that verification is the gate before building
+any other item in this list, same as every other pass in this project).
+
+**Headline finding: the "Channel Divinity options (10)" catalog from
+the original Quantized pass was never complete — it only ever covered
+the 7 Cleric domains.** Paladin's three oaths (Devotion, Ancients,
+Vengeance) each grant two Channel Divinity options of their own —
+Sacred Weapon, Turn the Unholy, Nature's Wrath, Turn the Faithless,
+Abjure Enemy, Vow of Enmity — and none of them existed anywhere in the
+codebase, not even as a citation-only entry in the standalone catalog
+(their `class-rule.json` framework citations existed and cited real
+pages, but the mechanical data itself was simply never captured). This
+is now fixed — see the next section — and the catalog is 16 entries,
+not 10. **This is the second time a "closed, N-item" catalog turned out
+to be undercounted** (Eldritch Invocations was ~14 estimated vs. 19
+real); treat every catalog count in this file as re-verifiable, not
+just spell/page counts.
+
+**The rest of the pool, condensed to what's buildable.** Four
+recurring shapes account for most of the real candidates found; none
+of the specific numbers below have been checked against page images
+yet:
+
+- **More choice-point catalogs never built, same shape as Fighting
+  Style/Battle Master maneuvers:** Circle of the Totem Warrior
+  (Barbarian) has three separate Bear/Eagle/Wolf choice points (Totem
+  Spirit 3rd, Aspect of the Beast 6th, Totemic Attunement 14th); Ranger
+  Hunter has four (Hunter's Prey, Defensive Tactics, Multiattack,
+  Superior Hunter's Defense); Monk's Open Hand Technique (3rd level) is
+  a 3-option Flurry of Blows rider; Wizard's The Third Eye (Divination
+  14th) and Transmuter's Stone (Transmutation 6th) are both 4-option
+  utility choices.
+- **More `GrantedSpellId` candidates, reusing the exact shape gap 3's
+  tail established:** Drow Magic and Infernal Legacy (racial per-level
+  spell grants, same shape as Eldritch Invocations' at-will/once-per-
+  rest split), Natural Illusionist (Forest Gnome, Minor Illusion
+  cantrip), Thousand Forms (Druid Circle of the Moon, Alter Self at
+  will), Shapechanger (Wizard Transmutation, Polymorph once per rest),
+  Light Domain's and Circle of the Land's Bonus Cantrip.
+- **Rich individual features with real damage/save/condition/duration
+  facts**, the same shape as the maneuvers/invocations work: Warlock
+  patron features (Fey Presence, Misty Escape, Beguiling Defenses, Dark
+  Delirium for Archfey; Entropic Ward, Awakened Mind for Great Old
+  One), Wizard school features (Hypnotic Gaze, Instinctive Charm for
+  Enchantment; Overchannel, Sculpt Spells, Empowered Evocation for
+  Evocation), Barbarian Berserker (Relentless Rage's escalating DC,
+  Intimidating Presence), Sorcerer Draconic Bloodline (Elemental
+  Affinity), and Rogue (Second-Story Work, Assassinate, Infiltration
+  Expertise, Death Strike).
+- **A recurring "X uses per rest, equal to an ability modifier
+  (minimum one)" resource shape** appears on Warding Flare (Cleric
+  Light), War Priest (Cleric War), and Cleansing Touch (Paladin base)
+  — checked against the codebase and confirmed **not yet captured
+  anywhere, including on the already-"quantized" Wrath of the Storm**
+  (`WrathOfTheStormDetail` has no uses-per-rest field at all). This
+  would be a new field shape, not a reuse of an existing one.
+
+**One genuinely new structural gap, bigger than a data-entry slice:**
+racial weapon/armor/skill proficiency grants (Elf Weapon Training,
+Dwarven Combat Training, Dwarven Armor Training, Drow Weapon Training,
+Keen Senses, Skill Versatility, ...) have no field anywhere on
+`RaceDefinition`/`SubraceDefinition` — proficiency grants were only
+ever modeled on `ClassDefinition`. Building this needs a real design
+decision (a new field shape mirroring the class weapon-proficiency
+category-plus-named-exceptions pattern, or something narrower), not
+just verifying numbers against a page.
+
+**A large fraction of the "not yet mentioned" 355 turned out to
+already be accounted for once cross-referenced properly** — this
+matters because a naive name-match against this file undercounts by
+category, not just by typo. Subclass-gateway `RuleId`s (Martial
+Archetype, Primal Path, Otherworldly Patron, Sorcerous Origin, Sacred
+Oath, ...) were never going to be quantized — the subclass itself is
+the modeled entity. Every "Channel Divinity: X" `class-rule.json` entry
+is a framework citation whose real data lives in the separate
+standalone catalog, not a second copy of the same gap. Every school's
+`Savant` entry is already covered collectively by the existing
+"Deliberately prefixed splits" note, and its actual halved-cost fact
+is correctly still declined since the base spellbook-copying cost it
+halves is itself a declined formula (`WizardSpellbookDetail`). Several
+features that read as new by name are already captured under a
+different field name entirely — Dwarven Toughness is `HitPointBonusPerLevel`,
+Superior Darkvision is `DarkvisionRangeFeet`, Fleet of Foot is the
+subrace `Speed` override, Draconic Ancestry/Damage Resistance back the
+already-quantized Breath Weapon and `ResistedDamageTypeIds`. **Verify
+against the field, not the feature name, before assuming something is
+missing** — this cost real time during this pass (Combat Superiority
+looked unmentioned only because its name wraps across two source
+lines; a naive substring search missed it).
+
+**Backgrounds show no strong candidates** — the domain's own
+structural simplicity (13 backgrounds, one feature each, already fully
+triaged into the 4 existing scalars during the original pass) held up;
+nothing found here contradicts "Backgrounds: structurally the simplest
+domain" above.
+
+## Game-backend quantization: Paladin's missing Channel Divinity options
+
+The first slice built from the scoping pass above, chosen for the same
+reason Metamagic went first at gap 3: smallest, and here specifically
+because it's not a new candidate so much as a **correction to an
+already-"closed" catalog** — `ChannelDivinityOptionCatalog` goes from
+10 entries to 16. All 6 verified against rendered page images at
+pp.86–88 (Oath of Devotion, Oath of the Ancients, Oath of Vengeance),
+matching the pages `class-rule.json`'s existing framework citations
+for these features already used.
+
+**Five new fields on `ChannelDivinityOptionDefinition`, each earned by
+a real, distinct fact — no shared shape invented ahead of the content:**
+
+- `AddsSpellcastingModifierToAttackRolls: bool` (Sacred Weapon) — adds
+  Charisma modifier to attack rolls with an imbued weapon; the
+  printed "(with a minimum bonus of +1)" floor stays declined, the
+  same "store what's printed, don't infer a clause the text doesn't
+  restate elsewhere" call Agonizing Blast's missing minimum-1 clause
+  already made.
+- `BrightLightRadiusFeet`/`DimLightRadiusFeet: int?` (Sacred Weapon) —
+  20/20, the first "bright light X, dim light Y beyond" pair captured
+  anywhere in this codebase; always populated together, validator-paired
+  the same way `BaseDamage`/`BaseDamageTypeId` already are.
+- `ChoosableSavingThrowAbilityIds: IReadOnlyList<AbilityId>` (Nature's
+  Wrath) — "a Strength or Dexterity saving throw (its choice)," the
+  first "target's choice of ability" fact this project has captured.
+  Mirrors `SpellDamageEffect`'s fixed-or-choosable-list shape
+  (`DamageTypeId?`/`ChoosableDamageTypeIds`) but for saving-throw
+  ability instead of damage type — same shape, new axis, validator-
+  enforced mutually exclusive with the existing `SavingThrowAbilityId`
+  and required to hold at least two options (a "choice" of one isn't a
+  choice).
+- `GrantsAdvantageOnAttackRollsAgainstTarget: bool` (Vow of Enmity) —
+  named to match `BattleMasterManeuverDefinition`'s existing
+  `GrantsAdvantageToNextAttackAgainstTarget`/`GrantsAdvantageOnNextAttackRoll`
+  convention exactly, the same mechanic on a third domain now.
+
+**Turn the Unholy and Turn the Faithless needed no new fields at
+all** — both fit the existing `RangeFeet`(30)/`SavingThrowAbilityId`(wisdom)/
+`DurationMinutes`(1) shape exactly, the same shape the base Cleric Turn
+Undead framework uses. Neither captures the "turned" status itself as
+an `ImposedConditionId`, because **Turned is not one of the 15
+Appendix A conditions** — it's a bespoke effect described inline in
+the feature text, so (matching the "don't infer a condition tag the
+text doesn't use" discipline already established for Otiluke's
+Resilient Sphere and Otto's Irresistible Dance) it stays undescribed
+structurally, the same way it would if this were a spell effect.
+
+**Two riders stay declined on real, otherwise-captured options, both
+matching existing decline categories:** Abjure Enemy's "fiends and
+undead have disadvantage on this saving throw" is a creature-type-
+conditional save modifier (the same shape already declined for Chains
+of Carceri's creature-type restriction), and its "on a successful
+save, the creature's speed is halved" is a partial-success rider (the
+same "per-option secondary rider stays unquantized" call made
+throughout the Spells effect-data passes). Nature's Wrath's repeat-
+save-to-escape-the-restrain mechanic stays declined too, the same
+"repeat save to end, not to avoid" rider already declined for Hold
+Person/Hold Monster and Flesh to Stone.
+
+**All 6 citations were verified against the rendered page images, not
+carried over from the pre-existing `class-rule.json` framework
+citations** — they matched exactly (pp.86, 87, 88), but the check ran
+regardless of that outcome, the same discipline every prior slice in
+this file followed.
 
 ## Test conventions
 

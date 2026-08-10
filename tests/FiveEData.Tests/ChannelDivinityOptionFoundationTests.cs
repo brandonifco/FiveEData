@@ -124,6 +124,42 @@ public sealed class ChannelDivinityOptionFoundationTests
     }
 
     [Fact]
+    public void
+        Definition_ExposesAttackRollAndLightAndChoosableSaveFactsWhenPresent()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            addsSpellcastingModifierToAttackRolls: true,
+            brightLightRadiusFeet: 20,
+            dimLightRadiusFeet: 20,
+            choosableSavingThrowAbilityIds:
+                [
+                    new AbilityId("dnd5e2014.ability.strength"),
+                    new AbilityId("dnd5e2014.ability.dexterity")
+                ],
+            grantsAdvantageOnAttackRollsAgainstTarget: true);
+
+        Assert.True(definition.AddsSpellcastingModifierToAttackRolls);
+        Assert.Equal(20, definition.BrightLightRadiusFeet);
+        Assert.Equal(20, definition.DimLightRadiusFeet);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.strength",
+                "dnd5e2014.ability.dexterity"
+            ],
+            definition.ChoosableSavingThrowAbilityIds
+                .Select(abilityId => abilityId.Value)
+                .ToArray());
+        Assert.True(definition.GrantsAdvantageOnAttackRollsAgainstTarget);
+    }
+
+    [Fact]
     public void Validator_RejectsDefaultId()
     {
         ChannelDivinityOptionDefinition definition = Create(
@@ -242,6 +278,144 @@ public sealed class ChannelDivinityOptionFoundationTests
             error =>
                 error.Contains(
                     "granted spell",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void
+        Validator_RejectsBothFixedAndChoosableSavingThrowAbilities()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId:
+                new AbilityId("dnd5e2014.ability.wisdom"),
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            choosableSavingThrowAbilityIds:
+                [
+                    new AbilityId("dnd5e2014.ability.strength"),
+                    new AbilityId("dnd5e2014.ability.dexterity")
+                ]);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "both a fixed",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void
+        Validator_RejectsSingleChoosableSavingThrowAbility()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            choosableSavingThrowAbilityIds:
+                [new AbilityId("dnd5e2014.ability.strength")]);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "at least two options",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsDuplicateChoosableSavingThrowAbilities()
+    {
+        var abilityId = new AbilityId("dnd5e2014.ability.strength");
+
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            choosableSavingThrowAbilityIds: [abilityId, abilityId]);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "duplicates",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsBrightLightRadiusWithoutDimLightRadius()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            brightLightRadiusFeet: 20);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "bright light radius and a dim light radius",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveBrightLightRadiusFeet()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            brightLightRadiusFeet: 0,
+            dimLightRadiusFeet: 20);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "bright light radius must be greater",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveDimLightRadiusFeet()
+    {
+        ChannelDivinityOptionDefinition definition = Create(
+            "dnd5e2014.channel-divinity-option.test",
+            "Test",
+            rangeFeet: null,
+            savingThrowAbilityId: null,
+            durationMinutes: null,
+            rollBonus: null,
+            [CreateSource()],
+            brightLightRadiusFeet: 20,
+            dimLightRadiusFeet: 0);
+
+        Assert.Contains(
+            ChannelDivinityOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "dim light radius must be greater",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -379,7 +553,12 @@ public sealed class ChannelDivinityOptionFoundationTests
         NextTurnDurationTrigger? conditionDurationTrigger = null,
         bool maximizesDamageRoll = false,
         SpellId? grantedSpellId = null,
-        bool automaticallyFailsGrantedSpellSave = false)
+        bool automaticallyFailsGrantedSpellSave = false,
+        bool addsSpellcastingModifierToAttackRolls = false,
+        int? brightLightRadiusFeet = null,
+        int? dimLightRadiusFeet = null,
+        IEnumerable<AbilityId>? choosableSavingThrowAbilityIds = null,
+        bool grantsAdvantageOnAttackRollsAgainstTarget = false)
     {
         return new ChannelDivinityOptionDefinition(
             id: id is null ? default : new ChannelDivinityOptionId(id),
@@ -394,6 +573,14 @@ public sealed class ChannelDivinityOptionFoundationTests
             grantedSpellId: grantedSpellId,
             automaticallyFailsGrantedSpellSave:
                 automaticallyFailsGrantedSpellSave,
+            addsSpellcastingModifierToAttackRolls:
+                addsSpellcastingModifierToAttackRolls,
+            brightLightRadiusFeet: brightLightRadiusFeet,
+            dimLightRadiusFeet: dimLightRadiusFeet,
+            choosableSavingThrowAbilityIds:
+                choosableSavingThrowAbilityIds ?? [],
+            grantsAdvantageOnAttackRollsAgainstTarget:
+                grantsAdvantageOnAttackRollsAgainstTarget,
             sources: sources);
     }
 
