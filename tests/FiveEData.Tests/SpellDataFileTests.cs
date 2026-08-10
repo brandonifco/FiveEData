@@ -3306,6 +3306,102 @@ public sealed class SpellDataFileTests
         Assert.Null(Get(id).ConditionEffect);
     }
 
+    // 3 of the 20 7th-level spells deal damage directly; none impose a
+    // named condition this level - Divine Word, Prismatic Spray, and
+    // Symbol are all too compound/multi-mode to model (see below).
+    [Fact]
+    public void ThreeSeventhLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            3,
+            LoadCanonical()
+                .Count(spell => spell.Level == 7 && spell.DamageEffect is not null));
+    }
+
+    [Fact]
+    public void NoSeventhLevelSpellHasAConditionEffect()
+    {
+        Assert.Empty(
+            LoadCanonical()
+                .Where(spell => spell.Level == 7 && spell.ConditionEffect is not null));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.delayed-blast-fireball", "fire", "dexterity", 12, 6, null)]
+    [InlineData("dnd5e2014.spell.fire-storm", "fire", "dexterity", 7, 10, null)]
+    public void SeventhLevelSavingThrowDamageSpell_DealsHalfDamageOnSuccessfulSave(
+        string id,
+        string expectedDamageType,
+        string expectedSavingThrowAbility,
+        int expectedCount,
+        int expectedSides,
+        int? expectedFlatBonus)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+        Assert.Equal(expectedFlatBonus, effect.FlatDamageBonus);
+    }
+
+    // Finger of Death is the second FlatDamageBonus spell after
+    // Disintegrate, and the first where the flat add is paired with
+    // HalfDamageOnSuccessfulSave rather than Disintegrate's "no half"
+    // shape.
+    [Fact]
+    public void FingerOfDeathDealsSevenDEightPlusThirtyNecroticDamage()
+    {
+        SpellDamageEffect effect = Get("dnd5e2014.spell.finger-of-death").DamageEffect!;
+
+        Assert.Equal(
+            "dnd5e2014.damage-type.necrotic",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(7, effect.BaseDamage!.Value.Count);
+        Assert.Equal(8, effect.BaseDamage.Value.Sides);
+        Assert.Equal(30, effect.FlatDamageBonus);
+    }
+
+    // Divine Word and Symbol both gate their effect behind a choice
+    // (Divine Word by the target's current hit points, Symbol by the
+    // caster's choice among seven glyph effects at creation) spanning
+    // multiple different conditions and/or damage shapes - too
+    // heterogeneous for one DamageEffect/ConditionEffect pair. Prismatic
+    // Spray rolls a d8 per target to pick from eight different rays, each
+    // with its own damage type or condition - the most compound spell
+    // built so far, and declined for the same reason.
+    [Theory]
+    [InlineData("dnd5e2014.spell.divine-word")]
+    [InlineData("dnd5e2014.spell.prismatic-spray")]
+    [InlineData("dnd5e2014.spell.symbol")]
+    public void CompoundMultiModeSpell_HasNeitherEffect(string id)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Null(spell.DamageEffect);
+        Assert.Null(spell.ConditionEffect);
+    }
+
+    // Mordenkainen's Sword extends the controllable-construct decline
+    // (Spiritual Weapon, Bigby's Hand) with a fourth instance: a clean
+    // 3d10 force hit, but via a recurring bonus-action attack the caster
+    // repeats turn after turn, not the spell's single resolved effect.
+    [Fact]
+    public void MordenkainensSwordHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.mordenkainens-sword").DamageEffect);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);

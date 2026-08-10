@@ -72,8 +72,13 @@ Built and complete:
   second real flat-modifier spell after Magic Missile), 2 have a
   `SpellConditionEffect` (Sunbeam shares one save between both fields,
   the second spell to do so after Evard's Black Tentacles). See
-  "Game-backend quantization: 6th-level spell effects". Levels 7–9 don't
-  have effect data yet.
+  "Game-backend quantization: 6th-level spell effects". **7th-level
+  spells too** — 3 of the 20 have a `SpellDamageEffect` (Delayed Blast
+  Fireball, Finger of Death, Fire Storm), and for the first time since
+  the pass began, none have a `SpellConditionEffect` — Divine Word,
+  Prismatic Spray, and Symbol are all too compound/multi-mode to model.
+  See "Game-backend quantization: 7th-level spell effects". Levels 8–9
+  don't have effect data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -136,10 +141,16 @@ too** — see "Game-backend quantization: 6th-level spell effects" for
 `SpellDamageEffect`'s first real field addition since 1st level
 (`FlatDamageBonus`, for Disintegrate's "10d6 + 40") and Sunbeam, the
 second spell (after Evard's Black Tentacles) whose `DamageEffect` and
-`ConditionEffect` share one saving throw. Levels 7–9 are the remaining
-piece of gap 1, not yet started.
+`ConditionEffect` share one saving throw. **7th-level spell effects are
+done too** — see "Game-backend quantization: 7th-level spell effects".
+Finger of Death is the second `FlatDamageBonus` spell (paired with
+`HalfDamageOnSuccessfulSave`, unlike Disintegrate's "no half" shape),
+and this is the first level with zero `SpellConditionEffect` spells —
+its three condition-shaped candidates (Divine Word, Prismatic Spray,
+Symbol) are all declined as too compound/multi-mode. Levels 8–9 are the
+remaining piece of gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2844 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2853 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1894,6 +1905,61 @@ attackers) but the PHB text never calls it any Appendix A condition by
 name — modeling it as `prone` would be inferring a tag the spell's own
 words don't use, the same discipline Otiluke's Resilient Sphere's
 "enclosed, not restrained" decline already established.
+
+## Game-backend quantization: 7th-level spell effects
+
+The eighth slice of gap 1. All 20 7th-level spells classified against
+the shapes already established — no schema change needed. 3 spells get
+a `SpellDamageEffect` (Delayed Blast Fireball, Finger of Death, Fire
+Storm), and for the first level in the whole pass, **zero spells get a
+`SpellConditionEffect`** — not because 7th level has no condition-shaped
+content, but because every candidate this level offers is too compound
+to fit the field cleanly (see below). 17 of the 20 spells get neither
+mechanism field.
+
+**Finger of Death is the second `FlatDamageBonus` spell, and the first
+to pair it with `HalfDamageOnSuccessfulSave`.** Disintegrate's "10d6 +
+40" had no half-on-success clause; Finger of Death's "7d8 + 30 necrotic
+damage... or half as much damage on a successful one" is the first
+real spell to combine both facts, confirming the two fields are
+independent the way the schema already assumed rather than requiring
+a retrofit.
+
+**Divine Word, Prismatic Spray, and Symbol are all declined as
+compound/multi-mode mechanics, extending the Glyph of Warding precedent
+to its most extreme cases yet.** Divine Word imposes a different effect
+based on the target's current hit points: 50 hp or fewer, deafened;
+40 or fewer, deafened and blinded; 30 or fewer, blinded, deafened, and
+stunned; 20 or fewer, killed instantly — four different outcomes
+gated by a fact about the target, not the spell. Symbol lets the caster
+choose one of seven glyph effects at creation (Death's 10d10 necrotic
+damage, Discord, Fear's frightened, Hopelessness, Insanity, Pain's
+incapacitated, Sleep's unconscious, Stunning's stunned), each with its
+own saving-throw ability and its own damage-or-condition shape — no
+single `SpellDamageEffect`/`SpellConditionEffect` pair can represent
+"the caster picks one of seven completely different effects when the
+glyph is made." Prismatic Spray is the most compound spell built so
+far: a d8 roll per target picks one of eight rays, each with its own
+damage type or condition (four different damage types, a
+restrained-toward-petrified escalation, blinded, banishment, or two
+rerolls) — even further from a single resolution mechanic than Symbol.
+
+**Mordenkainen's Sword is a fourth instance of the controllable-
+construct decline**, after Spiritual Weapon, Bigby's Hand, and
+Mordenkainen's Faithful Hound — a clean 3d10 force hit on a melee spell
+attack, but delivered by a conjured weapon the caster repositions and
+re-attacks with on a bonus action every turn, not a single resolved
+spell effect.
+
+**Forcecage and Plane Shift are both declined for the same "no damage,
+no named condition" reason.** Forcecage's initial trapping requires no
+saving throw at all — only a later escape *attempt* (teleportation)
+triggers a Charisma save — and being trapped in a cage is never called
+`restrained` or any other Appendix A condition. Plane Shift's
+unwilling-creature option resolves through a melee spell attack that,
+on a hit, banishes the target to another plane with no damage dealt at
+all, the same "attack roll used for banishment, not damage" shape
+Dispel Evil and Good's dismissal option already declined.
 
 ## Test conventions
 
