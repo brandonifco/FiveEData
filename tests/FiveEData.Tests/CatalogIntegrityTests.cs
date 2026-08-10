@@ -1,6 +1,8 @@
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Characters.CharacterAdvancement.Serialization;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.HunterOptions.Serialization;
 using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
@@ -256,6 +258,14 @@ public sealed class CatalogIntegrityTests
                         "dnd5e2014",
                         "transmuters-stone-options.json"));
 
+        CharacterAdvancementRules characterAdvancement =
+            CharacterAdvancementRulesLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "character-advancement.json"));
+
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
@@ -292,7 +302,8 @@ public sealed class CatalogIntegrityTests
                     hunterOptions: hunterOptions,
                     openHandTechniqueOptions: openHandTechniqueOptions,
                     thirdEyeOptions: thirdEyeOptions,
-                    transmutersStoneOptions: transmutersStoneOptions)));
+                    transmutersStoneOptions: transmutersStoneOptions,
+                    characterAdvancement: characterAdvancement)));
     }
 
     [Fact]
@@ -1458,6 +1469,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ThirdEyeOptionDefinition>? thirdEyeOptions = null,
         IReadOnlyList<TransmutersStoneOptionDefinition>?
             transmutersStoneOptions = null,
+        CharacterAdvancementRules? characterAdvancement = null,
         IReadOnlyList<TravelPaceDefinition>? travelPaces = null)
     {
         var equipment = new EquipmentDefinitionSet(
@@ -1523,7 +1535,9 @@ public sealed class CatalogIntegrityTests
             cover: [],
             travelPaces: travelPaces ?? [],
             restTypes: [],
-            downtimeActivities: []);
+            downtimeActivities: [],
+            characterAdvancement:
+                characterAdvancement ?? TestCharacterAdvancement.Create());
     }
 
     private static ToolDefinition CreateTool(

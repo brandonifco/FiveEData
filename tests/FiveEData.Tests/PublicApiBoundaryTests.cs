@@ -65,6 +65,8 @@ using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ElementalDisciplines.Serialization;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.HunterOptions.Serialization;
+using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Characters.CharacterAdvancement.Serialization;
 using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
 using FiveEData.Rules.Classes.OpenHandTechniqueOptions.Serialization;
 using FiveEData.Rules.Classes.ThirdEyeOptions;
@@ -206,6 +208,8 @@ public sealed class PublicApiBoundaryTests
             typeof(TransmutersStoneOptionDefinitionLoader).IsPublic);
         Assert.False(
             typeof(TransmutersStoneOptionDefinitionValidator).IsPublic);
+        Assert.False(typeof(CharacterAdvancementRulesLoader).IsPublic);
+        Assert.False(typeof(CharacterAdvancementRulesValidator).IsPublic);
     }
 
     [Fact]

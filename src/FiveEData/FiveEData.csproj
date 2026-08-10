@@ -76,6 +76,9 @@
       Include="../../Data/dnd5e2014/hunter-options.json"
       LogicalName="FiveEData.Data.dnd5e2014.hunter-options.json" />
     <EmbeddedResource
+      Include="../../Data/dnd5e2014/character-advancement.json"
+      LogicalName="FiveEData.Data.dnd5e2014.character-advancement.json" />
+    <EmbeddedResource
       Include="../../Data/dnd5e2014/open-hand-technique-options.json"
       LogicalName="FiveEData.Data.dnd5e2014.open-hand-technique-options.json" />
     <EmbeddedResource

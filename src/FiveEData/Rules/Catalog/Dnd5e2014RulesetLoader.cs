@@ -5,6 +5,8 @@ using FiveEData.Rules.Adventuring.Resting.Serialization;
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Characters.CharacterAdvancement.Serialization;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.CombatActions.Serialization;
 using FiveEData.Rules.Combat.Cover;
@@ -167,6 +169,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string HunterOptionsResource =
         "FiveEData.Data.dnd5e2014.hunter-options.json";
+
+    private const string CharacterAdvancementResource =
+        "FiveEData.Data.dnd5e2014.character-advancement.json";
 
     private const string OpenHandTechniqueOptionsResource =
         "FiveEData.Data.dnd5e2014.open-hand-technique-options.json";
@@ -398,6 +403,11 @@ internal static class Dnd5e2014RulesetLoader
             HunterOptionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(HunterOptionsResource));
 
+        CharacterAdvancementRules characterAdvancement =
+            CharacterAdvancementRulesLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    CharacterAdvancementResource));
+
         IReadOnlyList<OpenHandTechniqueOptionDefinition> openHandTechniqueOptions =
             OpenHandTechniqueOptionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(OpenHandTechniqueOptionsResource));
@@ -608,7 +618,8 @@ internal static class Dnd5e2014RulesetLoader
             cover: cover,
             travelPaces: travelPaces,
             restTypes: restTypes,
-            downtimeActivities: downtimeActivities);
+            downtimeActivities: downtimeActivities,
+            characterAdvancement: characterAdvancement);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -682,6 +693,7 @@ internal static class Dnd5e2014RulesetLoader
             restTypes: new RestTypeCatalog(restTypes),
             downtimeActivities:
                 new DowntimeActivityCatalog(downtimeActivities),
+            characterAdvancement: characterAdvancement,
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

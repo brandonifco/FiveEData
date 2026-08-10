@@ -15,11 +15,12 @@ a game.
 
 ## Current state
 
-**Nothing in progress. A fresh scoping pass over the rules chapters is
-recorded below** — see "Scoping pass: the rules chapters (2026-08-10,
-second pass)" for a verified, ranked candidate table; nothing from it is
-built yet, and Character Advancement (p.15) is the recommended first
-slice.
+**In progress: the rules-chapters scoping pass** — see "Scoping pass:
+the rules chapters (2026-08-10, second pass)" for the ranked candidate
+table. Its first slice, **Character Advancement (p.15), is built**; see
+"Game-backend quantization: Character Advancement". Still unbuilt:
+Multiclassing Proficiencies, the encumbrance/size multipliers, and the
+concentration rules.
 
 **The 2026-08-10 feature-prose scoping pass is fully closed** —
 its last candidate, more choice-point catalogs, is built: Path of the
@@ -157,7 +158,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3210 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3266 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -3370,6 +3371,70 @@ shape repeating is not by itself a reason to extract a shared type —
 `CantripsKnownProgressionDetail`/`SpellsKnownProgressionDetail` set that
 precedent.
 
+## Game-backend quantization: Character Advancement
+
+The first slice of the rules-chapters scoping pass, and this project's
+**first Chapter 1 citation of any kind**. All 20 rows of the Character
+Advancement table (p.15, footer verified, re-read at 330 dpi rather than
+carried over from the scoping skim) are built:
+experience-point threshold, level, and proficiency bonus.
+
+**This is a singleton rules object, not a catalog — the first new domain
+built that way.** `CharacterAdvancementRules` sits at
+`Rules/Characters/CharacterAdvancement/` and is exposed directly on
+`Dnd5e2014Ruleset` as a bare property, the shape `ArmorUsageRules` and
+`MountVehicleRules` already use, rather than wrapped in a `*Catalog`. The
+reason is the key: **every catalog in this project is keyed by a string
+`<Domain>Id`, and this table's natural key is an integer level.** Minting
+`dnd5e2014.character-advancement.level-1` to satisfy the catalog shape
+would have been ceremony with no consumer. Reach for the singleton shape
+when the natural key isn't a string ID, as well as when the content is a
+handful of flat constants.
+
+**`Rules/Characters/` is a new top-level domain**, a sibling of
+Adventuring/Combat/Classes/Spells, added for the same reason those were:
+it maps to a PHB chapter (Chapter 1, "Step-by-Step Characters") that no
+existing domain owns. Character advancement is deliberately *not* under
+`Rules/Classes/` — the table is universal, and filing it under one class
+domain would misstate that.
+
+**The proficiency bonus column is validated as non-decreasing, not
+strictly ascending.** It plateaus for four levels at a time (+2 at 1–4,
++3 at 5–8, and so on), so `ValidatePointsProgression`'s strictly-ascending
+rule — which every class resource progression uses — would reject the real
+table. This is the same plateau problem Bard's Spells Known already hit,
+solved the opposite way: Spells Known omits plateau levels from a sparse
+list, while this table must keep all 20 rows because the *experience*
+column really does strictly ascend on every one of them. **Two columns of
+one table can need two different monotonicity rules; check each column,
+not the table.** Pinned by
+`Validator_AcceptsAPlateauedProficiencyBonusButNotAFall`.
+
+**Experience points and proficiency bonus are stored as printed, and the
+"2 plus level minus 1 divided by 4, rounded down" relationship is
+asserted in a test rather than used to generate the data.** The formula happens to hold for this
+printing, but it is not stated anywhere in the book — the PHB prints a
+table. Storing the table and testing the pattern keeps the data faithful
+while still catching a transcription slip; generating from the formula
+would have silently manufactured any row the book disagreed with.
+
+**Two facts on the same page stay declined.** *Tiers of Play* is declined
+on the book's own authority — "The tiers don't have any rules associated
+with them" (p.15) — the rare case where the PHB itself states the decline.
+The **maximum ability score of 20** from "Beyond 1st Level" is real and
+flat, but it belongs to Ability Score Improvement, whose citation already
+exists; putting a feature's constant inside the advancement table's home
+would misfile it. Revisit when an ability-score domain exists.
+
+**`TestCharacterAdvancement` is a new shared test helper**, the first in
+this test project. Ten integrity tests construct `RulesetDefinitionSet`
+directly and now need a non-null advancement value they aren't otherwise
+exercising; a private factory duplicated ten times would have been worse.
+`CatalogIntegrityTests.PublishedCatalog_HasNoDanglingReferences` takes the
+**real** loaded file instead, so the source reference is genuinely
+checked — the standing rule that this test only covers what it actually
+loads.
+
 ## Scoping pass: the rules chapters (2026-08-10, second pass)
 
 The 2026-08-10 feature-prose pass is closed, so this pass scoped the
@@ -3383,7 +3448,7 @@ feature-prose scoping passes used.
 
 | Candidate | Page | Verdict |
 | --- | --- | --- |
-| Character Advancement (XP + proficiency bonus by level) | 15 | **Build first** |
+| Character Advancement (XP + proficiency bonus by level) | 15 | **Built** |
 | Multiclassing Proficiencies | 164 | **Buildable, one dependency** |
 | Encumbrance variant + size/strength multipliers | 176 | **Buildable, partial** |
 | Concentration rules | 203–204 | **Buildable, small** |

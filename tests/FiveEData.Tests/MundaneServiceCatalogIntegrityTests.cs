@@ -330,6 +330,7 @@ public sealed class MundaneServiceCatalogIntegrityTests
             cover: [],
             travelPaces: [],
             restTypes: [],
-            downtimeActivities: []);
+            downtimeActivities: [],
+            characterAdvancement: TestCharacterAdvancement.Create());
     }
 }

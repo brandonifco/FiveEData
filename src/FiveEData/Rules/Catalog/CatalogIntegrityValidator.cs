@@ -4,6 +4,7 @@ using FiveEData.Rules.Adventuring.DowntimeActivities;
 using FiveEData.Rules.Adventuring.Resting;
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Characters.CharacterAdvancement;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Classes;
@@ -1108,6 +1109,12 @@ internal static class CatalogIntegrityValidator
                 sourceIds,
                 errors);
         }
+
+        ValidateSources(
+            "Character advancement",
+            definitions.CharacterAdvancement.Sources,
+            sourceIds,
+            errors);
 
         foreach (TravelPaceDefinition travelPace in definitions.TravelPaces)
         {

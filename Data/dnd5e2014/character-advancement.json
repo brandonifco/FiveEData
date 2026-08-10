@@ -1,0 +1,111 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "experiencePointThreshold": 0,
+      "proficiencyBonus": 2
+    },
+    {
+      "level": 2,
+      "experiencePointThreshold": 300,
+      "proficiencyBonus": 2
+    },
+    {
+      "level": 3,
+      "experiencePointThreshold": 900,
+      "proficiencyBonus": 2
+    },
+    {
+      "level": 4,
+      "experiencePointThreshold": 2700,
+      "proficiencyBonus": 2
+    },
+    {
+      "level": 5,
+      "experiencePointThreshold": 6500,
+      "proficiencyBonus": 3
+    },
+    {
+      "level": 6,
+      "experiencePointThreshold": 14000,
+      "proficiencyBonus": 3
+    },
+    {
+      "level": 7,
+      "experiencePointThreshold": 23000,
+      "proficiencyBonus": 3
+    },
+    {
+      "level": 8,
+      "experiencePointThreshold": 34000,
+      "proficiencyBonus": 3
+    },
+    {
+      "level": 9,
+      "experiencePointThreshold": 48000,
+      "proficiencyBonus": 4
+    },
+    {
+      "level": 10,
+      "experiencePointThreshold": 64000,
+      "proficiencyBonus": 4
+    },
+    {
+      "level": 11,
+      "experiencePointThreshold": 85000,
+      "proficiencyBonus": 4
+    },
+    {
+      "level": 12,
+      "experiencePointThreshold": 100000,
+      "proficiencyBonus": 4
+    },
+    {
+      "level": 13,
+      "experiencePointThreshold": 120000,
+      "proficiencyBonus": 5
+    },
+    {
+      "level": 14,
+      "experiencePointThreshold": 140000,
+      "proficiencyBonus": 5
+    },
+    {
+      "level": 15,
+      "experiencePointThreshold": 165000,
+      "proficiencyBonus": 5
+    },
+    {
+      "level": 16,
+      "experiencePointThreshold": 195000,
+      "proficiencyBonus": 5
+    },
+    {
+      "level": 17,
+      "experiencePointThreshold": 225000,
+      "proficiencyBonus": 6
+    },
+    {
+      "level": 18,
+      "experiencePointThreshold": 265000,
+      "proficiencyBonus": 6
+    },
+    {
+      "level": 19,
+      "experiencePointThreshold": 305000,
+      "proficiencyBonus": 6
+    },
+    {
+      "level": 20,
+      "experiencePointThreshold": 355000,
+      "proficiencyBonus": 6
+    }
+  ],
+  "sources": [
+    {
+      "documentId": "dnd5e2014.source.phb-first-printing",
+      "page": 15,
+      "section": "Chapter 1: Step-by-Step Characters — Beyond 1st Level — Character Advancement"
+    }
+  ]
+}
