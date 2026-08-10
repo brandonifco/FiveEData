@@ -17632,8 +17632,20 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
-    "conditionEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.psychic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 4, "sides": 10 },
+      "flatDamageBonus": null
+    },
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.frightened"],
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
     ],

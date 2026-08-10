@@ -3508,6 +3508,129 @@ public sealed class SpellDataFileTests
         Assert.Null(Get("dnd5e2014.spell.power-word-stun").ConditionEffect);
     }
 
+    // Only 1 of the 16 9th-level spells has an effect worth capturing at
+    // all - Weird, whose DamageEffect and ConditionEffect share one save,
+    // the fourth spell to do so (after Evard's Black Tentacles, Sunbeam,
+    // Sunburst). 9th level's real content is dominated by exotic
+    // utility/transformation spells and multi-mode "ultimate" effects
+    // (Imprisonment, Prismatic Wall, Storm of Vengeance) that don't fit
+    // either mechanism field.
+    [Fact]
+    public void OneNinthLevelSpellHasADamageEffect()
+    {
+        Assert.Equal(
+            1,
+            LoadCanonical()
+                .Count(spell => spell.Level == 9 && spell.DamageEffect is not null));
+    }
+
+    [Fact]
+    public void OneNinthLevelSpellHasAConditionEffect()
+    {
+        Assert.Equal(
+            1,
+            LoadCanonical()
+                .Count(spell => spell.Level == 9 && spell.ConditionEffect is not null));
+    }
+
+    // Weird's single failed Wisdom save both deals psychic damage and
+    // frightens the target - the fourth instance of one saving throw
+    // gating both mechanism fields.
+    [Fact]
+    public void WeirdDealsDamageAndFrightensOnTheSameFailedSave()
+    {
+        SpellDefinition spell = Get("dnd5e2014.spell.weird");
+
+        SpellDamageEffect damageEffect = spell.DamageEffect!;
+        Assert.Equal(
+            "dnd5e2014.damage-type.psychic",
+            damageEffect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            damageEffect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(damageEffect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(4, damageEffect.BaseDamage!.Value.Count);
+        Assert.Equal(10, damageEffect.BaseDamage.Value.Sides);
+
+        SpellConditionEffect conditionEffect = spell.ConditionEffect!;
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            conditionEffect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.frightened",
+            Assert.Single(conditionEffect.ConditionIds).Value);
+    }
+
+    // Meteor Swarm is a second 9th-level-scale instance of the
+    // two-simultaneous-damage-types decline (fire and bludgeoning both
+    // always apply), joining Ice Storm, Destructive Wave, and Flame
+    // Strike.
+    [Fact]
+    public void MeteorSwarmHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.meteor-swarm").DamageEffect);
+    }
+
+    // Power Word Kill has no dice damage at all to capture - an
+    // automatic hit-point-threshold kill-or-nothing effect with no
+    // attack roll, no saving throw, and no damage expression, the most
+    // extreme instance yet of the automatic-effect decline pattern
+    // Power Word Stun already established.
+    [Fact]
+    public void PowerWordKillHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.power-word-kill").DamageEffect);
+    }
+
+    // Imprisonment, Prismatic Wall, and Storm of Vengeance are all
+    // declined as compound/multi-mode mechanics, extending the Symbol
+    // and Prismatic Spray precedent: each offers several caster-chosen
+    // or round-by-round effects with different save abilities and
+    // different damage-or-condition shapes, not one resolution mechanic.
+    [Theory]
+    [InlineData("dnd5e2014.spell.imprisonment")]
+    [InlineData("dnd5e2014.spell.prismatic-wall")]
+    [InlineData("dnd5e2014.spell.storm-of-vengeance")]
+    public void NinthLevelCompoundMultiModeSpell_HasNeitherEffect(string id)
+    {
+        SpellDefinition spell = Get(id);
+
+        Assert.Null(spell.DamageEffect);
+        Assert.Null(spell.ConditionEffect);
+    }
+
+    // The Spells domain's effect-data pass now spans every PHB level,
+    // 0 through 9 - 78 total spells carry a DamageEffect and/or
+    // ConditionEffect out of the 361 real spells built (59 DamageEffect
+    // grants and 24 ConditionEffect grants, with some overlap on spells
+    // like Ray of Sickness and Evard's Black Tentacles that carry both).
+    [Fact]
+    public void EveryLevelZeroThroughNineHasBeenClassifiedForEffectData()
+    {
+        IReadOnlyList<SpellDefinition> spells = LoadCanonical();
+
+        Assert.All(
+            Enumerable.Range(0, 10),
+            level => Assert.True(
+                spells.Any(spell => spell.Level == level
+                    && (spell.DamageEffect is not null
+                        || spell.ConditionEffect is not null)),
+                $"Level {level} should have at least one spell with " +
+                "effect data."));
+
+        Assert.Equal(
+            78,
+            spells.Count(
+                spell => spell.DamageEffect is not null
+                    || spell.ConditionEffect is not null));
+        Assert.Equal(
+            59,
+            spells.Count(spell => spell.DamageEffect is not null));
+        Assert.Equal(
+            24,
+            spells.Count(spell => spell.ConditionEffect is not null));
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);
