@@ -47,6 +47,14 @@ public sealed class SubclassDefinitionLoaderTests
           "wardingFlare": null,
           "warPriestUsesPerRest": null,
           "innateSpellGrants": [],
+          "frenzy": null,
+          "mindlessRageImmuneConditionIds": [],
+          "intimidatingPresence": null,
+          "secondStoryWork": null,
+          "assassinate": null,
+          "infiltrationExpertise": null,
+          "impostorRequiredStudyHours": null,
+          "deathStrike": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -120,6 +128,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -189,6 +205,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -254,6 +278,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -331,6 +363,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -411,6 +451,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -501,6 +549,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -537,6 +593,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": []
                   }
                 ]
@@ -570,6 +634,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": []
                   }
                 ]
@@ -604,6 +676,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": []
                   }
                 ]
@@ -638,6 +718,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": []
                   }
                 ]
@@ -672,6 +760,14 @@ public sealed class SubclassDefinitionLoaderTests
                     "wardingFlare": null,
                     "warPriestUsesPerRest": null,
                     "innateSpellGrants": [],
+                    "frenzy": null,
+                    "mindlessRageImmuneConditionIds": [],
+                    "intimidatingPresence": null,
+                    "secondStoryWork": null,
+                    "assassinate": null,
+                    "infiltrationExpertise": null,
+                    "impostorRequiredStudyHours": null,
+                    "deathStrike": null,
                     "sources": null
                   }
                 ]

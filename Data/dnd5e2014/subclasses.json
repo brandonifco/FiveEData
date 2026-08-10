@@ -60,6 +60,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -174,6 +182,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -236,6 +252,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -290,6 +314,25 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": {
+      "grantsBonusActionMeleeAttack": true,
+      "exhaustionLevelsWhenRageEnds": 1
+    },
+    "mindlessRageImmuneConditionIds": [
+      "dnd5e2014.condition.charmed",
+      "dnd5e2014.condition.frightened"
+    ],
+    "intimidatingPresence": {
+      "rangeFeet": 30,
+      "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
+      "imposedConditionId": "dnd5e2014.condition.frightened",
+      "conditionDurationTrigger": "EndOfYourNextTurn"
+    },
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -348,6 +391,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -402,6 +453,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -459,6 +518,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -550,6 +617,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -608,6 +683,17 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": {
+      "climbingCostsNoExtraMovement": true,
+      "addsDexterityModifierToRunningJumpDistance": true
+    },
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -666,6 +752,24 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": {
+      "grantsAdvantageAgainstCreaturesThatHaveNotActed": true,
+      "hitsAgainstSurprisedCreaturesAreCritical": true
+    },
+    "infiltrationExpertise": {
+      "requiredDays": 7,
+      "costGoldPieces": 25
+    },
+    "impostorRequiredStudyHours": 3,
+    "deathStrike": {
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "damageMultiplierOnFailedSave": 2,
+      "requiresSurprisedTarget": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -724,6 +828,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -786,6 +898,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -840,6 +960,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -898,6 +1026,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -956,6 +1092,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1027,6 +1171,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1085,6 +1237,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1143,6 +1303,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1201,6 +1369,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1259,6 +1435,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1317,6 +1501,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1375,6 +1567,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1457,6 +1657,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1532,6 +1740,14 @@
         "castAtSpellLevel": null
       }
     ],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1618,6 +1834,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1719,6 +1943,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1797,6 +2029,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1882,6 +2122,14 @@
       "recoversOnLongRest": true
     },
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1940,6 +2188,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2006,6 +2262,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2064,6 +2328,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2138,6 +2410,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2234,6 +2514,14 @@
         "castAtSpellLevel": null
       }
     ],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2288,6 +2576,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2342,6 +2638,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2427,6 +2731,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2512,6 +2824,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2590,6 +2910,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2652,6 +2980,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2716,6 +3052,14 @@
     "wardingFlare": null,
     "warPriestUsesPerRest": null,
     "innateSpellGrants": [],
+    "frenzy": null,
+    "mindlessRageImmuneConditionIds": [],
+    "intimidatingPresence": null,
+    "secondStoryWork": null,
+    "assassinate": null,
+    "infiltrationExpertise": null,
+    "impostorRequiredStudyHours": null,
+    "deathStrike": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

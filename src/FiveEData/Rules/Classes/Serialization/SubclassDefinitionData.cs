@@ -1,7 +1,13 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BendLuck.Serialization;
+using FiveEData.Rules.Classes.Assassinate.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
+using FiveEData.Rules.Classes.DeathStrike.Serialization;
+using FiveEData.Rules.Classes.Frenzy.Serialization;
+using FiveEData.Rules.Classes.InfiltrationExpertise.Serialization;
+using FiveEData.Rules.Classes.IntimidatingPresence.Serialization;
+using FiveEData.Rules.Classes.SecondStoryWork.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
 using FiveEData.Rules.Classes.DiscipleOfTheElements.Serialization;
 using FiveEData.Rules.Classes.DraconicResilience.Serialization;
@@ -130,6 +136,38 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public SpellGrantData[]? InnateSpellGrants { get; init; }
+
+    [JsonRequired]
+    public FrenzyDetailData? Frenzy { get; init; }
+
+    [JsonRequired]
+    public string[]? MindlessRageImmuneConditionIds { get; init; }
+
+    [JsonRequired]
+    public IntimidatingPresenceDetailData? IntimidatingPresence
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public SecondStoryWorkDetailData? SecondStoryWork { get; init; }
+
+    [JsonRequired]
+    public AssassinateDetailData? Assassinate { get; init; }
+
+    [JsonRequired]
+    public InfiltrationExpertiseDetailData? InfiltrationExpertise
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public int? ImpostorRequiredStudyHours { get; init; }
+
+    [JsonRequired]
+    public DeathStrikeDetailData? DeathStrike { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

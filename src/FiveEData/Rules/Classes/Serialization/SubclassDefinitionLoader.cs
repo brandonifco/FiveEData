@@ -2,7 +2,19 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.BendLuck.Serialization;
+using FiveEData.Rules.Classes.Assassinate;
+using FiveEData.Rules.Classes.Assassinate.Serialization;
 using FiveEData.Rules.Classes.CircleForms;
+using FiveEData.Rules.Classes.DeathStrike;
+using FiveEData.Rules.Classes.DeathStrike.Serialization;
+using FiveEData.Rules.Classes.Frenzy;
+using FiveEData.Rules.Classes.Frenzy.Serialization;
+using FiveEData.Rules.Classes.InfiltrationExpertise;
+using FiveEData.Rules.Classes.InfiltrationExpertise.Serialization;
+using FiveEData.Rules.Classes.IntimidatingPresence;
+using FiveEData.Rules.Classes.IntimidatingPresence.Serialization;
+using FiveEData.Rules.Classes.SecondStoryWork;
+using FiveEData.Rules.Classes.SecondStoryWork.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
@@ -34,6 +46,7 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
 
 namespace FiveEData.Rules.Classes.Serialization;
 
@@ -248,6 +261,49 @@ internal static class SubclassDefinitionLoader
             .Select(SpellGrantDataMapper.Map)
             .ToArray();
 
+        FrenzyDetail? frenzy =
+            data.Frenzy is { } frenzyData
+                ? FrenzyDetailDataMapper.Map(frenzyData)
+                : null;
+
+        string[] mindlessRageImmuneConditionIdValues =
+            data.MindlessRageImmuneConditionIds
+            ?? throw new ArgumentException(
+                "Subclass Mindless Rage immune condition IDs are required.",
+                nameof(data));
+
+        ConditionId[] mindlessRageImmuneConditionIds =
+            mindlessRageImmuneConditionIdValues
+                .Select(value => new ConditionId(value))
+                .ToArray();
+
+        IntimidatingPresenceDetail? intimidatingPresence =
+            data.IntimidatingPresence is { } intimidatingPresenceData
+                ? IntimidatingPresenceDetailDataMapper.Map(
+                    intimidatingPresenceData)
+                : null;
+
+        SecondStoryWorkDetail? secondStoryWork =
+            data.SecondStoryWork is { } secondStoryWorkData
+                ? SecondStoryWorkDetailDataMapper.Map(secondStoryWorkData)
+                : null;
+
+        AssassinateDetail? assassinate =
+            data.Assassinate is { } assassinateData
+                ? AssassinateDetailDataMapper.Map(assassinateData)
+                : null;
+
+        InfiltrationExpertiseDetail? infiltrationExpertise =
+            data.InfiltrationExpertise is { } infiltrationExpertiseData
+                ? InfiltrationExpertiseDetailDataMapper.Map(
+                    infiltrationExpertiseData)
+                : null;
+
+        DeathStrikeDetail? deathStrike =
+            data.DeathStrike is { } deathStrikeData
+                ? DeathStrikeDetailDataMapper.Map(deathStrikeData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -277,6 +333,14 @@ internal static class SubclassDefinitionLoader
             wardingFlare,
             warPriestUsesPerRest,
             innateSpellGrants,
+            frenzy,
+            mindlessRageImmuneConditionIds,
+            intimidatingPresence,
+            secondStoryWork,
+            assassinate,
+            infiltrationExpertise,
+            data.ImpostorRequiredStudyHours,
+            deathStrike,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

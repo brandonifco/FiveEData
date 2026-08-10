@@ -1,6 +1,13 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.DeathStrike;
+using FiveEData.Rules.Classes.Frenzy;
+using FiveEData.Rules.Classes.InfiltrationExpertise;
+using FiveEData.Rules.Classes.IntimidatingPresence;
+using FiveEData.Rules.Classes.SecondStoryWork;
+using FiveEData.Rules.Creatures.Conditions;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Classes.ThunderboltStrike;
@@ -100,6 +107,14 @@ public sealed class SubclassFoundationTests
             null,
             null,
             [],
+            null,
+            [],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -139,6 +154,14 @@ public sealed class SubclassFoundationTests
             null,
             null,
             [],
+            null,
+            [],
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -700,6 +723,14 @@ public sealed class SubclassFoundationTests
         WardingFlareDetail? wardingFlare = null,
         AbilityModifierUsesGrant? warPriestUsesPerRest = null,
         IEnumerable<SpellGrant>? innateSpellGrants = null,
+        FrenzyDetail? frenzy = null,
+        IEnumerable<ConditionId>? mindlessRageImmuneConditionIds = null,
+        IntimidatingPresenceDetail? intimidatingPresence = null,
+        SecondStoryWorkDetail? secondStoryWork = null,
+        AssassinateDetail? assassinate = null,
+        InfiltrationExpertiseDetail? infiltrationExpertise = null,
+        int? impostorRequiredStudyHours = null,
+        DeathStrikeDetail? deathStrike = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -731,6 +762,14 @@ public sealed class SubclassFoundationTests
             wardingFlare,
             warPriestUsesPerRest,
             innateSpellGrants ?? [],
+            frenzy,
+            mindlessRageImmuneConditionIds ?? [],
+            intimidatingPresence,
+            secondStoryWork,
+            assassinate,
+            infiltrationExpertise,
+            impostorRequiredStudyHours,
+            deathStrike,
             sources ?? [CreateSource()]);
     }
 

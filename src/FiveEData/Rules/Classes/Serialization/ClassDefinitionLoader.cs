@@ -47,6 +47,8 @@ using FiveEData.Rules.Classes.PrimalChampion.Serialization;
 using FiveEData.Rules.Classes.NaturalExplorer.Serialization;
 using FiveEData.Rules.Classes.Rage;
 using FiveEData.Rules.Classes.Rage.Serialization;
+using FiveEData.Rules.Classes.RelentlessRage;
+using FiveEData.Rules.Classes.RelentlessRage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SongOfRest;
@@ -407,6 +409,11 @@ internal static class ClassDefinitionLoader
                     cleansingTouchUsesPerRestData)
                 : null;
 
+        RelentlessRageDetail? relentlessRage =
+            data.RelentlessRage is { } relentlessRageData
+                ? RelentlessRageDetailDataMapper.Map(relentlessRageData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -462,6 +469,7 @@ internal static class ClassDefinitionLoader
             data.PerfectSelfKiPointsRegained,
             data.SorcerousRestorationSorceryPointsRegained,
             cleansingTouchUsesPerRest,
+            relentlessRage,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

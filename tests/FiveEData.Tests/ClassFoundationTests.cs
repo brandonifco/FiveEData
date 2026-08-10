@@ -25,6 +25,7 @@ using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.Rage;
+using FiveEData.Rules.Classes.RelentlessRage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
@@ -165,6 +166,7 @@ public sealed class ClassFoundationTests
             0,
             [],
             [],
+            null,
             null,
             null,
             null,
@@ -1797,6 +1799,7 @@ public sealed class ClassFoundationTests
         int? perfectSelfKiPointsRegained = null,
         int? sorcerousRestorationSorceryPointsRegained = null,
         AbilityModifierUsesGrant? cleansingTouchUsesPerRest = null,
+        RelentlessRageDetail? relentlessRage = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new ClassDefinition(
@@ -1859,6 +1862,7 @@ public sealed class ClassFoundationTests
             perfectSelfKiPointsRegained,
             sorcerousRestorationSorceryPointsRegained,
             cleansingTouchUsesPerRest,
+            relentlessRage,
             sources ?? [CreateSource()]);
     }
 

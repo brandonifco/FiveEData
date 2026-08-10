@@ -30,7 +30,11 @@ structural gap (weapon/armor/skill proficiency fields on
 Weapon Training, Drow Weapon Training, Dwarven Armor Training, Keen
 Senses, Skill Versatility), and the innate spell grant tail (`SpellGrant`
 on Race/Subrace/Subclass — Infernal Legacy, Drow Magic, Natural
-Illusionist, Light Domain's Bonus Cantrip, Thousand Forms). Every other
+Illusionist, Light Domain's Bonus Cantrip, Thousand Forms). The "rich
+individual features" candidate is **~16 features across 6 subclasses,
+split into three PRs by class family** — the Barbarian/Rogue slice is
+built; Warlock (Archfey, Great Old One) and Wizard/Sorcerer
+(Enchantment, Evocation, Draconic Bloodline) remain. Every other
 candidate in the pool is scoped-not-built. Ask the user which to pick
 up next.
 
@@ -2556,7 +2560,11 @@ yet:
   Evocation), Barbarian Berserker (Relentless Rage's escalating DC,
   Intimidating Presence), Sorcerer Draconic Bloodline (Elemental
   Affinity), and Rogue (Second-Story Work, Assassinate, Infiltration
-  Expertise, Death Strike).
+  Expertise, Death Strike). **Too big for one change — split into three
+  PRs by class family**; the Barbarian/Rogue one is built (see
+  "Game-backend quantization: rich individual features (Barbarian,
+  Rogue)"), and note that Relentless Rage turned out to be a base
+  Barbarian feature, not Berserker's as grouped here.
 
 **One structural gap, bigger than a data-entry slice, was found here
 and built in a later slice:** racial weapon/armor/skill proficiency
@@ -2854,6 +2862,72 @@ loaded. **The test was passing before only because the domains it
 skipped were invisible to it** — when adding a cross-domain reference,
 check whether this test actually loads the target domain rather than
 assuming its green status covers it.
+
+## Game-backend quantization: rich individual features (Barbarian, Rogue)
+
+The scoping pass's "rich individual features" bullet is **~16 features
+across 6 subclasses — too big for one change, and deliberately split
+into three PRs by class family.** This is the first: Barbarian Path of
+the Berserker and Rogue Thief/Assassin, verified against rendered page
+images at pp.49–50 and p.97. The Warlock (Archfey, Great Old One) and
+Wizard/Sorcerer (Enchantment, Evocation, Draconic Bloodline) slices
+follow.
+
+**Relentless Rage is a base Barbarian class feature at 11th level, not
+Path of the Berserker's, despite the scoping note grouping it under
+Berserker.** p.49 runs the Barbarian class features down the left
+column and Path of the Berserker's down the right, so a feature sitting
+directly above a subclass's entries can still belong to the class. It
+therefore landed on `ClassDefinition`, not `SubclassDefinition`.
+**This is the second scoping-note misattribution caught by checking
+`LevelFeatures` before writing data** (after Skill Versatility's
+subrace/race mix-up) — the scoping table is a candidate list, not a
+placement decision, and its groupings are the least-verified thing in
+it.
+
+**Seven new detail types, one per named feature, following the
+`ShadowStepDetail`/`WardingFlareDetail` precedent rather than adding
+loose fields to `SubclassDefinition`:** `RelentlessRageDetail` (on
+`ClassDefinition`), `FrenzyDetail`, `IntimidatingPresenceDetail`,
+`SecondStoryWorkDetail`, `AssassinateDetail`,
+`InfiltrationExpertiseDetail`, and `DeathStrikeDetail`. Two facts stay
+bare fields because each carries exactly one fact:
+`MindlessRageImmuneConditionIds` (a `ConditionId` list) and
+`ImpostorRequiredStudyHours`.
+
+**`NextTurnDurationTrigger` now has a third consumer.** Intimidating
+Presence's "frightened of you until the end of your next turn" reuses
+the type promoted to `Rules/Common` for Battle Master maneuvers and
+then Channel Divinity's Cloak of Shadows — confirming the promotion was
+right rather than premature.
+
+**Relentless Rage is the first feature anywhere in this project with a
+flat, escalating saving throw DC, and the reason it's captured at all
+is that its DC is *not* the shared formula.** Every other save DC in
+the codebase is "8 + proficiency + ability modifier" and stays declined
+as a shared formula; Relentless Rage prints a literal DC 10 that rises
+by 5 per use and resets on a rest, so `InitialSavingThrowDC`,
+`SavingThrowDCIncreasePerUse`, and `ResetsOnShortRest` are real
+per-feature data. Intimidating Presence and Death Strike, whose DCs
+*are* the shared formula, capture the saving-throw ability but no DC —
+the distinction is whether the book prints a number or a formula.
+
+**Three declines, each on an established line:**
+
+- **Retaliation** (Berserker 14th) is a reaction melee attack when
+  damaged by a creature within 5 feet — an action-economy redirect,
+  the same call that declined Battle Master's Commander's Strike and
+  Riposte. The 5-foot trigger is just melee reach, already modeled
+  through `WeaponDefinition`.
+- **Intimidating Presence's 60-foot leash and 24-hour per-target
+  cooldown** stay in the citation: the leash is a compound
+  line-of-sight-or-distance end condition, and the per-target cooldown
+  is the same shape already declined for Chains of Carceri.
+- **Second-Story Work's running-jump bonus is captured as a bool, not
+  a number** (`AddsDexterityModifierToRunningJumpDistance`) — the
+  entire fact *is* the ability modifier with no dice, the same shape
+  Agonizing Blast and Lifedrinker already use, rather than the
+  declined "dice + modifier" line.
 
 ## Test conventions
 

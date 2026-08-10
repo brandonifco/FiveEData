@@ -5,6 +5,7 @@ using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
@@ -26,11 +27,13 @@ internal static class ClassCatalogIntegrityValidator
         IReadOnlySet<ExtraAttackProgressionId> extraAttackProgressionIds,
         IReadOnlySet<DamageTypeId> damageTypeIds,
         IReadOnlySet<CreatureSizeId> creatureSizeIds,
-        IReadOnlySet<SpellId> spellIds)
+        IReadOnlySet<SpellId> spellIds,
+        IReadOnlySet<ConditionId> conditionIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(creatureSizeIds);
         ArgumentNullException.ThrowIfNull(spellIds);
+        ArgumentNullException.ThrowIfNull(conditionIds);
         ArgumentNullException.ThrowIfNull(sourceIds);
         ArgumentNullException.ThrowIfNull(abilityIds);
         ArgumentNullException.ThrowIfNull(skillIds);
@@ -168,6 +171,15 @@ internal static class ClassCatalogIntegrityValidator
                     $"'{cleansingTouchUsesPerRest.AbilityId}' in its " +
                     "Cleansing Touch.");
             }
+
+            if (@class.RelentlessRage is { } relentlessRage &&
+                !abilityIds.Contains(relentlessRage.SavingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{relentlessRage.SavingThrowAbilityId}' in its " +
+                    "Relentless Rage.");
+            }
         }
 
         foreach (
@@ -289,6 +301,48 @@ internal static class ClassCatalogIntegrityValidator
                         $"{owner} references missing spell " +
                         $"'{grant.GrantedSpellId}'.");
                 }
+            }
+
+            foreach (
+                ConditionId conditionId
+                in subclass.MindlessRageImmuneConditionIds)
+            {
+                if (!conditionIds.Contains(conditionId))
+                {
+                    errors.Add(
+                        $"{owner} references missing condition " +
+                        $"'{conditionId}' in its Mindless Rage.");
+                }
+            }
+
+            if (subclass.IntimidatingPresence is { } intimidatingPresence)
+            {
+                if (!abilityIds.Contains(
+                        intimidatingPresence.SavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{intimidatingPresence.SavingThrowAbilityId}' in " +
+                        "its Intimidating Presence.");
+                }
+
+                if (!conditionIds.Contains(
+                        intimidatingPresence.ImposedConditionId))
+                {
+                    errors.Add(
+                        $"{owner} references missing condition " +
+                        $"'{intimidatingPresence.ImposedConditionId}' in " +
+                        "its Intimidating Presence.");
+                }
+            }
+
+            if (subclass.DeathStrike is { } deathStrike &&
+                !abilityIds.Contains(deathStrike.SavingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{deathStrike.SavingThrowAbilityId}' in its Death " +
+                    "Strike.");
             }
         }
 

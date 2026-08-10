@@ -178,6 +178,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -414,6 +415,13 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": {
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "initialSavingThrowDC": 10,
+      "savingThrowDCIncreasePerUse": 5,
+      "hitPointsRetained": 1,
+      "resetsOnShortRest": true
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -735,6 +743,7 @@
     "perfectSelfKiPointsRegained": 4,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -979,6 +988,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1334,6 +1344,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1474,6 +1485,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1668,6 +1680,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1930,6 +1943,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2116,6 +2130,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2362,6 +2377,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2550,6 +2566,7 @@
       "abilityId": "dnd5e2014.ability.charisma",
       "recoversOnLongRest": true
     },
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2857,6 +2874,7 @@
     "perfectSelfKiPointsRegained": null,
     "sorcerousRestorationSorceryPointsRegained": 4,
     "cleansingTouchUsesPerRest": null,
+    "relentlessRage": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

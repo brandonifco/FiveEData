@@ -23,6 +23,7 @@ using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.PrimalChampion;
 using FiveEData.Rules.Classes.Rage;
+using FiveEData.Rules.Classes.RelentlessRage;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
 using FiveEData.Rules.Classes.SorceryPoints;
@@ -98,6 +99,7 @@ public sealed class ClassDefinition
         int? perfectSelfKiPointsRegained,
         int? sorcerousRestorationSorceryPointsRegained,
         AbilityModifierUsesGrant? cleansingTouchUsesPerRest,
+        RelentlessRageDetail? relentlessRage,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -169,6 +171,7 @@ public sealed class ClassDefinition
         SorcerousRestorationSorceryPointsRegained =
             sorcerousRestorationSorceryPointsRegained;
         CleansingTouchUsesPerRest = cleansingTouchUsesPerRest;
+        RelentlessRage = relentlessRage;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -277,6 +280,8 @@ public sealed class ClassDefinition
     public int? SorcerousRestorationSorceryPointsRegained { get; }
 
     public AbilityModifierUsesGrant? CleansingTouchUsesPerRest { get; }
+
+    public RelentlessRageDetail? RelentlessRage { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

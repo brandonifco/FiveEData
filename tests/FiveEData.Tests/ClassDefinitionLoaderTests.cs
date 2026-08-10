@@ -86,6 +86,7 @@ public sealed class ClassDefinitionLoaderTests
           "perfectSelfKiPointsRegained": null,
           "sorcerousRestorationSorceryPointsRegained": null,
           "cleansingTouchUsesPerRest": null,
+          "relentlessRage": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -239,6 +240,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -372,6 +374,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -470,6 +473,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -668,6 +672,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -775,6 +780,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -879,6 +885,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -996,6 +1003,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1120,6 +1128,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1227,6 +1236,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1334,6 +1344,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1432,6 +1443,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1529,6 +1541,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1625,6 +1638,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1726,6 +1740,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1797,6 +1812,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -1838,6 +1854,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": []
                   }
                 ]
@@ -1876,6 +1893,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": []
                   }
                 ]
@@ -1915,6 +1933,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": []
                   }
                 ]
@@ -1954,6 +1973,7 @@ public sealed class ClassDefinitionLoaderTests
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
                     "cleansingTouchUsesPerRest": null,
+                    "relentlessRage": null,
                     "sources": null
                   }
                 ]
