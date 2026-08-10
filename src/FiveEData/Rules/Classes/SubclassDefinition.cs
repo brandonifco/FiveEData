@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.AlterMemories;
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.AwakenedMind;
@@ -9,18 +10,26 @@ using FiveEData.Rules.Classes.CreateThrall;
 using FiveEData.Rules.Classes.DarkDelirium;
 using FiveEData.Rules.Classes.DeathStrike;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
+using FiveEData.Rules.Classes.DraconicPresence;
 using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.DragonWings;
+using FiveEData.Rules.Classes.ElementalAffinity;
 using FiveEData.Rules.Classes.EntropicWard;
 using FiveEData.Rules.Classes.FeyPresence;
 using FiveEData.Rules.Classes.Frenzy;
 using FiveEData.Rules.Classes.HurlThroughHell;
+using FiveEData.Rules.Classes.HypnoticGaze;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
+using FiveEData.Rules.Classes.InstinctiveCharm;
 using FiveEData.Rules.Classes.IntimidatingPresence;
 using FiveEData.Rules.Classes.MistyEscape;
+using FiveEData.Rules.Classes.Overchannel;
+using FiveEData.Rules.Classes.PotentCantrip;
 using FiveEData.Rules.Classes.ImprovedCritical;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.Portent;
+using FiveEData.Rules.Classes.SculptSpells;
 using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.ShadowStep;
 using FiveEData.Rules.Classes.ThoughtShield;
@@ -83,6 +92,17 @@ public sealed class SubclassDefinition
         EntropicWardDetail? entropicWard,
         ThoughtShieldDetail? thoughtShield,
         CreateThrallDetail? createThrall,
+        HypnoticGazeDetail? hypnoticGaze,
+        InstinctiveCharmDetail? instinctiveCharm,
+        bool? splitEnchantmentTargetsSecondCreature,
+        AlterMemoriesDetail? alterMemories,
+        SculptSpellsDetail? sculptSpells,
+        PotentCantripDetail? potentCantrip,
+        bool? empoweredEvocationAddsSpellcastingModifierToDamage,
+        OverchannelDetail? overchannel,
+        ElementalAffinityDetail? elementalAffinity,
+        DragonWingsDetail? dragonWings,
+        DraconicPresenceDetail? draconicPresence,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -137,6 +157,19 @@ public sealed class SubclassDefinition
         EntropicWard = entropicWard;
         ThoughtShield = thoughtShield;
         CreateThrall = createThrall;
+        HypnoticGaze = hypnoticGaze;
+        InstinctiveCharm = instinctiveCharm;
+        SplitEnchantmentTargetsSecondCreature =
+            splitEnchantmentTargetsSecondCreature;
+        AlterMemories = alterMemories;
+        SculptSpells = sculptSpells;
+        PotentCantrip = potentCantrip;
+        EmpoweredEvocationAddsSpellcastingModifierToDamage =
+            empoweredEvocationAddsSpellcastingModifierToDamage;
+        Overchannel = overchannel;
+        ElementalAffinity = elementalAffinity;
+        DragonWings = dragonWings;
+        DraconicPresence = draconicPresence;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -227,6 +260,29 @@ public sealed class SubclassDefinition
     public ThoughtShieldDetail? ThoughtShield { get; }
 
     public CreateThrallDetail? CreateThrall { get; }
+
+    public HypnoticGazeDetail? HypnoticGaze { get; }
+
+    public InstinctiveCharmDetail? InstinctiveCharm { get; }
+
+    public bool? SplitEnchantmentTargetsSecondCreature { get; }
+
+    public AlterMemoriesDetail? AlterMemories { get; }
+
+    public SculptSpellsDetail? SculptSpells { get; }
+
+    public PotentCantripDetail? PotentCantrip { get; }
+
+    public bool? EmpoweredEvocationAddsSpellcastingModifierToDamage
+    { get; }
+
+    public OverchannelDetail? Overchannel { get; }
+
+    public ElementalAffinityDetail? ElementalAffinity { get; }
+
+    public DragonWingsDetail? DragonWings { get; }
+
+    public DraconicPresenceDetail? DraconicPresence { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

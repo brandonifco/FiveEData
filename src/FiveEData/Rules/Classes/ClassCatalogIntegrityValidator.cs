@@ -429,6 +429,80 @@ internal static class ClassCatalogIntegrityValidator
                     $"'{createThrall.ImposedConditionId}' in its Create " +
                     "Thrall.");
             }
+
+            if (subclass.HypnoticGaze is { } hypnoticGaze)
+            {
+                if (!abilityIds.Contains(hypnoticGaze.SavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{hypnoticGaze.SavingThrowAbilityId}' in its " +
+                        "Hypnotic Gaze.");
+                }
+
+                foreach (
+                    ConditionId conditionId
+                    in hypnoticGaze.ImposedConditionIds)
+                {
+                    if (!conditionIds.Contains(conditionId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing condition " +
+                            $"'{conditionId}' in its Hypnotic Gaze.");
+                    }
+                }
+            }
+
+            if (subclass.InstinctiveCharm is { } instinctiveCharm &&
+                !abilityIds.Contains(instinctiveCharm.SavingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{instinctiveCharm.SavingThrowAbilityId}' in its " +
+                    "Instinctive Charm.");
+            }
+
+            if (subclass.AlterMemories is { } alterMemories &&
+                !abilityIds.Contains(
+                    alterMemories.ForgetSavingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{alterMemories.ForgetSavingThrowAbilityId}' in its " +
+                    "Alter Memories.");
+            }
+
+            if (subclass.Overchannel is { } overchannel &&
+                !damageTypeIds.Contains(overchannel.SelfDamageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{overchannel.SelfDamageTypeId}' in its Overchannel.");
+            }
+
+            if (subclass.DraconicPresence is { } draconicPresence)
+            {
+                if (!abilityIds.Contains(
+                        draconicPresence.SavingThrowAbilityId))
+                {
+                    errors.Add(
+                        $"{owner} references missing ability " +
+                        $"'{draconicPresence.SavingThrowAbilityId}' in " +
+                        "its Draconic Presence.");
+                }
+
+                foreach (
+                    ConditionId conditionId
+                    in draconicPresence.ChoosableConditionIds)
+                {
+                    if (!conditionIds.Contains(conditionId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing condition " +
+                            $"'{conditionId}' in its Draconic Presence.");
+                    }
+                }
+            }
         }
 
         return errors;

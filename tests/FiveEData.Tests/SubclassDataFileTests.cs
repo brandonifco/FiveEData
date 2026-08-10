@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.AlterMemories;
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.AwakenedMind;
@@ -7,12 +8,20 @@ using FiveEData.Rules.Classes.BeguilingDefenses;
 using FiveEData.Rules.Classes.CreateThrall;
 using FiveEData.Rules.Classes.DarkDelirium;
 using FiveEData.Rules.Classes.DeathStrike;
+using FiveEData.Rules.Classes.DraconicPresence;
+using FiveEData.Rules.Classes.DragonWings;
+using FiveEData.Rules.Classes.ElementalAffinity;
 using FiveEData.Rules.Classes.EntropicWard;
 using FiveEData.Rules.Classes.FeyPresence;
 using FiveEData.Rules.Classes.Frenzy;
+using FiveEData.Rules.Classes.HypnoticGaze;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
+using FiveEData.Rules.Classes.InstinctiveCharm;
 using FiveEData.Rules.Classes.IntimidatingPresence;
 using FiveEData.Rules.Classes.MistyEscape;
+using FiveEData.Rules.Classes.Overchannel;
+using FiveEData.Rules.Classes.PotentCantrip;
+using FiveEData.Rules.Classes.SculptSpells;
 using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.ThoughtShield;
 using FiveEData.Rules.Classes.BendLuck;
@@ -2556,6 +2565,189 @@ public sealed class SubclassDataFileTests
                 Assert.Null(subclass.ThoughtShield);
                 Assert.Null(subclass.CreateThrall);
             });
+
+        Assert.All(
+            subclasses.Where(
+                subclass =>
+                    subclass.Id.Value !=
+                    "dnd5e2014.subclass.school-of-enchantment"),
+            subclass =>
+            {
+                Assert.Null(subclass.HypnoticGaze);
+                Assert.Null(subclass.InstinctiveCharm);
+                Assert.Null(subclass.SplitEnchantmentTargetsSecondCreature);
+                Assert.Null(subclass.AlterMemories);
+            });
+
+        Assert.All(
+            subclasses.Where(
+                subclass =>
+                    subclass.Id.Value !=
+                    "dnd5e2014.subclass.school-of-evocation"),
+            subclass =>
+            {
+                Assert.Null(subclass.SculptSpells);
+                Assert.Null(subclass.PotentCantrip);
+                Assert.Null(
+                    subclass
+                        .EmpoweredEvocationAddsSpellcastingModifierToDamage);
+                Assert.Null(subclass.Overchannel);
+            });
+
+        Assert.All(
+            subclasses.Where(
+                subclass =>
+                    subclass.Id.Value !=
+                    "dnd5e2014.subclass.draconic-bloodline"),
+            subclass =>
+            {
+                Assert.Null(subclass.ElementalAffinity);
+                Assert.Null(subclass.DragonWings);
+                Assert.Null(subclass.DraconicPresence);
+            });
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfEnchantmentFeatures()
+    {
+        SubclassDefinition enchantment = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-enchantment");
+
+        HypnoticGazeDetail hypnoticGaze =
+            enchantment.HypnoticGaze
+            ?? throw new InvalidOperationException(
+                "Expected School of Enchantment to have Hypnotic Gaze.");
+        Assert.Equal(5, hypnoticGaze.RangeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            hypnoticGaze.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            [
+                "dnd5e2014.condition.charmed",
+                "dnd5e2014.condition.incapacitated"
+            ],
+            hypnoticGaze.ImposedConditionIds
+                .Select(id => id.Value)
+                .ToArray());
+        Assert.True(hypnoticGaze.SetsSpeedToZero);
+        Assert.Equal(
+            NextTurnDurationTrigger.EndOfYourNextTurn,
+            hypnoticGaze.ConditionDurationTrigger);
+
+        InstinctiveCharmDetail instinctiveCharm =
+            enchantment.InstinctiveCharm
+            ?? throw new InvalidOperationException(
+                "Expected School of Enchantment to have Instinctive " +
+                "Charm.");
+        Assert.Equal(30, instinctiveCharm.RangeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            instinctiveCharm.SavingThrowAbilityId.Value);
+        Assert.True(instinctiveCharm.RedirectsAttackToClosestOtherCreature);
+
+        Assert.True(enchantment.SplitEnchantmentTargetsSecondCreature);
+
+        AlterMemoriesDetail alterMemories =
+            enchantment.AlterMemories
+            ?? throw new InvalidOperationException(
+                "Expected School of Enchantment to have Alter Memories.");
+        Assert.True(alterMemories.MakesCreatureUnawareOfCharm);
+        Assert.Equal(
+            "dnd5e2014.ability.intelligence",
+            alterMemories.ForgetSavingThrowAbilityId.Value);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesSchoolOfEvocationFeatures()
+    {
+        SubclassDefinition evocation = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.school-of-evocation");
+
+        SculptSpellsDetail sculptSpells =
+            evocation.SculptSpells
+            ?? throw new InvalidOperationException(
+                "Expected School of Evocation to have Sculpt Spells.");
+        Assert.True(
+            sculptSpells.ProtectsCreatureCountEqualToOnePlusSpellLevel);
+        Assert.True(sculptSpells.GrantsNoDamageOnSuccessfulSave);
+
+        PotentCantripDetail potentCantrip =
+            evocation.PotentCantrip
+            ?? throw new InvalidOperationException(
+                "Expected School of Evocation to have Potent Cantrip.");
+        Assert.True(potentCantrip.GrantsHalfDamageOnSuccessfulSave);
+        Assert.True(
+            potentCantrip.NegatesAdditionalCantripEffectsOnSuccessfulSave);
+
+        Assert.True(
+            evocation
+                .EmpoweredEvocationAddsSpellcastingModifierToDamage);
+
+        OverchannelDetail overchannel =
+            evocation.Overchannel
+            ?? throw new InvalidOperationException(
+                "Expected School of Evocation to have Overchannel.");
+        Assert.Equal(5, overchannel.MaximumSpellLevel);
+        Assert.True(overchannel.DealsMaximumDamage);
+        Assert.True(overchannel.FirstUseHasNoAdverseEffect);
+        Assert.Equal(2, overchannel.SelfDamagePerSpellLevel.Count);
+        Assert.Equal(12, overchannel.SelfDamagePerSpellLevel.Sides);
+        Assert.Equal(
+            "dnd5e2014.damage-type.necrotic",
+            overchannel.SelfDamageTypeId.Value);
+        Assert.Equal(
+            1,
+            overchannel.SelfDamageIncreasePerSubsequentUse.Count);
+        Assert.Equal(
+            12,
+            overchannel.SelfDamageIncreasePerSubsequentUse.Sides);
+        Assert.True(overchannel.IgnoresResistanceAndImmunity);
+        Assert.True(overchannel.RecoversOnLongRest);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDraconicBloodlineTierBFeatures()
+    {
+        SubclassDefinition draconicBloodline = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.draconic-bloodline");
+
+        ElementalAffinityDetail elementalAffinity =
+            draconicBloodline.ElementalAffinity
+            ?? throw new InvalidOperationException(
+                "Expected Draconic Bloodline to have Elemental Affinity.");
+        Assert.True(elementalAffinity.AddsSpellcastingModifierToDamage);
+        Assert.Equal(1, elementalAffinity.ResistanceSorceryPointCost);
+        Assert.Equal(1, elementalAffinity.ResistanceDurationHours);
+
+        DragonWingsDetail dragonWings =
+            draconicBloodline.DragonWings
+            ?? throw new InvalidOperationException(
+                "Expected Draconic Bloodline to have Dragon Wings.");
+        Assert.True(dragonWings.GrantsFlyingSpeedEqualToCurrentSpeed);
+        Assert.True(dragonWings.RequiresBonusActionToCreateOrDismiss);
+
+        DraconicPresenceDetail draconicPresence =
+            draconicBloodline.DraconicPresence
+            ?? throw new InvalidOperationException(
+                "Expected Draconic Bloodline to have Draconic Presence.");
+        Assert.Equal(5, draconicPresence.SorceryPointCost);
+        Assert.Equal(60, draconicPresence.RangeFeet);
+        Assert.Equal(
+            [
+                "dnd5e2014.condition.charmed",
+                "dnd5e2014.condition.frightened"
+            ],
+            draconicPresence.ChoosableConditionIds
+                .Select(id => id.Value)
+                .ToArray());
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            draconicPresence.SavingThrowAbilityId.Value);
+        Assert.Equal(1, draconicPresence.DurationMinutes);
+        Assert.True(draconicPresence.RequiresConcentration);
     }
 
     [Fact]

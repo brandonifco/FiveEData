@@ -1,19 +1,28 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BendLuck.Serialization;
+using FiveEData.Rules.Classes.AlterMemories.Serialization;
 using FiveEData.Rules.Classes.Assassinate.Serialization;
 using FiveEData.Rules.Classes.AwakenedMind.Serialization;
 using FiveEData.Rules.Classes.BeguilingDefenses.Serialization;
 using FiveEData.Rules.Classes.CircleForms.Serialization;
 using FiveEData.Rules.Classes.CreateThrall.Serialization;
 using FiveEData.Rules.Classes.DarkDelirium.Serialization;
+using FiveEData.Rules.Classes.DraconicPresence.Serialization;
+using FiveEData.Rules.Classes.DragonWings.Serialization;
 using FiveEData.Rules.Classes.DeathStrike.Serialization;
+using FiveEData.Rules.Classes.ElementalAffinity.Serialization;
 using FiveEData.Rules.Classes.EntropicWard.Serialization;
 using FiveEData.Rules.Classes.FeyPresence.Serialization;
 using FiveEData.Rules.Classes.Frenzy.Serialization;
+using FiveEData.Rules.Classes.HypnoticGaze.Serialization;
 using FiveEData.Rules.Classes.InfiltrationExpertise.Serialization;
+using FiveEData.Rules.Classes.InstinctiveCharm.Serialization;
 using FiveEData.Rules.Classes.IntimidatingPresence.Serialization;
 using FiveEData.Rules.Classes.MistyEscape.Serialization;
+using FiveEData.Rules.Classes.Overchannel.Serialization;
+using FiveEData.Rules.Classes.PotentCantrip.Serialization;
+using FiveEData.Rules.Classes.SculptSpells.Serialization;
 using FiveEData.Rules.Classes.SecondStoryWork.Serialization;
 using FiveEData.Rules.Classes.ThoughtShield.Serialization;
 using FiveEData.Rules.Classes.CombatSuperiority.Serialization;
@@ -200,6 +209,43 @@ internal sealed class SubclassDefinitionData
 
     [JsonRequired]
     public CreateThrallDetailData? CreateThrall { get; init; }
+
+    [JsonRequired]
+    public HypnoticGazeDetailData? HypnoticGaze { get; init; }
+
+    [JsonRequired]
+    public InstinctiveCharmDetailData? InstinctiveCharm { get; init; }
+
+    [JsonRequired]
+    public bool? SplitEnchantmentTargetsSecondCreature { get; init; }
+
+    [JsonRequired]
+    public AlterMemoriesDetailData? AlterMemories { get; init; }
+
+    [JsonRequired]
+    public SculptSpellsDetailData? SculptSpells { get; init; }
+
+    [JsonRequired]
+    public PotentCantripDetailData? PotentCantrip { get; init; }
+
+    [JsonRequired]
+    public bool? EmpoweredEvocationAddsSpellcastingModifierToDamage
+    {
+        get;
+        init;
+    }
+
+    [JsonRequired]
+    public OverchannelDetailData? Overchannel { get; init; }
+
+    [JsonRequired]
+    public ElementalAffinityDetailData? ElementalAffinity { get; init; }
+
+    [JsonRequired]
+    public DragonWingsDetailData? DragonWings { get; init; }
+
+    [JsonRequired]
+    public DraconicPresenceDetailData? DraconicPresence { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

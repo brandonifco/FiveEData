@@ -30,12 +30,15 @@ structural gap (weapon/armor/skill proficiency fields on
 Weapon Training, Drow Weapon Training, Dwarven Armor Training, Keen
 Senses, Skill Versatility), and the innate spell grant tail (`SpellGrant`
 on Race/Subrace/Subclass — Infernal Legacy, Drow Magic, Natural
-Illusionist, Light Domain's Bonus Cantrip, Thousand Forms). The "rich
-individual features" candidate is **~16 features across 6 subclasses,
-split into three PRs by class family** — Barbarian/Rogue and Warlock
-(Archfey, Great Old One) are built; Wizard/Sorcerer (Enchantment,
-Evocation, Draconic Bloodline) remains. Every other candidate in the
-pool is scoped-not-built. Ask the user which to pick up next.
+Illusionist, Light Domain's Bonus Cantrip, Thousand Forms), and the
+"rich individual features" candidate (~16 features across 6 subclasses,
+built as three PRs by class family — Barbarian/Rogue, Warlock
+Archfey/Great Old One, Wizard Enchantment/Evocation, and Sorcerer
+Draconic Bloodline). **Only one candidate from the 2026-08-10 scoping
+pass remains unstarted: more choice-point catalogs** (Circle of the
+Totem Warrior, Ranger Hunter, Monk's Open Hand Technique, Wizard's
+Third Eye and Transmuter's Stone). Ask the user whether to pick that
+up or scope a fresh pass.
 
 Built and complete:
 
@@ -2560,11 +2563,11 @@ yet:
   Intimidating Presence), Sorcerer Draconic Bloodline (Elemental
   Affinity), and Rogue (Second-Story Work, Assassinate, Infiltration
   Expertise, Death Strike). **Too big for one change — split into three
-  PRs by class family**; Barbarian/Rogue and Warlock are built (see
-  "Game-backend quantization: rich individual features (Barbarian,
-  Rogue)" and "... (Warlock)"), and note that Relentless Rage turned
-  out to be a base Barbarian feature, not Berserker's as grouped
-  here.
+  PRs by class family, all now built** (see "Game-backend
+  quantization: rich individual features (Barbarian, Rogue)", "...
+  (Warlock)", and "... (Wizard, Sorcerer) — closing the candidate"),
+  and note that Relentless Rage turned out to be a base Barbarian
+  feature, not Berserker's as grouped here.
 
 **One structural gap, bigger than a data-entry slice, was found here
 and built in a later slice:** racial weapon/armor/skill proficiency
@@ -2993,6 +2996,103 @@ stay in the citation — the same "multi-path way a condition can end"
 rider already declined for Hold Person and Flesh to Stone. Only the
 clean initial grant (incapacitated target required, imposes charmed,
 grants telepathy while on the same plane) is captured.
+
+## Game-backend quantization: rich individual features (Wizard, Sorcerer) — closing the candidate
+
+The third and final PR splitting the "rich individual features"
+candidate by class family, closing it out. Wizard's School of
+Enchantment (Hypnotic Gaze, Instinctive Charm, Split Enchantment, Alter
+Memories) and School of Evocation (Sculpt Spells, Potent Cantrip,
+Empowered Evocation, Overchannel), plus Sorcerer's Draconic Bloodline
+(Elemental Affinity, Dragon Wings, Draconic Presence — Draconic
+Resilience and Dragon Ancestor were already built/declined from an
+earlier pass and stayed out of scope here), verified against rendered
+page images at pp.102–103 and pp.117–118.
+
+**A fourth pre-existing citation error found and fixed in the same
+commit: Overchannel was cited to p.117, but its heading actually starts
+on p.118.** School of Evocation's other three features (Evocation
+Savant, Sculpt Spells, Potent Cantrip, Empowered Evocation) really are
+on p.117 — Overchannel is the one 14th-level feature that spills onto
+the following page, the same "citation errors cluster but don't run
+uniformly, verify every one against the image" lesson the Fighter and
+Battle Master passes already taught. `class-rule.json`'s Overchannel
+entry now cites p.118.
+
+**`ChoosableConditionIds` gets its fourth real instance: Draconic
+Presence's "awe or fear (your choice)" maps to `charmed`/`frightened`,
+the same two conditions Fey Presence and Dark Delirium already used.**
+Four real instances across three different subclasses now, confirming
+this is a genuine recurring PHB pattern rather than an Archfey-specific
+quirk.
+
+**Two features are bare `bool?` fields on `SubclassDefinition`, not
+wrapper detail types — the first time this project has done that for a
+*subclass* feature rather than a class-level scalar
+(`ImpostorRequiredStudyHours` was the precedent).**
+`SplitEnchantmentTargetsSecondCreature` and
+`EmpoweredEvocationAddsSpellcastingModifierToDamage` are each a single
+clean fact with nothing else to pair it with — Split Enchantment is
+just "you can target a second creature," Empowered Evocation is just
+"add your Intelligence modifier to evocation spell damage," and neither
+needed a saving throw, range, or any other accompanying field the way
+every other feature in this three-PR arc did. A wrapper type would
+have been a record holding one bool.
+
+**Elemental Affinity captures the modifier-adding mechanic but declines
+the damage type, for a new reason distinct from every prior
+fixed-or-choosable-type decline.** Every earlier "add spellcasting
+modifier to damage" feature (Agonizing Blast, Lifedrinker) either boosts
+a single named spell's own damage or adds a wholly new fixed type.
+Elemental Affinity boosts *whatever* damage type matches the
+character's Dragon Ancestor — a choice made by an entirely different,
+already-declined feature (Dragon Ancestor's table) — so there is no
+type for this feature to fix or offer a choice over; the type was
+already chosen elsewhere. `AddsSpellcastingModifierToDamage` is
+captured with no `ExtraDamageTypeId`, the same shape Agonizing Blast
+uses for the same underlying reason (boosts an existing damage
+instance, introduces nothing new).
+
+**Sculpt Spells' creature-count formula is `1 + the spell's own level`,
+not an ability modifier — the first "count derived from the spell,
+not the caster" fact this project has captured.** Every prior
+"protects N creatures" fact (Careful Spell) scaled with the caster's
+spellcasting modifier; Sculpt Spells scales with the cast spell's own
+level, a fact already fully modeled via the spell's own `Level` field.
+Captured as a bool
+(`ProtectsCreatureCountEqualToOnePlusSpellLevel`) rather than a
+duplicate number, the same "don't store what's derivable from an
+already-modeled field" discipline that declined Split Enchantment's
+"1st level or higher" gate (checkable against the same `Level` field)
+and every Metamagic option's spell-eligibility gate.
+
+**Overchannel is the richest single feature captured in this entire
+initiative — 8 fields on one type — because the PHB text is genuinely
+that dense:** a spell-level cap, an unconditional maximize-damage
+effect, a first-use-is-free clause, an escalating self-damage dice
+expression with its own damage type, a *second* dice expression for how
+much the escalation grows per use, a resistance/immunity bypass flag,
+and a long-rest reset. Every field traces to one clause of the printed
+text; none are inferred or extrapolated.
+
+**Hypnotic Gaze reuses `SpellConditionEffect`'s "list means AND"
+semantics for a non-spell feature — the first time this project has
+applied that convention outside the Spells domain.** "Charmed... and
+the creature is incapacitated" grants both conditions together, not a
+choice between them, so `ImposedConditionIds` (plural, AND) is a
+deliberately different field from `ChoosableConditionIds` (plural, OR)
+on the very same subclass's own Fey-Presence-shaped features elsewhere
+in this arc — same list shape, opposite semantics, disambiguated by
+name alone the way `SpellConditionEffect` and the choosable-type
+fields already coexist project-wide.
+
+**This closes gap 3's "rich individual features" candidate.** Of the
+2026-08-10 scoping pass's ranked pool, only one candidate remains
+unstarted: more choice-point catalogs (Circle of the Totem Warrior,
+Ranger Hunter, Monk's Open Hand Technique, Wizard's Third Eye and
+Transmuter's Stone). Every other candidate from that pass — the
+`GrantedSpellId` tail, the racial proficiency structural gap, and now
+the rich individual features — is built or explicitly declined.
 
 ## Test conventions
 

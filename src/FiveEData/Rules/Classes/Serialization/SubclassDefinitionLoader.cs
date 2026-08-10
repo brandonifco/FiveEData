@@ -2,6 +2,8 @@ using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.Auras.Serialization;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.BendLuck.Serialization;
+using FiveEData.Rules.Classes.AlterMemories;
+using FiveEData.Rules.Classes.AlterMemories.Serialization;
 using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Assassinate.Serialization;
 using FiveEData.Rules.Classes.AwakenedMind;
@@ -13,20 +15,36 @@ using FiveEData.Rules.Classes.CreateThrall;
 using FiveEData.Rules.Classes.CreateThrall.Serialization;
 using FiveEData.Rules.Classes.DarkDelirium;
 using FiveEData.Rules.Classes.DarkDelirium.Serialization;
+using FiveEData.Rules.Classes.DraconicPresence;
+using FiveEData.Rules.Classes.DraconicPresence.Serialization;
+using FiveEData.Rules.Classes.DragonWings;
+using FiveEData.Rules.Classes.DragonWings.Serialization;
 using FiveEData.Rules.Classes.DeathStrike;
 using FiveEData.Rules.Classes.DeathStrike.Serialization;
+using FiveEData.Rules.Classes.ElementalAffinity;
+using FiveEData.Rules.Classes.ElementalAffinity.Serialization;
 using FiveEData.Rules.Classes.EntropicWard;
 using FiveEData.Rules.Classes.EntropicWard.Serialization;
 using FiveEData.Rules.Classes.FeyPresence;
 using FiveEData.Rules.Classes.FeyPresence.Serialization;
 using FiveEData.Rules.Classes.Frenzy;
 using FiveEData.Rules.Classes.Frenzy.Serialization;
+using FiveEData.Rules.Classes.HypnoticGaze;
+using FiveEData.Rules.Classes.HypnoticGaze.Serialization;
 using FiveEData.Rules.Classes.InfiltrationExpertise;
 using FiveEData.Rules.Classes.InfiltrationExpertise.Serialization;
+using FiveEData.Rules.Classes.InstinctiveCharm;
+using FiveEData.Rules.Classes.InstinctiveCharm.Serialization;
 using FiveEData.Rules.Classes.IntimidatingPresence;
 using FiveEData.Rules.Classes.IntimidatingPresence.Serialization;
 using FiveEData.Rules.Classes.MistyEscape;
 using FiveEData.Rules.Classes.MistyEscape.Serialization;
+using FiveEData.Rules.Classes.Overchannel;
+using FiveEData.Rules.Classes.Overchannel.Serialization;
+using FiveEData.Rules.Classes.PotentCantrip;
+using FiveEData.Rules.Classes.PotentCantrip.Serialization;
+using FiveEData.Rules.Classes.SculptSpells;
+using FiveEData.Rules.Classes.SculptSpells.Serialization;
 using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.SecondStoryWork.Serialization;
 using FiveEData.Rules.Classes.ThoughtShield;
@@ -361,6 +379,53 @@ internal static class SubclassDefinitionLoader
                 ? CreateThrallDetailDataMapper.Map(createThrallData)
                 : null;
 
+        HypnoticGazeDetail? hypnoticGaze =
+            data.HypnoticGaze is { } hypnoticGazeData
+                ? HypnoticGazeDetailDataMapper.Map(hypnoticGazeData)
+                : null;
+
+        InstinctiveCharmDetail? instinctiveCharm =
+            data.InstinctiveCharm is { } instinctiveCharmData
+                ? InstinctiveCharmDetailDataMapper.Map(instinctiveCharmData)
+                : null;
+
+        AlterMemoriesDetail? alterMemories =
+            data.AlterMemories is { } alterMemoriesData
+                ? AlterMemoriesDetailDataMapper.Map(alterMemoriesData)
+                : null;
+
+        SculptSpellsDetail? sculptSpells =
+            data.SculptSpells is { } sculptSpellsData
+                ? SculptSpellsDetailDataMapper.Map(sculptSpellsData)
+                : null;
+
+        PotentCantripDetail? potentCantrip =
+            data.PotentCantrip is { } potentCantripData
+                ? PotentCantripDetailDataMapper.Map(potentCantripData)
+                : null;
+
+        OverchannelDetail? overchannel =
+            data.Overchannel is { } overchannelData
+                ? OverchannelDetailDataMapper.Map(overchannelData)
+                : null;
+
+        ElementalAffinityDetail? elementalAffinity =
+            data.ElementalAffinity is { } elementalAffinityData
+                ? ElementalAffinityDetailDataMapper.Map(
+                    elementalAffinityData)
+                : null;
+
+        DragonWingsDetail? dragonWings =
+            data.DragonWings is { } dragonWingsData
+                ? DragonWingsDetailDataMapper.Map(dragonWingsData)
+                : null;
+
+        DraconicPresenceDetail? draconicPresence =
+            data.DraconicPresence is { } draconicPresenceData
+                ? DraconicPresenceDetailDataMapper.Map(
+                    draconicPresenceData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -406,6 +471,17 @@ internal static class SubclassDefinitionLoader
             entropicWard,
             thoughtShield,
             createThrall,
+            hypnoticGaze,
+            instinctiveCharm,
+            data.SplitEnchantmentTargetsSecondCreature,
+            alterMemories,
+            sculptSpells,
+            potentCantrip,
+            data.EmpoweredEvocationAddsSpellcastingModifierToDamage,
+            overchannel,
+            elementalAffinity,
+            dragonWings,
+            draconicPresence,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }
