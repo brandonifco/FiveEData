@@ -2163,6 +2163,65 @@ public sealed class SubclassDataFileTests
             thunderboltStrike.MaximumTargetSizeId.Value);
     }
 
+    // Light Domain's Bonus Cantrip names one specific cantrip, so it is a
+    // real grant. Circle of the Land's identically-named feature is "one
+    // additional druid cantrip of your choice" — an open choice with no
+    // spell to point at — and stays declined.
+    [Fact]
+    public void CanonicalFile_PreservesLightDomainBonusCantrip()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        SubclassDefinition light =
+            GetSubclass(subclasses, "dnd5e2014.subclass.light-domain");
+
+        SpellGrant grant = Assert.Single(light.InnateSpellGrants);
+        Assert.Equal("dnd5e2014.spell.light", grant.GrantedSpellId.Value);
+        Assert.Equal(1, grant.MinimumCharacterLevel);
+        Assert.Equal(SpellGrantFrequency.AtWill, grant.Frequency);
+
+        Assert.Empty(
+            GetSubclass(subclasses, "dnd5e2014.subclass.circle-of-the-land")
+                .InnateSpellGrants);
+    }
+
+    // Thousand Forms is a Circle of the Moon feature, not Circle of the
+    // Land's — the two circles' 6th/10th/14th features sit in adjacent
+    // columns on the same page, which is easy to misread.
+    [Fact]
+    public void CanonicalFile_PreservesCircleOfTheMoonThousandForms()
+    {
+        SubclassDefinition circleOfTheMoon = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.circle-of-the-moon");
+
+        SpellGrant grant =
+            Assert.Single(circleOfTheMoon.InnateSpellGrants);
+        Assert.Equal(
+            "dnd5e2014.spell.alter-self",
+            grant.GrantedSpellId.Value);
+        Assert.Equal(14, grant.MinimumCharacterLevel);
+        Assert.Equal(SpellGrantFrequency.AtWill, grant.Frequency);
+        Assert.Null(grant.CastAtSpellLevel);
+    }
+
+    [Fact]
+    public void CanonicalFile_InnateSpellGrantsAreExclusiveToTheirSubclass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        string[] owners =
+        [
+            "dnd5e2014.subclass.light-domain",
+            "dnd5e2014.subclass.circle-of-the-moon"
+        ];
+
+        Assert.All(
+            subclasses.Where(
+                subclass => !owners.Contains(subclass.Id.Value)),
+            subclass => Assert.Empty(subclass.InnateSpellGrants));
+    }
+
     [Fact]
     public void CanonicalFile_PreservesLightDomainWardingFlare()
     {

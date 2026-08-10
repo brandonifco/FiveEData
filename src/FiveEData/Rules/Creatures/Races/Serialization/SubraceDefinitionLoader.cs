@@ -2,6 +2,7 @@ using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -115,6 +116,11 @@ internal static class SubraceDefinitionLoader
                 "Subrace armor proficiency categories are required.",
                 nameof(data));
 
+        SpellGrantData[] innateSpellGrantData = data.InnateSpellGrants
+            ?? throw new ArgumentException(
+                "Subrace innate spell grants are required.",
+                nameof(data));
+
         SourceReferenceData[] sourceData = data.Sources
             ?? throw new ArgumentException(
                 "Subrace sources are required.",
@@ -137,6 +143,16 @@ internal static class SubraceDefinitionLoader
             .Select(value => new WeaponId(value))
             .ToArray();
 
+        SpellGrant[] innateSpellGrants = innateSpellGrantData
+            .Select(SpellGrantDataMapper.Map)
+            .ToArray();
+
+        AbilityId? innateSpellcastingAbilityId =
+            data.InnateSpellcastingAbilityId is
+                { } innateSpellcastingAbilityIdValue
+                ? new AbilityId(innateSpellcastingAbilityIdValue)
+                : null;
+
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
@@ -158,6 +174,8 @@ internal static class SubraceDefinitionLoader
             data.HitPointBonusPerLevel,
             weaponProficiencyIds,
             armorProficiencyCategories,
+            innateSpellGrants,
+            innateSpellcastingAbilityId,
             sources);
     }
 }

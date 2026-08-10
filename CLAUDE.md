@@ -21,15 +21,18 @@ Disciplines, Channel Divinity — the last now 16 entries, not 10; see
 below). The wider race/subclass/background feature-prose tail was
 **scoped** in a systematic pass (2026-08-10) — see "Game-backend
 quantization: scoping the race/subclass/background feature-prose
-tail" — and has a large, ranked candidate pool. Three slices are now
+tail" — and has a large, ranked candidate pool. Four slices are now
 **built**: Paladin's 6 missing Channel Divinity options, the recurring
 "uses per rest" resource shape (Warding Flare, War Priest, Cleansing
-Touch, plus a retrofit onto Wrath of the Storm), and the racial
-proficiency structural gap (weapon/armor/skill proficiency fields on
+Touch, plus a retrofit onto Wrath of the Storm), the racial proficiency
+structural gap (weapon/armor/skill proficiency fields on
 `RaceDefinition`/`SubraceDefinition` — Dwarven Combat Training, Elf
 Weapon Training, Drow Weapon Training, Dwarven Armor Training, Keen
-Senses, Skill Versatility). Every other candidate in the pool is
-scoped-not-built. Ask the user which to pick up next.
+Senses, Skill Versatility), and the innate spell grant tail (`SpellGrant`
+on Race/Subrace/Subclass — Infernal Legacy, Drow Magic, Natural
+Illusionist, Light Domain's Bonus Cantrip, Thousand Forms). Every other
+candidate in the pool is scoped-not-built. Ask the user which to pick
+up next.
 
 Built and complete:
 
@@ -2538,13 +2541,12 @@ yet:
   a 3-option Flurry of Blows rider; Wizard's The Third Eye (Divination
   14th) and Transmuter's Stone (Transmutation 6th) are both 4-option
   utility choices.
-- **More `GrantedSpellId` candidates, reusing the exact shape gap 3's
-  tail established:** Drow Magic and Infernal Legacy (racial per-level
-  spell grants, same shape as Eldritch Invocations' at-will/once-per-
-  rest split), Natural Illusionist (Forest Gnome, Minor Illusion
-  cantrip), Thousand Forms (Druid Circle of the Moon, Alter Self at
-  will), Shapechanger (Wizard Transmutation, Polymorph once per rest),
-  Light Domain's and Circle of the Land's Bonus Cantrip.
+- **More `GrantedSpellId` candidates** — Drow Magic, Infernal Legacy,
+  Natural Illusionist, Thousand Forms, Shapechanger, and both Bonus
+  Cantrips. **Built in a later slice**, but *not* by reusing Eldritch
+  Invocations' fields as this bullet assumed, and with two of the six
+  declined; see "Game-backend quantization: innate spell grants (the
+  GrantedSpellId tail)" below.
 - **Rich individual features with real damage/save/condition/duration
   facts**, the same shape as the maneuvers/invocations work: Warlock
   patron features (Fey Presence, Misty Escape, Beguiling Defenses, Dark
@@ -2766,6 +2768,92 @@ The top-level `CatalogIntegrityValidator` had to move its existing
 `RaceCatalogIntegrityValidator.Validate` call that now consumes them —
 both sets were already built for `ClassCatalogIntegrityValidator` later
 in the same method, just too late for this new use.
+
+## Game-backend quantization: innate spell grants (the GrantedSpellId tail)
+
+The scoping pass's "more `GrantedSpellId` candidates" bullet, built as one
+slice because all five candidates share one shape. Verified against
+rendered page images at pp.24 (Drow Magic), 37 (Natural Illusionist), 43
+(Infernal Legacy), 61 (Light Domain's Bonus Cantrip), and 69 (Thousand
+Forms).
+
+**New shared type in `Rules/Common`: `SpellGrant`** (`GrantedSpellId` +
+`MinimumCharacterLevel` + `Frequency` + `CastAtSpellLevel`), with a
+`SpellGrantFrequency` enum (`AtWill` / `OncePerDay`) beside it — the
+fourth and fifth types promoted there after `RollModifier`,
+`NextTurnDurationTrigger`, and `AbilityModifierUsesGrant`. It's a
+**list**, not a nullable scalar, because the racial grants are inherently
+multi-entry: Drow Magic and Infernal Legacy each grant three spells that
+unlock at 1st/3rd/5th level, so the level gate is a property of each
+grant rather than of the feature.
+
+**This is deliberately *not* a reuse of `EldritchInvocationDefinition`'s
+`GrantedSpellId`/`CastingFrequency` pair**, even though the two describe
+overlapping ideas. An invocation grants exactly one spell with no level
+gate (the level gate lives in the invocation's own
+`RequiredMinimumLevel` prerequisite) and its frequency vocabulary is
+`AtWill`/`OncePerLongRestUsingASpellSlot` — a spell-slot economy that
+has no analogue here, where racial grants recharge on a *day*, not a
+rest. Same idea, genuinely different facts; leaving the invocation
+fields alone follows the standing "each domain owns its type unless the
+fact set really is identical" line rather than forcing a merge.
+
+**`CastAtSpellLevel` exists for exactly one grant, and that is enough.**
+Infernal Legacy casts *hellish rebuke* "as a 2nd-level spell" — an
+upcast baked into the grant, not chosen by the caster. Every other
+grant leaves the field null. This is the same "a fact used once still
+earns a field if it's genuinely a fact" precedent Metamagic's
+`ProtectsCreatureCountUpToSpellcastingModifier` set, and unlike the
+one-data-point *declines* (Magic Missile's flat modifier), there's no
+second disqualifying trait here — the grant is otherwise perfectly
+ordinary.
+
+**Three owners, three placements, and the ability field is only on
+two of them:** `RaceDefinition` and `SubraceDefinition` both carry
+`InnateSpellGrants` + `InnateSpellcastingAbilityId` (validator-paired,
+present together or neither, since every racial grant names its own
+spellcasting ability); `SubclassDefinition` carries only
+`InnateSpellGrants`, because a subclass's granted spell uses the
+class's already-modeled `SpellcastingAbilityId` and restating it would
+duplicate a fact the definition already holds.
+
+**Circle of the Land's Bonus Cantrip is declined even though Light
+Domain's identically-named feature is captured.** Light Domain names a
+specific cantrip ("you gain the *light* cantrip"); Circle of the Land's
+is "one additional druid cantrip of your choice" — an open choice with
+no spell to point at, the same shape that declined Book of Ancient
+Secrets and Eyebite. Two features sharing a name is not evidence they
+share a mechanic; read both.
+
+**Thousand Forms is a Circle of the Moon feature, not Circle of the
+Land's** — p.69's two columns run Circle of the Land's 6th/10th/14th
+features down the left and Circle of the Moon's down the right, so the
+feature immediately following Circle of the Land's last entry belongs
+to the *other* subclass. Caught by cross-checking `LevelFeatures`
+before writing the data, not after. Pinned by
+`CanonicalFile_PreservesCircleOfTheMoonThousandForms`.
+
+**Wizard Transmutation's Shapechanger is declined.** "You add the
+*polymorph* spell to your spellbook" then cast it "without expending a
+spell slot" once per short or long rest is a spellbook addition plus a
+free-cast rider, not an innate grant — the spell becomes a normal
+prepared/castable spell through machinery `WizardSpellbookDetail`
+already models, and the rider's rest-based recharge doesn't fit
+`SpellGrantFrequency`'s at-will/per-day axis. Same call for Necromancy's
+Undead Thralls (*animate dead*).
+
+**Loading real spells into `CatalogIntegrityTests.PublishedCatalog_HasNoDanglingReferences`
+cascaded twice, and both cascades were pre-existing blind spots.** That
+test builds a `RulesetDefinitionSet` from real data files but had
+`spells: []`, `magicSchools: []`, and `conditions: []` hardcoded in its
+`CreateDefinitionSet` helper — so once the new race/subrace/subclass
+spell references made real spells necessary, the spells' own
+`SchoolId` references dangled, and once magic schools were added, the
+spells' `ConditionEffect` references dangled too. All three are now
+loaded. **The test was passing before only because the domains it
+skipped were invisible to it** — when adding a cross-domain reference,
+check whether this test actually loads the target domain rather than
+assuming its green status covers it.
 
 ## Test conventions
 

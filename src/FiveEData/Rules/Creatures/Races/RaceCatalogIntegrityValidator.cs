@@ -7,6 +7,7 @@ using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -21,7 +22,8 @@ internal static class RaceCatalogIntegrityValidator
         IReadOnlySet<RuleId> ruleIds,
         IReadOnlySet<DamageTypeId> damageTypeIds,
         IReadOnlySet<WeaponId> weaponIds,
-        IReadOnlySet<SkillId> skillIds)
+        IReadOnlySet<SkillId> skillIds,
+        IReadOnlySet<SpellId> spellIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(sourceIds);
@@ -32,6 +34,7 @@ internal static class RaceCatalogIntegrityValidator
         ArgumentNullException.ThrowIfNull(damageTypeIds);
         ArgumentNullException.ThrowIfNull(weaponIds);
         ArgumentNullException.ThrowIfNull(skillIds);
+        ArgumentNullException.ThrowIfNull(spellIds);
 
         var errors = new List<string>();
 
@@ -112,6 +115,25 @@ internal static class RaceCatalogIntegrityValidator
                     $"{owner} references missing skill " +
                     $"'{skillProficiencyId}'.");
             }
+
+            foreach (SpellGrant grant in race.InnateSpellGrants)
+            {
+                if (!spellIds.Contains(grant.GrantedSpellId))
+                {
+                    errors.Add(
+                        $"{owner} references missing spell " +
+                        $"'{grant.GrantedSpellId}'.");
+                }
+            }
+
+            if (race.InnateSpellcastingAbilityId is
+                    { } innateSpellcastingAbilityId &&
+                !abilityIds.Contains(innateSpellcastingAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing innate spellcasting " +
+                    $"ability '{innateSpellcastingAbilityId}'.");
+            }
         }
 
         foreach (
@@ -168,6 +190,25 @@ internal static class RaceCatalogIntegrityValidator
                         $"{owner} references missing weapon " +
                         $"'{weaponId}'.");
                 }
+            }
+
+            foreach (SpellGrant grant in subrace.InnateSpellGrants)
+            {
+                if (!spellIds.Contains(grant.GrantedSpellId))
+                {
+                    errors.Add(
+                        $"{owner} references missing spell " +
+                        $"'{grant.GrantedSpellId}'.");
+                }
+            }
+
+            if (subrace.InnateSpellcastingAbilityId is
+                    { } innateSpellcastingAbilityId &&
+                !abilityIds.Contains(innateSpellcastingAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing innate spellcasting " +
+                    $"ability '{innateSpellcastingAbilityId}'.");
             }
         }
 

@@ -113,6 +113,8 @@ public sealed class RaceFoundationTests
             [],
             null,
             null,
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -459,6 +461,8 @@ public sealed class RaceFoundationTests
         IEnumerable<WeaponId>? weaponProficiencyIds = null,
         SkillId? skillProficiencyId = null,
         int? skillProficiencyChoiceCount = null,
+        IEnumerable<SpellGrant>? innateSpellGrants = null,
+        AbilityId? innateSpellcastingAbilityId = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new RaceDefinition(
@@ -481,6 +485,8 @@ public sealed class RaceFoundationTests
             weaponProficiencyIds ?? [],
             skillProficiencyId,
             skillProficiencyChoiceCount,
+            innateSpellGrants ?? [],
+            innateSpellcastingAbilityId,
             sources ?? [CreateSource()]);
     }
 

@@ -40,6 +40,8 @@
     ],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -81,6 +83,8 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": "dnd5e2014.skill.perception",
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -124,6 +128,8 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -179,6 +185,8 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -255,6 +263,8 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -294,6 +304,8 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -334,6 +346,8 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": 2,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -385,6 +399,8 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [],
+    "innateSpellcastingAbilityId": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -431,6 +447,27 @@
     "weaponProficiencyIds": [],
     "skillProficiencyId": null,
     "skillProficiencyChoiceCount": null,
+    "innateSpellGrants": [
+      {
+        "grantedSpellId": "dnd5e2014.spell.thaumaturgy",
+        "minimumCharacterLevel": 1,
+        "frequency": "AtWill",
+        "castAtSpellLevel": null
+      },
+      {
+        "grantedSpellId": "dnd5e2014.spell.hellish-rebuke",
+        "minimumCharacterLevel": 3,
+        "frequency": "OncePerDay",
+        "castAtSpellLevel": 2
+      },
+      {
+        "grantedSpellId": "dnd5e2014.spell.darkness",
+        "minimumCharacterLevel": 5,
+        "frequency": "OncePerDay",
+        "castAtSpellLevel": null
+      }
+    ],
+    "innateSpellcastingAbilityId": "dnd5e2014.ability.charisma",
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

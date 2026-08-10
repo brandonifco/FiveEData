@@ -99,6 +99,7 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -137,6 +138,7 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -697,6 +699,7 @@ public sealed class SubclassFoundationTests
         BendLuckDetail? bendLuck = null,
         WardingFlareDetail? wardingFlare = null,
         AbilityModifierUsesGrant? warPriestUsesPerRest = null,
+        IEnumerable<SpellGrant>? innateSpellGrants = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubclassDefinition(
@@ -727,6 +730,7 @@ public sealed class SubclassFoundationTests
             bendLuck,
             wardingFlare,
             warPriestUsesPerRest,
+            innateSpellGrants ?? [],
             sources ?? [CreateSource()]);
     }
 

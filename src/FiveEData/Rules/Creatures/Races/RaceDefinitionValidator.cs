@@ -4,6 +4,7 @@ using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races.BreathWeapon;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -178,6 +179,41 @@ internal static class RaceDefinitionValidator
             errors.Add(
                 "Race skill proficiency choice count must be greater " +
                 "than zero when specified.");
+        }
+
+        var seenInnateSpellGrants = new HashSet<SpellId>();
+
+        foreach (SpellGrant grant in race.InnateSpellGrants)
+        {
+            if (string.IsNullOrWhiteSpace(grant.GrantedSpellId.Value))
+            {
+                errors.Add(
+                    "Race innate spell grant spell ID must not be empty.");
+                continue;
+            }
+
+            if (!seenInnateSpellGrants.Add(grant.GrantedSpellId))
+            {
+                errors.Add(
+                    "Race innate spell grant spell " +
+                    $"'{grant.GrantedSpellId}' is duplicated.");
+            }
+        }
+
+        if (race.InnateSpellGrants.Count > 0 &&
+            race.InnateSpellcastingAbilityId is null)
+        {
+            errors.Add(
+                "Race must define an innate spellcasting ability when it " +
+                "has innate spell grants.");
+        }
+
+        if (race.InnateSpellGrants.Count == 0 &&
+            race.InnateSpellcastingAbilityId is not null)
+        {
+            errors.Add(
+                "Race must not define an innate spellcasting ability " +
+                "without any innate spell grants.");
         }
 
         return errors;

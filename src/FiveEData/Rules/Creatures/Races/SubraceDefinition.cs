@@ -1,5 +1,6 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
+using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -21,6 +22,8 @@ public sealed class SubraceDefinition
         int? hitPointBonusPerLevel,
         IEnumerable<WeaponId> weaponProficiencyIds,
         IEnumerable<ArmorCategory> armorProficiencyCategories,
+        IEnumerable<SpellGrant> innateSpellGrants,
+        AbilityId? innateSpellcastingAbilityId,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -29,6 +32,7 @@ public sealed class SubraceDefinition
         ArgumentNullException.ThrowIfNull(resistedDamageTypeIds);
         ArgumentNullException.ThrowIfNull(weaponProficiencyIds);
         ArgumentNullException.ThrowIfNull(armorProficiencyCategories);
+        ArgumentNullException.ThrowIfNull(innateSpellGrants);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -47,6 +51,8 @@ public sealed class SubraceDefinition
             Array.AsReadOnly(weaponProficiencyIds.ToArray());
         ArmorProficiencyCategories =
             Array.AsReadOnly(armorProficiencyCategories.ToArray());
+        InnateSpellGrants = Array.AsReadOnly(innateSpellGrants.ToArray());
+        InnateSpellcastingAbilityId = innateSpellcastingAbilityId;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -64,6 +70,10 @@ public sealed class SubraceDefinition
     public IReadOnlyList<WeaponId> WeaponProficiencyIds { get; }
 
     public IReadOnlyList<ArmorCategory> ArmorProficiencyCategories { get; }
+
+    public IReadOnlyList<SpellGrant> InnateSpellGrants { get; }
+
+    public AbilityId? InnateSpellcastingAbilityId { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

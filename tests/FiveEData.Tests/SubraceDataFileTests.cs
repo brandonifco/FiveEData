@@ -1,3 +1,4 @@
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.Serialization;
 using FiveEData.Rules.Equipment.Armor;
@@ -244,6 +245,78 @@ public sealed class SubraceDataFileTests
                 subrace =>
                     subrace.Id.Value != "dnd5e2014.subrace.mountain-dwarf"),
             subrace => Assert.Empty(subrace.ArmorProficiencyCategories));
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesDrowMagic()
+    {
+        SubraceDefinition darkElf =
+            GetSubrace(LoadSubraces(), "dnd5e2014.subrace.dark-elf");
+
+        Assert.Equal(
+            "dnd5e2014.ability.charisma",
+            darkElf.InnateSpellcastingAbilityId?.Value);
+
+        Assert.Equal(
+            [
+                ("dnd5e2014.spell.dancing-lights", 1,
+                    SpellGrantFrequency.AtWill),
+                ("dnd5e2014.spell.faerie-fire", 3,
+                    SpellGrantFrequency.OncePerDay),
+                ("dnd5e2014.spell.darkness", 5,
+                    SpellGrantFrequency.OncePerDay)
+            ],
+            darkElf.InnateSpellGrants
+                .Select(grant => (
+                    grant.GrantedSpellId.Value,
+                    grant.MinimumCharacterLevel,
+                    grant.Frequency))
+                .ToArray());
+        Assert.All(
+            darkElf.InnateSpellGrants,
+            grant => Assert.Null(grant.CastAtSpellLevel));
+    }
+
+    // Natural Illusionist grants a cantrip, so unlike Drow Magic and
+    // Infernal Legacy it is a single at-will grant with no leveled tail.
+    [Fact]
+    public void CanonicalFile_PreservesForestGnomeNaturalIllusionist()
+    {
+        SubraceDefinition forestGnome =
+            GetSubrace(LoadSubraces(), "dnd5e2014.subrace.forest-gnome");
+
+        Assert.Equal(
+            "dnd5e2014.ability.intelligence",
+            forestGnome.InnateSpellcastingAbilityId?.Value);
+
+        SpellGrant grant = Assert.Single(forestGnome.InnateSpellGrants);
+        Assert.Equal(
+            "dnd5e2014.spell.minor-illusion",
+            grant.GrantedSpellId.Value);
+        Assert.Equal(1, grant.MinimumCharacterLevel);
+        Assert.Equal(SpellGrantFrequency.AtWill, grant.Frequency);
+        Assert.Null(grant.CastAtSpellLevel);
+    }
+
+    [Fact]
+    public void CanonicalFile_InnateSpellGrantsAreExclusiveToTheirSubrace()
+    {
+        IReadOnlyList<SubraceDefinition> subraces = LoadSubraces();
+
+        string[] owners =
+        [
+            "dnd5e2014.subrace.dark-elf",
+            "dnd5e2014.subrace.forest-gnome"
+        ];
+
+        Assert.All(
+            subraces.Where(
+                subrace => !owners.Contains(subrace.Id.Value)),
+            subrace =>
+            {
+                Assert.Empty(subrace.InnateSpellGrants);
+                Assert.Null(subrace.InnateSpellcastingAbilityId);
+            });
     }
 
     private static SubraceDefinition GetSubrace(

@@ -128,6 +128,11 @@ internal static class CatalogIntegrityValidator
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
+        HashSet<SpellId> spellIds =
+            definitions.Spells
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         errors.AddRange(
             RaceCatalogIntegrityValidator.Validate(
                 definitions.Races,
@@ -138,12 +143,8 @@ internal static class CatalogIntegrityValidator
                 ruleIds,
                 damageTypeIds,
                 weaponIds,
-                skillIds));
-
-        HashSet<SpellId> spellIds =
-            definitions.Spells
-                .Select(definition => definition.Id)
-                .ToHashSet();
+                skillIds,
+                spellIds));
 
         HashSet<SpellSlotProgressionId> spellSlotProgressionIds =
             definitions.SpellSlotProgressions
@@ -166,7 +167,8 @@ internal static class CatalogIntegrityValidator
                 spellSlotProgressionIds,
                 extraAttackProgressionIds,
                 damageTypeIds,
-                sizeIds));
+                sizeIds,
+                spellIds));
 
         foreach (
             SpellSlotProgressionDefinition spellSlotProgression

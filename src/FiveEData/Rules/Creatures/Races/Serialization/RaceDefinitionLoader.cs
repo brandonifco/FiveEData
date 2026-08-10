@@ -16,6 +16,7 @@ using FiveEData.Rules.Creatures.Races.BreathWeapon.Serialization;
 using FiveEData.Rules.Creatures.Sizes;
 using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
+using FiveEData.Rules.Spells;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
@@ -125,6 +126,11 @@ internal static class RaceDefinitionLoader
                 "Race weapon proficiency IDs are required.",
                 nameof(data));
 
+        SpellGrantData[] innateSpellGrantData = data.InnateSpellGrants
+            ?? throw new ArgumentException(
+                "Race innate spell grants are required.",
+                nameof(data));
+
         SourceReferenceData[] sourceData = data.Sources
             ?? throw new ArgumentException(
                 "Race sources are required.",
@@ -154,6 +160,16 @@ internal static class RaceDefinitionLoader
         SkillId? skillProficiencyId =
             data.SkillProficiencyId is { } skillProficiencyIdValue
                 ? new SkillId(skillProficiencyIdValue)
+                : null;
+
+        SpellGrant[] innateSpellGrants = innateSpellGrantData
+            .Select(SpellGrantDataMapper.Map)
+            .ToArray();
+
+        AbilityId? innateSpellcastingAbilityId =
+            data.InnateSpellcastingAbilityId is
+                { } innateSpellcastingAbilityIdValue
+                ? new AbilityId(innateSpellcastingAbilityIdValue)
                 : null;
 
         BreathWeaponProgressionDetail? breathWeaponProgression =
@@ -202,6 +218,8 @@ internal static class RaceDefinitionLoader
             weaponProficiencyIds,
             skillProficiencyId,
             data.SkillProficiencyChoiceCount,
+            innateSpellGrants,
+            innateSpellcastingAbilityId,
             sources);
     }
 
