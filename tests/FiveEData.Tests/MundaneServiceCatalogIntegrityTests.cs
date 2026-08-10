@@ -316,6 +316,7 @@ public sealed class MundaneServiceCatalogIntegrityTests
             eldritchInvocations: [],
             elementalDisciplines: [],
             channelDivinityOptions: [],
+            totemWarriorOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],

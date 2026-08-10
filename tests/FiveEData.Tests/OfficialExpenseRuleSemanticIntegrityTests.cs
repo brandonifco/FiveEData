@@ -353,6 +353,7 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             eldritchInvocations: [],
             elementalDisciplines: [],
             channelDivinityOptions: [],
+            totemWarriorOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],

@@ -281,6 +281,7 @@ public sealed class
             eldritchInvocations: [],
             elementalDisciplines: [],
             channelDivinityOptions: [],
+            totemWarriorOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],

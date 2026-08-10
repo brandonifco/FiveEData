@@ -168,6 +168,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             eldritchInvocations: [],
             elementalDisciplines: [],
             channelDivinityOptions: [],
+            totemWarriorOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],

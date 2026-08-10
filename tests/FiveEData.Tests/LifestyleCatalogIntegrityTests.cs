@@ -168,6 +168,7 @@ public sealed class LifestyleCatalogIntegrityTests
             eldritchInvocations: [],
             elementalDisciplines: [],
             channelDivinityOptions: [],
+            totemWarriorOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],
