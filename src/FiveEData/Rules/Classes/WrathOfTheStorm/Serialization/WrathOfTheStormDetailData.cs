@@ -21,5 +21,5 @@ internal sealed class WrathOfTheStormDetailData
     public bool HalfDamageOnSuccessfulSave { get; init; }
 
     [JsonRequired]
-    public bool RecoversOnLongRest { get; init; }
+    public AbilityModifierUsesGrantData? UsesPerRest { get; init; }
 }

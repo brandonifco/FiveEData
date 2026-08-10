@@ -29,12 +29,18 @@ internal static class WrathOfTheStormDetailDataMapper
                 "Wrath of the Storm saving throw ability ID is required.",
                 nameof(data));
 
+        AbilityModifierUsesGrantData usesPerRestData =
+            data.UsesPerRest
+            ?? throw new ArgumentException(
+                "Wrath of the Storm uses per rest is required.",
+                nameof(data));
+
         return new WrathOfTheStormDetail(
             data.TriggerRangeFeet,
             new DiceExpression(damageData.Count, damageData.Sides),
             damageTypeIdValues.Select(value => new DamageTypeId(value)),
             new AbilityId(savingThrowAbilityIdValue),
             data.HalfDamageOnSuccessfulSave,
-            data.RecoversOnLongRest);
+            AbilityModifierUsesGrantDataMapper.Map(usesPerRestData));
     }
 }

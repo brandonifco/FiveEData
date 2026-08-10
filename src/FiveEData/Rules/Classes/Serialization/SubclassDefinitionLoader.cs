@@ -21,12 +21,15 @@ using FiveEData.Rules.Classes.ShadowStep;
 using FiveEData.Rules.Classes.ShadowStep.Serialization;
 using FiveEData.Rules.Classes.ThunderboltStrike;
 using FiveEData.Rules.Classes.ThunderboltStrike.Serialization;
+using FiveEData.Rules.Classes.WardingFlare;
+using FiveEData.Rules.Classes.WardingFlare.Serialization;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Classes.WrathOfTheStorm.Serialization;
 using FiveEData.Rules.Classes.Portent.Serialization;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.DivineStrike.Serialization;
 using FiveEData.Rules.Classes.Spellcasting;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
 using FiveEData.Rules.Common.Serialization;
@@ -225,6 +228,17 @@ internal static class SubclassDefinitionLoader
                 ? BendLuckDetailDataMapper.Map(bendLuckData)
                 : null;
 
+        WardingFlareDetail? wardingFlare =
+            data.WardingFlare is { } wardingFlareData
+                ? WardingFlareDetailDataMapper.Map(wardingFlareData)
+                : null;
+
+        AbilityModifierUsesGrant? warPriestUsesPerRest =
+            data.WarPriestUsesPerRest is { } warPriestUsesPerRestData
+                ? AbilityModifierUsesGrantDataMapper.Map(
+                    warPriestUsesPerRestData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -251,6 +265,8 @@ internal static class SubclassDefinitionLoader
             data.QuiveringPalmKiCost,
             data.DraconicPresenceSorceryPointCost,
             bendLuck,
+            wardingFlare,
+            warPriestUsesPerRest,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

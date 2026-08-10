@@ -400,6 +400,13 @@ internal static class ClassDefinitionLoader
                 ? EmptyBodyDetailDataMapper.Map(emptyBodyData)
                 : null;
 
+        AbilityModifierUsesGrant? cleansingTouchUsesPerRest =
+            data.CleansingTouchUsesPerRest is
+                { } cleansingTouchUsesPerRestData
+                ? AbilityModifierUsesGrantDataMapper.Map(
+                    cleansingTouchUsesPerRestData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -454,6 +461,7 @@ internal static class ClassDefinitionLoader
             emptyBody,
             data.PerfectSelfKiPointsRegained,
             data.SorcerousRestorationSorceryPointsRegained,
+            cleansingTouchUsesPerRest,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

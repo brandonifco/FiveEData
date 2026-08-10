@@ -97,6 +97,7 @@ public sealed class ClassDefinition
         EmptyBodyDetail? emptyBody,
         int? perfectSelfKiPointsRegained,
         int? sorcerousRestorationSorceryPointsRegained,
+        AbilityModifierUsesGrant? cleansingTouchUsesPerRest,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -167,6 +168,7 @@ public sealed class ClassDefinition
         PerfectSelfKiPointsRegained = perfectSelfKiPointsRegained;
         SorcerousRestorationSorceryPointsRegained =
             sorcerousRestorationSorceryPointsRegained;
+        CleansingTouchUsesPerRest = cleansingTouchUsesPerRest;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -273,6 +275,8 @@ public sealed class ClassDefinition
     public int? PerfectSelfKiPointsRegained { get; }
 
     public int? SorcerousRestorationSorceryPointsRegained { get; }
+
+    public AbilityModifierUsesGrant? CleansingTouchUsesPerRest { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

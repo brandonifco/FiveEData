@@ -12,7 +12,7 @@ public sealed record WrathOfTheStormDetail
         IEnumerable<DamageTypeId> choosableDamageTypeIds,
         AbilityId savingThrowAbilityId,
         bool halfDamageOnSuccessfulSave,
-        bool recoversOnLongRest)
+        AbilityModifierUsesGrant usesPerRest)
     {
         ArgumentNullException.ThrowIfNull(choosableDamageTypeIds);
 
@@ -38,7 +38,7 @@ public sealed record WrathOfTheStormDetail
             Array.AsReadOnly(choosableDamageTypeIds.ToArray());
         SavingThrowAbilityId = savingThrowAbilityId;
         HalfDamageOnSuccessfulSave = halfDamageOnSuccessfulSave;
-        RecoversOnLongRest = recoversOnLongRest;
+        UsesPerRest = usesPerRest;
     }
 
     public int TriggerRangeFeet { get; }
@@ -51,5 +51,5 @@ public sealed record WrathOfTheStormDetail
 
     public bool HalfDamageOnSuccessfulSave { get; }
 
-    public bool RecoversOnLongRest { get; }
+    public AbilityModifierUsesGrant UsesPerRest { get; }
 }

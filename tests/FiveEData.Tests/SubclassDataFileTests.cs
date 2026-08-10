@@ -15,6 +15,8 @@ using FiveEData.Rules.Classes.DraconicResilience;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.Portent;
 using FiveEData.Rules.Classes.Serialization;
+using FiveEData.Rules.Classes.WardingFlare;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Equipment.Armor;
 
 namespace FiveEData.Tests;
@@ -2146,7 +2148,10 @@ public sealed class SubclassDataFileTests
             "dnd5e2014.ability.dexterity",
             wrathOfTheStorm.SavingThrowAbilityId.Value);
         Assert.True(wrathOfTheStorm.HalfDamageOnSuccessfulSave);
-        Assert.True(wrathOfTheStorm.RecoversOnLongRest);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            wrathOfTheStorm.UsesPerRest.AbilityId.Value);
+        Assert.True(wrathOfTheStorm.UsesPerRest.RecoversOnLongRest);
 
         ThunderboltStrikeDetail thunderboltStrike =
             tempest.ThunderboltStrike
@@ -2158,11 +2163,46 @@ public sealed class SubclassDataFileTests
             thunderboltStrike.MaximumTargetSizeId.Value);
     }
 
+    [Fact]
+    public void CanonicalFile_PreservesLightDomainWardingFlare()
+    {
+        SubclassDefinition light = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.light-domain");
+
+        WardingFlareDetail wardingFlare =
+            light.WardingFlare
+            ?? throw new InvalidOperationException(
+                "Expected Light Domain to have Warding Flare.");
+        Assert.Equal(30, wardingFlare.TriggerRangeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            wardingFlare.UsesPerRest.AbilityId.Value);
+        Assert.True(wardingFlare.UsesPerRest.RecoversOnLongRest);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesWarDomainWarPriest()
+    {
+        SubclassDefinition war = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.war-domain");
+
+        AbilityModifierUsesGrant warPriest =
+            war.WarPriestUsesPerRest
+            ?? throw new InvalidOperationException(
+                "Expected War Domain to have War Priest.");
+        Assert.Equal("dnd5e2014.ability.wisdom", warPriest.AbilityId.Value);
+        Assert.True(warPriest.RecoversOnLongRest);
+    }
+
     [Theory]
     [InlineData("dnd5e2014.subclass.champion")]
     [InlineData("dnd5e2014.subclass.way-of-shadow")]
     [InlineData("dnd5e2014.subclass.the-fiend")]
     [InlineData("dnd5e2014.subclass.tempest-domain")]
+    [InlineData("dnd5e2014.subclass.light-domain")]
+    [InlineData("dnd5e2014.subclass.war-domain")]
     public void CanonicalFile_TierBSubclassScalarsAreExclusiveToTheirSubclass(
         string subclassId)
     {
@@ -2173,7 +2213,9 @@ public sealed class SubclassDataFileTests
             "dnd5e2014.subclass.champion",
             "dnd5e2014.subclass.way-of-shadow",
             "dnd5e2014.subclass.the-fiend",
-            "dnd5e2014.subclass.tempest-domain"
+            "dnd5e2014.subclass.tempest-domain",
+            "dnd5e2014.subclass.light-domain",
+            "dnd5e2014.subclass.war-domain"
         ];
 
         Assert.Contains(subclassId, owners);
@@ -2186,6 +2228,8 @@ public sealed class SubclassDataFileTests
             Assert.Null(other.HurlThroughHell);
             Assert.Null(other.WrathOfTheStorm);
             Assert.Null(other.ThunderboltStrike);
+            Assert.Null(other.WardingFlare);
+            Assert.Null(other.WarPriestUsesPerRest);
         }
     }
 

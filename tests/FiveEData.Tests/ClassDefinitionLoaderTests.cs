@@ -85,6 +85,7 @@ public sealed class ClassDefinitionLoaderTests
           "emptyBody": null,
           "perfectSelfKiPointsRegained": null,
           "sorcerousRestorationSorceryPointsRegained": null,
+          "cleansingTouchUsesPerRest": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -237,6 +238,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -369,6 +371,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -466,6 +469,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -663,6 +667,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -769,6 +774,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -872,6 +878,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -988,6 +995,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1111,6 +1119,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1217,6 +1226,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1323,6 +1333,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1420,6 +1431,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1516,6 +1528,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1611,6 +1624,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1711,6 +1725,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1781,6 +1796,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -1821,6 +1837,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": []
                   }
                 ]
@@ -1858,6 +1875,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": []
                   }
                 ]
@@ -1896,6 +1914,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": []
                   }
                 ]
@@ -1934,6 +1953,7 @@ public sealed class ClassDefinitionLoaderTests
                     "emptyBody": null,
                     "perfectSelfKiPointsRegained": null,
                     "sorcerousRestorationSorceryPointsRegained": null,
+                    "cleansingTouchUsesPerRest": null,
                     "sources": null
                   }
                 ]
