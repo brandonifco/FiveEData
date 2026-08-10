@@ -5,6 +5,18 @@
     "requiresEldritchBlastCantrip": true,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": true,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -15,6 +27,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.mage-armor",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": true,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -25,6 +49,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 9,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.levitate",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": true,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -35,6 +71,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.speak-with-animals",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -45,6 +93,21 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [
+      "dnd5e2014.skill.deception",
+      "dnd5e2014.skill.persuasion"
+    ],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -55,6 +118,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 7,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.compulsion",
+    "castingFrequency": "OncePerLongRestUsingASpellSlot",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -65,6 +140,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": "Tome",
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -75,6 +162,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 15,
     "requiresPactBoon": "Chain",
+    "grantedSpellId": "dnd5e2014.spell.hold-monster",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": true,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -85,6 +184,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": 120,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -95,6 +206,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 7,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.confusion",
+    "castingFrequency": "OncePerLongRestUsingASpellSlot",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -105,6 +228,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.detect-magic",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 110, "section": "Chapter 3: Classes" }
     ]
@@ -115,6 +250,18 @@
     "requiresEldritchBlastCantrip": true,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": 300,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -125,6 +272,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": true,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -135,6 +294,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.false-life",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": true,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -145,6 +316,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -155,6 +338,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 12,
     "requiresPactBoon": "Blade",
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": true,
+    "extraDamageTypeId": "dnd5e2014.damage-type.necrotic",
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -165,6 +360,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.disguise-self",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -175,6 +382,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 15,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.alter-self",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -185,6 +404,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 9,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.conjure-elemental",
+    "castingFrequency": "OncePerLongRestUsingASpellSlot",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -195,6 +426,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 5,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.slow",
+    "castingFrequency": "OncePerLongRestUsingASpellSlot",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -205,6 +448,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.silent-image",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": true,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -215,6 +470,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 5,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -225,6 +492,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 9,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.jump",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": true,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -235,6 +514,18 @@
     "requiresEldritchBlastCantrip": true,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": 10,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -245,6 +536,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 7,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.polymorph",
+    "castingFrequency": "OncePerLongRestUsingASpellSlot",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -255,6 +558,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 5,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.bestow-curse",
+    "castingFrequency": "OncePerLongRestUsingASpellSlot",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -265,6 +580,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.bane",
+    "castingFrequency": "OncePerLongRestUsingASpellSlot",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -275,6 +602,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 5,
     "requiresPactBoon": "Blade",
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": true,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -285,6 +624,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 15,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.arcane-eye",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -295,6 +646,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": null,
     "requiresPactBoon": "Chain",
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -305,6 +668,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 9,
     "requiresPactBoon": null,
+    "grantedSpellId": "dnd5e2014.spell.speak-with-dead",
+    "castingFrequency": "AtWill",
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": null,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]
@@ -315,6 +690,18 @@
     "requiresEldritchBlastCantrip": false,
     "requiredMinimumLevel": 15,
     "requiresPactBoon": null,
+    "grantedSpellId": null,
+    "castingFrequency": null,
+    "waivesMaterialComponents": false,
+    "addsSpellcastingModifierToDamage": false,
+    "extraDamageTypeId": null,
+    "skillProficiencyIds": [],
+    "darknessVisionRangeFeet": null,
+    "trueSightRangeFeet": 30,
+    "eldritchBlastRangeFeet": null,
+    "eldritchBlastPushDistanceFeet": null,
+    "canReadAllWriting": false,
+    "grantsSecondPactWeaponAttack": false,
     "sources": [
       { "documentId": "dnd5e2014.source.phb-first-printing", "page": 111, "section": "Chapter 3: Classes" }
     ]

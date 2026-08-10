@@ -15,9 +15,14 @@ a game.
 
 ## Current state
 
-**Nothing in progress. Gap 3 has one scoped-but-unbuilt candidate queued
-(Eldritch Invocations) — see "Game-backend quantization: gap 3 scoping,
-and Metamagic effects" — but ask the user before building it.**
+**Nothing in progress. Gap 3's three scoped candidates (Metamagic,
+Battle Master maneuvers, Eldritch Invocations) are all built — see
+"Game-backend quantization: gap 3 scoping, and Metamagic effects."**
+Building Eldritch Invocations surfaced one more real, undone tail —
+Elemental Disciplines and Channel Divinity options still have
+unquantized "cast `<spell>`" prose that could reuse the new
+`GrantedSpellId` shape — but that's a newly-discovered candidate, not
+part of the original scoped table. Ask the user before starting it.
 
 Built and complete:
 
@@ -65,11 +70,17 @@ Built and complete:
 - Conditions — **all 15 PHB conditions (Appendix A) now carry full
   mechanical payloads**, not just `Id`/`Name`/`Sources`. See "Game-backend
   quantization: Conditions" below.
-- Gap 3 (feature-effect prose) — **scoped and in progress.** Metamagic
-  (all 8 options) and Battle Master maneuvers (all 16) are built;
-  Eldritch Invocations is scoped but not yet built. See "Game-backend
-  quantization: gap 3 scoping, and Metamagic effects" and "Game-backend
-  quantization: Battle Master maneuver effects" below.
+- Gap 3 (feature-effect prose) — **all three scoped candidates built.**
+  Metamagic (all 8 options), Battle Master maneuvers (all 16), and
+  Eldritch Invocations (all 32) are done. See "Game-backend
+  quantization: gap 3 scoping, and Metamagic effects", "Game-backend
+  quantization: Battle Master maneuver effects", and "Game-backend
+  quantization: Eldritch Invocation effects" below. **This closed the
+  scoped table, not every feature-effect prose in the codebase** —
+  Elemental Disciplines/Channel Divinity's own "cast a spell" prose and
+  all race/subclass/background feature text outside these five
+  choice-point catalogs are still unquantized; see the caveat in
+  "Current state" above.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -115,7 +126,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2902 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2945 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -2043,20 +2054,26 @@ already established:
 | --- | --- | --- |
 | Metamagic | 8 | **Built** |
 | Battle Master maneuvers | 16 | **Built** |
-| Eldritch Invocations | 32 | Scoped, not built |
+| Eldritch Invocations | 32 | **Built** |
 
-**Eldritch Invocations is the richest candidate, and needs a new
-cross-domain reference that didn't exist when gap 3 was first named.**
-At least 14 of its 32 options are literally "you can cast `<spell>` at
-will / once per long rest / using a warlock spell slot" — a clean
+**Eldritch Invocations turned out to be the richest candidate by far,
+and needed a new cross-domain reference that didn't exist when gap 3
+was first named.** 19 of its 32 options (not the ~14 first estimated
+during scoping — verify every count against the page images, not a
+scoping-time guess) are literally "you can cast `<spell>` at will /
+once per long rest / using a warlock spell slot" — a clean
 `GrantedSpellId: SpellId?` reference into the Spells catalog, which
 wasn't buildable when the "Spells are not a modeled domain" line in
 "What becomes structured data vs. a citation" was written but is now,
 since `SpellId`/`SpellDefinition` are a real domain (see the "Current
-state" note on the game-backend initiative reversing that line).
-**Elemental Disciplines and Channel Divinity options' remaining
-unquantized prose is mostly the same "cast `<spell>`" shape** — close
-them by reusing `GrantedSpellId` once Eldritch Invocations builds it,
+state" note on the game-backend initiative reversing that line). See
+"Game-backend quantization: Eldritch Invocation effects" below for the
+full build. **Elemental Disciplines and Channel Divinity options'
+remaining unquantized prose is mostly the same "cast `<spell>`"
+shape** — close them by mirroring the same `SpellId?` field shape onto
+their own definitions (each domain owns its own field per this
+project's standing "don't share a progression/grant type across
+domains" rule — `GrantedSpellId` itself isn't literally reusable),
 not as separate scoping work. Race/subclass/background feature prose
 outside these five choice-point catalogs is a separate, unscoped tail.
 
@@ -2197,6 +2214,142 @@ building this slice** — page 74 already matches where "COMMANDER'S
 STRIKE" through "TRIP ATTACK" actually start (the PDF's real footer for
 this section, like Metamagic's, runs one page behind the PDF's own page
 index); no citation error found.
+
+## Game-backend quantization: Eldritch Invocation effects
+
+Gap 3's third and final scoped slice, closing the ranked candidate
+table. `EldritchInvocationDefinition` already carried three prerequisite
+facts (`RequiresEldritchBlastCantrip`, `RequiredMinimumLevel`,
+`RequiresPactBoon`); this slice adds each invocation's actual *benefit*,
+read from the rendered page images at pp.110–111 — **not from
+`pdftotext`**, since this is a two-page, four-column layout and
+`pdftotext -layout`'s column-interleaving genuinely scrambled the
+reading order on a first pass (confirmed by rendering both pages to
+300 dpi PNGs with `pdftoppm` and reading them directly, the same
+"locate with text, read values from the image" split the citation rules
+already mandate — this domain just needed the image for the *locating*
+step too, not only the values). 28 of the 32 invocations gained at
+least one new fact; 4 (Book of Ancient Secrets, Gaze of Two Minds, One
+with Shadows, Voice of the Chain Master) stay exactly as before, all
+genuinely compound/multi-part mechanics — the richest slice of gap 3 by
+a wide margin, as the scoping pass predicted.
+
+**The headline addition: `GrantedSpellId: SpellId?` paired with
+`EldritchInvocationCastingFrequency?` (`AtWill` /
+`OncePerLongRestUsingASpellSlot`) — this project's first-ever
+cross-domain reference *into* the Spells catalog from outside it.**
+Every prior spell cross-reference ran the other direction (a spell's
+own `AvailableToClassIds`); this is the first definition anywhere that
+points *at* a `SpellId`. 19 of the 32 invocations are a clean "cast
+`<spell>`" grant — 12 `AtWill` (Armor of Shadows, Ascendant Step, Beast
+Speech, Chains of Carceri, Eldritch Sight, Fiendish Vigor, Mask of Many
+Faces, Master of Myriad Forms, Misty Visions, Otherworldly Leap, Visions
+of Distant Realms, Whispers of the Grave) and 7
+`OncePerLongRestUsingASpellSlot` (Bewitching Whispers, Dreadful Word,
+Minions of Chaos, Mire the Mind, Sculptor of Flesh, Sign of Ill Omen,
+Thief of Five Fates) — both fields validator-paired (present together or
+neither), the same discipline `DowntimeActivityDefinition`'s
+saving-throw/DC pair and this project's other paired-field checks
+already established. `CatalogIntegrityValidator` gained its first
+`HashSet<SpellId>` (built from `definitions.Spells`) to back the
+reference-integrity check, the same shape every other cross-domain
+check in that validator already uses.
+
+**A third fact splits the 12 `AtWill` grants down the middle, and it's
+a real PHB distinction, not noise:** `WaivesMaterialComponents` is
+`true` for exactly 6 of the 12 (Armor of Shadows, Ascendant Step, Chains
+of Carceri, Fiendish Vigor, Misty Visions, Otherworldly Leap — all
+printed "at will, without expending a spell slot **or material
+components**") and `false` for the other 6 (Beast Speech, Eldritch
+Sight, Mask of Many Faces, Master of Myriad Forms, Visions of Distant
+Realms, Whispers of the Grave — printed "at will, without expending a
+spell slot" with no components clause at all, meaning the caster still
+needs to provide them normally). Reading `pdftotext`'s garbled column
+order would have made this an easy detail to miss or homogenize;
+verified per-entry against the rendered image instead.
+
+**Two invocations add the spellcasting ability modifier straight to a
+damage roll, mirroring Metamagic's Careful/Empowered Spell "up to your
+Charisma modifier" shape rather than the declined "dice + modifier"
+line Parry/Rally/Cure Wounds sit on** — because here the *entire*
+damage fact is the modifier, no dice at all. `AddsSpellcastingModifierToDamage`
+is `true` for Agonizing Blast (boosts Eldritch Blast's own force
+damage, no new damage type introduced, so `ExtraDamageTypeId` stays
+null) and Lifedrinker (adds a wholly new necrotic damage source
+alongside the pact weapon's own damage, so `ExtraDamageTypeId` = necrotic).
+**Lifedrinker's printed "(minimum 1)" clause is not stored as a
+separate field** — Agonizing Blast's identical mechanic prints no such
+clause, and the project's "store what's printed, don't infer" rule
+means the difference stays in the citation rather than being
+normalized away or invented for the entry that lacks it.
+
+**`SkillProficiencyIds` reuses the exact `IReadOnlyList<SkillId>` shape
+`BackgroundDefinition` already established**, populated only for
+Beguiling Influence (Deception, Persuasion) — the same "two fixed
+skills, no choice" pattern every background grant already uses, just on
+a fourth domain now instead of a third.
+
+**Four more one-off scalars, no shared shape between them, the same
+"several independent purpose-named fields" discipline Metamagic and
+Battle Master maneuvers both already used:** `DarknessVisionRangeFeet:
+120` (Devil's Sight) and `TrueSightRangeFeet: 30` (Witch Sight) are two
+different vision mechanics that don't share a field, the same
+"Blindsense/Feral Senses/Divine Sense each get their own detail type"
+precedent from the Quantized-mechanics tail; `EldritchBlastRangeFeet:
+300` (Eldritch Spear) and `EldritchBlastPushDistanceFeet: 10` (Repelling
+Blast) are both scoped specifically to Eldritch Blast rather than named
+generically, since neither fact applies to any other spell an
+invocation could ever touch. `CanReadAllWriting` (Eyes of the Rune
+Keeper) and `GrantsSecondPactWeaponAttack` (Thirsting Blade) round out
+the slice — each a real, singular, quantizable fact used by exactly one
+invocation, the same standing precedent Metamagic's
+`ProtectsCreatureCountUpToSpellcastingModifier` already set: a fact
+used once still earns a field if it's genuinely a fact, not a
+compound/DM-adjudicated rule.
+
+**Chains of Carceri's creature-type restriction and per-target
+cooldown stay declined, riding on top of a captured core grant** — "You
+can cast *hold monster* at will—targeting a celestial, fiend, or
+elemental—...You must finish a long rest before you can use this
+invocation on the same creature again" captures cleanly as
+`GrantedSpellId`/`AtWill`/`WaivesMaterialComponents`, but the
+creature-type filter and the unusual *per-target* (not per-caster)
+cooldown are riders no field represents, the same "per-spell secondary
+rider stays unquantized" call already made throughout the Spells
+effect-data passes.
+
+**Book of Ancient Secrets is declined for the same reason Wizard's own
+spellbook-copying costs were declined, and the two turn out to state
+the identical formula.** Its "choose two 1st-level ritual spells from
+any class's list" grant is an open-ended choice, not a single
+`GrantedSpellId` — the same "caster picks from a list" shape that
+already declined Symbol and Prismatic Spray's per-option choices at the
+Spells pass. Its later "add other ritual spells" paragraph prices
+transcription at 2 hours + 50 gp per spell level — verified against
+`WizardSpellbookDetail`'s own declined copying-cost prose and found to
+be the exact same figures, not a coincidence worth re-deriving as a new
+fact.
+
+**Gaze of Two Minds and Voice of the Chain Master both extend the
+controllable/perceiving-through-another-creature decline already
+established for Spiritual Weapon, Bigby's Hand, and Mordenkainen's
+Faithful Hound** — each is a multi-turn perception/communication link
+maintained action-by-action, not a single resolved effect. **One with
+Shadows is declined as a conditional trigger** (invisibility gated on
+being in dim light or darkness, ended by moving/acting/reacting), the
+same shape Prone's range-conditional attack-roll text and Plant
+Growth's alternate casting time already sit on.
+
+**All 32 citations were re-verified against the rendered page images
+while building this slice** — pages 110 and 111 already match where
+each invocation's own name heading starts (the same one-page-behind
+footer offset Metamagic and Battle Master maneuvers both showed); no
+citation error found. **Gap 3's three scoped candidates are now all
+built.** The initiative's remaining tail — Elemental Disciplines/Channel
+Divinity's own "cast a spell" prose, and every class/subclass/race/
+background feature outside these five choice-point catalogs — was never
+part of this scoped table and stays for a future pass to scope in its
+own right.
 
 ## Test conventions
 

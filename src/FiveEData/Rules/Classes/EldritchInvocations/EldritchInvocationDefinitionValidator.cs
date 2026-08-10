@@ -35,6 +35,82 @@ internal static class EldritchInvocationDefinitionValidator
                 "defined value.");
         }
 
+        bool hasGrantedSpell = definition.GrantedSpellId is not null;
+        bool hasCastingFrequency = definition.CastingFrequency is not null;
+
+        if (hasGrantedSpell != hasCastingFrequency)
+        {
+            errors.Add(
+                "Eldritch invocation must have a granted spell and a " +
+                "casting frequency together, or neither.");
+        }
+
+        if (definition.CastingFrequency is { } castingFrequency &&
+            !Enum.IsDefined(castingFrequency))
+        {
+            errors.Add(
+                "Eldritch invocation casting frequency must be a " +
+                "defined value.");
+        }
+
+        if (definition.WaivesMaterialComponents && !hasGrantedSpell)
+        {
+            errors.Add(
+                "Eldritch invocation cannot waive material components " +
+                "without a granted spell.");
+        }
+
+        if (definition.ExtraDamageTypeId is not null &&
+            !definition.AddsSpellcastingModifierToDamage)
+        {
+            errors.Add(
+                "Eldritch invocation cannot have an extra damage type " +
+                "without adding the spellcasting modifier to damage.");
+        }
+
+        if (definition.SkillProficiencyIds.Distinct().Count() !=
+            definition.SkillProficiencyIds.Count)
+        {
+            errors.Add(
+                "Eldritch invocation skill proficiencies must not " +
+                "contain duplicates.");
+        }
+
+        if (definition.DarknessVisionRangeFeet is
+                { } darknessVisionRangeFeet &&
+            darknessVisionRangeFeet <= 0)
+        {
+            errors.Add(
+                "Eldritch invocation darkness vision range must be " +
+                "greater than zero.");
+        }
+
+        if (definition.TrueSightRangeFeet is { } trueSightRangeFeet &&
+            trueSightRangeFeet <= 0)
+        {
+            errors.Add(
+                "Eldritch invocation true sight range must be greater " +
+                "than zero.");
+        }
+
+        if (definition.EldritchBlastRangeFeet is
+                { } eldritchBlastRangeFeet &&
+            eldritchBlastRangeFeet <= 0)
+        {
+            errors.Add(
+                "Eldritch invocation eldritch blast range must be " +
+                "greater than zero.");
+        }
+
+        if (definition.EldritchBlastPushDistanceFeet is
+                { } eldritchBlastPushDistanceFeet &&
+            eldritchBlastPushDistanceFeet <= 0)
+        {
+            errors.Add(
+                "Eldritch invocation eldritch blast push distance must " +
+                "be greater than zero.");
+        }
+
         if (definition.Sources.Count == 0)
         {
             errors.Add(

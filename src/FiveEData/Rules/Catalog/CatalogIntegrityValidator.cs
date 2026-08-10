@@ -133,6 +133,11 @@ internal static class CatalogIntegrityValidator
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
+        HashSet<SpellId> spellIds =
+            definitions.Spells
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         HashSet<WeaponId> weaponIds =
             definitions.Equipment.Weapons
                 .Select(definition => definition.Id)
@@ -357,11 +362,40 @@ internal static class CatalogIntegrityValidator
             EldritchInvocationDefinition eldritchInvocation
             in definitions.EldritchInvocations)
         {
+            string owner = $"Eldritch invocation '{eldritchInvocation.Id}'";
+
             ValidateSources(
-                $"Eldritch invocation '{eldritchInvocation.Id}'",
+                owner,
                 eldritchInvocation.Sources,
                 sourceIds,
                 errors);
+
+            if (eldritchInvocation.GrantedSpellId is { } grantedSpellId &&
+                !spellIds.Contains(grantedSpellId))
+            {
+                errors.Add(
+                    $"{owner} references missing spell '{grantedSpellId}'.");
+            }
+
+            if (eldritchInvocation.ExtraDamageTypeId is
+                    { } extraDamageTypeId &&
+                !damageTypeIds.Contains(extraDamageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{extraDamageTypeId}'.");
+            }
+
+            foreach (
+                SkillId skillId
+                in eldritchInvocation.SkillProficiencyIds)
+            {
+                if (!skillIds.Contains(skillId))
+                {
+                    errors.Add(
+                        $"{owner} references missing skill '{skillId}'.");
+                }
+            }
         }
 
         foreach (
