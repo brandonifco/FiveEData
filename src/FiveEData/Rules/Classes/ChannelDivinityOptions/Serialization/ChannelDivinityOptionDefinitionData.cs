@@ -40,5 +40,20 @@ internal sealed class ChannelDivinityOptionDefinitionData
     public bool AutomaticallyFailsGrantedSpellSave { get; init; }
 
     [JsonRequired]
+    public bool AddsSpellcastingModifierToAttackRolls { get; init; }
+
+    [JsonRequired]
+    public int? BrightLightRadiusFeet { get; init; }
+
+    [JsonRequired]
+    public int? DimLightRadiusFeet { get; init; }
+
+    [JsonRequired]
+    public string[]? ChoosableSavingThrowAbilityIds { get; init; }
+
+    [JsonRequired]
+    public bool GrantsAdvantageOnAttackRollsAgainstTarget { get; init; }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }

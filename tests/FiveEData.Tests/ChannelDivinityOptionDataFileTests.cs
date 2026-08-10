@@ -14,15 +14,21 @@ public sealed class ChannelDivinityOptionDataFileTests
 
         Assert.Equal(
             [
+                "dnd5e2014.channel-divinity-option.abjure-enemy",
                 "dnd5e2014.channel-divinity-option.charm-animals-and-plants",
                 "dnd5e2014.channel-divinity-option.cloak-of-shadows",
                 "dnd5e2014.channel-divinity-option.destructive-wrath",
                 "dnd5e2014.channel-divinity-option.guided-strike",
                 "dnd5e2014.channel-divinity-option.invoke-duplicity",
                 "dnd5e2014.channel-divinity-option.knowledge-of-the-ages",
+                "dnd5e2014.channel-divinity-option.natures-wrath",
                 "dnd5e2014.channel-divinity-option.preserve-life",
                 "dnd5e2014.channel-divinity-option.radiance-of-the-dawn",
                 "dnd5e2014.channel-divinity-option.read-thoughts",
+                "dnd5e2014.channel-divinity-option.sacred-weapon",
+                "dnd5e2014.channel-divinity-option.turn-the-faithless",
+                "dnd5e2014.channel-divinity-option.turn-the-unholy",
+                "dnd5e2014.channel-divinity-option.vow-of-enmity",
                 "dnd5e2014.channel-divinity-option.war-gods-blessing"
             ],
             definitions
@@ -190,7 +196,82 @@ public sealed class ChannelDivinityOptionDataFileTests
     }
 
     [Fact]
-    public void AllOptions_CitePhbFirstPrintingPageFiftyNineThroughSixtyThree()
+    public void SacredWeapon_AddsSpellcastingModifierToAttackRollsAndEmitsLight()
+    {
+        ChannelDivinityOptionDefinition definition =
+            Get("dnd5e2014.channel-divinity-option.sacred-weapon");
+
+        Assert.Equal(1, definition.DurationMinutes);
+        Assert.True(definition.AddsSpellcastingModifierToAttackRolls);
+        Assert.Equal(20, definition.BrightLightRadiusFeet);
+        Assert.Equal(20, definition.DimLightRadiusFeet);
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.channel-divinity-option.turn-the-unholy")]
+    [InlineData("dnd5e2014.channel-divinity-option.turn-the-faithless")]
+    public void TurnOption_HasThirtyFootRangeWisdomSaveAndOneMinuteDuration(
+        string id)
+    {
+        ChannelDivinityOptionDefinition definition = Get(id);
+
+        Assert.Equal(30, definition.RangeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            definition.SavingThrowAbilityId?.Value);
+        Assert.Equal(1, definition.DurationMinutes);
+    }
+
+    [Fact]
+    public void NaturesWrath_RestrainsWithAChoosableStrengthOrDexteritySave()
+    {
+        ChannelDivinityOptionDefinition definition =
+            Get("dnd5e2014.channel-divinity-option.natures-wrath");
+
+        Assert.Equal(10, definition.RangeFeet);
+        Assert.Null(definition.SavingThrowAbilityId);
+        Assert.Equal(
+            [
+                "dnd5e2014.ability.strength",
+                "dnd5e2014.ability.dexterity"
+            ],
+            definition.ChoosableSavingThrowAbilityIds
+                .Select(abilityId => abilityId.Value)
+                .ToArray());
+        Assert.Equal(
+            "dnd5e2014.condition.restrained",
+            definition.ImposedConditionId?.Value);
+    }
+
+    [Fact]
+    public void AbjureEnemy_FrightensOnFailedWisdomSaveWithinSixtyFeet()
+    {
+        ChannelDivinityOptionDefinition definition =
+            Get("dnd5e2014.channel-divinity-option.abjure-enemy");
+
+        Assert.Equal(60, definition.RangeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            definition.SavingThrowAbilityId?.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.frightened",
+            definition.ImposedConditionId?.Value);
+        Assert.Equal(1, definition.DurationMinutes);
+    }
+
+    [Fact]
+    public void VowOfEnmity_GrantsAdvantageWithinTenFeetForOneMinute()
+    {
+        ChannelDivinityOptionDefinition definition =
+            Get("dnd5e2014.channel-divinity-option.vow-of-enmity");
+
+        Assert.Equal(10, definition.RangeFeet);
+        Assert.Equal(1, definition.DurationMinutes);
+        Assert.True(definition.GrantsAdvantageOnAttackRollsAgainstTarget);
+    }
+
+    [Fact]
+    public void AllOptions_CitePhbFirstPrintingPageFiftyNineThroughEightyEight()
     {
         foreach (
             ChannelDivinityOptionDefinition definition in LoadCanonical())
@@ -200,9 +281,9 @@ public sealed class ChannelDivinityOptionDataFileTests
                 "dnd5e2014.source.phb-first-printing",
                 source.DocumentId.Value);
             Assert.True(
-                source.Page is >= 59 and <= 63,
+                source.Page is (>= 59 and <= 63) or (>= 86 and <= 88),
                 $"{definition.Id} cited page {source.Page}, expected " +
-                "59 through 63.");
+                "59 through 63 or 86 through 88.");
         }
     }
 

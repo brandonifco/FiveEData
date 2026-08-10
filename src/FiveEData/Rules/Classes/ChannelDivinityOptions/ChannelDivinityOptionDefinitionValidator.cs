@@ -65,6 +65,61 @@ internal static class ChannelDivinityOptionDefinitionValidator
                 "granted spell's save without a granted spell.");
         }
 
+        bool hasFixedSavingThrow = definition.SavingThrowAbilityId is not
+            null;
+        bool hasChoosableSavingThrows =
+            definition.ChoosableSavingThrowAbilityIds.Count > 0;
+
+        if (hasFixedSavingThrow && hasChoosableSavingThrows)
+        {
+            errors.Add(
+                "Channel Divinity option cannot have both a fixed " +
+                "saving throw ability and choosable saving throw " +
+                "abilities.");
+        }
+
+        if (hasChoosableSavingThrows &&
+            definition.ChoosableSavingThrowAbilityIds.Count < 2)
+        {
+            errors.Add(
+                "Channel Divinity option choosable saving throw " +
+                "abilities must have at least two options.");
+        }
+
+        if (definition.ChoosableSavingThrowAbilityIds.Distinct().Count() !=
+            definition.ChoosableSavingThrowAbilityIds.Count)
+        {
+            errors.Add(
+                "Channel Divinity option choosable saving throw " +
+                "abilities must not contain duplicates.");
+        }
+
+        bool hasBrightLight = definition.BrightLightRadiusFeet is not null;
+        bool hasDimLight = definition.DimLightRadiusFeet is not null;
+
+        if (hasBrightLight != hasDimLight)
+        {
+            errors.Add(
+                "Channel Divinity option must have a bright light " +
+                "radius and a dim light radius together, or neither.");
+        }
+
+        if (definition.BrightLightRadiusFeet is { } brightLightRadiusFeet &&
+            brightLightRadiusFeet <= 0)
+        {
+            errors.Add(
+                "Channel Divinity option bright light radius must be " +
+                "greater than zero.");
+        }
+
+        if (definition.DimLightRadiusFeet is { } dimLightRadiusFeet &&
+            dimLightRadiusFeet <= 0)
+        {
+            errors.Add(
+                "Channel Divinity option dim light radius must be " +
+                "greater than zero.");
+        }
+
         if (definition.Sources.Count == 0)
         {
             errors.Add(

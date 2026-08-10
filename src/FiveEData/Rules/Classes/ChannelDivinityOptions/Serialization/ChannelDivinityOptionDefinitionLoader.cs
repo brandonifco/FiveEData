@@ -116,6 +116,15 @@ internal static class ChannelDivinityOptionDefinitionLoader
                 ? new SpellId(grantedSpellIdValue)
                 : null;
 
+        AbilityId[] choosableSavingThrowAbilityIds =
+            (data.ChoosableSavingThrowAbilityIds
+                ?? throw new ArgumentException(
+                    "Channel Divinity option choosable saving throw " +
+                    "abilities are required.",
+                    nameof(data)))
+            .Select(value => new AbilityId(value))
+            .ToArray();
+
         SourceReference[] sources = sourceData
             .Select(SourceReferenceDataMapper.Map)
             .ToArray();
@@ -133,6 +142,13 @@ internal static class ChannelDivinityOptionDefinitionLoader
             grantedSpellId: grantedSpellId,
             automaticallyFailsGrantedSpellSave:
                 data.AutomaticallyFailsGrantedSpellSave,
+            addsSpellcastingModifierToAttackRolls:
+                data.AddsSpellcastingModifierToAttackRolls,
+            brightLightRadiusFeet: data.BrightLightRadiusFeet,
+            dimLightRadiusFeet: data.DimLightRadiusFeet,
+            choosableSavingThrowAbilityIds: choosableSavingThrowAbilityIds,
+            grantsAdvantageOnAttackRollsAgainstTarget:
+                data.GrantsAdvantageOnAttackRollsAgainstTarget,
             sources: sources);
     }
 }
