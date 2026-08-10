@@ -15,8 +15,10 @@ a game.
 
 ## Current state
 
-**Nothing in progress, nothing queued. Ask the user for the next priority
-before starting new work.**
+**Nothing in progress. Gap 3 has two scoped-but-unbuilt candidates queued
+(Battle Master maneuvers, then Eldritch Invocations) — see "Game-backend
+quantization: gap 3 scoping, and Metamagic effects" — but ask the user
+which to start before building either.**
 
 Built and complete:
 
@@ -64,6 +66,10 @@ Built and complete:
 - Conditions — **all 15 PHB conditions (Appendix A) now carry full
   mechanical payloads**, not just `Id`/`Name`/`Sources`. See "Game-backend
   quantization: Conditions" below.
+- Gap 3 (feature-effect prose) — **scoped and started.** Metamagic (all 8
+  options) is built; Battle Master maneuvers and Eldritch Invocations are
+  scoped but not yet built. See "Game-backend quantization: gap 3 scoping,
+  and Metamagic effects" below.
 
 **"Complete" means citation-complete, not mechanically quantized.** Most
 named features across Classes/Races/Backgrounds are still a `RuleId`
@@ -104,9 +110,12 @@ named Appendix A conditions gated by a saving throw) — cover 78 of the
 361 spells; the schema itself was essentially settled after 1st level,
 with only one further addition (`FlatDamageBonus`, at 6th level) across
 the remaining eight levels. **Feature-effect prose (gap 3) is the
-initiative's last remaining piece, not yet started.**
+initiative's last remaining piece — now scoped and started.** See
+"Game-backend quantization: gap 3 scoping, and Metamagic effects" below
+for the ranked candidate list and the first slice (Metamagic, all 8
+options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2870 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2880 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -2018,6 +2027,97 @@ actually specifies in a clean, quantizable shape. The full inventory:
 `SpellDamageEffect` on 59 spells, `SpellConditionEffect` on 24, with
 overlap on the spells noted throughout these ten sections. Gap 3
 (feature-effect prose) is the initiative's next and final piece.
+
+## Game-backend quantization: gap 3 scoping, and Metamagic effects
+
+Gap 3 was only ever an audit note ("Metamagic effects, maneuver secondary
+effects, invocation benefits") — unlike Combat/Adventuring, it had never
+been read against the real PHB pages and turned into a ranked candidate
+list before work started. **Scoped 2026-08-10** by reading pp.74–75
+(Battle Master maneuvers), pp.102–103 (Metamagic), and pp.109–110
+(Eldritch Invocations) directly, the same "read the actual pages before
+assuming what's in scope" discipline the Combat/Adventuring scoping pass
+already established:
+
+| Candidate | Entries | Status |
+| --- | --- | --- |
+| Metamagic | 8 | **Built** |
+| Battle Master maneuvers | 16 | Scoped, not built |
+| Eldritch Invocations | 32 | Scoped, not built |
+
+**Eldritch Invocations is the richest candidate, and needs a new
+cross-domain reference that didn't exist when gap 3 was first named.**
+At least 14 of its 32 options are literally "you can cast `<spell>` at
+will / once per long rest / using a warlock spell slot" — a clean
+`GrantedSpellId: SpellId?` reference into the Spells catalog, which
+wasn't buildable when the "Spells are not a modeled domain" line in
+"What becomes structured data vs. a citation" was written but is now,
+since `SpellId`/`SpellDefinition` are a real domain (see the "Current
+state" note on the game-backend initiative reversing that line).
+**Elemental Disciplines and Channel Divinity options' remaining
+unquantized prose is mostly the same "cast `<spell>`" shape** — close
+them by reusing `GrantedSpellId` once Eldritch Invocations builds it,
+not as separate scoping work. Race/subclass/background feature prose
+outside these five choice-point catalogs is a separate, unscoped tail.
+
+**Metamagic (all 8 options, p.102–103) is gap 3's first slice, chosen
+for the same reason cantrips and Conditions were chosen first: smallest
+closed set, proves the shape.** `MetamagicOptionDefinition` gained 9 new
+fields — `ProtectsCreatureCountUpToSpellcastingModifier` (Careful
+Spell), `DoublesRange` + `TouchRangeBecomesFeet` (Distant Spell, one
+option needing two independent facts since it's genuinely two
+alternative range modifications depending on the target spell's own
+range), `RerollsDiceCountUpToSpellcastingModifier` (Empowered Spell),
+`DoublesDurationMaxHours` (Extended Spell, capped at 24),
+`GrantsDisadvantageOnFirstSavingThrow` (Heightened Spell),
+`ChangesCastingTimeToBonusAction` (Quickened Spell),
+`RemovesVerbalAndSomaticComponents` (Subtle Spell), and
+`TargetsSecondCreatureInRange` (Twinned Spell, which was already fully
+inferable from the existing cost field but now reads as an explicit
+fact rather than an implication). Every field but the option's own is
+`false`/`null`; existing IDs and citations didn't change — purely
+additive, the same pattern the Conditions and Spell-effect passes both
+followed.
+
+**Shape: independent nullable/bool scalars, no "exactly one populated"
+constraint — the `ChannelDivinityOptionDefinition` precedent, not
+`FightingStyleDefinition`/`DivineStrikeProgressionDetail`'s.** Each of
+the 8 options populates only 1 or 2 of the 9 new fields; they're not
+alternative representations of one mechanic the way a weapon's
+damage/range/versatile-damage fields are, so no exclusivity check was
+added — only bounds validation on the two new numeric fields (both must
+be positive when present).
+
+**"Up to your Charisma modifier (minimum of one)" recurs twice (Careful
+Spell's creature count, Empowered Spell's reroll count) and got two
+separate, purpose-named bool fields rather than one shared type** — the
+same "don't invent a type for two call sites" call `MaxChallengeRating`
+already made; the two facts count different things (creatures vs. dice)
+even though the scaling rule is identical.
+
+**Three facts stay declined, all restrictions on which spell the option
+can target rather than facts about the option itself:** Distant Spell
+only applies to a spell "that has a range of 5 feet or greater" (or
+touch), Extended Spell only to a duration of "1 minute or longer",
+Twinned Spell only to a spell that "targets only one creature and
+doesn't have a range of self". These are eligibility gates a consuming
+engine would check against the chosen spell's own already-modeled
+`SpellRange`/`SpellDuration`, not new data to store redundantly on the
+option — the same reasoning that never made `RuleId` sharing carry a
+class's option count. **One genuine compound-exception clause was also
+declined:** Empowered Spell's "you can use Empowered Spell even if you
+have already used a different Metamagic option during the casting of
+the spell" — an exception to the p.102 framework rule that only one
+Metamagic option normally applies per cast — stays in the citation, the
+same "compound conditional" line Prone's attack-roll text and Plant
+Growth's alternate casting time already sit on.
+
+**All 8 citations were re-verified against the page images while
+scoping, not just the effect text** — page 102 already matches where
+"CAREFUL SPELL" through "TWINNED SPELL" actually start (confirmed
+against the PDF's real footer, which for this section runs one page
+behind the PDF's own page index); no citation error found this time,
+but the check is run every pass regardless of outcome.
 
 ## Test conventions
 

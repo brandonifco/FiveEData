@@ -99,10 +99,25 @@ internal static class MetamagicOptionDefinitionLoader
             .ToArray();
 
         return new MetamagicOptionDefinition(
-            id,
-            name,
-            data.FixedSorceryPointCost,
-            data.CostEqualsSpellLevelWithCantripMinimum,
-            sources);
+            id: id,
+            name: name,
+            fixedSorceryPointCost: data.FixedSorceryPointCost,
+            costEqualsSpellLevelWithCantripMinimum:
+                data.CostEqualsSpellLevelWithCantripMinimum,
+            protectsCreatureCountUpToSpellcastingModifier:
+                data.ProtectsCreatureCountUpToSpellcastingModifier,
+            doublesRange: data.DoublesRange,
+            touchRangeBecomesFeet: data.TouchRangeBecomesFeet,
+            rerollsDiceCountUpToSpellcastingModifier:
+                data.RerollsDiceCountUpToSpellcastingModifier,
+            doublesDurationMaxHours: data.DoublesDurationMaxHours,
+            grantsDisadvantageOnFirstSavingThrow:
+                data.GrantsDisadvantageOnFirstSavingThrow,
+            changesCastingTimeToBonusAction:
+                data.ChangesCastingTimeToBonusAction,
+            removesVerbalAndSomaticComponents:
+                data.RemovesVerbalAndSomaticComponents,
+            targetsSecondCreatureInRange: data.TargetsSecondCreatureInRange,
+            sources: sources);
     }
 }

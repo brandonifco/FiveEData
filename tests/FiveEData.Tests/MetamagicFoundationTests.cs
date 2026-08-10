@@ -60,12 +60,9 @@ public sealed class MetamagicFoundationTests
     [Fact]
     public void Validator_RejectsNonPositiveFixedCost()
     {
-        var definition = new MetamagicOptionDefinition(
-            new MetamagicOptionId("dnd5e2014.metamagic-option.test"),
-            "Test",
+        MetamagicOptionDefinition definition = CreateMechanism(
             fixedSorceryPointCost: 0,
-            costEqualsSpellLevelWithCantripMinimum: false,
-            [CreateSource()]);
+            costEqualsSpellLevelWithCantripMinimum: false);
 
         Assert.Contains(
             MetamagicOptionDefinitionValidator.Validate(definition),
@@ -78,12 +75,9 @@ public sealed class MetamagicFoundationTests
     [Fact]
     public void Validator_RejectsZeroCostRepresentations()
     {
-        var definition = new MetamagicOptionDefinition(
-            new MetamagicOptionId("dnd5e2014.metamagic-option.test"),
-            "Test",
+        MetamagicOptionDefinition definition = CreateMechanism(
             fixedSorceryPointCost: null,
-            costEqualsSpellLevelWithCantripMinimum: false,
-            [CreateSource()]);
+            costEqualsSpellLevelWithCantripMinimum: false);
 
         Assert.Contains(
             MetamagicOptionDefinitionValidator.Validate(definition),
@@ -96,18 +90,47 @@ public sealed class MetamagicFoundationTests
     [Fact]
     public void Validator_RejectsBothCostRepresentations()
     {
-        var definition = new MetamagicOptionDefinition(
-            new MetamagicOptionId("dnd5e2014.metamagic-option.test"),
-            "Test",
+        MetamagicOptionDefinition definition = CreateMechanism(
             fixedSorceryPointCost: 1,
-            costEqualsSpellLevelWithCantripMinimum: true,
-            [CreateSource()]);
+            costEqualsSpellLevelWithCantripMinimum: true);
 
         Assert.Contains(
             MetamagicOptionDefinitionValidator.Validate(definition),
             error =>
                 error.Contains(
                     "exactly one cost",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveTouchRangeBecomesFeet()
+    {
+        MetamagicOptionDefinition definition = CreateMechanism(
+            fixedSorceryPointCost: 1,
+            costEqualsSpellLevelWithCantripMinimum: false,
+            touchRangeBecomesFeet: 0);
+
+        Assert.Contains(
+            MetamagicOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "touch range",
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void Validator_RejectsNonPositiveDoublesDurationMaxHours()
+    {
+        MetamagicOptionDefinition definition = CreateMechanism(
+            fixedSorceryPointCost: 1,
+            costEqualsSpellLevelWithCantripMinimum: false,
+            doublesDurationMaxHours: 0);
+
+        Assert.Contains(
+            MetamagicOptionDefinitionValidator.Validate(definition),
+            error =>
+                error.Contains(
+                    "doubled-duration maximum",
                     StringComparison.OrdinalIgnoreCase));
     }
 
@@ -219,11 +242,44 @@ public sealed class MetamagicFoundationTests
         IEnumerable<SourceReference> sources)
     {
         return new MetamagicOptionDefinition(
-            id is null ? default : new MetamagicOptionId(id),
-            name,
-            fixedSorceryPointCost,
+            id: id is null ? default : new MetamagicOptionId(id),
+            name: name,
+            fixedSorceryPointCost: fixedSorceryPointCost,
             costEqualsSpellLevelWithCantripMinimum: false,
-            sources);
+            protectsCreatureCountUpToSpellcastingModifier: false,
+            doublesRange: false,
+            touchRangeBecomesFeet: null,
+            rerollsDiceCountUpToSpellcastingModifier: false,
+            doublesDurationMaxHours: null,
+            grantsDisadvantageOnFirstSavingThrow: false,
+            changesCastingTimeToBonusAction: false,
+            removesVerbalAndSomaticComponents: false,
+            targetsSecondCreatureInRange: false,
+            sources: sources);
+    }
+
+    private static MetamagicOptionDefinition CreateMechanism(
+        int? fixedSorceryPointCost,
+        bool costEqualsSpellLevelWithCantripMinimum,
+        int? touchRangeBecomesFeet = null,
+        int? doublesDurationMaxHours = null)
+    {
+        return new MetamagicOptionDefinition(
+            id: new MetamagicOptionId("dnd5e2014.metamagic-option.test"),
+            name: "Test",
+            fixedSorceryPointCost: fixedSorceryPointCost,
+            costEqualsSpellLevelWithCantripMinimum:
+                costEqualsSpellLevelWithCantripMinimum,
+            protectsCreatureCountUpToSpellcastingModifier: false,
+            doublesRange: false,
+            touchRangeBecomesFeet: touchRangeBecomesFeet,
+            rerollsDiceCountUpToSpellcastingModifier: false,
+            doublesDurationMaxHours: doublesDurationMaxHours,
+            grantsDisadvantageOnFirstSavingThrow: false,
+            changesCastingTimeToBonusAction: false,
+            removesVerbalAndSomaticComponents: false,
+            targetsSecondCreatureInRange: false,
+            sources: [CreateSource()]);
     }
 
     private static SourceReference CreateSource()

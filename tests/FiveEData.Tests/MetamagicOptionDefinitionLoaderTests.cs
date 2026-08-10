@@ -17,6 +17,15 @@ public sealed class MetamagicOptionDefinitionLoaderTests
                     "name": "Test",
                     "fixedSorceryPointCost": 1,
                     "costEqualsSpellLevelWithCantripMinimum": false,
+                    "protectsCreatureCountUpToSpellcastingModifier": false,
+                    "doublesRange": false,
+                    "touchRangeBecomesFeet": null,
+                    "rerollsDiceCountUpToSpellcastingModifier": false,
+                    "doublesDurationMaxHours": null,
+                    "grantsDisadvantageOnFirstSavingThrow": false,
+                    "changesCastingTimeToBonusAction": false,
+                    "removesVerbalAndSomaticComponents": false,
+                    "targetsSecondCreatureInRange": false,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -49,6 +58,15 @@ public sealed class MetamagicOptionDefinitionLoaderTests
                     "name": "Test",
                     "fixedSorceryPointCost": null,
                     "costEqualsSpellLevelWithCantripMinimum": true,
+                    "protectsCreatureCountUpToSpellcastingModifier": false,
+                    "doublesRange": false,
+                    "touchRangeBecomesFeet": null,
+                    "rerollsDiceCountUpToSpellcastingModifier": false,
+                    "doublesDurationMaxHours": null,
+                    "grantsDisadvantageOnFirstSavingThrow": false,
+                    "changesCastingTimeToBonusAction": false,
+                    "removesVerbalAndSomaticComponents": false,
+                    "targetsSecondCreatureInRange": true,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -62,6 +80,50 @@ public sealed class MetamagicOptionDefinitionLoaderTests
 
         Assert.Null(definition.FixedSorceryPointCost);
         Assert.True(definition.CostEqualsSpellLevelWithCantripMinimum);
+        Assert.True(definition.TargetsSecondCreatureInRange);
+    }
+
+    [Fact]
+    public void ValidDefinition_LoadsMechanismFields()
+    {
+        MetamagicOptionDefinition definition = Assert.Single(
+            MetamagicOptionDefinitionLoader.LoadFromJson(
+                """
+                [
+                  {
+                    "id": "extension.metamagic-option.test",
+                    "name": "Test",
+                    "fixedSorceryPointCost": 1,
+                    "costEqualsSpellLevelWithCantripMinimum": false,
+                    "protectsCreatureCountUpToSpellcastingModifier": true,
+                    "doublesRange": true,
+                    "touchRangeBecomesFeet": 30,
+                    "rerollsDiceCountUpToSpellcastingModifier": true,
+                    "doublesDurationMaxHours": 24,
+                    "grantsDisadvantageOnFirstSavingThrow": true,
+                    "changesCastingTimeToBonusAction": true,
+                    "removesVerbalAndSomaticComponents": true,
+                    "targetsSecondCreatureInRange": false,
+                    "sources": [
+                      {
+                        "documentId": "extension.source.test",
+                        "page": 1,
+                        "section": "Test section"
+                      }
+                    ]
+                  }
+                ]
+                """));
+
+        Assert.True(
+            definition.ProtectsCreatureCountUpToSpellcastingModifier);
+        Assert.True(definition.DoublesRange);
+        Assert.Equal(30, definition.TouchRangeBecomesFeet);
+        Assert.True(definition.RerollsDiceCountUpToSpellcastingModifier);
+        Assert.Equal(24, definition.DoublesDurationMaxHours);
+        Assert.True(definition.GrantsDisadvantageOnFirstSavingThrow);
+        Assert.True(definition.ChangesCastingTimeToBonusAction);
+        Assert.True(definition.RemovesVerbalAndSomaticComponents);
     }
 
     [Fact]
@@ -97,6 +159,15 @@ public sealed class MetamagicOptionDefinitionLoaderTests
                     "name": "Test",
                     "fixedSorceryPointCost": 1,
                     "costEqualsSpellLevelWithCantripMinimum": false,
+                    "protectsCreatureCountUpToSpellcastingModifier": false,
+                    "doublesRange": false,
+                    "touchRangeBecomesFeet": null,
+                    "rerollsDiceCountUpToSpellcastingModifier": false,
+                    "doublesDurationMaxHours": null,
+                    "grantsDisadvantageOnFirstSavingThrow": false,
+                    "changesCastingTimeToBonusAction": false,
+                    "removesVerbalAndSomaticComponents": false,
+                    "targetsSecondCreatureInRange": false,
                     "sources": [],
                     "unexpected": true
                   }
@@ -117,6 +188,15 @@ public sealed class MetamagicOptionDefinitionLoaderTests
                     "name": "Other",
                     "fixedSorceryPointCost": 1,
                     "costEqualsSpellLevelWithCantripMinimum": false,
+                    "protectsCreatureCountUpToSpellcastingModifier": false,
+                    "doublesRange": false,
+                    "touchRangeBecomesFeet": null,
+                    "rerollsDiceCountUpToSpellcastingModifier": false,
+                    "doublesDurationMaxHours": null,
+                    "grantsDisadvantageOnFirstSavingThrow": false,
+                    "changesCastingTimeToBonusAction": false,
+                    "removesVerbalAndSomaticComponents": false,
+                    "targetsSecondCreatureInRange": false,
                     "sources": []
                   }
                 ]
@@ -134,7 +214,16 @@ public sealed class MetamagicOptionDefinitionLoaderTests
                     "id": "extension.metamagic-option.test",
                     "name": "Test",
                     "fixedSorceryPointCost": 1,
-                    "costEqualsSpellLevelWithCantripMinimum": false
+                    "costEqualsSpellLevelWithCantripMinimum": false,
+                    "protectsCreatureCountUpToSpellcastingModifier": false,
+                    "doublesRange": false,
+                    "touchRangeBecomesFeet": null,
+                    "rerollsDiceCountUpToSpellcastingModifier": false,
+                    "doublesDurationMaxHours": null,
+                    "grantsDisadvantageOnFirstSavingThrow": false,
+                    "changesCastingTimeToBonusAction": false,
+                    "removesVerbalAndSomaticComponents": false,
+                    "targetsSecondCreatureInRange": false
                   }
                 ]
                 """));
@@ -152,6 +241,15 @@ public sealed class MetamagicOptionDefinitionLoaderTests
                     "name": "Test",
                     "fixedSorceryPointCost": 1,
                     "costEqualsSpellLevelWithCantripMinimum": false,
+                    "protectsCreatureCountUpToSpellcastingModifier": false,
+                    "doublesRange": false,
+                    "touchRangeBecomesFeet": null,
+                    "rerollsDiceCountUpToSpellcastingModifier": false,
+                    "doublesDurationMaxHours": null,
+                    "grantsDisadvantageOnFirstSavingThrow": false,
+                    "changesCastingTimeToBonusAction": false,
+                    "removesVerbalAndSomaticComponents": false,
+                    "targetsSecondCreatureInRange": false,
                     "sources": []
                   }
                 ]
@@ -168,6 +266,15 @@ public sealed class MetamagicOptionDefinitionLoaderTests
               "name": "Test",
               "fixedSorceryPointCost": 1,
               "costEqualsSpellLevelWithCantripMinimum": false,
+              "protectsCreatureCountUpToSpellcastingModifier": false,
+              "doublesRange": false,
+              "touchRangeBecomesFeet": null,
+              "rerollsDiceCountUpToSpellcastingModifier": false,
+              "doublesDurationMaxHours": null,
+              "grantsDisadvantageOnFirstSavingThrow": false,
+              "changesCastingTimeToBonusAction": false,
+              "removesVerbalAndSomaticComponents": false,
+              "targetsSecondCreatureInRange": false,
               "sources": [
                 {
                   "documentId": "extension.source.test",
