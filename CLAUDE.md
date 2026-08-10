@@ -21,12 +21,15 @@ Disciplines, Channel Divinity — the last now 16 entries, not 10; see
 below). The wider race/subclass/background feature-prose tail was
 **scoped** in a systematic pass (2026-08-10) — see "Game-backend
 quantization: scoping the race/subclass/background feature-prose
-tail" — and has a large, ranked candidate pool. Two slices are now
-**built**: Paladin's 6 missing Channel Divinity options, and the
-recurring "uses per rest" resource shape (Warding Flare, War Priest,
-Cleansing Touch, plus a retrofit onto Wrath of the Storm). Every other
-candidate in the pool is scoped-not-built. Ask the user which to pick
-up next.
+tail" — and has a large, ranked candidate pool. Three slices are now
+**built**: Paladin's 6 missing Channel Divinity options, the recurring
+"uses per rest" resource shape (Warding Flare, War Priest, Cleansing
+Touch, plus a retrofit onto Wrath of the Storm), and the racial
+proficiency structural gap (weapon/armor/skill proficiency fields on
+`RaceDefinition`/`SubraceDefinition` — Dwarven Combat Training, Elf
+Weapon Training, Drow Weapon Training, Dwarven Armor Training, Keen
+Senses, Skill Versatility). Every other candidate in the pool is
+scoped-not-built. Ask the user which to pick up next.
 
 Built and complete:
 
@@ -2553,15 +2556,16 @@ yet:
   Affinity), and Rogue (Second-Story Work, Assassinate, Infiltration
   Expertise, Death Strike).
 
-**One genuinely new structural gap, bigger than a data-entry slice:**
-racial weapon/armor/skill proficiency grants (Elf Weapon Training,
-Dwarven Combat Training, Dwarven Armor Training, Drow Weapon Training,
-Keen Senses, Skill Versatility, ...) have no field anywhere on
-`RaceDefinition`/`SubraceDefinition` — proficiency grants were only
-ever modeled on `ClassDefinition`. Building this needs a real design
-decision (a new field shape mirroring the class weapon-proficiency
-category-plus-named-exceptions pattern, or something narrower), not
-just verifying numbers against a page.
+**One structural gap, bigger than a data-entry slice, was found here
+and built in a later slice:** racial weapon/armor/skill proficiency
+grants (Elf Weapon Training, Dwarven Combat Training, Dwarven Armor
+Training, Drow Weapon Training, Keen Senses, Skill Versatility) had no
+field anywhere on `RaceDefinition`/`SubraceDefinition` — proficiency
+grants were only ever modeled on `ClassDefinition`. See "Game-backend
+quantization: the racial proficiency structural gap" below for the
+build, including one guess this section got wrong (Skill Versatility
+was assumed subrace-scoped; Half-Elf turned out to have no subraces at
+all in this schema).
 
 **A large fraction of the "not yet mentioned" 355 turned out to
 already be accounted for once cross-referenced properly** — this
@@ -2702,6 +2706,66 @@ progression:
 All three ability IDs are Wisdom (Light, War) or Charisma (Cleansing
 Touch), validated via `ClassCatalogIntegrityValidator` the same way
 every other cross-domain ability reference is.
+
+## Game-backend quantization: the racial proficiency structural gap
+
+The structural gap the scoping pass flagged as bigger than a data-entry
+slice: weapon/armor/skill proficiency grants had no field anywhere on
+`RaceDefinition`/`SubraceDefinition`, since proficiency grants were only
+ever modeled on `ClassDefinition`. Six real features were found and
+verified against rendered page images (pp.20–21 Dwarf, pp.23–24 Elf,
+p.39/40 Half-Elf — this printing's Chapter 2 races also carry the
+familiar one-page-behind PDF/footer offset already seen in Chapter 3):
+Dwarven Combat Training, Elf Weapon Training (shared between High Elf
+and Wood Elf, identical text), Drow Weapon Training, Dwarven Armor
+Training, Keen Senses, and Skill Versatility.
+
+**The fields mirror `ClassDefinition`'s naming exactly, but land on
+whichever of `RaceDefinition`/`SubraceDefinition` actually owns the
+trait — not always the one guessed during scoping.** Half-Elf has no
+subraces in this schema (it's one of the five races with no `Subrace`
+entries at all, alongside Human, Dragonborn, Half-Orc, Tiefling), so
+Skill Versatility's `SkillProficiencyChoiceCount: int?` landed on
+`RaceDefinition`, not `SubraceDefinition` as the scoping note's phrasing
+implied. **Caught in self-review, not by a test** — the property had
+been added to `SubraceDefinition` with no constructor parameter feeding
+it, a silent dead field nothing would have flagged until a consumer hit
+an always-null value. The other five all matched the scoping guess:
+`RaceDefinition` gets `WeaponProficiencyIds` (Dwarf: battleaxe/handaxe/
+light-hammer/warhammer — "throwing hammer" again corrected to "light
+hammer" by the same errata already applied elsewhere) and
+`SkillProficiencyId: SkillId?` (Elf: Perception, fixed, not a choice);
+`SubraceDefinition` gets `WeaponProficiencyIds` (High Elf and Wood Elf
+share one list — longsword/shortsword/shortbow/longbow, the exact same
+"template with zero difference shares" shape `RuleId`s already use, just
+expressed as repeated data instead of a shared ID — and Drow's own
+rapier/shortsword/hand-crossbow list) and
+`ArmorProficiencyCategories: IReadOnlyList<ArmorCategory>` (Mountain
+Dwarf: light + medium).
+
+**No `WeaponProficiencyCategories` field was added — every racial grant
+names specific weapons, never a category** (unlike `ClassDefinition`,
+which needs `[Simple]`/`[Martial]` for some classes). Built narrower
+than the class shape on purpose, per the scoping note's own suggestion,
+rather than adding a category field with nothing to populate it.
+
+**`SkillProficiencyChoiceCount` has no accompanying option list, unlike
+`ClassDefinition.SkillChoiceCount`/`SkillChoiceOptionIds`.** Half-Elf's
+printed text is "proficiency in two skills of your choice" — an
+unrestricted choice, not a choice from a named subset — so unlike every
+class skill choice built so far, there is no closed list to store. A
+consumer reads the count and offers every catalogued skill; the absence
+of a companion options field is itself the fact "any skill qualifies,"
+not a gap to fill in later.
+
+**`RaceCatalogIntegrityValidator.Validate` gained two new cross-domain
+parameters (`weaponIds`, `skillIds`), the first time this validator has
+needed anything beyond abilities/sizes/languages/rules/damage types.**
+The top-level `CatalogIntegrityValidator` had to move its existing
+`skillIds`/`weaponIds` `HashSet` construction earlier, ahead of the
+`RaceCatalogIntegrityValidator.Validate` call that now consumes them —
+both sets were already built for `ClassCatalogIntegrityValidator` later
+in the same method, just too late for this new use.
 
 ## Test conventions
 

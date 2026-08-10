@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
+using FiveEData.Rules.Equipment.Armor;
 
 namespace FiveEData.Rules.Creatures.Races.Serialization;
 
@@ -34,6 +35,12 @@ internal sealed class SubraceDefinitionData
 
     [JsonRequired]
     public int? HitPointBonusPerLevel { get; init; }
+
+    [JsonRequired]
+    public string[]? WeaponProficiencyIds { get; init; }
+
+    [JsonRequired]
+    public ArmorCategory[]? ArmorProficiencyCategories { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

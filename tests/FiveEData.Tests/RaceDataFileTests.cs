@@ -85,6 +85,17 @@ public sealed class RaceDataFileTests
             Assert.Single(dwarf.ResistedDamageTypeIds).Value);
         Assert.Null(dwarf.TranceDurationHours);
         Assert.Null(dwarf.BreathWeaponProgression);
+
+        Assert.Equal(
+            [
+                "dnd5e2014.weapon.battleaxe",
+                "dnd5e2014.weapon.handaxe",
+                "dnd5e2014.weapon.light-hammer",
+                "dnd5e2014.weapon.warhammer"
+            ],
+            dwarf.WeaponProficiencyIds.Select(id => id.Value).ToArray());
+        Assert.Null(dwarf.SkillProficiencyId);
+        Assert.Null(dwarf.SkillProficiencyChoiceCount);
     }
 
     [Fact]
@@ -95,6 +106,11 @@ public sealed class RaceDataFileTests
         Assert.Equal(60, elf.DarkvisionRangeFeet);
         Assert.Empty(elf.ResistedDamageTypeIds);
         Assert.Equal(4, elf.TranceDurationHours);
+        Assert.Empty(elf.WeaponProficiencyIds);
+        Assert.Equal(
+            "dnd5e2014.skill.perception",
+            elf.SkillProficiencyId?.Value);
+        Assert.Null(elf.SkillProficiencyChoiceCount);
     }
 
     [Fact]
@@ -176,6 +192,27 @@ public sealed class RaceDataFileTests
         Assert.Equal(2, increase.Bonus);
         Assert.Equal(2, halfElf.ChoosableAbilityScoreIncreaseCount);
         Assert.Equal(1, halfElf.AdditionalLanguageChoiceCount);
+        Assert.Empty(halfElf.WeaponProficiencyIds);
+        Assert.Null(halfElf.SkillProficiencyId);
+        Assert.Equal(2, halfElf.SkillProficiencyChoiceCount);
+    }
+
+    [Fact]
+    public void CanonicalFile_ProficiencyGrantsAreExclusiveToTheirRace()
+    {
+        IReadOnlyList<RaceDefinition> races = LoadRaces();
+
+        Assert.All(
+            races.Where(race => race.Id.Value != "dnd5e2014.race.dwarf"),
+            race => Assert.Empty(race.WeaponProficiencyIds));
+
+        Assert.All(
+            races.Where(race => race.Id.Value != "dnd5e2014.race.elf"),
+            race => Assert.Null(race.SkillProficiencyId));
+
+        Assert.All(
+            races.Where(race => race.Id.Value != "dnd5e2014.race.half-elf"),
+            race => Assert.Null(race.SkillProficiencyChoiceCount));
     }
 
     [Fact]

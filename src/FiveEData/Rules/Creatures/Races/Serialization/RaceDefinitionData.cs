@@ -66,6 +66,15 @@ internal sealed class RaceDefinitionData
     public LuckyDetailData? Lucky { get; init; }
 
     [JsonRequired]
+    public string[]? WeaponProficiencyIds { get; init; }
+
+    [JsonRequired]
+    public string? SkillProficiencyId { get; init; }
+
+    [JsonRequired]
+    public int? SkillProficiencyChoiceCount { get; init; }
+
+    [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
 }
 

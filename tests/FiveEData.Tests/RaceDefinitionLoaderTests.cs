@@ -32,6 +32,9 @@ public sealed class RaceDefinitionLoaderTests
           "savageAttacks": null,
           "relentlessEndurance": null,
           "lucky": null,
+          "weaponProficiencyIds": [],
+          "skillProficiencyId": null,
+          "skillProficiencyChoiceCount": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -75,6 +78,9 @@ public sealed class RaceDefinitionLoaderTests
                       "rerollOnNaturalRoll": 1,
                       "mustUseNewRoll": false
                     },
+                    "weaponProficiencyIds": [],
+                    "skillProficiencyId": null,
+                    "skillProficiencyChoiceCount": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -179,6 +185,9 @@ public sealed class RaceDefinitionLoaderTests
                     "savageAttacks": null,
                     "relentlessEndurance": null,
                     "lucky": null,
+                    "weaponProficiencyIds": [],
+                    "skillProficiencyId": null,
+                    "skillProficiencyChoiceCount": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -211,6 +220,9 @@ public sealed class RaceDefinitionLoaderTests
                     "savageAttacks": null,
                     "relentlessEndurance": null,
                     "lucky": null,
+                    "weaponProficiencyIds": [],
+                    "skillProficiencyId": null,
+                    "skillProficiencyChoiceCount": null,
                     "sources": []
                   }
                 ]
@@ -240,6 +252,9 @@ public sealed class RaceDefinitionLoaderTests
                     "savageAttacks": null,
                     "relentlessEndurance": null,
                     "lucky": null,
+                    "weaponProficiencyIds": [],
+                    "skillProficiencyId": null,
+                    "skillProficiencyChoiceCount": null,
                     "sources": []
                   }
                 ]
@@ -270,6 +285,9 @@ public sealed class RaceDefinitionLoaderTests
                     "savageAttacks": null,
                     "relentlessEndurance": null,
                     "lucky": null,
+                    "weaponProficiencyIds": [],
+                    "skillProficiencyId": null,
+                    "skillProficiencyChoiceCount": null,
                     "sources": []
                   }
                 ]
@@ -300,6 +318,9 @@ public sealed class RaceDefinitionLoaderTests
                     "savageAttacks": null,
                     "relentlessEndurance": null,
                     "lucky": null,
+                    "weaponProficiencyIds": [],
+                    "skillProficiencyId": null,
+                    "skillProficiencyChoiceCount": null,
                     "sources": []
                   }
                 ]
@@ -330,6 +351,9 @@ public sealed class RaceDefinitionLoaderTests
                     "savageAttacks": null,
                     "relentlessEndurance": null,
                     "lucky": null,
+                    "weaponProficiencyIds": [],
+                    "skillProficiencyId": null,
+                    "skillProficiencyChoiceCount": null,
                     "sources": null
                   }
                 ]

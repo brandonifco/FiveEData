@@ -1,6 +1,8 @@
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.DamageTypes;
+using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -17,12 +19,16 @@ public sealed class SubraceDefinition
         int? darkvisionRangeFeet,
         IEnumerable<DamageTypeId> resistedDamageTypeIds,
         int? hitPointBonusPerLevel,
+        IEnumerable<WeaponId> weaponProficiencyIds,
+        IEnumerable<ArmorCategory> armorProficiencyCategories,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentNullException.ThrowIfNull(abilityScoreIncreases);
         ArgumentNullException.ThrowIfNull(traitRuleIds);
         ArgumentNullException.ThrowIfNull(resistedDamageTypeIds);
+        ArgumentNullException.ThrowIfNull(weaponProficiencyIds);
+        ArgumentNullException.ThrowIfNull(armorProficiencyCategories);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -37,6 +43,10 @@ public sealed class SubraceDefinition
         ResistedDamageTypeIds =
             Array.AsReadOnly(resistedDamageTypeIds.ToArray());
         HitPointBonusPerLevel = hitPointBonusPerLevel;
+        WeaponProficiencyIds =
+            Array.AsReadOnly(weaponProficiencyIds.ToArray());
+        ArmorProficiencyCategories =
+            Array.AsReadOnly(armorProficiencyCategories.ToArray());
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -50,5 +60,10 @@ public sealed class SubraceDefinition
     public int? DarkvisionRangeFeet { get; }
     public IReadOnlyList<DamageTypeId> ResistedDamageTypeIds { get; }
     public int? HitPointBonusPerLevel { get; }
+
+    public IReadOnlyList<WeaponId> WeaponProficiencyIds { get; }
+
+    public IReadOnlyList<ArmorCategory> ArmorProficiencyCategories { get; }
+
     public IReadOnlyList<SourceReference> Sources { get; }
 }

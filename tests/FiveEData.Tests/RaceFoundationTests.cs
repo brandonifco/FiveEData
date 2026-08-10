@@ -10,6 +10,8 @@ using FiveEData.Rules.Creatures.Races.SavageAttacks;
 using FiveEData.Rules.Creatures.Races.RelentlessEndurance;
 using FiveEData.Rules.Creatures.Races.Lucky;
 using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Tests;
 
@@ -106,6 +108,9 @@ public sealed class RaceFoundationTests
             null,
             null,
             null,
+            null,
+            null,
+            [],
             null,
             null,
             [CreateSource()]);
@@ -451,6 +456,9 @@ public sealed class RaceFoundationTests
         SavageAttacksDetail? savageAttacks = null,
         RelentlessEnduranceDetail? relentlessEndurance = null,
         LuckyDetail? lucky = null,
+        IEnumerable<WeaponId>? weaponProficiencyIds = null,
+        SkillId? skillProficiencyId = null,
+        int? skillProficiencyChoiceCount = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new RaceDefinition(
@@ -470,6 +478,9 @@ public sealed class RaceFoundationTests
             savageAttacks,
             relentlessEndurance,
             lucky,
+            weaponProficiencyIds ?? [],
+            skillProficiencyId,
+            skillProficiencyChoiceCount,
             sources ?? [CreateSource()]);
     }
 

@@ -32,6 +32,14 @@
     "savageAttacks": null,
     "relentlessEndurance": null,
     "lucky": null,
+    "weaponProficiencyIds": [
+      "dnd5e2014.weapon.battleaxe",
+      "dnd5e2014.weapon.handaxe",
+      "dnd5e2014.weapon.light-hammer",
+      "dnd5e2014.weapon.warhammer"
+    ],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -70,6 +78,9 @@
     "savageAttacks": null,
     "relentlessEndurance": null,
     "lucky": null,
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": "dnd5e2014.skill.perception",
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -110,6 +121,9 @@
       "rerollOnNaturalRoll": 1,
       "mustUseNewRoll": true
     },
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -162,6 +176,9 @@
     "savageAttacks": null,
     "relentlessEndurance": null,
     "lucky": null,
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -235,6 +252,9 @@
     "savageAttacks": null,
     "relentlessEndurance": null,
     "lucky": null,
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -271,6 +291,9 @@
     "savageAttacks": null,
     "relentlessEndurance": null,
     "lucky": null,
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -308,6 +331,9 @@
     "savageAttacks": null,
     "relentlessEndurance": null,
     "lucky": null,
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": 2,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -356,6 +382,9 @@
       "recoversOnLongRest": true
     },
     "lucky": null,
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -399,6 +428,9 @@
     "savageAttacks": null,
     "relentlessEndurance": null,
     "lucky": null,
+    "weaponProficiencyIds": [],
+    "skillProficiencyId": null,
+    "skillProficiencyChoiceCount": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

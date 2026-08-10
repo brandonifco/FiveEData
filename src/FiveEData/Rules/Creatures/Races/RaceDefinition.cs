@@ -7,6 +7,8 @@ using FiveEData.Rules.Creatures.Races.Lucky;
 using FiveEData.Rules.Creatures.Races.RelentlessEndurance;
 using FiveEData.Rules.Creatures.Races.SavageAttacks;
 using FiveEData.Rules.Creatures.Sizes;
+using FiveEData.Rules.Creatures.Skills;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -29,6 +31,9 @@ public sealed class RaceDefinition
         SavageAttacksDetail? savageAttacks,
         RelentlessEnduranceDetail? relentlessEndurance,
         LuckyDetail? lucky,
+        IEnumerable<WeaponId> weaponProficiencyIds,
+        SkillId? skillProficiencyId,
+        int? skillProficiencyChoiceCount,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -36,6 +41,7 @@ public sealed class RaceDefinition
         ArgumentNullException.ThrowIfNull(languageIds);
         ArgumentNullException.ThrowIfNull(traitRuleIds);
         ArgumentNullException.ThrowIfNull(resistedDamageTypeIds);
+        ArgumentNullException.ThrowIfNull(weaponProficiencyIds);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -57,6 +63,10 @@ public sealed class RaceDefinition
         SavageAttacks = savageAttacks;
         RelentlessEndurance = relentlessEndurance;
         Lucky = lucky;
+        WeaponProficiencyIds =
+            Array.AsReadOnly(weaponProficiencyIds.ToArray());
+        SkillProficiencyId = skillProficiencyId;
+        SkillProficiencyChoiceCount = skillProficiencyChoiceCount;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -79,5 +89,12 @@ public sealed class RaceDefinition
     public RelentlessEnduranceDetail? RelentlessEndurance { get; }
 
     public LuckyDetail? Lucky { get; }
+
+    public IReadOnlyList<WeaponId> WeaponProficiencyIds { get; }
+
+    public SkillId? SkillProficiencyId { get; }
+
+    public int? SkillProficiencyChoiceCount { get; }
+
     public IReadOnlyList<SourceReference> Sources { get; }
 }

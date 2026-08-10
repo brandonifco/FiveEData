@@ -3,6 +3,7 @@ using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Languages;
 using FiveEData.Rules.Creatures.Races.BreathWeapon;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Rules.Creatures.Races;
 
@@ -143,6 +144,40 @@ internal static class RaceDefinitionValidator
             ValidateBreathWeaponProgression(
                 breathWeaponProgression,
                 errors);
+        }
+
+        var seenWeaponProficiencies = new HashSet<WeaponId>();
+
+        foreach (WeaponId weaponId in race.WeaponProficiencyIds)
+        {
+            if (string.IsNullOrWhiteSpace(weaponId.Value))
+            {
+                errors.Add("Race weapon proficiency ID must not be empty.");
+                continue;
+            }
+
+            if (!seenWeaponProficiencies.Add(weaponId))
+            {
+                errors.Add(
+                    $"Race weapon proficiency '{weaponId}' is duplicated.");
+            }
+        }
+
+        if (race.SkillProficiencyId is { } skillProficiencyId &&
+            string.IsNullOrWhiteSpace(skillProficiencyId.Value))
+        {
+            errors.Add(
+                "Race skill proficiency ID must not be empty when " +
+                "specified.");
+        }
+
+        if (race.SkillProficiencyChoiceCount is
+                { } skillProficiencyChoiceCount &&
+            skillProficiencyChoiceCount <= 0)
+        {
+            errors.Add(
+                "Race skill proficiency choice count must be greater " +
+                "than zero when specified.");
         }
 
         return errors;

@@ -4,6 +4,8 @@ using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.DamageTypes;
 using FiveEData.Rules.Creatures.Races;
+using FiveEData.Rules.Equipment.Armor;
+using FiveEData.Rules.Equipment.Weapons;
 
 namespace FiveEData.Tests;
 
@@ -89,6 +91,8 @@ public sealed class SubraceFoundationTests
             null,
             [],
             null,
+            [],
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -110,6 +114,8 @@ public sealed class SubraceFoundationTests
             null,
             [],
             null,
+            [],
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -323,6 +329,8 @@ public sealed class SubraceFoundationTests
         int? darkvisionRangeFeet = null,
         IEnumerable<DamageTypeId>? resistedDamageTypeIds = null,
         int? hitPointBonusPerLevel = null,
+        IEnumerable<WeaponId>? weaponProficiencyIds = null,
+        IEnumerable<ArmorCategory>? armorProficiencyCategories = null,
         IEnumerable<SourceReference>? sources = null)
     {
         return new SubraceDefinition(
@@ -336,6 +344,8 @@ public sealed class SubraceFoundationTests
             darkvisionRangeFeet,
             resistedDamageTypeIds ?? [],
             hitPointBonusPerLevel,
+            weaponProficiencyIds ?? [],
+            armorProficiencyCategories ?? [],
             sources ?? [CreateSource()]);
     }
 
