@@ -21,7 +21,7 @@ recoverable with `git show e2bd672:CLAUDE.md` and `git show b96ed1d:CLAUDE.md`.
 
 ## Current state
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3266 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3280 tests**.
 
 **Built and complete:**
 
@@ -41,6 +41,8 @@ Gate as of the last merge: Debug+Release build 0 warnings, **3266 tests**.
   `Cover` (3), `TravelPace` (3), `RestTypes` (2), `DowntimeActivities` (5).
   Everything else in PHB Chapters 8–9 is unbuilt **by design**.
 - Character Advancement (p.15) — the 20-row XP/level/proficiency-bonus table.
+- Tool proficiency grants on Class/Subclass/Race — see that section.
+  Backgrounds are the remaining owner.
 - Quantized mechanics — leveled numbers, choice-point catalogs, and the
   feature-prose tail. **11 choice-point catalogs exist** (see the table under
   "Quantized mechanics").
@@ -134,6 +136,12 @@ when the natural key isn't a string ID** (character advancement's key is an
 integer level; minting `dnd5e2014.character-advancement.level-1` would be
 ceremony with no consumer) **or when the content is a handful of flat
 constants** rather than a list of named entries.
+
+**A new cross-domain reference may need its `HashSet` built earlier in
+`CatalogIntegrityValidator`, not added.** Both the racial proficiency pass
+and the tool proficiency pass found the set they needed already constructed
+further down the same method for a later consumer; the fix is to move the
+existing construction up, not to declare a second one.
 
 **Wiring a brand-new top-level domain touches five places beyond its own
 folder:** `RulesetDefinitionSet` (raw definitions, appended as the new last
@@ -360,12 +368,14 @@ Boon, Practicing a Profession, and Stand Against the Tide set that precedent
 
 ### Unmodeled gaps (deliberate, not oversights)
 
-Tool proficiencies and tool-proficiency *choices*, starting equipment, and
-Druid's nonmetal-armor restriction have no fields. Every one was a considered
-call: adding one would be generality ahead of a real consumer. **The
-multiclassing proficiency table is the first real downstream consumer the
-tool-proficiency gap has ever had — decide whether to open it before starting
-that build, not midway.**
+Starting equipment and Druid's nonmetal-armor restriction have no fields.
+Each was a considered call: adding one would be generality ahead of a real
+consumer.
+
+**The tool-proficiency gap is now open** — the Multiclassing Proficiencies
+table was the first real downstream consumer it ever had, and rather than
+declining two of its twelve rows, the grant fields were built. See "Tool
+proficiency grants". Backgrounds are the remaining unbuilt owner.
 
 **Two features now reference rules this project doesn't model.** Aspect of
 the Beast (Bear) sets `DoublesCarryingCapacity` with no carrying-capacity
@@ -920,9 +930,57 @@ identical concept** — not one domain plus a prediction. Promoted so far:
   *day*. Same idea, genuinely different facts.
   **Ritual-only casting is a real third frequency axis the enum lacks** —
   Spirit Seeker and Spirit Walker need it; add it when a second feature does.
+- `ToolProficiencyChoice` — see "Tool proficiency grants". Promoted on
+  three owning domains at once (Class, Subclass, Race) with a fourth
+  (Background) already known, the clearest case yet for the two-domain bar.
 - `SpeechRestriction` and `ExhaustionLevelEffect` deliberately stayed under
   `Rules/Creatures/Conditions/` — neither generalizes.
 - `HunterMultiattackKind` deliberately stayed scoped to its own domain.
+
+### Tool proficiency grants
+
+Built on `ClassDefinition`, `SubclassDefinition`, and `RaceDefinition`;
+`BackgroundDefinition` is the remaining owner. Two fields per owner:
+`ToolProficiencyIds` (a fixed grant — Rogue's thieves' tools, Assassin's
+disguise kit *and* poisoner's kit) and a nullable
+`ToolProficiencyChoice` in `Rules/Common`, the sixth type promoted there.
+
+**`ToolProficiencyChoice` states a choice two mutually exclusive ways, both
+real in the PHB:** by family (`ToolFamilyIds`) or by an explicit named subset
+(`ToolOptionIds`). The Dwarf's "the artisan's tools of your choice: smith's
+tools, brewer's supplies, or mason's tools" is *not* a family choice — it
+names three of the seventeen — which is the whole reason the second field
+exists. The constructor rejects both-or-neither, a repeated entry, an explicit
+list of one ("a choice of one is not a choice", the same rule
+`ChoosableSavingThrowAbilityIds` uses), and a count that isn't smaller than
+the number of explicit options.
+
+**`ToolFamilyIds` is a list because the Monk's choice genuinely spans two
+families** — "one type of artisan's tools **or** one musical instrument". No
+other grant does. Pinned by
+`CanonicalFile_MonkChoiceSpansTwoToolFamilies` and
+`CanonicalFile_DwarfChoiceNamesThreeExplicitTools`.
+
+**A fixed grant is not a one-option choice.** Druid's herbalism kit and
+Rogue's thieves' tools populate the ID list with `ToolProficiencyChoice`
+null, pinned by `CanonicalFile_FixedGrantsAreNotModelledAsChoices`.
+
+**Grants live outside the obvious owner's block — scan for the mechanic, not
+the domain.** Reading only the twelve class proficiency blocks would have
+found four of the seven grants; Dwarf's Tool Proficiency (p.20), Battle
+Master's Student of War (p.73), and Assassin's Bonus Proficiencies (p.97) sit
+in race traits and subclass features. Grep the tool *names* across the whole
+book before concluding a proficiency sweep is complete.
+
+**Vehicle proficiency is not a tool proficiency here.** The Tools table
+(p.154) prints one row, "Vehicles (land or water)", whose cost and weight are
+both `*` and whose footnote defers to the Mounts and Vehicles section — a
+pointer, not an entry. Backgrounds meanwhile grant "vehicles (land)" and
+"vehicles (water)" separately, a distinction `VehicleDefinition.Kind`
+(`Land`/`Water`) already models. So no vehicle entries were added to
+`tools.json` (still 37); the background pass reuses `VehicleKind` instead.
+**Check whether an existing catalog already carries the axis before widening
+a different one.**
 
 ### Cross-domain references into other catalogs
 
@@ -937,8 +995,9 @@ Warrior options, and several feature details reference `ConditionId`,
 **`CatalogIntegrityTests.PublishedCatalog_HasNoDanglingReferences` only
 covers what it actually loads.** Its `CreateDefinitionSet` helper has
 repeatedly passed empty lists for domains it didn't yet need (`spells`,
-`magicSchools`, `conditions`, `travelPaces`) — so a new cross-reference into
-one of those was invisible to it, twice, while the test stayed green.
+`magicSchools`, `conditions`, `travelPaces`, and now `tools`/`toolFamilies`)
+— so a new cross-reference into one of those was invisible to it, three
+separate times, while the test stayed green.
 **Check what that test loads before trusting its green status to cover a new
 reference**, and add a negative test that pins the check actually fires
 (`MissingTotemWarriorTravelPaceReference_IsRejected`).
@@ -1059,7 +1118,7 @@ Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
 | Candidate | Page | Verdict |
 | --- | --- | --- |
 | Character Advancement | 15 | **Built** |
-| Multiclassing Proficiencies | 164 | **Buildable, one dependency** |
+| Multiclassing Proficiencies | 164 | **Unblocked — tool gap now open** |
 | Encumbrance variant + size/strength multipliers | 176 | **Buildable, partial** |
 | Concentration rules | 203–204 | **Buildable, small** |
 | Multiclass Spellcaster slot table | 165 | **Declined — duplicate** |
@@ -1071,8 +1130,9 @@ Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
 - **Multiclassing Proficiencies (p.164)** is a real closed 12-row table
   (Sorcerer and Wizard grant nothing at all — a real fact, not a scan gap).
   It reuses `ArmorCategory`, `WeaponProficiencyCategory`, `WeaponId`, and
-  `SkillId` cleanly, **but two rows name tool proficiencies** — the deliberate
-  unmodeled gap above. Decide whether to open it before starting.
+  `SkillId` cleanly, and its two tool-proficiency rows (Rogue's thieves'
+  tools, Bard's musical instrument) are now buildable — the gap was opened
+  rather than declined. See "Tool proficiency grants".
 - **The Multiclass Spellcaster table (p.165) is byte-identical to the
   already-built `full-caster` progression** — all 20 rows compared
   programmatically against `spell-slot-progressions.json`, zero differences. The derivation rule around it reduces

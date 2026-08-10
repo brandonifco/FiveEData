@@ -82,6 +82,8 @@ using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Conditions;
 
+using FiveEData.Rules.Equipment.Tools;
+
 namespace FiveEData.Rules.Classes.Serialization;
 
 internal static class SubclassDefinitionLoader
@@ -426,6 +428,17 @@ internal static class SubclassDefinitionLoader
                     draconicPresenceData)
                 : null;
 
+        string[] toolProficiencyIdValues = data.ToolProficiencyIds
+            ?? throw new ArgumentException(
+                "Subclass tool proficiency IDs are required.",
+                nameof(data));
+
+        ToolProficiencyChoice? toolProficiencyChoice =
+            data.ToolProficiencyChoice is { } toolProficiencyChoiceData
+                ? ToolProficiencyChoiceDataMapper.Map(
+                    toolProficiencyChoiceData)
+                : null;
+
         return new SubclassDefinition(
             id,
             name,
@@ -482,6 +495,8 @@ internal static class SubclassDefinitionLoader
             elementalAffinity,
             dragonWings,
             draconicPresence,
+            toolProficiencyIdValues.Select(value => new ToolId(value)),
+            toolProficiencyChoice,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 }

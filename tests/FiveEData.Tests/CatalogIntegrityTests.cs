@@ -48,6 +48,8 @@ using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.AdventuringGear.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
+using FiveEData.Rules.Equipment.Tools;
+using FiveEData.Rules.Equipment.Tools.Serialization;
 using FiveEData.Rules.Equipment.Mounts;
 using FiveEData.Rules.Equipment.Mounts.Serialization;
 using FiveEData.Rules.Equipment.MountSupport;
@@ -61,7 +63,6 @@ using FiveEData.Rules.Equipment.Vehicles.Serialization;
 using FiveEData.Rules.Equipment.Shields;
 using FiveEData.Rules.Equipment.Shields.Serialization;
 using FiveEData.Rules.Equipment.Weapons;
-using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Weapons.Serialization;
 
 namespace FiveEData.Tests;
@@ -224,6 +225,14 @@ public sealed class CatalogIntegrityTests
             TravelPaceDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "travel-pace.json"));
 
+        IReadOnlyList<ToolDefinition> tools =
+            ToolDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "tools.json"));
+
+        IReadOnlyList<ToolFamilyDefinition> toolFamilies =
+            ToolFamilyDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "tool-families.json"));
+
         IReadOnlyList<HunterOptionDefinition> hunterOptions =
             HunterOptionDefinitionLoader.LoadFromFile(
                 Path.Combine(
@@ -299,11 +308,43 @@ public sealed class CatalogIntegrityTests
                     conditions: conditions,
                     totemWarriorOptions: totemWarriorOptions,
                     travelPaces: travelPaces,
+                    tools: tools,
+                    toolFamilies: toolFamilies,
                     hunterOptions: hunterOptions,
                     openHandTechniqueOptions: openHandTechniqueOptions,
                     thirdEyeOptions: thirdEyeOptions,
                     transmutersStoneOptions: transmutersStoneOptions,
                     characterAdvancement: characterAdvancement)));
+    }
+
+    [Fact]
+    public void MissingClassToolProficiencyReference_IsRejected()
+    {
+        string root = FindRepositoryRoot();
+
+        IReadOnlyList<SourceDocument> sources =
+            SourceDocumentLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "sources.json"));
+
+        IReadOnlyList<ClassDefinition> classes =
+            ClassDefinitionLoader.LoadFromFile(
+                Path.Combine(root, "Data", "dnd5e2014", "classes.json"));
+
+        // Deliberately omits tools/toolFamilies, the exact blind spot
+        // PublishedCatalog_HasNoDanglingReferences had before this pass:
+        // the check must fire rather than silently pass.
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(
+                CreateDefinitionSet(
+                    sourceDocuments: sources,
+                    classes: classes));
+
+        Assert.Contains(
+            errors,
+            error => error.Contains("references missing tool '"));
+        Assert.Contains(
+            errors,
+            error => error.Contains("references missing tool family '"));
     }
 
     [Fact]

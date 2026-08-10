@@ -179,6 +179,8 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -422,6 +424,8 @@
       "hitPointsRetained": 1,
       "resetsOnShortRest": true
     },
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -744,6 +748,15 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.artisans-tools",
+        "dnd5e2014.tool-family.musical-instrument"
+      ],
+      "toolOptionIds": []
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -989,6 +1002,10 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.thieves-tools"
+    ],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1345,6 +1362,14 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 3,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.musical-instrument"
+      ],
+      "toolOptionIds": []
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1486,6 +1511,8 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1681,6 +1708,8 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1944,6 +1973,8 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2131,6 +2162,10 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.herbalism-kit"
+    ],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2378,6 +2413,8 @@
     "sorcerousRestorationSorceryPointsRegained": null,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2567,6 +2604,8 @@
       "recoversOnLongRest": true
     },
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2875,6 +2914,8 @@
     "sorcerousRestorationSorceryPointsRegained": 4,
     "cleansingTouchUsesPerRest": null,
     "relentlessRage": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

@@ -38,6 +38,7 @@ using FiveEData.Rules.Classes.ThunderboltStrike;
 using FiveEData.Rules.Classes.WardingFlare;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Common;
+using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Conditions;
@@ -103,12 +104,15 @@ public sealed class SubclassDefinition
         ElementalAffinityDetail? elementalAffinity,
         DragonWingsDetail? dragonWings,
         DraconicPresenceDetail? draconicPresence,
+        IEnumerable<ToolId> toolProficiencyIds,
+        ToolProficiencyChoice? toolProficiencyChoice,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentNullException.ThrowIfNull(levelFeatures);
         ArgumentNullException.ThrowIfNull(innateSpellGrants);
         ArgumentNullException.ThrowIfNull(mindlessRageImmuneConditionIds);
+        ArgumentNullException.ThrowIfNull(toolProficiencyIds);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -170,6 +174,8 @@ public sealed class SubclassDefinition
         ElementalAffinity = elementalAffinity;
         DragonWings = dragonWings;
         DraconicPresence = draconicPresence;
+        ToolProficiencyIds = Array.AsReadOnly(toolProficiencyIds.ToArray());
+        ToolProficiencyChoice = toolProficiencyChoice;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -283,6 +289,10 @@ public sealed class SubclassDefinition
     public DragonWingsDetail? DragonWings { get; }
 
     public DraconicPresenceDetail? DraconicPresence { get; }
+
+    public IReadOnlyList<ToolId> ToolProficiencyIds { get; }
+
+    public ToolProficiencyChoice? ToolProficiencyChoice { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

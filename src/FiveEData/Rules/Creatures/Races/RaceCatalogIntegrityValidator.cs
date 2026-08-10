@@ -9,6 +9,8 @@ using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Weapons;
 using FiveEData.Rules.Spells;
 
+using FiveEData.Rules.Equipment.Tools;
+
 namespace FiveEData.Rules.Creatures.Races;
 
 internal static class RaceCatalogIntegrityValidator
@@ -23,7 +25,9 @@ internal static class RaceCatalogIntegrityValidator
         IReadOnlySet<DamageTypeId> damageTypeIds,
         IReadOnlySet<WeaponId> weaponIds,
         IReadOnlySet<SkillId> skillIds,
-        IReadOnlySet<SpellId> spellIds)
+        IReadOnlySet<SpellId> spellIds,
+        IReadOnlySet<ToolId> toolIds,
+        IReadOnlySet<ToolFamilyId> toolFamilyIds)
     {
         ArgumentNullException.ThrowIfNull(definitions);
         ArgumentNullException.ThrowIfNull(sourceIds);
@@ -35,6 +39,8 @@ internal static class RaceCatalogIntegrityValidator
         ArgumentNullException.ThrowIfNull(weaponIds);
         ArgumentNullException.ThrowIfNull(skillIds);
         ArgumentNullException.ThrowIfNull(spellIds);
+        ArgumentNullException.ThrowIfNull(toolIds);
+        ArgumentNullException.ThrowIfNull(toolFamilyIds);
 
         var errors = new List<string>();
 
@@ -95,6 +101,39 @@ internal static class RaceCatalogIntegrityValidator
                     errors.Add(
                         $"{owner} references missing damage type " +
                         $"'{damageTypeId}'.");
+                }
+            }
+
+            foreach (ToolId toolId in race.ToolProficiencyIds)
+            {
+                if (!toolIds.Contains(toolId))
+                {
+                    errors.Add(
+                        $"{owner} references missing tool " +
+                        $"'{toolId}'.");
+                }
+            }
+
+            if (race.ToolProficiencyChoice is { } raceToolChoice)
+            {
+                foreach (ToolFamilyId familyId in raceToolChoice.ToolFamilyIds)
+                {
+                    if (!toolFamilyIds.Contains(familyId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing tool family " +
+                            $"'{familyId}'.");
+                    }
+                }
+
+                foreach (ToolId toolId in raceToolChoice.ToolOptionIds)
+                {
+                    if (!toolIds.Contains(toolId))
+                    {
+                        errors.Add(
+                            $"{owner} references missing tool " +
+                            $"'{toolId}'.");
+                    }
                 }
             }
 

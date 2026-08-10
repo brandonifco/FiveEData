@@ -151,6 +151,8 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            [],
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -216,6 +218,8 @@ public sealed class SubclassFoundationTests
             null,
             null,
             null,
+            null,
+            [],
             null,
             [CreateSource()]);
 
@@ -863,6 +867,8 @@ public sealed class SubclassFoundationTests
             elementalAffinity,
             dragonWings,
             draconicPresence,
+            [],
+            null,
             sources ?? [CreateSource()]);
     }
 

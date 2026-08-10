@@ -73,6 +73,8 @@ using FiveEData.Rules.Creatures.Skills;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
 
+using FiveEData.Rules.Equipment.Tools;
+
 namespace FiveEData.Rules.Classes.Serialization;
 
 internal static class ClassDefinitionLoader
@@ -414,6 +416,17 @@ internal static class ClassDefinitionLoader
                 ? RelentlessRageDetailDataMapper.Map(relentlessRageData)
                 : null;
 
+        string[] toolProficiencyIdValues = data.ToolProficiencyIds
+            ?? throw new ArgumentException(
+                "Class tool proficiency IDs are required.",
+                nameof(data));
+
+        ToolProficiencyChoice? toolProficiencyChoice =
+            data.ToolProficiencyChoice is { } toolProficiencyChoiceData
+                ? ToolProficiencyChoiceDataMapper.Map(
+                    toolProficiencyChoiceData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -470,6 +483,8 @@ internal static class ClassDefinitionLoader
             data.SorcerousRestorationSorceryPointsRegained,
             cleansingTouchUsesPerRest,
             relentlessRage,
+            toolProficiencyIdValues.Select(value => new ToolId(value)),
+            toolProficiencyChoice,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

@@ -42,6 +42,16 @@
     "skillProficiencyChoiceCount": null,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [],
+      "toolOptionIds": [
+        "dnd5e2014.tool.smiths-tools",
+        "dnd5e2014.tool.brewers-supplies",
+        "dnd5e2014.tool.masons-tools"
+      ]
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -85,6 +95,8 @@
     "skillProficiencyChoiceCount": null,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -130,6 +142,8 @@
     "skillProficiencyChoiceCount": null,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -187,6 +201,8 @@
     "skillProficiencyChoiceCount": null,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -265,6 +281,8 @@
     "skillProficiencyChoiceCount": null,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -306,6 +324,8 @@
     "skillProficiencyChoiceCount": null,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -348,6 +368,8 @@
     "skillProficiencyChoiceCount": 2,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -401,6 +423,8 @@
     "skillProficiencyChoiceCount": null,
     "innateSpellGrants": [],
     "innateSpellcastingAbilityId": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -468,6 +492,8 @@
       }
     ],
     "innateSpellcastingAbilityId": "dnd5e2014.ability.charisma",
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

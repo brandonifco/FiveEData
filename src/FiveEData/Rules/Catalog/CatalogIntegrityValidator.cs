@@ -139,6 +139,16 @@ internal static class CatalogIntegrityValidator
                 .Select(definition => definition.Id)
                 .ToHashSet();
 
+        HashSet<ToolId> toolIds =
+            definitions.Equipment.Tools
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
+        HashSet<ToolFamilyId> toolFamilyIds =
+            definitions.Equipment.ToolFamilies
+                .Select(definition => definition.Id)
+                .ToHashSet();
+
         HashSet<TravelPaceId> travelPaceIds =
             definitions.TravelPaces
                 .Select(definition => definition.Id)
@@ -155,7 +165,9 @@ internal static class CatalogIntegrityValidator
                 damageTypeIds,
                 weaponIds,
                 skillIds,
-                spellIds));
+                spellIds,
+                toolIds,
+                toolFamilyIds));
 
         HashSet<SpellSlotProgressionId> spellSlotProgressionIds =
             definitions.SpellSlotProgressions
@@ -180,7 +192,9 @@ internal static class CatalogIntegrityValidator
                 damageTypeIds,
                 sizeIds,
                 spellIds,
-                conditionIds));
+                conditionIds,
+                toolIds,
+                toolFamilyIds));
 
         foreach (
             SpellSlotProgressionDefinition spellSlotProgression
@@ -714,11 +728,6 @@ internal static class CatalogIntegrityValidator
 
         HashSet<AdventuringGearId> adventuringGearIds =
             definitions.Equipment.AdventuringGear
-                .Select(definition => definition.Id)
-                .ToHashSet();
-
-        HashSet<ToolFamilyId> toolFamilyIds =
-            definitions.Equipment.ToolFamilies
                 .Select(definition => definition.Id)
                 .ToHashSet();
 

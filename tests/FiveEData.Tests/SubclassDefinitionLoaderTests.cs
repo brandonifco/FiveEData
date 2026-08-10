@@ -74,6 +74,8 @@ public sealed class SubclassDefinitionLoaderTests
           "elementalAffinity": null,
           "dragonWings": null,
           "draconicPresence": null,
+          "toolProficiencyIds": [],
+          "toolProficiencyChoice": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -174,6 +176,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -270,6 +274,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -362,6 +368,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -466,6 +474,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -573,6 +583,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -690,6 +702,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -753,6 +767,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": []
                   }
                 ]
@@ -813,6 +829,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": []
                   }
                 ]
@@ -874,6 +892,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": []
                   }
                 ]
@@ -935,6 +955,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": []
                   }
                 ]
@@ -996,6 +1018,8 @@ public sealed class SubclassDefinitionLoaderTests
                     "elementalAffinity": null,
                     "dragonWings": null,
                     "draconicPresence": null,
+                    "toolProficiencyIds": [],
+                    "toolProficiencyChoice": null,
                     "sources": null
                   }
                 ]

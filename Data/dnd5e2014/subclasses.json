@@ -87,6 +87,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -228,6 +230,14 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.artisans-tools"
+      ],
+      "toolOptionIds": []
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -317,6 +327,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -409,6 +421,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -494,6 +508,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -575,6 +591,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -659,6 +677,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -777,6 +797,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -865,6 +887,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -960,6 +984,11 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.disguise-kit",
+      "dnd5e2014.tool.poisoners-kit"
+    ],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1045,6 +1074,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1134,6 +1165,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1215,6 +1248,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1300,6 +1335,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1385,6 +1422,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1483,6 +1522,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1584,6 +1625,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1690,6 +1733,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1775,6 +1820,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1860,6 +1907,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1945,6 +1994,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2030,6 +2081,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2139,6 +2192,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2241,6 +2296,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2354,6 +2411,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2482,6 +2541,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2587,6 +2648,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2699,6 +2762,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2811,6 +2876,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2904,6 +2971,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3004,6 +3073,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3105,6 +3176,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3228,6 +3301,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3309,6 +3384,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3390,6 +3467,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3502,6 +3581,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3614,6 +3695,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3719,6 +3802,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3825,6 +3910,8 @@
       "durationMinutes": 1,
       "requiresConcentration": true
     },
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -3916,6 +4003,8 @@
     "elementalAffinity": null,
     "dragonWings": null,
     "draconicPresence": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
