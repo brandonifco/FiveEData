@@ -39,50 +39,20 @@ Built and complete:
   the p.203 sidebar) and `SpellDefinition`. **All 27 cantrips and all
   spells of every level 1 through 9 are built — 361 spells, the complete
   real set.** See "Spells: the Trap the Soul appendix error" below for
-  why 361 is the correct final count, not 362. **All 27 cantrips now also
-  carry real damage-effect data** (attack roll or saving throw, damage
-  type, and the character-level damage-die progression) where the PHB
-  actually gives them one — 11 of the 27; the other 16 are utility/buff
-  cantrips with no `SpellDamageEffect`. See "Game-backend quantization:
-  Spell cantrip effects" below. **1st-level spells now carry the same kind
-  of effect data** — 10 of the 62 have a `SpellDamageEffect` and 6 have a
-  new `SpellConditionEffect` (one, Ray of Sickness, has both); see
-  "Game-backend quantization: 1st-level spell effects" for the schema
-  extensions this level required (choosable damage types, half-damage-on-
-  save, a flat leveled-spell base damage, and named-condition effects).
-  **2nd-level spells too** — 7 of the 59 have a `SpellDamageEffect`, 3 have
-  a `SpellConditionEffect`, no schema changes needed this time. See
-  "Game-backend quantization: 2nd-level spell effects". **3rd-level
-  spells too** — 7 of the 50 have a `SpellDamageEffect` (two of them,
-  Conjure Barrage and Spirit Guardians, are the second and third spells
-  after Chromatic Orb to use a choosable damage type), 3 have a
-  `SpellConditionEffect`; no schema changes needed. See "Game-backend
-  quantization: 3rd-level spell effects". **4th-level spells too** — 3 of
-  the 35 have a `SpellDamageEffect`, 3 have a `SpellConditionEffect`, and
-  Evard's Black Tentacles is the first spell built with both from the
-  *same* failed save. See "Game-backend quantization: 4th-level spell
-  effects" for two new one-off declines this level's content needed (a
-  flat non-dice damage number, and a spell dealing two damage types at
-  once). **5th-level spells too** — 5 of the 42 have a `SpellDamageEffect`
-  and 3 have a `SpellConditionEffect`, including Destructive Wave, whose
-  condition (prone) is captured even though its two-simultaneous-type
-  damage isn't. See "Game-backend quantization: 5th-level spell effects".
-  **6th-level spells too** — 9 of the 32 have a `SpellDamageEffect`
-  (Disintegrate's "10d6 + 40" needed a new `FlatDamageBonus` field, the
-  second real flat-modifier spell after Magic Missile), 2 have a
-  `SpellConditionEffect` (Sunbeam shares one save between both fields,
-  the second spell to do so after Evard's Black Tentacles). See
-  "Game-backend quantization: 6th-level spell effects". **7th-level
-  spells too** — 3 of the 20 have a `SpellDamageEffect` (Delayed Blast
-  Fireball, Finger of Death, Fire Storm), and for the first time since
-  the pass began, none have a `SpellConditionEffect` — Divine Word,
-  Prismatic Spray, and Symbol are all too compound/multi-mode to model.
-  See "Game-backend quantization: 7th-level spell effects". **8th-level
-  spells too** — 3 of the 18 have a `SpellDamageEffect`, 3 have a
-  `SpellConditionEffect`, and Sunburst is the third spell (after Evard's
-  Black Tentacles and Sunbeam) whose two effects share one save. See
-  "Game-backend quantization: 8th-level spell effects". Level 9 doesn't
-  have effect data yet.
+  why 361 is the correct final count, not 362. **Every spell level, 0
+  through 9, now also carries real damage/condition effect data** — 78
+  of the 361 spells carry a `SpellDamageEffect` and/or
+  `SpellConditionEffect` (59 damage grants, 24 condition grants; some
+  spells, like Ray of Sickness and Evard's Black Tentacles, carry both).
+  See the "Game-backend quantization: ... spell effects" sections below,
+  one per level (cantrips through 9th) — cantrips and 1st level drove
+  almost all of the schema (choosable damage types, half-damage-on-a-
+  successful-save, a flat leveled-spell base damage independent of
+  character level, and named `SpellConditionEffect` grants), 6th level
+  added one more field (`FlatDamageBonus`, for the rare "dice + flat
+  number" spell), and every other level reused the existing shapes with
+  no schema growth at all. This closes gap 1 of the game-backend
+  initiative below.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -110,58 +80,33 @@ class/subclass/race/background feature *text* is unquantized prose
 (Metamagic effects, maneuver secondary effects, invocation benefits).
 Conditions (gap 2) went first — smallest, and a dependency for the other
 two, since spell/feature effects constantly reference named conditions.
-Spells (gap 1) are next, cantrips first; feature-effect prose (gap 3) is
-last. **This deliberately reverses two lines stated below as settled
+Spells (gap 1) went second, cantrips first; feature-effect prose (gap 3)
+is next. **This deliberately reverses two lines stated below as settled
 architecture**: "no generic effect DSL" and "Spells are not a modeled
 domain" (the latter was already stale — `SpellId`/`SpellDefinition` exist
 as a real domain; only the *effect* stayed unmodeled). The reversal is
 narrower than it sounds: Conditions used the *same* "many typed fields on
 one Definition" shape every other domain already uses, not a new DSL —
 see "Game-backend quantization: Conditions" for why that shape held up
-even at 26 fields. Cantrip damage effects (the first slice of gap 1)
-followed the same discipline again — see "Game-backend quantization:
-Spell cantrip effects". **1st-level spell effects are done too** — see
-"Game-backend quantization: 1st-level spell effects" for the real schema
-growth that level required (cantrips alone never needed a saving-throw
-half-damage flag, a choosable damage type, or a named-condition effect).
-**2nd-level spell effects are done too, with zero schema changes** — see
-"Game-backend quantization: 2nd-level spell effects" for why (the shapes
-1st level already built covered everything 2nd level's real content
-needed) and for a newly-confirmed recurring decline (automatic zone/
-trigger damage with no attack roll or saving throw at all). **3rd-level
-spell effects are done too, still zero schema changes** — see
-"Game-backend quantization: 3rd-level spell effects". **4th-level spell
-effects are done too** — see "Game-backend quantization: 4th-level spell
-effects" for Evard's Black Tentacles (the first spell whose
-`DamageEffect` and `ConditionEffect` share one failed save) and two new
-one-off declines (Guardian of Faith's flat non-dice damage, Ice Storm's
-two-simultaneous-damage-types). **5th-level spell effects are done
-too** — see "Game-backend quantization: 5th-level spell effects" for a
-newly-confirmed recurring pattern: a spell can decline its damage
-(another two-simultaneous-type case, Flame Strike) while still keeping
-a clean condition fact (Destructive Wave's prone), since the two
-mechanism fields are independent. **6th-level spell effects are done
-too** — see "Game-backend quantization: 6th-level spell effects" for
-`SpellDamageEffect`'s first real field addition since 1st level
-(`FlatDamageBonus`, for Disintegrate's "10d6 + 40") and Sunbeam, the
-second spell (after Evard's Black Tentacles) whose `DamageEffect` and
-`ConditionEffect` share one saving throw. **7th-level spell effects are
-done too** — see "Game-backend quantization: 7th-level spell effects".
-Finger of Death is the second `FlatDamageBonus` spell (paired with
-`HalfDamageOnSuccessfulSave`, unlike Disintegrate's "no half" shape),
-and this is the first level with zero `SpellConditionEffect` spells —
-its three condition-shaped candidates (Divine Word, Prismatic Spray,
-Symbol) are all declined as too compound/multi-mode. **8th-level spell
-effects are done too** — see "Game-backend quantization: 8th-level
-spell effects". Sunburst is the third spell (after Evard's Black
-Tentacles and Sunbeam) whose `DamageEffect` and `ConditionEffect` share
-one saving throw, and Power Word Stun is the first spell whose
-condition-shaped effect is declined for having *no* save gating its
-initial application at all (an HP-threshold auto-effect, the save only
-ever ends it early). Level 9 is the remaining piece of gap 1, not yet
-started.
+even at 26 fields.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2861 tests**.
+**Gap 1 (Spells) is now fully closed — every level, cantrips through
+9th, has real damage/condition effect data.** It was built cantrips
+first (proving the shape on a small closed set, the same strategy the
+original header-block build used), then level by level; see the ten
+"Game-backend quantization: ... spell effects" sections below for the
+full per-level build log. The two mechanism fields —
+`SpellDamageEffect` (attack roll or saving throw, damage type,
+half-damage-on-a-successful-save, and either a cantrip's
+character-level progression or a leveled spell's flat base damage plus
+optional `FlatDamageBonus`) and `SpellConditionEffect` (one or more
+named Appendix A conditions gated by a saving throw) — cover 78 of the
+361 spells; the schema itself was essentially settled after 1st level,
+with only one further addition (`FlatDamageBonus`, at 6th level) across
+the remaining eight levels. **Feature-effect prose (gap 3) is the
+initiative's last remaining piece, not yet started.**
+
+Gate as of the last merge: Debug+Release build 0 warnings, **2870 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -2021,6 +1966,58 @@ target's Intelligence and Charisma scores to 1 — a real, save-gated
 effect, but a bespoke ability-score reduction rather than any named
 Appendix A condition, the same "don't infer a condition tag the text
 doesn't use" discipline that declined Otto's Irresistible Dance.
+
+## Game-backend quantization: 9th-level spell effects (closing gap 1)
+
+The tenth and final slice of gap 1, closing the Spells effect-data
+initiative. Of the 16 9th-level spells, only **Weird** gets any effect
+data — a `SpellDamageEffect` and a `SpellConditionEffect`, both gated
+by the same Wisdom save (4d10 psychic damage, half on success, and
+`frightened`). This is the sparsest level in the whole pass: the other
+15 spells are dominated by exotic utility, transformation, and
+"ultimate" multi-mode effects that don't fit either mechanism field,
+not because the schema is missing something, but because 9th-level PHB
+content genuinely trends away from the clean "attack roll or saving
+throw, damage or condition" shape most other levels' combat spells use.
+
+**Weird is the fourth spell to share one saving throw between
+`DamageEffect` and `ConditionEffect`**, after Evard's Black Tentacles
+(4th), Sunbeam (6th), and Sunburst (8th) — four real instances spanning
+four different levels confirms this dual-effect shape as a genuine,
+recurring part of the PHB's design vocabulary, not a coincidence tied
+to any one spell level.
+
+**Power Word Kill is the most extreme instance yet of the automatic-
+effect decline**, more extreme than Power Word Stun's 8th-level
+version: "If the creature has 100 hit points or fewer, it dies.
+Otherwise, the spell has no effect" carries no attack roll, no saving
+throw, and no dice damage expression at all — an unconditional
+hit-point-threshold kill-or-nothing effect with nothing for either
+mechanism field to hold.
+
+**Meteor Swarm is a second 9th-level-scale instance of the
+two-simultaneous-damage-types decline** (20d6 fire and 20d6
+bludgeoning, both always apply), joining Ice Storm, Destructive Wave,
+and Flame Strike from earlier levels — the same shape, now confirmed
+at the top of the level range too.
+
+**Imprisonment, Prismatic Wall, and Storm of Vengeance are all declined
+as compound/multi-mode mechanics**, the same call already made for
+Glyph of Warding, Symbol, and Prismatic Spray: each offers several
+caster-chosen or round-by-round effects (Imprisonment's five
+imprisonment forms, Prismatic Wall's seven color-coded layers, Storm of
+Vengeance's per-round choice of thunder/acid/hail/lightning effects),
+with different save abilities and different damage-or-condition shapes
+depending on which option applies — never one resolution mechanic a
+single `SpellDamageEffect`/`SpellConditionEffect` pair could represent.
+
+**Gap 1 is closed.** All 361 real PHB spells (0 through 9th level) are
+built with header-block data, and 78 of them now carry real
+damage-and/or-condition effect data reflecting everything the PHB
+actually specifies in a clean, quantizable shape. The full inventory:
+`SpellDamageEffect` on 59 spells, `SpellConditionEffect` on 24, with
+overlap on the spells noted throughout these ten sections. Gap 3
+(feature-effect prose) is the initiative's next and final piece.
 
 ## Test conventions
 
