@@ -67,7 +67,13 @@ Built and complete:
   and 3 have a `SpellConditionEffect`, including Destructive Wave, whose
   condition (prone) is captured even though its two-simultaneous-type
   damage isn't. See "Game-backend quantization: 5th-level spell effects".
-  Levels 6–9 don't have effect data yet.
+  **6th-level spells too** — 9 of the 32 have a `SpellDamageEffect`
+  (Disintegrate's "10d6 + 40" needed a new `FlatDamageBonus` field, the
+  second real flat-modifier spell after Magic Missile), 2 have a
+  `SpellConditionEffect` (Sunbeam shares one save between both fields,
+  the second spell to do so after Evard's Black Tentacles). See
+  "Game-backend quantization: 6th-level spell effects". Levels 7–9 don't
+  have effect data yet.
 - Combat/adventuring rules — **all five scoped catalogs are built.**
   `CombatActions` (10 named actions), `Cover` (3 degrees), `TravelPace`
   (3 paces), `RestTypes` (2 rest types), `DowntimeActivities` (5 named
@@ -125,10 +131,15 @@ too** — see "Game-backend quantization: 5th-level spell effects" for a
 newly-confirmed recurring pattern: a spell can decline its damage
 (another two-simultaneous-type case, Flame Strike) while still keeping
 a clean condition fact (Destructive Wave's prone), since the two
-mechanism fields are independent. Levels 6–9 are the remaining piece of
-gap 1, not yet started.
+mechanism fields are independent. **6th-level spell effects are done
+too** — see "Game-backend quantization: 6th-level spell effects" for
+`SpellDamageEffect`'s first real field addition since 1st level
+(`FlatDamageBonus`, for Disintegrate's "10d6 + 40") and Sunbeam, the
+second spell (after Evard's Black Tentacles) whose `DamageEffect` and
+`ConditionEffect` share one saving throw. Levels 7–9 are the remaining
+piece of gap 1, not yet started.
 
-Gate as of the last merge: Debug+Release build 0 warnings, **2826 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **2844 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -1812,6 +1823,77 @@ attack is one of several optional bonus-action effects (grapple, push,
 interpose) for a conjured hand the caster controls turn after turn —
 the same "recurring, optional, not-the-spell's-single-effect" shape
 already declined, not a new one-off worth re-litigating.
+
+## Game-backend quantization: 6th-level spell effects
+
+The seventh slice of gap 1, and the first level since 1st that actually
+grew `SpellDamageEffect` rather than reusing it unchanged. 9 of the 32
+6th-level spells get a `SpellDamageEffect` (Blade Barrier, Chain
+Lightning, Circle of Death, Disintegrate, Harm, Otiluke's Freezing
+Sphere, Sunbeam, Wall of Ice, Wall of Thorns), 2 get a
+`SpellConditionEffect` (Flesh to Stone → `restrained`, Sunbeam →
+`blinded`), and 22 get neither.
+
+**`FlatDamageBonus: int?` is a new field, added because Disintegrate is
+the second real "dice + flat modifier" spell, confirming the pattern
+1st level's Magic Missile note explicitly flagged for revisit.**
+Disintegrate's "10d6 + 40 force damage" needs the same shape Magic
+Missile's declined "1d4 + 1" did, but unlike Magic Missile, Disintegrate
+has no other disqualifying trait — it resolves via an ordinary Dexterity
+saving throw with `BaseDamage` already capturing the dice, so only the
+flat add was missing. The field is constructor-validated to require
+`BaseDamage` (never `DamageByCharacterLevel`, since no cantrip has
+needed a flat add) and to be `null` or a positive integer — the
+overwhelming majority of spells still carry `null`. **Every one of the
+43 already-built populated `damageEffect` entries needed the field
+added to stay loadable**, the same "add a required field, do one
+scripted backfill pass over the data file" cost the original
+header-block build already paid when `SpellDuration.IsSpecial` was
+added (5th-level spells, back when this project was still building
+header blocks, not effect data) — done here as a single regex insertion
+after every `baseDamage` value, verified to touch nothing else. Magic Missile itself stays declined — the flat-modifier
+gap is now closed, but its auto-hit (no attack roll, no saving throw at
+all) is a second, still-unaddressed reason, and fixing only one of two
+disqualifying traits isn't worth revisiting the spell on its own.
+
+**Sunbeam is the second spell (after Evard's Black Tentacles) where
+`DamageEffect` and `ConditionEffect` share one saving throw** — a
+failed Constitution save deals 6d8 radiant damage (half on success) and
+separately blinds the target (no half-blindness concept, so the
+condition simply doesn't apply on a successful save). Two real
+instances now confirm this dual-effect shape is a recurring PHB
+pattern, not a one-off.
+
+**Flesh to Stone captures only its initial restrain, not the
+escalation to petrified.** The spell's real mechanic is a Constitution
+save into `restrained`, followed by up to three more Constitution saves
+at the end of each of the target's turns; failing three of those turns
+turns it to stone, subject to the *petrified* condition instead. Modeling only the initial
+gate is the same call already made for Hold Person/Hold Monster's
+repeat-save-to-end mechanic — the repeated saves are a rider on the
+initial effect, not a fact the initial `SpellConditionEffect` needs to
+carry.
+
+**Forbiddance is a fourth instance of the automatic zone/trigger damage
+decline**, after Cloud of Daggers, Heat Metal, and Spike Growth — a
+chosen creature type takes 5d10 radiant-or-necrotic damage the instant
+it enters the warded area, with no attack roll or saving throw
+anywhere in the mechanic.
+
+**Eyebite and Otto's Irresistible Dance are both declined as
+condition-shaped effects that don't cleanly fit
+`SpellConditionEffect`.** Eyebite lets the caster choose one of three
+named effects before casting (Asleep → unconscious, Panicked →
+frightened, Sickened → a bespoke disadvantage effect with no condition
+name at all) — a fixed-at-cast-time choice among options that aren't
+uniformly real conditions, the same reasoning that declined
+Blindness/Deafness's two-option choice at 2nd level. Otto's
+Irresistible Dance imposes a forced-dancing debuff with Prone-like
+mechanical consequences (disadvantage on Dexterity saves, advantage to
+attackers) but the PHB text never calls it any Appendix A condition by
+name — modeling it as `prone` would be inferring a tag the spell's own
+words don't use, the same discipline Otiluke's Resilient Sphere's
+"enclosed, not restrained" decline already established.
 
 ## Test conventions
 

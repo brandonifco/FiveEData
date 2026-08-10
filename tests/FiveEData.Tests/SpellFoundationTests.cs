@@ -590,6 +590,52 @@ public sealed class SpellFoundationTests
         Assert.Equal(2, effect.ConditionIds.Count);
     }
 
+    // Disintegrate's "10d6 + 40 force damage" is the reason
+    // FlatDamageBonus exists.
+    [Fact]
+    public void DamageEffect_AcceptsFlatDamageBonusAlongsideBaseDamage()
+    {
+        var effect = new SpellDamageEffect(
+            new DamageTypeId("dnd5e2014.damage-type.force"),
+            choosableDamageTypeIds: null,
+            attackRollType: null,
+            new AbilityId("dnd5e2014.ability.dexterity"),
+            halfDamageOnSuccessfulSave: false,
+            damageByCharacterLevel: null,
+            new DiceExpression(10, 6),
+            flatDamageBonus: 40);
+
+        Assert.Equal(40, effect.FlatDamageBonus);
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsFlatDamageBonusWithoutBaseDamage()
+    {
+        Assert.Throws<ArgumentException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            choosableDamageTypeIds: null,
+            SpellAttackRollType.Ranged,
+            savingThrowAbilityId: null,
+            halfDamageOnSuccessfulSave: false,
+            [new SpellDamageTierGrant(1, new DiceExpression(1, 6))],
+            baseDamage: null,
+            flatDamageBonus: 1));
+    }
+
+    [Fact]
+    public void DamageEffect_RejectsNonPositiveFlatDamageBonus()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => new SpellDamageEffect(
+            AcidDamageType(),
+            choosableDamageTypeIds: null,
+            attackRollType: null,
+            new AbilityId("dnd5e2014.ability.dexterity"),
+            halfDamageOnSuccessfulSave: false,
+            damageByCharacterLevel: null,
+            new DiceExpression(10, 6),
+            flatDamageBonus: 0));
+    }
+
     private static DamageTypeId AcidDamageType() =>
         new("dnd5e2014.damage-type.acid");
 

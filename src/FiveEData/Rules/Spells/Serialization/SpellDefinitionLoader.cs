@@ -163,7 +163,8 @@ internal static class SpellDefinitionLoader
             savingThrowAbilityId,
             halfDamageOnSuccessfulSave,
             damageByCharacterLevel,
-            baseDamage);
+            baseDamage,
+            data.FlatDamageBonus);
     }
 
     private static SpellConditionEffect MapConditionEffect(

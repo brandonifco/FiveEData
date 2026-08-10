@@ -68,7 +68,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -830,7 +831,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.strength",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 2, "sides": 6 }
+      "baseDamage": { "count": 2, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -1533,7 +1535,16 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.slashing",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 6, "sides": 10 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
@@ -1682,7 +1693,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 8, "sides": 8 }
+      "baseDamage": { "count": 8, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -1974,7 +1986,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 6 }
+      "baseDamage": { "count": 3, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -2029,7 +2042,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 10 }
+      "baseDamage": { "count": 3, "sides": 10 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -2123,7 +2137,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.lightning",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 10, "sides": 8 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -2259,7 +2282,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -2322,7 +2346,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 8 }
+      "baseDamage": { "count": 3, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -2370,7 +2395,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 8, "sides": 6 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -2615,7 +2649,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 5, "sides": 8 }
+      "baseDamage": { "count": 5, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -2998,7 +3033,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 8, "sides": 8 }
+      "baseDamage": { "count": 8, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -3153,7 +3189,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 8 }
+      "baseDamage": { "count": 3, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -3398,7 +3435,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 8, "sides": 6 }
+      "baseDamage": { "count": 8, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -3499,7 +3537,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.intelligence",
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 6, "sides": 6 }
+      "baseDamage": { "count": 6, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -3790,7 +3829,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 1, "sides": 6 }
+      "baseDamage": { "count": 1, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -4900,7 +4940,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.force",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": false,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 10, "sides": 6 },
+      "flatDamageBonus": 40
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.sorcerer",
@@ -5053,7 +5102,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 6 }
+      "baseDamage": { "count": 3, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -5591,7 +5641,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -5979,7 +6030,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 6 }
+      "baseDamage": { "count": 3, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": {
       "conditionIds": ["dnd5e2014.condition.restrained"],
@@ -6736,7 +6788,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -6885,7 +6938,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 8, "sides": 6 }
+      "baseDamage": { "count": 8, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -6940,7 +6994,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 6 }
+      "baseDamage": { "count": 3, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -7040,7 +7095,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 2, "sides": 6 }
+      "baseDamage": { "count": 2, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -7089,7 +7145,10 @@
     },
     "isRitual": false,
     "damageEffect": null,
-    "conditionEffect": null,
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.restrained"],
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.warlock",
       "dnd5e2014.class.wizard"
@@ -8240,7 +8299,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 4, "sides": 6 }
+      "baseDamage": { "count": 4, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -8476,7 +8536,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.necrotic",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 14, "sides": 6 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.cleric"
@@ -8718,7 +8787,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 2, "sides": 10 }
+      "baseDamage": { "count": 2, "sides": 10 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -9445,7 +9515,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 10 }
+      "baseDamage": { "count": 3, "sides": 10 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -9499,7 +9570,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 4, "sides": 10 }
+      "baseDamage": { "count": 4, "sides": 10 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -10034,7 +10106,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 8, "sides": 6 }
+      "baseDamage": { "count": 8, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -10951,7 +11024,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 4, "sides": 4 }
+      "baseDamage": { "count": 4, "sides": 4 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -11484,7 +11558,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 2, "sides": 10 }
+      "baseDamage": { "count": 2, "sides": 10 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -11859,7 +11934,16 @@
       "unit": null
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.cold",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 10, "sides": 6 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
@@ -12462,7 +12546,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -12929,7 +13014,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -13442,7 +13528,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -13497,7 +13584,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 2, "sides": 8 }
+      "baseDamage": { "count": 2, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": {
       "conditionIds": ["dnd5e2014.condition.poisoned"],
@@ -13962,7 +14050,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -14062,7 +14151,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 2, "sides": 6 }
+      "baseDamage": { "count": 2, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -14450,7 +14540,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 8 }
+      "baseDamage": { "count": 3, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -14676,7 +14767,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -15305,7 +15397,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.wisdom",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 8 }
+      "baseDamage": { "count": 3, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -15684,8 +15777,20 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
-    "conditionEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.radiant",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 6, "sides": 8 },
+      "flatDamageBonus": null
+    },
+    "conditionEffect": {
+      "conditionIds": ["dnd5e2014.condition.blinded"],
+      "savingThrowAbilityId": "dnd5e2014.ability.constitution"
+    },
     "availableToClassIds": [
       "dnd5e2014.class.druid",
       "dnd5e2014.class.sorcerer",
@@ -16241,7 +16346,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -16341,7 +16447,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.constitution",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 2, "sides": 8 }
+      "baseDamage": { "count": 2, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -16876,7 +16983,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 6 }
+      "baseDamage": { "count": 3, "sides": 6 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -16960,7 +17068,8 @@
           }
         }
       ],
-      "baseDamage": null
+      "baseDamage": null,
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -17014,7 +17123,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 5, "sides": 8 }
+      "baseDamage": { "count": 5, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -17109,7 +17219,16 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.cold",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 10, "sides": 6 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.wizard"
@@ -17203,7 +17322,16 @@
       "unit": "Minute"
     },
     "isRitual": false,
-    "damageEffect": null,
+    "damageEffect": {
+      "damageTypeId": "dnd5e2014.damage-type.piercing",
+      "choosableDamageTypeIds": null,
+      "attackRollType": null,
+      "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+      "halfDamageOnSuccessfulSave": true,
+      "damageByCharacterLevel": null,
+      "baseDamage": { "count": 7, "sides": 8 },
+      "flatDamageBonus": null
+    },
     "conditionEffect": null,
     "availableToClassIds": [
       "dnd5e2014.class.druid"
@@ -17540,7 +17668,8 @@
       "savingThrowAbilityId": "dnd5e2014.ability.strength",
       "halfDamageOnSuccessfulSave": true,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 3, "sides": 8 }
+      "baseDamage": { "count": 3, "sides": 8 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [
@@ -17641,7 +17770,8 @@
       "savingThrowAbilityId": null,
       "halfDamageOnSuccessfulSave": false,
       "damageByCharacterLevel": null,
-      "baseDamage": { "count": 1, "sides": 12 }
+      "baseDamage": { "count": 1, "sides": 12 },
+      "flatDamageBonus": null
     },
     "conditionEffect": null,
     "availableToClassIds": [

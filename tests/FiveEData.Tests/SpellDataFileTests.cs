@@ -3170,6 +3170,142 @@ public sealed class SpellDataFileTests
         Assert.Null(Get("dnd5e2014.spell.telekinesis").ConditionEffect);
     }
 
+    // 9 of the 32 6th-level spells deal damage directly; 2 impose a named
+    // condition. Sunbeam is the second spell (after Evard's Black
+    // Tentacles) whose DamageEffect and ConditionEffect share one save.
+    [Fact]
+    public void NineSixthLevelSpellsHaveADamageEffect()
+    {
+        Assert.Equal(
+            9,
+            LoadCanonical()
+                .Count(spell => spell.Level == 6 && spell.DamageEffect is not null));
+    }
+
+    [Fact]
+    public void TwoSixthLevelSpellsHaveAConditionEffect()
+    {
+        Assert.Equal(
+            2,
+            LoadCanonical()
+                .Count(spell => spell.Level == 6 && spell.ConditionEffect is not null));
+    }
+
+    [Theory]
+    [InlineData("dnd5e2014.spell.blade-barrier", "slashing", "dexterity", 6, 10)]
+    [InlineData("dnd5e2014.spell.chain-lightning", "lightning", "dexterity", 10, 8)]
+    [InlineData("dnd5e2014.spell.circle-of-death", "necrotic", "constitution", 8, 6)]
+    [InlineData("dnd5e2014.spell.harm", "necrotic", "constitution", 14, 6)]
+    [InlineData("dnd5e2014.spell.otilukes-freezing-sphere", "cold", "constitution", 10, 6)]
+    [InlineData("dnd5e2014.spell.wall-of-ice", "cold", "dexterity", 10, 6)]
+    [InlineData("dnd5e2014.spell.wall-of-thorns", "piercing", "dexterity", 7, 8)]
+    public void SixthLevelSavingThrowDamageSpell_DealsHalfDamageOnSuccessfulSave(
+        string id,
+        string expectedDamageType,
+        string expectedSavingThrowAbility,
+        int expectedCount,
+        int expectedSides)
+    {
+        SpellDamageEffect effect = Get(id).DamageEffect!;
+
+        Assert.Equal(
+            $"dnd5e2014.damage-type.{expectedDamageType}",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            $"dnd5e2014.ability.{expectedSavingThrowAbility}",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(effect.HalfDamageOnSuccessfulSave);
+        Assert.Null(effect.FlatDamageBonus);
+        Assert.Equal(expectedCount, effect.BaseDamage!.Value.Count);
+        Assert.Equal(expectedSides, effect.BaseDamage.Value.Sides);
+    }
+
+    // Disintegrate is the reason FlatDamageBonus exists: "10d6 + 40 force
+    // damage" on a failed Dexterity save, with no half-on-success clause
+    // (matching Cordon of Arrows/Evard's Black Tentacles/Contact Other
+    // Plane's "no half" shape) — success avoids the damage entirely.
+    [Fact]
+    public void DisintegrateDealsTenDSixPlusFortyForceDamage()
+    {
+        SpellDamageEffect effect = Get("dnd5e2014.spell.disintegrate").DamageEffect!;
+
+        Assert.Equal(
+            "dnd5e2014.damage-type.force",
+            effect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.dexterity",
+            effect.SavingThrowAbilityId!.Value.Value);
+        Assert.False(effect.HalfDamageOnSuccessfulSave);
+        Assert.Equal(10, effect.BaseDamage!.Value.Count);
+        Assert.Equal(6, effect.BaseDamage.Value.Sides);
+        Assert.Equal(40, effect.FlatDamageBonus);
+    }
+
+    // Sunbeam's single failed Constitution save both deals radiant damage
+    // and blinds the target — the second instance of one saving throw
+    // gating both mechanism fields, after Evard's Black Tentacles.
+    [Fact]
+    public void SunbeamDealsDamageAndBlindsOnTheSameFailedSave()
+    {
+        SpellDefinition spell = Get("dnd5e2014.spell.sunbeam");
+
+        SpellDamageEffect damageEffect = spell.DamageEffect!;
+        Assert.Equal(
+            "dnd5e2014.damage-type.radiant",
+            damageEffect.DamageTypeId!.Value.Value);
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            damageEffect.SavingThrowAbilityId!.Value.Value);
+        Assert.True(damageEffect.HalfDamageOnSuccessfulSave);
+
+        SpellConditionEffect conditionEffect = spell.ConditionEffect!;
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            conditionEffect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.blinded",
+            Assert.Single(conditionEffect.ConditionIds).Value);
+    }
+
+    // Flesh to Stone's initial failed save restrains the target; only a
+    // second, later escalation (three more saves) turns it to stone, the
+    // same "capture the initial gate, decline the repeated-save
+    // escalation" call already made for Hold Person/Hold Monster's
+    // repeat-to-end mechanic.
+    [Fact]
+    public void FleshToStoneRestrainsOnTheInitialFailedSave()
+    {
+        SpellConditionEffect effect = Get("dnd5e2014.spell.flesh-to-stone").ConditionEffect!;
+
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            effect.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.restrained",
+            Assert.Single(effect.ConditionIds).Value);
+    }
+
+    // Forbiddance is another automatic zone/trigger damage spell with no
+    // attack roll or saving throw at all, joining Cloud of Daggers, Heat
+    // Metal, and Spike Growth on the same recurring decline.
+    [Fact]
+    public void ForbiddanceHasNoDamageEffect()
+    {
+        Assert.Null(Get("dnd5e2014.spell.forbiddance").DamageEffect);
+    }
+
+    // Eyebite and Otto's Irresistible Dance are both declined: Eyebite is
+    // a caster's choice among three effects, only two of which are named
+    // conditions; Otto's Irresistible Dance imposes a bespoke dancing
+    // debuff the PHB never ties to a named Appendix A condition.
+    [Theory]
+    [InlineData("dnd5e2014.spell.eyebite")]
+    [InlineData("dnd5e2014.spell.ottos-irresistible-dance")]
+    public void SixthLevelConditionalChoiceSpell_HasNoConditionEffect(string id)
+    {
+        Assert.Null(Get(id).ConditionEffect);
+    }
+
     private static SpellDefinition Get(string id)
     {
         return LoadCanonical().Single(spell => spell.Id.Value == id);

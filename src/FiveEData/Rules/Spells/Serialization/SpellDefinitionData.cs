@@ -68,6 +68,9 @@ internal sealed class SpellDamageEffectData
 
     [JsonRequired]
     public DiceExpressionData? BaseDamage { get; init; }
+
+    [JsonRequired]
+    public int? FlatDamageBonus { get; init; }
 }
 
 internal sealed class SpellDamageTierGrantData

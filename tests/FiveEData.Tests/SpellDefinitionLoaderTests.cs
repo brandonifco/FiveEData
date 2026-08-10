@@ -217,7 +217,8 @@ public sealed class SpellDefinitionLoaderTests
                 { "characterLevel": 1, "damage": { "count": 1, "sides": 10 } },
                 { "characterLevel": 5, "damage": { "count": 2, "sides": 10 } }
               ],
-              "baseDamage": null
+              "baseDamage": null,
+              "flatDamageBonus": null
             },
             """,
             StringComparison.Ordinal);
@@ -248,7 +249,8 @@ public sealed class SpellDefinitionLoaderTests
               "damageByCharacterLevel": [
                 { "characterLevel": 1, "damage": { "count": 1, "sides": 6 } }
               ],
-              "baseDamage": null
+              "baseDamage": null,
+              "flatDamageBonus": null
             },
             """,
             StringComparison.Ordinal);
@@ -277,7 +279,8 @@ public sealed class SpellDefinitionLoaderTests
               "damageByCharacterLevel": [
                 { "characterLevel": 1, "damage": { "count": 1, "sides": 6 } }
               ],
-              "baseDamage": null
+              "baseDamage": null,
+              "flatDamageBonus": null
             },
             """,
             StringComparison.Ordinal);
@@ -301,7 +304,8 @@ public sealed class SpellDefinitionLoaderTests
               "savingThrowAbilityId": null,
               "halfDamageOnSuccessfulSave": false,
               "damageByCharacterLevel": null,
-              "baseDamage": { "count": 3, "sides": 8 }
+              "baseDamage": { "count": 3, "sides": 8 },
+              "flatDamageBonus": null
             },
             """,
             StringComparison.Ordinal);
@@ -330,7 +334,8 @@ public sealed class SpellDefinitionLoaderTests
               "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
               "halfDamageOnSuccessfulSave": true,
               "damageByCharacterLevel": null,
-              "baseDamage": { "count": 3, "sides": 6 }
+              "baseDamage": { "count": 3, "sides": 6 },
+              "flatDamageBonus": null
             },
             """,
             StringComparison.Ordinal);
