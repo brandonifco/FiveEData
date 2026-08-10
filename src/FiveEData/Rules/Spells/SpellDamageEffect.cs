@@ -23,6 +23,12 @@ namespace FiveEData.Rules.Spells;
 /// linear-in-slot-level formula that stays in the citation, the same call
 /// already made for Preserve Life and Radiance of the Dawn. Exactly one of
 /// the two is populated.
+///
+/// <see cref="FlatDamageBonus"/> is a rare third component, only ever
+/// paired with <see cref="BaseDamage"/> — Disintegrate's "10d6 + 40 force
+/// damage" prints a flat number added to the dice, the same shape Magic
+/// Missile's declined "1d4 + 1" needed at 1st level. A second real
+/// instance justified adding it rather than declining a second spell.
 /// </summary>
 public sealed record SpellDamageEffect
 {
@@ -33,7 +39,8 @@ public sealed record SpellDamageEffect
         AbilityId? savingThrowAbilityId,
         bool halfDamageOnSuccessfulSave,
         IEnumerable<SpellDamageTierGrant>? damageByCharacterLevel,
-        DiceExpression? baseDamage)
+        DiceExpression? baseDamage,
+        int? flatDamageBonus = null)
     {
         bool hasFixedType = damageTypeId is not null;
         DamageTypeId[]? choosableTypes = choosableDamageTypeIds?.ToArray();
@@ -92,6 +99,24 @@ public sealed record SpellDamageEffect
             ValidateTiers(tiers!);
         }
 
+        if (flatDamageBonus is <= 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(flatDamageBonus),
+                flatDamageBonus,
+                "A spell damage effect's flat damage bonus must be " +
+                "greater than zero when specified.");
+        }
+
+        if (flatDamageBonus is not null && !hasBaseDamage)
+        {
+            throw new ArgumentException(
+                "A spell damage effect's flat damage bonus only applies " +
+                "to a flat base damage, not a character-level " +
+                "progression.",
+                nameof(flatDamageBonus));
+        }
+
         DamageTypeId = damageTypeId;
         ChoosableDamageTypeIds = choosableTypes is null
             ? null
@@ -103,6 +128,7 @@ public sealed record SpellDamageEffect
             ? Array.Empty<SpellDamageTierGrant>()
             : Array.AsReadOnly(tiers);
         BaseDamage = baseDamage;
+        FlatDamageBonus = flatDamageBonus;
     }
 
     private static void ValidateTiers(SpellDamageTierGrant[] tiers)
@@ -182,4 +208,11 @@ public sealed record SpellDamageEffect
     /// is populated instead.
     /// </summary>
     public DiceExpression? BaseDamage { get; }
+
+    /// <summary>
+    /// A flat integer added to <see cref="BaseDamage"/>, as in
+    /// Disintegrate's "10d6 + 40 force damage". Null for the overwhelming
+    /// majority of spells, whose damage is pure dice with no flat add.
+    /// </summary>
+    public int? FlatDamageBonus { get; }
 }
