@@ -1,6 +1,12 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes;
+using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
+using FiveEData.Rules.Classes.DeathStrike;
+using FiveEData.Rules.Classes.Frenzy;
+using FiveEData.Rules.Classes.InfiltrationExpertise;
+using FiveEData.Rules.Classes.IntimidatingPresence;
+using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Classes.ThunderboltStrike;
@@ -2394,6 +2400,129 @@ public sealed class SubclassDataFileTests
         string id)
     {
         return subclasses.Single(subclass => subclass.Id.Value == id);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesBerserkerFeatures()
+    {
+        SubclassDefinition berserker = GetSubclass(
+            LoadSubclasses(),
+            "dnd5e2014.subclass.path-of-the-berserker");
+
+        FrenzyDetail frenzy =
+            berserker.Frenzy
+            ?? throw new InvalidOperationException(
+                "Expected Path of the Berserker to have Frenzy.");
+        Assert.True(frenzy.GrantsBonusActionMeleeAttack);
+        Assert.Equal(1, frenzy.ExhaustionLevelsWhenRageEnds);
+
+        Assert.Equal(
+            [
+                "dnd5e2014.condition.charmed",
+                "dnd5e2014.condition.frightened"
+            ],
+            berserker.MindlessRageImmuneConditionIds
+                .Select(id => id.Value)
+                .ToArray());
+
+        IntimidatingPresenceDetail intimidatingPresence =
+            berserker.IntimidatingPresence
+            ?? throw new InvalidOperationException(
+                "Expected Path of the Berserker to have Intimidating " +
+                "Presence.");
+        Assert.Equal(30, intimidatingPresence.RangeFeet);
+        Assert.Equal(
+            "dnd5e2014.ability.wisdom",
+            intimidatingPresence.SavingThrowAbilityId.Value);
+        Assert.Equal(
+            "dnd5e2014.condition.frightened",
+            intimidatingPresence.ImposedConditionId.Value);
+        Assert.Equal(
+            NextTurnDurationTrigger.EndOfYourNextTurn,
+            intimidatingPresence.ConditionDurationTrigger);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesThiefSecondStoryWork()
+    {
+        SubclassDefinition thief =
+            GetSubclass(LoadSubclasses(), "dnd5e2014.subclass.thief");
+
+        SecondStoryWorkDetail secondStoryWork =
+            thief.SecondStoryWork
+            ?? throw new InvalidOperationException(
+                "Expected Thief to have Second-Story Work.");
+        Assert.True(secondStoryWork.ClimbingCostsNoExtraMovement);
+        Assert.True(
+            secondStoryWork.AddsDexterityModifierToRunningJumpDistance);
+    }
+
+    [Fact]
+    public void CanonicalFile_PreservesAssassinFeatures()
+    {
+        SubclassDefinition assassin =
+            GetSubclass(LoadSubclasses(), "dnd5e2014.subclass.assassin");
+
+        AssassinateDetail assassinate =
+            assassin.Assassinate
+            ?? throw new InvalidOperationException(
+                "Expected Assassin to have Assassinate.");
+        Assert.True(
+            assassinate.GrantsAdvantageAgainstCreaturesThatHaveNotActed);
+        Assert.True(assassinate.HitsAgainstSurprisedCreaturesAreCritical);
+
+        InfiltrationExpertiseDetail infiltrationExpertise =
+            assassin.InfiltrationExpertise
+            ?? throw new InvalidOperationException(
+                "Expected Assassin to have Infiltration Expertise.");
+        Assert.Equal(7, infiltrationExpertise.RequiredDays);
+        Assert.Equal(25, infiltrationExpertise.CostGoldPieces);
+
+        Assert.Equal(3, assassin.ImpostorRequiredStudyHours);
+
+        DeathStrikeDetail deathStrike =
+            assassin.DeathStrike
+            ?? throw new InvalidOperationException(
+                "Expected Assassin to have Death Strike.");
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            deathStrike.SavingThrowAbilityId.Value);
+        Assert.Equal(2, deathStrike.DamageMultiplierOnFailedSave);
+        Assert.True(deathStrike.RequiresSurprisedTarget);
+    }
+
+    [Fact]
+    public void CanonicalFile_RichFeatureDetailsAreExclusiveToTheirSubclass()
+    {
+        IReadOnlyList<SubclassDefinition> subclasses = LoadSubclasses();
+
+        Assert.All(
+            subclasses.Where(
+                subclass => subclass.Id.Value !=
+                    "dnd5e2014.subclass.path-of-the-berserker"),
+            subclass =>
+            {
+                Assert.Null(subclass.Frenzy);
+                Assert.Empty(subclass.MindlessRageImmuneConditionIds);
+                Assert.Null(subclass.IntimidatingPresence);
+            });
+
+        Assert.All(
+            subclasses.Where(
+                subclass => subclass.Id.Value != "dnd5e2014.subclass.thief"),
+            subclass => Assert.Null(subclass.SecondStoryWork));
+
+        Assert.All(
+            subclasses.Where(
+                subclass =>
+                    subclass.Id.Value != "dnd5e2014.subclass.assassin"),
+            subclass =>
+            {
+                Assert.Null(subclass.Assassinate);
+                Assert.Null(subclass.InfiltrationExpertise);
+                Assert.Null(subclass.ImpostorRequiredStudyHours);
+                Assert.Null(subclass.DeathStrike);
+            });
     }
 
     private static IReadOnlyList<SubclassDefinition> LoadSubclasses()

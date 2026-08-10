@@ -23,6 +23,7 @@ using FiveEData.Rules.Classes.MysticArcanum.Serialization;
 using FiveEData.Rules.Classes.NaturalExplorer.Serialization;
 using FiveEData.Rules.Classes.PrimalChampion.Serialization;
 using FiveEData.Rules.Classes.Rage.Serialization;
+using FiveEData.Rules.Classes.RelentlessRage.Serialization;
 using FiveEData.Rules.Classes.SneakAttack.Serialization;
 using FiveEData.Rules.Classes.SongOfRest.Serialization;
 using FiveEData.Rules.Classes.SorceryPoints.Serialization;
@@ -294,6 +295,9 @@ internal sealed class ClassDefinitionData
         get;
         init;
     }
+
+    [JsonRequired]
+    public RelentlessRageDetailData? RelentlessRage { get; init; }
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }

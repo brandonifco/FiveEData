@@ -1,14 +1,20 @@
+using FiveEData.Rules.Classes.Assassinate;
 using FiveEData.Rules.Classes.Auras;
 using FiveEData.Rules.Classes.BendLuck;
 using FiveEData.Rules.Classes.CircleForms;
 using FiveEData.Rules.Classes.CombatSuperiority;
+using FiveEData.Rules.Classes.DeathStrike;
 using FiveEData.Rules.Classes.DiscipleOfTheElements;
 using FiveEData.Rules.Classes.DraconicResilience;
+using FiveEData.Rules.Classes.Frenzy;
 using FiveEData.Rules.Classes.HurlThroughHell;
+using FiveEData.Rules.Classes.InfiltrationExpertise;
+using FiveEData.Rules.Classes.IntimidatingPresence;
 using FiveEData.Rules.Classes.ImprovedCritical;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.Portent;
+using FiveEData.Rules.Classes.SecondStoryWork;
 using FiveEData.Rules.Classes.ShadowStep;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.ThunderboltStrike;
@@ -17,6 +23,7 @@ using FiveEData.Rules.Classes.WrathOfTheStorm;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
+using FiveEData.Rules.Creatures.Conditions;
 
 namespace FiveEData.Rules.Classes;
 
@@ -52,11 +59,20 @@ public sealed class SubclassDefinition
         WardingFlareDetail? wardingFlare,
         AbilityModifierUsesGrant? warPriestUsesPerRest,
         IEnumerable<SpellGrant> innateSpellGrants,
+        FrenzyDetail? frenzy,
+        IEnumerable<ConditionId> mindlessRageImmuneConditionIds,
+        IntimidatingPresenceDetail? intimidatingPresence,
+        SecondStoryWorkDetail? secondStoryWork,
+        AssassinateDetail? assassinate,
+        InfiltrationExpertiseDetail? infiltrationExpertise,
+        int? impostorRequiredStudyHours,
+        DeathStrikeDetail? deathStrike,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
         ArgumentNullException.ThrowIfNull(levelFeatures);
         ArgumentNullException.ThrowIfNull(innateSpellGrants);
+        ArgumentNullException.ThrowIfNull(mindlessRageImmuneConditionIds);
         ArgumentNullException.ThrowIfNull(sources);
 
         Id = id;
@@ -88,6 +104,15 @@ public sealed class SubclassDefinition
         WardingFlare = wardingFlare;
         WarPriestUsesPerRest = warPriestUsesPerRest;
         InnateSpellGrants = Array.AsReadOnly(innateSpellGrants.ToArray());
+        Frenzy = frenzy;
+        MindlessRageImmuneConditionIds =
+            Array.AsReadOnly(mindlessRageImmuneConditionIds.ToArray());
+        IntimidatingPresence = intimidatingPresence;
+        SecondStoryWork = secondStoryWork;
+        Assassinate = assassinate;
+        InfiltrationExpertise = infiltrationExpertise;
+        ImpostorRequiredStudyHours = impostorRequiredStudyHours;
+        DeathStrike = deathStrike;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -145,6 +170,23 @@ public sealed class SubclassDefinition
     public AbilityModifierUsesGrant? WarPriestUsesPerRest { get; }
 
     public IReadOnlyList<SpellGrant> InnateSpellGrants { get; }
+
+    public FrenzyDetail? Frenzy { get; }
+
+    public IReadOnlyList<ConditionId> MindlessRageImmuneConditionIds
+    { get; }
+
+    public IntimidatingPresenceDetail? IntimidatingPresence { get; }
+
+    public SecondStoryWorkDetail? SecondStoryWork { get; }
+
+    public AssassinateDetail? Assassinate { get; }
+
+    public InfiltrationExpertiseDetail? InfiltrationExpertise { get; }
+
+    public int? ImpostorRequiredStudyHours { get; }
+
+    public DeathStrikeDetail? DeathStrike { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

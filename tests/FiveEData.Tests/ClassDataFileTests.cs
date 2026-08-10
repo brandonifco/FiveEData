@@ -23,6 +23,7 @@ using FiveEData.Rules.Classes.MartialArts;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.Rage;
+using FiveEData.Rules.Classes.RelentlessRage;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.SneakAttack;
 using FiveEData.Rules.Classes.SongOfRest;
@@ -2807,6 +2808,33 @@ public sealed class ClassDataFileTests
                 .OrderBy(grant => grant.CharacterLevel)
                 .Select(
                     grant => (grant.CharacterLevel, grant.SpeedBonusFeet)));
+    }
+
+    // Relentless Rage is a base Barbarian feature at 11th level, not a
+    // Path of the Berserker one — the two sit in adjacent columns on
+    // p.49, which is what the scoping note misread.
+    [Fact]
+    public void CanonicalFile_PreservesBarbarianRelentlessRage()
+    {
+        IReadOnlyList<ClassDefinition> classes = LoadClasses();
+
+        RelentlessRageDetail relentlessRage =
+            GetClass(classes, "dnd5e2014.class.barbarian").RelentlessRage
+            ?? throw new InvalidOperationException(
+                "Expected Barbarian to have Relentless Rage.");
+
+        Assert.Equal(
+            "dnd5e2014.ability.constitution",
+            relentlessRage.SavingThrowAbilityId.Value);
+        Assert.Equal(10, relentlessRage.InitialSavingThrowDC);
+        Assert.Equal(5, relentlessRage.SavingThrowDCIncreasePerUse);
+        Assert.Equal(1, relentlessRage.HitPointsRetained);
+        Assert.True(relentlessRage.ResetsOnShortRest);
+
+        Assert.All(
+            classes.Where(
+                @class => @class.Id.Value != "dnd5e2014.class.barbarian"),
+            @class => Assert.Null(@class.RelentlessRage));
     }
 
     [Fact]
