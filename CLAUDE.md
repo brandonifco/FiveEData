@@ -15,14 +15,19 @@ a game.
 
 ## Current state
 
-**Nothing in progress. The 2026-08-10 scoping pass is fully closed** —
+**Nothing in progress. A fresh scoping pass over the rules chapters is
+recorded below** — see "Scoping pass: the rules chapters (2026-08-10,
+second pass)" for a verified, ranked candidate table; nothing from it is
+built yet, and Character Advancement (p.15) is the recommended first
+slice.
+
+**The 2026-08-10 feature-prose scoping pass is fully closed** —
 its last candidate, more choice-point catalogs, is built: Path of the
 Totem Warrior (9 options), Ranger Hunter (11), Monk's Open Hand
 Technique (3), Wizard's The Third Eye (4), and Transmuter's Stone (4).
-**Ten choice-point catalogs exist now, not five.** See the four
+**Ten choice-point catalogs exist now, not five.** See the three
 "Game-backend quantization: ... options" sections below. Every candidate
-from that pass is built or explicitly declined; ask the user whether to
-scope a fresh pass.
+from that pass is built or explicitly declined.
 
 The original five choice-point catalogs are closed
 (Metamagic, Battle Master maneuvers, Eldritch Invocations, Elemental
@@ -3364,6 +3369,95 @@ longer. Each domain owns its own field, per the standing rule that a
 shape repeating is not by itself a reason to extract a shared type —
 `CantripsKnownProgressionDetail`/`SpellsKnownProgressionDetail` set that
 precedent.
+
+## Scoping pass: the rules chapters (2026-08-10, second pass)
+
+The 2026-08-10 feature-prose pass is closed, so this pass scoped the
+territory that pass never touched: **rules chapters rather than
+character-option prose** — Chapter 1's advancement table, Chapter 6
+(Multiclassing), Chapter 7 (Using Ability Scores), and Chapter 10
+(Spellcasting's own rules, as opposed to `SpellDefinition` header
+blocks). Read from the real table of contents and verified against
+rendered page images, the same discipline the Combat/Adventuring and
+feature-prose scoping passes used.
+
+| Candidate | Page | Verdict |
+| --- | --- | --- |
+| Character Advancement (XP + proficiency bonus by level) | 15 | **Build first** |
+| Multiclassing Proficiencies | 164 | **Buildable, one dependency** |
+| Encumbrance variant + size/strength multipliers | 176 | **Buildable, partial** |
+| Concentration rules | 203–204 | **Buildable, small** |
+| Multiclass Spellcaster slot table | 165 | **Declined — duplicate** |
+| Ability score → modifier table | 173 | **Declined — pure formula** |
+| Advantage/Disadvantage stacking rules | 173 | **Declined — engine behavior** |
+| Jump distances | 182 | **Declined — formula** |
+| Feats | 165–170 | Out of scope (not in the free SRD) |
+
+**Character Advancement (p.15, footer verified) is the strongest
+candidate in the pass and the most surprising omission.** Twenty rows of
+experience-point threshold, level, and proficiency bonus — universal
+across all 12 classes, and **stored nowhere**: `ClassDefinition` has
+`HitDie` and proficiency *lists* but no proficiency *bonus*, and no
+domain models XP at all. It's a closed table with no formula behind it
+(the +2/+3/+4/+5/+6 breakpoints at 1/5/9/13/17 are stated, not derived),
+so it doesn't hit any of this project's decline lines.
+
+**The Multiclass Spellcaster table (p.165) is byte-identical to the
+already-built `full-caster` spell slot progression** — all 20 rows
+compared programmatically against `spell-slot-progressions.json`, zero
+differences. It is not new data. The *derivation* rule around it (add
+full levels, half paladin/ranger rounded down, a third of Eldritch
+Knight/Arcane Trickster) reduces to a per-class caster fraction that is
+already 1:1 with the existing `SpellSlotProgressionId` — full/half/third
+map directly, and Pact Magic contributes zero because its slots never
+combine. **Declined as derivable**, the same call Sculpt Spells' "1 +
+the spell's level" already made. Do not "add the missing multiclass
+table"; check it against `full-caster` first.
+
+**Multiclassing Proficiencies (p.164) is a real closed 12-row table and
+the only candidate blocked by an existing deliberate gap.** Each class
+grants a strict subset of its starting proficiencies when multiclassed
+into, and Sorcerer and Wizard grant nothing at all — a real fact, not a
+gap in the scan. It reuses `ArmorCategory`, `WeaponProficiencyCategory`,
+`WeaponId`, and `SkillId` cleanly, **but two rows name tool
+proficiencies** (Rogue's thieves' tools, Bard's musical instrument of
+choice), and tool proficiencies are one of the "Unmodeled gaps
+(deliberate)" above. Building this table is the first real downstream
+consumer that gap has ever had — decide whether to open it before
+starting, not midway.
+
+**Carrying capacity is mostly formula, but two parts are not.** Str × 15
+and its 2× push/drag/lift are formulas relative to an ability score and
+stay declined, the same line Preserve Life sits on. The **size
+multiplier** (double per size category above Medium, halve for Tiny) is
+a real table keyed to the existing `CreatureSizeId` catalog, and the
+**Variant: Encumbrance** thresholds carry real speed penalties. Partial
+build only.
+
+**Concentration (p.203–204) fits the singleton rules-object shape, not a
+catalog** — like `ArmorUsageRules` and `MountVehicleRules`, which are
+exposed directly on `Dnd5e2014Ruleset` rather than as a list. Its one
+genuinely non-derivable constant is the concentration save's "DC 10 or
+half the damage taken, whichever number is higher." **Reach for the
+singleton shape whenever a candidate is a handful of flat constants
+rather than a list of named entries.**
+
+**The ability score modifier table is declined because the PHB itself
+prints the formula next to it** — "subtract 10 from the ability score and
+then divide the total by 2 (round down)." Storing 30 rows of a pure
+arithmetic function adds no information, which is the opposite of Circle
+Forms' "expand formulas into tables" case (there the formula's
+breakpoints were the fact worth storing).
+
+**Two features merged in the choice-point work now reference rules this
+project doesn't model.** Aspect of the Beast (Bear) sets
+`DoublesCarryingCapacity` with no carrying-capacity domain to double,
+and Second-Story Work sets
+`AddsDexterityModifierToRunningJumpDistance` with no jump-distance rule
+to modify. Both are honest records of what the book says and neither is
+a bug — but they are the concrete argument for the encumbrance and jump
+candidates above, and the first time this project has had *dangling
+mechanics* rather than dangling references.
 
 ## Test conventions
 
