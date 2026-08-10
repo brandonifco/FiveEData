@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
+using FiveEData.Rules.Common;
 
 namespace FiveEData.Tests;
 
@@ -149,7 +150,7 @@ public sealed class BattleMasterManeuverDataFileTests
 
         Assert.True(definition.GrantsAdvantageToNextAttackAgainstTarget);
         Assert.Equal(
-            BattleMasterManeuverDurationTrigger.StartOfYourNextTurn,
+            NextTurnDurationTrigger.StartOfYourNextTurn,
             definition.SecondaryEffectDurationTrigger);
     }
 
@@ -171,7 +172,7 @@ public sealed class BattleMasterManeuverDataFileTests
 
         Assert.True(definition.ImposesDisadvantageOnAttacksAgainstOthers);
         Assert.Equal(
-            BattleMasterManeuverDurationTrigger.EndOfYourNextTurn,
+            NextTurnDurationTrigger.EndOfYourNextTurn,
             definition.SecondaryEffectDurationTrigger);
     }
 
@@ -204,7 +205,7 @@ public sealed class BattleMasterManeuverDataFileTests
             "dnd5e2014.condition.frightened",
             definition.ImposedConditionId?.Value);
         Assert.Equal(
-            BattleMasterManeuverDurationTrigger.EndOfYourNextTurn,
+            NextTurnDurationTrigger.EndOfYourNextTurn,
             definition.SecondaryEffectDurationTrigger);
     }
 

@@ -1,3 +1,4 @@
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Conditions;
@@ -22,7 +23,7 @@ public sealed class BattleMasterManeuverDefinition
         bool grantsAdvantageToNextAttackAgainstTarget,
         bool imposesDisadvantageOnAttacksAgainstOthers,
         bool allowsAllyReactionMovement,
-        BattleMasterManeuverDurationTrigger? secondaryEffectDurationTrigger,
+        NextTurnDurationTrigger? secondaryEffectDurationTrigger,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -63,7 +64,7 @@ public sealed class BattleMasterManeuverDefinition
     public bool ImposesDisadvantageOnAttacksAgainstOthers { get; }
     public bool AllowsAllyReactionMovement { get; }
 
-    public BattleMasterManeuverDurationTrigger?
+    public NextTurnDurationTrigger?
         SecondaryEffectDurationTrigger
     { get; }
 

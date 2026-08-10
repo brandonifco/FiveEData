@@ -402,11 +402,60 @@ internal static class CatalogIntegrityValidator
             ElementalDisciplineDefinition elementalDiscipline
             in definitions.ElementalDisciplines)
         {
+            string owner =
+                $"Elemental discipline '{elementalDiscipline.Id}'";
+
             ValidateSources(
-                $"Elemental discipline '{elementalDiscipline.Id}'",
+                owner,
                 elementalDiscipline.Sources,
                 sourceIds,
                 errors);
+
+            if (elementalDiscipline.GrantedSpellId is
+                    { } disciplineGrantedSpellId &&
+                !spellIds.Contains(disciplineGrantedSpellId))
+            {
+                errors.Add(
+                    $"{owner} references missing spell " +
+                    $"'{disciplineGrantedSpellId}'.");
+            }
+
+            if (elementalDiscipline.SavingThrowAbilityId is
+                    { } disciplineSavingThrowAbilityId &&
+                !abilityIds.Contains(disciplineSavingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{disciplineSavingThrowAbilityId}'.");
+            }
+
+            if (elementalDiscipline.BaseDamageTypeId is
+                    { } disciplineBaseDamageTypeId &&
+                !damageTypeIds.Contains(disciplineBaseDamageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{disciplineBaseDamageTypeId}'.");
+            }
+
+            if (elementalDiscipline.ImposedConditionId is
+                    { } disciplineImposedConditionId &&
+                !conditionIds.Contains(disciplineImposedConditionId))
+            {
+                errors.Add(
+                    $"{owner} references missing condition " +
+                    $"'{disciplineImposedConditionId}'.");
+            }
+
+            if (elementalDiscipline.ChangesUnarmedDamageTypeId is
+                    { } disciplineChangesUnarmedDamageTypeId &&
+                !damageTypeIds.Contains(
+                    disciplineChangesUnarmedDamageTypeId))
+            {
+                errors.Add(
+                    $"{owner} references missing damage type " +
+                    $"'{disciplineChangesUnarmedDamageTypeId}'.");
+            }
         }
 
         foreach (
@@ -429,6 +478,24 @@ internal static class CatalogIntegrityValidator
                 errors.Add(
                     $"{owner} references missing ability " +
                     $"'{savingThrowAbilityId}'.");
+            }
+
+            if (channelDivinityOption.ImposedConditionId is
+                    { } channelDivinityImposedConditionId &&
+                !conditionIds.Contains(channelDivinityImposedConditionId))
+            {
+                errors.Add(
+                    $"{owner} references missing condition " +
+                    $"'{channelDivinityImposedConditionId}'.");
+            }
+
+            if (channelDivinityOption.GrantedSpellId is
+                    { } channelDivinityGrantedSpellId &&
+                !spellIds.Contains(channelDivinityGrantedSpellId))
+            {
+                errors.Add(
+                    $"{owner} references missing spell " +
+                    $"'{channelDivinityGrantedSpellId}'.");
             }
         }
 

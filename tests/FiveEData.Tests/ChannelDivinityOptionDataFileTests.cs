@@ -1,5 +1,6 @@
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
 using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
+using FiveEData.Rules.Common;
 
 namespace FiveEData.Tests;
 
@@ -95,17 +96,61 @@ public sealed class ChannelDivinityOptionDataFileTests
         Assert.Null(definition.RollBonus);
     }
 
-    [Theory]
-    [InlineData("dnd5e2014.channel-divinity-option.destructive-wrath")]
-    [InlineData("dnd5e2014.channel-divinity-option.cloak-of-shadows")]
-    public void OptionWithNoQuantizableFact_HasAllFactsNull(string id)
+    [Fact]
+    public void DestructiveWrath_MaximizesDamageRollAndHasNoOtherFact()
     {
-        ChannelDivinityOptionDefinition definition = Get(id);
+        ChannelDivinityOptionDefinition definition =
+            Get("dnd5e2014.channel-divinity-option.destructive-wrath");
 
         Assert.Null(definition.RangeFeet);
         Assert.Null(definition.SavingThrowAbilityId);
         Assert.Null(definition.DurationMinutes);
         Assert.Null(definition.RollBonus);
+        Assert.True(definition.MaximizesDamageRoll);
+    }
+
+    [Fact]
+    public void
+        CloakOfShadows_GrantsInvisibilityUntilEndOfYourNextTurn()
+    {
+        ChannelDivinityOptionDefinition definition =
+            Get("dnd5e2014.channel-divinity-option.cloak-of-shadows");
+
+        Assert.Null(definition.RangeFeet);
+        Assert.Null(definition.SavingThrowAbilityId);
+        Assert.Null(definition.DurationMinutes);
+        Assert.Null(definition.RollBonus);
+        Assert.Equal(
+            "dnd5e2014.condition.invisible",
+            definition.ImposedConditionId?.Value);
+        Assert.Equal(
+            NextTurnDurationTrigger.EndOfYourNextTurn,
+            definition.ConditionDurationTrigger);
+    }
+
+    [Fact]
+    public void CharmAnimalsAndPlants_ImposesCharmedOnFailedSave()
+    {
+        ChannelDivinityOptionDefinition definition = Get(
+            "dnd5e2014.channel-divinity-option.charm-animals-and-plants");
+
+        Assert.Equal(
+            "dnd5e2014.condition.charmed",
+            definition.ImposedConditionId?.Value);
+        Assert.Null(definition.ConditionDurationTrigger);
+    }
+
+    [Fact]
+    public void
+        ReadThoughts_GrantsSuggestionThatAutomaticallyFailsItsSave()
+    {
+        ChannelDivinityOptionDefinition definition =
+            Get("dnd5e2014.channel-divinity-option.read-thoughts");
+
+        Assert.Equal(
+            "dnd5e2014.spell.suggestion",
+            definition.GrantedSpellId?.Value);
+        Assert.True(definition.AutomaticallyFailsGrantedSpellSave);
     }
 
     [Fact]

@@ -1,5 +1,6 @@
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
+using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Creatures.Abilities;
 using FiveEData.Rules.Creatures.Conditions;
@@ -184,7 +185,7 @@ public sealed class BattleMasterManeuverFoundationTests
             null,
             [CreateSource()],
             secondaryEffectDurationTrigger:
-                BattleMasterManeuverDurationTrigger.EndOfYourNextTurn);
+                NextTurnDurationTrigger.EndOfYourNextTurn);
 
         Assert.Contains(
             BattleMasterManeuverDefinitionValidator.Validate(definition),
@@ -302,7 +303,7 @@ public sealed class BattleMasterManeuverFoundationTests
         bool grantsAdvantageToNextAttackAgainstTarget = false,
         bool imposesDisadvantageOnAttacksAgainstOthers = false,
         bool allowsAllyReactionMovement = false,
-        BattleMasterManeuverDurationTrigger?
+        NextTurnDurationTrigger?
             secondaryEffectDurationTrigger = null)
     {
         return new BattleMasterManeuverDefinition(
