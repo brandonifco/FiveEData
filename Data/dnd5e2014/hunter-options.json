@@ -1,0 +1,302 @@
+[
+  {
+    "id": "dnd5e2014.hunter-option.colossus-slayer",
+    "name": "Colossus Slayer",
+    "requiredLevel": 3,
+    "extraDamage": {
+      "count": 1,
+      "sides": 8
+    },
+    "oncePerTurn": true,
+    "requiresTargetBelowHitPointMaximum": true,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.giant-killer",
+    "name": "Giant Killer",
+    "requiredLevel": 3,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": "dnd5e2014.creature-size.large",
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.horde-breaker",
+    "name": "Horde Breaker",
+    "requiredLevel": 3,
+    "extraDamage": null,
+    "oncePerTurn": true,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": true,
+    "secondaryTargetRangeFeet": 5,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.escape-the-horde",
+    "name": "Escape the Horde",
+    "requiredLevel": 7,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": true,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.multiattack-defense",
+    "name": "Multiattack Defense",
+    "requiredLevel": 7,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": 4,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.steel-will",
+    "name": "Steel Will",
+    "requiredLevel": 7,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": "dnd5e2014.condition.frightened",
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.volley",
+    "name": "Volley",
+    "requiredLevel": 11,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": 10,
+    "multiattackKind": "Ranged",
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.whirlwind-attack",
+    "name": "Whirlwind Attack",
+    "requiredLevel": 11,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": 5,
+    "multiattackKind": "Melee",
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.evasion",
+    "name": "Evasion",
+    "requiredLevel": 15,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": "dnd5e2014.ability.dexterity",
+    "negatesDamageOnSuccessfulSave": true,
+    "halfDamageOnFailedSave": true,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.stand-against-the-tide",
+    "name": "Stand Against the Tide",
+    "requiredLevel": 15,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": false,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  },
+  {
+    "id": "dnd5e2014.hunter-option.uncanny-dodge",
+    "name": "Uncanny Dodge",
+    "requiredLevel": 15,
+    "extraDamage": null,
+    "oncePerTurn": false,
+    "requiresTargetBelowHitPointMaximum": false,
+    "minimumTargetSizeId": null,
+    "grantsExtraAttackAgainstDifferentTarget": false,
+    "secondaryTargetRangeFeet": null,
+    "imposesDisadvantageOnOpportunityAttacksAgainstYou": false,
+    "armorClassBonusAgainstSubsequentAttacks": null,
+    "grantsAdvantageOnSavingThrowsAgainstConditionId": null,
+    "attacksAnyNumberOfCreaturesWithinFeet": null,
+    "multiattackKind": null,
+    "savingThrowAbilityId": null,
+    "negatesDamageOnSuccessfulSave": false,
+    "halfDamageOnFailedSave": false,
+    "halvesAttackDamageAsReaction": true,
+    "sources": [
+      {
+        "documentId": "dnd5e2014.source.phb-first-printing",
+        "page": 93,
+        "section": "Chapter 3: Classes"
+      }
+    ]
+  }
+]

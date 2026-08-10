@@ -517,6 +517,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             elementalDisciplines: [],
             channelDivinityOptions: [],
             totemWarriorOptions: [],
+            hunterOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],

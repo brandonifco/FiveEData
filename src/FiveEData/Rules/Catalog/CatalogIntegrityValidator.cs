@@ -9,6 +9,7 @@ using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
+using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
 using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ElementalDisciplines;
@@ -578,6 +579,45 @@ internal static class CatalogIntegrityValidator
                 errors.Add(
                     $"{owner} references missing creature size " +
                     $"'{totemWarriorMaximumTargetSizeId}'.");
+            }
+        }
+
+        foreach (
+            HunterOptionDefinition hunterOption in definitions.HunterOptions)
+        {
+            string owner = $"Hunter option '{hunterOption.Id}'";
+
+            ValidateSources(
+                owner,
+                hunterOption.Sources,
+                sourceIds,
+                errors);
+
+            if (hunterOption.MinimumTargetSizeId is
+                    { } hunterMinimumTargetSizeId &&
+                !sizeIds.Contains(hunterMinimumTargetSizeId))
+            {
+                errors.Add(
+                    $"{owner} references missing creature size " +
+                    $"'{hunterMinimumTargetSizeId}'.");
+            }
+
+            if (hunterOption.GrantsAdvantageOnSavingThrowsAgainstConditionId
+                    is { } hunterAdvantageConditionId &&
+                !conditionIds.Contains(hunterAdvantageConditionId))
+            {
+                errors.Add(
+                    $"{owner} references missing condition " +
+                    $"'{hunterAdvantageConditionId}'.");
+            }
+
+            if (hunterOption.SavingThrowAbilityId is
+                    { } hunterSavingThrowAbilityId &&
+                !abilityIds.Contains(hunterSavingThrowAbilityId))
+            {
+                errors.Add(
+                    $"{owner} references missing ability " +
+                    $"'{hunterSavingThrowAbilityId}'.");
             }
         }
 

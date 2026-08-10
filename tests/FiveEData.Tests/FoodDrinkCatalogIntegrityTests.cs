@@ -169,6 +169,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             elementalDisciplines: [],
             channelDivinityOptions: [],
             totemWarriorOptions: [],
+            hunterOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],
