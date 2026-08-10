@@ -16,10 +16,11 @@ a game.
 ## Current state
 
 **In progress: the last candidate from the 2026-08-10 scoping pass —
-more choice-point catalogs.** Path of the Totem Warrior is **built**
-(9 options; see "Game-backend quantization: Totem Warrior options").
-Still unbuilt: Ranger Hunter, Monk's Open Hand Technique, Wizard's
-Third Eye, and Transmuter's Stone.
+more choice-point catalogs.** Path of the Totem Warrior (9 options) and
+Ranger Hunter (11 options) are **built**; see "Game-backend
+quantization: Totem Warrior options" and "... Ranger Hunter options".
+Still unbuilt: Monk's Open Hand Technique, Wizard's Third Eye, and
+Transmuter's Stone.
 
 The original five choice-point catalogs are closed
 (Metamagic, Battle Master maneuvers, Eldritch Invocations, Elemental
@@ -149,7 +150,7 @@ initiative's last remaining piece — now scoped and started.** See
 for the ranked candidate list and the first slice (Metamagic, all 8
 options).
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3066 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3120 tests**.
 
 ## Spells: the Trap the Soul appendix error
 
@@ -868,7 +869,8 @@ rather than trusting it.
   `AvailableToClassIds` — cantrips only so far; see "Current state".
 - **Choice-point catalogs** (standalone, not referenced from a definition):
   Fighting Style, Metamagic, Battle Master maneuvers, Eldritch Invocations,
-  Elemental Disciplines, Channel Divinity options, Totem Warrior options.
+  Elemental Disciplines, Channel Divinity options, Totem Warrior options,
+  Hunter options.
 - **Embedded on `ClassDefinition`:** Action Surge, Indomitable, Rage, Brutal
   Critical, Fast Movement, Favored Enemy, Natural Explorer, Sneak Attack, Ki,
   Martial Arts, Unarmored Movement, Sorcery Points, Wild Shape, Bardic
@@ -966,6 +968,7 @@ doesn't otherwise use.
 | Elemental Disciplines (17) | ki cost + minimum level |
 | Channel Divinity options (16) | 4 independent nullable scalars, later extended |
 | Totem Warrior options (9) | shared rage/armor gates + per-animal one-offs |
+| Hunter options (11) | per-option one-offs across 4 choice points |
 
 A choice point earns a catalog **only if at least one option carries a real
 quantizable fact** — Pact Boon proved the pattern isn't automatic. A "choice
@@ -2550,7 +2553,9 @@ yet:
   **built** as one 9-entry catalog, see "Game-backend quantization:
   Totem Warrior options"; Ranger
   Hunter has four (Hunter's Prey, Defensive Tactics, Multiattack,
-  Superior Hunter's Defense); Monk's Open Hand Technique (3rd level) is
+  Superior Hunter's Defense) — **built**, see "Game-backend
+  quantization: Ranger Hunter options"; Monk's Open Hand Technique
+  (3rd level) is
   a 3-option Flurry of Blows rider; Wizard's The Third Eye (Divination
   14th) and Transmuter's Stone (Transmutation 6th) are both 4-option
   utility choices.
@@ -3195,6 +3200,87 @@ already hit with `spells`/`magicSchools`/`conditions`. A negative test
 (`MissingTotemWarriorTravelPaceReference_IsRejected`) pins that the
 check actually fires. **Check what that test loads before trusting its
 green status to cover a new reference.**
+
+## Game-backend quantization: Ranger Hunter options
+
+The second slice of the "more choice-point catalogs" candidate, and the
+seventh choice-point catalog. All 11 options across four choice points —
+Hunter's Prey (3rd, 3 options), Defensive Tactics (7th, 3), Multiattack
+(11th, **2** — the only choice point in this catalog that isn't a
+three-way), and Superior Hunter's Defense (15th, 3) — verified against
+the rendered page image at p.93, footer confirmed. The 4 existing
+`class-rule.json` citations were already correct.
+
+**Four choice points, one 11-entry catalog, same call as Totem
+Warrior** — and here the option names are globally unique, so entries
+are named plainly ("Colossus Slayer") rather than qualified by their
+choice point, matching Channel Divinity and Elemental Discipline. Use
+qualified names only when the option vocabulary repeats across choice
+points, as Totem Warrior's Bear/Eagle/Wolf does.
+
+**`MinimumTargetSizeId` is the inverse of Battle Master's
+`MaximumTargetSizeId`, and both now exist for real reasons.** Giant
+Killer triggers on "a Large or **larger** creature"; Trip Attack and
+Pushing Attack gate on "Large or **smaller**." Same catalog reference,
+opposite direction — don't collapse them into one field with a
+direction flag, because no single option ever needs both.
+
+**`HalfDamageOnFailedSave` is the inverse of the `HalfDamageOnSuccessfulSave`
+this project has used since 1st-level spells.** Hunter's Evasion prints
+"no damage if you succeed on the saving throw, and only half damage if
+you fail" — the failure branch, not the success branch, is the one
+carrying half damage. A field name that says which branch it means is
+why this didn't get silently stored in the existing field's shape.
+
+**Hunter's Evasion and Uncanny Dodge duplicate features that exist as
+standalone class features elsewhere, and that is not a `RuleId`
+collision.** The shared `evasion` rule cites Monk p.79 and Rogue p.96;
+`uncanny-dodge` cites Rogue p.96. Hunter's versions are *sub-options*
+inside Superior Hunter's Defense, which folds into that one citation per
+the standing "a choice point folds into one citation" rule — so they
+live as catalog entries, not as new or extended `RuleId`s. **Before
+minting a `RuleId` for a feature named like an existing one, check
+whether it's a choice-point option rather than a feature in its own
+right.**
+
+**`HunterMultiattackKind` (Melee/Ranged) is scoped to this domain, not
+promoted to `Rules/Common`.** Volley and Whirlwind Attack are the same
+mechanic ("attack any number of creatures within N feet") differing only
+in melee-vs-ranged, so the pair needs a discriminator; but one domain
+needing it is not the two-independent-domains bar that promoted
+`RollModifier`, `NextTurnDurationTrigger`, and `AbilityModifierUsesGrant`.
+Validator-paired with `AttacksAnyNumberOfCreaturesWithinFeet`.
+
+**`OncePerTurn` is one shared bool, not one per bounded effect.**
+Colossus Slayer bounds extra damage, Horde Breaker bounds an extra
+attack, and no option has both — so a single field is unambiguous per
+entry, the same shape Sneak Attack's own `OncePerTurn` already uses. The
+validator requires something for it to bound.
+
+**Two declines, both reaffirming the action-economy line:**
+
+- **Stand Against the Tide is enumerated with zero mechanism fields** —
+  forcing a missed attacker to repeat its attack against another creature
+  is a redirect of *who* attacks, not a number, exactly the call already
+  made for Commander's Strike, Riposte, and Retaliation. This is the
+  "declined but still enumerated" precedent Pact Boon and Practicing a
+  Profession set; pinned by
+  `StandAgainstTheTide_IsEnumeratedWithNoMechanismFields`.
+- **Giant Killer keeps only its size gate.** Its reaction attack is the
+  same action-economy shape as Riposte, and its "within 5 feet" trigger
+  is just melee reach — already modeled through `WeaponDefinition`, the
+  exact reason Berserker's Retaliation declined its own 5-foot trigger.
+  `MinimumTargetSizeId` survives because a size gate is a real,
+  non-derivable restriction.
+
+**Horde Breaker's split follows Sweeping Attack's precedent exactly:**
+`SecondaryTargetRangeFeet: 5` is captured (the distance from the
+*original target*, not from the wielder), while "within range of your
+weapon" is declined as a weapon-relative formula. Whirlwind Attack's
+"within 5 feet of you" *is* wielder-relative but is still captured,
+because it is one half of a validator-paired field whose other half
+(Volley's 10 feet) is unambiguously not reach — the pair only means
+anything together.
 
 ## Test conventions
 

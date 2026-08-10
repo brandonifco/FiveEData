@@ -42,6 +42,7 @@ public sealed class Dnd5e2014Ruleset
         ElementalDisciplineCatalog elementalDisciplines,
         ChannelDivinityOptionCatalog channelDivinityOptions,
         TotemWarriorOptionCatalog totemWarriorOptions,
+        HunterOptionCatalog hunterOptions,
         SpellSlotProgressionCatalog spellSlotProgressions,
         ExtraAttackProgressionCatalog extraAttackProgressions,
         BackgroundCatalog backgrounds,
@@ -82,6 +83,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(elementalDisciplines);
         ArgumentNullException.ThrowIfNull(channelDivinityOptions);
         ArgumentNullException.ThrowIfNull(totemWarriorOptions);
+        ArgumentNullException.ThrowIfNull(hunterOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -122,6 +124,7 @@ public sealed class Dnd5e2014Ruleset
         ElementalDisciplines = elementalDisciplines;
         ChannelDivinityOptions = channelDivinityOptions;
         TotemWarriorOptions = totemWarriorOptions;
+        HunterOptions = hunterOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -170,6 +173,7 @@ public sealed class Dnd5e2014Ruleset
     public ElementalDisciplineCatalog ElementalDisciplines { get; }
     public ChannelDivinityOptionCatalog ChannelDivinityOptions { get; }
     public TotemWarriorOptionCatalog TotemWarriorOptions { get; }
+    public HunterOptionCatalog HunterOptions { get; }
     public SpellSlotProgressionCatalog SpellSlotProgressions { get; }
     public ExtraAttackProgressionCatalog ExtraAttackProgressions { get; }
     public BackgroundCatalog Backgrounds { get; }

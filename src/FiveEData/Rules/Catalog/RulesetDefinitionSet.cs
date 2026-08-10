@@ -12,6 +12,7 @@ using FiveEData.Rules.Classes.EldritchInvocations;
 using FiveEData.Rules.Classes.ElementalDisciplines;
 using FiveEData.Rules.Classes.ExtraAttack;
 using FiveEData.Rules.Classes.FightingStyles;
+using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.Metamagic;
 using FiveEData.Rules.Classes.Spellcasting;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
@@ -38,6 +39,7 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<ChannelDivinityOptionDefinition>
             channelDivinityOptions,
         IReadOnlyList<TotemWarriorOptionDefinition> totemWarriorOptions,
+        IReadOnlyList<HunterOptionDefinition> hunterOptions,
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions,
         IReadOnlyList<ExtraAttackProgressionDefinition>
             extraAttackProgressions,
@@ -64,6 +66,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(elementalDisciplines);
         ArgumentNullException.ThrowIfNull(channelDivinityOptions);
         ArgumentNullException.ThrowIfNull(totemWarriorOptions);
+        ArgumentNullException.ThrowIfNull(hunterOptions);
         ArgumentNullException.ThrowIfNull(spellSlotProgressions);
         ArgumentNullException.ThrowIfNull(extraAttackProgressions);
         ArgumentNullException.ThrowIfNull(backgrounds);
@@ -89,6 +92,7 @@ internal sealed class RulesetDefinitionSet
         ElementalDisciplines = elementalDisciplines;
         ChannelDivinityOptions = channelDivinityOptions;
         TotemWarriorOptions = totemWarriorOptions;
+        HunterOptions = hunterOptions;
         SpellSlotProgressions = spellSlotProgressions;
         ExtraAttackProgressions = extraAttackProgressions;
         Backgrounds = backgrounds;
@@ -132,6 +136,8 @@ internal sealed class RulesetDefinitionSet
 
     public IReadOnlyList<TotemWarriorOptionDefinition> TotemWarriorOptions
     { get; }
+
+    public IReadOnlyList<HunterOptionDefinition> HunterOptions { get; }
 
     public IReadOnlyList<SpellSlotProgressionDefinition>
         SpellSlotProgressions

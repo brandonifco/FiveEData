@@ -19,6 +19,8 @@ using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Classes.BattleMasterManeuvers;
 using FiveEData.Rules.Classes.BattleMasterManeuvers.Serialization;
 using FiveEData.Rules.Classes.ChannelDivinityOptions;
+using FiveEData.Rules.Classes.HunterOptions;
+using FiveEData.Rules.Classes.HunterOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
 using FiveEData.Rules.Classes.ChannelDivinityOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions.Serialization;
@@ -156,6 +158,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string TotemWarriorOptionsResource =
         "FiveEData.Data.dnd5e2014.totem-warrior-options.json";
+
+    private const string HunterOptionsResource =
+        "FiveEData.Data.dnd5e2014.hunter-options.json";
 
     private const string SpellSlotProgressionsResource =
         "FiveEData.Data.dnd5e2014.spell-slot-progressions.json";
@@ -374,6 +379,10 @@ internal static class Dnd5e2014RulesetLoader
                 EmbeddedDataReader.ReadRequiredText(
                     TotemWarriorOptionsResource));
 
+        IReadOnlyList<HunterOptionDefinition> hunterOptions =
+            HunterOptionDefinitionLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(HunterOptionsResource));
+
         IReadOnlyList<SpellSlotProgressionDefinition> spellSlotProgressions =
             SpellSlotProgressionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(
@@ -561,6 +570,7 @@ internal static class Dnd5e2014RulesetLoader
             elementalDisciplines: elementalDisciplines,
             channelDivinityOptions: channelDivinityOptions,
             totemWarriorOptions: totemWarriorOptions,
+            hunterOptions: hunterOptions,
             spellSlotProgressions: spellSlotProgressions,
             extraAttackProgressions: extraAttackProgressions,
             backgrounds: backgrounds,
@@ -624,6 +634,7 @@ internal static class Dnd5e2014RulesetLoader
                 new ChannelDivinityOptionCatalog(channelDivinityOptions),
             totemWarriorOptions:
                 new TotemWarriorOptionCatalog(totemWarriorOptions),
+            hunterOptions: new HunterOptionCatalog(hunterOptions),
             spellSlotProgressions:
                 new SpellSlotProgressionCatalog(spellSlotProgressions),
             extraAttackProgressions:

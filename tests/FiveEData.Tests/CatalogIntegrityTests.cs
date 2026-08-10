@@ -1,6 +1,8 @@
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Catalog;
+using FiveEData.Rules.Classes.HunterOptions;
+using FiveEData.Rules.Classes.HunterOptions.Serialization;
 using FiveEData.Rules.Classes.TotemWarriorOptions;
 using FiveEData.Rules.Classes.TotemWarriorOptions.Serialization;
 using FiveEData.Rules.Classes;
@@ -214,6 +216,14 @@ public sealed class CatalogIntegrityTests
             TravelPaceDefinitionLoader.LoadFromFile(
                 Path.Combine(root, "Data", "dnd5e2014", "travel-pace.json"));
 
+        IReadOnlyList<HunterOptionDefinition> hunterOptions =
+            HunterOptionDefinitionLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "hunter-options.json"));
+
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
@@ -246,7 +256,8 @@ public sealed class CatalogIntegrityTests
                     magicSchools: magicSchools,
                     conditions: conditions,
                     totemWarriorOptions: totemWarriorOptions,
-                    travelPaces: travelPaces)));
+                    travelPaces: travelPaces,
+                    hunterOptions: hunterOptions)));
     }
 
     [Fact]
@@ -1406,6 +1417,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<ConditionDefinition>? conditions = null,
         IReadOnlyList<TotemWarriorOptionDefinition>? totemWarriorOptions =
             null,
+        IReadOnlyList<HunterOptionDefinition>? hunterOptions = null,
         IReadOnlyList<TravelPaceDefinition>? travelPaces = null)
     {
         var equipment = new EquipmentDefinitionSet(
@@ -1458,6 +1470,7 @@ public sealed class CatalogIntegrityTests
             elementalDisciplines: [],
             channelDivinityOptions: [],
             totemWarriorOptions: totemWarriorOptions ?? [],
+            hunterOptions: hunterOptions ?? [],
             spellSlotProgressions: spellSlotProgressions ?? [],
             extraAttackProgressions: extraAttackProgressions ?? [],
             backgrounds: [],

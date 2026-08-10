@@ -169,6 +169,7 @@ public sealed class LifestyleCatalogIntegrityTests
             elementalDisciplines: [],
             channelDivinityOptions: [],
             totemWarriorOptions: [],
+            hunterOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],

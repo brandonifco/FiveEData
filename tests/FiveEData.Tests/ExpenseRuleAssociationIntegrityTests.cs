@@ -243,6 +243,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             elementalDisciplines: [],
             channelDivinityOptions: [],
             totemWarriorOptions: [],
+            hunterOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],

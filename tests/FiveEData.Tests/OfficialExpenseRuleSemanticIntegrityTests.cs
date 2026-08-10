@@ -354,6 +354,7 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             elementalDisciplines: [],
             channelDivinityOptions: [],
             totemWarriorOptions: [],
+            hunterOptions: [],
             spellSlotProgressions: [],
             extraAttackProgressions: [],
             backgrounds: [],
