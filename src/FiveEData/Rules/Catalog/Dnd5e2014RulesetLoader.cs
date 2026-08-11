@@ -7,6 +7,8 @@ using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Characters.CharacterAdvancement;
 using FiveEData.Rules.Characters.CharacterAdvancement.Serialization;
+using FiveEData.Rules.Spells.Concentration;
+using FiveEData.Rules.Spells.Concentration.Serialization;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.CombatActions.Serialization;
 using FiveEData.Rules.Combat.Cover;
@@ -169,6 +171,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string HunterOptionsResource =
         "FiveEData.Data.dnd5e2014.hunter-options.json";
+
+    private const string ConcentrationResource =
+        "FiveEData.Data.dnd5e2014.concentration.json";
 
     private const string CharacterAdvancementResource =
         "FiveEData.Data.dnd5e2014.character-advancement.json";
@@ -408,6 +413,11 @@ internal static class Dnd5e2014RulesetLoader
                 EmbeddedDataReader.ReadRequiredText(
                     CharacterAdvancementResource));
 
+        ConcentrationRules concentration =
+            ConcentrationRulesLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    ConcentrationResource));
+
         IReadOnlyList<OpenHandTechniqueOptionDefinition> openHandTechniqueOptions =
             OpenHandTechniqueOptionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(OpenHandTechniqueOptionsResource));
@@ -619,7 +629,8 @@ internal static class Dnd5e2014RulesetLoader
             travelPaces: travelPaces,
             restTypes: restTypes,
             downtimeActivities: downtimeActivities,
-            characterAdvancement: characterAdvancement);
+            characterAdvancement: characterAdvancement,
+            concentration: concentration);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -694,6 +705,7 @@ internal static class Dnd5e2014RulesetLoader
             downtimeActivities:
                 new DowntimeActivityCatalog(downtimeActivities),
             characterAdvancement: characterAdvancement,
+            concentration: concentration,
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }

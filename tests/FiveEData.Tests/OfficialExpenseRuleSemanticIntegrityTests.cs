@@ -368,7 +368,8 @@ public sealed class OfficialExpenseRuleSemanticIntegrityTests
             travelPaces: [],
             restTypes: [],
             downtimeActivities: [],
-            characterAdvancement: TestCharacterAdvancement.Create());
+            characterAdvancement: TestCharacterAdvancement.Create(),
+            concentration: TestConcentration.Create());
     }
 
     private static string DataPath(string fileName)

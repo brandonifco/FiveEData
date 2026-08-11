@@ -21,7 +21,7 @@ recoverable with `git show e2bd672:CLAUDE.md` and `git show b96ed1d:CLAUDE.md`.
 
 ## Current state
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3290 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3302 tests**.
 
 **Built and complete:**
 
@@ -41,6 +41,7 @@ Gate as of the last merge: Debug+Release build 0 warnings, **3290 tests**.
   `Cover` (3), `TravelPace` (3), `RestTypes` (2), `DowntimeActivities` (5).
   Everything else in PHB Chapters 8–9 is unbuilt **by design**.
 - Character Advancement (p.15) — the 20-row XP/level/proficiency-bonus table.
+- Concentration (p.203) — a singleton rules object; see that section.
 - Tool proficiency grants on Class/Subclass/Race/Background, and the
   Multiclassing Proficiencies table (p.164) — see those sections.
 - Quantized mechanics — leveled numbers, choice-point catalogs, and the
@@ -57,8 +58,8 @@ name are already captured under a different field (Dwarven Toughness is
 of Foot is the subrace `Speed` override).
 
 **In progress: the rules-chapters scoping pass** (see that section).
-Character Advancement and Multiclassing Proficiencies are built. Still
-unbuilt: the encumbrance/size multipliers, and the concentration rules.
+Character Advancement, Multiclassing Proficiencies, and Concentration are
+built. The encumbrance/size multipliers are the only candidate left.
 
 **Out of scope, settled:** magic items (2014 DMG Chapter 7, not PHB —
 re-confirmed 2026-08-09 when asked); feats and Variant Human (not in the free
@@ -1025,6 +1026,43 @@ slip no per-row assertion would.
 in the citation**, the same deliberate unmodelled gap the Druid's own
 starting proficiencies already leave.
 
+### Concentration
+
+`ConcentrationRules` (p.203) is a singleton on `Dnd5e2014Ruleset`, the third
+after `ArmorUsageRules`/`MountVehicleRules` and `CharacterAdvancementRules` —
+a handful of flat constants with no named entries to key.
+
+**The saving throw DC is stored as its printed floor plus its printed
+divisor, never as a formula or a precomputed table.** "10 or half the damage
+you take, whichever number is higher" becomes `MinimumSavingThrowDC` (10) and
+`DamageDivisorForSavingThrowDC` (2); the max() is the consuming engine's job.
+This is the same "store what's printed" line `MaterialCostGoldPieces` sits on.
+
+**`EndedByConditionIds` is a real cross-domain reference, not an inferred
+tag** — the bullet names `incapacitated` outright, so it resolves against the
+Conditions catalog rather than being modelled as a bespoke bool.
+
+**A required singleton with cross-domain references is a new wiring hazard.**
+Unlike a list-shaped domain, which contributes no references when empty, a
+non-nullable singleton *always* contributes them — so ten minimal-set
+integrity tests across unrelated domains (expenses, vocabulary) suddenly
+needed the referenced ability and condition in their definition sets.
+`TestConcentration.RequiredAbility()`/`RequiredCondition()` exist for exactly
+that, beside `TestConcentration.Create()` itself — the same shared-helper
+precedent `TestCharacterAdvancement` set. **Expect this fan-out for the next
+required singleton that references another domain, and prefer nullable or
+list-shaped domains when the content genuinely allows it.**
+
+**The DM's environmental-phenomena paragraph is declined** — "The DM might
+also decide that certain environmental phenomena... require you to succeed on
+a DC 10 Constitution saving throw" prints a real DC, but the trigger is
+explicitly DM-discretionary, the same line every other DM-adjudicated rule
+sits on. The section is cited to **p.203** even though that paragraph runs
+onto p.204: the heading and body start on 203.
+
+**Whether a given spell requires concentration is not stored here** — that
+lives on each spell's own `SpellDuration`.
+
 ### Cross-domain references into other catalogs
 
 `GrantedSpellId`/`SpellGrant` point *into* the Spells catalog from Eldritch
@@ -1163,7 +1201,7 @@ Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
 | Character Advancement | 15 | **Built** |
 | Multiclassing Proficiencies | 164 | **Built** |
 | Encumbrance variant + size/strength multipliers | 176 | **Buildable, partial** |
-| Concentration rules | 203–204 | **Buildable, small** |
+| Concentration rules | 203 | **Built** |
 | Multiclass Spellcaster slot table | 165 | **Declined — duplicate** |
 | Ability score → modifier table | 173 | **Declined — pure formula** |
 | Advantage/Disadvantage stacking | 173 | **Declined — engine behavior** |
@@ -1183,9 +1221,7 @@ Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
   and its 2× push/drag/lift stay declined; the **size multiplier** is a real
   table keyed to `CreatureSizeId`, and **Variant: Encumbrance** carries real
   speed penalties. Partial build only.
-- **Concentration (pp.203–204)** fits the singleton shape. Its one
-  genuinely non-derivable constant is "DC 10 or half the damage taken,
-  whichever number is higher".
+- **Concentration is built** — see "Concentration" below.
 
 ## Test conventions
 

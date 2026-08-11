@@ -31,7 +31,8 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [ability],
+                    abilities: [ability, TestConcentration.RequiredAbility()],
+                    conditions: [TestConcentration.RequiredCondition()],
                     skills: [skill],
                     sourceDocuments:
                     [
@@ -81,7 +82,8 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [ability],
+                    abilities: [ability, TestConcentration.RequiredAbility()],
+                    conditions: [TestConcentration.RequiredCondition()],
                     skills: [skill]));
 
         Assert.Contains(
@@ -106,7 +108,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     languages: [language]));
 
         Assert.Contains(
@@ -130,7 +132,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     sizes: [size]));
 
         Assert.Contains(
@@ -155,7 +157,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     conditions: [condition]));
 
         Assert.Contains(
@@ -179,7 +181,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     damageTypes: [damageType]));
 
         Assert.Contains(
@@ -203,7 +205,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     senses: [sense]));
 
         Assert.Contains(
@@ -229,7 +231,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     alignments: [alignment]));
 
         Assert.Contains(
@@ -255,7 +257,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     skills: [skill],
                     sourceDocuments:
                     [
@@ -320,11 +322,11 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [ability],
+                    abilities: [ability, TestConcentration.RequiredAbility()],
                     skills: [skill],
                     languages: [language],
                     sizes: [size],
-                    conditions: [condition],
+                    conditions: [condition, TestConcentration.RequiredCondition()],
                     damageTypes: [damageType],
                     senses: [sense],
                     alignments: [alignment],
@@ -531,6 +533,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             travelPaces: [],
             restTypes: [],
             downtimeActivities: [],
-            characterAdvancement: TestCharacterAdvancement.Create());
+            characterAdvancement: TestCharacterAdvancement.Create(),
+            concentration: TestConcentration.Create());
     }
 }

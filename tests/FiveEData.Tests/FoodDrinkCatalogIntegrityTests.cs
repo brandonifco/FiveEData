@@ -152,11 +152,11 @@ public sealed class FoodDrinkCatalogIntegrityTests
             expenses: expenses,
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
-                    abilities: [],
+                    abilities: [TestConcentration.RequiredAbility()],
                     skills: [],
                     languages: [],
                     sizes: [],
-                    conditions: [],
+                    conditions: [TestConcentration.RequiredCondition()],
                     damageTypes: [],
                     senses: [],
                     alignments: []),
@@ -183,6 +183,7 @@ public sealed class FoodDrinkCatalogIntegrityTests
             travelPaces: [],
             restTypes: [],
             downtimeActivities: [],
-            characterAdvancement: TestCharacterAdvancement.Create());
+            characterAdvancement: TestCharacterAdvancement.Create(),
+            concentration: TestConcentration.Create());
     }
 }

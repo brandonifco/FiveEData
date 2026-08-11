@@ -48,6 +48,8 @@ using FiveEData.Rules.Equipment.AdventuringGear;
 using FiveEData.Rules.Equipment.AdventuringGear.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Armor.Serialization;
+using FiveEData.Rules.Spells.Concentration;
+using FiveEData.Rules.Spells.Concentration.Serialization;
 using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Equipment.Tools.Serialization;
 using FiveEData.Rules.Equipment.Mounts;
@@ -267,6 +269,14 @@ public sealed class CatalogIntegrityTests
                         "dnd5e2014",
                         "transmuters-stone-options.json"));
 
+        ConcentrationRules concentration =
+            ConcentrationRulesLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "concentration.json"));
+
         CharacterAdvancementRules characterAdvancement =
             CharacterAdvancementRulesLoader.LoadFromFile(
                 Path.Combine(
@@ -314,7 +324,8 @@ public sealed class CatalogIntegrityTests
                     openHandTechniqueOptions: openHandTechniqueOptions,
                     thirdEyeOptions: thirdEyeOptions,
                     transmutersStoneOptions: transmutersStoneOptions,
-                    characterAdvancement: characterAdvancement)));
+                    characterAdvancement: characterAdvancement,
+                    concentration: concentration)));
     }
 
     [Fact]
@@ -1511,6 +1522,7 @@ public sealed class CatalogIntegrityTests
         IReadOnlyList<TransmutersStoneOptionDefinition>?
             transmutersStoneOptions = null,
         CharacterAdvancementRules? characterAdvancement = null,
+        ConcentrationRules? concentration = null,
         IReadOnlyList<TravelPaceDefinition>? travelPaces = null)
     {
         var equipment = new EquipmentDefinitionSet(
@@ -1578,7 +1590,8 @@ public sealed class CatalogIntegrityTests
             restTypes: [],
             downtimeActivities: [],
             characterAdvancement:
-                characterAdvancement ?? TestCharacterAdvancement.Create());
+                characterAdvancement ?? TestCharacterAdvancement.Create(),
+                concentration ?? TestConcentration.Create());
     }
 
     private static ToolDefinition CreateTool(
