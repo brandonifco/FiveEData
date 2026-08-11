@@ -21,6 +21,9 @@ public sealed class BackgroundDefinitionLoaderTests
             "additionalPeopleFedPerDay": null,
             "guildDuesGoldPerMonth": null,
             "fastTravelSpeedMultiplier": null,
+            "toolProficiencyIds": [],
+            "toolProficiencyChoice": null,
+            "vehicleProficiencyKinds": [],
             "sources": [
               {
                 "documentId": "extension.source.test",
@@ -93,6 +96,9 @@ public sealed class BackgroundDefinitionLoaderTests
                         "additionalPeopleFedPerDay": null,
                         "guildDuesGoldPerMonth": null,
                         "fastTravelSpeedMultiplier": null,
+                        "toolProficiencyIds": [],
+                        "toolProficiencyChoice": null,
+                        "vehicleProficiencyKinds": [],
                         "sources": [],
                         "unexpected": true
                       }
@@ -119,6 +125,9 @@ public sealed class BackgroundDefinitionLoaderTests
                         "additionalPeopleFedPerDay": null,
                         "guildDuesGoldPerMonth": null,
                         "fastTravelSpeedMultiplier": null,
+                        "toolProficiencyIds": [],
+                        "toolProficiencyChoice": null,
+                        "vehicleProficiencyKinds": [],
                         "sources": []
                       }
                     ]
@@ -128,18 +137,30 @@ public sealed class BackgroundDefinitionLoaderTests
     [Theory]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "name": "Test", "skillProficiencyIds": [], "languageChoiceCount": 0, "featureRuleId": "extension.background-rule.test", "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": [] }]
         """)]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": "extension.background.test", "skillProficiencyIds": [], "languageChoiceCount": 0, "featureRuleId": "extension.background-rule.test", "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": [] }]
         """)]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": "extension.background.test", "name": "Test", "languageChoiceCount": 0, "featureRuleId": "extension.background-rule.test", "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": [] }]
         """)]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": "extension.background.test", "name": "Test", "skillProficiencyIds": [], "languageChoiceCount": 0, "sources": [] }]
         """)]
     [InlineData(
@@ -155,22 +176,37 @@ public sealed class BackgroundDefinitionLoaderTests
     [Theory]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": null, "name": "Test", "skillProficiencyIds": [], "languageChoiceCount": 0, "featureRuleId": "extension.background-rule.test", "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": [] }]
         """)]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": "extension.background.test", "name": null, "skillProficiencyIds": [], "languageChoiceCount": 0, "featureRuleId": "extension.background-rule.test", "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": [] }]
         """)]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": "extension.background.test", "name": "Test", "skillProficiencyIds": null, "languageChoiceCount": 0, "featureRuleId": "extension.background-rule.test", "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": [] }]
         """)]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": "extension.background.test", "name": "Test", "skillProficiencyIds": [], "languageChoiceCount": 0, "featureRuleId": null, "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": [] }]
         """)]
     [InlineData(
         """
+        "toolProficiencyIds": [],
+        "toolProficiencyChoice": null,
+        "vehicleProficiencyKinds": [],
         [{ "id": "extension.background.test", "name": "Test", "skillProficiencyIds": [], "languageChoiceCount": 0, "featureRuleId": "extension.background-rule.test", "sustainedLifestyleId": null, "additionalPeopleFedPerDay": null, "guildDuesGoldPerMonth": null, "fastTravelSpeedMultiplier": null, "sources": null }]
         """)]
     public void NullRequiredMember_IsRejected(string json)
@@ -197,6 +233,9 @@ public sealed class BackgroundDefinitionLoaderTests
               "additionalPeopleFedPerDay": null,
               "guildDuesGoldPerMonth": null,
               "fastTravelSpeedMultiplier": null,
+              "toolProficiencyIds": [],
+              "toolProficiencyChoice": null,
+              "vehicleProficiencyKinds": [],
               "sources": [
                 {
                   "documentId": "extension.source.test",
@@ -230,6 +269,9 @@ public sealed class BackgroundDefinitionLoaderTests
                         "additionalPeopleFedPerDay": null,
                         "guildDuesGoldPerMonth": null,
                         "fastTravelSpeedMultiplier": null,
+                        "toolProficiencyIds": [],
+                        "toolProficiencyChoice": null,
+                        "vehicleProficiencyKinds": [],
                         "sources": [
                           {
                             "documentId": "extension.source.test",

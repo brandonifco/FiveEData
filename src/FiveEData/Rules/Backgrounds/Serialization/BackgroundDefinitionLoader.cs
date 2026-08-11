@@ -1,3 +1,5 @@
+using FiveEData.Rules.Equipment.Vehicles;
+using FiveEData.Rules.Equipment.Tools;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Common.Provenance;
 using FiveEData.Rules.Common.Provenance.Serialization;
@@ -112,6 +114,22 @@ internal static class BackgroundDefinitionLoader
                 ? new LifestyleId(sustainedLifestyleIdValue)
                 : null;
 
+        string[] toolProficiencyIdValues = data.ToolProficiencyIds
+            ?? throw new ArgumentException(
+                "Background tool proficiency IDs are required.",
+                nameof(data));
+
+        ToolProficiencyChoice? toolProficiencyChoice =
+            data.ToolProficiencyChoice is { } toolProficiencyChoiceData
+                ? ToolProficiencyChoiceDataMapper.Map(
+                    toolProficiencyChoiceData)
+                : null;
+
+        VehicleKind[] vehicleProficiencyKinds = data.VehicleProficiencyKinds
+            ?? throw new ArgumentException(
+                "Background vehicle proficiency kinds are required.",
+                nameof(data));
+
         return new BackgroundDefinition(
             id,
             name,
@@ -122,6 +140,9 @@ internal static class BackgroundDefinitionLoader
             data.AdditionalPeopleFedPerDay,
             data.GuildDuesGoldPerMonth,
             data.FastTravelSpeedMultiplier,
+            toolProficiencyIdValues.Select(value => new ToolId(value)),
+            toolProficiencyChoice,
+            vehicleProficiencyKinds,
             sources);
     }
 }

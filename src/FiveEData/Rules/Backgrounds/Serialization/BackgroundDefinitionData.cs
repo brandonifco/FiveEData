@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using FiveEData.Rules.Common.Serialization;
+using FiveEData.Rules.Equipment.Vehicles;
 using FiveEData.Rules.Common.Provenance.Serialization;
 
 namespace FiveEData.Rules.Backgrounds.Serialization;
@@ -34,4 +36,13 @@ internal sealed class BackgroundDefinitionData
 
     [JsonRequired]
     public SourceReferenceData[]? Sources { get; init; }
+
+    [JsonRequired]
+    public string[]? ToolProficiencyIds { get; init; }
+
+    [JsonRequired]
+    public ToolProficiencyChoiceData? ToolProficiencyChoice { get; init; }
+
+    [JsonRequired]
+    public VehicleKind[]? VehicleProficiencyKinds { get; init; }
 }
