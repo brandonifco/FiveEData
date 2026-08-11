@@ -32,6 +32,7 @@ using FiveEData.Rules.Classes.UnarmoredMovement.Serialization;
 using FiveEData.Rules.Classes.WildShape.Serialization;
 using FiveEData.Rules.Classes.WizardSpellbook.Serialization;
 using FiveEData.Rules.Common.Provenance.Serialization;
+using FiveEData.Rules.Classes.Multiclassing.Serialization;
 using FiveEData.Rules.Common.Serialization;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.Weapons;
@@ -304,6 +305,10 @@ internal sealed class ClassDefinitionData
 
     [JsonRequired]
     public ToolProficiencyChoiceData? ToolProficiencyChoice { get; init; }
+
+    [JsonRequired]
+    public MulticlassingProficiencyGrantData?
+        MulticlassingProficiencyGrant { get; init; }
 
 
     [JsonRequired]

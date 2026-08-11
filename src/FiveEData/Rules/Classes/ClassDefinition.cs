@@ -19,6 +19,7 @@ using FiveEData.Rules.Classes.ImprovedDivineSmite;
 using FiveEData.Rules.Classes.Ki;
 using FiveEData.Rules.Classes.MagicalSecrets;
 using FiveEData.Rules.Classes.MartialArts;
+using FiveEData.Rules.Classes.Multiclassing;
 using FiveEData.Rules.Classes.MysticArcanum;
 using FiveEData.Rules.Classes.NaturalExplorer;
 using FiveEData.Rules.Classes.PrimalChampion;
@@ -103,6 +104,7 @@ public sealed class ClassDefinition
         RelentlessRageDetail? relentlessRage,
         IEnumerable<ToolId> toolProficiencyIds,
         ToolProficiencyChoice? toolProficiencyChoice,
+        MulticlassingProficiencyGrant? multiclassingProficiencyGrant,
         IEnumerable<SourceReference> sources)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
@@ -178,6 +180,7 @@ public sealed class ClassDefinition
         RelentlessRage = relentlessRage;
         ToolProficiencyIds = Array.AsReadOnly(toolProficiencyIds.ToArray());
         ToolProficiencyChoice = toolProficiencyChoice;
+        MulticlassingProficiencyGrant = multiclassingProficiencyGrant;
         Sources = Array.AsReadOnly(sources.ToArray());
     }
 
@@ -292,6 +295,9 @@ public sealed class ClassDefinition
     public IReadOnlyList<ToolId> ToolProficiencyIds { get; }
 
     public ToolProficiencyChoice? ToolProficiencyChoice { get; }
+
+    public MulticlassingProficiencyGrant?
+        MulticlassingProficiencyGrant { get; }
 
     public IReadOnlyList<SourceReference> Sources { get; }
 }

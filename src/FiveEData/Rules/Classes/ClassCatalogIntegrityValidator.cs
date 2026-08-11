@@ -1,3 +1,4 @@
+using FiveEData.Rules.Classes.Multiclassing;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Classes.DivineStrike;
 using FiveEData.Rules.Classes.ExtraAttack;
@@ -62,6 +63,54 @@ internal static class ClassCatalogIntegrityValidator
                 .OrderBy(item => item.Id.Value, StringComparer.Ordinal))
         {
             string owner = $"Class '{@class.Id}'";
+
+            if (@class.MulticlassingProficiencyGrant is { } multiclassGrant)
+            {
+                foreach (WeaponId weaponId in
+                    multiclassGrant.WeaponProficiencyIds)
+                {
+                    if (!weaponIds.Contains(weaponId))
+                    {
+                        errors.Add(
+                            $"{owner} multiclassing grant references " +
+                            $"missing weapon '{weaponId}'.");
+                    }
+                }
+
+                foreach (ToolId toolId in multiclassGrant.ToolProficiencyIds)
+                {
+                    if (!toolIds.Contains(toolId))
+                    {
+                        errors.Add(
+                            $"{owner} multiclassing grant references " +
+                            $"missing tool '{toolId}'.");
+                    }
+                }
+
+                if (multiclassGrant.ToolProficiencyChoice is { } grantChoice)
+                {
+                    foreach (ToolFamilyId familyId in
+                        grantChoice.ToolFamilyIds)
+                    {
+                        if (!toolFamilyIds.Contains(familyId))
+                        {
+                            errors.Add(
+                                $"{owner} multiclassing grant references " +
+                                $"missing tool family '{familyId}'.");
+                        }
+                    }
+
+                    foreach (ToolId toolId in grantChoice.ToolOptionIds)
+                    {
+                        if (!toolIds.Contains(toolId))
+                        {
+                            errors.Add(
+                                $"{owner} multiclassing grant references " +
+                                $"missing tool '{toolId}'.");
+                        }
+                    }
+                }
+            }
 
             foreach (ToolId toolId in @class.ToolProficiencyIds)
             {

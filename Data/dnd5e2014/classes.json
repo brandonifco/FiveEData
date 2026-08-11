@@ -181,6 +181,22 @@
     "relentlessRage": null,
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light",
+        "Medium"
+      ],
+      "proficientWithShields": true,
+      "weaponProficiencyCategories": [
+        "Simple",
+        "Martial"
+      ],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 0,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -426,6 +442,19 @@
     },
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [],
+      "proficientWithShields": true,
+      "weaponProficiencyCategories": [
+        "Simple",
+        "Martial"
+      ],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 0,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -757,6 +786,20 @@
       ],
       "toolOptionIds": []
     },
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [],
+      "proficientWithShields": false,
+      "weaponProficiencyCategories": [
+        "Simple"
+      ],
+      "weaponProficiencyIds": [
+        "dnd5e2014.weapon.shortsword"
+      ],
+      "skillChoiceCount": 0,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1006,6 +1049,20 @@
       "dnd5e2014.tool.thieves-tools"
     ],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light"
+      ],
+      "proficientWithShields": false,
+      "weaponProficiencyCategories": [],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 1,
+      "skillChoiceFromClassSkillList": true,
+      "toolProficiencyIds": [
+        "dnd5e2014.tool.thieves-tools"
+      ],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1370,6 +1427,24 @@
       ],
       "toolOptionIds": []
     },
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light"
+      ],
+      "proficientWithShields": false,
+      "weaponProficiencyCategories": [],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 1,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": {
+        "count": 1,
+        "toolFamilyIds": [
+          "dnd5e2014.tool-family.musical-instrument"
+        ],
+        "toolOptionIds": []
+      }
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1513,6 +1588,7 @@
     "relentlessRage": null,
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1710,6 +1786,19 @@
     "relentlessRage": null,
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light",
+        "Medium"
+      ],
+      "proficientWithShields": true,
+      "weaponProficiencyCategories": [],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 0,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -1975,6 +2064,20 @@
     "relentlessRage": null,
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light"
+      ],
+      "proficientWithShields": false,
+      "weaponProficiencyCategories": [
+        "Simple"
+      ],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 0,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2166,6 +2269,19 @@
       "dnd5e2014.tool.herbalism-kit"
     ],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light",
+        "Medium"
+      ],
+      "proficientWithShields": true,
+      "weaponProficiencyCategories": [],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 0,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2415,6 +2531,22 @@
     "relentlessRage": null,
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light",
+        "Medium"
+      ],
+      "proficientWithShields": true,
+      "weaponProficiencyCategories": [
+        "Simple",
+        "Martial"
+      ],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 1,
+      "skillChoiceFromClassSkillList": true,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2606,6 +2738,22 @@
     "relentlessRage": null,
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": {
+      "armorProficiencyCategories": [
+        "Light",
+        "Medium"
+      ],
+      "proficientWithShields": true,
+      "weaponProficiencyCategories": [
+        "Simple",
+        "Martial"
+      ],
+      "weaponProficiencyIds": [],
+      "skillChoiceCount": 0,
+      "skillChoiceFromClassSkillList": false,
+      "toolProficiencyIds": [],
+      "toolProficiencyChoice": null
+    },
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -2916,6 +3064,7 @@
     "relentlessRage": null,
     "toolProficiencyIds": [],
     "toolProficiencyChoice": null,
+    "multiclassingProficiencyGrant": null,
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
