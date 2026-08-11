@@ -12,6 +12,9 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -33,6 +36,12 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.disguise-kit",
+      "dnd5e2014.tool.forgery-kit"
+    ],
+    "toolProficiencyChoice": null,
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -54,6 +63,17 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.thieves-tools"
+    ],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.gaming-set"
+      ],
+      "toolOptionIds": []
+    },
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -75,6 +95,17 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.disguise-kit"
+    ],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.musical-instrument"
+      ],
+      "toolOptionIds": []
+    },
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -96,6 +127,17 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.artisans-tools"
+      ],
+      "toolOptionIds": []
+    },
+    "vehicleProficiencyKinds": [
+      "Land"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -117,6 +159,15 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": 5,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.artisans-tools"
+      ],
+      "toolOptionIds": []
+    },
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -138,6 +189,11 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.herbalism-kit"
+    ],
+    "toolProficiencyChoice": null,
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -159,6 +215,15 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.gaming-set"
+      ],
+      "toolOptionIds": []
+    },
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -180,6 +245,15 @@
     "additionalPeopleFedPerDay": 5,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.musical-instrument"
+      ],
+      "toolOptionIds": []
+    },
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -201,6 +275,9 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": null,
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -222,6 +299,13 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.navigators-tools"
+    ],
+    "toolProficiencyChoice": null,
+    "vehicleProficiencyKinds": [
+      "Water"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -243,6 +327,17 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": null,
+    "toolProficiencyIds": [],
+    "toolProficiencyChoice": {
+      "count": 1,
+      "toolFamilyIds": [
+        "dnd5e2014.tool-family.gaming-set"
+      ],
+      "toolOptionIds": []
+    },
+    "vehicleProficiencyKinds": [
+      "Land"
+    ],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",
@@ -264,6 +359,12 @@
     "additionalPeopleFedPerDay": null,
     "guildDuesGoldPerMonth": null,
     "fastTravelSpeedMultiplier": 2,
+    "toolProficiencyIds": [
+      "dnd5e2014.tool.disguise-kit",
+      "dnd5e2014.tool.thieves-tools"
+    ],
+    "toolProficiencyChoice": null,
+    "vehicleProficiencyKinds": [],
     "sources": [
       {
         "documentId": "dnd5e2014.source.phb-first-printing",

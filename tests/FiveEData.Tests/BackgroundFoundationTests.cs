@@ -49,6 +49,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             sources);
 
         skills.Clear();
@@ -71,6 +74,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -92,6 +98,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             []);
 
         Assert.Contains(
@@ -115,6 +124,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -141,6 +153,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -164,6 +179,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -187,6 +205,9 @@ public sealed class BackgroundFoundationTests
             additionalPeopleFedPerDay: 0,
             null,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -210,6 +231,9 @@ public sealed class BackgroundFoundationTests
             null,
             guildDuesGoldPerMonth: 0,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -233,6 +257,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             fastTravelSpeedMultiplier: 1,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Contains(
@@ -329,6 +356,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
 
         Assert.Throws<InvalidOperationException>(
@@ -347,6 +377,9 @@ public sealed class BackgroundFoundationTests
             null,
             null,
             null,
+            [],
+            null,
+            [],
             [CreateSource()]);
     }
 

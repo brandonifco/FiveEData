@@ -1,9 +1,12 @@
+using FiveEData.Rules.Backgrounds;
+using FiveEData.Rules.Backgrounds.Serialization;
 using FiveEData.Rules.Classes;
 using FiveEData.Rules.Classes.Serialization;
 using FiveEData.Rules.Common;
 using FiveEData.Rules.Creatures.Races;
 using FiveEData.Rules.Creatures.Races.Serialization;
 using FiveEData.Rules.Equipment.Tools;
+using FiveEData.Rules.Equipment.Vehicles;
 
 namespace FiveEData.Tests;
 
@@ -227,6 +230,80 @@ public sealed class ToolProficiencyGrantTests
             Assert.Single(@class.ToolProficiencyIds);
         }
     }
+
+
+    [Fact]
+    public void CanonicalFile_ElevenBackgroundsGrantToolProficiencies()
+    {
+        // Acolyte and Sage are the only two, and the PHB signals it by
+        // omitting the "Tool Proficiencies" line entirely rather than
+        // printing "None" the way every class block does.
+        IReadOnlyList<BackgroundDefinition> backgrounds = LoadBackgrounds();
+
+        string[] without =
+        [
+            .. backgrounds
+                .Where(background =>
+                    background.ToolProficiencyIds.Count == 0 &&
+                    background.ToolProficiencyChoice is null)
+                .Select(background => background.Id.Value)
+                .Order()
+        ];
+
+        Assert.Equal(
+            ["dnd5e2014.background.acolyte", "dnd5e2014.background.sage"],
+            without);
+        Assert.Equal(11, backgrounds.Count - without.Length);
+    }
+
+    [Fact]
+    public void CanonicalFile_CriminalCombinesAFixedGrantWithAChoice()
+    {
+        // "One type of gaming set, thieves' tools" — the first owner to
+        // populate both fields at once, which is why they are independent
+        // rather than one alternative-of-two.
+        BackgroundDefinition criminal = LoadBackgrounds()
+            .Single(background =>
+                background.Id.Value == "dnd5e2014.background.criminal");
+
+        Assert.Equal(
+            ["dnd5e2014.tool.thieves-tools"],
+            criminal.ToolProficiencyIds.Select(id => id.Value));
+
+        ToolProficiencyChoice choice = Assert.IsType<ToolProficiencyChoice>(
+            criminal.ToolProficiencyChoice);
+
+        Assert.Equal(1, choice.Count);
+        Assert.Equal(
+            ["dnd5e2014.tool-family.gaming-set"],
+            choice.ToolFamilyIds.Select(id => id.Value));
+    }
+
+    [Fact]
+    public void CanonicalFile_VehicleProficiencyUsesVehicleKindNotATool()
+    {
+        // The Tools table prints one combined "Vehicles (land or water)"
+        // pointer row, but backgrounds grant the two separately — so the
+        // axis comes from VehicleDefinition, and tools.json gains nothing.
+        IReadOnlyList<BackgroundDefinition> backgrounds = LoadBackgrounds();
+
+        Assert.Equal(
+            [
+                ("dnd5e2014.background.folk-hero", VehicleKind.Land),
+                ("dnd5e2014.background.sailor", VehicleKind.Water),
+                ("dnd5e2014.background.soldier", VehicleKind.Land)
+            ],
+            backgrounds
+                .Where(background => background.VehicleProficiencyKinds.Count > 0)
+                .OrderBy(background => background.Id.Value)
+                .Select(background =>
+                    (background.Id.Value,
+                     background.VehicleProficiencyKinds.Single())));
+    }
+
+    private static IReadOnlyList<BackgroundDefinition> LoadBackgrounds() =>
+        BackgroundDefinitionLoader.LoadFromFile(
+            CanonicalPath("backgrounds.json"));
 
     private static IReadOnlyList<ClassDefinition> LoadClasses() =>
         ClassDefinitionLoader.LoadFromFile(CanonicalPath("classes.json"));

@@ -21,7 +21,7 @@ recoverable with `git show e2bd672:CLAUDE.md` and `git show b96ed1d:CLAUDE.md`.
 
 ## Current state
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3280 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3283 tests**.
 
 **Built and complete:**
 
@@ -41,8 +41,8 @@ Gate as of the last merge: Debug+Release build 0 warnings, **3280 tests**.
   `Cover` (3), `TravelPace` (3), `RestTypes` (2), `DowntimeActivities` (5).
   Everything else in PHB Chapters 8–9 is unbuilt **by design**.
 - Character Advancement (p.15) — the 20-row XP/level/proficiency-bonus table.
-- Tool proficiency grants on Class/Subclass/Race — see that section.
-  Backgrounds are the remaining owner.
+- Tool proficiency grants on Class/Subclass/Race/Background — see that
+  section.
 - Quantized mechanics — leveled numbers, choice-point catalogs, and the
   feature-prose tail. **11 choice-point catalogs exist** (see the table under
   "Quantized mechanics").
@@ -372,10 +372,10 @@ Starting equipment and Druid's nonmetal-armor restriction have no fields.
 Each was a considered call: adding one would be generality ahead of a real
 consumer.
 
-**The tool-proficiency gap is now open** — the Multiclassing Proficiencies
-table was the first real downstream consumer it ever had, and rather than
-declining two of its twelve rows, the grant fields were built. See "Tool
-proficiency grants". Backgrounds are the remaining unbuilt owner.
+**The tool-proficiency gap is now open and fully populated across all four
+owners** — the Multiclassing Proficiencies table was the first real
+downstream consumer it ever had, and rather than declining two of its twelve
+rows, the grant fields were built. See "Tool proficiency grants".
 
 **Two features now reference rules this project doesn't model.** Aspect of
 the Beast (Bear) sets `DoublesCarryingCapacity` with no carrying-capacity
@@ -939,8 +939,8 @@ identical concept** — not one domain plus a prediction. Promoted so far:
 
 ### Tool proficiency grants
 
-Built on `ClassDefinition`, `SubclassDefinition`, and `RaceDefinition`;
-`BackgroundDefinition` is the remaining owner. Two fields per owner:
+Built on `ClassDefinition`, `SubclassDefinition`, `RaceDefinition`, and
+`BackgroundDefinition` — all four owners. Two fields per owner:
 `ToolProficiencyIds` (a fixed grant — Rogue's thieves' tools, Assassin's
 disguise kit *and* poisoner's kit) and a nullable
 `ToolProficiencyChoice` in `Rules/Common`, the sixth type promoted there.
@@ -963,7 +963,16 @@ other grant does. Pinned by
 
 **A fixed grant is not a one-option choice.** Druid's herbalism kit and
 Rogue's thieves' tools populate the ID list with `ToolProficiencyChoice`
-null, pinned by `CanonicalFile_FixedGrantsAreNotModelledAsChoices`.
+null, pinned by `CanonicalFile_FixedGrantsAreNotModelledAsChoices`. **The two
+fields are independent and co-occur** — Criminal's "One type of gaming set,
+thieves' tools" populates both, pinned by
+`CanonicalFile_CriminalCombinesAFixedGrantWithAChoice`.
+
+**Backgrounds signal "no tool proficiency" by omitting the line, not by
+printing "None".** Every class block prints "Tools: None" where there is no
+grant; Acolyte and Sage simply have no Tool Proficiencies line at all. Both
+mean an empty list, but don't expect the same printed shape when reading a
+new domain's stat block.
 
 **Grants live outside the obvious owner's block — scan for the mechanic, not
 the domain.** Reading only the twelve class proficiency blocks would have
@@ -978,7 +987,10 @@ both `*` and whose footnote defers to the Mounts and Vehicles section — a
 pointer, not an entry. Backgrounds meanwhile grant "vehicles (land)" and
 "vehicles (water)" separately, a distinction `VehicleDefinition.Kind`
 (`Land`/`Water`) already models. So no vehicle entries were added to
-`tools.json` (still 37); the background pass reuses `VehicleKind` instead.
+`tools.json` (still 37); `BackgroundDefinition.VehicleProficiencyKinds`
+reuses `VehicleKind` instead, populated for Folk Hero (Land), Sailor (Water),
+and Soldier (Land) and pinned by
+`CanonicalFile_VehicleProficiencyUsesVehicleKindNotATool`.
 **Check whether an existing catalog already carries the axis before widening
 a different one.**
 
