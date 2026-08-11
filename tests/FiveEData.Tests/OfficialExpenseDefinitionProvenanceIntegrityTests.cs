@@ -507,7 +507,8 @@ public sealed class
             restTypes: [],
             downtimeActivities: [],
             characterAdvancement: TestCharacterAdvancement.Create(),
-            concentration: TestConcentration.Create());
+            concentration: TestConcentration.Create(),
+            encumbrance: TestEncumbrance.Create());
     }
 
     private static string DataPath(string fileName)

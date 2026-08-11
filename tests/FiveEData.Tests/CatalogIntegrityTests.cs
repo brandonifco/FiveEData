@@ -3,6 +3,8 @@ using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Characters.CharacterAdvancement;
 using FiveEData.Rules.Characters.CharacterAdvancement.Serialization;
+using FiveEData.Rules.Characters.Encumbrance;
+using FiveEData.Rules.Characters.Encumbrance.Serialization;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.HunterOptions.Serialization;
 using FiveEData.Rules.Classes.OpenHandTechniqueOptions;
@@ -285,6 +287,14 @@ public sealed class CatalogIntegrityTests
                     "dnd5e2014",
                     "character-advancement.json"));
 
+        EncumbranceRules encumbrance =
+            EncumbranceRulesLoader.LoadFromFile(
+                Path.Combine(
+                    root,
+                    "Data",
+                    "dnd5e2014",
+                    "encumbrance.json"));
+
         Assert.Empty(
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
@@ -325,7 +335,8 @@ public sealed class CatalogIntegrityTests
                     thirdEyeOptions: thirdEyeOptions,
                     transmutersStoneOptions: transmutersStoneOptions,
                     characterAdvancement: characterAdvancement,
-                    concentration: concentration)));
+                    concentration: concentration,
+                    encumbrance: encumbrance)));
     }
 
     [Fact]
@@ -410,6 +421,36 @@ public sealed class CatalogIntegrityTests
             errors,
             error => error.Contains(
                 "missing travel pace",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MissingEncumbranceCreatureSizeReference_IsRejected()
+    {
+        // The default CreateDefinitionSet() supplies no creature sizes, so
+        // TestEncumbrance.Create()'s six size multipliers all dangle.
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(CreateDefinitionSet());
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Encumbrance rules reference missing creature size",
+                StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void MissingEncumbranceAbilityReference_IsRejected()
+    {
+        // The default CreateDefinitionSet() supplies no abilities, so
+        // TestEncumbrance.Create()'s disadvantage abilities all dangle.
+        IReadOnlyList<string> errors =
+            CatalogIntegrityValidator.Validate(CreateDefinitionSet());
+
+        Assert.Contains(
+            errors,
+            error => error.Contains(
+                "Encumbrance rules reference missing ability",
                 StringComparison.Ordinal));
     }
 
@@ -1523,6 +1564,7 @@ public sealed class CatalogIntegrityTests
             transmutersStoneOptions = null,
         CharacterAdvancementRules? characterAdvancement = null,
         ConcentrationRules? concentration = null,
+        EncumbranceRules? encumbrance = null,
         IReadOnlyList<TravelPaceDefinition>? travelPaces = null)
     {
         var equipment = new EquipmentDefinitionSet(
@@ -1591,7 +1633,8 @@ public sealed class CatalogIntegrityTests
             downtimeActivities: [],
             characterAdvancement:
                 characterAdvancement ?? TestCharacterAdvancement.Create(),
-                concentration ?? TestConcentration.Create());
+                concentration ?? TestConcentration.Create(),
+                encumbrance ?? TestEncumbrance.Create());
     }
 
     private static ToolDefinition CreateTool(

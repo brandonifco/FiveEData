@@ -21,7 +21,7 @@ recoverable with `git show e2bd672:CLAUDE.md` and `git show b96ed1d:CLAUDE.md`.
 
 ## Current state
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3302 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3321 tests**.
 
 **Built and complete:**
 
@@ -41,7 +41,8 @@ Gate as of the last merge: Debug+Release build 0 warnings, **3302 tests**.
   `Cover` (3), `TravelPace` (3), `RestTypes` (2), `DowntimeActivities` (5).
   Everything else in PHB Chapters 8–9 is unbuilt **by design**.
 - Character Advancement (p.15) — the 20-row XP/level/proficiency-bonus table.
-- Concentration (p.203) — a singleton rules object; see that section.
+- Concentration (p.203) and Encumbrance (p.176) — both singleton rules
+  objects; see those sections.
 - Tool proficiency grants on Class/Subclass/Race/Background, and the
   Multiclassing Proficiencies table (p.164) — see those sections.
 - Quantized mechanics — leveled numbers, choice-point catalogs, and the
@@ -57,9 +58,9 @@ name are already captured under a different field (Dwarven Toughness is
 `HitPointBonusPerLevel`, Superior Darkvision is `DarkvisionRangeFeet`, Fleet
 of Foot is the subrace `Speed` override).
 
-**In progress: the rules-chapters scoping pass** (see that section).
-Character Advancement, Multiclassing Proficiencies, and Concentration are
-built. The encumbrance/size multipliers are the only candidate left.
+**The rules-chapters scoping pass is closed** (see that section) — all
+four buildable candidates (Character Advancement, Multiclassing
+Proficiencies, Concentration, Encumbrance) are built.
 
 **Out of scope, settled:** magic items (2014 DMG Chapter 7, not PHB —
 re-confirmed 2026-08-09 when asked); feats and Variant Human (not in the free
@@ -378,13 +379,17 @@ owners** — the Multiclassing Proficiencies table was the first real
 downstream consumer it ever had, and rather than declining two of its twelve
 rows, the grant fields were built. See "Tool proficiency grants".
 
-**Two features now reference rules this project doesn't model.** Aspect of
-the Beast (Bear) sets `DoublesCarryingCapacity` with no carrying-capacity
-domain to double; Second-Story Work sets
-`AddsDexterityModifierToRunningJumpDistance` with no jump-distance rule.
-Both are honest records of what the book says and neither is a bug, but they
-are *dangling mechanics* rather than dangling references — the concrete
-argument for the encumbrance and jump candidates in the open scoping table.
+**Two features reference rules this project doesn't fully model, and
+building Encumbrance only closed one of them halfway.** Aspect of the
+Beast (Bear) sets `DoublesCarryingCapacity`, and Encumbrance now does
+model a size-based carrying-capacity multiplier — but the base carrying
+capacity value itself (Strength score × 15) stays declined as a formula,
+so there is still no stored number for `DoublesCarryingCapacity` to
+double; it remains a dangling mechanic pointed at a formula, not a
+missing domain. Second-Story Work's
+`AddsDexterityModifierToRunningJumpDistance` is unchanged — jump distance
+was declined outright and stays out of scope. Both are honest records of
+what the book says and neither is a bug.
 
 ### `RuleId` sharing — the single most important discipline here
 
@@ -1063,6 +1068,44 @@ onto p.204: the heading and body start on 203.
 **Whether a given spell requires concentration is not stored here** — that
 lives on each spell's own `SpellDuration`.
 
+### Encumbrance
+
+`EncumbranceRules` (p.176) is a fourth singleton, at
+`Rules/Characters/Encumbrance/` — the Size and Strength rule and the
+Variant: Encumbrance sidebar, both on the same page.
+
+**The size multiplier is stored per size, not as a "count the steps from
+Medium" formula.** "For each size category above Medium, double the
+creature's carrying capacity... for a Tiny creature, halve these weights"
+becomes a 6-row `CarryingCapacitySizeMultiplierGrant` list (Tiny 0.5,
+Small/Medium 1, Large 2, Huge 4, Gargantuan 8) keyed to the existing
+`CreatureSizeId` catalog — the same "expand the formula into a table"
+call Circle Forms already made, chosen because the six sizes are already
+a closed, already-modelled set.
+
+**Carrying capacity itself (Strength score × 15) and the push/drag/lift
+multiplier (×2) both stay declined**, the same "formula relative to a
+value already modelled elsewhere" line the Long Rest's Hit Dice fraction
+sits on — only the size multiplier and the two encumbrance thresholds
+(encumbered: weight > 5 × Strength, speed −10 ft; heavily encumbered:
+weight > 10 × Strength, speed −20 ft plus disadvantage on Strength/
+Dexterity/Constitution checks, attacks, and saves) are genuinely
+non-derivable facts.
+
+**"Ignore the Strength column of the Armor table in chapter 5" is
+declined too** — an instruction about which other already-modelled rule
+to disregard while this variant is active, not a game-mechanical number
+in its own right.
+
+**A second required singleton with cross-domain references confirms the
+fan-out is routine, not a one-off.** Encumbrance references both
+`CreatureSizeId` (all 6) and `AbilityId` (Strength/Dexterity/
+Constitution), so the same ten minimal-set integrity tests Concentration
+already touched needed `TestEncumbrance.RequiredAbilities()`/
+`RequiredSizes()` added alongside `TestConcentration`'s — sharing the
+list in the same `abilities`/`sizes` array rather than replacing it,
+since these tests validate references, not deduplicate a catalog.
+
 ### Cross-domain references into other catalogs
 
 `GrantedSpellId`/`SpellGrant` point *into* the Spells catalog from Eldritch
@@ -1189,18 +1232,19 @@ which a skim would have called prose.
 construct `RulesetDefinitionSet` directly and need a non-null value they
 aren't otherwise exercising.
 
-## Open work: the rules-chapters scoping pass (2026-08-10)
+## The rules-chapters scoping pass (2026-08-10, closed)
 
 Scoped the territory the feature-prose pass never touched — Chapter 1's
 advancement table, Chapter 6 (Multiclassing), Chapter 7 (Using Ability
 Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
-`SpellDefinition` header blocks).
+`SpellDefinition` header blocks). **All four buildable candidates are now
+built; the pass is closed, not a queue.**
 
 | Candidate | Page | Verdict |
 | --- | --- | --- |
 | Character Advancement | 15 | **Built** |
 | Multiclassing Proficiencies | 164 | **Built** |
-| Encumbrance variant + size/strength multipliers | 176 | **Buildable, partial** |
+| Encumbrance variant + size/strength multipliers | 176 | **Built** |
 | Concentration rules | 203 | **Built** |
 | Multiclass Spellcaster slot table | 165 | **Declined — duplicate** |
 | Ability score → modifier table | 173 | **Declined — pure formula** |
@@ -1220,8 +1264,8 @@ Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
 - **Carrying capacity is mostly formula, but two parts are not.** Str × 15
   and its 2× push/drag/lift stay declined; the **size multiplier** is a real
   table keyed to `CreatureSizeId`, and **Variant: Encumbrance** carries real
-  speed penalties. Partial build only.
-- **Concentration is built** — see "Concentration" below.
+  speed penalties — see "Encumbrance" above.
+- **Concentration is built** — see "Concentration" above.
 
 ## Test conventions
 

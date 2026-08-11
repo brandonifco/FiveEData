@@ -31,9 +31,15 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [ability, TestConcentration.RequiredAbility()],
+                    abilities:
+                    [
+                        ability,
+                        TestConcentration.RequiredAbility(),
+                        .. TestEncumbrance.RequiredAbilities()
+                    ],
                     conditions: [TestConcentration.RequiredCondition()],
                     skills: [skill],
+                    sizes: TestEncumbrance.RequiredSizes(),
                     sourceDocuments:
                     [
                         new SourceDocument(
@@ -322,10 +328,15 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
         IReadOnlyList<string> errors =
             CatalogIntegrityValidator.Validate(
                 CreateDefinitionSet(
-                    abilities: [ability, TestConcentration.RequiredAbility()],
+                    abilities:
+                    [
+                        ability,
+                        TestConcentration.RequiredAbility(),
+                        .. TestEncumbrance.RequiredAbilities()
+                    ],
                     skills: [skill],
                     languages: [language],
-                    sizes: [size],
+                    sizes: [size, .. TestEncumbrance.RequiredSizes()],
                     conditions: [condition, TestConcentration.RequiredCondition()],
                     damageTypes: [damageType],
                     senses: [sense],
@@ -534,6 +545,7 @@ public sealed class CreatureVocabularyCatalogIntegrityTests
             restTypes: [],
             downtimeActivities: [],
             characterAdvancement: TestCharacterAdvancement.Create(),
-            concentration: TestConcentration.Create());
+            concentration: TestConcentration.Create(),
+            encumbrance: TestEncumbrance.Create());
     }
 }

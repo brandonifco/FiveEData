@@ -5,6 +5,7 @@ using FiveEData.Rules.Adventuring.Resting;
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Characters.Encumbrance;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Classes;
@@ -1188,6 +1189,36 @@ internal static class CatalogIntegrityValidator
                 errors.Add(
                     $"{owner} references missing ability " +
                     $"'{savingThrowAbilityId}'.");
+            }
+        }
+
+        ValidateSources(
+            "Encumbrance rules",
+            definitions.Encumbrance.Sources,
+            sourceIds,
+            errors);
+
+        foreach (
+            CarryingCapacitySizeMultiplierGrant sizeMultiplier
+            in definitions.Encumbrance.SizeCarryingCapacityMultipliers)
+        {
+            if (!sizeIds.Contains(sizeMultiplier.SizeId))
+            {
+                errors.Add(
+                    $"Encumbrance rules reference missing creature size " +
+                    $"'{sizeMultiplier.SizeId}'.");
+            }
+        }
+
+        foreach (
+            AbilityId encumbranceAbilityId
+            in definitions.Encumbrance.HeavilyEncumberedDisadvantageAbilityIds)
+        {
+            if (!abilityIds.Contains(encumbranceAbilityId))
+            {
+                errors.Add(
+                    $"Encumbrance rules reference missing ability " +
+                    $"'{encumbranceAbilityId}'.");
             }
         }
 

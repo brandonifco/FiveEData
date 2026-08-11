@@ -66,6 +66,8 @@ using FiveEData.Rules.Classes.ElementalDisciplines.Serialization;
 using FiveEData.Rules.Classes.HunterOptions;
 using FiveEData.Rules.Classes.HunterOptions.Serialization;
 using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Characters.Encumbrance;
+using FiveEData.Rules.Characters.Encumbrance.Serialization;
 using FiveEData.Rules.Spells.Concentration;
 using FiveEData.Rules.Spells.Concentration.Serialization;
 using FiveEData.Rules.Characters.CharacterAdvancement.Serialization;
@@ -214,6 +216,8 @@ public sealed class PublicApiBoundaryTests
         Assert.False(typeof(CharacterAdvancementRulesValidator).IsPublic);
         Assert.False(typeof(ConcentrationRulesLoader).IsPublic);
         Assert.False(typeof(ConcentrationRulesValidator).IsPublic);
+        Assert.False(typeof(EncumbranceRulesLoader).IsPublic);
+        Assert.False(typeof(EncumbranceRulesValidator).IsPublic);
     }
 
     [Fact]

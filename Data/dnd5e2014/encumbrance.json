@@ -1,0 +1,49 @@
+{
+  "sizeCarryingCapacityMultipliers": [
+    {
+      "sizeId": "dnd5e2014.creature-size.tiny",
+      "multiplier": 0.5
+    },
+    {
+      "sizeId": "dnd5e2014.creature-size.small",
+      "multiplier": 1
+    },
+    {
+      "sizeId": "dnd5e2014.creature-size.medium",
+      "multiplier": 1
+    },
+    {
+      "sizeId": "dnd5e2014.creature-size.large",
+      "multiplier": 2
+    },
+    {
+      "sizeId": "dnd5e2014.creature-size.huge",
+      "multiplier": 4
+    },
+    {
+      "sizeId": "dnd5e2014.creature-size.gargantuan",
+      "multiplier": 8
+    }
+  ],
+  "encumberedCarryingCapacityMultiplier": 5,
+  "encumberedSpeedReductionFeet": 10,
+  "heavilyEncumberedCarryingCapacityMultiplier": 10,
+  "heavilyEncumberedSpeedReductionFeet": 20,
+  "heavilyEncumberedDisadvantageAbilityIds": [
+    "dnd5e2014.ability.strength",
+    "dnd5e2014.ability.dexterity",
+    "dnd5e2014.ability.constitution"
+  ],
+  "sources": [
+    {
+      "documentId": "dnd5e2014.source.phb-first-printing",
+      "page": 176,
+      "section": "Chapter 7: Using Ability Scores — Strength — Lifting and Carrying — Size and Strength"
+    },
+    {
+      "documentId": "dnd5e2014.source.phb-first-printing",
+      "page": 176,
+      "section": "Chapter 7: Using Ability Scores — Strength — Variant: Encumbrance"
+    }
+  ]
+}

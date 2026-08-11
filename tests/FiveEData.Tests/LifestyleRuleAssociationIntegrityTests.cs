@@ -265,10 +265,14 @@ public sealed class
             expenses: expenses,
             creatureVocabulary:
                 new CreatureVocabularyDefinitionSet(
-                    abilities: [TestConcentration.RequiredAbility()],
+                    abilities:
+                    [
+                        TestConcentration.RequiredAbility(),
+                        .. TestEncumbrance.RequiredAbilities()
+                    ],
                     skills: [],
                     languages: [],
-                    sizes: [],
+                    sizes: TestEncumbrance.RequiredSizes(),
                     conditions: [TestConcentration.RequiredCondition()],
                     damageTypes: [],
                     senses: [],
@@ -297,6 +301,7 @@ public sealed class
             restTypes: [],
             downtimeActivities: [],
             characterAdvancement: TestCharacterAdvancement.Create(),
-            concentration: TestConcentration.Create());
+            concentration: TestConcentration.Create(),
+            encumbrance: TestEncumbrance.Create());
     }
 }

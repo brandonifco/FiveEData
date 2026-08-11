@@ -258,6 +258,7 @@ public sealed class ExpenseRuleAssociationIntegrityTests
             restTypes: [],
             downtimeActivities: [],
             characterAdvancement: TestCharacterAdvancement.Create(),
-            concentration: TestConcentration.Create());
+            concentration: TestConcentration.Create(),
+            encumbrance: TestEncumbrance.Create());
     }
 }
