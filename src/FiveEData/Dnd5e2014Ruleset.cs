@@ -1,6 +1,7 @@
 using System.Threading;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Characters.Encumbrance;
 using FiveEData.Rules.Spells.Concentration;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Equipment.Armor;
@@ -60,6 +61,7 @@ public sealed class Dnd5e2014Ruleset
         DowntimeActivityCatalog downtimeActivities,
         CharacterAdvancementRules characterAdvancement,
         ConcentrationRules concentration,
+        EncumbranceRules encumbrance,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -105,6 +107,7 @@ public sealed class Dnd5e2014Ruleset
         ArgumentNullException.ThrowIfNull(restTypes);
         ArgumentNullException.ThrowIfNull(downtimeActivities);
         ArgumentNullException.ThrowIfNull(characterAdvancement);
+        ArgumentNullException.ThrowIfNull(encumbrance);
         ArgumentNullException.ThrowIfNull(sources);
         ArgumentNullException.ThrowIfNull(rules);
 
@@ -151,6 +154,7 @@ public sealed class Dnd5e2014Ruleset
         DowntimeActivities = downtimeActivities;
         CharacterAdvancement = characterAdvancement;
         Concentration = concentration;
+        Encumbrance = encumbrance;
         Sources = sources;
         Rules = rules;
     }
@@ -206,6 +210,7 @@ public sealed class Dnd5e2014Ruleset
     public CharacterAdvancementRules CharacterAdvancement { get; }
 
     public ConcentrationRules Concentration { get; }
+    public EncumbranceRules Encumbrance { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

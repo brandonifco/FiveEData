@@ -3,6 +3,7 @@ using FiveEData.Rules.Adventuring.Resting;
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Characters.Encumbrance;
 using FiveEData.Rules.Spells.Concentration;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.Cover;
@@ -60,7 +61,8 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<RestTypeDefinition> restTypes,
         IReadOnlyList<DowntimeActivityDefinition> downtimeActivities,
         CharacterAdvancementRules characterAdvancement,
-        ConcentrationRules concentration)
+        ConcentrationRules concentration,
+        EncumbranceRules encumbrance)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(rules);
@@ -91,6 +93,7 @@ internal sealed class RulesetDefinitionSet
         ArgumentNullException.ThrowIfNull(restTypes);
         ArgumentNullException.ThrowIfNull(downtimeActivities);
         ArgumentNullException.ThrowIfNull(characterAdvancement);
+        ArgumentNullException.ThrowIfNull(encumbrance);
 
         SourceDocuments = sourceDocuments;
         Rules = rules;
@@ -122,6 +125,7 @@ internal sealed class RulesetDefinitionSet
         DowntimeActivities = downtimeActivities;
         CharacterAdvancement = characterAdvancement;
         Concentration = concentration;
+        Encumbrance = encumbrance;
     }
 
     public IReadOnlyList<SourceDocument> SourceDocuments { get; }
@@ -189,4 +193,6 @@ internal sealed class RulesetDefinitionSet
     public CharacterAdvancementRules CharacterAdvancement { get; }
 
     public ConcentrationRules Concentration { get; }
+
+    public EncumbranceRules Encumbrance { get; }
 }

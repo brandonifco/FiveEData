@@ -7,6 +7,8 @@ using FiveEData.Rules.Adventuring.TravelPace.Serialization;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Characters.CharacterAdvancement;
 using FiveEData.Rules.Characters.CharacterAdvancement.Serialization;
+using FiveEData.Rules.Characters.Encumbrance;
+using FiveEData.Rules.Characters.Encumbrance.Serialization;
 using FiveEData.Rules.Spells.Concentration;
 using FiveEData.Rules.Spells.Concentration.Serialization;
 using FiveEData.Rules.Combat.CombatActions;
@@ -177,6 +179,9 @@ internal static class Dnd5e2014RulesetLoader
 
     private const string CharacterAdvancementResource =
         "FiveEData.Data.dnd5e2014.character-advancement.json";
+
+    private const string EncumbranceResource =
+        "FiveEData.Data.dnd5e2014.encumbrance.json";
 
     private const string OpenHandTechniqueOptionsResource =
         "FiveEData.Data.dnd5e2014.open-hand-technique-options.json";
@@ -418,6 +423,11 @@ internal static class Dnd5e2014RulesetLoader
                 EmbeddedDataReader.ReadRequiredText(
                     ConcentrationResource));
 
+        EncumbranceRules encumbrance =
+            EncumbranceRulesLoader.LoadFromJson(
+                EmbeddedDataReader.ReadRequiredText(
+                    EncumbranceResource));
+
         IReadOnlyList<OpenHandTechniqueOptionDefinition> openHandTechniqueOptions =
             OpenHandTechniqueOptionDefinitionLoader.LoadFromJson(
                 EmbeddedDataReader.ReadRequiredText(OpenHandTechniqueOptionsResource));
@@ -630,7 +640,8 @@ internal static class Dnd5e2014RulesetLoader
             restTypes: restTypes,
             downtimeActivities: downtimeActivities,
             characterAdvancement: characterAdvancement,
-            concentration: concentration);
+            concentration: concentration,
+            encumbrance: encumbrance);
 
         CatalogIntegrityValidator.EnsureValid(definitions);
 
@@ -706,6 +717,7 @@ internal static class Dnd5e2014RulesetLoader
                 new DowntimeActivityCatalog(downtimeActivities),
             characterAdvancement: characterAdvancement,
             concentration: concentration,
+            encumbrance: encumbrance,
             sources: new SourceDocumentCatalog(sources),
             rules: new RuleCatalog(rules));
     }
