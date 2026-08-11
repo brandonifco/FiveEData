@@ -1,6 +1,7 @@
 using System.Threading;
 using FiveEData.Rules.Catalog;
 using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Spells.Concentration;
 using FiveEData.Rules.Creatures;
 using FiveEData.Rules.Equipment.Armor;
 using FiveEData.Rules.Equipment.MountsAndVehicles;
@@ -58,6 +59,7 @@ public sealed class Dnd5e2014Ruleset
         RestTypeCatalog restTypes,
         DowntimeActivityCatalog downtimeActivities,
         CharacterAdvancementRules characterAdvancement,
+        ConcentrationRules concentration,
         SourceDocumentCatalog sources,
         RuleCatalog rules)
     {
@@ -148,6 +150,7 @@ public sealed class Dnd5e2014Ruleset
         RestTypes = restTypes;
         DowntimeActivities = downtimeActivities;
         CharacterAdvancement = characterAdvancement;
+        Concentration = concentration;
         Sources = sources;
         Rules = rules;
     }
@@ -201,6 +204,8 @@ public sealed class Dnd5e2014Ruleset
     public RestTypeCatalog RestTypes { get; }
     public DowntimeActivityCatalog DowntimeActivities { get; }
     public CharacterAdvancementRules CharacterAdvancement { get; }
+
+    public ConcentrationRules Concentration { get; }
     public SourceDocumentCatalog Sources { get; }
     public RuleCatalog Rules { get; }
 }

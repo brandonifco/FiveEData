@@ -1,0 +1,19 @@
+{
+  "savingThrowAbilityId": "dnd5e2014.ability.constitution",
+  "minimumSavingThrowDC": 10,
+  "damageDivisorForSavingThrowDC": 2,
+  "separateSavingThrowPerDamageSource": true,
+  "endsWhenCastingAnotherConcentrationSpell": true,
+  "endsOnDeath": true,
+  "canBeEndedVoluntarilyWithoutAnAction": true,
+  "endedByConditionIds": [
+    "dnd5e2014.condition.incapacitated"
+  ],
+  "sources": [
+    {
+      "documentId": "dnd5e2014.source.phb-first-printing",
+      "page": 203,
+      "section": "Chapter 10: Spellcasting — Concentration"
+    }
+  ]
+}

@@ -718,6 +718,30 @@ internal static class CatalogIntegrityValidator
             }
         }
 
+        ValidateSources(
+            "Concentration rules",
+            definitions.Concentration.Sources,
+            sourceIds,
+            errors);
+
+        if (!abilityIds.Contains(definitions.Concentration.SavingThrowAbilityId))
+        {
+            errors.Add(
+                $"Concentration rules reference missing ability " +
+                $"'{definitions.Concentration.SavingThrowAbilityId}'.");
+        }
+
+        foreach (ConditionId conditionId in
+            definitions.Concentration.EndedByConditionIds)
+        {
+            if (!conditionIds.Contains(conditionId))
+            {
+                errors.Add(
+                    $"Concentration rules reference missing condition " +
+                    $"'{conditionId}'.");
+            }
+        }
+
         errors.AddRange(
             BackgroundCatalogIntegrityValidator.Validate(
                 definitions.Backgrounds,

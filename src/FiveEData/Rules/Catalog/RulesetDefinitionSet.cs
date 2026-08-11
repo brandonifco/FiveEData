@@ -3,6 +3,7 @@ using FiveEData.Rules.Adventuring.Resting;
 using FiveEData.Rules.Adventuring.TravelPace;
 using FiveEData.Rules.Backgrounds;
 using FiveEData.Rules.Characters.CharacterAdvancement;
+using FiveEData.Rules.Spells.Concentration;
 using FiveEData.Rules.Combat.CombatActions;
 using FiveEData.Rules.Combat.Cover;
 using FiveEData.Rules.Spells;
@@ -58,7 +59,8 @@ internal sealed class RulesetDefinitionSet
         IReadOnlyList<TravelPaceDefinition> travelPaces,
         IReadOnlyList<RestTypeDefinition> restTypes,
         IReadOnlyList<DowntimeActivityDefinition> downtimeActivities,
-        CharacterAdvancementRules characterAdvancement)
+        CharacterAdvancementRules characterAdvancement,
+        ConcentrationRules concentration)
     {
         ArgumentNullException.ThrowIfNull(sourceDocuments);
         ArgumentNullException.ThrowIfNull(rules);
@@ -119,6 +121,7 @@ internal sealed class RulesetDefinitionSet
         RestTypes = restTypes;
         DowntimeActivities = downtimeActivities;
         CharacterAdvancement = characterAdvancement;
+        Concentration = concentration;
     }
 
     public IReadOnlyList<SourceDocument> SourceDocuments { get; }
@@ -184,4 +187,6 @@ internal sealed class RulesetDefinitionSet
     { get; }
 
     public CharacterAdvancementRules CharacterAdvancement { get; }
+
+    public ConcentrationRules Concentration { get; }
 }
