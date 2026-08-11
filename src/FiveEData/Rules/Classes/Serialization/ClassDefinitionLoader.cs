@@ -1,3 +1,5 @@
+using FiveEData.Rules.Classes.Multiclassing;
+using FiveEData.Rules.Classes.Multiclassing.Serialization;
 using FiveEData.Rules.Classes.ActionSurge;
 using FiveEData.Rules.Classes.ActionSurge.Serialization;
 using FiveEData.Rules.Classes.Auras;
@@ -427,6 +429,11 @@ internal static class ClassDefinitionLoader
                     toolProficiencyChoiceData)
                 : null;
 
+        MulticlassingProficiencyGrant? multiclassingProficiencyGrant =
+            data.MulticlassingProficiencyGrant is { } grantData
+                ? MulticlassingProficiencyGrantDataMapper.Map(grantData)
+                : null;
+
         return new ClassDefinition(
             id,
             name,
@@ -485,6 +492,7 @@ internal static class ClassDefinitionLoader
             relentlessRage,
             toolProficiencyIdValues.Select(value => new ToolId(value)),
             toolProficiencyChoice,
+            multiclassingProficiencyGrant,
             sourceData.Select(SourceReferenceDataMapper.Map));
     }
 

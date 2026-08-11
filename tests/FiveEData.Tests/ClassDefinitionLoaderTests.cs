@@ -89,6 +89,7 @@ public sealed class ClassDefinitionLoaderTests
           "relentlessRage": null,
           "toolProficiencyIds": [],
           "toolProficiencyChoice": null,
+          "multiclassingProficiencyGrant": null,
           "sources": [
             {
               "documentId": "extension.source.test",
@@ -245,6 +246,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -381,6 +383,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -482,6 +485,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -683,6 +687,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -793,6 +798,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -900,6 +906,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1020,6 +1027,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1147,6 +1155,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1257,6 +1266,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1367,6 +1377,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1468,6 +1479,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1568,6 +1580,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1667,6 +1680,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1771,6 +1785,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [
                       {
                         "documentId": "extension.source.test",
@@ -1845,6 +1860,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": [],
                     "unexpected": true
                   }
@@ -1889,6 +1905,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": []
                   }
                 ]
@@ -1930,6 +1947,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": []
                   }
                 ]
@@ -1972,6 +1990,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": []
                   }
                 ]
@@ -2014,6 +2033,7 @@ public sealed class ClassDefinitionLoaderTests
                     "relentlessRage": null,
                     "toolProficiencyIds": [],
                     "toolProficiencyChoice": null,
+                    "multiclassingProficiencyGrant": null,
                     "sources": null
                   }
                 ]

@@ -21,7 +21,7 @@ recoverable with `git show e2bd672:CLAUDE.md` and `git show b96ed1d:CLAUDE.md`.
 
 ## Current state
 
-Gate as of the last merge: Debug+Release build 0 warnings, **3283 tests**.
+Gate as of the last merge: Debug+Release build 0 warnings, **3290 tests**.
 
 **Built and complete:**
 
@@ -41,8 +41,8 @@ Gate as of the last merge: Debug+Release build 0 warnings, **3283 tests**.
   `Cover` (3), `TravelPace` (3), `RestTypes` (2), `DowntimeActivities` (5).
   Everything else in PHB Chapters 8–9 is unbuilt **by design**.
 - Character Advancement (p.15) — the 20-row XP/level/proficiency-bonus table.
-- Tool proficiency grants on Class/Subclass/Race/Background — see that
-  section.
+- Tool proficiency grants on Class/Subclass/Race/Background, and the
+  Multiclassing Proficiencies table (p.164) — see those sections.
 - Quantized mechanics — leveled numbers, choice-point catalogs, and the
   feature-prose tail. **11 choice-point catalogs exist** (see the table under
   "Quantized mechanics").
@@ -56,9 +56,9 @@ name are already captured under a different field (Dwarven Toughness is
 `HitPointBonusPerLevel`, Superior Darkvision is `DarkvisionRangeFeet`, Fleet
 of Foot is the subrace `Speed` override).
 
-**In progress: the rules-chapters scoping pass** (see that section). Its
-first slice, Character Advancement, is built. Still unbuilt: Multiclassing
-Proficiencies, the encumbrance/size multipliers, and the concentration rules.
+**In progress: the rules-chapters scoping pass** (see that section).
+Character Advancement and Multiclassing Proficiencies are built. Still
+unbuilt: the encumbrance/size multipliers, and the concentration rules.
 
 **Out of scope, settled:** magic items (2014 DMG Chapter 7, not PHB —
 re-confirmed 2026-08-09 when asked); feats and Variant Human (not in the free
@@ -994,6 +994,37 @@ and Soldier (Land) and pinned by
 **Check whether an existing catalog already carries the axis before widening
 a different one.**
 
+### Multiclassing proficiencies
+
+The p.164 table is an embedded `MulticlassingProficiencyGrant` on
+`ClassDefinition`, not a catalog — its natural key is the class that already
+owns the row, so a catalog keyed by `ClassId` would duplicate it.
+
+**Sorcerer and Wizard carry `null`, not an empty grant.** Both print an
+em-dash; the constructor rejects a grant that grants nothing, so "grants
+nothing" is expressed by the absence of the object. Pinned by
+`CanonicalFile_SorcererAndWizardGrantNothing`.
+
+**A skill choice has two forms and they are not interchangeable.** Bard
+grants "one skill of your choice" (unrestricted); Ranger and Rogue grant "one
+skill from the class's skill list". Hence `SkillChoiceFromClassSkillList`
+beside the count, validator-rejected when the count is zero.
+
+**Barbarian grants shields with no armor category at all**, which is why the
+shield flag stays independent of the category list — the same shape
+`ClassDefinition`'s own starting proficiencies use. Monk grants "Simple
+weapons, shortswords", the category-plus-named-exception shape again.
+
+**The grant is a strict subset of the class's own starting proficiencies,
+and that is asserted rather than assumed** —
+`CanonicalFile_GrantsAreAStrictSubsetOfStartingProficiencies` checks every
+populated row against the class it belongs to, which catches a transcription
+slip no per-row assertion would.
+
+**Druid's "(druids will not wear armor or use shields made of metal)" stays
+in the citation**, the same deliberate unmodelled gap the Druid's own
+starting proficiencies already leave.
+
 ### Cross-domain references into other catalogs
 
 `GrantedSpellId`/`SpellGrant` point *into* the Spells catalog from Eldritch
@@ -1130,7 +1161,7 @@ Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
 | Candidate | Page | Verdict |
 | --- | --- | --- |
 | Character Advancement | 15 | **Built** |
-| Multiclassing Proficiencies | 164 | **Unblocked — tool gap now open** |
+| Multiclassing Proficiencies | 164 | **Built** |
 | Encumbrance variant + size/strength multipliers | 176 | **Buildable, partial** |
 | Concentration rules | 203–204 | **Buildable, small** |
 | Multiclass Spellcaster slot table | 165 | **Declined — duplicate** |
@@ -1139,12 +1170,9 @@ Scores), and Chapter 10 (Spellcasting's own rules, as opposed to
 | Jump distances | 182 | **Declined — formula** |
 | Feats | 165–170 | Out of scope (not in the free SRD) |
 
-- **Multiclassing Proficiencies (p.164)** is a real closed 12-row table
-  (Sorcerer and Wizard grant nothing at all — a real fact, not a scan gap).
-  It reuses `ArmorCategory`, `WeaponProficiencyCategory`, `WeaponId`, and
-  `SkillId` cleanly, and its two tool-proficiency rows (Rogue's thieves'
-  tools, Bard's musical instrument) are now buildable — the gap was opened
-  rather than declined. See "Tool proficiency grants".
+- **Multiclassing Proficiencies (p.164) is built** — see "Multiclassing
+  proficiencies" below. Its two tool-proficiency rows are what forced the
+  tool-proficiency gap open rather than being declined.
 - **The Multiclass Spellcaster table (p.165) is byte-identical to the
   already-built `full-caster` progression** — all 20 rows compared
   programmatically against `spell-slot-progressions.json`, zero differences. The derivation rule around it reduces

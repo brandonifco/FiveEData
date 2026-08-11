@@ -210,6 +210,7 @@ public sealed class ClassFoundationTests
             null,
             [],
             null,
+            null,
             [CreateSource()]);
 
         Assert.Contains(
@@ -1866,6 +1867,7 @@ public sealed class ClassFoundationTests
             cleansingTouchUsesPerRest,
             relentlessRage,
             [],
+            null,
             null,
             sources ?? [CreateSource()]);
     }
